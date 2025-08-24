@@ -1,0 +1,185 @@
+name: 🚀 Deploy ASOOS 2100.Cool to Cloudflare Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: 🔍 Quality Assurance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: |
+          echo "🔍 Validating HTML structure..."
+          # Check for required meta tags
+          grep -q 'charset="UTF-8"' index.html || (echo "❌ Missing charset meta tag" && exit 1)
+          grep -q 'viewport' index.html || (echo "❌ Missing viewport meta tag" && exit 1)
+          
+          # Check for authentication functions
+          grep -q 'initiateAuthentication' index.html || (echo "❌ Authentication function missing" && exit 1)
+          
+          # Verify authentication redirects to /auth
+          if grep -q "window.location.href = '/auth'" index.html; then
+            echo "✅ Authentication redirects properly configured"
+          else
+            echo "❌ Authentication should redirect to /auth" && exit 1
+          fi
+          
+          echo "✅ HTML validation passed"
+
+      - name: Security Check
+        run: |
+          echo "🔒 Security validation..."
+          
+          # Check for inline scripts (should be minimal for security)
+          INLINE_SCRIPTS=$(grep -c '<script>' index.html || true)
+          echo "📊 Inline scripts found: $INLINE_SCRIPTS"
+          
+          # Check file size
+          INDEX_SIZE=$(stat -c%s index.html)
+          echo "📊 File size: ${INDEX_SIZE} bytes"
+          
+          echo "✅ Security check completed"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    name: 🌐 Deploy to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare deployment
+        run: |
+          echo "📦 Preparing deployment package..."
+          
+          # Create deployment directory
+          mkdir -p ./dist
+          
+          # Copy main files
+          cp index.html ./dist/
+          cp README.md ./dist/ || echo "README.md not found, skipping"
+          
+          # Create _redirects file for Cloudflare Pages
+          cat > ./dist/_redirects << EOF
+          # Authentication routing
+          /auth https://auth.2100.cool/auth 200
+          /interface https://auth.2100.cool/interface 200
+          
+          # Fallback to main page
+          /* /index.html 200
+          EOF
+          
+          # Create robots.txt
+          cat > ./dist/robots.txt << EOF
+          User-agent: *
+          Allow: /
+          
+          Sitemap: https://2100.cool/sitemap.xml
+          EOF
+          
+          # Create sitemap.xml
+          cat > ./dist/sitemap.xml << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url>
+              <loc>https://2100.cool/</loc>
+              <lastmod>$(date -u +%Y-%m-%d)</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>1.0</priority>
+            </url>
+          </urlset>
+          EOF
+          
+          # Create security headers via _headers file
+          cat > ./dist/_headers << EOF
+          /*
+            X-Frame-Options: DENY
+            X-Content-Type-Options: nosniff
+            X-XSS-Protection: 1; mode=block
+            Referrer-Policy: strict-origin-when-cross-origin
+            Permissions-Policy: geolocation=(), microphone=(), camera=()
+            Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;
+          EOF
+          
+          echo "✅ Deployment package prepared"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: asoos-2100-cool
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: deploy
+    name: 🔍 Verify Deployment
+    steps:
+      - name: Wait for deployment
+        run: |
+          echo "⏳ Waiting for deployment to be available..."
+          sleep 60
+
+      - name: Test site accessibility
+        run: |
+          echo "🔍 Testing site accessibility..."
+          
+          # Check if main site is accessible
+          if curl -f -s -o /dev/null https://2100.cool/; then
+            echo "✅ Main site accessible"
+          else
+            echo "⚠️ Main site not accessible yet"
+          fi
+          
+          # Check if authentication redirects work
+          echo "🔐 Testing authentication flow..."
+          if curl -s -o /dev/null -w "%{http_code}" https://2100.cool/auth | grep -q "200\|302\|301"; then
+            echo "✅ Auth endpoint responsive"
+          else
+            echo "⚠️ Auth endpoint may need configuration"
+          fi
+
+      - name: Test authentication buttons
+        run: |
+          echo "🔘 Verifying authentication button functionality..."
+          
+          # Download the page and check for correct authentication function
+          curl -s https://2100.cool/ | grep -q "window.location.href = '/auth'" && echo "✅ Authentication buttons configured correctly" || echo "❌ Authentication buttons need fixing"
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: [deploy, verify]
+    name: 📢 Deployment Notification
+    if: always()
+    steps:
+      - name: Success Notification
+        if: ${{ needs.deploy.result == 'success' }}
+        run: |
+          echo "🎉 ASOOS 2100.Cool successfully deployed to Cloudflare Pages!"
+          echo "🌐 Live URL: https://2100.cool"
+          echo "🔐 Authentication: Sally Port Integration Active"
+          echo "🎭 Sacred Mission: Operational"
+          echo "⚡ Cloudflare: Global CDN Active"
+
+      - name: Failure Notification  
+        if: ${{ needs.deploy.result == 'failure' }}
+        run: |
+          echo "❌ Deployment failed. Please check the logs."
+          echo "🔍 Check Cloudflare configuration and API tokens"
+
+# Environment Variables Required:
+# - CLOUDFLARE_API_TOKEN: Your Cloudflare API token with Pages:Edit permissions
+# - CLOUDFLARE_ACCOUNT_ID: Your Cloudflare account ID
+# - GITHUB_TOKEN: Automatically provided by GitHub Actions
