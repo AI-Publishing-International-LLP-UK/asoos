@@ -113,53 +113,39 @@ jobs:
           
           echo "✅ Deployment package prepared"
 
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          node-version: '18'
 
-      - name: Setup Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+      - name: Upload deployment artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-pages-deployment
+          path: dist/
+          retention-days: 7
 
-      - name: Get Cloudflare credentials from GCP Secret Manager
+      - name: Deployment Instructions
         run: |
-          echo "🔐 Retrieving Cloudflare credentials from GCP Secret Manager..."
-          
-          # Get Cloudflare API token from GCP secrets
-          CLOUDFLARE_TOKEN=$(gcloud secrets versions access latest --secret="cloudflare-api-token" 2>/dev/null || echo "")
-          CLOUDFLARE_ACCOUNT=$(gcloud secrets versions access latest --secret="cloudflare-account-id" 2>/dev/null || echo "")
-          
-          if [ -n "$CLOUDFLARE_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT" ]; then
-            echo "✅ Cloudflare credentials retrieved from GCP"
-            echo "CLOUDFLARE_API_TOKEN=${CLOUDFLARE_TOKEN}" >> $GITHUB_ENV
-            echo "CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT}" >> $GITHUB_ENV
-          else
-            echo "⚠️ Cloudflare credentials not found in GCP Secret Manager"
-            echo "Will attempt direct deployment without API tokens"
-          fi
-
-      - name: Deploy to Cloudflare Pages (with GCP OAuth2)
-        run: |
-          echo "🚀 Deploying to Cloudflare Pages via GCP OAuth2..."
-          
-          # Install Cloudflare Wrangler CLI
-          npm install -g wrangler@latest
-          
-          # Try to deploy using OAuth2 flow
-          if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
-            echo "📡 Using API token from GCP Secret Manager"
-            export CLOUDFLARE_API_TOKEN="$CLOUDFLARE_API_TOKEN"
-            export CLOUDFLARE_ACCOUNT_ID="$CLOUDFLARE_ACCOUNT_ID"
-            
-            # Deploy using wrangler
-            wrangler pages deploy dist \
-              --project-name=asoos-2100-cool \
-              --compatibility-date=2024-01-01 || echo "⚠️ Wrangler deployment failed, trying alternative method"
-          else
-            echo "⚠️ No API tokens available, deployment requires manual Cloudflare Pages setup"
-            echo "📋 Files prepared in ./dist/ directory"
-            echo "🔗 Connect your GitHub repo to Cloudflare Pages dashboard: https://dash.cloudflare.com/pages"
-          fi
+          echo "🚀 ASOOS 2100.Cool Deployment Ready!"
+          echo "📦 Deployment package prepared with:"
+          echo "  ✅ index.html (fixed authentication buttons)"
+          echo "  ✅ _redirects (auth routing to Sally Port)"
+          echo "  ✅ _headers (security configuration)"
+          echo "  ✅ robots.txt & sitemap.xml (SEO)"
+          echo ""
+          echo "📋 MANUAL CLOUDFLARE PAGES SETUP:"
+          echo "1. Go to https://dash.cloudflare.com/pages"
+          echo "2. Click 'Create a project' → 'Connect to Git'"
+          echo "3. Select this GitHub repository: ${{ github.repository }}"
+          echo "4. Project name: asoos-2100-cool"
+          echo "5. Build command: (leave empty)"
+          echo "6. Build output directory: dist"
+          echo "7. Custom domain: 2100.cool"
+          echo ""
+          echo "🔐 The authentication buttons will redirect to /auth (Sally Port)"
+          echo "⚡ Cloudflare will automatically deploy on future pushes"
+          echo "🎭 Sacred Mission: Ready for Global Deployment"
 
   verify:
     runs-on: ubuntu-latest
