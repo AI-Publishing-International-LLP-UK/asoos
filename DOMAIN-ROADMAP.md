@@ -44,13 +44,17 @@
 
 ## 🔧 **TIER 2: MCP & SERVICE ARCHITECTURE** (Client Interface Layer)
 
-### 5. **ASOOS.2100.cool** 📡 SUPER ADMIN GATEWAY
-- **Purpose**: Main ASOOS service interface and API gateway
-- **Integration**: SallyPort authentication + Cloudflare validation
-- **Fallback if Integration Fails**: 2100.cool Subscriber or Join Cohort
-- **Integration**: SallyPort authentication + Cloudflare validation
-- **Target Project**: Likely `asoos-clean-deploy-2025`
-- **Priority**: 🔥 **HIGH** - Service coordination
+### 5. **ASOOS.2100.cool** 📡 SUPER ADMIN GATEWAY - **LLP MEMBERS ONLY**
+- **Purpose**: **EXCLUSIVE** AI Publishing International LLP Member portal (20M+ agents)
+- **Access Control**: **RESTRICTED** - AI Publishing International LLP Members ONLY
+- **Authentication Logic**: 
+  - ✅ **LLP Member Found**: Continue to auth.html → mcp.client.2100.cool
+  - ❌ **No LLP Account**: **REDIRECT** to 2100.cool (Subscribe/Compete)
+  - ❌ **Authentication Fails**: **REDIRECT** to 2100.cool (Subscribe/Compete)
+- **Integration**: SallyPort authentication + LLP Member Registry validation
+- **Security**: Cloudflare Access + LLP Member verification
+- **Target Project**: `asoos-clean-deploy-2025` (1699 lines, 20M+ agents)
+- **Priority**: 🔥 **CRITICAL** - LLP Member exclusive access
 
 ### 6. **MCP.ASOOS.2100.cool** 🎯 STRATEGIC
 - **Wing**: Wing 13 - Master MCP Template
@@ -162,12 +166,28 @@ make the same for each dr. Grant, Lucy, Roark, Sabina, Maria, Cypriot, Match, Bu
 ## 🎼 **SYMPHONY COORDINATION PROTOCOL**
 
 ### **Client Request Flow**:
-1. **Entry**: `2100.cool` → Professional landing page
-2. **MCP Interface**: `MCP.ASOOS.2100.cool` → Client interactions
-3. **Service Gateway**: `ASOOS.2100.cool` → API and services
-4. **Authentication**: SallyPort/Cloudflare validation
-5. **Orchestration**: MOCORIX2 coordination
-6. **Execution**: MOCOA delivery
+
+**For LLP Members (Super Admin Path):**
+1. **LLP Entry**: `ASOOS.2100.cool` → **LLP Member Check**
+   - ✅ **LLP Member Verified**: Continue to Step 2
+   - ❌ **Not LLP Member**: **AUTO-REDIRECT** to `2100.cool`
+   - ❌ **No Account Found**: **AUTO-REDIRECT** to `2100.cool`
+2. **Authentication**: `auth.html` → Multi-provider authentication
+3. **Client Interface**: `mcp.client.2100.cool` → Owner subscriber interface
+
+**For General Public:**
+1. **Public Entry**: `2100.cool` → Choose Subscribe/Compete
+2. **Authentication**: `auth.html` → Multi-provider authentication
+3. **Client Interface**: `mcp.client.2100.cool` → Owner subscriber interface
+
+**Security Enforcement:**
+🔒 **ASOOS.2100.cool** = **AI Publishing International LLP Members ONLY**
+🌍 **2100.cool** = **Public Gateway** (Subscribe/Compete for everyone else)
+
+**System Coordination:**
+4. **Orchestration**: MOCORIX2 dr-claude01 coordination (325,000+ agents)
+5. **Execution**: MOCOA client-facing delivery
+6. **MCP Integration**: Wing 13 MCP.ASOOS.2100.cool template
 
 ---
 
