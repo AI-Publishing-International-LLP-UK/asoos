@@ -50,9 +50,35 @@ export default {
       });
     }
     
-    // Default: Fetch and serve the complete 1699-line ASOOS page from GitHub
+    // Default: Serve the complete 1608-line ASOOS page
+    // Since GitHub raw fetch is failing, we'll serve from a known working location
     try {
-      const response = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/cloudflare-pages-deployment/index.html');
+      // Try multiple GitHub paths in case the repository structure changed
+      const possiblePaths = [
+        'https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/asoos-full-content.html',
+        'https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/cloudflare-pages-deployment/index.html',
+        'https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/main/asoos-full-content.html',
+        'https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/asoos-20m-agents-full.html'
+      ];
+      
+      let response = null;
+      let workingPath = null;
+      
+      for (const path of possiblePaths) {
+        try {
+          response = await fetch(path);
+          if (response.ok) {
+            workingPath = path;
+            break;
+          }
+        } catch (e) {
+          continue;
+        }
+      }
+      
+      if (!response || !response.ok) {
+        throw new Error('All GitHub paths failed');
+      }
       
       if (!response.ok) {
         throw new Error(`GitHub fetch failed: ${response.status} ${response.statusText}`);
