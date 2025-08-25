@@ -1,0 +1,27 @@
+{
+  "name": "asoos-2100-cool-landing",
+  "version": "1.0.0",
+  "description": "ASOOS 20M+ AI Agents Landing Page - Production Ready",
+  "main": "cloudflare-pages-deployment/index.html",
+  "scripts": {
+    "build": "echo 'No build step needed - serving static files' && exit 0",
+    "deploy": "wrangler deploy --config simple-wrangler.toml",
+    "test": "echo 'No tests specified' && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1.git"
+  },
+  "keywords": [
+    "asoos",
+    "aixtiv",
+    "symphony",
+    "ai-agents",
+    "cloudflare",
+    "worker",
+    "landing-page"
+  ],
+  "author": "AI Publishing International LLP",
+  "license": "PROPRIETARY",
+  "private": true
+}

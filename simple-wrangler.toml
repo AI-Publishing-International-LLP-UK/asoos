@@ -1,4 +1,4 @@
-name = "asoos-2100-cool"
+name = "asoos-2100-cool-worker-production"
 main = "cloudflare-pages-deployment/index-full.js"
 compatibility_date = "2025-08-25"
 
