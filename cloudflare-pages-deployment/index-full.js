@@ -1,4 +1,4 @@
-// ASOOS.2100.Cool Worker - Serves Complete 1699-Line Page
+// ASOOS.2100.Cool Worker - Serves Complete 1608-Line Page
 // Fetches the full asoos-20m-agents-full.html from GitHub repository
 
 export default {
@@ -36,7 +36,7 @@ export default {
         service: 'ASOOS.2100.Cool Landing Page',
         timestamp: new Date().toISOString(),
         version: '1.0.1',
-        features: '1699-line page with 20M+ AI Agents',
+        features: '1608-line page with 20M+ AI Agents',
         source: 'GitHub Repository'
       }), {
         headers: { 'Content-Type': 'application/json' }
@@ -52,7 +52,7 @@ export default {
     
     // Default: Fetch and serve the complete 1699-line ASOOS page from GitHub
     try {
-      const response = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/asoos-20m-agents-full.html');
+      const response = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/cloudflare-pages-deployment/index.html');
       
       if (!response.ok) {
         throw new Error(`GitHub fetch failed: ${response.status} ${response.statusText}`);
@@ -60,7 +60,7 @@ export default {
       
       const htmlContent = await response.text();
       
-      // Verify we got the full content (should be around 1699 lines)
+      // Verify we got the full content (should be around 1608 lines)
       const lineCount = htmlContent.split('\n').length;
       console.log(`Serving ASOOS page: ${lineCount} lines`);
       
@@ -125,7 +125,7 @@ export default {
   <div class="loading">
     <div class="logo">ASOOS</div>
     <h2>🔄 Loading 20M+ AI Agents Interface...</h2>
-    <div class="status">Fetching complete 1699-line interface from repository...</div>
+    <div class="status">Fetching complete 1608-line interface from repository...</div>
     <p>Error: ${error.message}</p>
     <button onclick="window.location.reload()">🔄 Retry Loading</button>
     <button onclick="window.location.href='/health'">📊 Service Status</button>

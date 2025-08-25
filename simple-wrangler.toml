@@ -1,6 +1,6 @@
 name = "asoos-2100-cool"
 main = "cloudflare-pages-deployment/index-full.js"
-compatibility_date = "2024-12-01"
+compatibility_date = "2025-08-25"
 
 [vars]
 ENVIRONMENT = "production"
