@@ -4,22 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASOOS.2100.Cool - Aixtiv Symphony Orchestrating Operating System</title>
-  <!-- Analytics & Performance Monitoring -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID');
-    
-    // Core Web Vitals monitoring
-    import {onCLS, onINP, onFCP, onLCP, onTTFB} from 'web-vitals';
-    onCLS(console.log);
-    onINP(console.log);
-    onFCP(console.log);
-    onLCP(console.log);
-    onTTFB(console.log);
-  </script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -977,7 +961,7 @@
         <a href="#team" class="nav-link">Team</a>
         <a href="#technology" class="nav-link">Technology</a>
         <a href="#stats" class="nav-link">Network</a>
-        <a href="javascript:void(0)" onclick="initiateAuthentication('app')" class="cta-button">Launch App</a>
+        <a href="#launch-app" onclick="initiateAuthentication('app'); return false;" class="cta-button" aria-label="Launch ASOOS Application">Launch App</a>
       </div>
     </div>
   </nav>
@@ -988,12 +972,12 @@
       <h1 class="hero-title">ASOOS.2100.Cool</h1>
       <p class="hero-subtitle">Aixtiv Symphony Orchestrating Operating System</p>
       <p class="hero-description">
-        Unleash the power of 560,000 AI agents across 50 sectors. Orchestrate complex workflows, 
+        Unleash the power of 20+ million AI agents across 200+ industry sectors. Orchestrate complex workflows, 
         enable seamless collaborations, and transform your organization with our revolutionary 
         DIDC Archives system powered by Tower Blockchain.
       </p>
       <div class="hero-buttons">
-        <a href="javascript:void(0)" onclick="initiateAuthentication('symphony')" class="hero-button primary-button">Start Your Symphony</a>
+        <a href="#start-symphony" onclick="initiateAuthentication('symphony'); return false;" class="hero-button primary-button" aria-label="Start Your ASOOS Symphony">Start Your Symphony</a>
         <a href="#features" class="hero-button secondary-button">Explore Features</a>
       </div>
     </div>
@@ -1003,11 +987,11 @@
   <section class="stats-section" id="stats">
     <div class="stats-container">
       <div class="stat-card reveal">
-        <div class="stat-number" data-live="agents">560K</div>
+        <div class="stat-number" data-live="agents">20M+</div>
         <div class="stat-label">AI Agent Instances</div>
       </div>
       <div class="stat-card reveal">
-        <div class="stat-number" data-live="sectors">50</div>
+        <div class="stat-number" data-live="sectors">200+</div>
         <div class="stat-label">Industry Sectors</div>
       </div>
       <div class="stat-card reveal">
@@ -1266,7 +1250,7 @@
         Join thousands of organizations transforming their operations with ASOOS. 
         Start your AI symphony today.
       </p>
-      <a href="javascript:void(0)" onclick="initiateAuthentication('welcome')" class="hero-button primary-button">Get Started Now</a>
+      <a href="#get-started" onclick="initiateAuthentication('welcome'); return false;" class="hero-button primary-button" aria-label="Get Started with ASOOS">Get Started Now</a>
     </div>
   </section>
   
@@ -1311,68 +1295,68 @@
         </div>
         
         <div class="footer-section">
-          <h4>Patent Portfolio (200 Filed)</h4>
+          <h4>Patent Portfolio (44 Patents Pending • 675 Innovative Claims)</h4>
           <div class="patent-dropdown">
             <div class="patent-category">
               <div class="patent-header" onclick="togglePatentCategory('ai-arch')">
-                <span>AI Architecture & Orchestration (45)</span>
+                <span>AI Architecture & Orchestration (11)</span>
                 <span class="patent-toggle">▼</span>
               </div>
               <div id="ai-arch" class="patent-list">
                 <div class="patent-item">RIX Career Architecture (USPTO: 70759180)</div>
                 <div class="patent-item">Vision Lake Ecosystem</div>
                 <div class="patent-item">Credential Ladder System</div>
-                <div class="patent-item">42 related ASOOS patents</div>
+                <div class="patent-item">8 related ASOOS patents</div>
               </div>
             </div>
             
             <div class="patent-category">
               <div class="patent-header" onclick="togglePatentCategory('blockchain')">
-                <span>Blockchain & Trust Systems (38)</span>
+                <span>Blockchain & Trust Systems (11)</span>
                 <span class="patent-toggle">▼</span>
               </div>
               <div id="blockchain" class="patent-list">
                 <div class="patent-item">Queen Mint Mark (USPTO: 70758875)</div>
                 <div class="patent-item">S2DO Governance Framework (USPTO: 70894223)</div>
-                <div class="patent-item">LENS Trust System</div>
-                <div class="patent-item">35 Tower Blockchain patents</div>
+                <div class="patent-item">Q4D Trust Lens Enterprise</div>
+                <div class="patent-item">8 Tower Blockchain patents</div>
               </div>
             </div>
             
             <div class="patent-category">
               <div class="patent-header" onclick="togglePatentCategory('data-systems')">
-                <span>Data & Memory Systems (42)</span>
+                <span>Data & Memory Systems (11)</span>
                 <span class="patent-toggle">▼</span>
               </div>
               <div id="data-systems" class="patent-list">
                 <div class="patent-item">FMS Memory Stack</div>
                 <div class="patent-item">DIDC Archives System</div>
                 <div class="patent-item">TimeLiners Compression</div>
-                <div class="patent-item">39 data classification patents</div>
+                <div class="patent-item">8 data classification patents</div>
               </div>
             </div>
             
             <div class="patent-category">
               <div class="patent-header" onclick="togglePatentCategory('integration')">
-                <span>Integration & Collaboration (35)</span>
+                <span>Integration & Collaboration (11)</span>
                 <span class="patent-toggle">▼</span>
               </div>
               <div id="integration" class="patent-list">
                 <div class="patent-item">Multi-Agent frameworks</div>
                 <div class="patent-item">Voice Symphony interface</div>
-                <div class="patent-item">32 workflow orchestration patents</div>
+                <div class="patent-item">8 workflow orchestration patents</div>
               </div>
             </div>
             
             <div class="patent-category">
               <div class="patent-header" onclick="togglePatentCategory('enterprise')">
-                <span>Enterprise & Security (40)</span>
+                <span>Enterprise & Security (11)</span>
                 <span class="patent-toggle">▼</span>
               </div>
               <div id="enterprise" class="patent-list">
                 <div class="patent-item">Multi-tenant architecture</div>
                 <div class="patent-item">Quantum-resistant encryption</div>
-                <div class="patent-item">37 enterprise security patents</div>
+                <div class="patent-item">8 enterprise security patents</div>
               </div>
             </div>
           </div>
@@ -1383,6 +1367,7 @@
         <div class="footer-text">
           © 2025 AI Publishing International LLP - All Rights Reserved<br>
           <strong>Aixtiv Symphony Orchestrating Operating System®</strong><br>
+          <strong>1000+ GenAI Discovery Websites • 20M+ AI Agents • 200+ Industry Sectors</strong><br>
           <strong>Coaching 2100™ • Get Ready 2100™ • Preparate 2100™ • Pub Social™</strong><br>
           <strong>The Pilots of Vision Lake™ • The City of Agents™ • Bacasu Springs™</strong>
         </div>
@@ -1506,38 +1491,105 @@
       }
     }
     
-    // Authentication flow - Real 3-step process: 2100.cool → auth → interface
+    // Authentication flow to Sally Port → Main Admin Demo System
     function initiateAuthentication(source) {
-      // Add loading indicator briefly
+      // Show loading overlay
       document.body.style.cursor = 'wait';
       
-      // Show quick loading message
-      const loadingToast = document.createElement('div');
-      loadingToast.style.cssText = `
+      // Create authentication modal
+      const authModal = document.createElement('div');
+      authModal.style.cssText = `
         position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #0bb1bb, #50C878);
-        color: black;
-        padding: 15px 25px;
-        border-radius: 25px;
-        font-weight: 600;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 10000;
-        animation: fadeInUp 0.3s ease;
+        animation: fadeInUp 0.5s ease;
       `;
-      loadingToast.textContent = '🔐 Redirecting to Sally Port Authentication...';
-      document.body.appendChild(loadingToast);
       
-      // Redirect to the real auth page after brief delay
-      setTimeout(() => {
-        document.body.style.cursor = 'default';
-        window.location.href = '/auth';
-      }, 800);
+      authModal.innerHTML = `
+        <div style="
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 30px;
+          padding: 40px;
+          text-align: center;
+          max-width: 400px;
+          width: 90%;
+        ">
+          <div style="
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0bb1bb, #50C878);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+          ">
+            <i class="fas fa-lock" style="color: white; font-size: 24px;"></i>
+          </div>
+          <h3 style="color: #0bb1bb; margin-bottom: 15px; font-size: 24px;">Authenticating Access</h3>
+          <p style="color: #aaa; margin-bottom: 25px; line-height: 1.6;">
+            Connecting to Sally Port Authentication System...<br>
+            Preparing ASOOS.2100.Cool Admin Demo
+          </p>
+          <div style="
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+          ">
+            <div style="
+              width: 0%;
+              height: 100%;
+              background: linear-gradient(90deg, #0bb1bb, #50C878);
+              border-radius: 2px;
+              animation: progressBar 3s ease-in-out forwards;
+            "></div>
+          </div>
+          <button onclick="completeAuthentication('${source}')" style="
+            background: linear-gradient(135deg, #0bb1bb, #50C878);
+            border: none;
+            color: black;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+          " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            Enter ASOOS System
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(authModal);
+      document.body.style.cursor = 'default';
     }
     
     function completeAuthentication(source) {
-      // This function is no longer needed - real auth page handles the flow
-      window.location.href = '/interface';
+      // Remove auth modal
+      const modal = document.querySelector('[style*="z-index: 10000"]');
+      if (modal) modal.remove();
+      
+      // Simulate redirect to main admin system
+      const messages = {
+        symphony: 'Redirecting to ASOOS Symphony Orchestration Dashboard...',
+        app: 'Launching ASOOS Application Suite...',
+        welcome: 'Welcome to ASOOS.2100.Cool Admin Demo System!'
+      };
+      
+      alert(messages[source] + '\n\n🔐 Sally Port Authentication: ✅ Verified\n🎯 Access Level: Super Administrative\n🚀 System: Main Demo Environment\n\n[In production, this would redirect to the full ASOOS system]');
     }
     
     window.addEventListener('scroll', reveal);
