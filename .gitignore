@@ -17,12 +17,24 @@ yarn-error.log*
 logs
 *.log
 
-# Development
+# Environment Variables & Secrets
 .env
+.env.*
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env.secrets
+.env.bak*
+*.secret
+*secrets*
+secrets_output/
+
+# API Keys & Auth
+api-keys.json
+service-account*.json
+auth-config.json
+cloudflare-auth.json
 
 # IDE
 .vscode/
