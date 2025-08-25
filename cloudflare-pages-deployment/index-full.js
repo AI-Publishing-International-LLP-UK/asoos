@@ -7,7 +7,21 @@ export default {
     
     // Handle auth page routing  
     if (url.pathname === '/auth') {
-      return Response.redirect('https://asoos.2100.cool/cloudflare-pages-deployment/auth.html', 302);
+      try {
+        const authResponse = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/cloudflare-pages-deployment/auth.html');
+        if (authResponse.ok) {
+          const authContent = await authResponse.text();
+          return new Response(authContent, {
+            headers: { 
+              'Content-Type': 'text/html;charset=UTF-8',
+              'Cache-Control': 'public, max-age=300'
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching auth page:', error);
+      }
+      return new Response('Authentication temporarily unavailable', { status: 503 });
     }
     
     // Handle owner interface redirect
