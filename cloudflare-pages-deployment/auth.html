@@ -449,14 +449,14 @@
       const aipubDomains = ['coaching2100.com', 'aipub.com', 'aipub.co.uk'];
       const domain = email.split('@')[1];
       
-      let redirectUri = 'https://mcp.aipub.2100.cool/'; // Default for AI Publishing International LLP
+      let redirectUri = 'https://mcp.aipub.2100.cool/client-code'; // Default for AI Publishing International LLP members
       
-      // For Diamond SAO (Phillip Corey Roark) - direct access
+      // For Diamond SAO (Phillip Corey Roark) - direct access to Mocoa Owner Interface
       if (email === 'pr@coaching2100.com') {
-        redirectUri = 'https://mcp.aipub.2100.cool/';
+        redirectUri = 'https://mocoa-owner-interface-859242575175.us-west1.run.app/';
       } else if (aipubDomains.includes(domain)) {
-        // AI Publishing International LLP members
-        redirectUri = 'https://mcp.aipub.2100.cool/';
+        // AI Publishing International LLP members - route to client-code interface
+        redirectUri = 'https://mcp.aipub.2100.cool/client-code';
       } else {
         // Other users - route to general interface for now
         redirectUri = 'https://2100.cool/interface/';
