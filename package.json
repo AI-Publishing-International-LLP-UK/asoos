@@ -4,7 +4,7 @@
   "description": "ASOOS 20M+ AI Agents Landing Page - Production Ready",
   "main": "cloudflare-pages-deployment/index.html",
   "scripts": {
-    "build": "echo 'No build step needed - serving static files' && exit 0",
+    "build": "echo 'Static files ready for deployment from cloudflare-pages-deployment/' && ls -la cloudflare-pages-deployment/",
     "deploy": "wrangler deploy --config simple-wrangler.toml",
     "test": "echo 'No tests specified' && exit 0"
   },
