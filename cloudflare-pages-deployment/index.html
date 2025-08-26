@@ -961,7 +961,7 @@
         <a href="#team" class="nav-link">Team</a>
         <a href="#technology" class="nav-link">Technology</a>
         <a href="#stats" class="nav-link">Network</a>
-        <button onclick="redirectToAuth('app')" class="cta-button" aria-label="Launch ASOOS Application">Open App</button>
+        <a href="#launch-app" onclick="initiateAuthentication('app'); return false;" class="cta-button" aria-label="Launch ASOOS Application">Launch App</a>
       </div>
     </div>
   </nav>
@@ -977,7 +977,7 @@
         DIDC Archives system powered by Tower Blockchain.
       </p>
       <div class="hero-buttons">
-        <button onclick="redirectToAuth('symphony')" class="hero-button primary-button" aria-label="Start Your ASOOS Symphony">Start Your Symphony</button>
+        <a href="#start-symphony" onclick="initiateAuthentication('symphony'); return false;" class="hero-button primary-button" aria-label="Start Your ASOOS Symphony">Start Your Symphony</a>
         <a href="#features" class="hero-button secondary-button">Explore Features</a>
       </div>
     </div>
@@ -1250,7 +1250,7 @@
         Join thousands of organizations transforming their operations with ASOOS. 
         Start your AI symphony today.
       </p>
-      <button onclick="redirectToAuth('welcome')" class="hero-button primary-button" aria-label="Get Started with ASOOS">Get Started</button>
+      <a href="#get-started" onclick="initiateAuthentication('welcome'); return false;" class="hero-button primary-button" aria-label="Get Started with ASOOS">Get Started Now</a>
     </div>
   </section>
   
@@ -1491,14 +1491,22 @@
       }
     }
     
-    // Perfect flow: ASOOS → Auth → SallyPort → MCP.AIPUB.CO.UK
-    function redirectToAuth(source) {
-      console.log(`🎯 Redirecting to auth for: ${source}`);
-      console.log('🛡️ SallyPort will handle background authentication');
-      console.log('🎭 Target: mcp.aipub.co.uk');
+    // Authentication flow - Redirect to corrected auth page for proper user identification
+    function initiateAuthentication(source) {
+      // Store the entry point source for potential future use
+      localStorage.setItem('asoos_entry_source', source);
       
-      // Direct redirect - no modals, no JavaScript errors, clean experience
-      window.location.href = 'https://asoos.2100.cool/auth';
+      // Redirect to the corrected authentication page
+      // This ensures proper user identification before Sally Port integration
+      window.location.href = '/auth';
+    }
+    
+    // This function is no longer needed since we redirect to auth page directly
+    // Keeping for potential future fallback use
+    function completeAuthentication(source) {
+      console.log('Legacy authentication function called for source:', source);
+      // Fallback redirect to auth page if somehow called
+      window.location.href = '/auth';
     }
     
     window.addEventListener('scroll', reveal);
