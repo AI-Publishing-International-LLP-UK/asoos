@@ -462,8 +462,8 @@
         redirectUri = 'https://2100.cool/interface/';
       }
 
-      // 🔥 SALLY PORT INTEGRATION: Route through Sally Port authentication
-      const authUrl = `https://oauth2-auth-only.pr-aef.workers.dev/auth/oauth2/authorize?provider=email&email=${encodeURIComponent(email)}&client_id=aipub-diamond-sao&redirect_uri=${encodeURIComponent(redirectUri)}&scope=profile&state=authenticated-member`;
+      // 🔥 SALLY PORT INTEGRATION: Route through Sally Port authentication with agent ecosystem access
+      const authUrl = `https://oauth2-auth-only.pr-aef.workers.dev/auth/oauth2/authorize?provider=email&email=${encodeURIComponent(email)}&client_id=aipub-diamond-sao&redirect_uri=${encodeURIComponent(redirectUri)}&scope=profile,agents,swarm&state=authenticated-member-agents`;
 
       setTimeout(() => {
         window.location.href = authUrl;
