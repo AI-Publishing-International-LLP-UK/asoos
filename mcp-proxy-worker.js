@@ -10,8 +10,8 @@ export default {
       return new Response('Not Found', { status: 404 });
     }
     
-    // Proxy to the updated Cloud Run interface with integrated PCP functions
-    const proxyUrl = `https://mocoa-yutylytffa-uw.a.run.app${url.pathname}${url.search}`;
+    // Proxy to the updated mocoa service with all fixes
+    const proxyUrl = `https://mocoa-859242575175.us-west1.run.app${url.pathname}${url.search}`;
     
     // Create modified request with updated URL
     const modifiedRequest = new Request(proxyUrl, {
