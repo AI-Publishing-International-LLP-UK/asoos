@@ -60,9 +60,8 @@ export default {
       });
     }
     
-    // Default: Serve the complete 1608-line ASOOS page
-    // NOTE: In production, this should fetch from GitHub or use KV storage for the full HTML content
-    const fullHtmlResponse = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/cloudflare-pages-deployment/index.html');
+    // Default: Serve the updated ASOOS page with Sally Port integration
+    const fullHtmlResponse = await fetch('https://4a4417a4.api-for-warp-drive.pages.dev/');
     
     if (fullHtmlResponse.ok) {
       const html = await fullHtmlResponse.text();
@@ -70,16 +69,31 @@ export default {
         headers: { 
           'Content-Type': 'text/html;charset=UTF-8',
           'Cache-Control': 'public, max-age=300',
-          'X-ASOOS-Version': '1608-lines',
-          'X-ASOOS-Source': 'GitHub-Production'
+          'X-ASOOS-Version': 'sally-port-enabled',
+          'X-ASOOS-Source': 'Sally-Port-Production'
         }
       });
     } else {
-      // Fallback in case GitHub is not accessible
-      return new Response('ASOOS.2100.Cool - Temporarily Unavailable', {
-        status: 503,
-        headers: { 'Content-Type': 'text/plain' }
-      });
+      // Fallback to GitHub if our deployment is not accessible
+      const githubResponse = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/cloudflare-pages-deployment/index.html');
+      if (githubResponse.ok) {
+        const html = await githubResponse.text();
+        // Replace /auth redirects with Sally Port redirects in fallback
+        const updatedHtml = html.replace(/window\.location\.href = '\/auth';/g, "window.location.href = 'https://sallyport.2100.cool/';");
+        return new Response(updatedHtml, {
+          headers: { 
+            'Content-Type': 'text/html;charset=UTF-8',
+            'Cache-Control': 'public, max-age=300',
+            'X-ASOOS-Version': 'sally-port-fallback',
+            'X-ASOOS-Source': 'GitHub-Fallback-Updated'
+          }
+        });
+      } else {
+        return new Response('ASOOS.2100.Cool - Temporarily Unavailable', {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain' }
+        });
+      }
     }
   }
 };

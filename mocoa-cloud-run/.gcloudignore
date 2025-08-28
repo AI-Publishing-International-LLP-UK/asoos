@@ -1,0 +1,9 @@
+.gcloudignore
+.git
+.gitignore
+README.md
+.dockerignore
+node_modules
+npm-debug.log
+.coverage
+.nyc_output

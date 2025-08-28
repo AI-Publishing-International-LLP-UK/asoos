@@ -10,8 +10,8 @@ export default {
       return new Response('Not Found', { status: 404 });
     }
     
-    // Proxy to the Cloud Run interface
-    const proxyUrl = `https://mocoa-owner-interface-859242575175.us-west1.run.app${url.pathname}${url.search}`;
+    // Proxy to the updated Cloud Run interface with integrated PCP functions
+    const proxyUrl = `https://mocoa-yutylytffa-uw.a.run.app${url.pathname}${url.search}`;
     
     // Create modified request with updated URL
     const modifiedRequest = new Request(proxyUrl, {
@@ -23,7 +23,7 @@ export default {
     try {
       const response = await fetch(modifiedRequest);
       
-      // Return the proxied response with proper CORS headers for MCP usage
+      // Pass through the response with CORS headers (PCP functions now integrated in source)
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
@@ -33,7 +33,8 @@ export default {
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, PATCH',
           'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
           'X-MCP-Proxy': 'active',
-          'X-Target-Interface': 'mocoa-owner-interface'
+          'X-Target-Interface': 'mocoa-updated',
+          'X-PCP-Status': 'integrated'
         }
       });
       

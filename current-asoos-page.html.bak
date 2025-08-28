@@ -1498,7 +1498,7 @@
       
       // Redirect to the corrected authentication page
       // This ensures proper user identification before Sally Port integration
-      window.location.href = 'https://sallyport.2100.cool/';
+      window.location.href = '/auth';
     }
     
     // This function is no longer needed since we redirect to auth page directly
@@ -1506,7 +1506,7 @@
     function completeAuthentication(source) {
       console.log('Legacy authentication function called for source:', source);
       // Fallback redirect to auth page if somehow called
-      window.location.href = 'https://sallyport.2100.cool/';
+      window.location.href = '/auth';
     }
     
     window.addEventListener('scroll', reveal);
