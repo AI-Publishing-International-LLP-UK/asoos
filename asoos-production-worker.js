@@ -5,7 +5,31 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     
-    // Handle auth routing  
+    // Handle MCP subdomain routing to Cloud Run interface
+    if (url.hostname === 'mcp.aipub.2100.cool') {
+      const proxyUrl = `https://mocoa-owner-interface-859242575175.us-west1.run.app${url.pathname}${url.search}`;
+      const modifiedRequest = new Request(proxyUrl, {
+        method: request.method,
+        headers: request.headers,
+        body: request.method === 'GET' || request.method === 'HEAD' ? null : request.body
+      });
+      
+      const response = await fetch(modifiedRequest);
+      
+      // Return the proxied response with proper CORS headers
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: {
+          ...Object.fromEntries(response.headers),
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        }
+      });
+    }
+    
+    // Handle auth routing
     if (url.pathname === '/auth') {
       return Response.redirect('https://asoos.2100.cool/cloudflare-pages-deployment/auth.html', 302);
     }

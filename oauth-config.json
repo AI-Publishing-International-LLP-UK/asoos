@@ -1,0 +1,15 @@
+{
+    "auth_type": "oauth2",
+    "provider": "integration-gateway",
+    "cloudflare": {
+        "api_token": "dev_token_placeholder",
+        "account_id": "dev_account_placeholder"
+    },
+    "gcp": {
+        "project_id": "api-for-warp-drive",
+        "service_account": "dev_service_account_placeholder",
+        "region": "us-central1"
+    },
+    "identity_platform": "firebase",
+    "auth_domains": ["asoos.2100.cool", "mocoa.2100.vision", "mocorix.2100.coach"]
+}
