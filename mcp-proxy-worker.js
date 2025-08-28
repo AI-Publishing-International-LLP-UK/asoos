@@ -10,8 +10,8 @@ export default {
       return new Response('Not Found', { status: 404 });
     }
     
-    // Proxy to the latest ASOOS MOCOA interface deployment
-    const proxyUrl = `https://asoos-mocoa-859242575175.us-west1.run.app${url.pathname}${url.search}`;
+    // Proxy to the updated Cloud Run interface with integrated PCP functions
+    const proxyUrl = `https://mocoa-yutylytffa-uw.a.run.app${url.pathname}${url.search}`;
     
     // Create modified request with updated URL
     const modifiedRequest = new Request(proxyUrl, {
@@ -33,8 +33,7 @@ export default {
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, PATCH',
           'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
           'X-MCP-Proxy': 'active',
-          'X-Target-Interface': 'mocoa-owner-interface',
-          'X-MOCOA-Version': 'v99',
+          'X-Target-Interface': 'mocoa-updated',
           'X-PCP-Status': 'integrated'
         }
       });
@@ -46,7 +45,7 @@ export default {
         error: 'MCP Proxy Error',
         message: 'Unable to reach owner interface',
         timestamp: new Date().toISOString(),
-        target: 'asoos-mocoa-859242575175.us-west1.run.app'
+        target: 'mocoa-owner-interface-859242575175.us-west1.run.app'
       }), {
         status: 503,
         headers: { 
