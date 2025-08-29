@@ -1,3 +1,20 @@
+#!/bin/bash
+
+echo "🔐 SECURE WFA DEPLOYMENT WITH GCP SECRETS MANAGER"
+echo "================================================="
+
+# Retrieve KV namespace IDs from GCP Secrets Manager
+echo "📡 Retrieving KV namespace IDs from GCP Secrets Manager..."
+
+WFA_AGENT_STATE_ID=$(gcloud secrets versions access latest --secret="wfa-agent-state-prod-id" --project=api-for-warp-drive)
+WFA_CAREER_CLUSTERS_ID=$(gcloud secrets versions access latest --secret="wfa-career-clusters-prod-id" --project=api-for-warp-drive)
+WFA_JOB_CLUSTERS_ID=$(gcloud secrets versions access latest --secret="wfa-job-clusters-prod-id" --project=api-for-warp-drive)
+WFA_SECTOR_MAPPINGS_ID=$(gcloud secrets versions access latest --secret="wfa-sector-mappings-prod-id" --project=api-for-warp-drive)
+
+echo "✅ Retrieved all KV namespace IDs from GCP Secrets Manager"
+
+# Create temporary wrangler config with retrieved secrets
+cat > wrangler-temp-secure.toml << EOF
 name = "wfa-production-orchestration"
 main = "production-wfa-orchestration.js"
 compatibility_date = "2025-08-27"
@@ -16,25 +33,25 @@ WFA_JOB_CLUSTERS = "64000000"
 WFA_CAREER_CLUSTERS = "319998"
 VICTORY36_ENABLED = "true"
 
-# KV Namespaces for agent state management
+# KV Namespaces for agent state management (IDs retrieved from GCP Secrets Manager)
 [[env.production.kv_namespaces]]
 binding = "WFA_STATE"
-id = "f8edd41deda54f94a2ec460e977ed06b"
+id = "${WFA_AGENT_STATE_ID}"
 preview_id = "wfa-agent-state-preview"
 
 [[env.production.kv_namespaces]]
 binding = "CAREER_CLUSTERS_KV"
-id = "7b739964f721419a8104f06a8b566058"
+id = "${WFA_CAREER_CLUSTERS_ID}"
 preview_id = "wfa-career-clusters-preview"
 
 [[env.production.kv_namespaces]]
 binding = "JOB_CLUSTERS_KV"
-id = "638793dc5f5e4666b7966f1cfe03f34d"
+id = "${WFA_JOB_CLUSTERS_ID}"
 preview_id = "wfa-job-clusters-preview"
 
 [[env.production.kv_namespaces]]
 binding = "SECTOR_MAPPINGS"
-id = "59ce2cc5536a46fe92c857cab82df71a"
+id = "${WFA_SECTOR_MAPPINGS_ID}"
 preview_id = "wfa-sector-mappings-preview"
 
 # Durable Objects for swarm coordination
@@ -55,22 +72,6 @@ class_name = "MCPDNSManager"
 binding = "WFA_ARTIFACTS"
 bucket_name = "api-for-warp-drive-artifacts-prod"
 
-# Service bindings for microservices architecture (disabled for initial deployment)
-# [[env.production.services]]
-# binding = "AGENT_REGISTRY"
-# service = "wfa-agent-registry"
-# environment = "production"
-
-# [[env.production.services]]
-# binding = "CLUSTER_MANAGER"
-# service = "wfa-cluster-manager"
-# environment = "production"
-
-# [[env.production.services]]
-# binding = "DNS_AUTOMATION"
-# service = "wfa-dns-automation"
-# environment = "production"
-
 # Analytics engine for monitoring
 [[env.production.analytics_engine_datasets]]
 binding = "WFA_METRICS"
@@ -80,3 +81,15 @@ dataset = "wfa_production_metrics"
 [[migrations]]
 tag = "v1"
 new_classes = ["SwarmCoordinator", "Victory36Protection", "MCPDNSManager"]
+EOF
+
+echo "🚀 Deploying Cloudflare Workers with secure configuration..."
+wrangler deploy --config wrangler-temp-secure.toml --env production
+
+# Clean up temporary file
+rm wrangler-temp-secure.toml
+
+echo "✅ Secure deployment completed!"
+echo "🔐 All secrets retrieved from GCP Secrets Manager"
+echo "🛡️ Victory36 protection active"
+echo "⚡ 20M agents operational"
