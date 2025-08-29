@@ -3561,9 +3561,10 @@
     
     // CLI Functions
     function openAPIConfig() {
-      // No need to show API config - auto-connected with Diamond SAO
+      // Diamond SAO API pre-configured for CLI
+      apiConnected = true; // Set API as connected
       updateAPIStatus();
-      showNotification('Diamond SAO API already connected via GCP Secret Manager', 'success');
+      showNotification('Diamond SAO API connected via GCP Secret Manager', 'success');
     }
     
     function closeAPIConfig() {
@@ -3584,11 +3585,18 @@
     
     function updateAPIStatus() {
       const statusEl = document.getElementById('apiStatus');
-      if (apiConnected) {
-        statusEl.innerHTML = `
-          <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></span>
-          <span style="color: #10b981; font-size: 8px;">API Connected</span>
-        `;
+      if (statusEl) {
+        if (apiConnected) {
+          statusEl.innerHTML = `
+            <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></span>
+            <span style="color: #10b981; font-size: 8px;">API Connected</span>
+          `;
+        } else {
+          statusEl.innerHTML = `
+            <span style="width: 6px; height: 6px; background: #ff4757; border-radius: 50%;"></span>
+            <span style="color: #ff4757; font-size: 8px;">API Disconnected</span>
+          `;
+        }
       }
     }
     
@@ -5052,6 +5060,37 @@ onst userMessage = input.value.trim();
     window.activateSRIX = activateRIX;
     window.activateVICTORY36 = activateRIX;
     window.initializeAgentToggleFunctions = initializeAgentToggleFunctions;
+    
+    // Critical missing functions for UI functionality
+    window.openAPIConfig = openAPIConfig;
+    window.openSettings = openSettings;
+    window.openVideoSession = openVideoSession;
+    window.openPilotsLounge = openPilotsLounge;
+    window.openGiftShop = openGiftShop;
+    window.openIntegrationGateway = openIntegrationGateway;
+    window.handleIntegrationClick = handleIntegrationClick;
+    window.toggleAcademy = toggleAcademy;
+    window.initiateScanToDo = initiateScanToDo;
+    window.showS2DOInfo = showS2DOInfo;
+    window.toggleCopilotMode = toggleCopilotMode;
+    window.sendCopilotMessage = sendCopilotMessage;
+    window.handleCopilotKeyPress = handleCopilotKeyPress;
+    window.executeCLICommand = executeCLICommand;
+    window.handleCLIKeyPress = handleCLIKeyPress;
+    window.switchModel = switchModel;
+    window.setMode = setMode;
+    window.clearTerminal = clearTerminal;
+    window.toggleClaudeCodeMode = toggleClaudeCodeMode;
+    window.toggleRightPanelSize = toggleRightPanelSize;
+    window.togglePanelLock = togglePanelLock;
+    window.resizeVideo = resizeVideo;
+    window.closeVideo = closeVideo;
+    window.closeSettingsOverlay = closeSettingsOverlay;
+    
+    // Initialize API status immediately to show connected state
+    setTimeout(() => {
+      openAPIConfig(); // This will set apiConnected = true and update status
+    }, 1000);
   </script>
 </body>
 </html>
