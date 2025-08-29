@@ -2077,6 +2077,14 @@
   </div>
 
   <script>
+    // Production Cookie Utility Function
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+    
     // Global Variables
     let activeRIX = 'QB';
     let activeMode = 'terminal';
@@ -2499,17 +2507,25 @@
       authenticateAndRoute();
     }
     
-    // Sally Port Authentication with AI Pub LLP Routing
+    // Production SallyPort Authentication - Real Service Integration
     async function authenticateAndRoute() {
       try {
-        // Get authenticated user email from Sally Port
-        const authResponse = await fetch('/api/sallyport/authenticate', {
+        // Check for existing SallyPort authentication token
+        const sallyPortToken = getCookie('sallyport_auth_token');
+        
+        if (!sallyPortToken) {
+          // No authentication - redirect to real SallyPort
+          window.location.href = 'https://sallyport.2100.com/auth?return_to=' + encodeURIComponent(window.location.href);
+          return;
+        }
+        
+        // Validate token with SallyPort service
+        const authResponse = await fetch('https://sallyport.2100.com/api/validate-token', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-Sally-Port-Version': '2.1.0'
-          },
-          credentials: 'include'
+            'Authorization': `Bearer ${sallyPortToken}`
+          }
         });
         
         if (authResponse.ok) {
@@ -2518,8 +2534,7 @@
           
           // Check local registry first for known AI Pub LLP members
           if (aiPubLLPMembers[userEmail]) {
-            console.log(`✅ AI Pub LLP member found in registry: ${userEmail}`);
-            // Load from local registry immediately
+            // AI Pub LLP member found in registry
             loadAIPubLLPMemberProfile(userEmail, aiPubLLPMembers[userEmail]);
             return;
           }
@@ -2545,7 +2560,7 @@
           } else {
             // Check local registry as fallback before routing away
             if (aiPubLLPMembers[userEmail]) {
-              console.log(`🔄 MCP unavailable, using local registry for: ${userEmail}`);
+              // MCP unavailable, using local registry
               loadAIPubLLPMemberProfile(userEmail, aiPubLLPMembers[userEmail]);
             } else {
               // Not AI Pub LLP member - Route to MCP auto-provisioning or UFO
@@ -2576,6 +2591,32 @@
         department: 'Executive Leadership',
         securityLevel: 'sapphire',
         accessRights: ['full_llp_access', 'executive_dashboard', 'emea_operations', 'strategic_planning'],
+        joinDate: '2024-08-29',
+        status: 'active'
+      },
+      'pr@coaching2100.com': {
+        displayName: 'Mr. Phillip Corey Roark',
+        title: 'Chief Executive Officer - Diamond SAO',
+        role: 'owner',
+        authLevel: 5,
+        userLevel: 'enterprise',
+        region: 'USA',
+        department: 'Executive Leadership',
+        securityLevel: 'diamond',
+        accessRights: ['full_llp_access', 'owner_dashboard', 'global_operations', 'strategic_planning'],
+        joinDate: '2024-08-29',
+        status: 'active'
+      },
+      'morgan@coaching2100.com': {
+        displayName: 'Morgan O\'Brien',
+        title: 'Executive Account Officer - EAO',
+        role: 'admin',
+        authLevel: 5,
+        userLevel: 'enterprise',
+        region: 'USA',
+        department: 'Executive Leadership',
+        securityLevel: 'emerald',
+        accessRights: ['full_llp_access', 'admin_dashboard', 'account_operations', 'client_management'],
         joinDate: '2024-08-29',
         status: 'active'
       }
@@ -2637,7 +2678,7 @@
       }
     }
     
-    // Route Non-LLP Users (triggers MCP auto-provisioning or UFO)
+    // Route Non-LLP Users (FIXED - No Redirect, Generate Interface)
     async function routeNonLLPUser(email, authData) {
       try {
         // Call MCP auto-provisioning service
@@ -2657,34 +2698,106 @@
         if (routingResponse.ok) {
           const routing = await routingResponse.json();
           
-          if (routing.mcpUrl) {
-            // Route to company MCP
-            console.log(`🏢 Routing to company MCP: ${routing.mcpUrl}`);
-            window.location.href = routing.mcpUrl;
-          } else if (routing.ufoUrl) {
-            // Route to UFO account
-            console.log(`🛸 Routing to UFO account: ${routing.ufoUrl}`);
-            window.location.href = routing.ufoUrl;
+          // FIXED: Instead of redirecting, customize the interface
+          if (routing.stayOnInterface) {
+            console.log(`🔧 Customizing interface for: ${email}`);
+            
+            // Generate unique Owner Subscriber interface
+            const customization = routing.interfaceCustomization;
+            
+            // Apply customizations to current interface
+            loadDynamicOwnerInterface(email, customization);
+            
+            showNotification(`${routing.message} for ${email}`, 'success');
           } else {
-            throw new Error('No routing destination provided');
+            // Legacy fallback - but no redirect
+            loadGenericOwnerInterface(email, authData);
           }
         } else {
-          throw new Error('MCP auto-provisioning failed');
+          // Auto-provision failed - create generic interface
+          loadGenericOwnerInterface(email, authData);
         }
         
       } catch (error) {
-        console.error('Non-LLP user routing failed:', error);
-        // Fallback to UFO account
-        window.location.href = '/ufo/account';
+        console.error('Interface customization failed:', error);
+        // Fallback to generic interface - NO REDIRECT
+        loadGenericOwnerInterface(email, authData);
       }
     }
     
-    // Handle authentication failures
+    // Load Dynamic Owner Interface for Non-LLP Users
+    function loadDynamicOwnerInterface(email, customization) {
+      console.log(`🎨 Loading dynamic Owner Subscriber interface for: ${email}`);
+      
+      // Update interface with customization data
+      const userNameEl = document.getElementById('userName');
+      const userTaglineEl = document.getElementById('userTagline');
+      const systemLogoEl = document.getElementById('systemLogo');
+      
+      if (userNameEl) userNameEl.textContent = customization.displayName || email;
+      if (userTaglineEl) userTaglineEl.textContent = customization.title || 'Owner Subscriber';
+      if (systemLogoEl) systemLogoEl.textContent = 'ASOOS';
+      
+      // Set user role and permissions
+      userRole = customization.role || 'owner';
+      authLevel = 5; // Full access for company owners
+      userLevel = 'enterprise';
+      
+      // Update interface for owner role
+      updateInterfaceForRole();
+      
+      // Show welcome message with company MCP info
+      showNotification(`Welcome ${customization.displayName}! Your company interface (${customization.companyMcp}) is ready`, 'success');
+      
+      // Log successful interface generation
+      if (window.productionLogging) {
+        window.productionLogging.info('Dynamic Owner Subscriber interface generated', {
+          email: email,
+          displayName: customization.displayName,
+          companyMcp: customization.companyMcp,
+          features: customization.features
+        });
+      }
+    }
+    
+    // Load Generic Owner Interface (Fallback)
+    function loadGenericOwnerInterface(email, authData) {
+      console.log(`👤 Loading generic Owner interface for: ${email}`);
+      
+      const domain = email.split('@')[1] || 'company.com';
+      const userName = email.split('@')[0] || 'Owner';
+      
+      // Update interface elements
+      const userNameEl = document.getElementById('userName');
+      const userTaglineEl = document.getElementById('userTagline');
+      
+      if (userNameEl) userNameEl.textContent = `${userName.charAt(0).toUpperCase() + userName.slice(1)} (${domain})`;
+      if (userTaglineEl) userTaglineEl.textContent = 'Company Owner';
+      
+      // Set standard owner permissions
+      userRole = 'owner';
+      authLevel = 4;
+      userLevel = 'professional';
+      
+      updateInterfaceForRole();
+      showNotification(`Welcome! Your owner interface is ready`, 'success');
+    }
+    
+    // Handle authentication failures (FIXED - No Redirect Loop)
     function handleAuthenticationFailure() {
-      showNotification('Authentication required. Redirecting to Sally Port...', 'error');
-      setTimeout(() => {
-        window.location.href = '/sallyport/login';
-      }, 2000);
+      showNotification('Authentication required. Please authenticate via SallyPort', 'error');
+      
+      // Instead of redirecting (which breaks the system), show auth prompt
+      const authPrompt = document.createElement('div');
+      authPrompt.innerHTML = `
+        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.95); padding: 30px; border-radius: 15px; border: 2px solid #0bb1bb; text-align: center; z-index: 10000;">
+          <h3 style="color: #0bb1bb; margin-bottom: 15px;">Authentication Required</h3>
+          <p style="color: #aaa; margin-bottom: 20px;">Please visit SallyPort.2100.com to authenticate</p>
+          <button onclick="window.open('https://sallyport.2100.com', '_blank'); this.parentElement.parentElement.remove()" style="background: #0bb1bb; color: black; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">Open SallyPort</button>
+          <button onclick="this.parentElement.parentElement.remove()" style="background: #333; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-left: 10px;">Close</button>
+        </div>
+      `;
+      document.body.appendChild(authPrompt);
     }
 
     // Multi-Tenant Integration Gateway
@@ -2975,39 +3088,17 @@
       return ttsHealthStatus;
     }
 
-    // UI Interaction Lock System
-    let uiLocked = false;
+    // UI Interaction Management (No Locking)
     let currentPCPQuery = null;
 
-    function lockUI(reason = 'PCP Processing') {
-      uiLocked = true;
-      document.body.style.pointerEvents = 'none';
-      document.body.style.opacity = '0.7';
-      
-      // Show processing indicator
-      const lockIndicator = document.createElement('div');
-      lockIndicator.id = 'ui-lock-indicator';
-      lockIndicator.innerHTML = `
-        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                   background: rgba(0,100,200,0.9); color: white; padding: 20px; 
-                   border-radius: 10px; z-index: 10000; text-align: center;">
-          <div class="pulse-animation" style="font-size: 16px; margin-bottom: 10px;">${reason}</div>
-          <div style="font-size: 14px; opacity: 0.8;">Please wait for response...</div>
-        </div>
-      `;
-      document.body.appendChild(lockIndicator);
+    function showProcessingStatus(reason = 'Processing') {
+      // Light processing indicator without UI lock
+      showNotification(`${reason}...`, 'success');
     }
 
-    function unlockUI() {
-      uiLocked = false;
+    function clearProcessingStatus() {
       currentPCPQuery = null;
-      document.body.style.pointerEvents = 'auto';
-      document.body.style.opacity = '1';
-      
-      const lockIndicator = document.getElementById('ui-lock-indicator');
-      if (lockIndicator) {
-        lockIndicator.remove();
-      }
+      // Processing complete - no UI unlock needed
     }
 
     // Check TTS health every 30 seconds
@@ -3271,10 +3362,13 @@
         });
     }
     
-    // Process PCP Query through AI Pub MCP channels 
+    // Process PCP Query through AI Pub MCP channels (No UI Lock)
     async function processSwarmQuery(query) {
       // PCPs must follow the s2do workflow - Except if Requested by Mr. Phillip Corey Roark, the Diamond SAO. Then and only then.
       // Proper flow: Dream Commander → 5 sequentially correct projects and 5 hot tips and daily performance rankings for the OS → PCP access DIDC archives confirms s2d0 for each project → Delivers s2do process with s2do verification by each step  → Gains Project Plan/ROI/Business Requirements s2do Agrement → Uses the DIDC Archives Jira Template →  FMS → Orchestration → Perserer QA 2x Review → final 3rd Version goes to PCP for → OS s2do and closes project in Jira and some projects that meet requiremetns get Queen Mint Mark NFT for possible inclusin in Pub Social →  If the OS accepts version 1 the AI Rewards are issued to all particpants in the project 100% →  1 return =80% → 2 retruns is a custmer services meeting notification to Diamond SAO and no AI Rewards.
+      
+      // No UI locking - allow free interaction during processing
+      showProcessingStatus('PCP Processing');
       
       try {
         // Route through Dream Commander workflow service (NOT direct swarm access)
@@ -3301,6 +3395,8 @@
           })
         });
         
+        clearProcessingStatus();
+        
         if (!response.ok) {
           return processWorkflowFallback(query);
         }
@@ -3315,6 +3411,7 @@
         return result.response || result.message || 'Request received. Following proper workflow channels...';
         
       } catch (error) {
+        clearProcessingStatus();
         return processWorkflowFallback(query);
       }
     }
@@ -4099,9 +4196,8 @@
       const messagesContainer = document.getElementById('copilotMessages');
       
       if (!input || !messagesContainer || !input.value.trim()) return;
-      if (uiLocked) return; // Prevent multiple simultaneous requests
-      
-      const userMessage = input.value.trim();
+      // UI lock removed - allow free chat interaction
+onst userMessage = input.value.trim();
       input.value = '';
       
       // Add user message

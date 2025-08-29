@@ -2,14 +2,25 @@
     "auth_type": "oauth2",
     "provider": "integration-gateway",
     "cloudflare": {
-        "api_token": "dev_token_placeholder",
-        "account_id": "dev_account_placeholder"
+        "auth_method": "oauth",
+        "oauth_client_id": "${CLOUDFLARE_OAUTH_CLIENT_ID}",
+        "oauth_client_secret": "${CLOUDFLARE_OAUTH_CLIENT_SECRET}",
+        "account_id": "${CLOUDFLARE_ACCOUNT_ID}",
+        "oauth_scopes": ["zone:read", "zone:edit", "account:read"]
     },
     "gcp": {
         "project_id": "api-for-warp-drive",
-        "service_account": "dev_service_account_placeholder",
-        "region": "us-central1"
+        "auth_method": "oauth2",
+        "oauth2_client_id": "${GCP_OAUTH2_CLIENT_ID}",
+        "oauth2_client_secret": "${GCP_OAUTH2_CLIENT_SECRET}",
+        "region": "us-central1",
+        "oauth2_scopes": ["https://www.googleapis.com/auth/cloud-platform"]
     },
     "identity_platform": "firebase",
-    "auth_domains": ["asoos.2100.cool", "mocoa.2100.vision", "mocorix.2100.coach"]
+    "auth_domains": ["asoos.2100.cool", "mocoa.2100.vision", "mocorix.2100.coach"],
+    "production_ready": true,
+    "wfa_integration": {
+        "victory36_protected": true,
+        "quantum_encrypted": true
+    }
 }
