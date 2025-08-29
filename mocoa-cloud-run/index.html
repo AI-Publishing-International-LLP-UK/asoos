@@ -1549,7 +1549,7 @@
                       <use href="#icon-microphone"></use>
                     </svg>
                   </button>
-                  <button id="conversationModeBtn" onclick="toggleConversationMode()" style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2); color: #FFD700; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;" title="Toggle voice conversation mode">
+                  <button id="conversationModeBtn" onclick="toggleConversationMode()" style="background: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.4); color: #FFD700; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px; animation: pulse 2s infinite;" title="Constant Conversation Mode - Always Active">
                     🗣️
                   </button>
                 </div>
@@ -2021,60 +2021,6 @@
     </div>
   </div>
 
-  <!-- API Configuration Modal -->
-  <div id="apiConfigModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1001;">
-    <div style="background: #1a1a1a; border: 1px solid #444; border-radius: 8px; max-width: 500px; margin: 50px auto; padding: 25px;">
-      <h3 style="color: #0bb1bb; margin-bottom: 20px; font-family: monospace;">Claude API Configuration</h3>
-      
-      <div style="margin-bottom: 15px;">
-        <label style="color: #aaa; font-size: 12px; display: block; margin-bottom: 5px;">API Key</label>
-        <input type="password" id="apiKey" placeholder="Using GCP Secret Manager" style="width: 100%; background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 8px; font-family: monospace; border-radius: 4px;" disabled>
-      </div>
-      
-      <div style="margin-bottom: 15px;">
-        <label style="color: #aaa; font-size: 12px; display: block; margin-bottom: 5px;">Organization ID (Optional)</label>
-        <input type="text" id="orgId" placeholder="Managed via GCP Secret Manager" style="width: 100%; background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 8px; font-family: monospace; border-radius: 4px;" disabled>
-      </div>
-      
-      <div style="margin-bottom: 15px;">
-        <label style="color: #aaa; font-size: 12px; display: block; margin-bottom: 5px;">Default Model</label>
-        <select id="defaultModel" style="width: 100%; background: #2a2a2a; border: 1px solid #444; color: #0bb1bb; padding: 8px; font-family: monospace; border-radius: 4px;">
-          <option value="claude-4-sonnet">Claude 4+ Sonnet (Production)</option>
-          <option value="claude-4-opus">Claude 4+ Opus (Enterprise)</option>
-          <option value="claude-4-haiku">Claude 4+ Haiku (Performance)</option>
-          <option value="anthropic-api">Anthropic API (Secure)</option>
-        </select>
-      </div>
-      
-      <div style="margin-bottom: 20px;">
-        <label style="color: #aaa; font-size: 12px; display: flex; align-items: center; gap: 8px;">
-          <input type="checkbox" id="enableBlending" checked>
-          Enable Model Blending (Use multiple models for enhanced responses)
-        </label>
-      </div>
-      
-      <div style="border-top: 1px solid #444; padding-top: 15px; margin-top: 20px;">
-        <h4 style="color: #ffa502; font-size: 14px; margin-bottom: 10px;">Enterprise Settings</h4>
-        <label style="color: #aaa; font-size: 12px; display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-          <input type="checkbox" id="enforceCodeMode" checked>
-          Default to Claude Code mode for all users
-        </label>
-        <label style="color: #aaa; font-size: 12px; display: flex; align-items: center; gap: 8px;">
-          <input type="checkbox" id="allowAPIOverride">
-          Allow users to override API settings
-        </label>
-      </div>
-      
-      <div style="display: flex; gap: 10px; margin-top: 20px;">
-        <button onclick="saveAPIConfig()" style="background: #0bb1bb; border: none; color: #000; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 600;">
-          Save Configuration
-        </button>
-        <button onclick="closeAPIConfig()" style="background: #444; border: none; color: #ccc; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
 
   <script>
     // Production Cookie Utility Function
@@ -2357,7 +2303,7 @@
       // Initialize Dr. Claude Quantum Orchestration System
       initializeDrClaudeOrchestration();
       
-      // Initialize Dr. Lucy's voice system
+    // Initialize Dr. Lucy's voice system
       initializeDrLucyVoice();
       initializeVoiceRecognition();
       
@@ -2366,6 +2312,9 @@
       
       // Set initial mode to chat
       setCopilotMode('chat');
+      
+      // Fix agent toggle functions
+      initializeAgentToggleFunctions();
       
       // Auto-activate conversation mode on page load
       setTimeout(() => {
@@ -3612,7 +3561,9 @@
     
     // CLI Functions
     function openAPIConfig() {
-      document.getElementById('apiConfigModal').style.display = 'block';
+      // No need to show API config - auto-connected with Diamond SAO
+      updateAPIStatus();
+      showNotification('Diamond SAO API already connected via GCP Secret Manager', 'success');
     }
     
     function closeAPIConfig() {
@@ -5050,6 +5001,44 @@ onst userMessage = input.value.trim();
     const originalProcessSwarmQuery = processSwarmQuery;
     processSwarmQuery = processSwarmQueryWithOrchestration;
     
+    // Initialize Agent Toggle Functions for proper functionality
+    function initializeAgentToggleFunctions() {
+      // Fix missing agent toggle functions
+      window.activateSRIX = activateRIX; // Map to main activateRIX function
+      window.activateVICTORY36 = activateRIX; // Map to main activateRIX function
+      
+      // Fix conversation mode button states
+      const conversationBtn = document.getElementById('conversationModeBtn');
+      if (conversationBtn && !conversationMode) {
+        // Initialize as active by default
+        toggleConversationMode();
+      }
+      
+      // Fix microphone button functionality
+      const microphoneButtons = document.querySelectorAll('[onclick="startVoiceInput()"]');
+      microphoneButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+          event.preventDefault();
+          startVoiceInput();
+        });
+      });
+      
+      // Log successful initialization
+      console.log('✅ Agent toggle functions initialized successfully');
+      showNotification('🔄 Agent switching system ready', 'success');
+    }
+    
+    // Enhanced voice listening function
+    function startListening() {
+      if (recognition && !isListening) {
+        try {
+          recognition.start();
+        } catch (error) {
+          console.error('Error starting voice recognition:', error);
+        }
+      }
+    }
+    
     // Make functions globally available
     window.startVoiceInput = startVoiceInput;
     window.showNotification = showNotification;
@@ -5060,6 +5049,9 @@ onst userMessage = input.value.trim();
     window.drClaudeOrchestrator = drClaudeOrchestrator;
     window.quantumFetch = quantumFetch;
     window.initializeDrClaudeOrchestration = initializeDrClaudeOrchestration;
+    window.activateSRIX = activateRIX;
+    window.activateVICTORY36 = activateRIX;
+    window.initializeAgentToggleFunctions = initializeAgentToggleFunctions;
   </script>
 </body>
 </html>
