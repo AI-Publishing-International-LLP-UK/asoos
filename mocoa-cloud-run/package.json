@@ -10,14 +10,14 @@
     "quantum-health": "curl -f http://localhost:8080/api/dr-claude/health"
   },
   "keywords": [
-    "asoos", 
-    "mocoa", 
-    "pcp", 
-    "interface", 
-    "wfa-swarm", 
-    "quantum-orchestration", 
-    "dr-claude", 
-    "victory36", 
+    "asoos",
+    "mocoa",
+    "pcp",
+    "interface",
+    "wfa-swarm",
+    "quantum-orchestration",
+    "dr-claude",
+    "victory36",
     "enterprise"
   ],
   "author": "ASOOS WFA Swarm Team",
@@ -33,7 +33,8 @@
     "production-ready": true
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^3.0.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
