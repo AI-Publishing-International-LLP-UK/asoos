@@ -457,6 +457,22 @@
       height: calc(100vh - 120px);
       overflow: hidden;
     }
+    
+    .chat-messages-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    
+    .chat-input-area {
+      flex-shrink: 0;
+      padding: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.1);
+    }
 
     .terminal-output {
       scrollbar-width: thin;
@@ -933,19 +949,21 @@
     /* V99 Enhanced Notification */
     .notification {
       position: fixed;
-      top: 80px;
+      top: 60px;
       right: 20px;
       background: rgba(11, 177, 187, 0.95);
       color: white;
-      padding: 15px 20px;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 11px;
       font-weight: 500;
-      box-shadow: 0 4px 20px rgba(11, 177, 187, 0.4);
+      box-shadow: 0 2px 10px rgba(11, 177, 187, 0.4);
       animation: slideIn 0.3s ease;
       z-index: 1000;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(11, 177, 187, 0.3);
+      max-width: 300px;
+      word-wrap: break-word;
     }
 
     .notification.error {
@@ -1405,7 +1423,7 @@
         <div class="sticky-copilots">
           <div class="copilot-title">YOUR AI COPILOTS</div>
           <div class="copilot-hex-container">
-            <div class="copilot-hex-item" onclick="activateRIX('QB', 'Anthropic 4')">
+            <div class="copilot-hex-item" onclick="activateRIX('QB', 'Dr. Lucy')">
               <div class="copilot-hex">
                 <svg viewBox="0 0 60 60" style="width: 45px; height: 45px;">
                   <defs>
@@ -1420,7 +1438,7 @@
                 </svg>
                 <div class="copilot-status"></div>
               </div>
-              <div class="copilot-name">Anthropic 4</div>
+              <div class="copilot-name">Dr. Lucy</div>
             </div>
             
             <div class="copilot-hex-item" onclick="activateRIX('SH', 'Claude 4')">
@@ -1489,13 +1507,13 @@
             </div>
             
             <!-- Natural Language Chat -->
-            <div id="naturalLanguageChat" style="flex: 1; display: flex; flex-direction: column;">
-              <div style="flex: 1; overflow-y: auto; padding: 12px;">
-                <div id="copilotMessages" style="display: flex; flex-direction: column; gap: 8px;">
+            <div id="naturalLanguageChat" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+              <div class="chat-messages-container">
+                <div id="copilotMessages" style="display: flex; flex-direction: column; gap: 6px;">
                   <!-- Messages appear here -->
                 </div>
               </div>
-              <div style="padding: 12px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+              <div class="chat-input-area">
                 <div style="display: flex; gap: 6px; align-items: center;">
                   <!-- Single Mode Toggle - Left Side -->
                   <button id="modeToggleBtn" onclick="toggleCopilotMode()" style="background: rgba(139, 92, 246, 0.2); border: 1px solid rgba(139, 92, 246, 0.4); color: #8b5cf6; padding: 4px 8px; border-radius: 8px; font-size: 9px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 3px;" title="Switch to CLI Mode">
@@ -1514,6 +1532,9 @@
                     <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #ffffff;">
                       <use href="#icon-microphone"></use>
                     </svg>
+                  </button>
+                  <button id="conversationModeBtn" onclick="toggleConversationMode()" style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2); color: #FFD700; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;" title="Toggle voice conversation mode">
+                    🗣️
                   </button>
                 </div>
               </div>
@@ -1649,22 +1670,22 @@
             <div class="copilot-section">
               <div class="copilot-title">YOUR AI COPILOTS</div>
               <div class="copilot-hex-container">
-                <div class="copilot-hex-item active" onclick="activateRIX('QB', 'Anthropic 4')" id="qbRix">
+                <div class="copilot-hex-item active" onclick="activateRIX('QB', 'Dr. Lucy')">
                   <div class="copilot-hex">
-                    <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;">
+                    <svg viewBox="0 0 60 60" style="width: 45px; height: 45px;">
                       <defs>
-                        <linearGradient id="qbGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="qbGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
                           <stop offset="100%" style="stop-color:#0bb1bb;stop-opacity:1" />
                         </linearGradient>
                       </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradient)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradientMobile)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
                       <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
                       <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
                     </svg>
                     <div class="copilot-status"></div>
                   </div>
-                  <div class="copilot-name active">Anthropic 4</div>
+                  <div class="copilot-name">Dr. Lucy</div>
                 </div>
                 
                 <div class="copilot-hex-item" onclick="activateRIX('SH', 'Claude 4')" id="shRix">
@@ -2072,11 +2093,20 @@
       initializeAuthFeatures(); // V99 Authentication features
       connectToTestamentSwarm(); // Initialize Testament Swarm connection
       
+      // Initialize Dr. Lucy's voice system
+      initializeDrLucyVoice();
+      initializeVoiceRecognition();
+      
       // Set initial copilot
-      activateRIX('QB', 'Anthropic 4');
+      activateRIX('QB', 'Dr. Lucy');
       
       // Set initial mode to chat
       setCopilotMode('chat');
+      
+      // Show voice capability notification
+      setTimeout(() => {
+        showNotification('🎙️ Dr. Lucy voice activated - Click the microphone to start voice conversation', 'success');
+      }, 2000);
     });
     
     // Testament Swarm Integration Functions
@@ -2234,7 +2264,8 @@
         // Update auth level for progressive features
         authLevel = userData.authLevel;
         
-        showNotification(`Welcome back, ${userData.userName.split(',')[0]}!`, 'success');
+        // Show smaller welcome notification
+        showNotification(`Welcome back!`, 'success');
       }, 500);
     }
 
@@ -2559,9 +2590,9 @@
     function addMessage(container, text, sender) {
       const messageDiv = document.createElement('div');
       messageDiv.style.cssText = `
-        padding: 12px;
-        border-radius: 10px;
-        margin-bottom: 8px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        margin-bottom: 6px;
         ${sender === 'user' 
           ? 'background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); text-align: right;'
           : 'background: rgba(11, 177, 187, 0.1); border: 1px solid rgba(11, 177, 187, 0.3);'
@@ -2570,20 +2601,33 @@
       
       if (sender === 'copilot') {
         messageDiv.innerHTML = `
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-            <div style="width: 8px; height: 8px; background: #0bb1bb; border-radius: 50%;"></div>
-            <strong style="color: #0bb1bb;">${activeRIX} RIX</strong>
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+            <div style="width: 6px; height: 6px; background: #0bb1bb; border-radius: 50%;"></div>
+            <strong style="color: #0bb1bb; font-size: 10px;">${activeRIX} RIX</strong>
           </div>
-          <div style="color: #fff; font-size: 12px; line-height: 1.4;">${text}</div>
+          <div style="color: #fff; font-size: 11px; line-height: 1.3;">${text}</div>
         `;
+        
+        // Automatically speak Dr. Lucy's response
+        setTimeout(() => {
+          speakMessage(text);
+        }, 300);
+        
       } else {
         messageDiv.innerHTML = `
-          <div style="color: #fff; font-size: 12px; line-height: 1.4;">${text}</div>
+          <div style="color: #fff; font-size: 11px; line-height: 1.3;">${text}</div>
         `;
       }
       
       container.appendChild(messageDiv);
-      container.scrollTop = container.scrollHeight;
+      
+      // Ensure proper scrolling - scroll the messages container, not the container itself
+      const messagesContainer = container.closest('.chat-messages-container');
+      if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      } else {
+        container.scrollTop = container.scrollHeight;
+      }
     }
     
     function processSwarmQuery(query) {
@@ -3004,6 +3048,673 @@
     window.closePCPDisplay = closePCPDisplay;
     
     console.log("🤖 PCP System Ready - QB (Dr. Lucy sRIX) available for activation");
+    
+    // Missing showNotification function
+    function showNotification(message, type = 'success') {
+      // Remove any existing notifications
+      const existingNotification = document.querySelector('.notification');
+      if (existingNotification) {
+        existingNotification.remove();
+      }
+      
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.style.cssText = `
+        position: fixed;
+        top: 60px;
+        right: 20px;
+        background: ${type === 'success' ? 'rgba(16, 185, 129, 0.95)' : type === 'error' ? 'rgba(239, 68, 68, 0.95)' : 'rgba(11, 177, 187, 0.95)'};
+        color: white;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 500;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: slideIn 0.3s ease;
+        max-width: 250px;
+        word-wrap: break-word;
+      `;
+      notification.textContent = message;
+      
+      // Add to page
+      document.body.appendChild(notification);
+      
+      // Auto-remove after 2 seconds (shorter duration)
+      setTimeout(() => {
+        if (notification && notification.parentNode) {
+          notification.style.animation = 'slideOut 0.3s ease';
+          setTimeout(() => {
+            if (notification && notification.parentNode) {
+              notification.remove();
+            }
+          }, 300);
+        }
+      }, 2000);
+    }
+    
+    // RIX Activation Function
+    function activateRIX(rixType, name) {
+      activeRIX = rixType;
+      
+      // Remove active class from all hex items
+      document.querySelectorAll('.copilot-hex-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Add active class to clicked item
+      const targetHex = document.querySelector(`[onclick*="activateRIX('${rixType}', '${name}')"]`);
+      if (targetHex) {
+        targetHex.classList.add('active');
+      }
+      
+      // Update active RIX display
+      const activeDisplay = document.getElementById('activeRixDisplay');
+      const activeDisplayMobile = document.getElementById('activeRixDisplayMobile');
+      if (activeDisplay) activeDisplay.textContent = `${rixType} RIX Active`;
+      if (activeDisplayMobile) activeDisplayMobile.textContent = `${rixType} RIX Active`;
+      
+      // Show notification
+      showNotification(`${rixType} RIX (${name}) activated`, 'success');
+    }
+    
+    // Enhanced sendCopilotMessage with QB integration
+    function sendCopilotMessage() {
+      const input = document.getElementById('copilotInput');
+      const messagesContainer = document.getElementById('copilotMessages');
+      
+      if (!input || !messagesContainer || !input.value.trim()) return;
+      
+      const userMessage = input.value.trim();
+      input.value = '';
+      
+      // Add user message
+      addMessage(messagesContainer, userMessage, 'user');
+      
+      // Show QB is responding
+      showNotification('QB is thinking...', 'success');
+      
+      // Process message with QB response
+      setTimeout(() => {
+        let response;
+        const lowerMessage = userMessage.toLowerCase();
+        
+        if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+          response = `Hello! I'm QB (Dr. Lucy sRIX), your Professional Copilot. I'm ready to help you with communication, automation, growth, and ROI optimization. What would you like to work on today?`;
+        } else if (lowerMessage.includes('status')) {
+          response = `Testament Swarm Status: All 11 VLS solutions operational with 320,000+ active agents. Ready to assist with your ${activeRIX} specialist needs.`;
+        } else {
+          response = processSwarmQuery(userMessage);
+        }
+        
+        addMessage(messagesContainer, response, 'copilot');
+        showNotification('QB responded!', 'success');
+      }, 1000);
+    }
+    
+    // Voice Recognition & Speech Synthesis System for Dr. Lucy QB RIX
+    let recognition = null;
+    let isListening = false;
+    let isSpeaking = false;
+    let speechSynthesis = window.speechSynthesis;
+    let drLucyVoice = null;
+    let conversationMode = false;
+    
+    // Initialize Speech Synthesis for Dr. Lucy's Voice (Dana Voice)
+    function initializeDrLucyVoice() {
+      if ('speechSynthesis' in window) {
+        
+        function selectDrLucyVoice() {
+          const voices = speechSynthesis.getVoices();
+          console.log('🔍 Loading voices...', voices.length, 'voices available');
+          console.log('📋 All available voices:', voices.map(v => `${v.name} (${v.lang}) [${v.localService ? 'Local' : 'Remote'}]`));
+          
+          // Primary: Look for Dana voice (case insensitive)
+          drLucyVoice = voices.find(voice => 
+            voice.name.toLowerCase().includes('dana') ||
+            voice.name.toLowerCase().includes('dana (premium)') ||
+            voice.name.toLowerCase().includes('dana voice') ||
+            voice.name === 'Dana'
+          );
+          
+          if (drLucyVoice) {
+            console.log('✅ Found Dana voice:', drLucyVoice.name);
+            showNotification(`🎙️ Dr. Lucy ready with Dana voice: ${drLucyVoice.name}`, 'success');
+            return true;
+          }
+          
+          // Secondary: Look for high-quality female voices
+          const femaleVoices = [
+            'Allison', 'Samantha', 'Victoria', 'Susan', 'Karen', 'Ava', 'Serena', 'Zoe',
+            'Fiona', 'Moira', 'Tessa', 'Veena', 'Alex (Female)', 'Google UK English Female',
+            'Microsoft Zira', 'Microsoft Hazel', 'Google US English', 'Whisper'
+          ];
+          
+          for (const voiceName of femaleVoices) {
+            drLucyVoice = voices.find(voice => 
+              voice.name.includes(voiceName) ||
+              voice.name.toLowerCase().includes(voiceName.toLowerCase())
+            );
+            if (drLucyVoice) {
+              console.log('✅ Selected premium female voice:', drLucyVoice.name);
+              showNotification(`🎙️ Dr. Lucy ready with ${drLucyVoice.name} voice`, 'success');
+              return true;
+            }
+          }
+          
+          // Fallback: Any English female voice
+          drLucyVoice = voices.find(voice => 
+            voice.lang.startsWith('en') && 
+            (voice.name.toLowerCase().includes('female') || 
+             voice.gender === 'female' ||
+             voice.name.toLowerCase().includes('woman'))
+          );
+          
+          if (drLucyVoice) {
+            console.log('⚡ Selected English female voice:', drLucyVoice.name);
+            showNotification(`🎙️ Dr. Lucy ready with ${drLucyVoice.name}`, 'success');
+            return true;
+          }
+          
+          // Final fallback: Best available English voice
+          drLucyVoice = voices.find(voice => voice.lang.startsWith('en')) || voices[0];
+          
+          if (drLucyVoice) {
+            console.log('🔧 Fallback voice selected:', drLucyVoice.name);
+            showNotification(`🎙️ Dr. Lucy ready with fallback voice: ${drLucyVoice.name}`, 'success');
+            return true;
+          }
+          
+          console.error('❌ No suitable voice found!');
+          showNotification('⚠️ No voice available for Dr. Lucy', 'error');
+          return false;
+        }
+        
+        // Event-based voice loading
+        speechSynthesis.addEventListener('voiceschanged', selectDrLucyVoice);
+        
+        // Multiple loading attempts for reliability
+        setTimeout(selectDrLucyVoice, 100);
+        setTimeout(selectDrLucyVoice, 500);
+        setTimeout(selectDrLucyVoice, 1000);
+        
+        // User interaction trigger
+        document.addEventListener('click', selectDrLucyVoice, { once: true });
+        document.addEventListener('keydown', selectDrLucyVoice, { once: true });
+        
+        // Test voice immediately if already loaded
+        if (speechSynthesis.getVoices().length > 0) {
+          selectDrLucyVoice();
+        }
+        
+        // Make selectDrLucyVoice globally available for debugging
+        window.selectDrLucyVoice = selectDrLucyVoice;
+        
+        return true;
+      } else {
+        showNotification('Text-to-speech not supported in this browser', 'error');
+        return false;
+      }
+    }
+    
+    // Dr. Lucy speaks a message using OpenAI Dana voice (primary)
+    function speakMessage(text) {
+      console.log('🗣️ speakMessage called with:', text, 'using OpenAI Dana voice');
+      
+      if (isSpeaking) {
+        console.log('⚠️ Already speaking, stopping current speech');
+        stopSpeaking();
+        setTimeout(() => speakMessage(text), 100);
+        return;
+      }
+      
+      // Use OpenAI Dana voice (primary for Dr. Lucy)
+      isSpeaking = true;
+      
+      // Call OpenAI TTS API with Dana voice
+      fetch('/api/speech/tts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: text,
+          voice: 'dana',
+          provider: 'openai',
+          model: 'tts-hd',
+          quality: 'enterprise'
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`OpenAI TTS API error: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then(audioBlob => {
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        
+        audio.onloadstart = () => {
+          console.log('🎙️ Dr. Lucy (OpenAI Dana) voice loading...');
+          showNotification('🎙️ Dr. Lucy speaking with Dana voice...', 'success');
+        };
+        
+        audio.onplay = () => {
+          console.log('✅ OpenAI Dana voice playing');
+        };
+        
+        audio.onended = () => {
+          console.log('✅ OpenAI Dana voice finished');
+          isSpeaking = false;
+          URL.revokeObjectURL(audioUrl);
+          if (conversationMode && recognition && !isListening) {
+            startListening();
+          }
+        };
+        
+        audio.onerror = (error) => {
+          console.error('❌ OpenAI Dana voice playback error:', error);
+          isSpeaking = false;
+          URL.revokeObjectURL(audioUrl);
+          // Fallback to 11 Labs if OpenAI Dana fails
+          speakMessage11LabsFallback(text);
+        };
+        
+        audio.play();
+      })
+      .catch(error => {
+        console.error('❌ OpenAI Dana TTS error:', error);
+        isSpeaking = false;
+        showNotification('⚠️ Using 11 Labs fallback', 'error');
+        // Fallback to 11 Labs
+        speakMessage11LabsFallback(text);
+      });
+    }
+    
+    // OpenAI TTS fallback when 11 Labs fails
+    function speakMessageOpenAIFallback(text) {
+      console.log('🔄 Using OpenAI TTS fallback for:', text);
+      
+      // Call OpenAI TTS API with Dana voice as fallback
+      fetch('/api/speech/tts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: text,
+          voice: 'dana',
+          provider: 'openai',
+          model: 'tts-hd',
+          quality: 'enterprise'
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`OpenAI TTS API error: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then(audioBlob => {
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        
+        audio.onloadstart = () => {
+          console.log('🎙️ OpenAI Dana voice loading...');
+          showNotification('🎙️ Dr. Lucy speaking via OpenAI Dana...', 'success');
+        };
+        
+        audio.onplay = () => {
+          console.log('✅ OpenAI Dana voice playing');
+        };
+        
+        audio.onended = () => {
+          console.log('✅ OpenAI Dana voice finished');
+          isSpeaking = false;
+          URL.revokeObjectURL(audioUrl);
+          if (conversationMode && recognition && !isListening) {
+            startListening();
+          }
+        };
+        
+        audio.onerror = (error) => {
+          console.error('❌ OpenAI Dana voice playback error:', error);
+          isSpeaking = false;
+          URL.revokeObjectURL(audioUrl);
+          // Final fallback to browser TTS
+          speakMessageFallback(text);
+        };
+        
+        audio.play();
+      })
+      .catch(error => {
+        console.error('❌ OpenAI TTS fallback error:', error);
+        isSpeaking = false;
+        showNotification('⚠️ Using browser voice fallback', 'error');
+        // Final fallback to browser TTS
+        speakMessageFallback(text);
+      });
+    }
+    
+    // Final fallback speech using browser synthesis
+    function speakMessageFallback(text) {
+      console.log('🔄 Using fallback browser voice for:', text);
+      
+      if (!speechSynthesis) {
+        console.error('❌ speechSynthesis not available');
+        showNotification('❌ Speech synthesis not available', 'error');
+        return;
+      }
+      
+      // Ensure we have voices loaded
+      const voices = speechSynthesis.getVoices();
+      console.log('🔊 Available fallback voices count:', voices.length);
+      
+      if (!drLucyVoice && voices.length > 0) {
+        console.log('🔄 Re-initializing fallback voice...');
+        selectDrLucyVoice(); // Re-initialize if voice isn't set
+      }
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      
+      // Configure Dr. Lucy's voice with fallbacks
+      if (drLucyVoice) {
+        utterance.voice = drLucyVoice;
+        console.log('🎙️ Using fallback voice:', drLucyVoice.name);
+      } else {
+        console.log('⚠️ No drLucyVoice set, using default fallback');
+        // Try to find best available voice
+        const bestVoice = voices.find(v => 
+          v.name.includes('Samantha') || 
+          v.name.includes('Karen') || 
+          v.name.includes('Moira')
+        );
+        if (bestVoice) {
+          utterance.voice = bestVoice;
+          drLucyVoice = danaVoice;
+          console.log('🎯 Found Dana voice on-demand:', danaVoice.name);
+        }
+      }
+      
+      // Professional voice settings
+      utterance.rate = 0.85; // Slightly slower for clarity
+      utterance.pitch = 1.0; // Natural pitch
+      utterance.volume = 0.9; // Clear volume
+      utterance.lang = 'en-US';
+      
+      utterance.onstart = function() {
+        isSpeaking = true;
+        console.log('✅ Speech synthesis started');
+        showNotification(`🗣️ Dr. Lucy speaking with ${utterance.voice ? utterance.voice.name : 'default voice'}`, 'success');
+      };
+      
+      utterance.onend = function() {
+        isSpeaking = false;
+        console.log('✅ Speech synthesis ended');
+        
+        // If in conversation mode, automatically start listening for the next input
+        if (conversationMode) {
+          setTimeout(() => {
+            startVoiceInput();
+          }, 500);
+        }
+      };
+      
+      utterance.onerror = function(event) {
+        console.error('❌ Speech synthesis error:', event.error);
+        isSpeaking = false;
+        showNotification(`❌ Speech error: ${event.error}`, 'error');
+      };
+      
+      console.log('🚀 Starting speech synthesis...');
+      try {
+        speechSynthesis.speak(utterance);
+      } catch (error) {
+        console.error('❌ Error calling speechSynthesis.speak():', error);
+        showNotification('❌ Failed to start speech synthesis', 'error');
+        isSpeaking = false;
+      }
+    }
+    
+    // Stop current speech (for OpenAI TTS Dana voice)
+    function stopSpeaking() {
+      console.log('🛑 Stopping current speech...');
+      
+      // Stop browser speech synthesis (fallback)
+      if (speechSynthesis) {
+        speechSynthesis.cancel();
+      }
+      
+      // Stop any playing audio elements (OpenAI TTS)
+      const audioElements = document.querySelectorAll('audio');
+      audioElements.forEach(audio => {
+        if (!audio.paused) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
+      
+      isSpeaking = false;
+      console.log('✅ Speech stopped');
+    }
+    
+    // Toggle conversation mode (continuous back-and-forth)
+    function toggleConversationMode() {
+      conversationMode = !conversationMode;
+      
+      if (conversationMode) {
+        showNotification('🎙️ Conversation mode ON - Dr. Lucy will respond with voice and listen continuously', 'success');
+        // Start the conversation
+        setTimeout(() => {
+          speakMessage("Hello! I'm Dr. Lucy, your professional copilot. Conversation mode is now active. How can I help you today?");
+        }, 1000);
+      } else {
+        showNotification('🎙️ Conversation mode OFF', 'success');
+        speechSynthesis.cancel(); // Stop any current speech
+      }
+    }
+    
+    function initializeVoiceRecognition() {
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        recognition.lang = 'en-US';
+        
+        recognition.onstart = function() {
+          isListening = true;
+          updateVoiceButton(true);
+          showNotification('🎤 Dr. Lucy is listening...', 'success');
+        };
+        
+        recognition.onresult = function(event) {
+          let finalTranscript = '';
+          let interimTranscript = '';
+          
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript;
+            } else {
+              interimTranscript += transcript;
+            }
+          }
+          
+          // Update input field with interim results
+          const input = document.getElementById('copilotInput');
+          if (input) {
+            input.value = finalTranscript || interimTranscript;
+          }
+          
+          // If we have a final result, send it to Dr. Lucy
+          if (finalTranscript) {
+            setTimeout(() => {
+              sendCopilotMessage();
+            }, 500);
+          }
+        };
+        
+        recognition.onerror = function(event) {
+          console.error('Speech recognition error:', event.error);
+          isListening = false;
+          updateVoiceButton(false);
+          
+          let errorMessage = 'Voice recognition error';
+          if (event.error === 'not-allowed') {
+            errorMessage = 'Microphone access denied. Please allow microphone permission and try again.';
+          } else if (event.error === 'no-speech') {
+            errorMessage = 'No speech detected. Please try speaking again.';
+          }
+          
+          showNotification(errorMessage, 'error');
+        };
+        
+        recognition.onend = function() {
+          isListening = false;
+          updateVoiceButton(false);
+          if (!recognition.finalResult) {
+            showNotification('🎤 Voice input complete', 'success');
+          }
+        };
+        
+        return true;
+      } else {
+        showNotification('Voice recognition not supported in this browser', 'error');
+        return false;
+      }
+    }
+    
+    function startVoiceInput() {
+      if (!recognition) {
+        if (!initializeVoiceRecognition()) {
+          return;
+        }
+      }
+      
+      if (isListening) {
+        recognition.stop();
+        return;
+      }
+      
+      // Clear the input field
+      const input = document.getElementById('copilotInput');
+      if (input) {
+        input.value = '';
+        input.placeholder = 'Listening... speak now to Dr. Lucy';
+      }
+      
+      try {
+        recognition.start();
+        showNotification('🎤 Speak to Dr. Lucy (QB RIX)...', 'success');
+      } catch (error) {
+        console.error('Error starting voice recognition:', error);
+        isListening = false;
+        updateVoiceButton(false);
+        showNotification('Error starting voice recognition. Please try again.', 'error');
+      }
+    }
+    
+    function updateVoiceButton(listening) {
+      const voiceButtons = document.querySelectorAll('[onclick="startVoiceInput()"]');
+      
+      voiceButtons.forEach(button => {
+        if (listening) {
+          button.style.background = 'rgba(239, 68, 68, 0.3)';
+          button.style.borderColor = '#ef4444';
+          button.style.animation = 'pulse 1s infinite';
+          button.innerHTML = `
+            <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #ef4444;">
+              <use href="#icon-microphone"></use>
+            </svg>
+          `;
+          button.title = 'Click to stop listening';
+        } else {
+          button.style.background = 'rgba(255, 255, 255, 0.1)';
+          button.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          button.style.animation = 'none';
+          button.innerHTML = `
+            <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #ffffff;">
+              <use href="#icon-microphone"></use>
+            </svg>
+          `;
+          button.title = 'Click to speak to Dr. Lucy';
+          
+          // Reset input placeholder
+          const input = document.getElementById('copilotInput');
+          if (input) {
+            input.placeholder = 'Ask Dr. Lucy anything...';
+          }
+        }
+      });
+    }
+    
+    // Initialize voice recognition when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize voice recognition (but don't start it yet)
+      setTimeout(() => {
+        initializeVoiceRecognition();
+      }, 1000);
+    });
+    
+    // Missing functions for proper functionality
+    function loadUserPreferences() {
+      // Load user preferences from localStorage or API
+      console.log('Loading user preferences...');
+    }
+    
+    function initializeKeyboardShortcuts() {
+      // Add keyboard shortcuts
+      document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.key === 'k') {
+          event.preventDefault();
+          document.getElementById('copilotInput')?.focus();
+        }
+      });
+    }
+    
+    function loadDynamicContent() {
+      // Load any dynamic content
+      console.log('Loading dynamic content...');
+    }
+    
+    function togglePanel(button) {
+      const content = button.parentElement.querySelector('.panel-content');
+      const chevron = button.querySelector('.chevron-icon');
+      
+      if (content && chevron) {
+        if (content.classList.contains('active')) {
+          content.classList.remove('active');
+          chevron.style.transform = 'rotate(-90deg)';
+          button.classList.add('collapsed');
+        } else {
+          content.classList.add('active');
+          chevron.style.transform = 'rotate(0deg)';
+          button.classList.remove('collapsed');
+        }
+      }
+    }
+    
+    function toggleScanToApprove(button) {
+      button.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        button.style.transform = 'scale(1)';
+        showNotification('Scan to Approve activated - Processing workflow items', 'success');
+      }, 100);
+    }
+    
+    // Make functions globally available
+    window.startVoiceInput = startVoiceInput;
+    window.showNotification = showNotification;
+    window.togglePanel = togglePanel;
+    window.toggleScanToApprove = toggleScanToApprove;
+    window.speakMessage = speakMessage;
+    window.toggleConversationMode = toggleConversationMode;
   </script>
 </body>
 </html>
