@@ -41,3 +41,4 @@ cloudflare-auth.json
 .idea/
 *.swp
 *.swo
+wrangler-production.toml
