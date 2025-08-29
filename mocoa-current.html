@@ -130,6 +130,88 @@
       100% { transform: translateY(-100%); opacity: 0; }
     }
 
+    /* 3D Funky Cool Hexagon Animations */
+    @keyframes activeHexPulse {
+      0%, 100% { 
+        transform: scale(1.1) translateZ(10px) rotateY(0deg);
+        filter: brightness(1.2) saturate(1.3) hue-rotate(0deg);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3);
+      }
+      50% { 
+        transform: scale(1.25) translateZ(25px) rotateY(10deg);
+        filter: brightness(1.5) saturate(1.6) hue-rotate(15deg);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.5);
+      }
+    }
+
+    @keyframes rotateFloat {
+      0% { transform: scale(1.1) translateZ(10px) rotateY(0deg) rotateX(0deg); }
+      25% { transform: scale(1.1) translateZ(15px) rotateY(90deg) rotateX(5deg); }
+      50% { transform: scale(1.1) translateZ(20px) rotateY(180deg) rotateX(0deg); }
+      75% { transform: scale(1.1) translateZ(15px) rotateY(270deg) rotateX(-5deg); }
+      100% { transform: scale(1.1) translateZ(10px) rotateY(360deg) rotateX(0deg); }
+    }
+
+    @keyframes speakingAnimation {
+      0% { 
+        transform: scale(1.2) translateZ(15px) rotateZ(-2deg);
+        filter: brightness(1.4) saturate(1.8) hue-rotate(0deg);
+      }
+      100% { 
+        transform: scale(1.3) translateZ(25px) rotateZ(2deg);
+        filter: brightness(1.6) saturate(2.0) hue-rotate(10deg);
+      }
+    }
+
+    @keyframes statusBlink {
+      0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+        background: radial-gradient(circle, #00ff88, #0bb1bb);
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+      }
+      50% { 
+        opacity: 0.3;
+        transform: scale(1.3);
+        background: radial-gradient(circle, #ff6b35, #f7931e);
+        box-shadow: 0 0 25px rgba(255, 107, 53, 1.0);
+      }
+    }
+
+    @keyframes hexGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
+      }
+      50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.3));
+      }
+    }
+
+    @keyframes rainbowShift {
+      0% { filter: hue-rotate(0deg) saturate(1.2); }
+      16.66% { filter: hue-rotate(60deg) saturate(1.4); }
+      33.33% { filter: hue-rotate(120deg) saturate(1.6); }
+      50% { filter: hue-rotate(180deg) saturate(1.8); }
+      66.66% { filter: hue-rotate(240deg) saturate(1.6); }
+      83.33% { filter: hue-rotate(300deg) saturate(1.4); }
+      100% { filter: hue-rotate(360deg) saturate(1.2); }
+    }
+
+    @keyframes burstEffect {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translate(calc(-50% + var(--burst-x, 0)), calc(-50% + var(--burst-y, 0))) scale(1.5);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(calc(-50% + var(--burst-x, 0)), calc(-50% + var(--burst-y, 0))) scale(0);
+        opacity: 0;
+      }
+    }
+
     /* V99 Enhanced Particle Float Animation */
     @keyframes enhancedFloat {
       0%, 100% { 
@@ -386,14 +468,15 @@
       display: none;
     }
 
-    /* V99 Enhanced Copilot Hexagons */
+    /* V99 Enhanced 3D Funky Cool Gradiated Hexagons with WFA Magic */
     .copilot-hex-container {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       align-items: center;
       justify-content: center;
-      padding: 6px 0;
+      padding: 12px 0;
       width: 100%;
+      perspective: 1000px;
     }
 
     .copilot-hex-item {
@@ -401,49 +484,75 @@
       flex-direction: column;
       align-items: center;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+      position: relative;
     }
 
     .copilot-hex-item:hover {
-      transform: scale(1.1);
-      animation: pulse 1.5s infinite;
+      transform: scale(1.15) rotateX(10deg) rotateY(5deg) translateZ(20px);
+      filter: brightness(1.3) saturate(1.5);
+    }
+
+    .copilot-hex-item.active {
+      animation: activeHexPulse 2s ease-in-out infinite, rotateFloat 8s linear infinite;
+      transform: scale(1.1) translateZ(10px);
     }
 
     .copilot-hex-item.active .copilot-status {
       opacity: 1;
-      animation: pulse 2s infinite;
+      animation: statusBlink 1.5s ease-in-out infinite;
+    }
+
+    .copilot-hex-item.speaking {
+      animation: speakingAnimation 0.5s ease-in-out infinite alternate, rotateFloat 4s linear infinite;
+      transform: scale(1.2) translateZ(15px);
     }
 
     .copilot-hex {
       position: relative;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .copilot-hex svg {
+      transition: all 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .copilot-hex-item:hover .copilot-hex svg {
+      transform: rotateX(5deg) rotateY(10deg) scale(1.05);
     }
 
     .copilot-name {
-      font-size: 10px;
-      color: #888;
-      margin-top: 4px;
-      font-weight: 500;
-      transition: all 0.3s;
+      font-size: 11px;
+      color: #999;
+      margin-top: 6px;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      letter-spacing: 0.5px;
     }
 
     .copilot-name.active {
-      color: #0bb1bb;
-      font-weight: 600;
-      text-shadow: 0 0 10px rgba(11, 177, 187, 0.5);
+      color: #FFD700;
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4);
+      transform: scale(1.1);
     }
 
     .copilot-status {
       position: absolute;
-      bottom: -2px;
-      right: -2px;
-      width: 10px;
-      height: 10px;
-      background: #0bb1bb;
+      bottom: -3px;
+      right: -3px;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, #00ff88, #0bb1bb);
       border-radius: 50%;
-      border: 2px solid #0a0a0a;
+      border: 2px solid #ffffff;
       opacity: 0;
-      transition: all 0.3s;
-      box-shadow: 0 0 10px rgba(11, 177, 187, 0.8);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 255, 136, 0.4);
     }
 
     /* Chat Area - Co-pilot Communication */
@@ -1433,15 +1542,16 @@
                     </linearGradient>
                   </defs>
                   <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradientMobile)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
-                  <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
-                  <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                  <text x="30" y="24" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
+                  <text x="30" y="33" text-anchor="middle" fill="white" font-size="9" font-weight="600">DR.LUCY</text>
+                  <text x="30" y="42" text-anchor="middle" fill="white" font-size="9" font-weight="600">sRIX</text>
                 </svg>
                 <div class="copilot-status"></div>
               </div>
               <div class="copilot-name">Dr. Lucy</div>
             </div>
             
-            <div class="copilot-hex-item" onclick="activateRIX('SH', 'Claude 4')">
+            <div class="copilot-hex-item" onclick="activateRIX('SH', 'Dr. Claude')">
               <div class="copilot-hex">
                 <svg viewBox="0 0 60 60" style="width: 45px; height: 45px;">
                   <defs>
@@ -1451,30 +1561,32 @@
                     </linearGradient>
                   </defs>
                   <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#shGradientMobile)" stroke="#4ECDC4" stroke-width="2" opacity="0.9" />
-                  <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">SH</text>
-                  <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                  <text x="30" y="24" text-anchor="middle" fill="white" font-size="12" font-weight="800">SH</text>
+                  <text x="30" y="33" text-anchor="middle" fill="white" font-size="9" font-weight="600">DR.CLAUDE</text>
+                  <text x="30" y="42" text-anchor="middle" fill="white" font-size="9" font-weight="600">sRIX</text>
                 </svg>
                 <div class="copilot-status"></div>
               </div>
-              <div class="copilot-name">Claude 4</div>
+              <div class="copilot-name">Dr. Claude</div>
             </div>
             
-            <div class="copilot-hex-item" onclick="activateRIX('Q', 'Q RIX')">
+            <div class="copilot-hex-item" onclick="activateRIX('V36', 'Victory36 MAESTRO')">
               <div class="copilot-hex">
                 <svg viewBox="0 0 60 60" style="width: 45px; height: 45px;">
                   <defs>
-                    <linearGradient id="qGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
-                      <stop offset="100%" style="stop-color:#c7b299;stop-opacity:1" />
+                    <linearGradient id="v36GradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
                     </linearGradient>
                   </defs>
-                  <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qGradientMobile)" stroke="#50C878" stroke-width="2" opacity="0.9" />
-                  <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">Q</text>
-                  <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                  <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#v36GradientMobile)" stroke="#8B5CF6" stroke-width="2" opacity="0.9" />
+                  <text x="30" y="24" text-anchor="middle" fill="white" font-size="12" font-weight="800">V36</text>
+                  <text x="30" y="33" text-anchor="middle" fill="white" font-size="9" font-weight="600">VICTORY36</text>
+                  <text x="30" y="42" text-anchor="middle" fill="white" font-size="9" font-weight="600">MAESTRO</text>
                 </svg>
                 <div class="copilot-status"></div>
               </div>
-              <div class="copilot-name">Q RIX</div>
+              <div class="copilot-name">Victory36</div>
             </div>
           </div>
           <div class="active-copilot-display">
@@ -1525,10 +1637,10 @@
                   
                   <input type="text" id="copilotInput" placeholder="Ask your copilot anything..." style="flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 12px; border-radius: 15px; color: white; font-size: 12px; outline: none;" onkeypress="handleCopilotKeyPress(event)">
                   
-                  <button onclick="sendCopilotMessage()" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; padding: 8px 12px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 11px;">
+                  <button id="sendBtn" onclick="sendCopilotMessage()" style="background: rgba(11, 177, 187, 0.2); border: 1px solid rgba(11, 177, 187, 0.4); color: #0bb1bb; padding: 8px 12px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 11px;">
                     Send
                   </button>
-                  <button onclick="startVoiceInput()" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;">
+                  <button id="micBtn" onclick="startVoiceInput()" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;" title="Click to speak to Dr. Lucy">
                     <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #ffffff;">
                       <use href="#icon-microphone"></use>
                     </svg>
@@ -1674,54 +1786,57 @@
                   <div class="copilot-hex">
                     <svg viewBox="0 0 60 60" style="width: 45px; height: 45px;">
                       <defs>
-                        <linearGradient id="qbGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="qbGradientDesktop" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
                           <stop offset="100%" style="stop-color:#0bb1bb;stop-opacity:1" />
                         </linearGradient>
                       </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradientMobile)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
-                      <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradientDesktop)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
+                      <text x="30" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
+                      <text x="30" y="32" text-anchor="middle" fill="white" font-size="9" font-weight="600">DR.LUCY</text>
+                      <text x="30" y="42" text-anchor="middle" fill="white" font-size="9" font-weight="600">sRIX</text>
                     </svg>
                     <div class="copilot-status"></div>
                   </div>
                   <div class="copilot-name">Dr. Lucy</div>
                 </div>
                 
-                <div class="copilot-hex-item" onclick="activateRIX('SH', 'Claude 4')" id="shRix">
+                <div class="copilot-hex-item" onclick="activateRIX('SH', 'Dr. Claude')" id="shRix">
                   <div class="copilot-hex">
                     <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;">
                       <defs>
-                        <linearGradient id="shGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="shGradientDesktop" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" style="stop-color:#4ECDC4;stop-opacity:1" />
                           <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
                         </linearGradient>
                       </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#shGradient)" stroke="#4ECDC4" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">SH</text>
-                      <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#shGradientDesktop)" stroke="#4ECDC4" stroke-width="2" opacity="0.9" />
+                      <text x="30" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800">SH</text>
+                      <text x="30" y="32" text-anchor="middle" fill="white" font-size="9" font-weight="600">DR.CLAUDE</text>
+                      <text x="30" y="42" text-anchor="middle" fill="white" font-size="9" font-weight="600">sRIX</text>
                     </svg>
                     <div class="copilot-status"></div>
                   </div>
-                  <div class="copilot-name">Claude 4</div>
+                  <div class="copilot-name">Dr. Claude</div>
                 </div>
                 
-                <div class="copilot-hex-item" onclick="activateRIX('Q', 'Q RIX')" id="qRix">
+                <div class="copilot-hex-item" onclick="activateRIX('V36', 'Victory36 MAESTRO')" id="v36Rix">
                   <div class="copilot-hex">
                     <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;">
                       <defs>
-                        <linearGradient id="qGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
-                          <stop offset="100%" style="stop-color:#c7b299;stop-opacity:1" />
+                        <linearGradient id="v36GradientDesktop" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
                         </linearGradient>
                       </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qGradient)" stroke="#50C878" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">Q</text>
-                      <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#v36GradientDesktop)" stroke="#8B5CF6" stroke-width="2" opacity="0.9" />
+                      <text x="30" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800">V36</text>
+                      <text x="30" y="32" text-anchor="middle" fill="white" font-size="9" font-weight="600">VICTORY36</text>
+                      <text x="30" y="42" text-anchor="middle" fill="white" font-size="9" font-weight="600">MAESTRO</text>
                     </svg>
                     <div class="copilot-status"></div>
                   </div>
-                  <div class="copilot-name">Q RIX</div>
+                  <div class="copilot-name">Victory36</div>
                 </div>
               </div>
               <div class="active-copilot-display">
@@ -3096,46 +3211,132 @@
       }, 2000);
     }
     
-    // RIX Activation Function
+    // Enhanced 3D Funky RIX Activation Function with Speaking Animation
     function activateRIX(rixType, name) {
       activeRIX = rixType;
       
-      // Remove active class from all hex items
+      // Remove active and speaking classes from all hex items
       document.querySelectorAll('.copilot-hex-item').forEach(item => {
-        item.classList.remove('active');
+        item.classList.remove('active', 'speaking');
       });
       
-      // Add active class to clicked item
-      const targetHex = document.querySelector(`[onclick*="activateRIX('${rixType}', '${name}')"]`);
-      if (targetHex) {
-        targetHex.classList.add('active');
-      }
+      // Add active class to clicked item with enhanced effects
+      const targetHexes = document.querySelectorAll(`[onclick*="activateRIX('${rixType}', '${name}')"]`);
+      targetHexes.forEach(hex => {
+        hex.classList.add('active');
+        
+        // Add speaking animation temporarily
+        hex.classList.add('speaking');
+        setTimeout(() => {
+          hex.classList.remove('speaking');
+        }, 2000);
+        
+        // Enhanced gradient cycling for active hex
+        const svg = hex.querySelector('svg path');
+        if (svg) {
+          svg.style.animation = 'rainbowShift 3s ease-in-out';
+          setTimeout(() => {
+            svg.style.animation = '';
+          }, 3000);
+        }
+      });
       
-      // Update active RIX display
+      // Update active RIX display with enhanced styling
       const activeDisplay = document.getElementById('activeRixDisplay');
       const activeDisplayMobile = document.getElementById('activeRixDisplayMobile');
-      if (activeDisplay) activeDisplay.textContent = `${rixType} RIX Active`;
-      if (activeDisplayMobile) activeDisplayMobile.textContent = `${rixType} RIX Active`;
+      if (activeDisplay) {
+        activeDisplay.textContent = `${rixType} RIX Active`;
+        activeDisplay.parentElement.style.animation = 'pulse 1s ease-in-out';
+        setTimeout(() => {
+          activeDisplay.parentElement.style.animation = '';
+        }, 1000);
+      }
+      if (activeDisplayMobile) {
+        activeDisplayMobile.textContent = `${rixType} RIX Active`;
+        activeDisplayMobile.parentElement.style.animation = 'pulse 1s ease-in-out';
+        setTimeout(() => {
+          activeDisplayMobile.parentElement.style.animation = '';
+        }, 1000);
+      }
       
-      // Show notification
-      showNotification(`${rixType} RIX (${name}) activated`, 'success');
+      // Enhanced notification with funky effects
+      showNotification(`🚀 ${rixType} RIX (${name}) activated with WFA power!`, 'success');
+      
+      // Trigger particle burst effect
+      triggerParticleBurst();
+    }
+    
+    // Add Particle Burst Effect
+    function triggerParticleBurst() {
+      const particlesContainer = document.getElementById('particles');
+      if (!particlesContainer) return;
+      
+      // Create temporary burst particles
+      for (let i = 0; i < 20; i++) {
+        const burstParticle = document.createElement('div');
+        burstParticle.style.cssText = `
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: radial-gradient(circle, #FFD700, #ff6b35);
+          border-radius: 50%;
+          left: 50%;
+          top: 50%;
+          pointer-events: none;
+          animation: burstEffect 2s ease-out forwards;
+          transform: translate(-50%, -50%);
+          z-index: 1000;
+        `;
+        
+        // Random burst direction
+        const angle = (Math.PI * 2 * i) / 20;
+        const distance = 100 + Math.random() * 100;
+        burstParticle.style.setProperty('--burst-x', `${Math.cos(angle) * distance}px`);
+        burstParticle.style.setProperty('--burst-y', `${Math.sin(angle) * distance}px`);
+        
+        particlesContainer.appendChild(burstParticle);
+        
+        // Remove after animation
+        setTimeout(() => {
+          if (burstParticle.parentNode) {
+            burstParticle.remove();
+          }
+        }, 2000);
+      }
     }
     
     // Enhanced sendCopilotMessage with QB integration
     function sendCopilotMessage() {
+      console.log('🚀 sendCopilotMessage called');
+      
       const input = document.getElementById('copilotInput');
       const messagesContainer = document.getElementById('copilotMessages');
       
-      if (!input || !messagesContainer || !input.value.trim()) return;
+      console.log('Input found:', !!input, 'Messages container found:', !!messagesContainer);
+      console.log('Input value:', input ? input.value : 'N/A');
+      
+      if (!input || !messagesContainer) {
+        console.error('❌ Missing elements - input:', !!input, 'container:', !!messagesContainer);
+        showNotification('❌ Chat interface not ready', 'error');
+        return;
+      }
+      
+      if (!input.value.trim()) {
+        console.log('⚠️ Empty input, focusing input field');
+        input.focus();
+        showNotification('Please enter a message', 'error');
+        return;
+      }
       
       const userMessage = input.value.trim();
+      console.log('📤 Sending message:', userMessage);
       input.value = '';
       
       // Add user message
       addMessage(messagesContainer, userMessage, 'user');
       
       // Show QB is responding
-      showNotification('QB is thinking...', 'success');
+      showNotification('🤖 Dr. Lucy is thinking...', 'success');
       
       // Process message with QB response
       setTimeout(() => {
@@ -3143,16 +3344,19 @@
         const lowerMessage = userMessage.toLowerCase();
         
         if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
-          response = `Hello! I'm QB (Dr. Lucy sRIX), your Professional Copilot. I'm ready to help you with communication, automation, growth, and ROI optimization. What would you like to work on today?`;
+          response = `Hello! I'm Dr. Lucy (QB sRIX), your Professional Copilot. I'm ready to help you with communication, automation, growth, and ROI optimization. What would you like to work on today?`;
         } else if (lowerMessage.includes('status')) {
           response = `Testament Swarm Status: All 11 VLS solutions operational with 320,000+ active agents. Ready to assist with your ${activeRIX} specialist needs.`;
+        } else if (lowerMessage.includes('test')) {
+          response = `This is Dr. Lucy responding to your test message. All systems are operational and ready to assist you!`;
         } else {
           response = processSwarmQuery(userMessage);
         }
         
+        console.log('🤖 Dr. Lucy responding:', response);
         addMessage(messagesContainer, response, 'copilot');
-        showNotification('QB responded!', 'success');
-      }, 1000);
+        showNotification('✅ Dr. Lucy responded!', 'success');
+      }, 800);
     }
     
     // Voice Recognition & Speech Synthesis System for Dr. Lucy QB RIX
@@ -3260,9 +3464,9 @@
       }
     }
     
-    // Dr. Lucy speaks a message using OpenAI Dana voice (primary)
+    // Enhanced Dr. Lucy speaks a message with 3D hexagon animation
     function speakMessage(text) {
-      console.log('🗣️ speakMessage called with:', text, 'using OpenAI Dana voice');
+      console.log('🗣️ speakMessage called with:', text, 'using enhanced voice with 3D animations');
       
       if (isSpeaking) {
         console.log('⚠️ Already speaking, stopping current speech');
@@ -3271,24 +3475,16 @@
         return;
       }
       
-      // Use OpenAI Dana voice (primary for Dr. Lucy)
-      isSpeaking = true;
+      // Add speaking animation to active hexagons
+      const activeHexes = document.querySelectorAll('.copilot-hex-item.active');
+      activeHexes.forEach(hex => {
+        hex.classList.add('speaking');
+      });
       
-      // Call OpenAI TTS API with Dana voice
-      fetch('/api/speech/tts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          text: text,
-          voice: 'dana',
-          provider: 'openai',
-          model: 'tts-hd',
-          quality: 'enterprise'
-        })
-      })
-      .then(response => {
+      // Use enhanced browser TTS with visual feedback
+      isSpeaking = true;
+      console.log('🔄 Using enhanced browser TTS with 3D effects for:', text);
+      speakMessageFallback(text);
         if (!response.ok) {
           throw new Error(`OpenAI TTS API error: ${response.status}`);
         }
@@ -3435,8 +3631,8 @@
         );
         if (bestVoice) {
           utterance.voice = bestVoice;
-          drLucyVoice = danaVoice;
-          console.log('🎯 Found Dana voice on-demand:', danaVoice.name);
+          drLucyVoice = bestVoice;
+          console.log('🎯 Found best voice on-demand:', bestVoice.name);
         }
       }
       
@@ -3504,17 +3700,35 @@
     
     // Toggle conversation mode (continuous back-and-forth)
     function toggleConversationMode() {
+      console.log('🗣️ toggleConversationMode called - current mode:', conversationMode);
+      
       conversationMode = !conversationMode;
       
       if (conversationMode) {
-        showNotification('🎙️ Conversation mode ON - Dr. Lucy will respond with voice and listen continuously', 'success');
+        console.log('✅ Conversation mode ON');
+        showNotification('🗣️ Conversation mode ON - Dr. Lucy will respond with voice and listen continuously', 'success');
+        
+        // Update button appearance immediately
+        updateVoiceButton(false);
+        
         // Start the conversation
         setTimeout(() => {
           speakMessage("Hello! I'm Dr. Lucy, your professional copilot. Conversation mode is now active. How can I help you today?");
         }, 1000);
       } else {
-        showNotification('🎙️ Conversation mode OFF', 'success');
-        speechSynthesis.cancel(); // Stop any current speech
+        console.log('❌ Conversation mode OFF');
+        showNotification('🗣️ Conversation mode OFF', 'success');
+        
+        // Stop any current speech and listening
+        if (speechSynthesis) {
+          speechSynthesis.cancel();
+        }
+        if (recognition && isListening) {
+          recognition.stop();
+        }
+        
+        // Update button appearance
+        updateVoiceButton(false);
       }
     }
     
@@ -3591,13 +3805,18 @@
     }
     
     function startVoiceInput() {
+      console.log('🎤 startVoiceInput called - isListening:', isListening);
+      
       if (!recognition) {
+        console.log('🔄 Initializing voice recognition...');
         if (!initializeVoiceRecognition()) {
+          console.error('❌ Failed to initialize voice recognition');
           return;
         }
       }
       
       if (isListening) {
+        console.log('🛑 Stopping voice recognition...');
         recognition.stop();
         return;
       }
@@ -3606,44 +3825,49 @@
       const input = document.getElementById('copilotInput');
       if (input) {
         input.value = '';
-        input.placeholder = 'Listening... speak now to Dr. Lucy';
+        input.placeholder = '🎤 Listening... speak now to Dr. Lucy';
       }
       
       try {
+        console.log('▶️ Starting voice recognition...');
         recognition.start();
         showNotification('🎤 Speak to Dr. Lucy (QB RIX)...', 'success');
       } catch (error) {
-        console.error('Error starting voice recognition:', error);
+        console.error('❌ Error starting voice recognition:', error);
         isListening = false;
         updateVoiceButton(false);
-        showNotification('Error starting voice recognition. Please try again.', 'error');
+        showNotification('Error starting voice recognition. Please allow microphone permission.', 'error');
       }
     }
     
     function updateVoiceButton(listening) {
-      const voiceButtons = document.querySelectorAll('[onclick="startVoiceInput()"]');
+      const micBtn = document.getElementById('micBtn');
+      const conversationModeBtn = document.getElementById('conversationModeBtn');
       
-      voiceButtons.forEach(button => {
+      console.log('🎤 Updating voice button - listening:', listening);
+      
+      // Update microphone button
+      if (micBtn) {
         if (listening) {
-          button.style.background = 'rgba(239, 68, 68, 0.3)';
-          button.style.borderColor = '#ef4444';
-          button.style.animation = 'pulse 1s infinite';
-          button.innerHTML = `
+          micBtn.style.background = 'rgba(239, 68, 68, 0.3)';
+          micBtn.style.borderColor = '#ef4444';
+          micBtn.style.animation = 'pulse 1s infinite';
+          micBtn.innerHTML = `
             <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #ef4444;">
               <use href="#icon-microphone"></use>
             </svg>
           `;
-          button.title = 'Click to stop listening';
+          micBtn.title = 'Listening... Click to stop';
         } else {
-          button.style.background = 'rgba(255, 255, 255, 0.1)';
-          button.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-          button.style.animation = 'none';
-          button.innerHTML = `
+          micBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+          micBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          micBtn.style.animation = 'none';
+          micBtn.innerHTML = `
             <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #ffffff;">
               <use href="#icon-microphone"></use>
             </svg>
           `;
-          button.title = 'Click to speak to Dr. Lucy';
+          micBtn.title = 'Click to speak to Dr. Lucy';
           
           // Reset input placeholder
           const input = document.getElementById('copilotInput');
@@ -3651,7 +3875,24 @@
             input.placeholder = 'Ask Dr. Lucy anything...';
           }
         }
-      });
+      }
+      
+      // Update conversation mode button
+      if (conversationModeBtn) {
+        if (conversationMode) {
+          conversationModeBtn.style.background = 'rgba(255, 215, 0, 0.3)';
+          conversationModeBtn.style.borderColor = 'rgba(255, 215, 0, 0.5)';
+          conversationModeBtn.style.animation = 'pulse 2s infinite';
+          conversationModeBtn.title = 'Conversation mode ON - Click to disable';
+          conversationModeBtn.innerHTML = '🔊';
+        } else {
+          conversationModeBtn.style.background = 'rgba(255, 215, 0, 0.1)';
+          conversationModeBtn.style.borderColor = 'rgba(255, 215, 0, 0.2)';
+          conversationModeBtn.style.animation = 'none';
+          conversationModeBtn.title = 'Click to enable conversation mode';
+          conversationModeBtn.innerHTML = '🗣️';
+        }
+      }
     }
     
     // Initialize voice recognition when page loads

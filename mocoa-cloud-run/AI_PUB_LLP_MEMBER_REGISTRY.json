@@ -7,7 +7,7 @@
   "status": "operational",
   
   "members": {
-    "pr@coaching2100.com": {
+    "pc@coaching2100.com": {
       "displayName": "Mr. Phillip Corey Roark, CEO",
       "title": "Chief Executive Officer",
       "role": "ceo-diamond-sao",
@@ -29,7 +29,7 @@
       "interface_access": "mocoa-owner-interface"
     },
     
-    "morgan@coaching2100.com": {
+    "mo@coaching2100.com": {
       "displayName": "Mr. Morgan O'Brien, EAO",
       "title": "Executive Administrative Officer",
       "role": "executive-admin-officer",
@@ -200,8 +200,8 @@
   },
   
   "regional_operations": {
-    "Global": "pr@coaching2100.com",
-    "North America": ["morgan@coaching2100.com", "jg@coaching2100.com"],
+    "Global": "pc@coaching2100.com",
+    "North America": ["mo@coaching2100.com", "jg@coaching2100.com"],
     "EMEA": ["uk@coaching2100.com"],
     "Global": ["et@coaching2100.com"],
     "LATAM": ["av@coaching2100.com", "ym@coaching2100.com"]

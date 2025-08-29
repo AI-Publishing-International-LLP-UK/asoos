@@ -24,14 +24,14 @@
 ### **🟢 ACTIVE MEMBERS (2)**
 
 #### **1. Phillip Corey Roark, CEO** 
-- **Email**: `pr@coaching2100.com`
+- **Email**: `pc@coaching2100.com`
 - **Package**: Diamond (Level 5)
 - **Status**: ✅ **ACTIVE** - Owner Interface Access
 - **Interface**: `mocoa-owner-interface-859242575175.us-west1.run.app`
 - **Role**: CEO Diamond SAO - Full System Admin
 
 #### **2. Morgan O'Brien, EAO**
-- **Email**: `morgan@coaching2100.com` 
+- **Email**: `mo@coaching2100.com`
 - **Package**: Emerald (Level 5)
 - **Status**: ✅ **ACTIVE** - Confirmed running on MCP
 - **Interface**: `mcp.aipub.2100.cool`
