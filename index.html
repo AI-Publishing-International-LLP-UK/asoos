@@ -1497,21 +1497,19 @@
       }
     }
     
-    // Authentication flow - Redirect to corrected auth page for proper user identification
+    // Authentication flow - Direct to SallyPort (deprecated /auth page removed)
     function initiateAuthentication(source) {
       // Store the entry point source for potential future use
       localStorage.setItem('asoos_entry_source', source);
       
-      // Redirect to the corrected authentication page
-      // This ensures proper user identification before Sally Port integration
-      window.location.href = '/auth';
+      // Direct to SallyPort for authentication
+      window.location.href = 'https://sallyport.2100.cool';
     }
     
-    // This function is no longer needed since we redirect to auth page directly
-    // Keeping for potential future fallback use
+    // Legacy function - now redirects to SallyPort
     function completeAuthentication(source) {
-      // Fallback redirect to auth page if somehow called
-      window.location.href = '/auth';
+      // Direct to SallyPort for authentication
+      window.location.href = 'https://sallyport.2100.cool';
     }
     
     window.addEventListener('scroll', reveal);

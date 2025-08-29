@@ -305,7 +305,7 @@ jobs:
 # 4. Enable "Enforce HTTPS"
 #
 # Required DNS Configuration:
-# - Add CNAME record: 2100.cool → ai-publishing-international-llp-uk.github.io
+# - Add CNAME record: 2100.cool → AI-PUBLISHING-INTERNATIONAL-LLP-UK.github.io
 # - Or add A records pointing to GitHub Pages IP addresses
 #
 # This workflow creates a complete GitHub Pages deployment with:
