@@ -1414,7 +1414,7 @@
             </svg>
             <div class="icon-tooltip">
               <strong>Settings & Configuration</strong><br>
-              <small>Diamond SAO</small>
+              <small>Emerald EAO</small>
             </div>
           </div>
         </div>
@@ -1428,8 +1428,8 @@
             <div class="logo" id="systemLogo">ASOOS</div>
           </div>
           <div class="user-info">
-            <div class="user-name" id="userName">Mr. Phillip Corey Roark, CEO</div>
-            <div class="user-tagline" id="userTagline">Aixtiv Symphony Orchestrating Operating System</div>
+            <div class="user-name" id="userName">Mr. Morgan O'Brien, EAO</div>
+            <div class="user-tagline" id="userTagline">Executive Administrative Officer</div>
           </div>
         </div>
 
@@ -2470,36 +2470,149 @@
       }, 1000);
     }
 
-    // Load Dynamic User Data
+    // MOCOA Interface Configuration - Connects to Master ASOOS MCP Server
+    const mocoaConfig = {
+      masterMcpEndpoint: 'https://master.asoos.com/api/orchestrator',
+      universalAuthEndpoint: 'https://master.asoos.com/api/universal-auth',
+      interface: 'MOCOA-LLP',
+      version: '1.0.0',
+      
+      // LLP member authentication delegated to master MCP
+      authenticate: async (credentials) => {
+        return await universalOrchestrator.authenticate(credentials);
+      },
+      
+      // All PCP queries route through master orchestrator
+      processPCPQuery: async (query, rixType) => {
+        return await universalOrchestrator.processPCPQuery(query, rixType, 'MOCOA');
+      }
+    };
+    
+    // Load Dynamic User Data with LLP Authentication
     function loadUserData() {
-      // In production, this would fetch from your authentication service
-      // For now, simulating the API call
+      // Authenticate through Sally Port and route appropriately
+      authenticateAndRoute();
+    }
+    
+    // Sally Port Authentication with LLP Routing
+    async function authenticateAndRoute() {
+      try {
+        // Get authenticated user email from Sally Port
+        const authResponse = await fetch('/api/sallyport/authenticate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Sally-Port-Version': '2.1.0'
+          },
+          credentials: 'include'
+        });
+        
+        if (authResponse.ok) {
+          const authData = await authResponse.json();
+          const userEmail = authData.email;
+          
+          // Check if user is LLP member
+          if (llpMembers[userEmail]) {
+            // LLP Member - Route to MOCOA interface with pre-populated profile
+            loadLLPMemberProfile(userEmail, llpMembers[userEmail]);
+          } else {
+            // Not LLP member - Route to MCP auto-provisioning or UFO
+            routeNonLLPUser(userEmail, authData);
+          }
+          
+        } else {
+          // Not authenticated - redirect to Sally Port login
+          window.location.href = '/sallyport/login';
+        }
+        
+      } catch (error) {
+        console.error('Sally Port authentication failed:', error);
+        handleAuthenticationFailure();
+      }
+    }
+    
+    // Load LLP Member Profile (stays on this MOCOA interface)
+    function loadLLPMemberProfile(email, memberProfile) {
+      console.log(`🔷 LLP Member authenticated: ${email}`);
+      
+      // Update interface with member's pre-configured profile
+      const userNameEl = document.getElementById('userName');
+      const userTaglineEl = document.getElementById('userTagline');
+      const systemLogoEl = document.getElementById('systemLogo');
+      
+      if (userNameEl) userNameEl.textContent = memberProfile.displayName;
+      if (userTaglineEl) userTaglineEl.textContent = memberProfile.title;
+      if (systemLogoEl) systemLogoEl.textContent = 'ASOOS';
+      
+      // Set access levels
+      authLevel = memberProfile.authLevel;
+      userRole = memberProfile.role;
+      userLevel = memberProfile.userLevel;
+      
+      // Update interface for role
+      updateInterfaceForRole();
+      
+      // Show welcome notification
+      showNotification(`Welcome ${memberProfile.displayName}! LLP interface activated`, 'success');
+      
+      // Log LLP member access
+      if (window.productionLogging) {
+        window.productionLogging.info('LLP member authenticated', {
+          email: email,
+          role: memberProfile.role,
+          interface: 'MOCOA-LLP'
+        });
+      }
+    }
+    
+    // Route Non-LLP Users (triggers MCP auto-provisioning or UFO)
+    async function routeNonLLPUser(email, authData) {
+      try {
+        // Call MCP auto-provisioning service
+        const routingResponse = await fetch('/api/mcp/auto-provision', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authData.token}`
+          },
+          body: JSON.stringify({
+            email: email,
+            authData: authData,
+            source: 'sally_port_auth'
+          })
+        });
+        
+        if (routingResponse.ok) {
+          const routing = await routingResponse.json();
+          
+          if (routing.mcpUrl) {
+            // Route to company MCP
+            console.log(`🏢 Routing to company MCP: ${routing.mcpUrl}`);
+            window.location.href = routing.mcpUrl;
+          } else if (routing.ufoUrl) {
+            // Route to UFO account
+            console.log(`🛸 Routing to UFO account: ${routing.ufoUrl}`);
+            window.location.href = routing.ufoUrl;
+          } else {
+            throw new Error('No routing destination provided');
+          }
+        } else {
+          throw new Error('MCP auto-provisioning failed');
+        }
+        
+      } catch (error) {
+        console.error('Non-LLP user routing failed:', error);
+        // Fallback to UFO account
+        window.location.href = '/ufo/account';
+      }
+    }
+    
+    // Handle authentication failures
+    function handleAuthenticationFailure() {
+      showNotification('Authentication required. Redirecting to Sally Port...', 'error');
       setTimeout(() => {
-        // These would come from your user management system
-        const userData = {
-          role: 'ASOOS Subscriber',
-          userName: 'Mr. Phillip Corey Roark, CEO',
-          tagline: 'Aixtiv Symphony Orchestrating Operating System',
-          systemName: 'ASOOS',
-          companyName: 'Aixtiv Corporation',
-          authLevel: 5 // Enterprise level
-        };
-        
-        // Update the interface with dynamic data - with null checks
-        const userNameEl = document.getElementById('userName');
-        const userTaglineEl = document.getElementById('userTagline');
-        const systemLogoEl = document.getElementById('systemLogo');
-        
-        if (userNameEl) userNameEl.textContent = userData.userName;
-        if (userTaglineEl) userTaglineEl.textContent = userData.tagline;
-        if (systemLogoEl) systemLogoEl.textContent = userData.systemName;
-        
-        // Update auth level for progressive features
-        authLevel = userData.authLevel;
-        
-        // Show smaller welcome notification
-        showNotification(`Welcome back!`, 'success');
-      }, 500);
+        window.location.href = '/sallyport/login';
+      }, 2000);
     }
 
     // Multi-Tenant Integration Gateway
