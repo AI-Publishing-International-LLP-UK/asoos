@@ -2470,21 +2470,26 @@
       }, 1000);
     }
 
-    // MOCOA Interface Configuration - Connects to Master ASOOS MCP Server
+    // MOCOA Interface Configuration - AI Publishing International LLP
     const mocoaConfig = {
+      aiPubMcpEndpoint: 'https://mcp.aipub.2100.cool/api/orchestrator',
+      aiPubAuthEndpoint: 'https://mcp.aipub.2100.cool/api/auth',
       masterMcpEndpoint: 'https://master.asoos.com/api/orchestrator',
       universalAuthEndpoint: 'https://master.asoos.com/api/universal-auth',
-      interface: 'MOCOA-LLP',
+      interface: 'MOCOA-AIPUB',
       version: '1.0.0',
+      llpName: 'AI Publishing International LLP',
+      llpType: 'Limited Liability Partnership',
+      mcpDomain: 'mcp.aipub.2100.cool',
       
-      // LLP member authentication delegated to master MCP
+      // AI Publishing International LLP member authentication via dedicated MCP
       authenticate: async (credentials) => {
-        return await universalOrchestrator.authenticate(credentials);
+        return await aiPubMcpOrchestrator.authenticate(credentials);
       },
       
-      // All PCP queries route through master orchestrator
+      // All PCP queries route through AI Pub MCP orchestrator
       processPCPQuery: async (query, rixType) => {
-        return await universalOrchestrator.processPCPQuery(query, rixType, 'MOCOA');
+        return await aiPubMcpOrchestrator.processPCPQuery(query, rixType, 'MOCOA-AIPUB');
       }
     };
     
@@ -2494,7 +2499,7 @@
       authenticateAndRoute();
     }
     
-    // Sally Port Authentication with LLP Routing
+    // Sally Port Authentication with AI Pub LLP Routing
     async function authenticateAndRoute() {
       try {
         // Get authenticated user email from Sally Port
@@ -2511,12 +2516,26 @@
           const authData = await authResponse.json();
           const userEmail = authData.email;
           
-          // Check if user is LLP member
-          if (llpMembers[userEmail]) {
-            // LLP Member - Route to MOCOA interface with pre-populated profile
-            loadLLPMemberProfile(userEmail, llpMembers[userEmail]);
+          // Authenticate with AI Pub MCP to check LLP membership
+          const aiPubAuthResponse = await fetch(mocoaConfig.aiPubAuthEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authData.token}`,
+              'X-Interface': 'MOCOA-AIPUB'
+            },
+            body: JSON.stringify({
+              email: userEmail,
+              sallyPortAuth: authData
+            })
+          });
+          
+          if (aiPubAuthResponse.ok) {
+            const aiPubMember = await aiPubAuthResponse.json();
+            // AI Pub LLP Member - Load profile from MCP
+            loadAIPubLLPMemberProfile(userEmail, aiPubMember);
           } else {
-            // Not LLP member - Route to MCP auto-provisioning or UFO
+            // Not AI Pub LLP member - Route to MCP auto-provisioning or UFO
             routeNonLLPUser(userEmail, authData);
           }
           
@@ -2531,36 +2550,40 @@
       }
     }
     
-    // Load LLP Member Profile (stays on this MOCOA interface)
-    function loadLLPMemberProfile(email, memberProfile) {
-      console.log(`🔷 LLP Member authenticated: ${email}`);
+    // Load AI Pub LLP Member Profile (stays on this MOCOA interface)
+    function loadAIPubLLPMemberProfile(email, memberProfile) {
+      console.log(`🔷 AI Publishing International LLP Member authenticated: ${email}`);
       
-      // Update interface with member's pre-configured profile
+      // Update interface with member's pre-configured profile from AI Pub MCP
       const userNameEl = document.getElementById('userName');
       const userTaglineEl = document.getElementById('userTagline');
       const systemLogoEl = document.getElementById('systemLogo');
       
-      if (userNameEl) userNameEl.textContent = memberProfile.displayName;
-      if (userTaglineEl) userTaglineEl.textContent = memberProfile.title;
+      if (userNameEl) userNameEl.textContent = memberProfile.displayName || memberProfile.name;
+      if (userTaglineEl) userTaglineEl.textContent = memberProfile.title || memberProfile.role;
       if (systemLogoEl) systemLogoEl.textContent = 'ASOOS';
       
-      // Set access levels
-      authLevel = memberProfile.authLevel;
-      userRole = memberProfile.role;
-      userLevel = memberProfile.userLevel;
+      // Set access levels from AI Pub MCP
+      authLevel = memberProfile.authLevel || 5;
+      userRole = memberProfile.role || 'llp-member';
+      userLevel = memberProfile.userLevel || 'enterprise';
       
       // Update interface for role
       updateInterfaceForRole();
       
       // Show welcome notification
-      showNotification(`Welcome ${memberProfile.displayName}! LLP interface activated`, 'success');
+      showNotification(`Welcome ${memberProfile.displayName || email}! AI Publishing International LLP interface activated`, 'success');
       
-      // Log LLP member access
+      // Connect to AI Pub MCP for ongoing operations
+      initializeAIPubMCPConnection();
+      
+      // Log AI Pub LLP member access
       if (window.productionLogging) {
-        window.productionLogging.info('LLP member authenticated', {
+        window.productionLogging.info('AI Publishing International LLP member authenticated', {
           email: email,
           role: memberProfile.role,
-          interface: 'MOCOA-LLP'
+          interface: 'MOCOA-AIPUB',
+          mcp: 'mcp.aipub.2100.cool'
         });
       }
     }
@@ -3135,7 +3158,71 @@
       }
     }
     
-    // Process PCP Query through proper workflow channels 
+    // AI Pub MCP Orchestrator - Handles all AI Publishing International LLP operations
+    const aiPubMcpOrchestrator = {
+      baseUrl: mocoaConfig.aiPubMcpEndpoint,
+      authUrl: mocoaConfig.aiPubAuthEndpoint,
+      
+      authenticate: async (credentials) => {
+        try {
+          const response = await fetch(this.authUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(credentials)
+          });
+          return response.ok ? await response.json() : null;
+        } catch (error) {
+          console.error('AI Pub MCP authentication failed:', error);
+          return null;
+        }
+      },
+      
+      processPCPQuery: async (query, rixType, interface) => {
+        try {
+          const response = await fetch(`${this.baseUrl}/pcp`, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'X-Interface': interface,
+              'X-RIX-Type': rixType
+            },
+            body: JSON.stringify({ query, rixType, interface })
+          });
+          
+          if (response.ok) {
+            const result = await response.json();
+            return result.response || result.message;
+          } else {
+            return processSwarmQueryFallback(query);
+          }
+        } catch (error) {
+          console.error('AI Pub MCP query failed:', error);
+          return processSwarmQueryFallback(query);
+        }
+      }
+    };
+    
+    // Initialize AI Pub MCP Connection
+    function initializeAIPubMCPConnection() {
+      console.log('🔗 Connecting to AI Publishing International LLP MCP at mcp.aipub.2100.cool...');
+      
+      // Test connection to AI Pub MCP
+      fetch(`${mocoaConfig.aiPubMcpEndpoint}/health`)
+        .then(response => {
+          if (response.ok) {
+            console.log('✅ AI Pub MCP connection established');
+            showNotification('Connected to AI Publishing International LLP MCP', 'success');
+          } else {
+            console.warn('⚠️ AI Pub MCP connection issues, using fallback');
+          }
+        })
+        .catch(error => {
+          console.error('❌ AI Pub MCP connection failed:', error);
+          console.log('🔄 Operating in fallback mode');
+        });
+    }
+    
+    // Process PCP Query through AI Pub MCP channels 
     async function processSwarmQuery(query) {
       // PCPs must follow the s2do workflow - Except if Requested by Mr. Phillip Corey Roark, the Diamond SAO. Then and only then.
       // Proper flow: Dream Commander → 5 sequentially correct projects and 5 hot tips and daily performance rankings for the OS → PCP access DIDC archives confirms s2d0 for each project → Delivers s2do process with s2do verification by each step  → Gains Project Plan/ROI/Business Requirements s2do Agrement → Uses the DIDC Archives Jira Template →  FMS → Orchestration → Perserer QA 2x Review → final 3rd Version goes to PCP for → OS s2do and closes project in Jira and some projects that meet requiremetns get Queen Mint Mark NFT for possible inclusin in Pub Social →  If the OS accepts version 1 the AI Rewards are issued to all particpants in the project 100% →  1 return =80% → 2 retruns is a custmer services meeting notification to Diamond SAO and no AI Rewards.
