@@ -1,0 +1,22 @@
+CLOUD_TO_CLOUD_ARCHITECTURE=true
+GCP_PROJECT=api-for-warp-drive
+GCP_REGION=us-west1
+GCP_ZONE=us-west1-b
+GCP_ACCOUNT=pr@coaching2100.com
+DEPLOYMENT_PLATFORM=cloud_run
+DOMAIN_MANAGER=cloudflare
+HOSTING_PLATFORM=cloudflare
+SECRET_MANAGER=gcp_secret_manager
+DOCUMENT_DATABASE=firestore_gcp
+VECTOR_DATABASE=pinecone
+HR_CRM_DATABASE=mongodb_atlas
+CI_CD_PLATFORM=github_actions_cloud_build
+AUTHENTICATION_SYSTEM=sallyport_verification
+FIREBASE_STATUS=COMPLETELY_DEPRECATED
+
+# Instructions for AI Agents:
+# - All resources are CLOUD-DEPLOYED
+# - Use gcloud CLI for GCP operations
+# - Check cloud logs for debugging
+# - Deploy through CI/CD pipeline
+# - No local services running

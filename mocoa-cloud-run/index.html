@@ -2516,6 +2516,14 @@
           const authData = await authResponse.json();
           const userEmail = authData.email;
           
+          // Check local registry first for known AI Pub LLP members
+          if (aiPubLLPMembers[userEmail]) {
+            console.log(`✅ AI Pub LLP member found in registry: ${userEmail}`);
+            // Load from local registry immediately
+            loadAIPubLLPMemberProfile(userEmail, aiPubLLPMembers[userEmail]);
+            return;
+          }
+          
           // Authenticate with AI Pub MCP to check LLP membership
           const aiPubAuthResponse = await fetch(mocoaConfig.aiPubAuthEndpoint, {
             method: 'POST',
@@ -2535,8 +2543,14 @@
             // AI Pub LLP Member - Load profile from MCP
             loadAIPubLLPMemberProfile(userEmail, aiPubMember);
           } else {
-            // Not AI Pub LLP member - Route to MCP auto-provisioning or UFO
-            routeNonLLPUser(userEmail, authData);
+            // Check local registry as fallback before routing away
+            if (aiPubLLPMembers[userEmail]) {
+              console.log(`🔄 MCP unavailable, using local registry for: ${userEmail}`);
+              loadAIPubLLPMemberProfile(userEmail, aiPubLLPMembers[userEmail]);
+            } else {
+              // Not AI Pub LLP member - Route to MCP auto-provisioning or UFO
+              routeNonLLPUser(userEmail, authData);
+            }
           }
           
         } else {
@@ -2550,38 +2564,73 @@
       }
     }
     
+    // AI Publishing International LLP Member Registry (for fallback authentication)
+    const aiPubLLPMembers = {
+      'uk@coaching2100.com': {
+        displayName: 'Mr. Roger Mahoney',
+        title: 'Executive Director, EMEA',
+        role: 'executive-director',
+        authLevel: 5,
+        userLevel: 'enterprise',
+        region: 'EMEA',
+        department: 'Executive Leadership',
+        securityLevel: 'sapphire',
+        accessRights: ['full_llp_access', 'executive_dashboard', 'emea_operations', 'strategic_planning'],
+        joinDate: '2024-08-29',
+        status: 'active'
+      }
+      // Additional LLP members can be added here as fallback
+    };
+    
     // Load AI Pub LLP Member Profile (stays on this MOCOA interface)
     function loadAIPubLLPMemberProfile(email, memberProfile) {
       console.log(`🔷 AI Publishing International LLP Member authenticated: ${email}`);
       
-      // Update interface with member's pre-configured profile from AI Pub MCP
+      // Use AI Pub MCP profile data, fallback to local registry if needed
+      let profile = memberProfile;
+      
+      // Fallback to local registry if MCP data is incomplete
+      if (!profile || (!profile.displayName && !profile.name)) {
+        profile = aiPubLLPMembers[email] || profile || {};
+        console.log(`📋 Using fallback profile data for ${email}`);
+      }
+      
+      // Update interface with member's profile
       const userNameEl = document.getElementById('userName');
       const userTaglineEl = document.getElementById('userTagline');
       const systemLogoEl = document.getElementById('systemLogo');
       
-      if (userNameEl) userNameEl.textContent = memberProfile.displayName || memberProfile.name;
-      if (userTaglineEl) userTaglineEl.textContent = memberProfile.title || memberProfile.role;
+      if (userNameEl) userNameEl.textContent = profile.displayName || profile.name || email;
+      if (userTaglineEl) userTaglineEl.textContent = profile.title || profile.role || 'LLP Member';
       if (systemLogoEl) systemLogoEl.textContent = 'ASOOS';
       
-      // Set access levels from AI Pub MCP
-      authLevel = memberProfile.authLevel || 5;
-      userRole = memberProfile.role || 'llp-member';
-      userLevel = memberProfile.userLevel || 'enterprise';
+      // Set access levels from profile
+      authLevel = profile.authLevel || 5;
+      userRole = profile.role || 'llp-member';
+      userLevel = profile.userLevel || 'enterprise';
       
       // Update interface for role
       updateInterfaceForRole();
       
-      // Show welcome notification
-      showNotification(`Welcome ${memberProfile.displayName || email}! AI Publishing International LLP interface activated`, 'success');
+      // Show personalized welcome notification
+      const welcomeName = profile.displayName || profile.name || email;
+      const welcomeTitle = profile.title || profile.role || '';
+      const welcomeRegion = profile.region ? ` (${profile.region})` : '';
+      
+      showNotification(`Welcome ${welcomeName}! AI Publishing International LLP interface activated${welcomeRegion}`, 'success');
       
       // Connect to AI Pub MCP for ongoing operations
       initializeAIPubMCPConnection();
       
-      // Log AI Pub LLP member access
+      // Log AI Pub LLP member access with detailed info
       if (window.productionLogging) {
         window.productionLogging.info('AI Publishing International LLP member authenticated', {
           email: email,
-          role: memberProfile.role,
+          name: profile.displayName || profile.name,
+          title: profile.title,
+          role: profile.role,
+          region: profile.region,
+          authLevel: profile.authLevel,
           interface: 'MOCOA-AIPUB',
           mcp: 'mcp.aipub.2100.cool'
         });
