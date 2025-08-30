@@ -150,9 +150,9 @@ export default {
   </div>
   
   <div class="buttons">
-    <a href="/auth" class="btn">🚀 Launch ASOOS</a>
-    <a href="/auth" class="btn">🎼 Start Your Symphony</a>
-    <a href="/auth" class="btn">✨ Get Started</a>
+    <a href="https://sallyport.2100.cool" class="btn">🚀 Launch ASOOS</a>
+    <a href="https://sallyport.2100.cool" class="btn">🎼 Start Your Symphony</a>
+    <a href="https://sallyport.2100.cool" class="btn">✨ Get Started</a>
     <a href="/owner" class="btn btn-secondary">💎 Owner Portal</a>
   </div>
   

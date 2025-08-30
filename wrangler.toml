@@ -1,5 +1,6 @@
 name = "asoos-2100-cool-landing"
 compatibility_date = "2025-08-25"
+pages_build_output_dir = "dist"
 
 [env.production]
 name = "asoos-2100-cool-landing"
