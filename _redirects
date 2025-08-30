@@ -1,18 +1,12 @@
 # Cloudflare Pages Redirects Configuration
 # Victory36 Protected Routes
 
-# DEPRECATED: /auth route removed - redirects to SallyPort
-/auth https://sallyport.2100.cool 302
+# CRITICAL: /auth route MUST redirect to SallyPort
+/auth https://sallyport.2100.cool 301
+/auth/* https://sallyport.2100.cool 301
 
-# Interface Route - Sacred Owner Interface
-/interface /interface/index.html 200
-/interface/* /interface/index.html 200
-
-# API Routes - Protected by Victory36 Shield
-/api/auth/* /api/auth/:splat 200
-/api/mcp/* /api/mcp/:splat 200
-/api/sacred/* /api/sacred/:splat 200
-
-# Default redirects
+# Default redirects - main page
 / /index.html 200
-/* /index.html 404
+
+# Fallback - everything else goes to main page
+/* /index.html 200

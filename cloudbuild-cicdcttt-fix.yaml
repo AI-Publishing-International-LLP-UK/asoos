@@ -221,7 +221,6 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
   logStreamingOption: STREAM_ON
-  machineType: E2_STANDARD_2
   substitutionOption: ALLOW_LOOSE
   dynamicSubstitutions: true
 

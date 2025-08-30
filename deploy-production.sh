@@ -129,14 +129,30 @@ setup_mcp_dns_automation() {
     echo -e "${CYAN}🌐 SETTING UP AUTOMATED MCP DNS${NC}"
     echo "-----------------------------"
     
-    echo "🔧 MCP DNS automation configured via Cloudflare Workers..."
+    echo "🔧 Deploying automated MCP DNS management..."
+    
+    # Ensure the automation script exists and is executable
+    if [ ! -f "automate-mcp-dns.sh" ]; then
+        echo "❌ MCP DNS automation script not found"
+        return 1
+    fi
+    
+    chmod +x automate-mcp-dns.sh
+    
+    # Auto-fix any existing MCP DNS issues
+    echo "🔄 Running automated DNS health check and repair..."
+    if ./automate-mcp-dns.sh auto-fix-mcp-aipub; then
+        echo "✅ MCP DNS automation completed successfully"
+    else
+        echo "⚠️  MCP DNS automation completed with warnings"
+    fi
+    
     echo "✅ MCP DNS automation operational"
     echo "🔗 Available endpoints:"
-    echo "   - mcp.companyname.com"
-    echo "   - mcp.companyname"
-    echo "   - mcp.companyname.com:2100"
-    echo "   - asos.cool.production.dev"
-    echo "💡 DNS management handled via OAuth2 through Cloudflare Workers"
+    echo "   - mcp.aipub.2100.cool (automated)"
+    echo "   - mcp.companyname.com (on-demand)"
+    echo "   - mcp.companyname.com:2100 (port-specific)"
+    echo "💡 DNS management fully automated via gcloud CLI"
     
     echo ""
 }

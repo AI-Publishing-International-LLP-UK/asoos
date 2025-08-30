@@ -1622,5 +1622,69 @@
   
   <!-- UFO - Unified Frontend Operations for All MCP Endpoints -->
   <script src="ufo-mcp-integration.js"></script>
+
+  <script>
+    // Check for existing user instance on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check URL parameters for instance info
+      const urlParams = new URLSearchParams(window.location.search);
+      const instanceId = urlParams.get('instance');
+      const userName = urlParams.get('user');
+      const level = urlParams.get('level');
+      
+      if (instanceId && userName) {
+        // User has a personal instance, personalize the interface
+        personalizeInterface(instanceId, userName, level);
+      }
+    });
+
+    function personalizeInterface(instanceId, userName, level) {
+      // Personalize the header
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+        heroTitle.textContent = `Welcome back, ${userName.split(' ')[0]}!`;
+      }
+      
+      const heroDescription = document.querySelector('.hero-description');
+      if (heroDescription) {
+        heroDescription.innerHTML = `Your personal ASOOS instance <strong>${instanceId}</strong> is ready. Continue your AI symphony with your personalized copilots and tools.`;
+      }
+      
+      // Add personalized workspace button WITHOUT hijacking existing buttons
+      const heroButtons = document.querySelector('.hero-buttons');
+      if (heroButtons) {
+        // Create additional personalized button instead of hijacking existing ones
+        const personalButton = document.createElement('a');
+        personalButton.className = 'hero-button primary-button';
+        personalButton.textContent = 'Enter My Personal Workspace';
+        personalButton.style.cssText = 'background: linear-gradient(135deg, #8b5cf6, #7c3aed); margin-left: 15px;';
+        personalButton.onclick = function() {
+          // Redirect to working personalized interface
+          const workspaceUrls = {
+            'sapphire': './mocoa-cloud-run/index.html',
+            'opal': './direct_response.html',
+            'onyx': './proxy_response.html'
+          };
+          const targetUrl = workspaceUrls[level] || workspaceUrls['sapphire'];
+          const personalizedUrl = `${targetUrl}?instance=${instanceId}&user=${encodeURIComponent(userName)}&level=${level}&auth=5`;
+          window.location.href = personalizedUrl;
+        };
+        heroButtons.appendChild(personalButton);
+      }
+      
+      // Add personalization indicator
+      const nav = document.querySelector('.nav-container');
+      if (nav) {
+        const personalIndicator = document.createElement('div');
+        personalIndicator.style.cssText = 'position: absolute; top: -10px; right: 20px; background: #50C878; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: 600;';
+        personalIndicator.textContent = `${userName}'s Instance`;
+        nav.style.position = 'relative';
+        nav.appendChild(personalIndicator);
+      }
+      
+      console.log(`Personalized interface loaded for ${userName} (Instance: ${instanceId})`);
+      console.log(`Available workspace interfaces: Sapphire, Opal, Onyx`);
+    }
+  </script>
 </body>
 </html>
