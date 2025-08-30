@@ -961,7 +961,7 @@
         <a href="#team" class="nav-link">Team</a>
         <a href="#technology" class="nav-link">Technology</a>
         <a href="#stats" class="nav-link">Network</a>
-        <a href="https://sallyport.2100.cool" class="cta-button" aria-label="Launch ASOOS Application" target="_blank">Launch App</a>
+        <button onclick="redirectToAuth('app')" class="cta-button" aria-label="Launch ASOOS Application">Open App</button>
       </div>
     </div>
   </nav>
@@ -977,7 +977,7 @@
         DIDC Archives system powered by Tower Blockchain.
       </p>
       <div class="hero-buttons">
-        <a href="https://mcp.company.2100.cool" class="hero-button primary-button" aria-label="Start Your ASOOS Symphony" target="_blank">Start Your Symphony</a>
+        <button onclick="redirectToAuth('symphony')" class="hero-button primary-button" aria-label="Start Your ASOOS Symphony">Start Your Symphony</button>
         <a href="#features" class="hero-button secondary-button">Explore Features</a>
       </div>
     </div>
@@ -1250,7 +1250,7 @@
         Join thousands of organizations transforming their operations with ASOOS. 
         Start your AI symphony today.
       </p>
-      <a href="https://sallyport.2100.cool" class="hero-button primary-button" aria-label="Get Started with ASOOS" target="_blank">Get Started Now</a>
+      <button onclick="redirectToAuth('welcome')" class="hero-button primary-button" aria-label="Get Started with ASOOS">Get Started</button>
     </div>
   </section>
   
@@ -1259,17 +1259,14 @@
     <div class="footer-container">
       <div class="footer-grid">
         <div class="footer-section">
-          <h4>Company Ecosystem</h4>
+          <h4>Company</h4>
           <ul>
-            <li><a href="https://coaching2100.com" target="_blank">Coaching 2100</a></li>
-            <li><a href="https://getready2100.com" target="_blank">Get Ready 2100</a></li>
-            <li><a href="https://preparate2100.com" target="_blank">Preparate 2100</a></li>
-            <li><a href="https://pubsocial.com/asoos" target="_blank">Pub Social™</a></li>
-            <li><a href="https://vision.coaching2100.com" target="_blank">Vision Lake™</a></li>
-            <li><a href="#bacasu-springs">Bacasu Springs™</a></li>
-            <li><a href="#city-of-agents">The City of Agents™</a></li>
-            <li><a href="https://coaching2100.com/ceo-ai-accelerator.html" target="_blank">CEO AI Accelerator</a></li>
-            <li><a href="https://coaching2100.com/human-collaboration.html" target="_blank">Human Collaboration</a></li>
+            <li><a href="https://coaching2100.com">Coaching 2100</a></li>
+            <li><a href="https://getready2100.com">Get Ready 2100</a></li>
+            <li><a href="https://preparate2100.com">Preparate 2100</a></li>
+            <li><a href="#enterprise">Enterprise Training</a></li>
+            <li><a href="#readiness">AI Readiness</a></li>
+            <li><a href="#support">Support Center</a></li>
           </ul>
         </div>
         
@@ -1288,15 +1285,12 @@
         <div class="footer-section">
           <h4>Legal & Resources</h4>
           <ul>
-            <li><a href="https://coaching2100.com/privacy-policy.html" target="_blank">Privacy Policy</a></li>
-            <li><a href="https://coaching2100.com/terms-and-conditions.html" target="_blank">Terms & Conditions</a></li>
-            <li><a href="https://coaching2100.com/fullfilment-policy.html" target="_blank">Fulfillment Policy</a></li>
-            <li><a href="https://coaching2100.com/contact-us.html" target="_blank">Contact Us</a></li>
-            <li><a href="https://coaching2100.com/contact-us.html" target="_blank">Company Offices</a></li>
-            <li><a href="https://coaching2100.com/contact-us.html" target="_blank">Brand Registrations</a></li>
-            <li><a href="https://coaching2100.com/blogs.html" target="_blank">AI Innovation Blog</a></li>
-            <li><a href="https://coaching2100.com/white-paper.html" target="_blank">Futuristic White Papers</a></li>
-            <li><a href="https://coaching2100.com/media.html" target="_blank">Media Outreach</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms & Conditions</a></li>
+            <li><a href="#fulfillment">Fulfillment Policy</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#offices">Company Offices</a></li>
+            <li><a href="#brands">Brand Registrations</a></li>
           </ul>
         </div>
         
@@ -1497,19 +1491,14 @@
       }
     }
     
-    // Authentication flow - Direct to SallyPort (deprecated /auth page removed)
-    function initiateAuthentication(source) {
-      // Store the entry point source for potential future use
-      localStorage.setItem('asoos_entry_source', source);
+    // Perfect flow: ASOOS → Auth → SallyPort → MCP.AIPUB.CO.UK
+    function redirectToAuth(source) {
+      console.log(`🎯 Redirecting to auth for: ${source}`);
+      console.log('🛡️ SallyPort will handle background authentication');
+      console.log('🎭 Target: mcp.aipub.co.uk');
       
-      // Direct to SallyPort for authentication
-      window.location.href = 'https://sallyport.2100.cool';
-    }
-    
-    // Legacy function - now redirects to SallyPort
-    function completeAuthentication(source) {
-      // Direct to SallyPort for authentication
-      window.location.href = 'https://sallyport.2100.cool';
+      // Direct redirect - no modals, no JavaScript errors, clean experience
+      window.location.href = 'https://asoos.2100.cool/auth';
     }
     
     window.addEventListener('scroll', reveal);
@@ -1616,11 +1605,5 @@
     // Initialize everything
     createParticles();
   </script>
-  
-  <!-- Enhanced WFA-MCP Integration -->
-  <script src="enhanced-wfa-mcp-integration.js"></script>
-  
-  <!-- UFO - Unified Frontend Operations for All MCP Endpoints -->
-  <script src="ufo-mcp-integration.js"></script>
 </body>
 </html>

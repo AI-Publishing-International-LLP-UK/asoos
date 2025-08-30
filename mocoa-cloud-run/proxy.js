@@ -34,10 +34,11 @@ app.use('/api/universal', createProxyMiddleware({
 }));
 
 // AIPUB MCP Routes
-apapapapapapapapapapapareateProxyMiddleware({
+app.use('/api/aipub', createProxyMiddleware({
   target: MCP_CONFIG.MCP_AIPUB,
   changeOrigin: true,
-  pathR  pathR  pathR  pathR  pathR  pathR  pathR  pathR  pathR  pathR  pa) => {
+  pathRewrite: {'^/api/aipub' : '/api'},
+  onProxyReq: (proxyReq, req, res) => {
     proxyReq.setHeader('X-Interface', 'MOCOA-AIPUB');
   }
 }));
