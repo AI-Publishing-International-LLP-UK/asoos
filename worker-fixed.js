@@ -5,10 +5,8 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     
-    // Handle auth routing - redirect to SallyPort for authentication  
-    if (url.pathname === '/auth') {
-      return Response.redirect('https://sallyport.2100.cool', 302);
-    }
+    // NO /auth route needed - all CTAs go directly to sallyport.2100.cool
+    // This matches the design: 10,000+ websites → sallyport.2100.cool → mcp.company.2100.cool
     
     // Handle owner interface redirect
     if (url.pathname === '/owner' || url.pathname === '/dashboard') {
