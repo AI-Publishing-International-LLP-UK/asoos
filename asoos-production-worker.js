@@ -81,7 +81,7 @@ export default {
     
     // Handle WFA endpoints - proxy to Cloud Run service
     if (url.pathname.startsWith('/wfa/')) {
-      const wfaCloudRunUrl = `https://wfa-production-swarm-859242575175.us-west1.run.app${url.pathname}${url.search}`;
+      const wfaCloudRunUrl = `https://wfa-production-swarm-yutylytffa-uw.a.run.app${url.pathname}${url.search}`;
       
       try {
         const response = await fetch(wfaCloudRunUrl, {
