@@ -5,9 +5,9 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     
-    // Handle auth routing - redirect to corrected auth page  
+    // Handle auth routing - redirect to SallyPort for authentication  
     if (url.pathname === '/auth') {
-      return Response.redirect('https://asoos.2100.cool/cloudflare-pages-deployment/auth.html', 302);
+      return Response.redirect('https://sallyport.2100.cool', 302);
     }
     
     // Handle owner interface redirect
