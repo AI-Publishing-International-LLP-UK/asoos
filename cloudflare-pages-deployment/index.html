@@ -4169,13 +4169,53 @@
       }, 100);
     }
     
-    // Make functions globally available
+    // Make functions globally available BEFORE DOM loads
     window.startVoiceInput = startVoiceInput;
     window.showNotification = showNotification;
     window.togglePanel = togglePanel;
     window.toggleScanToApprove = toggleScanToApprove;
     window.speakMessage = speakMessage;
     window.toggleConversationMode = toggleConversationMode;
+    
+    // Add missing functions that buttons are calling
+    window.activateRIX = function(type, name) {
+      console.log('Activating RIX:', type, name);
+      showNotification(`Activating ${name} (${type} RIX)`, 'success');
+    };
+    
+    window.toggleCopilotMode = function() {
+      const chatArea = document.getElementById('naturalLanguageChat');
+      const cliArea = document.getElementById('cliInterface');
+      const btn = document.getElementById('modeToggleBtn');
+      
+      if (chatArea && cliArea && btn) {
+        if (chatArea.style.display === 'none') {
+          chatArea.style.display = 'flex';
+          cliArea.style.display = 'none';
+          btn.innerHTML = '<svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #8b5cf6;"><use href="#icon-terminal"></use></svg>CLI';
+          btn.title = 'Switch to CLI Mode';
+        } else {
+          chatArea.style.display = 'none';
+          cliArea.style.display = 'flex';
+          btn.innerHTML = '<svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #8b5cf6;"><use href="#icon-comments"></use></svg>Chat';
+          btn.title = 'Switch to Chat Mode';
+        }
+      }
+    };
+    
+    window.sendCopilotMessage = function() {
+      const input = document.getElementById('copilotInput');
+      if (input && input.value.trim()) {
+        showNotification('Message sent: ' + input.value.trim(), 'success');
+        input.value = '';
+      }
+    };
+    
+    window.handleCopilotKeyPress = function(event) {
+      if (event.key === 'Enter') {
+        sendCopilotMessage();
+      }
+    };
   </script>
 </body>
 </html>
