@@ -1,0 +1,79 @@
+{
+  "companies": {
+    "ufo": {
+      "domain": "mcp.ufo.2100.cool",
+      "provisioned": "2025-08-31T01:07:49Z",
+      "status": "active"
+    },
+    "ey": {
+      "domain": "mcp.ey.2100.cool",
+      "provisioned": "2025-08-31T01:07:58Z",
+      "status": "active"
+    },
+    "deloitte": {
+      "domain": "mcp.deloitte.2100.cool",
+      "provisioned": "2025-08-31T01:08:04Z",
+      "status": "active"
+    },
+    "microsoft": {
+      "domain": "mcp.microsoft.2100.cool",
+      "provisioned": "2025-08-31T01:08:10Z",
+      "status": "active"
+    },
+    "google": {
+      "domain": "mcp.google.2100.cool",
+      "provisioned": "2025-08-31T01:08:16Z",
+      "status": "active"
+    },
+    "nestle": {
+      "domain": "mcp.nestle.2100.cool",
+      "provisioned": "2025-08-31T01:08:22Z",
+      "status": "active"
+    },
+    "accenture": {
+      "domain": "mcp.accenture.2100.cool",
+      "provisioned": "2025-08-31T01:08:28Z",
+      "status": "active"
+    },
+    "pwc": {
+      "domain": "mcp.pwc.2100.cool",
+      "provisioned": "2025-08-31T01:08:39Z",
+      "status": "active"
+    },
+    "kpmg": {
+      "domain": "mcp.kpmg.2100.cool",
+      "provisioned": "2025-08-31T01:08:45Z",
+      "status": "active"
+    },
+    "ibm": {
+      "domain": "mcp.ibm.2100.cool",
+      "provisioned": "2025-08-31T01:08:51Z",
+      "status": "active"
+    },
+    "amazon": {
+      "domain": "mcp.amazon.2100.cool",
+      "provisioned": "2025-08-31T01:08:58Z",
+      "status": "active"
+    },
+    "meta": {
+      "domain": "mcp.meta.2100.cool",
+      "provisioned": "2025-08-31T01:09:03Z",
+      "status": "active"
+    },
+    "apple": {
+      "domain": "mcp.apple.2100.cool",
+      "provisioned": "2025-08-31T01:09:09Z",
+      "status": "active"
+    },
+    "tesla": {
+      "domain": "mcp.tesla.2100.cool",
+      "provisioned": "2025-08-31T01:09:15Z",
+      "status": "active"
+    },
+    "nvidia": {
+      "domain": "mcp.nvidia.2100.cool",
+      "provisioned": "2025-08-31T01:09:21Z",
+      "status": "active"
+    }
+  }
+}
