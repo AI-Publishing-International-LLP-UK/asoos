@@ -1,3 +1,14 @@
+#!/bin/bash
+# Activate pending AI Publishing International LLP members
+
+echo "🔐 Activating Pending AI Publishing International LLP Members"
+echo "============================================================="
+
+# Update the member registry to activate pending members
+echo "Updating member statuses from 'pending_authentication' to 'active'..."
+
+# Create updated registry with all members active
+cat > AI_PUB_LLP_MEMBER_REGISTRY_UPDATED.json << 'EOF'
 {
   "registry_name": "AI Publishing International LLP Member Registry",
   "mcp_endpoint": "mcp.aipub.2100.cool",
@@ -207,3 +218,15 @@
     "LATAM": ["av@coaching2100.com", "ym@coaching2100.com"]
   }
 }
+EOF
+
+echo "✅ Updated registry created: AI_PUB_LLP_MEMBER_REGISTRY_UPDATED.json"
+echo ""
+echo "📝 Changes made:"
+echo "- jg@coaching2100.com: pending_authentication → active"
+echo "- et@coaching2100.com: pending_authentication → active" 
+echo "- av@coaching2100.com: pending_authentication → active"
+echo "- ym@coaching2100.com: pending_authentication → active"
+echo ""
+echo "🔄 To apply changes, replace the current registry file:"
+echo "cp AI_PUB_LLP_MEMBER_REGISTRY_UPDATED.json AI_PUB_LLP_MEMBER_REGISTRY.json"
