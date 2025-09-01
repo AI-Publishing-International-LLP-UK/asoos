@@ -270,10 +270,182 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  // MOCOA Interface server started
-  // Health check available at /health
-  // PCP System Ready - QB (Dr. Lucy sRIX) operational
-  // Dr. Claude Quantum Orchestration System operational
-  // WFA Swarm Phase 5: Quantum Orchestration ACTIVE
+// Self-healing and monitoring configuration
+const HEALTH_CHECK_INTERVAL = 30000; // 30 seconds
+const MAX_RESTART_ATTEMPTS = 5;
+const RESTART_COOLDOWN = 60000; // 1 minute
+let restartCount = 0;
+let lastRestartTime = 0;
+let server;
+
+// Enhanced logging for production debugging
+const log = (level, message, metadata = {}) => {
+    const timestamp = new Date().toISOString();
+    const logEntry = {
+        timestamp,
+        level,
+        service: 'mocoa',
+        message,
+        ...metadata
+    };
+    console.log(JSON.stringify(logEntry));
+};
+
+// Self-healing mechanism
+function performSelfHeal() {
+    const now = Date.now();
+    
+    // Check if we're in cooldown period
+    if (now - lastRestartTime < RESTART_COOLDOWN) {
+        log('warn', 'Self-heal in cooldown period');
+        return;
+    }
+    
+    // Check restart attempts
+    if (restartCount >= MAX_RESTART_ATTEMPTS) {
+        log('error', 'Maximum restart attempts reached', { restartCount });
+        return;
+    }
+    
+    log('info', 'Attempting self-heal', { restartCount });
+    restartCount++;
+    lastRestartTime = now;
+    
+    // Graceful restart logic
+    process.exit(1); // Let the container orchestrator restart us
+}
+
+// Health monitoring function
+function startHealthMonitoring() {
+    setInterval(async () => {
+        try {
+            // Monitor memory usage
+            const memUsage = process.memoryUsage();
+            const memUsageMB = {
+                rss: Math.round(memUsage.rss / 1024 / 1024),
+                heapTotal: Math.round(memUsage.heapTotal / 1024 / 1024),
+                heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024),
+                external: Math.round(memUsage.external / 1024 / 1024)
+            };
+            
+            // Check for memory leaks
+            if (memUsageMB.heapUsed > 1500) { // 1.5GB threshold
+                log('warn', 'High memory usage detected', { memory: memUsageMB });
+                
+                if (memUsageMB.heapUsed > 1800) { // 1.8GB critical threshold
+                    log('error', 'Critical memory usage - triggering self-heal', { memory: memUsageMB });
+                    performSelfHeal();
+                    return;
+                }
+            }
+            
+            // Validate quantum orchestrator state
+            if (drClaudeOrchestrator.quantumState === 'ERROR' || 
+                !drClaudeOrchestrator.validationHash) {
+                log('warn', 'Quantum orchestrator state validation failed');
+                await drClaudeOrchestrator.validateQuantumState();
+            }
+            
+            log('debug', 'Health check passed', { 
+                memory: memUsageMB, 
+                uptime: process.uptime(),
+                quantumState: drClaudeOrchestrator.quantumState 
+            });
+        } catch (error) {
+            log('error', 'Health monitoring error', { error: error.message });
+            performSelfHeal();
+        }
+    }, HEALTH_CHECK_INTERVAL);
+}
+
+// Graceful shutdown handling
+function gracefulShutdown(signal) {
+    log('info', `Received ${signal}, shutting down gracefully`);
+    
+    if (server) {
+        server.close((err) => {
+            if (err) {
+                log('error', 'Error during graceful shutdown', { error: err.message });
+                process.exit(1);
+            }
+            
+            log('info', 'Server closed, exiting process');
+            process.exit(0);
+        });
+    } else {
+        process.exit(0);
+    }
+    
+    // Force shutdown after 10 seconds
+    setTimeout(() => {
+        log('error', 'Forced shutdown due to timeout');
+        process.exit(1);
+    }, 10000);
+}
+
+// Enhanced readiness probe
+app.get('/ready', async (req, res) => {
+    try {
+        const fs = require('fs').promises;
+        
+        // Check if critical files exist
+        await fs.access(path.join(__dirname, 'index.html'));
+        await fs.access(path.join(__dirname, 'package.json'));
+        
+        // Check quantum orchestrator state
+        if (drClaudeOrchestrator.quantumState !== 'VALIDATED' && 
+            drClaudeOrchestrator.quantumState !== 'INITIALIZED') {
+            throw new Error('Quantum orchestrator not ready');
+        }
+        
+        res.status(200).json({
+            status: 'ready',
+            timestamp: new Date().toISOString(),
+            checks: {
+                filesystem: 'ok',
+                dependencies: 'ok',
+                quantumOrchestrator: 'ok'
+            }
+        });
+        
+        log('info', 'Readiness check passed');
+    } catch (error) {
+        log('error', 'Readiness check failed', { error: error.message });
+        res.status(503).json({
+            status: 'not ready',
+            timestamp: new Date().toISOString(),
+            error: error.message
+        });
+    }
 });
+
+server = app.listen(PORT, () => {
+    log('info', 'MOCOA Interface server started', {
+        port: PORT,
+        nodeVersion: process.version,
+        environment: process.env.NODE_ENV || 'production',
+        pid: process.pid,
+        quantumOrchestration: QUANTUM_ORCHESTRATION_VERSION
+    });
+    
+    // Start health monitoring after server starts
+    startHealthMonitoring();
+});
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (error) => {
+    log('error', 'Uncaught exception', { error: error.message, stack: error.stack });
+    performSelfHeal();
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    log('error', 'Unhandled rejection', { reason: reason?.message || reason });
+    performSelfHeal();
+});
+
+// Graceful shutdown handlers
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+// Export for testing
+module.exports = app;
