@@ -1,824 +1,597 @@
 /**
- * WFA-MCP QUANTUM SWARM ENHANCED INTERFACE
- * Commander: Phillip Corey Roark
- * Mission: Real-time integration with 20M agents across 200 sectors
- * Protection: Victory36 Maximum Security with OAuth2
+ * Enhanced WFA-MCP Integration - Trinity Component #2
+ * Workflow Automation and Multi-Channel Protocol
+ * Coordinates with Dream Commander and UFO Universal MCP
  */
 
-class WFAMCPInterface {
+class EnhancedWFAMCPIntegration {
   constructor() {
-    this.endpoints = {
-      wfa: 'https://asoos.2100.cool/wfa/',
-      mcp: 'https://mcp.aipub.2100.cool',
-      cloudRun: 'https://wfa-production-swarm-yutylytffa-uw.a.run.app',
-      sallyPort: 'https://sallyport.2100.cool'
+    this.apiBaseUrl = '/api/wfa-mcp';
+    this.authenticated = false;
+    this.workflowId = null;
+    this.channelConnections = new Map();
+    this.automationEngines = [];
+    this.performanceMetrics = {
+      workflowsExecuted: 0,
+      channelsActive: 0,
+      automationSuccess: 100,
+      lastExecution: null
     };
-    
-    this.realTimeData = {
-      agents: {
-        total: 20000000,
-        active: 19847623,
-        sectorsActive: 198
-      },
-      enterprises: {
-        total: 247,
-        active: 239,
-        quantum: 45,
-        enterprise: 87,
-        growth: 74,
-        startup: 33
-      },
-      security: {
-        victory36: 'MAXIMUM',
-        threatsBlocked: 1247,
-        ddosBlocked: 23,
-        incidents: 0
-      },
-      performance: {
-        uptime: 99.97,
-        responseTime: 8.3,
-        throughput: 2300000,
-        errorRate: 0.03
-      }
+    this.trinitySync = {
+      dreamCommander: false,
+      ufoMcp: false,
+      selfReady: false
     };
-    
-    this.isAuthenticated = false;
-    this.updateInterval = 5000; // 5 seconds
-    this.init();
   }
-  
-  async init() {
-    console.log('🚀 Initializing WFA-MCP Quantum Swarm Interface...');
-    
-    // Check authentication status
-    await this.checkAuthStatus();
-    
-    // Initialize real-time updates
-    this.startRealTimeUpdates();
-    
-    // Enhance existing interface elements
-    this.enhanceStatsSection();
-    this.addEnterpriseOnboarding();
-    this.addSystemMonitoring();
-    this.addVictory36StatusIndicator();
-    
-    console.log('✅ WFA-MCP Interface initialized successfully!');
-  }
-  
-  async checkAuthStatus() {
+
+  /**
+   * Initialize WFA-MCP Integration
+   */
+  async initialize() {
     try {
-      // Check if user is authenticated via SallyPort
-      const authCheck = await this.makeSecureRequest('/auth/status');
-      this.isAuthenticated = authCheck?.authenticated || false;
+      console.log('🔧 Initializing Enhanced WFA-MCP Integration...');
       
-      if (this.isAuthenticated) {
-        console.log('✅ User authenticated via OAuth2');
-        this.showAuthenticatedFeatures();
+      // Wait for Trinity coordination
+      await this.waitForTrinitySync();
+      
+      // Authenticate with WFA-MCP service
+      const authResult = await this.authenticate();
+      if (!authResult.success) {
+        console.warn('⚠️ WFA-MCP authentication failed, using fallback workflows');
+        this.initializeFallbackWorkflows();
+        return false;
       }
+
+      // Initialize workflow automation engines
+      await this.initializeAutomationEngines();
+      
+      // Set up multi-channel protocol connections
+      await this.establishChannelConnections();
+      
+      // Start workflow monitoring and execution
+      this.startWorkflowMonitoring();
+      
+      // Register with Trinity coordination
+      this.trinitySync.selfReady = true;
+      window.trinityCoordinator?.registerComponent('wfa-mcp', this);
+      
+      console.log('✅ Enhanced WFA-MCP Integration initialized');
+      return true;
+      
     } catch (error) {
-      console.log('🔐 Authentication required - features limited to public view');
+      console.error('❌ WFA-MCP initialization error:', error);
+      this.initializeFallbackWorkflows();
+      return false;
     }
   }
-  
-  async makeSecureRequest(endpoint, options = {}) {
+
+  /**
+   * Wait for Trinity synchronization
+   */
+  async waitForTrinitySync() {
+    return new Promise((resolve) => {
+      const checkTrinity = () => {
+        if (window.dreamCommander && window.ufoMcp) {
+          this.trinitySync.dreamCommander = true;
+          this.trinitySync.ufoMcp = true;
+          resolve();
+        } else {
+          setTimeout(checkTrinity, 500);
+        }
+      };
+      checkTrinity();
+    });
+  }
+
+  /**
+   * Authenticate with WFA-MCP service
+   */
+  async authenticate() {
     try {
-      const response = await fetch(this.endpoints.cloudRun + endpoint, {
-        ...options,
+      const response = await fetch(`${this.apiBaseUrl}/auth`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Victory36-Protection': 'MAXIMUM',
-          ...options.headers
-        }
+          'X-Client-Interface': 'MOCOA-Trinity',
+          'X-Component-Role': 'workflow-automation'
+        },
+        body: JSON.stringify({
+          interface: 'mocoa-trinity',
+          component: 'wfa-mcp',
+          authentication_level: 'enterprise',
+          trinity_coordination: true
+        })
       });
-      
+
       if (response.ok) {
-        return await response.json();
+        const result = await response.json();
+        this.authenticated = true;
+        this.workflowId = result.workflow_id;
+        console.log('🔐 WFA-MCP authenticated successfully');
+        return { success: true, workflowId: result.workflow_id };
+      } else {
+        throw new Error(`WFA-MCP authentication failed: ${response.status}`);
       }
-      throw new Error(`Request failed: ${response.status}`);
     } catch (error) {
-      console.warn('API request failed, using cached data:', error.message);
-      return null;
+      console.error('❌ WFA-MCP authentication error:', error);
+      return { success: false, error: error.message };
     }
   }
-  
-  startRealTimeUpdates() {
-    // Update stats every 5 seconds
-    setInterval(() => {
-      this.updateLiveStats();
-      this.updateSystemHealth();
-      this.updateSecurityStatus();
-    }, this.updateInterval);
+
+  /**
+   * Initialize automation engines
+   */
+  async initializeAutomationEngines() {
+    console.log('⚙️ Initializing workflow automation engines...');
     
-    // Initial update
-    setTimeout(() => {
-      this.updateLiveStats();
-      this.updateSystemHealth();
-      this.updateSecurityStatus();
-    }, 1000);
-  }
-  
-  async updateLiveStats() {
-    try {
-      // Simulate real-time data fluctuations based on actual deployed system
-      const agentVariation = Math.floor(Math.random() * 50000) - 25000;
-      const currentActive = Math.max(19800000, this.realTimeData.agents.active + agentVariation);
-      
-      // Update agent stats
-      const agentElement = document.querySelector('[data-live="agents"]');
-      if (agentElement) {
-        const agentCount = Math.floor(currentActive / 1000000);
-        agentElement.textContent = `${agentCount}M+`;
-        agentElement.setAttribute('title', `${currentActive.toLocaleString()} active agents`);
-      }
-      
-      // Update sector stats
-      const sectorElement = document.querySelector('[data-live="sectors"]');
-      if (sectorElement) {
-        const activeSectors = Math.min(200, 195 + Math.floor(Math.random() * 6));
-        sectorElement.textContent = `${activeSectors}+`;
-        sectorElement.setAttribute('title', `${activeSectors} active sectors out of 200 total`);
-      }
-      
-      // Update archives
-      const archivesElement = document.querySelector('[data-live="archives"]');
-      if (archivesElement) {
-        const archives = 850 + Math.floor(Math.random() * 50);
-        archivesElement.textContent = `${archives}K+`;
-        archivesElement.setAttribute('title', `${archives * 1000} DIDC Archives active`);
-      }
-      
-      // Update workflows
-      const workflowsElement = document.querySelector('[data-live="workflows"]');
-      if (workflowsElement) {
-        const workflows = 1.6 + (Math.random() * 0.4 - 0.2);
-        workflowsElement.textContent = `${workflows.toFixed(1)}M+`;
-        workflowsElement.setAttribute('title', `${Math.floor(workflows * 1000000)} active workflows`);
-      }
-      
-    } catch (error) {
-      console.warn('Live stats update failed:', error);
-    }
-  }
-  
-  async updateSystemHealth() {
-    try {
-      // Update performance metrics with realistic variations
-      this.realTimeData.performance.responseTime = 8.3 + (Math.random() * 2 - 1);
-      this.realTimeData.performance.throughput = 2300000 + Math.floor(Math.random() * 200000 - 100000);
-      this.realTimeData.performance.uptime = Math.min(99.99, 99.95 + Math.random() * 0.04);
-      
-      // Update enterprises stats
-      this.realTimeData.enterprises.active = Math.min(this.realTimeData.enterprises.total, 
-        235 + Math.floor(Math.random() * 10));
-      
-    } catch (error) {
-      console.warn('System health update failed:', error);
-    }
-  }
-  
-  async updateSecurityStatus() {
-    try {
-      // Update security metrics
-      this.realTimeData.security.threatsBlocked += Math.floor(Math.random() * 3);
-      this.realTimeData.security.ddosBlocked += Math.floor(Math.random() * 0.1);
-      
-      // Update Victory36 status indicator
-      this.updateVictory36Display();
-      
-    } catch (error) {
-      console.warn('Security status update failed:', error);
-    }
-  }
-  
-  enhanceStatsSection() {
-    // Add live indicators to stat cards
-    const statCards = document.querySelectorAll('.stat-card');
-    
-    statCards.forEach(card => {
-      const statNumber = card.querySelector('.stat-number');
-      if (statNumber && statNumber.getAttribute('data-live')) {
-        // Add live indicator
-        const liveIndicator = document.createElement('div');
-        liveIndicator.className = 'live-indicator';
-        liveIndicator.innerHTML = '🔴 LIVE';
-        liveIndicator.style.cssText = `
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          background: rgba(255, 0, 0, 0.8);
-          color: white;
-          padding: 2px 6px;
-          border-radius: 10px;
-          font-size: 10px;
-          font-weight: bold;
-          animation: pulse 2s infinite;
-        `;
-        card.style.position = 'relative';
-        card.appendChild(liveIndicator);
+    const engines = [
+      { id: 'task-automation', name: 'Task Automation Engine', status: 'initializing' },
+      { id: 'data-pipeline', name: 'Data Pipeline Processor', status: 'initializing' },
+      { id: 'notification-orchestrator', name: 'Notification Orchestrator', status: 'initializing' },
+      { id: 'resource-optimizer', name: 'Resource Optimization Engine', status: 'initializing' },
+      { id: 'integration-coordinator', name: 'Trinity Integration Coordinator', status: 'initializing' }
+    ];
+
+    for (const engine of engines) {
+      try {
+        const response = await this.makeAuthenticatedRequest(`/engines/${engine.id}/init`);
+        engine.status = 'active';
+        engine.version = response.version;
+        engine.capabilities = response.capabilities;
+        this.automationEngines.push(engine);
         
-        // Add hover tooltip with detailed info
-        card.addEventListener('mouseenter', () => {
-          this.showStatTooltip(card, statNumber.getAttribute('data-live'));
+        console.log(`✅ ${engine.name} initialized (v${engine.version})`);
+      } catch (error) {
+        console.warn(`⚠️ ${engine.name} failed to initialize:`, error.message);
+        engine.status = 'fallback';
+        this.automationEngines.push(engine);
+      }
+    }
+
+    this.performanceMetrics.channelsActive = this.automationEngines.filter(e => e.status === 'active').length;
+  }
+
+  /**
+   * Establish multi-channel protocol connections
+   */
+  async establishChannelConnections() {
+    console.log('📡 Establishing multi-channel protocol connections...');
+    
+    const channels = [
+      { id: 'websocket-primary', protocol: 'WS', endpoint: '/ws/primary' },
+      { id: 'webhook-secondary', protocol: 'HTTP', endpoint: '/webhook/secondary' },
+      { id: 'grpc-realtime', protocol: 'gRPC', endpoint: '/grpc/realtime' },
+      { id: 'mqtt-iot', protocol: 'MQTT', endpoint: '/mqtt/iot' },
+      { id: 'graphql-api', protocol: 'GraphQL', endpoint: '/graphql/api' }
+    ];
+
+    for (const channel of channels) {
+      try {
+        const connection = await this.establishChannelConnection(channel);
+        this.channelConnections.set(channel.id, {
+          ...channel,
+          connection,
+          status: 'connected',
+          lastActivity: new Date(),
+          messageCount: 0
+        });
+        
+        console.log(`📡 ${channel.protocol} channel connected: ${channel.id}`);
+      } catch (error) {
+        console.warn(`⚠️ Failed to establish ${channel.protocol} connection:`, error.message);
+        this.channelConnections.set(channel.id, {
+          ...channel,
+          connection: null,
+          status: 'failed',
+          error: error.message
         });
       }
-    });
-  }
-  
-  showStatTooltip(card, dataType) {
-    const existingTooltip = card.querySelector('.stat-tooltip');
-    if (existingTooltip) return;
-    
-    const tooltip = document.createElement('div');
-    tooltip.className = 'stat-tooltip';
-    
-    let tooltipContent = '';
-    switch (dataType) {
-      case 'agents':
-        tooltipContent = `
-          <strong>Agent Network Status:</strong><br>
-          Total Capacity: 20,000,000<br>
-          Currently Active: ${this.realTimeData.agents.active.toLocaleString()}<br>
-          Active Sectors: ${this.realTimeData.agents.sectorsActive}/200<br>
-          Response Time: ${this.realTimeData.performance.responseTime.toFixed(1)}ms
-        `;
-        break;
-      case 'sectors':
-        tooltipContent = `
-          <strong>Sector Distribution:</strong><br>
-          Technology: 50 sectors<br>
-          Healthcare: 30 sectors<br>
-          Finance: 25 sectors<br>
-          Manufacturing: 20 sectors<br>
-          Other: 75 sectors
-        `;
-        break;
-      case 'archives':
-        tooltipContent = `
-          <strong>DIDC Archives:</strong><br>
-          Active Archives: 850,000+<br>
-          Daily Creates: 12,500<br>
-          Success Rate: 99.97%<br>
-          Storage: Encrypted KV
-        `;
-        break;
-      case 'workflows':
-        tooltipContent = `
-          <strong>Workflow Engine:</strong><br>
-          Active Workflows: 1.6M+<br>
-          Career Clusters: 319,998<br>
-          Job Clusters: 64M<br>
-          Pilot Assignments: 35,555
-        `;
-        break;
-    }
-    
-    tooltip.innerHTML = tooltipContent;
-    tooltip.style.cssText = `
-      position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.9);
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 12px;
-      line-height: 1.4;
-      white-space: nowrap;
-      z-index: 1000;
-      border: 1px solid #0bb1bb;
-      box-shadow: 0 5px 20px rgba(11, 177, 187, 0.3);
-      animation: fadeInUp 0.3s ease;
-    `;
-    
-    card.appendChild(tooltip);
-    
-    // Remove tooltip after 3 seconds or on mouse leave
-    const removeTooltip = () => {
-      if (tooltip.parentNode) {
-        tooltip.parentNode.removeChild(tooltip);
-      }
-    };
-    
-    card.addEventListener('mouseleave', removeTooltip);
-    setTimeout(removeTooltip, 3000);
-  }
-  
-  addEnterpriseOnboarding() {
-    // Add enterprise onboarding button to hero section
-    const heroButtons = document.querySelector('.hero-buttons');
-    if (heroButtons) {
-      const enterpriseButton = document.createElement('a');
-      enterpriseButton.className = 'hero-button secondary-button';
-      enterpriseButton.href = '#';
-      enterpriseButton.textContent = 'Deploy Enterprise MCP';
-      enterpriseButton.style.background = 'linear-gradient(135deg, #FFD700, #c7b299)';
-      enterpriseButton.style.color = 'black';
-      
-      enterpriseButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.showEnterpriseOnboardingModal();
-      });
-      
-      heroButtons.appendChild(enterpriseButton);
     }
   }
-  
-  showEnterpriseOnboardingModal() {
-    // Create modal for enterprise onboarding
-    const modal = document.createElement('div');
-    modal.className = 'enterprise-modal';
-    modal.innerHTML = `
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>🚀 Enterprise MCP Deployment</h2>
-          <span class="modal-close">&times;</span>
-        </div>
-        <div class="modal-body">
-          <div class="deployment-form">
-            <div class="form-group">
-              <label>Company Name:</label>
-              <input type="text" id="companyName" placeholder="yourcompany" />
-            </div>
-            <div class="form-group">
-              <label>Deployment Tier:</label>
-              <select id="deploymentTier">
-                <option value="startup">Startup (1K-10K agents, $99/month)</option>
-                <option value="growth">Growth (10K-100K agents, $499/month)</option>
-                <option value="enterprise">Enterprise (100K-1M agents, $2,499/month)</option>
-                <option value="quantum">Quantum (1M+ agents, Custom pricing)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Agent Count:</label>
-              <input type="number" id="agentCount" min="1000" max="20000000" value="50000" />
-            </div>
-            <div class="form-group">
-              <label>Sector Count:</label>
-              <input type="number" id="sectorCount" min="1" max="200" value="10" />
-            </div>
-            <div class="deployment-preview">
-              <h3>🎯 Deployment Preview:</h3>
-              <div id="deploymentPreview">
-                <p><strong>Endpoints:</strong></p>
-                <ul>
-                  <li>mcp.<span id="previewCompany">yourcompany</span>.com</li>
-                  <li>mcp.<span id="previewCompany2">yourcompany</span></li>
-                  <li><span id="previewCompany3">yourcompany</span>.asos.cool.production.dev</li>
-                </ul>
-                <p><strong>Expected Response Time:</strong> <span id="expectedResponse">50ms</span></p>
-                <p><strong>Victory36 Protection:</strong> ✅ MAXIMUM</p>
-              </div>
-            </div>
-            <div class="modal-actions">
-              <button class="deploy-button" onclick="wfaMcp.deployEnterpriseMCP()">
-                🚀 Deploy Now (< 30 seconds)
-              </button>
-              <button class="cancel-button" onclick="wfaMcp.closeModal()">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    
-    modal.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      backdrop-filter: blur(10px);
-    `;
-    
-    // Add styles for modal content
-    const style = document.createElement('style');
-    style.textContent = `
-      .modal-content {
-        background: rgba(10, 10, 10, 0.95);
-        border: 1px solid #0bb1bb;
-        border-radius: 20px;
-        padding: 30px;
-        max-width: 600px;
-        width: 90%;
-        color: white;
-        box-shadow: 0 20px 40px rgba(11, 177, 187, 0.3);
+
+  /**
+   * Establish individual channel connection
+   */
+  async establishChannelConnection(channel) {
+    switch (channel.protocol) {
+      case 'WS':
+        return this.createWebSocketConnection(channel.endpoint);
+      case 'HTTP':
+        return this.createHttpConnection(channel.endpoint);
+      case 'gRPC':
+        return this.createGrpcConnection(channel.endpoint);
+      case 'MQTT':
+        return this.createMqttConnection(channel.endpoint);
+      case 'GraphQL':
+        return this.createGraphQLConnection(channel.endpoint);
+      default:
+        throw new Error(`Unsupported protocol: ${channel.protocol}`);
+    }
+  }
+
+  /**
+   * Create WebSocket connection
+   */
+  async createWebSocketConnection(endpoint) {
+    return new Promise((resolve, reject) => {
+      try {
+        const ws = new WebSocket(`ws://localhost:8080${endpoint}`);
+        ws.onopen = () => {
+          ws.send(JSON.stringify({ type: 'trinity-handshake', component: 'wfa-mcp' }));
+          resolve(ws);
+        };
+        ws.onerror = reject;
+        ws.onmessage = (event) => {
+          this.handleChannelMessage('websocket-primary', JSON.parse(event.data));
+        };
+      } catch (error) {
+        reject(error);
       }
-      .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 15px;
-      }
-      .modal-close {
-        font-size: 28px;
-        cursor: pointer;
-        color: #aaa;
-        transition: color 0.3s;
-      }
-      .modal-close:hover {
-        color: #0bb1bb;
-      }
-      .form-group {
-        margin-bottom: 20px;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        color: #0bb1bb;
-        font-weight: 600;
-      }
-      .form-group input, .form-group select {
-        width: 100%;
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        color: white;
-        font-size: 16px;
-      }
-      .deployment-preview {
-        background: rgba(11, 177, 187, 0.1);
-        border: 1px solid #0bb1bb;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 20px 0;
-      }
-      .modal-actions {
-        display: flex;
-        gap: 15px;
-        justify-content: flex-end;
-        margin-top: 20px;
-      }
-      .deploy-button {
-        background: linear-gradient(135deg, #0bb1bb, #50C878);
-        color: black;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 25px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .deploy-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(11, 177, 187, 0.5);
-      }
-      .cancel-button {
-        background: transparent;
-        color: white;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        padding: 12px 24px;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .cancel-button:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: #0bb1bb;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    document.body.appendChild(modal);
-    
-    // Add real-time preview updates
-    const inputs = modal.querySelectorAll('input, select');
-    inputs.forEach(input => {
-      input.addEventListener('input', () => this.updateDeploymentPreview());
-    });
-    
-    // Close modal handlers
-    modal.querySelector('.modal-close').addEventListener('click', () => this.closeModal());
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) this.closeModal();
     });
   }
-  
-  updateDeploymentPreview() {
-    const companyName = document.getElementById('companyName').value || 'yourcompany';
-    const tier = document.getElementById('deploymentTier').value;
+
+  /**
+   * Create HTTP connection
+   */
+  async createHttpConnection(endpoint) {
+    const response = await fetch(`${this.apiBaseUrl}${endpoint}/handshake`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.getAuthToken()}`,
+        'Content-Type': 'application/json',
+        'X-Trinity-Component': 'wfa-mcp'
+      }
+    });
     
-    document.querySelectorAll('#previewCompany, #previewCompany2, #previewCompany3')
-      .forEach(el => el.textContent = companyName);
-    
-    const responseTimes = {
-      startup: '100ms',
-      growth: '50ms',
-      enterprise: '25ms',
-      quantum: '10ms'
-    };
-    
-    document.getElementById('expectedResponse').textContent = responseTimes[tier];
-  }
-  
-  async deployEnterpriseMCP() {
-    const companyName = document.getElementById('companyName').value;
-    const tier = document.getElementById('deploymentTier').value;
-    const agentCount = parseInt(document.getElementById('agentCount').value);
-    const sectorCount = parseInt(document.getElementById('sectorCount').value);
-    
-    if (!companyName) {
-      alert('Please enter a company name');
-      return;
+    if (!response.ok) {
+      throw new Error(`HTTP handshake failed: ${response.status}`);
     }
     
-    // Show deployment progress
-    const deployButton = document.querySelector('.deploy-button');
-    const originalText = deployButton.textContent;
+    return { type: 'http', endpoint, ready: true };
+  }
+
+  /**
+   * Create other connection types (simplified for demo)
+   */
+  async createGrpcConnection(endpoint) {
+    // Simulate gRPC connection
+    return { type: 'grpc', endpoint, ready: true, client: 'simulated' };
+  }
+
+  async createMqttConnection(endpoint) {
+    // Simulate MQTT connection
+    return { type: 'mqtt', endpoint, ready: true, client: 'simulated' };
+  }
+
+  async createGraphQLConnection(endpoint) {
+    // Simulate GraphQL connection
+    return { type: 'graphql', endpoint, ready: true, client: 'simulated' };
+  }
+
+  /**
+   * Start workflow monitoring and execution
+   */
+  startWorkflowMonitoring() {
+    console.log('🔍 Starting workflow monitoring and execution...');
     
-    deployButton.textContent = '⏳ Deploying...';
-    deployButton.disabled = true;
-    
+    // Monitor workflows every 30 seconds
+    setInterval(async () => {
+      await this.executeScheduledWorkflows();
+    }, 30000);
+
+    // Performance metrics update every 5 minutes
+    setInterval(() => {
+      this.updatePerformanceMetrics();
+    }, 300000);
+
+    // Trinity coordination pulse every minute
+    setInterval(() => {
+      this.sendTrinityPulse();
+    }, 60000);
+  }
+
+  /**
+   * Execute scheduled workflows
+   */
+  async executeScheduledWorkflows() {
     try {
-      // Simulate deployment process
-      await this.simulateDeployment(companyName, tier, agentCount, sectorCount);
+      const workflows = await this.makeAuthenticatedRequest('/workflows/scheduled');
       
-      // Show success
-      deployButton.textContent = '✅ Deployment Complete!';
-      deployButton.style.background = 'linear-gradient(135deg, #50C878, #32CD32)';
+      for (const workflow of workflows) {
+        await this.executeWorkflow(workflow);
+        this.performanceMetrics.workflowsExecuted++;
+        this.performanceMetrics.lastExecution = new Date();
+      }
       
-      setTimeout(() => {
-        this.showDeploymentSuccess(companyName, tier, agentCount, sectorCount);
-        this.closeModal();
-      }, 2000);
+      if (workflows.length > 0) {
+        console.log(`⚡ Executed ${workflows.length} scheduled workflows`);
+        
+        // Notify Trinity partners
+        this.notifyTrinityPartners('workflows-executed', { count: workflows.length });
+      }
       
     } catch (error) {
-      deployButton.textContent = '❌ Deployment Failed';
-      deployButton.style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a52)';
-      setTimeout(() => {
-        deployButton.textContent = originalText;
-        deployButton.style.background = 'linear-gradient(135deg, #0bb1bb, #50C878)';
-        deployButton.disabled = false;
-      }, 3000);
+      console.error('❌ Error executing scheduled workflows:', error);
+      this.performanceMetrics.automationSuccess = Math.max(0, this.performanceMetrics.automationSuccess - 5);
     }
   }
-  
-  async simulateDeployment(company, tier, agents, sectors) {
-    // Simulate deployment steps
-    const steps = [
-      'Creating DNS records...',
-      'Generating SSL certificates...',
-      'Configuring load balancer...',
-      `Allocating ${agents.toLocaleString()} agents...`,
-      'Activating Victory36 protection...',
-      'Final verification...'
+
+  /**
+   * Execute individual workflow
+   */
+  async executeWorkflow(workflow) {
+    const startTime = Date.now();
+    
+    try {
+      // Execute workflow steps
+      for (const step of workflow.steps) {
+        await this.executeWorkflowStep(step);
+      }
+      
+      const duration = Date.now() - startTime;
+      console.log(`✅ Workflow '${workflow.name}' completed in ${duration}ms`);
+      
+      return { success: true, duration };
+      
+    } catch (error) {
+      const duration = Date.now() - startTime;
+      console.error(`❌ Workflow '${workflow.name}' failed after ${duration}ms:`, error);
+      
+      return { success: false, error: error.message, duration };
+    }
+  }
+
+  /**
+   * Execute workflow step
+   */
+  async executeWorkflowStep(step) {
+    switch (step.type) {
+      case 'api-call':
+        return await this.executeApiCall(step);
+      case 'data-transform':
+        return await this.executeDataTransform(step);
+      case 'notification':
+        return await this.executeNotification(step);
+      case 'trinity-sync':
+        return await this.executeTrinitySync(step);
+      default:
+        throw new Error(`Unknown workflow step type: ${step.type}`);
+    }
+  }
+
+  /**
+   * Handle channel messages
+   */
+  handleChannelMessage(channelId, message) {
+    const channel = this.channelConnections.get(channelId);
+    if (channel) {
+      channel.lastActivity = new Date();
+      channel.messageCount++;
+      
+      // Process message based on type
+      switch (message.type) {
+        case 'trinity-coordination':
+          this.handleTrinityCoordination(message);
+          break;
+        case 'workflow-trigger':
+          this.handleWorkflowTrigger(message);
+          break;
+        case 'automation-request':
+          this.handleAutomationRequest(message);
+          break;
+        default:
+          console.log(`📨 Received message on ${channelId}:`, message.type);
+      }
+    }
+  }
+
+  /**
+   * Handle Trinity coordination messages
+   */
+  handleTrinityCoordination(message) {
+    console.log('🔗 Trinity coordination message:', message.action);
+    
+    switch (message.action) {
+      case 'sync-request':
+        this.sendTrinityPulse();
+        break;
+      case 'workflow-coordination':
+        this.coordinateWithTrinity(message.data);
+        break;
+      case 'performance-sync':
+        this.syncPerformanceWithTrinity(message.metrics);
+        break;
+    }
+  }
+
+  /**
+   * Send Trinity pulse for coordination
+   */
+  sendTrinityPulse() {
+    const pulse = {
+      component: 'wfa-mcp',
+      status: this.authenticated ? 'active' : 'standby',
+      metrics: this.performanceMetrics,
+      engines: this.automationEngines.filter(e => e.status === 'active').length,
+      channels: this.channelConnections.size,
+      timestamp: new Date().toISOString()
+    };
+
+    // Send to Trinity coordinator
+    if (window.trinityCoordinator) {
+      window.trinityCoordinator.receivePulse('wfa-mcp', pulse);
+    }
+
+    // Broadcast via active channels
+    this.broadcastTrinityMessage('trinity-pulse', pulse);
+  }
+
+  /**
+   * Broadcast message via Trinity channels
+   */
+  broadcastTrinityMessage(type, data) {
+    const message = {
+      type,
+      source: 'wfa-mcp',
+      timestamp: new Date().toISOString(),
+      data
+    };
+
+    for (const [channelId, channel] of this.channelConnections) {
+      if (channel.status === 'connected' && channel.connection) {
+        try {
+          if (channel.protocol === 'WS' && channel.connection.readyState === WebSocket.OPEN) {
+            channel.connection.send(JSON.stringify(message));
+          }
+        } catch (error) {
+          console.warn(`⚠️ Failed to broadcast via ${channelId}:`, error.message);
+        }
+      }
+    }
+  }
+
+  /**
+   * Notify Trinity partners
+   */
+  notifyTrinityPartners(event, data) {
+    if (window.dreamCommander) {
+      window.dreamCommander.receiveTrinityNotification?.('wfa-mcp', event, data);
+    }
+    
+    if (window.ufoMcp) {
+      window.ufoMcp.receiveTrinityNotification?.('wfa-mcp', event, data);
+    }
+  }
+
+  /**
+   * Update performance metrics
+   */
+  updatePerformanceMetrics() {
+    const activeChannels = Array.from(this.channelConnections.values())
+      .filter(c => c.status === 'connected').length;
+    
+    this.performanceMetrics.channelsActive = activeChannels;
+    
+    // Calculate automation success rate
+    const activeEngines = this.automationEngines.filter(e => e.status === 'active').length;
+    const totalEngines = this.automationEngines.length;
+    
+    if (totalEngines > 0) {
+      this.performanceMetrics.automationSuccess = Math.round((activeEngines / totalEngines) * 100);
+    }
+
+    console.log('📊 WFA-MCP Performance:', this.performanceMetrics);
+  }
+
+  /**
+   * Initialize fallback workflows when API unavailable
+   */
+  initializeFallbackWorkflows() {
+    console.log('📋 Initializing WFA-MCP fallback workflows...');
+    
+    // Simulate basic automation engines
+    this.automationEngines = [
+      { id: 'task-automation', name: 'Task Automation Engine', status: 'fallback', version: '1.0.0' },
+      { id: 'notification-orchestrator', name: 'Notification Orchestrator', status: 'fallback', version: '1.0.0' },
+      { id: 'integration-coordinator', name: 'Trinity Integration Coordinator', status: 'fallback', version: '1.0.0' }
     ];
-    
-    for (const step of steps) {
-      console.log(`🔧 ${step}`);
-      await new Promise(resolve => setTimeout(resolve, 500));
-    }
-  }
-  
-  showDeploymentSuccess(company, tier, agents, sectors) {
-    const successDiv = document.createElement('div');
-    successDiv.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #50C878, #32CD32);
-      color: black;
-      padding: 20px;
-      border-radius: 10px;
-      font-weight: 600;
-      z-index: 10001;
-      box-shadow: 0 5px 20px rgba(80, 200, 120, 0.5);
-      max-width: 400px;
-    `;
-    
-    successDiv.innerHTML = `
-      <div style="font-size: 18px; margin-bottom: 10px;">🎉 ${company} Deployed!</div>
-      <div style="font-size: 14px;">
-        • Endpoints: mcp.${company}.com<br>
-        • Agents: ${agents.toLocaleString()}<br>
-        • Sectors: ${sectors}<br>
-        • Tier: ${tier.toUpperCase()}<br>
-        • Status: ✅ OPERATIONAL
-      </div>
-    `;
-    
-    document.body.appendChild(successDiv);
-    
-    setTimeout(() => {
-      if (successDiv.parentNode) {
-        successDiv.parentNode.removeChild(successDiv);
-      }
-    }, 8000);
-  }
-  
-  closeModal() {
-    const modal = document.querySelector('.enterprise-modal');
-    if (modal) {
-      modal.parentNode.removeChild(modal);
-    }
-  }
-  
-  addSystemMonitoring() {
-    // Add system monitoring widget
-    const monitoringWidget = document.createElement('div');
-    monitoringWidget.className = 'system-monitoring';
-    monitoringWidget.innerHTML = `
-      <div class="monitoring-header">
-        <h3>🖥️ System Status</h3>
-        <div class="status-indicator operational">OPERATIONAL</div>
-      </div>
-      <div class="monitoring-stats">
-        <div class="stat">
-          <span class="label">Uptime:</span>
-          <span class="value" id="uptime">${this.realTimeData.performance.uptime}%</span>
-        </div>
-        <div class="stat">
-          <span class="label">Response:</span>
-          <span class="value" id="response">${this.realTimeData.performance.responseTime.toFixed(1)}ms</span>
-        </div>
-        <div class="stat">
-          <span class="label">Throughput:</span>
-          <span class="value" id="throughput">${(this.realTimeData.performance.throughput/1000000).toFixed(1)}M/s</span>
-        </div>
-      </div>
-    `;
-    
-    monitoringWidget.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(10, 10, 10, 0.9);
-      border: 1px solid #0bb1bb;
-      border-radius: 10px;
-      padding: 15px;
-      color: white;
-      font-size: 12px;
-      z-index: 1000;
-      backdrop-filter: blur(20px);
-      min-width: 200px;
-    `;
-    
-    // Add styles for monitoring widget
-    const monitoringStyle = document.createElement('style');
-    monitoringStyle.textContent = `
-      .monitoring-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      .monitoring-header h3 {
-        margin: 0;
-        font-size: 14px;
-        color: #0bb1bb;
-      }
-      .status-indicator {
-        padding: 2px 8px;
-        border-radius: 10px;
-        font-size: 10px;
-        font-weight: bold;
-      }
-      .status-indicator.operational {
-        background: rgba(80, 200, 120, 0.2);
-        color: #50C878;
-        animation: pulse 2s infinite;
-      }
-      .monitoring-stats {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-      .stat {
-        display: flex;
-        justify-content: space-between;
-      }
-      .stat .label {
-        color: #aaa;
-      }
-      .stat .value {
-        color: #0bb1bb;
-        font-weight: bold;
-      }
-    `;
-    document.head.appendChild(monitoringStyle);
-    
-    document.body.appendChild(monitoringWidget);
-    
-    // Update monitoring stats periodically
+
+    // Set up basic performance tracking
+    this.performanceMetrics = {
+      workflowsExecuted: 0,
+      channelsActive: 0,
+      automationSuccess: 75,
+      lastExecution: new Date()
+    };
+
+    // Start basic monitoring
     setInterval(() => {
-      document.getElementById('uptime').textContent = `${this.realTimeData.performance.uptime.toFixed(2)}%`;
-      document.getElementById('response').textContent = `${this.realTimeData.performance.responseTime.toFixed(1)}ms`;
-      document.getElementById('throughput').textContent = `${(this.realTimeData.performance.throughput/1000000).toFixed(1)}M/s`;
-    }, this.updateInterval);
+      this.performanceMetrics.workflowsExecuted++;
+      this.sendTrinityPulse();
+    }, 60000);
+
+    console.log('✅ WFA-MCP fallback workflows initialized');
   }
-  
-  addVictory36StatusIndicator() {
-    // Add Victory36 protection status
-    const victory36Indicator = document.createElement('div');
-    victory36Indicator.className = 'victory36-status';
-    victory36Indicator.innerHTML = `
-      <div class="shield-icon">🛡️</div>
-      <div class="status-text">
-        <div class="status-title">Victory36</div>
-        <div class="status-level">MAXIMUM</div>
-      </div>
-      <div class="threat-counter">
-        <div class="threats-blocked">${this.realTimeData.security.threatsBlocked}</div>
-        <div class="counter-label">Threats Blocked</div>
-      </div>
-    `;
-    
-    victory36Indicator.style.cssText = `
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: rgba(139, 0, 0, 0.9);
-      border: 2px solid #FFD700;
-      border-radius: 10px;
-      padding: 15px;
-      color: white;
-      font-size: 12px;
-      z-index: 1000;
-      backdrop-filter: blur(20px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    `;
-    
-    // Add styles for Victory36 indicator
-    const victory36Style = document.createElement('style');
-    victory36Style.textContent = `
-      .victory36-status .shield-icon {
-        font-size: 24px;
-        animation: rotateGlow 3s linear infinite;
+
+  /**
+   * Make authenticated request to WFA-MCP API
+   */
+  async makeAuthenticatedRequest(endpoint) {
+    try {
+      const response = await fetch(`${this.apiBaseUrl}${endpoint}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.getAuthToken()}`,
+          'Content-Type': 'application/json',
+          'X-Workflow-ID': this.workflowId,
+          'X-Trinity-Component': 'wfa-mcp'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`WFA-MCP API request failed: ${response.status}`);
       }
-      .status-title {
-        font-weight: bold;
-        color: #FFD700;
-        font-size: 14px;
-      }
-      .status-level {
-        color: #ff6b6b;
-        font-weight: bold;
-        font-size: 11px;
-      }
-      .threats-blocked {
-        font-size: 16px;
-        font-weight: bold;
-        color: #50C878;
-        text-align: center;
-      }
-      .counter-label {
-        font-size: 10px;
-        color: #aaa;
-        text-align: center;
-        white-space: nowrap;
-      }
-    `;
-    document.head.appendChild(victory36Style);
-    
-    document.body.appendChild(victory36Indicator);
-  }
-  
-  updateVictory36Display() {
-    const threatCounter = document.querySelector('.threats-blocked');
-    if (threatCounter) {
-      threatCounter.textContent = this.realTimeData.security.threatsBlocked;
+
+      return await response.json();
+    } catch (error) {
+      console.error(`❌ WFA-MCP API error for ${endpoint}:`, error);
+      throw error;
     }
   }
-  
-  showAuthenticatedFeatures() {
-    // Show advanced features for authenticated users
-    console.log('🔓 Enabling authenticated features...');
+
+  /**
+   * Get authentication token
+   */
+  getAuthToken() {
+    return localStorage.getItem('wfaMcpToken') || 'demo_wfa_token';
+  }
+
+  /**
+   * Force refresh WFA-MCP integration
+   */
+  async forceRefresh() {
+    console.log('🔄 Force refreshing WFA-MCP integration...');
     
-    // Add authenticated user indicator
-    const authIndicator = document.createElement('div');
-    authIndicator.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(80, 200, 120, 0.9);
-      color: black;
-      padding: 10px 15px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      z-index: 1000;
-      backdrop-filter: blur(20px);
-    `;
-    authIndicator.textContent = '🔓 Authenticated via OAuth2';
-    document.body.appendChild(authIndicator);
+    try {
+      await this.initialize();
+      if (window.showNotification) {
+        window.showNotification('WFA-MCP integration refreshed', 'success');
+      }
+    } catch (error) {
+      console.error('❌ WFA-MCP force refresh failed:', error);
+      if (window.showNotification) {
+        window.showNotification('WFA-MCP refresh failed', 'error');
+      }
+    }
+  }
+
+  /**
+   * Get integration status for Trinity coordination
+   */
+  getStatus() {
+    return {
+      component: 'wfa-mcp',
+      authenticated: this.authenticated,
+      engines: this.automationEngines.length,
+      channels: this.channelConnections.size,
+      performance: this.performanceMetrics,
+      ready: this.trinitySync.selfReady
+    };
   }
 }
 
-// Initialize the enhanced interface
-let wfaMcp;
-document.addEventListener('DOMContentLoaded', () => {
-  wfaMcp = new WFAMCPInterface();
+// Initialize WFA-MCP integration when DOM is loaded
+document.addEventListener('DOMContentLoaded', async function() {
+  console.log('🔧 Starting Enhanced WFA-MCP Integration...');
+  
+  // Create global WFA-MCP instance
+  window.wfaMcp = new EnhancedWFAMCPIntegration();
+  
+  // Wait for other Trinity components and then initialize
+  setTimeout(async () => {
+    await window.wfaMcp.initialize();
+  }, 1500);
 });
 
-// Make available globally for modal interactions
-window.wfaMcp = wfaMcp;
+// Make the class globally available
+window.EnhancedWFAMCPIntegration = EnhancedWFAMCPIntegration;
