@@ -192,17 +192,24 @@ export default {
       });
     }
     
-    // Default: Serve the owner interface with all enhancements
-    const fullHtmlResponse = await fetch('https://e0c5f117.api-for-warp-drive.pages.dev/');
+    // Default: Serve the correct 1616-line ASOOS public marketing page
+    const fullHtmlResponse = await fetch('https://asoos-2100-cool.pages.dev/');
     
     if (fullHtmlResponse.ok) {
-      const html = await fullHtmlResponse.text();
+      let html = await fullHtmlResponse.text();
+      
+      // Ensure all CTAs point correctly to SallyPort with proper authentication
+      html = html.replace(/onclick="authenticate\(\)"/g, 'href="https://sallyport.2100.cool"');
+      html = html.replace(/onclick="showAPI\(\)"/g, 'href="https://sallyport.2100.cool"');
+      
       return new Response(html, {
         headers: { 
           'Content-Type': 'text/html;charset=UTF-8',
           'Cache-Control': 'public, max-age=300',
-          'X-ASOOS-Version': 'sally-port-enabled',
-          'X-ASOOS-Source': 'Sally-Port-Production'
+          'X-ASOOS-Version': '1616-line-public-marketing',
+          'X-ASOOS-Source': 'Cloudflare-Pages-Correct',
+          'X-Patents': '44-pending',
+          'X-Agents': '20M-active'
         }
       });
     } else {

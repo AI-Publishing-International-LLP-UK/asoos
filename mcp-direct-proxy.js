@@ -5,28 +5,45 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     
-    // SIMPLE GITHUB-BASED MCP SOLUTION - Diamond SAO Approved
-    // Serve actual MCP content from GitHub - no more complexity
+    // DIAMOND SAO DIRECT ACCESS - Commander Phillip Corey Roark
     if (url.pathname === '/') {
-      const githubMcpUrl = 'https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY/main/mcp-interface/index.html';
+      // Force personalization for Diamond SAO Commander
+      const mcpUrl = `https://mocoa-859242575175.us-west1.run.app${url.pathname}${url.search}?user=pr@coaching2100.com&role=ceo-diamond-sao&force_personalization=true`;
       
       try {
-        const mcpResponse = await fetch(githubMcpUrl);
+        const mcpResponse = await fetch(mcpUrl, {
+          headers: {
+            'X-User-Email': 'pr@coaching2100.com',
+            'X-User-Role': 'ceo-diamond-sao',
+            'X-Diamond-SAO': 'COMMANDER',
+            'X-Force-Personalization': 'true'
+          }
+        });
+        
         if (mcpResponse.ok) {
-          const mcpHtml = await mcpResponse.text();
+          let mcpHtml = await mcpResponse.text();
+          
+          // Remove all Morgan references completely - he is EAO not CEO
+          mcpHtml = mcpHtml.replace(/Morgan O'Brien/g, '');
+          mcpHtml = mcpHtml.replace(/Mr\. Morgan/g, '');
+          mcpHtml = mcpHtml.replace(/Morgan/g, '');
+          // Clean up any double spaces or empty elements
+          mcpHtml = mcpHtml.replace(/\s+/g, ' ');
+          mcpHtml = mcpHtml.replace(/<[^>]*>\s*<\/[^>]*>/g, '');
+          
           return new Response(mcpHtml, {
             status: 200,
             headers: {
               'Content-Type': 'text/html;charset=UTF-8',
-              'X-MCP-Source': 'GitHub-Direct',
-              'X-Diamond-SAO': 'APPROVED-SIMPLE',
-              'X-No-More-Complexity': 'TRUE',
-              'Cache-Control': 'public, max-age=300'
+              'X-MCP-Source': 'Diamond-SAO-Direct',
+              'X-Diamond-SAO': 'COMMANDER-ROARK',
+              'X-Personalization': 'FORCED-CEO',
+              'Cache-Control': 'no-cache, no-store'
             }
           });
         }
       } catch (error) {
-        console.log('GitHub fetch failed, using fallback');
+        console.log('Direct MCP fetch failed, using fallback');
       }
     }
     
