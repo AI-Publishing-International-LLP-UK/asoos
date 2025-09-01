@@ -236,17 +236,6 @@ app.post('/api/mcp/auto-provision', async (req, res) => {
   }
 });
 
-// Enterprise Route Handler with Cache Control
-app.get('*', (req, res) => {
-  // Set enterprise cache headers for HTML
-  res.set('Cache-Control', CACHE_CONTROL_HTML);
-  res.set('X-Content-Version', CACHE_VERSION);
-  res.set('X-Build-Hash', BUILD_HASH);
-  res.set('X-Powered-By-Victory36', 'true');
-  
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
 // Enterprise Health Check with Cache Strategy Info and Dr. Claude Orchestration
 app.get('/health', (req, res) => {
   res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -268,6 +257,17 @@ app.get('/health', (req, res) => {
       validation_hash: orchestrationStatus.validation_hash
     }
   });
+});
+
+// Enterprise Route Handler with Cache Control (MUST BE LAST)
+app.get('*', (req, res) => {
+  // Set enterprise cache headers for HTML
+  res.set('Cache-Control', CACHE_CONTROL_HTML);
+  res.set('X-Content-Version', CACHE_VERSION);
+  res.set('X-Build-Hash', BUILD_HASH);
+  res.set('X-Powered-By-Victory36', 'true');
+  
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Self-healing and monitoring configuration
