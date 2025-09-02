@@ -6,7 +6,10 @@
   "scripts": {
     "build": "echo 'Static files ready for deployment from cloudflare-pages-deployment/' && ls -la cloudflare-pages-deployment/",
     "deploy": "wrangler deploy --config simple-wrangler.toml",
-    ENVIRONMENT_VARIABLE_REQUIRED: "echo 'No tests specified' && exit 0"
+    "test": "echo 'No tests specified' && exit 0",
+    "start": "node automated-mcp-provisioner.js",
+    "security": "node security-framework.js",
+    "local-deploy": "./scripts/deploy-local.sh"
   },
   "repository": {
     "type": "git",
