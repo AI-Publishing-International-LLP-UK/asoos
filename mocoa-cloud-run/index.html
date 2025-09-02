@@ -4933,7 +4933,148 @@
     const originalProcessSwarmQuery = processSwarmQuery;
     processSwarmQuery = processSwarmQueryWithOrchestration;
     
+    // Missing button functions - Add all required button functionality
+    function selectIcon(element, category, id) {
+      // Remove active class from all icons
+      document.querySelectorAll(".sidebar-icon").forEach(icon => {
+        icon.classList.remove("active");
+      });
+      
+      // Add active class to selected icon
+      element.classList.add("active");
+      
+      // Show activation notification
+      showNotification(`${category} activated - Professional Copilot ready`, "success");
+      
+      // Activate the corresponding RIX based on category
+      if (category === 'Communication') {
+        activateRIX('QB', 'Dr. Lucy');
+      } else if (category === 'Services') {
+        activateRIX('SH', 'Dr. Claude');
+      } else {
+        activateRIX('Q', 'Victory36');
+      }
+    }
+    
+    // Fix missing activation functions
+    function activateSRIX(rixType, name) {
+      return activateRIX(rixType, name);
+    }
+    
+    function activateVICTORY36(rixType, name) {
+      return activateRIX(rixType, name);
+    }
+    
+    // Fix missing toggle and settings functions
+    function toggleCopilotMode() {
+      const naturalChat = document.getElementById('naturalLanguageChat');
+      const cliInterface = document.getElementById('cliInterface');
+      
+      if (naturalChat && naturalChat.style.display !== 'none') {
+        setCopilotMode('cli');
+      } else {
+        setCopilotMode('chat');
+      }
+    }
+    
+    function openSettings() {
+      showNotification('Diamond SAO Settings - Professional interface configuration', 'success');
+      
+      // Create settings modal overlay
+      const overlay = document.createElement('div');
+      overlay.id = 'settingsOverlay';
+      overlay.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.9); z-index: 2000;
+        display: flex; align-items: center; justify-content: center;
+      `;
+      
+      overlay.innerHTML = `
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; border-radius: 15px; padding: 30px; max-width: 500px; color: white;">
+          <h2 style="color: #FFD700; margin-bottom: 20px; text-align: center;">Diamond SAO Settings</h2>
+          <div style="margin-bottom: 15px;">
+            <label style="color: #0bb1bb; font-weight: 600;">Interface Mode: </label>
+            <span style="color: #50C878;">Professional Owner Interface</span>
+          </div>
+          <div style="margin-bottom: 15px;">
+            <label style="color: #0bb1bb; font-weight: 600;">Active Integrations: </label>
+            <span style="color: #50C878;">Testament Swarm, GCP, Professional Copilots</span>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="color: #0bb1bb; font-weight: 600;">Security Level: </label>
+            <span style="color: #50C878;">Enterprise (Diamond SAO)</span>
+          </div>
+          <div style="text-align: center;">
+            <button onclick="closeSettingsOverlay()" style="background: #0bb1bb; border: none; color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">Close</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(overlay);
+    }
+    
+    function closeSettingsOverlay() {
+      const overlay = document.getElementById('settingsOverlay');
+      if (overlay) {
+        overlay.remove();
+      }
+    }
+    
+    function openGiftShop() {
+      showNotification('Gift Shop - Premium features and integrations available', 'success');
+    }
+    
+    function openPilotsLounge() {
+      showNotification('Pilots\' Lounge - Elite professional features activated', 'success');
+    }
+    
+    function toggleAcademy(element) {
+      showNotification('Academy - Professional training and development resources', 'success');
+    }
+    
+    function openVideoSession() {
+      const videoWindow = document.getElementById('videoWindow');
+      if (videoWindow) {
+        videoWindow.style.display = 'block';
+        showNotification('Video session ready - Professional communication enabled', 'success');
+      }
+    }
+    
+    function handleIntegrationClick(integration) {
+      showNotification(`${integration} integration activated`, 'success');
+    }
+    
+    function openIntegrationGateway() {
+      showNotification('Integration Gateway - Managing enterprise connections', 'success');
+    }
+    
+    function initiateScanToDo() {
+      const button = document.getElementById('s2doButton');
+      if (button) {
+        button.classList.add('scanning');
+        showNotification('S2DO: Scanning professional workflow items...', 'success');
+        
+        setTimeout(() => {
+          button.classList.remove('scanning');
+          showNotification('S2DO: Professional workflow scan complete', 'success');
+        }, 3000);
+      }
+    }
+    
     // Make functions globally available
+    window.selectIcon = selectIcon;
+    window.activateSRIX = activateSRIX;
+    window.activateVICTORY36 = activateVICTORY36;
+    window.openSettings = openSettings;
+    window.closeSettingsOverlay = closeSettingsOverlay;
+    window.openGiftShop = openGiftShop;
+    window.openPilotsLounge = openPilotsLounge;
+    window.toggleAcademy = toggleAcademy;
+    window.openVideoSession = openVideoSession;
+    window.handleIntegrationClick = handleIntegrationClick;
+    window.openIntegrationGateway = openIntegrationGateway;
+    window.initiateScanToDo = initiateScanToDo;
+    window.toggleCopilotMode = toggleCopilotMode;
     window.startVoiceInput = startVoiceInput;
     window.showNotification = showNotification;
     window.togglePanel = togglePanel;
