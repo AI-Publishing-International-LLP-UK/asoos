@@ -32,7 +32,8 @@ class DiamondCLI {
       diamondSAO: true,       // Command center integration
       victory36: true,        // Security layer
       mcpAutomation: true,    // MCP DNS management
-      wfaOrchestration: true  // WFA production system
+      wfaOrchestration: true, // WFA production system
+      companyProvisioning: true // MCP company provisioning
     };
 
     console.log('💎 DIAMOND CLI - MCP DNS Management Extension');
@@ -268,6 +269,150 @@ class DiamondCLI {
     }
   }
 
+  // MCP Company Provisioning Methods
+  async mcpCreateCompany(companyName, options = []) {
+    await this.validateDiamondSAOAccess();
+    
+    this.log(`🏭 Diamond CLI: Creating MCP for company: ${companyName}`, 'DIAMOND');
+    
+    try {
+      // Use the automated MCP provisioner
+      const provisionerScript = path.join(__dirname, 'automated-mcp-provisioner.js');
+      
+      // Check if provisioner exists
+      try {
+        await fs.access(provisionerScript);
+      } catch {
+        throw new Error('MCP provisioner not found. Please ensure automated-mcp-provisioner.js exists.');
+      }
+      
+      // Build command arguments
+      const args = ['create', companyName, ...options];
+      
+      this.log(`🚀 Executing Diamond CLI MCP company provisioning...`, 'DIAMOND');
+      
+      const result = await this.runCommand('node', [provisionerScript, ...args], {
+        env: {
+          ...process.env,
+          DIAMOND_CLI_MODE: 'true',
+          DIAMOND_SAO_AUTHORITY: this.diamondSAO.id
+        }
+      });
+      
+      // Parse company domain from output
+      const domainMatch = result.stdout.match(/mcp\.([a-z0-9]+)\.2100\.cool/);
+      const companyDomain = domainMatch ? domainMatch[0] : `mcp.${companyName.toLowerCase().replace(/[^a-z0-9]/g, '')}.2100.cool`;
+      
+      this.log('✅ Diamond CLI MCP company provisioning completed successfully', 'SUCCESS');
+      this.log(`🌐 Company MCP Domain: ${companyDomain}`, 'SUCCESS');
+      
+      return {
+        success: true,
+        company: companyName,
+        domain: companyDomain,
+        format: 'mcp.{company}.2100.cool',
+        authority: 'Diamond SAO Command Center',
+        timestamp: new Date().toISOString(),
+        sallyPortIntegration: true,
+        automatedDemos: true
+      };
+      
+    } catch (error) {
+      this.log(`❌ Diamond CLI MCP company provisioning failed: ${error.message}`, 'ERROR');
+      throw error;
+    }
+  }
+
+  async mcpListCompanies() {
+    await this.validateDiamondSAOAccess();
+    
+    this.log(`📋 Diamond CLI: Listing all provisioned MCP companies`, 'DIAMOND');
+    
+    try {
+      // Use the automated MCP provisioner list command
+      const provisionerScript = path.join(__dirname, 'automated-mcp-provisioner.js');
+      
+      // Check if provisioner exists
+      try {
+        await fs.access(provisionerScript);
+      } catch {
+        throw new Error('MCP provisioner not found. Please ensure automated-mcp-provisioner.js exists.');
+      }
+      
+      this.log(`📊 Retrieving Diamond CLI MCP company registry...`, 'DIAMOND');
+      
+      const result = await this.runCommand('node', [provisionerScript, 'list'], {
+        env: {
+          ...process.env,
+          DIAMOND_CLI_MODE: 'true',
+          DIAMOND_SAO_AUTHORITY: this.diamondSAO.id
+        }
+      });
+      
+      this.log('✅ Diamond CLI MCP company listing completed', 'SUCCESS');
+      
+      return {
+        success: true,
+        authority: 'Diamond SAO Command Center',
+        timestamp: new Date().toISOString(),
+        format: 'mcp.{company}.2100.cool'
+      };
+      
+    } catch (error) {
+      this.log(`❌ Diamond CLI MCP company listing failed: ${error.message}`, 'ERROR');
+      throw error;
+    }
+  }
+
+  async mcpBulkProvision(companiesFile) {
+    await this.validateDiamondSAOAccess();
+    
+    this.log(`🏭 Diamond CLI: Bulk provisioning companies from ${companiesFile}`, 'DIAMOND');
+    
+    try {
+      // Use the automated MCP provisioner bulk command
+      const provisionerScript = path.join(__dirname, 'automated-mcp-provisioner.js');
+      
+      // Check if provisioner exists
+      try {
+        await fs.access(provisionerScript);
+      } catch {
+        throw new Error('MCP provisioner not found. Please ensure automated-mcp-provisioner.js exists.');
+      }
+      
+      // Check if companies file exists
+      try {
+        await fs.access(companiesFile);
+      } catch {
+        throw new Error(`Companies file not found: ${companiesFile}`);
+      }
+      
+      this.log(`🚀 Executing Diamond CLI bulk MCP provisioning...`, 'DIAMOND');
+      
+      const result = await this.runCommand('node', [provisionerScript, 'bulk', companiesFile], {
+        env: {
+          ...process.env,
+          DIAMOND_CLI_MODE: 'true',
+          DIAMOND_SAO_AUTHORITY: this.diamondSAO.id
+        }
+      });
+      
+      this.log('✅ Diamond CLI bulk MCP provisioning completed', 'SUCCESS');
+      
+      return {
+        success: true,
+        companiesFile: companiesFile,
+        authority: 'Diamond SAO Command Center',
+        timestamp: new Date().toISOString(),
+        format: 'mcp.{company}.2100.cool'
+      };
+      
+    } catch (error) {
+      this.log(`❌ Diamond CLI bulk MCP provisioning failed: ${error.message}`, 'ERROR');
+      throw error;
+    }
+  }
+
   async showStatus() {
     this.log('📊 Diamond CLI System Status', 'DIAMOND');
     
@@ -291,6 +436,9 @@ class DiamondCLI {
     console.log('   diamond mcp update <domain> <service>    - Update MCP DNS record');
     console.log('   diamond mcp monitor <domain>             - Monitor MCP DNS health');
     console.log('   diamond mcp repair <domain>              - Auto-repair MCP DNS');
+    console.log('   diamond mcp create <company> [options]   - Create company MCP (mcp.{company}.2100.cool)');
+    console.log('   diamond mcp list                         - List all provisioned company MCPs');
+    console.log('   diamond mcp bulk <companies.json>        - Bulk provision companies from JSON file');
     console.log('   diamond deploy wfa                       - Deploy Production WFA');
     console.log('   diamond status                           - Show this status');
     console.log('');
@@ -351,8 +499,25 @@ class DiamondCLI {
         }
         return await this.mcpDnsMonitor(params[0], { repair: true });
       
+      case 'create':
+        if (params.length < 1) {
+          this.log('❌ Usage: diamond mcp create <company-name> [options]', 'ERROR');
+          return false;
+        }
+        return await this.mcpCreateCompany(params[0], params.slice(1));
+      
+      case 'list':
+        return await this.mcpListCompanies();
+      
+      case 'bulk':
+        if (params.length < 1) {
+          this.log('❌ Usage: diamond mcp bulk <companies.json>', 'ERROR');
+          return false;
+        }
+        return await this.mcpBulkProvision(params[0]);
+      
       default:
-        this.log('❌ Unknown MCP command. Available: update, monitor, repair', 'ERROR');
+        this.log('❌ Unknown MCP command. Available: update, monitor, repair, create, list, bulk', 'ERROR');
         return false;
     }
   }
@@ -381,16 +546,23 @@ USAGE:
   diamond <command> [options]
 
 COMMANDS:
-  mcp update <domain> <service>    Update MCP DNS record
-  mcp monitor <domain>             Monitor MCP DNS health
-  mcp repair <domain>              Auto-repair MCP DNS issues
-  deploy wfa                       Deploy Production WFA system
-  status                           Show system status
+  mcp update <domain> <service>       Update MCP DNS record
+  mcp monitor <domain>                Monitor MCP DNS health
+  mcp repair <domain>                 Auto-repair MCP DNS issues
+  mcp create <company> [options]      Create company MCP (mcp.{company}.2100.cool)
+  mcp list                            List all provisioned company MCPs
+  mcp bulk <companies.json>           Bulk provision companies from JSON file
+  deploy wfa                          Deploy Production WFA system
+  status                              Show system status
 
 EXAMPLES:
   diamond mcp update mcp.aipub.2100.cool integration-gateway-js
   diamond mcp monitor mcp.aipub.2100.cool
   diamond mcp repair mcp.aipub.2100.cool
+  diamond mcp create "AA" theme=sapphire level=enterprise
+  diamond mcp create "TechCorp" 
+  diamond mcp list
+  diamond mcp bulk example-companies.json
   diamond deploy wfa
   diamond status
 
