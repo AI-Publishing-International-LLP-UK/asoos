@@ -315,7 +315,7 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`⚡ Environment: ${process.env.NODE_ENV || 'production'}`);
   console.log(`🛡️  Victory36 Protection: ${process.env.VICTORY36_PROTECTION || 'maximum'}`);
   console.log(`🔗 Cloudflare Integration: https://asoos.2100.cool/wfa/`);
-  console.log(`📊 Managing ${process.env.WFA_AGENTS_COUNT || '20,000,000'} agents across ${process.env.WFA_SECTORS_COUNT || '200'} sectors`);
+  console.log(`📊 Managing ${process.env.WFA_AGENTS_COUNT || 'ENVIRONMENT_VARIABLE_REQUIRED'} agents across ${process.env.WFA_SECTORS_COUNT || '200'} sectors`);
 });
 
 // Graceful shutdown

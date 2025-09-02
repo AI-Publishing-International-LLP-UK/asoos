@@ -94,7 +94,7 @@
       "type": "super-prediction",
       "pilots": 10,
       "feedback": "mega-loops",
-      "accuracy": "97.3%",
+      "accuracy": "ENVIRONMENT_VARIABLE_REQUIRED",
       "processing": "distributed-swarm"
     }
   }

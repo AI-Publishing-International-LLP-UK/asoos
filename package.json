@@ -6,7 +6,7 @@
   "scripts": {
     "build": "echo 'Static files ready for deployment from cloudflare-pages-deployment/' && ls -la cloudflare-pages-deployment/",
     "deploy": "wrangler deploy --config simple-wrangler.toml",
-    "test": "echo 'No tests specified' && exit 0"
+    ENVIRONMENT_VARIABLE_REQUIRED: "echo 'No tests specified' && exit 0"
   },
   "repository": {
     "type": "git",

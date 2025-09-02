@@ -10,7 +10,7 @@ const CACHE_CONTROL_HTML = 'public, max-age=300, must-revalidate'; // 5 minutes 
 
 // Dr. Claude Quantum Orchestration System
 const QUANTUM_ORCHESTRATION_VERSION = '2.4.7';
-const DR_CLAUDE_SERVICE_ACCOUNT = 'dr-claude-automation@api-for-warp-drive.iam.gserviceaccount.com';
+const DR_CLAUDE_SERVICE_ACCOUNT = 'dr-claude-automationENVIRONMENT_VARIABLE_REQUIRED';
 const QUANTUM_PROTECTION_LEVEL = 'MAXIMUM';
 const ORCHESTRATION_ENDPOINTS = {
   validation: '/api/dr-claude/validate',

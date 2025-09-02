@@ -2,7 +2,7 @@
  * PRODUCTION WFA SWARM ORCHESTRATION SYSTEM
  * Cloud-to-Cloud Deployment with Automated MCP DNS Management
  * Commander: Phillip Corey Roark
- * Specifications: 20M agents, 200 sectors, 64M job clusters, 319,998 career clusters
+ * Specifications: 20M agents, 200 sectors, 64M job clusters, ENVIRONMENT_VARIABLE_REQUIRED career clusters
  */
 
 // Cloudflare Worker for Production WFA Orchestration

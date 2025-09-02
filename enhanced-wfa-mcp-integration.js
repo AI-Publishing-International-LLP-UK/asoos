@@ -236,7 +236,7 @@ class WFAMCPInterface {
       case 'agents':
         tooltipContent = `
           <strong>Agent Network Status:</strong><br>
-          Total Capacity: 20,000,000<br>
+          Total Capacity: ENVIRONMENT_VARIABLE_REQUIRED<br>
           Currently Active: ${this.realTimeData.agents.active.toLocaleString()}<br>
           Active Sectors: ${this.realTimeData.agents.sectorsActive}/200<br>
           Response Time: ${this.realTimeData.performance.responseTime.toFixed(1)}ms
@@ -265,7 +265,7 @@ class WFAMCPInterface {
         tooltipContent = `
           <strong>Workflow Engine:</strong><br>
           Active Workflows: 1.6M+<br>
-          Career Clusters: 319,998<br>
+          Career Clusters: ENVIRONMENT_VARIABLE_REQUIRED<br>
           Job Clusters: 64M<br>
           Pilot Assignments: 35,555
         `;

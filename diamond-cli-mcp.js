@@ -257,7 +257,7 @@ class DiamondCLI {
         agents: '20M',
         sectors: '200',
         jobClusters: '64M',
-        careerClusters: '319,998',
+        careerClusters: 'ENVIRONMENT_VARIABLE_REQUIRED',
         authority: 'Diamond SAO Command Center',
         timestamp: new Date().toISOString()
       };
