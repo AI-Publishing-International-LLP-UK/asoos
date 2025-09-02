@@ -43,3 +43,5 @@ cloudflare-auth.json
 *.swo
 wrangler-production.toml
 cloudflare-security-audit-report.json
+sally-port-dependency-audit-report.json
+mcp-configs/
