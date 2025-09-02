@@ -42,3 +42,4 @@ cloudflare-auth.json
 *.swp
 *.swo
 wrangler-production.toml
+cloudflare-security-audit-report.json
