@@ -57,7 +57,7 @@ jobs:
     needs: security-scan
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [22.x, 24.x]
         environment: [staging, production]
     
     steps:

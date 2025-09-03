@@ -1,7 +1,7 @@
 // ASOOS.2100.Cool Worker - Proxy to Pages Deployment
 // Redirects all traffic to the new Pages deployment
 
-const PAGES_DEPLOYMENT_URL = 'https://bceb128b.2100-cool-primary.pages.dev';
+const PAGES_DEPLOYMENT_URL = 'https://production.asoos-2100-cool-landing.pages.dev';
 
 export default {
   async fetch(request) {

@@ -1,5 +1,5 @@
-# Use the official Node.js 20 runtime as base image
-FROM node:20-slim
+# Use the official Node.js 22 runtime as base image
+FROM node:22-slim
 
 # Install system dependencies for health monitoring
 RUN apt-get update && apt-get install -y \

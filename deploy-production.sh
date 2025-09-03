@@ -30,7 +30,7 @@ validate_environment() {
     
     # Check required tools
     command -v gcloud >/dev/null 2>&1 || { echo "❌ gcloud CLI not found"; exit 1; }
-    command -v wrangler >/dev/null 2>&1 || { echo "❌ wrangler not found"; exit 1; }
+    # Note: Using GCP Cloud Run instead of Cloudflare Workers
     
     # Validate GCP authentication
     if gcloud auth list --filter=status:ACTIVE --format="value(account)" &>/dev/null; then
@@ -54,28 +54,51 @@ validate_environment() {
     echo ""
 }
 
-# Deploy Cloudflare Workers
-deploy_cloudflare_workers() {
-    echo -e "${YELLOW}☁️  DEPLOYING CLOUDFLARE WORKERS${NC}"
-    echo "-------------------------------"
+# Deploy GCP WFA Orchestration Services
+deploy_gcp_wfa_orchestration() {
+    echo -e "${YELLOW}☁️  DEPLOYING GCP WFA ORCHESTRATION SERVICES${NC}"
+    echo "-------------------------------------------"
     
-    # Deploy main orchestration worker
-    echo "🚀 Deploying WFA orchestration worker..."
-    wrangler deploy production-wfa-orchestration.js --config wrangler-production.toml --env production
+    # Deploy WFA orchestration to GCP Cloud Run (NOT Cloudflare)
+    echo "🚀 Deploying WFA orchestration to GCP Cloud Run..."
+    
+    gcloud run deploy integration-gateway-wfa-orchestration-production \
+        --image=gcr.io/api-for-warp-drive/integration-gateway:latest \
+        --platform=managed \
+        --region=us-west1 \
+        --allow-unauthenticated \
+        --memory=2Gi \
+        --cpu=2 \
+        --concurrency=250 \
+        --min-instances=2 \
+        --max-instances=100 \
+        --timeout=900 \
+        --service-account="859242575175-compute@developer.gserviceaccount.com" \
+        --set-env-vars="NODE_ENV=production,ENVIRONMENT=production,GCP_PROJECT=api-for-warp-drive,CLOUD_ML_REGION=us-west1,MCP_DOMAIN=mcp.aipub.2100.cool,MASTER_MCP_SERVER=mcp.asoos.2100.cool,AGENT_CAPACITY=20000000,SECTORS=200,DNS_MODE=automated,HEALING_MODE=enabled,DEPLOYMENT_MODE=diamond-cli-production,ZONE=us-west1-a" \
+        --set-secrets="ANTHROPIC_API_KEY=anthropic-admin:latest,INTEGRATION_TOKEN=INTEGRATION_TOKEN:latest" \
+        --quiet
     
     if [ $? -eq 0 ]; then
-        echo "✅ Cloudflare Workers deployed successfully"
+        WFA_SERVICE_URL=$(gcloud run services describe integration-gateway-wfa-orchestration-production --region=us-west1 --format="value(status.url)")
+        echo "✅ GCP WFA Orchestration deployed successfully"
+        echo "🌐 WFA Service URL: $WFA_SERVICE_URL"
         
-        # KV namespaces managed via OAuth2 (already configured)
-        echo "📦 Using existing KV namespaces from GCP Secret Manager..."
-        echo "✅ WFA_STATE: $(gcloud secrets versions access latest --secret="wfa-agent-state-prod-id" || echo 'configured')"
-        echo "✅ CAREER_CLUSTERS: $(gcloud secrets versions access latest --secret="wfa-career-clusters-prod-id" || echo 'configured')"
-        echo "✅ JOB_CLUSTERS: $(gcloud secrets versions access latest --secret="wfa-job-clusters-prod-id" || echo 'configured')"
-        echo "✅ SECTOR_MAPPINGS: $(gcloud secrets versions access latest --secret="wfa-sector-mappings-prod-id" || echo 'configured')"
+        # Test Diamond CLI endpoints
+        echo "🧪 Testing Diamond CLI endpoints..."
+        if curl -sf "$WFA_SERVICE_URL/health" > /dev/null; then
+            echo "✅ Health check passed"
+        else
+            echo "⚠️ Health check failed - service may still be starting up"
+        fi
         
-        echo "✅ KV namespaces created"
+        echo "💎 Diamond CLI endpoints available:"
+        echo "   • Health: $WFA_SERVICE_URL/health"
+        echo "   • Diamond Status: $WFA_SERVICE_URL/diamond/deploy/status"
+        echo "   • Diamond Repair: $WFA_SERVICE_URL/diamond/repair/execute"
+        echo "   • Diamond Monitor: $WFA_SERVICE_URL/diamond/monitor/health"
+        
     else
-        echo "❌ Cloudflare Workers deployment failed"
+        echo "❌ GCP WFA Orchestration deployment failed"
         exit 1
     fi
     
@@ -224,7 +247,7 @@ main() {
     echo "==========================================="
     
     validate_environment
-    deploy_cloudflare_workers
+    deploy_gcp_wfa_orchestration
     deploy_gcp_services
     setup_mcp_dns_automation
     initialize_production_data

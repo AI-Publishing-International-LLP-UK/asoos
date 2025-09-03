@@ -1,6 +1,6 @@
 // Sally Port OAuth Worker
-// Handles OAuth authentication flow for ASOOS → MCP routing
-// Routes authenticated users to mcp.aipub.2100.cool
+// Handles OAuth authentication flow for ASOOS → MOCOA routing
+// Routes authenticated users to authorized MOCOA Owner Interface us-west1-a
 
 export default {
   async fetch(request, env) {
@@ -27,7 +27,7 @@ export default {
         timestamp: new Date().toISOString(),
         version: '1.2.0',
         features: 'OAuth2, LinkedIn, Microsoft, Google, WhatsApp',
-        target_endpoint: 'mcp.aipub.2100.cool',
+        target_endpoint: 'mocoa-owner-interface-859242575175.us-west1.run.app',
         protection: 'Victory36 Shield Active'
       }), {
         headers: { 
@@ -59,7 +59,7 @@ export default {
 
     // General authentication endpoint
     if (pathname === '/auth') {
-      const redirectUri = searchParams.get('redirect') || 'https://mcp.aipub.2100.cool/';
+      const redirectUri = searchParams.get('redirect') || 'https://mocoa-owner-interface-859242575175.us-west1.run.app/';
       return new Response(`<!DOCTYPE html>
 <html>
 <head>
@@ -103,13 +103,13 @@ export default {
     }
 
     // Default: Route to MCP
-    return Response.redirect('https://mcp.aipub.2100.cool/', 302);
+    return Response.redirect('https://mocoa-owner-interface-859242575175.us-west1.run.app/', 302);
   }
 };
 
 // OAuth initiation handler
 async function handleOAuthInitiate(provider, searchParams, env) {
-  const redirectUri = searchParams.get('redirect_uri') || 'https://mcp.aipub.2100.cool/';
+  const redirectUri = searchParams.get('redirect_uri') || 'https://mocoa-owner-interface-859242575175.us-west1.run.app/';
   const state = `${provider}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   
   // Store state for validation (in production, use KV storage)
@@ -227,14 +227,14 @@ async function handleOAuthCallback(provider, searchParams) {
   // For now, we'll simulate successful authentication
   
   // Redirect to MCP with success indication
-  return Response.redirect(`https://mcp.aipub.2100.cool/?authenticated=true&provider=${provider}&timestamp=${Date.now()}`, 302);
+  return Response.redirect(`https://mocoa-owner-interface-859242575175.us-west1.run.app/?authenticated=true&provider=${provider}&timestamp=${Date.now()}`, 302);
 }
 
 // OAuth completion handler
 async function handleOAuthComplete(provider, searchParams) {
   const code = searchParams.get('code');
   const state = searchParams.get('state');
-  const redirectUri = searchParams.get('redirect_uri') || 'https://mcp.aipub.2100.cool/';
+  const redirectUri = searchParams.get('redirect_uri') || 'https://mocoa-owner-interface-859242575175.us-west1.run.app/';
 
   // Process the final authentication step
   // In production, this would validate tokens and create user session
