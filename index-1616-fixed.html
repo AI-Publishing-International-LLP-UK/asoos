@@ -13,16 +13,7 @@
       box-sizing: border-box;
     }
     
-    /* Remove any visible text/code lines */
-    body::before, body::after {
-      display: none !important;
-    }
-    
-    /* Hide any stray text nodes */
-    .hidden-text {
-      display: none !important;
-      visibility: hidden !important;
-    }
+    /* CSS optimized for production */
     
     body {
       font-family: 'Montserrat', sans-serif;
@@ -223,7 +214,7 @@
       background: linear-gradient(135deg, #0bb1bb, #50C878);
       border: none;
       border-radius: 25px;
-      color: black;
+      color: white;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
@@ -333,7 +324,7 @@
     
     .primary-button {
       background: linear-gradient(135deg, #0bb1bb, #50C878);
-      color: black;
+      color: white;
       border: none;
     }
     
@@ -596,7 +587,7 @@
     
     .founder .team-avatar {
       background: linear-gradient(135deg, #FFD700, #c7b299);
-      color: black;
+      color: white;
     }
     
     .team-name {
