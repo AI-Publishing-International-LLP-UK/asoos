@@ -1,6 +1,7 @@
 {
   "name": "asoos-2100-cool-landing",
   "version": "1.0.0",
+  "type": "module",
   "description": "ASOOS 20M+ AI Agents Landing Page - Production Ready",
   "main": "cloudflare-pages-deployment/index.html",
   "scripts": {
