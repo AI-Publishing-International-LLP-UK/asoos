@@ -42,11 +42,19 @@ class VersionFloorProtection {
   }
 
   isVersionBelow(current, minimum) {
-    if (current.major < minimum.major) return true;
-    if (current.major > minimum.major) return false;
+    if (current.major < minimum.major) {
+      return true;
+    }
+    if (current.major > minimum.major) {
+      return false;
+    }
     
-    if (current.minor < minimum.minor) return true;
-    if (current.minor > minimum.minor) return false;
+    if (current.minor < minimum.minor) {
+      return true;
+    }
+    if (current.minor > minimum.minor) {
+      return false;
+    }
     
     return current.patch < minimum.patch;
   }
