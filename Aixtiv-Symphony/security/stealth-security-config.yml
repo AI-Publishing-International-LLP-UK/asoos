@@ -1,0 +1,225 @@
+# 🔒 Stealth-Level Security Configuration
+# Enterprise Zero-Trust Architecture for AIXTIV Symphony
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: stealth-security-config
+  namespace: default
+  labels:
+    security-posture: stealth-enterprise
+    oauth2-provider: google-cloud-oauth2
+data:
+  # Network Security Policies
+  network-security.yml: |
+    # VPC Security Configuration
+    vpc_security:
+      private_google_access: true
+      flow_logs_enabled: true
+      firewall_rules:
+        - name: allow-internal-aixtiv
+          direction: INGRESS
+          priority: 1000
+          source_ranges: ["10.0.0.0/8"]
+          allowed:
+            - protocol: tcp
+              ports: ["443", "8080", "3000"]
+        - name: deny-all-external
+          direction: INGRESS
+          priority: 65534
+          source_ranges: ["0.0.0.0/0"]
+          denied:
+            - protocol: all
+      
+      # Cloud Armor Security Policies
+      security_policies:
+        - name: aixtiv-stealth-policy
+          rules:
+            - priority: 1000
+              match:
+                versioned_expr: SRC_IPS_V1
+                config:
+                  src_ip_ranges: ["127.0.0.1/32"]
+              action: allow
+            - priority: 2147483647
+              match:
+                versioned_expr: SRC_IPS_V1
+                config:
+                  src_ip_ranges: ["*"]
+              action: deny_403
+
+  # Container Security Hardening
+  container-security.yml: |
+    security_context:
+      # Run as non-root user
+      runAsNonRoot: true
+      runAsUser: 65534
+      runAsGroup: 65534
+      
+      # Filesystem security
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      
+      # Capabilities dropping
+      capabilities:
+        drop:
+          - ALL
+        add:
+          - NET_BIND_SERVICE
+      
+      # SELinux/AppArmor
+      seLinuxOptions:
+        type: container_runtime_t
+      
+      # Seccomp profile
+      seccompProfile:
+        type: RuntimeDefault
+
+  # OAuth2/OAuth Security Configuration
+  oauth2-config.yml: |
+    oauth2:
+      provider: google-cloud-oauth2
+      scopes:
+        - https://www.googleapis.com/auth/cloud-platform
+        - https://www.googleapis.com/auth/secretmanager
+        - https://www.googleapis.com/auth/monitoring
+        - https://www.googleapis.com/auth/logging.write
+      
+      # Token management
+      token_rotation: true
+      token_ttl: 3600
+      refresh_threshold: 300
+      
+      # Security headers
+      headers:
+        Strict-Transport-Security: "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options: "nosniff"
+        X-Frame-Options: "DENY"
+        X-XSS-Protection: "1; mode=block"
+        Content-Security-Policy: "default-src 'self'; script-src 'self' 'unsafe-inline'"
+        Referrer-Policy: "strict-origin-when-cross-origin"
+
+  # Secret Manager Security
+  secret-manager.yml: |
+    secret_management:
+      project: api-for-warp-drive
+      rotation_policy:
+        enabled: true
+        rotation_period: 30d
+        
+      secrets:
+        - name: OPENAI_API_KEY
+          type: api-key
+          rotation: true
+          access_policy: |
+            bindings:
+            - members:
+              - serviceAccount:cicd-deployer@api-for-warp-drive.iam.gserviceaccount.com
+              - serviceAccount:aixtiv-symphony@api-for-warp-drive.iam.gserviceaccount.com
+              role: roles/secretmanager.secretAccessor
+              
+        - name: ELEVENLABS_API_KEY
+          type: api-key
+          rotation: true
+          access_policy: |
+            bindings:
+            - members:
+              - serviceAccount:aixtiv-symphony@api-for-warp-drive.iam.gserviceaccount.com
+              role: roles/secretmanager.secretAccessor
+              
+        - name: MONGODB_URI
+          type: database-uri
+          rotation: false
+          access_policy: |
+            bindings:
+            - members:
+              - serviceAccount:aixtiv-symphony@api-for-warp-drive.iam.gserviceaccount.com
+              role: roles/secretmanager.secretAccessor
+              
+        - name: OAUTH2_CLIENT_SECRET
+          type: oauth-secret
+          rotation: true
+          access_policy: |
+            bindings:
+            - members:
+              - serviceAccount:cicd-deployer@api-for-warp-drive.iam.gserviceaccount.com
+              role: roles/secretmanager.secretAccessor
+
+  # Monitoring and Alerting Security
+  security-monitoring.yml: |
+    monitoring:
+      # Security incident detection
+      alerts:
+        - name: unauthorized-access-attempt
+          condition: |
+            resource.type="cloud_run_revision"
+            AND httpRequest.status>=400
+            AND httpRequest.status<500
+          threshold: 10
+          duration: 60s
+          
+        - name: suspicious-traffic-pattern
+          condition: |
+            resource.type="gce_network"
+            AND jsonPayload.connection.src_ip!~"10\\..*"
+          threshold: 100
+          duration: 300s
+          
+        - name: secret-access-anomaly
+          condition: |
+            resource.type="secretmanager.googleapis.com/Secret"
+            AND protoPayload.methodName="google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion"
+          threshold: 50
+          duration: 60s
+
+      # Performance monitoring with security focus
+      performance_security:
+        response_time_threshold: 100ms
+        error_rate_threshold: 0.1%
+        memory_usage_threshold: 80%
+        cpu_usage_threshold: 70%
+
+  # Zero-Trust Network Architecture
+  zero-trust.yml: |
+    zero_trust:
+      # Identity verification
+      identity:
+        mTLS_enabled: true
+        certificate_rotation: 24h
+        identity_aware_proxy: true
+        
+      # Network segmentation
+      network:
+        micro_segmentation: true
+        service_mesh: istio
+        ingress_gateway:
+          tls_mode: STRICT
+          min_protocol_version: TLSV1_3
+          
+      # Data encryption
+      encryption:
+        at_rest: true
+        in_transit: true
+        key_rotation: 30d
+        envelope_encryption: true
+        
+      # Access policies
+      access:
+        just_in_time: true
+        least_privilege: true
+        context_aware: true
+        continuous_verification: true
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: stealth-oauth2-config
+  namespace: default
+type: Opaque
+data:
+  # Base64 encoded OAuth2 configuration
+  client-id: # Will be populated from Secret Manager
+  client-secret: # Will be populated from Secret Manager
+  token-endpoint: aHR0cHM6Ly9vYXV0aDIuZ29vZ2xlYXBpcy5jb20vdG9rZW4=
+  auth-endpoint: aHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tL28vb2F1dGgyL2F1dGg=
