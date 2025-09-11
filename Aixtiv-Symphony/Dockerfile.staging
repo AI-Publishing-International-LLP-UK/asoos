@@ -1,0 +1,111 @@
+# 💎 DIAMOND SAO DYNAMIC CMS - STAGING DEPLOYMENT
+# Production-ready Dockerfile for Node.js 24+ 
+# Target: Google Cloud Run - mocoa us-west1-b
+# Authority: Diamond SAO Command Center
+
+# Use official Node.js 24 LTS image (Iron) - Latest stable
+FROM node:24-alpine AS base
+
+# Set metadata
+LABEL maintainer="Diamond SAO Command Center"
+LABEL version="1.0.0-staging-ready"
+LABEL environment="staging"
+LABEL zone="us-west1-b"
+LABEL description="Diamond SAO Dynamic CMS Orchestrator - Staging"
+
+# Install system dependencies and security updates
+RUN apk update && apk upgrade && \
+    apk add --no-cache \
+    dumb-init \
+    curl \
+    ca-certificates \
+    tzdata \
+    && rm -rf /var/cache/apk/*
+
+# Set timezone to UTC
+ENV TZ=UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Create app directory and user for security
+RUN addgroup -g 1001 -S diamond && \
+    adduser -S -D -H -u 1001 -h /app -s /sbin/nologin -G diamond diamond
+
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY package*.json ./
+
+# Install dependencies with optimizations
+RUN npm ci --only=production --silent && \
+    npm cache clean --force
+
+# Copy application code
+COPY --chown=diamond:diamond . .
+
+# Create logs directory with proper permissions
+RUN mkdir -p /app/logs && \
+    chown -R diamond:diamond /app/logs
+
+# Set environment variables for staging
+ENV NODE_ENV=staging
+ENV MOCOA_ZONE=us-west1-b
+ENV CLOUD_ML_REGION=us-west1
+ENV GCP_PROJECT_ID=api-for-warp-drive
+ENV PORT=8080
+
+# Security: Run as non-root user
+USER diamond
+
+# Health check for Cloud Run
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Expose port
+EXPOSE 8080
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
+
+# Start the Diamond SAO CMS application
+CMD ["node", "diamond-sao-cms-staging.js"]
+
+# Multi-stage build for production optimization
+FROM base AS production
+
+# Additional production optimizations
+RUN npm prune --production && \
+    rm -rf /tmp/* /var/tmp/* ~/.npm
+
+# Final production image
+FROM node:24-alpine AS final
+
+# Copy minimal runtime from production stage
+COPY --from=production /app /app
+COPY --from=production /etc/passwd /etc/passwd
+COPY --from=production /etc/group /etc/group
+
+# Install only essential runtime dependencies
+RUN apk add --no-cache dumb-init curl ca-certificates
+
+WORKDIR /app
+
+# Switch to non-root user
+USER diamond
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Expose port
+EXPOSE 8080
+
+# Runtime environment
+ENV NODE_ENV=staging
+ENV MOCOA_ZONE=us-west1-b
+ENV CLOUD_ML_REGION=us-west1
+ENV GCP_PROJECT_ID=api-for-warp-drive
+ENV PORT=8080
+
+# Start with proper signal handling
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["node", "diamond-sao-cms-staging.js"]
