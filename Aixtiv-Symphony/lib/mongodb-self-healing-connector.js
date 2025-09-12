@@ -236,18 +236,18 @@ class SelfHealingMongoDBConnector {
         // Try common MongoDB Atlas cluster patterns for api-for-warp-drive project
         const clusterPatterns = [
           // DIDC patterns
-          `didc-cluster-0.atlasv2.mongodb.net`,
-          `didc-archives.atlasv2.mongodb.net`,
-          `didc-production.atlasv2.mongodb.net`,
+          'didc-cluster-0.atlasv2.mongodb.net',
+          'didc-archives.atlasv2.mongodb.net',
+          'didc-production.atlasv2.mongodb.net',
           // HRAI-CRMS patterns
-          `hrai-crms-prod.atlasv2.mongodb.net`,
-          `diamond-sao-crms.atlasv2.mongodb.net`,
+          'hrai-crms-prod.atlasv2.mongodb.net',
+          'diamond-sao-crms.atlasv2.mongodb.net',
           // General patterns
-          `api-for-warp-drive.atlasv2.mongodb.net`,
-          `asoos-production.atlasv2.mongodb.net`,
-          `aixtiv-symphony.atlasv2.mongodb.net`,
-          `cluster0.atlasv2.mongodb.net`,
-          `cluster1.atlasv2.mongodb.net`
+          'api-for-warp-drive.atlasv2.mongodb.net',
+          'asoos-production.atlasv2.mongodb.net',
+          'aixtiv-symphony.atlasv2.mongodb.net',
+          'cluster0.atlasv2.mongodb.net',
+          'cluster1.atlasv2.mongodb.net'
         ];
         
         for (const clusterHostname of clusterPatterns) {
@@ -258,7 +258,7 @@ class SelfHealingMongoDBConnector {
           // Test this constructed connection
           const testResult = await this.testConnection(constructedUri);
           if (testResult.success) {
-            console.log(`✅ Successfully constructed working Atlas connection!`);
+            console.log('✅ Successfully constructed working Atlas connection!');
             return constructedUri;
           }
         }
@@ -278,7 +278,7 @@ class SelfHealingMongoDBConnector {
           
           const testResult = await this.testConnection(constructedUri);
           if (testResult.success) {
-            console.log(`✅ Successfully constructed working Atlas connection with alternative pattern!`);
+            console.log('✅ Successfully constructed working Atlas connection with alternative pattern!');
             return constructedUri;
           }
         }

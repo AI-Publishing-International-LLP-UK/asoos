@@ -248,12 +248,11 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/diamond/dashboard",
+              "raw": "{{diamond_sao_url}}/dashboard",
               "host": [
-                "{{base_url}}"
+                "{{diamond_sao_url}}"
               ],
               "path": [
-                "diamond",
                 "dashboard"
               ]
             }
@@ -271,14 +270,11 @@
               }
             ],
             "url": {
-              "raw": "{{base_url}}/diamond/mocoa/v34/interface",
+              "raw": "{{mocoa_url}}/interface",
               "host": [
-                "{{base_url}}"
+                "{{mocoa_url}}"
               ],
               "path": [
-                "diamond",
-                "mocoa",
-                "v34",
                 "interface"
               ]
             }
@@ -447,12 +443,12 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "https://api-for-warp-drive.run.app",
+      "value": "https://aixtiv-symphony-859242575175.us-west1.run.app",
       "description": "Base URL for the AIXTIV Symphony API"
     },
     {
       "key": "mcp_base_url",
-      "value": "https://mcp.asoos.2100.cool",
+      "value": "https://asoos-master-mcp-uswest1-fixed-859242575175.us-west1.run.app",
       "description": "Master MCP server URL"
     },
     {
@@ -504,6 +500,21 @@
       "key": "service_name",
       "value": "integration-gateway-js",
       "description": "Cloud Run service name"
+    },
+    {
+      "key": "integration_gateway_url",
+      "value": "https://integration-gateway-js-859242575175.us-west1.run.app",
+      "description": "Integration Gateway service URL"
+    },
+    {
+      "key": "diamond_sao_url",
+      "value": "https://diamond-sao-staging-859242575175.us-west1.run.app",
+      "description": "Diamond SAO Command Center URL"
+    },
+    {
+      "key": "mocoa_url",
+      "value": "https://mocoa-owner-interface-v34-859242575175.us-west1.run.app",
+      "description": "MOCOA Owner Interface v34 URL"
     }
   ]
 }

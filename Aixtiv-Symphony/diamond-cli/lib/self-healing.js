@@ -107,6 +107,9 @@ class SelfHealing {
       // Start continuous monitoring
       await this.startMonitoring();
 
+      // Perform lint healing first (code quality foundation)
+      await this.performLintHealing();
+
       // Detect current issues
       const issues = await this.detectIssues();
 
@@ -631,6 +634,38 @@ class SelfHealing {
     }
 
     return remainingIssues.length === 0;
+  }
+
+  async performLintHealing() {
+    this.cli.log.info('🧹 Performing code quality healing (lint fixes)');
+    
+    try {
+      const { execSync } = require('child_process');
+      
+      // Check if lint healing script exists
+      const scriptPath = path.join(__dirname, '../../scripts/lint-self-healing.js');
+      if (!fs.existsSync(scriptPath)) {
+        this.cli.log.warn('⚠️  Lint healing script not found, running basic lint fixes');
+        // Fallback to basic lint fix
+        execSync('npm run lint:fix', { 
+          cwd: path.join(__dirname, '../..'),
+          stdio: 'pipe'
+        });
+        this.cli.log.success('✅ Basic lint fixes completed');
+        return;
+      }
+      
+      // Run comprehensive lint healing
+      execSync('node scripts/lint-self-healing.js --basic', {
+        cwd: path.join(__dirname, '../..'),
+        stdio: 'pipe'
+      });
+      
+      this.cli.log.success('✅ Lint healing completed successfully');
+    } catch (error) {
+      this.cli.log.warn(`⚠️  Lint healing encountered issues: ${error.message}`);
+      // Don't fail the entire healing process for lint issues
+    }
   }
 
   async performHealthCheck() {

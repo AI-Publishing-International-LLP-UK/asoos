@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "AIXTIV Symphony - Model Context Protocol Integration",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
@@ -16,6 +17,9 @@
     "mcp": "node index.js",
     "repair": "node diamond-cli/bin/diamond repair",
     "heal": "node diamond-cli/bin/diamond heal",
+    "lint:heal": "node scripts/lint-self-healing.js",
+    "lint:heal:basic": "node scripts/lint-self-healing.js --basic",
+    "lint:report": "node scripts/lint-self-healing.js --report",
     "deploy": "node diamond-cli/bin/diamond deploy wfa swarm"
   },
   "keywords": [

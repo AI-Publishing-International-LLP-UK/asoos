@@ -1,0 +1,259 @@
+name: Nightly Lint Self-Healing
+
+on:
+  schedule:
+    # Run every night at 2:00 AM UTC (10:00 PM EST / 7:00 PM PST)
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      healing_mode:
+        description: 'Lint healing mode'
+        required: true
+        default: 'comprehensive'
+        type: choice
+        options:
+          - comprehensive
+          - basic
+          - report-only
+
+env:
+  PROJECT_ID: api-for-warp-drive
+  NODE_VERSION: '24.7.0'
+
+jobs:
+  lint-self-healing:
+    name: Nightly Lint Self-Healing
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          npm ci --production=false
+          
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action - Lint Healing"
+          
+      - name: Get current lint status
+        id: lint-before
+        run: |
+          echo "## 📋 Lint Status Before Healing" >> $GITHUB_STEP_SUMMARY
+          npm run lint:report || echo "Lint issues detected"
+          
+          # Capture lint output for comparison
+          npm run lint 2>&1 | tee lint-before.log || true
+          
+          # Extract error/warning counts
+          ERRORS_BEFORE=$(grep -o '[0-9]\+ errors\?' lint-before.log | head -1 | grep -o '[0-9]\+' || echo "0")
+          WARNINGS_BEFORE=$(grep -o '[0-9]\+ warnings\?' lint-before.log | head -1 | grep -o '[0-9]\+' || echo "0")
+          
+          echo "errors_before=$ERRORS_BEFORE" >> $GITHUB_OUTPUT
+          echo "warnings_before=$WARNINGS_BEFORE" >> $GITHUB_OUTPUT
+          
+          echo "- **Errors**: $ERRORS_BEFORE" >> $GITHUB_STEP_SUMMARY
+          echo "- **Warnings**: $WARNINGS_BEFORE" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+      - name: Perform lint self-healing
+        id: healing
+        run: |
+          HEALING_MODE="${{ github.event.inputs.healing_mode || 'comprehensive' }}"
+          
+          echo "🚀 Starting lint self-healing in $HEALING_MODE mode"
+          
+          if [ "$HEALING_MODE" = "comprehensive" ]; then
+            npm run lint:heal
+          elif [ "$HEALING_MODE" = "basic" ]; then
+            npm run lint:heal:basic  
+          elif [ "$HEALING_MODE" = "report-only" ]; then
+            npm run lint:report
+            exit 0
+          fi
+          
+          HEALING_SUCCESS=$?
+          echo "healing_success=$HEALING_SUCCESS" >> $GITHUB_OUTPUT
+          
+      - name: Get lint status after healing
+        id: lint-after
+        if: steps.healing.outputs.healing_success == '0'
+        run: |
+          echo "## 📊 Lint Status After Healing" >> $GITHUB_STEP_SUMMARY
+          
+          # Capture lint output after healing
+          npm run lint 2>&1 | tee lint-after.log || true
+          
+          # Extract error/warning counts
+          ERRORS_AFTER=$(grep -o '[0-9]\+ errors\?' lint-after.log | head -1 | grep -o '[0-9]\+' || echo "0")
+          WARNINGS_AFTER=$(grep -o '[0-9]\+ warnings\?' lint-after.log | head -1 | grep -o '[0-9]\+' || echo "0")
+          
+          echo "errors_after=$ERRORS_AFTER" >> $GITHUB_OUTPUT
+          echo "warnings_after=$WARNINGS_AFTER" >> $GITHUB_OUTPUT
+          
+          # Calculate improvements
+          ERRORS_BEFORE="${{ steps.lint-before.outputs.errors_before }}"
+          WARNINGS_BEFORE="${{ steps.lint-before.outputs.warnings_before }}"
+          
+          ERRORS_FIXED=$((ERRORS_BEFORE - ERRORS_AFTER))
+          WARNINGS_FIXED=$((WARNINGS_BEFORE - WARNINGS_AFTER))
+          
+          echo "- **Errors**: $ERRORS_AFTER (improved by $ERRORS_FIXED)" >> $GITHUB_STEP_SUMMARY  
+          echo "- **Warnings**: $WARNINGS_AFTER (improved by $WARNINGS_FIXED)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "errors_fixed=$ERRORS_FIXED" >> $GITHUB_OUTPUT
+          echo "warnings_fixed=$WARNINGS_FIXED" >> $GITHUB_OUTPUT
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            echo "## 🔄 Changes Detected" >> $GITHUB_STEP_SUMMARY
+            echo "The following files were modified during lint healing:" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            git status --porcelain >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+            echo "## ✅ No Changes Required" >> $GITHUB_STEP_SUMMARY
+            echo "All lint issues were already resolved or no fixable issues found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Run health check
+        id: health-check
+        if: steps.changes.outputs.changes_detected == 'true'
+        run: |
+          echo "🏥 Running post-healing health check..."
+          
+          # Test syntax
+          node -c index.js
+          SYNTAX_OK=$?
+          
+          # Run basic tests
+          npm test
+          TESTS_OK=$?
+          
+          if [ $SYNTAX_OK -eq 0 ] && [ $TESTS_OK -eq 0 ]; then
+            echo "health_check_passed=true" >> $GITHUB_OUTPUT
+            echo "## ✅ Health Check Passed" >> $GITHUB_STEP_SUMMARY
+            echo "All syntax checks and tests passed successfully." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "health_check_passed=false" >> $GITHUB_OUTPUT
+            echo "## ❌ Health Check Failed" >> $GITHUB_STEP_SUMMARY  
+            echo "Syntax or tests failed. Changes will not be committed." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changes_detected == 'true' && steps.health-check.outputs.health_check_passed == 'true'
+        run: |
+          ERRORS_FIXED="${{ steps.lint-after.outputs.errors_fixed || 0 }}"
+          WARNINGS_FIXED="${{ steps.lint-after.outputs.warnings_fixed || 0 }}"
+          
+          # Create commit message
+          COMMIT_MSG="🔧 Automated lint healing: fixed $ERRORS_FIXED errors, $WARNINGS_FIXED warnings"
+          
+          # Add all changes
+          git add .
+          
+          # Commit changes
+          git commit -m "$COMMIT_MSG" -m "
+          Nightly lint self-healing completed successfully.
+          
+          Changes:
+          - Fixed $ERRORS_FIXED lint errors  
+          - Fixed $WARNINGS_FIXED lint warnings
+          - All health checks passed
+          
+          Generated by: GitHub Actions Nightly Lint Healing
+          Workflow: ${{ github.workflow }}
+          Run ID: ${{ github.run_id }}
+          "
+          
+          # Push changes
+          git push origin main
+          
+          echo "## 🎉 Changes Committed Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "Commit: \`$COMMIT_MSG\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Create pull request on significant changes
+        if: steps.changes.outputs.changes_detected == 'true' && (steps.lint-after.outputs.errors_fixed >= 10 || steps.lint-after.outputs.warnings_fixed >= 20)
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "🔧 Significant lint healing: ${{ steps.lint-after.outputs.errors_fixed }} errors, ${{ steps.lint-after.outputs.warnings_fixed }} warnings fixed"
+          title: "🔧 Nightly Lint Healing - Significant Improvements"
+          body: |
+            ## 🌙 Nightly Lint Self-Healing Report
+            
+            This automated pull request contains significant lint improvements from the nightly healing process.
+            
+            ### 📊 Improvements
+            - **Errors Fixed**: ${{ steps.lint-after.outputs.errors_fixed }}
+            - **Warnings Fixed**: ${{ steps.lint-after.outputs.warnings_fixed }}
+            - **Healing Mode**: ${{ github.event.inputs.healing_mode || 'comprehensive' }}
+            
+            ### 🏥 Health Check
+            - ✅ All syntax checks passed
+            - ✅ All tests passed
+            - ✅ Main entry point validated
+            
+            ### 🤖 Automation Details
+            - **Workflow**: ${{ github.workflow }}
+            - **Run ID**: ${{ github.run_id }}
+            - **Triggered**: ${{ github.event_name }}
+            
+            This PR was created because the number of fixes exceeded the threshold for automatic commits.
+            Please review the changes before merging.
+            
+          branch: lint-healing/nightly-${{ github.run_number }}
+          base: main
+
+      - name: Upload healing reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lint-healing-reports
+          path: |
+            logs/
+            lint-*.log
+          retention-days: 30
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "## ❌ Lint Healing Failed" >> $GITHUB_STEP_SUMMARY
+          echo "The nightly lint healing process encountered errors." >> $GITHUB_STEP_SUMMARY
+          echo "Please check the logs and consider running manual healing." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Manual Healing Commands:**" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+          echo "npm run lint:heal:basic" >> $GITHUB_STEP_SUMMARY
+          echo "npm run lint:report" >> $GITHUB_STEP_SUMMARY  
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Final summary
+        if: always()
+        run: |
+          echo "## 🌟 Nightly Lint Healing Complete" >> $GITHUB_STEP_SUMMARY
+          echo "**Workflow Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Next Scheduled Run**: Tomorrow at 2:00 AM UTC" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "For manual healing, use: \`npm run lint:heal\`" >> $GITHUB_STEP_SUMMARY

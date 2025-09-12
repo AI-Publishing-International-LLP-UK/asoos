@@ -324,7 +324,7 @@ class DiamondSAODynamicCMS {
           timestamp: new Date().toISOString()
         });
       } catch (error) {
-        this.logger.error(`Deploy ${service} failed:`, error);
+        this.logger.error(`Deploy ${req.params.service} failed:`, error);
         res.status(500).json({
           error: 'Deploy failed',
           service: req.params.service,

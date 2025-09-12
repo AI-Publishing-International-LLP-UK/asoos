@@ -298,7 +298,7 @@ class DiamondOAuth2Middleware {
   }
 
   // Utility functions for auto-configuration
-  async getClientId(provider) {
+  async getClientId(provider, env = process.env) {
     // Auto-retrieve from Cloudflare KV or environment
     return env[`${provider.toUpperCase()}_CLIENT_ID`] || 'auto_configured';
   }

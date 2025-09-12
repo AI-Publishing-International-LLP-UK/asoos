@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 // CRITICAL: Bind to 0.0.0.0 for Cloud Run
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 warp-drive-service started (FIXED)`);
+  console.log('🚀 warp-drive-service started (FIXED)');
   console.log(`📡 Listening on http://0.0.0.0:${PORT}`);
   console.log(`🔧 CLOUD RUN BINDING: 0.0.0.0:${PORT} (FIXED)`);
   console.log(`✅ Health endpoint: http://0.0.0.0:${PORT}/health`);

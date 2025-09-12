@@ -78,9 +78,9 @@ class EmergencyRepair {
           description: 'AIXTIV Symphony with Diamond SAO CLI',
           main: 'diamond-cli/bin/diamond',
           scripts: {
-            test: "echo 'Running AIXTIV Symphony tests...' && exit 0",
-            lint: "echo 'Linting AIXTIV Symphony...' && exit 0",
-            build: "echo 'Building AIXTIV Symphony...' && exit 0",
+            test: 'echo \'Running AIXTIV Symphony tests...\' && exit 0',
+            lint: 'echo \'Linting AIXTIV Symphony...\' && exit 0',
+            build: 'echo \'Building AIXTIV Symphony...\' && exit 0',
             start: 'node diamond-cli/bin/diamond',
             repair: 'node diamond-cli/bin/diamond repair',
             heal: 'node diamond-cli/bin/diamond heal',

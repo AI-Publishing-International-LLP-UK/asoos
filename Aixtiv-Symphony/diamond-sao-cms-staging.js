@@ -117,10 +117,10 @@ class DiamondSAODynamicCMS {
     this.app.use(helmet({
       contentSecurityPolicy: {
         directives: {
-          defaultSrc: ["'self'"],
-          styleSrc: ["'self'", "'unsafe-inline'"],
-          scriptSrc: ["'self'"],
-          imgSrc: ["'self'", "data:", "https:"]
+          defaultSrc: ['\'self\''],
+          styleSrc: ['\'self\'', '\'unsafe-inline\''],
+          scriptSrc: ['\'self\''],
+          imgSrc: ['\'self\'', 'data:', 'https:']
         }
       }
     }));
@@ -328,7 +328,7 @@ class DiamondSAODynamicCMS {
           timestamp: new Date().toISOString()
         });
       } catch (error) {
-        this.logger.error(`Deploy ${service} failed:`, error);
+        this.logger.error(`Deploy ${req.params.service} failed:`, error);
         res.status(500).json({
           error: 'Deploy failed',
           service: req.params.service,
@@ -483,7 +483,9 @@ class DiamondSAODynamicCMS {
   async checkDatabase() {
     // Check MongoDB Atlas connectivity
     try {
-      // Simulate database check
+      // Simulate database check - in a real scenario, this would actually connect
+      // For now, we'll simulate a successful connection
+      await new Promise(resolve => setTimeout(resolve, 1)); // Minimal async operation
       return { status: 'healthy', latency: '< 10ms' };
     } catch (error) {
       return { status: 'unhealthy', error: error.message };

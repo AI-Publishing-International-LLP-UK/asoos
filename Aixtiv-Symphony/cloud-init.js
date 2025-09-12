@@ -227,7 +227,7 @@ class DiamondSAOCloudServices {
         url: `gs://${bucketName}/${fileName}`
       };
     } catch (error) {
-      this.logger.error(`❌ Failed to upload to storage:`, error.message);
+      this.logger.error('❌ Failed to upload to storage:', error.message);
       throw error;
     }
   }
@@ -254,7 +254,7 @@ class DiamondSAOCloudServices {
       
       return { logged: true, logName, severity };
     } catch (error) {
-      this.logger.error(`❌ Failed to log to cloud:`, error.message);
+      this.logger.error('❌ Failed to log to cloud:', error.message);
       throw error;
     }
   }
@@ -284,7 +284,7 @@ class DiamondSAOCloudServices {
       
       return { messageId, topic: topicName };
     } catch (error) {
-      this.logger.error(`❌ Failed to publish message:`, error.message);
+      this.logger.error('❌ Failed to publish message:', error.message);
       throw error;
     }
   }
@@ -312,7 +312,7 @@ class DiamondSAOCloudServices {
       
       return { collection, docId, saved: true };
     } catch (error) {
-      this.logger.error(`❌ Failed to save to Firestore:`, error.message);
+      this.logger.error('❌ Failed to save to Firestore:', error.message);
       throw error;
     }
   }

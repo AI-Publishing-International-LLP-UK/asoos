@@ -56,7 +56,7 @@ async function testMongoDBHealing() {
       
       // Clean up test document
       await testCollection.deleteOne({ _id: insertResult.insertedId });
-      console.log(`  🧹 Test document cleaned up`);
+      console.log('  🧹 Test document cleaned up');
       
       // Test ping
       const pingResult = await connector.ping();
