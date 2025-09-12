@@ -40,7 +40,7 @@
  * @date 2025-09-06
  */
 
-import { ElevenLabsClient } from 'elevenlabs';
+import { ElevenLabs } from '@elevenlabs/elevenlabs-js';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -69,7 +69,7 @@ class UnifiedElevenLabsAgentSystem {
   constructor(options = {}) {
     this.version = '4.0.0-unified-enterprise';
     this.authority = 'Diamond SAO Command Center';
-    
+
     // Diamond SAO Authority Configuration
     this.diamondSAO = {
       id: '0000001',
@@ -83,7 +83,7 @@ class UnifiedElevenLabsAgentSystem {
     this.wsServer = null;
     this.logger = null;
     this.secretManager = new SecretManagerServiceClient();
-    
+
     // ElevenLabs clients and configurations
     this.elevenLabsClients = new Map(); // userId -> client instance
     this.primaryClient = null;
@@ -104,7 +104,7 @@ class UnifiedElevenLabsAgentSystem {
           use_speaker_boost: true
         }
       },
-      
+
       // Owner Interface Voices
       ownerInterface: {
         voiceId: 'pNInz6obpgDQGcFmaJgB', // Adam - Authoritative
@@ -117,7 +117,7 @@ class UnifiedElevenLabsAgentSystem {
           use_speaker_boost: true
         }
       },
-      
+
       // MOCOA Interface Voices
       mocaInterface: {
         voiceId: 'ErXwobaYiN019PkySvjV', // Antoni - Warm engaging
@@ -130,7 +130,7 @@ class UnifiedElevenLabsAgentSystem {
           use_speaker_boost: true
         }
       },
-      
+
       // Default Professional Voice
       default: {
         voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional female
@@ -179,7 +179,7 @@ class UnifiedElevenLabsAgentSystem {
           'Autonomous decision-making with uncertainty quantification'
         ]
       },
-      
+
       drClaude: {
         id: 'sh-strategic-dr-claude',
         name: 'Dr. Claude',
@@ -196,7 +196,7 @@ class UnifiedElevenLabsAgentSystem {
           'Causal inference from complex business data'
         ]
       },
-      
+
       victory36: {
         id: 'v36-security-victory36',
         name: 'Victory36',
@@ -245,7 +245,7 @@ class UnifiedElevenLabsAgentSystem {
     // Initialize system
     this.initialized = false;
     this.setupLogger();
-    
+
     console.log('🎤 UNIFIED ELEVENLABS VOICE & INTERACTIVE AGENT SYSTEM');
     console.log('🏛️  Authority: Diamond SAO Command Center');
     console.log('🔐 Security: OAuth2 Enterprise Grade');
@@ -284,31 +284,31 @@ class UnifiedElevenLabsAgentSystem {
 
     try {
       this.logger.info('🚀 Initializing Unified ElevenLabs Voice & Agent System...');
-      
+
       // Load credentials from GCP Secret Manager
       await this.loadCredentials();
-      
+
       // Initialize ElevenLabs primary client
       await this.initializeElevenLabsClient();
-      
+
       // Setup Express middleware and routes
       this.setupMiddleware();
       this.setupRoutes();
-      
+
       // Initialize WebSocket server for real-time streaming
       this.initializeWebSocketServer();
-      
+
       // Initialize computationalist agents
       await this.initializeComputationalistAgents();
-      
+
       // Pre-generate critical voice responses
       await this.preGenerateCriticalResponses();
-      
+
       this.initialized = true;
       this.logger.info('✅ Unified ElevenLabs Voice & Agent System initialized successfully');
-      
+
       return true;
-      
+
     } catch (error) {
       this.logger.error('❌ System initialization failed:', error);
       throw error;
@@ -322,7 +322,7 @@ class UnifiedElevenLabsAgentSystem {
     try {
       const secrets = [
         'ELEVENLABS_API_KEY',
-        'OAUTH2_CLIENT_ID', 
+        'OAUTH2_CLIENT_ID',
         'OAUTH2_CLIENT_SECRET',
         'JWT_SECRET'
       ];
@@ -332,20 +332,20 @@ class UnifiedElevenLabsAgentSystem {
           const secretPath = `projects/${this.projectId}/secrets/${secretName}/versions/latest`;
           const [version] = await this.secretManager.accessSecretVersion({ name: secretPath });
           const secretValue = version.payload.data.toString('utf8');
-          
+
           process.env[secretName] = secretValue;
           this.logger.info(`✅ Loaded ${secretName} from GCP Secret Manager`);
-          
+
         } catch (error) {
           this.logger.warn(`⚠️ Could not load ${secretName} from Secret Manager, using environment variable`);
         }
       }
-      
+
       this.apiKey = process.env.ELEVENLABS_API_KEY;
       if (!this.apiKey) {
         throw new Error('ElevenLabs API key not found');
       }
-      
+
     } catch (error) {
       this.logger.error('❌ Failed to load credentials:', error);
       throw error;
@@ -357,15 +357,15 @@ class UnifiedElevenLabsAgentSystem {
    */
   async initializeElevenLabsClient() {
     try {
-      this.primaryClient = new ElevenLabsClient({
+      this.primaryClient = new ElevenLabs({
         apiKey: this.apiKey
       });
-      
+
       // Validate connection
       await this.validateElevenLabsConnection();
-      
+
       this.logger.info('✅ ElevenLabs primary client initialized successfully');
-      
+
     } catch (error) {
       this.logger.error('❌ ElevenLabs client initialization failed:', error);
       throw error;
@@ -393,7 +393,7 @@ class UnifiedElevenLabsAgentSystem {
     this.app.use(helmet({
       contentSecurityPolicy: false // Disable for voice streaming
     }));
-    
+
     // CORS with proper configuration
     this.app.use(cors({
       origin: [
@@ -404,11 +404,11 @@ class UnifiedElevenLabsAgentSystem {
       ],
       credentials: true
     }));
-    
+
     // Body parsing
     this.app.use(express.json({ limit: '50mb' }));
     this.app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-    
+
     // File upload for voice processing
     const upload = multer({
       limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit
@@ -417,7 +417,7 @@ class UnifiedElevenLabsAgentSystem {
         cb(null, allowedTypes.includes(file.mimetype));
       }
     });
-    
+
     this.app.use('/api/upload', upload.single('audio'));
 
     // OAuth2 middleware
@@ -431,36 +431,36 @@ class UnifiedElevenLabsAgentSystem {
     // Health and status endpoints
     this.app.get('/health', this.healthCheck.bind(this));
     this.app.get('/api/status', this.systemStatus.bind(this));
-    
+
     // OAuth2 authentication endpoints
     this.app.get('/auth/login', this.initiateOAuth2.bind(this));
     this.app.get('/auth/callback', this.handleOAuth2Callback.bind(this));
     this.app.post('/auth/refresh', this.refreshToken.bind(this));
-    
+
     // Voice synthesis endpoints
     this.app.post('/api/voice/synthesize', this.synthesizeVoice.bind(this));
     this.app.post('/api/voice/batch-synthesize', this.batchSynthesize.bind(this));
     this.app.post('/api/voice/multilingual', this.multilingualSynthesize.bind(this));
-    
+
     // Advanced ElevenLabs features
     this.app.post('/api/voice/speech-to-speech', this.speechToSpeech.bind(this));
     this.app.post('/api/voice/sound-effects', this.generateSoundEffects.bind(this));
     this.app.post('/api/voice/music', this.generateMusic.bind(this));
     this.app.post('/api/voice/speech-to-text', this.speechToText.bind(this));
-    
+
     // Computationalist agent endpoints
     this.app.post('/api/agents/dr-lucy/interact', this.interactWithDrLucy.bind(this));
     this.app.post('/api/agents/dr-claude/analyze', this.analyzeWithDrClaude.bind(this));
     this.app.post('/api/agents/victory36/assess', this.assessWithVictory36.bind(this));
-    
+
     // Diamond SAO authority endpoints
     this.app.post('/api/protected/diamond-sao/command', this.executeDiamondSAOCommand.bind(this));
     this.app.post('/api/protected/owner-interface/voice', this.generateOwnerInterfaceVoice.bind(this));
-    
+
     // Real-time streaming endpoints
     this.app.get('/api/stream/voices', this.getStreamingVoices.bind(this));
     this.app.post('/api/stream/start', this.startVoiceStream.bind(this));
-    
+
     // System management endpoints
     this.app.get('/api/voices/available', this.getAvailableVoices.bind(this));
     this.app.post('/api/voices/clone', this.cloneVoice.bind(this));
@@ -472,22 +472,22 @@ class UnifiedElevenLabsAgentSystem {
    */
   initializeWebSocketServer() {
     this.wsServer = new WebSocket.Server({ noServer: true });
-    
+
     this.wsServer.on('connection', (ws, request) => {
       const connectionId = crypto.randomUUID();
       this.wsConnections.set(connectionId, ws);
-      
+
       this.logger.info(`📡 WebSocket connection established: ${connectionId}`);
-      
+
       ws.on('message', async (message) => {
         try {
           const data = JSON.parse(message.toString());
           await this.handleWebSocketMessage(ws, connectionId, data);
-        } catch (error) {
+        } catch (_error) { // Renamed 'error' to '_error' to suppress ESLint warning as it's not directly used.
           ws.send(JSON.stringify({ error: 'Invalid message format' }));
         }
       });
-      
+
       ws.on('close', () => {
         this.wsConnections.delete(connectionId);
         this.logger.info(`📡 WebSocket connection closed: ${connectionId}`);
@@ -501,7 +501,7 @@ class UnifiedElevenLabsAgentSystem {
   async initializeComputationalistAgents() {
     try {
       this.logger.info('🤖 Initializing World-Class Computationalist Agents...');
-      
+
       for (const [agentKey, agent] of Object.entries(this.computationalistAgents)) {
         // Initialize agent session
         this.agentSessions.set(agent.id, {
@@ -510,12 +510,12 @@ class UnifiedElevenLabsAgentSystem {
           sessionActive: true,
           lastInteraction: null
         });
-        
+
         this.logger.info(`✅ ${agent.name} (${agent.title}) initialized`);
       }
-      
+
       this.logger.info('✅ All Computationalist Agents initialized successfully');
-      
+
     } catch (error) {
       this.logger.error('❌ Failed to initialize agents:', error);
       throw error;
@@ -528,7 +528,7 @@ class UnifiedElevenLabsAgentSystem {
   async preGenerateCriticalResponses() {
     try {
       this.logger.info('🎤 Pre-generating critical voice responses...');
-      
+
       const criticalMessages = [
         {
           text: 'Diamond SAO Command Center online. All systems operational.',
@@ -537,7 +537,7 @@ class UnifiedElevenLabsAgentSystem {
         },
         {
           text: 'Authentication confirmed. Maximum authority granted.',
-          voiceProfile: 'ownerInterface', 
+          voiceProfile: 'ownerInterface',
           filename: 'auth-confirmed'
         },
         {
@@ -546,7 +546,7 @@ class UnifiedElevenLabsAgentSystem {
           filename: 'security-alert'
         }
       ];
-      
+
       for (const message of criticalMessages) {
         try {
           const result = await this.generateVoiceResponse(message.text, message.voiceProfile);
@@ -554,13 +554,13 @@ class UnifiedElevenLabsAgentSystem {
           const cacheDir = path.join(__dirname, 'voice-cache');
           await fs.mkdir(cacheDir, { recursive: true });
           await fs.writeFile(path.join(cacheDir, `${message.filename}.mp3`), result.audioBuffer);
-          
+
           this.logger.info(`✅ Pre-generated: ${message.filename}`);
         } catch (error) {
           this.logger.warn(`⚠️ Failed to pre-generate: ${message.filename}`);
         }
       }
-      
+
     } catch (error) {
       this.logger.error('❌ Pre-generation failed:', error);
     }
@@ -575,13 +575,13 @@ class UnifiedElevenLabsAgentSystem {
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ error: 'Authorization token required' });
       }
-      
+
       const token = authHeader.substring(7);
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      
+
       req.user = decoded;
       next();
-      
+
     } catch (error) {
       res.status(401).json({ error: 'Invalid or expired token' });
     }
@@ -593,7 +593,7 @@ class UnifiedElevenLabsAgentSystem {
   async generateVoiceResponse(text, voiceProfile = 'default', options = {}) {
     try {
       const profile = this.voiceProfiles[voiceProfile] || this.voiceProfiles.default;
-      
+
       const audio = await this.primaryClient.generate({
         voice: profile.voiceId,
         text: text,
@@ -603,9 +603,9 @@ class UnifiedElevenLabsAgentSystem {
           ...options.settings
         }
       });
-      
+
       const audioBuffer = Buffer.from(await audio.arrayBuffer());
-      
+
       return {
         success: true,
         audioBuffer: audioBuffer,
@@ -615,7 +615,7 @@ class UnifiedElevenLabsAgentSystem {
         timestamp: new Date().toISOString(),
         authority: this.authority
       };
-      
+
     } catch (error) {
       this.logger.error('❌ Voice generation failed:', error);
       throw error;
@@ -681,9 +681,9 @@ class UnifiedElevenLabsAgentSystem {
         },
         voice_profiles: Object.keys(this.voiceProfiles).length
       };
-      
+
       res.json(status);
-      
+
     } catch (error) {
       res.status(500).json({ error: 'Failed to get system status' });
     }
@@ -695,13 +695,13 @@ class UnifiedElevenLabsAgentSystem {
   async synthesizeVoice(req, res) {
     try {
       const { text, voiceProfile = 'default', options = {} } = req.body;
-      
+
       if (!text) {
         return res.status(400).json({ error: 'Text is required' });
       }
-      
+
       const result = await this.generateVoiceResponse(text, voiceProfile, options);
-      
+
       if (options.returnAudio) {
         res.setHeader('Content-Type', 'audio/mpeg');
         res.setHeader('Content-Disposition', `attachment; filename="voice-${Date.now()}.mp3"`);
@@ -716,7 +716,7 @@ class UnifiedElevenLabsAgentSystem {
           authority: result.authority
         });
       }
-      
+
     } catch (error) {
       this.logger.error('❌ Voice synthesis API error:', error);
       res.status(500).json({ error: 'Voice synthesis failed', details: error.message });
@@ -729,16 +729,16 @@ class UnifiedElevenLabsAgentSystem {
   async interactWithDrLucy(req, res) {
     try {
       const { query, language = 'english', voiceResponse = true } = req.body;
-      
+
       if (!query) {
         return res.status(400).json({ error: 'Query is required' });
       }
-      
+
       const drLucy = this.computationalistAgents.drLucy;
-      
+
       // Generate intelligent response (this would integrate with actual AI in production)
       const response = this.generateComputationalistResponse(drLucy, query);
-      
+
       let audioResult = null;
       if (voiceResponse) {
         audioResult = await this.generateVoiceResponse(response, 'ownerInterface', {
@@ -749,7 +749,7 @@ class UnifiedElevenLabsAgentSystem {
           }
         });
       }
-      
+
       res.json({
         agent: drLucy.name,
         title: drLucy.title,
@@ -760,7 +760,7 @@ class UnifiedElevenLabsAgentSystem {
         audioBase64: audioResult ? audioResult.audioBuffer.toString('base64') : null,
         timestamp: new Date().toISOString()
       });
-      
+
     } catch (error) {
       this.logger.error('❌ Dr. Lucy interaction error:', error);
       res.status(500).json({ error: 'Dr. Lucy interaction failed', details: error.message });
@@ -788,7 +788,7 @@ class UnifiedElevenLabsAgentSystem {
         'Security intelligence systems recommend implementing enhanced protection protocols.'
       ]
     };
-    
+
     const agentResponses = responses[agent.id] || ['I\'m processing your request with advanced computational analysis.'];
     return agentResponses[Math.floor(Math.random() * agentResponses.length)];
   }
@@ -801,7 +801,7 @@ class UnifiedElevenLabsAgentSystem {
       if (!this.initialized) {
         await this.initialize();
       }
-      
+
       const server = this.app.listen(port, () => {
         this.logger.info(`🚀 Unified ElevenLabs Voice & Agent System started on port ${port}`);
         this.logger.info('🏛️ Authority: Diamond SAO Command Center');
@@ -810,16 +810,16 @@ class UnifiedElevenLabsAgentSystem {
         this.logger.info('🔐 Security: OAuth2 Enterprise Grade');
         this.logger.info('');
       });
-      
+
       // Handle WebSocket upgrades
       server.on('upgrade', (request, socket, head) => {
         this.wsServer.handleUpgrade(request, socket, head, (ws) => {
           this.wsServer.emit('connection', ws, request);
         });
       });
-      
+
       return server;
-      
+
     } catch (error) {
       this.logger.error('❌ Failed to start system:', error);
       throw error;
@@ -831,16 +831,16 @@ class UnifiedElevenLabsAgentSystem {
    */
   async shutdown() {
     this.logger.info('🛑 Shutting down Unified ElevenLabs Voice & Agent System...');
-    
+
     // Close WebSocket connections
     for (const [connectionId, ws] of this.wsConnections) {
       ws.close();
     }
-    
+
     // Clear sessions
     this.activeSessions.clear();
     this.agentSessions.clear();
-    
+
     this.logger.info('✅ Shutdown complete');
   }
 }
@@ -851,12 +851,12 @@ export default UnifiedElevenLabsAgentSystem;
 // CLI execution
 if (import.meta.url === `file://${process.argv[1]}`) {
   const system = new UnifiedElevenLabsAgentSystem();
-  
+
   system.start()
     .then((server) => {
       console.log('🎉 Unified ElevenLabs Voice & Interactive Agent System is running!');
       console.log('🔗 All integrations active and ready for Diamond SAO commands');
-      
+
       // Graceful shutdown handlers
       process.on('SIGTERM', () => system.shutdown().then(() => process.exit(0)));
       process.on('SIGINT', () => system.shutdown().then(() => process.exit(0)));

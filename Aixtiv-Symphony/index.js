@@ -25,10 +25,12 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
+const cookieParser = require('cookie-parser');
 const winston = require('winston');
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const { DiamondSAOCloudServices } = require('./cloud-init');
 
 class DiamondSAODynamicCMS {
   constructor() {
@@ -50,6 +52,13 @@ class DiamondSAODynamicCMS {
     this.app = express();
     this.port = process.env.PORT || 3000;
     this.logger = this.initializeLogger();
+    
+    // Initialize cloud services
+    this.cloudServices = new DiamondSAOCloudServices({
+      projectId: this.gcpProject,
+      region: this.region,
+      environment: this.environment
+    });
     
     this.setupMiddleware();
     this.setupRoutes();
@@ -74,8 +83,12 @@ class DiamondSAODynamicCMS {
 
   setupMiddleware() {
     this.app.use(helmet());
-    this.app.use(cors());
+    this.app.use(cors({
+      origin: ['https://sallyport.2100.cool', 'https://mocoa.2100.cool'],
+      credentials: true // Enable cookies in CORS
+    }));
     this.app.use(compression());
+    this.app.use(cookieParser()); // Parse cookies from SallyPort
     this.app.use(express.json({ limit: '50mb' }));
     this.app.use(express.urlencoded({ extended: true }));
     
@@ -87,19 +100,43 @@ class DiamondSAODynamicCMS {
   }
 
   setupRoutes() {
+    // Import Universal Service routes
+    const universalServicesRouter = require('./routes/universal-services');
+    const { authenticate } = require('./middleware/sallyport-universal-bridge');
+    
+    // Universal Service API routes (protected by SallyPort OAuth2)
+    this.app.use('/api', universalServicesRouter);
+    
     // Health check for Cloud Run
-    this.app.get('/health', (req, res) => {
-      res.status(200).json({
-        status: 'healthy',
-        service: 'Diamond SAO Dynamic CMS Orchestrator',
-        authority: this.authority,
-        version: this.version,
-        environment: this.environment,
-        region: this.region,
-        project: this.gcpProject,
-        timestamp: new Date().toISOString(),
-        services: this.services
-      });
+    this.app.get('/health', async (req, res) => {
+      try {
+        // Get cloud services health status if initialized
+        let cloudStatus = { status: 'not_initialized' };
+        if (this.cloudServices && this.cloudServices.initialized) {
+          cloudStatus = await this.cloudServices.getHealthStatus();
+        }
+        
+        res.status(200).json({
+          status: 'healthy',
+          service: 'Diamond SAO Dynamic CMS Orchestrator',
+          authority: this.authority,
+          version: this.version,
+          environment: this.environment,
+          region: this.region,
+          project: this.gcpProject,
+          timestamp: new Date().toISOString(),
+          services: this.services,
+          cloudServices: cloudStatus
+        });
+      } catch (error) {
+        this.logger.error('Health check error:', error);
+        res.status(500).json({
+          status: 'error',
+          service: 'Diamond SAO Dynamic CMS Orchestrator',
+          error: error.message,
+          timestamp: new Date().toISOString()
+        });
+      }
     });
 
     // Root endpoint - Dynamic CMS Dashboard
@@ -161,6 +198,31 @@ class DiamondSAODynamicCMS {
             mcp: '/mcp',
             diamond: '/diamond-cli'
           },
+          
+          // Universal Services Integration
+          universalServices: {
+            status: '/api/services/status',
+            discovery: '/api/services/discover',
+            ai: {
+              openai: '/api/ai/openai/chat',
+              anthropic: '/api/ai/anthropic/messages'
+            },
+            voice: {
+              elevenlabs: '/api/voice/elevenlabs/text-to-speech'
+            },
+            cloud: {
+              gcp: '/api/cloud/gcp/*',
+              aws: '/api/cloud/aws/*'
+            },
+            dev: {
+              github: '/api/dev/github/*',
+              gitlab: '/api/dev/gitlab/*'
+            },
+            data: {
+              mongodb: '/api/data/mongodb/query',
+              pinecone: '/api/data/pinecone/*'
+            }
+          },
 
           timestamp: new Date().toISOString()
         });
@@ -172,6 +234,56 @@ class DiamondSAODynamicCMS {
           authority: this.authority
         });
       }
+    });
+
+    // Protected Admin Dashboard (requires authentication)
+    this.app.get('/admin', authenticate, async (req, res) => {
+      try {
+        res.json({
+          message: '💎 DIAMOND SAO ADMIN DASHBOARD',
+          authority: this.authority,
+          user: {
+            id: req.auth.sallyport.user_id,
+            tenant_level: req.auth.tenant.level,
+            security_level: req.auth.security_level,
+            available_services: req.auth.tenant.services,
+            copilots: req.auth.tenant.copilots
+          },
+          system_status: await this.checkSystemStatus(),
+          timestamp: new Date().toISOString()
+        });
+      } catch (error) {
+        this.logger.error('Admin dashboard error:', error);
+        res.status(500).json({
+          error: 'Admin dashboard error',
+          message: error.message,
+          authority: this.authority
+        });
+      }
+    });
+    
+    // Universal Service Authentication Test
+    this.app.get('/auth-test', authenticate, (req, res) => {
+      const userServices = Object.keys(req.cookies)
+        .filter(key => key.endsWith('_auth'))
+        .map(key => key.replace('_auth', ''));
+        
+      res.json({
+        message: '🔐 Universal Authentication Test',
+        authority: this.authority,
+        authentication: {
+          sallyport_validated: true,
+          user_id: req.auth.sallyport.user_id,
+          tenant_level: req.auth.tenant.level,
+          security_level: req.auth.security_level
+        },
+        services: {
+          available_count: userServices.length,
+          services: userServices,
+          allowed_services: req.auth.tenant.services
+        },
+        timestamp: new Date().toISOString()
+      });
     });
 
     // Launch Dynamic CMS System
@@ -267,6 +379,42 @@ class DiamondSAODynamicCMS {
         version: this.version,
         commands: ['deploy', 'heal', 'repair', 'cttt', 'newman', 'wfa swarm']
       });
+    });
+
+    // Cloud Services Management
+    this.app.get('/cloud', async (req, res) => {
+      try {
+        const cloudStatus = await this.cloudServices.getHealthStatus();
+        res.json({
+          message: 'Diamond SAO Cloud Services',
+          authority: this.authority,
+          status: cloudStatus,
+          endpoints: {
+            health: '/cloud/health',
+            secrets: '/cloud/secrets',
+            storage: '/cloud/storage',
+            firestore: '/cloud/firestore'
+          }
+        });
+      } catch (error) {
+        res.status(500).json({
+          error: 'Cloud services unavailable',
+          message: error.message
+        });
+      }
+    });
+
+    // Cloud Health Status
+    this.app.get('/cloud/health', async (req, res) => {
+      try {
+        const health = await this.cloudServices.getHealthStatus();
+        res.json(health);
+      } catch (error) {
+        res.status(500).json({
+          status: 'error',
+          error: error.message
+        });
+      }
     });
   }
 
@@ -467,6 +615,16 @@ class DiamondSAODynamicCMS {
         fs.mkdirSync(logsDir, { recursive: true });
       }
 
+      // Initialize cloud services
+      try {
+        this.logger.info('🌩️  Initializing Diamond SAO Cloud Services...');
+        await this.cloudServices.initialize();
+        this.logger.info('✅ Cloud services initialized successfully');
+      } catch (error) {
+        this.logger.warn('⚠️  Cloud services initialization failed:', error.message);
+        this.logger.warn('   Service will continue without full cloud functionality');
+      }
+
       // Start server
       const server = this.app.listen(this.port, '0.0.0.0', () => {
         this.logger.info('💎 DIAMOND SAO DYNAMIC CMS SYSTEM LAUNCHED');
@@ -486,16 +644,32 @@ class DiamondSAODynamicCMS {
       });
 
       // Graceful shutdown
-      process.on('SIGTERM', () => {
+      process.on('SIGTERM', async () => {
         this.logger.info('🛑 SIGTERM received, shutting down Diamond SAO CMS gracefully');
+        
+        // Shutdown cloud services first
+        try {
+          await this.cloudServices.shutdown();
+        } catch (error) {
+          this.logger.error('⚠️  Error shutting down cloud services:', error.message);
+        }
+        
         server.close(() => {
           this.logger.info('✅ Diamond SAO CMS closed successfully');
           process.exit(0);
         });
       });
 
-      process.on('SIGINT', () => {
+      process.on('SIGINT', async () => {
         this.logger.info('🛑 SIGINT received, shutting down Diamond SAO CMS gracefully');
+        
+        // Shutdown cloud services first
+        try {
+          await this.cloudServices.shutdown();
+        } catch (error) {
+          this.logger.error('⚠️  Error shutting down cloud services:', error.message);
+        }
+        
         server.close(() => {
           this.logger.info('✅ Diamond SAO CMS closed successfully');
           process.exit(0);

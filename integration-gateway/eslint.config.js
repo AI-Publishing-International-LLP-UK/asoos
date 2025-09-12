@@ -1,8 +1,5 @@
 export default [
   {
-    ignores: ['node_modules/**']
-  },
-  {
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2022,
@@ -10,14 +7,25 @@ export default [
       globals: {
         console: 'readonly',
         process: 'readonly',
-        require: 'readonly',
-        module: 'readonly',
-        exports: 'readonly',
+        Buffer: 'readonly',
         __dirname: 'readonly',
         __filename: 'readonly',
-        Buffer: 'readonly',
-        global: 'readonly'
+        global: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly'
       }
+    },
+    rules: {
+      'no-unused-vars': 'warn',
+      'no-console': 'off',
+      'semi': ['error', 'always'],
+      'quotes': ['error', 'single'],
+      'indent': ['error', 2]
     }
   }
 ];

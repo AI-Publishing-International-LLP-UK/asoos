@@ -305,8 +305,8 @@ app.use('*', (req, res) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
+// Start server - CRITICAL: Bind to 0.0.0.0 for Cloud Run
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 WFA Production Swarm Cloud Run Server started`);
   console.log(`📡 Listening on http://0.0.0.0:${PORT}`);
   console.log(`👨‍💼 Commander: Phillip Roark`);

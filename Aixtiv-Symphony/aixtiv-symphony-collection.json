@@ -1,0 +1,509 @@
+{
+  "info": {
+    "_postman_id": "aixtiv-symphony-api-collection",
+    "name": "AIXTIV Symphony API Collection",
+    "description": "Comprehensive API collection for AIXTIV Symphony ecosystem including SallyPort authentication, gateway services, MCP integration, and Diamond SAO Command Center endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    }
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "description": "SallyPort security center authentication endpoints",
+      "item": [
+        {
+          "name": "SallyPort Token Verification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{sallyport_token}}\",\n  \"action\": \"verify\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/sallyport/verify",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "sallyport",
+                "verify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "OAuth2 Authentication",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grant_type\": \"authorization_code\",\n  \"code\": \"{{auth_code}}\",\n  \"client_id\": \"{{client_id}}\",\n  \"client_secret\": \"{{client_secret}}\",\n  \"redirect_uri\": \"{{redirect_uri}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/oauth2/token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "oauth2",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Gateway Services",
+      "description": "Gateway authentication services with SallyPort integration",
+      "item": [
+        {
+          "name": "Owner Subscriber Gateway",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"authenticate\",\n  \"user_id\": \"{{user_id}}\",\n  \"service\": \"owner_subscriber\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/gateway/owner-subscriber",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "gateway",
+                "owner-subscriber"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Team Gateway",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"authenticate\",\n  \"team_id\": \"{{team_id}}\",\n  \"service\": \"team\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/gateway/team",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "gateway",
+                "team"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enterprise Gateway",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"authenticate\",\n  \"enterprise_id\": \"{{enterprise_id}}\",\n  \"service\": \"enterprise\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/gateway/enterprise",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "gateway",
+                "enterprise"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MCP (Model Context Protocol)",
+      "description": "MCP server endpoints for the 10,000 customer ecosystem",
+      "item": [
+        {
+          "name": "MCP Server Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/status",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Customer MCP Registration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"{{customer_id}}\",\n  \"mcp_config\": {\n    \"name\": \"customer-mcp-{{customer_id}}\",\n    \"endpoints\": [\"/api/v1/context\", \"/api/v1/models\"],\n    \"access_level\": \"segmented\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{mcp_base_url}}/register",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Diamond SAO Command Center",
+      "description": "Diamond SAO Command Center monitoring and control endpoints",
+      "item": [
+        {
+          "name": "Dashboard Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/diamond/dashboard",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "diamond",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "MOCOA Interface v34",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/diamond/mocoa/v34/interface",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "diamond",
+                "mocoa",
+                "v34",
+                "interface"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ElevenLabs Voice System",
+      "description": "Unified ElevenLabs voice synthesis endpoints with self-healing API key management",
+      "item": [
+        {
+          "name": "Voice Synthesis",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Hello, this is a test of the unified ElevenLabs voice synthesis system.\",\n  \"voice_id\": \"smooth\",\n  \"model_id\": \"eleven_monolingual_v1\",\n  \"voice_settings\": {\n    \"stability\": 0.5,\n    \"similarity_boost\": 0.5\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/voice/synthesize",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "voice",
+                "synthesize"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Voice Profiles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/voice/profiles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "voice",
+                "profiles"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cloud Services",
+      "description": "Google Cloud Platform integration endpoints",
+      "item": [
+        {
+          "name": "Secret Manager Fetch",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/gcp/secrets/{{secret_name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "gcp",
+                "secrets",
+                "{{secret_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cloud Run Service Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sallyport_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/gcp/cloudrun/services/{{service_name}}/status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "gcp",
+                "cloudrun",
+                "services",
+                "{{service_name}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health Checks",
+      "description": "System health and monitoring endpoints",
+      "item": [
+        {
+          "name": "System Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "API Version",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/version",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "version"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api-for-warp-drive.run.app",
+      "description": "Base URL for the AIXTIV Symphony API"
+    },
+    {
+      "key": "mcp_base_url",
+      "value": "https://mcp.asoos.2100.cool",
+      "description": "Master MCP server URL"
+    },
+    {
+      "key": "sallyport_url",
+      "value": "https://sallyport.2100.cool",
+      "description": "SallyPort security center URL"
+    },
+    {
+      "key": "sallyport_token",
+      "value": "",
+      "description": "SallyPort authentication token"
+    },
+    {
+      "key": "client_id",
+      "value": "",
+      "description": "OAuth2 client ID"
+    },
+    {
+      "key": "client_secret",
+      "value": "",
+      "description": "OAuth2 client secret"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "description": "User ID for authentication"
+    },
+    {
+      "key": "team_id",
+      "value": "",
+      "description": "Team ID for team gateway"
+    },
+    {
+      "key": "enterprise_id",
+      "value": "",
+      "description": "Enterprise ID for enterprise gateway"
+    },
+    {
+      "key": "customer_id",
+      "value": "",
+      "description": "Customer ID for MCP registration"
+    },
+    {
+      "key": "secret_name",
+      "value": "OPENAI_API_KEY",
+      "description": "Secret name in Google Secret Manager"
+    },
+    {
+      "key": "service_name",
+      "value": "integration-gateway-js",
+      "description": "Cloud Run service name"
+    }
+  ]
+}

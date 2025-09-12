@@ -2,6 +2,14 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+// Constants to avoid magic numbers
+const VALIDATION_DELAY_MS = 100;
+const RANDOM_STRING_BASE = 36;
+const RANDOM_STRING_LENGTH = 2;
+const RANDOM_STRING_EXTRA_LENGTH = 9;
+const SUCCESS_STATUS = 200;
+const INTERNAL_ERROR_STATUS = 500;
+
 // Enterprise Cache Strategy Configuration
 const CACHE_VERSION = process.env.CACHE_VERSION || '1.0.0';
 const BUILD_HASH = process.env.BUILD_HASH || 'prod';
@@ -12,12 +20,6 @@ const CACHE_CONTROL_HTML = 'public, max-age=300, must-revalidate'; // 5 minutes 
 const QUANTUM_ORCHESTRATION_VERSION = '2.4.7';
 const DR_CLAUDE_SERVICE_ACCOUNT = 'dr-claude-automationENVIRONMENT_VARIABLE_REQUIRED';
 const QUANTUM_PROTECTION_LEVEL = 'MAXIMUM';
-const ORCHESTRATION_ENDPOINTS = {
-  validation: '/api/dr-claude/validate',
-  orchestrate: '/api/dr-claude/orchestrate',
-  quantum_sync: '/api/dr-claude/quantum-sync',
-  health: '/api/dr-claude/health'
-};
 
 // Quantum State Management
 class QuantumOrchestrator {
@@ -29,35 +31,35 @@ class QuantumOrchestrator {
     this.lastSync = new Date().toISOString();
     this.validationHash = null;
   }
-  
+
   async validateQuantumState() {
     this.quantumState = 'VALIDATING';
     // Quantum validation logic would go here
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, VALIDATION_DELAY_MS));
     this.quantumState = 'VALIDATED';
     this.validationHash = this.generateValidationHash();
     return true;
   }
-  
+
   generateValidationHash() {
-    return `qv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `qv_${Date.now()}_${Math.random().toString(RANDOM_STRING_BASE).substr(RANDOM_STRING_LENGTH, RANDOM_STRING_EXTRA_LENGTH)}`;
   }
-  
+
   async orchestrateRequest(req, res, next) {
     // Dr. Claude orchestration middleware
-    req.quantumId = `qo_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    req.quantumId = `qo_${Date.now()}_${Math.random().toString(RANDOM_STRING_BASE).substr(RANDOM_STRING_LENGTH, RANDOM_STRING_EXTRA_LENGTH)}`;
     req.drClaudeValidation = this.validationHash;
     req.orchestrationTimestamp = new Date().toISOString();
-    
+
     // Set quantum protection headers
     res.set('X-Dr-Claude-Orchestration', this.version);
     res.set('X-Quantum-Protection', this.protectionLevel);
     res.set('X-Validation-Hash', this.validationHash);
     res.set('X-Service-Account', this.serviceAccount);
-    
+
     next();
   }
-  
+
   getOrchestrationStatus() {
     return {
       version: this.version,
@@ -67,7 +69,7 @@ class QuantumOrchestrator {
       last_sync: this.lastSync,
       validation_hash: this.validationHash,
       status: 'operational',
-      dr_claude_active: true
+      dr_claude_active: true,
     };
   }
 }
@@ -85,6 +87,21 @@ drClaudeOrchestrator.validateQuantumState().then(() => {
 
 // Set the port from environment variable or default to 8080 (Cloud Run default)
 const PORT = process.env.PORT || 8080;
+const BYTE_CONVERSION_FACTOR = 1024;
+const BYTES_TO_GB = BYTE_CONVERSION_FACTOR * BYTE_CONVERSION_FACTOR * BYTE_CONVERSION_FACTOR;
+const BYTES_TO_MB = BYTE_CONVERSION_FACTOR * BYTE_CONVERSION_FACTOR;
+const MS_TO_SECONDS = 1000;
+const PERCENTAGE_MULTIPLIER = 100;
+const DECIMAL_PLACES = 2;
+const JSON_INDENT = 2;
+const POWER_BASE = 2;
+const REPEAT_COUNT = 80;
+const HIGH_MEMORY_THRESHOLD = 90;
+const MINIMUM_FREE_MEMORY_GB = 1;
+const MICROSECONDS_TO_MS = 1000000;
+const CPU_MULTIPLIER = 4;
+const MAX_WORKERS = 32;
+
 
 // Apply Dr. Claude Quantum Orchestration to all requests
 app.use(drClaudeOrchestrator.orchestrateRequest.bind(drClaudeOrchestrator));
@@ -92,7 +109,7 @@ app.use(drClaudeOrchestrator.orchestrateRequest.bind(drClaudeOrchestrator));
 // Dr. Claude Orchestration API Endpoints
 app.get('/api/dr-claude/health', (req, res) => {
   res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.status(200).json(drClaudeOrchestrator.getOrchestrationStatus());
+  res.status(SUCCESS_STATUS).json(drClaudeOrchestrator.getOrchestrationStatus());
 });
 
 app.post('/api/dr-claude/validate', (req, res) => {
@@ -102,9 +119,9 @@ app.post('/api/dr-claude/validate', (req, res) => {
     timestamp: req.orchestrationTimestamp,
     status: 'validated',
     dr_claude_approval: true,
-    protection_level: QUANTUM_PROTECTION_LEVEL
+    protection_level: QUANTUM_PROTECTION_LEVEL,
   };
-  res.status(200).json(validationResult);
+  res.status(SUCCESS_STATUS).json(validationResult);
 });
 
 app.post('/api/dr-claude/orchestrate', async (req, res) => {
@@ -112,20 +129,20 @@ app.post('/api/dr-claude/orchestrate', async (req, res) => {
     const orchestrationRequest = req.body;
     const result = {
       quantum_id: req.quantumId,
-      orchestration_id: `orch_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      orchestration_id: `orch_${Date.now()}_${Math.random().toString(RANDOM_STRING_BASE).substr(RANDOM_STRING_LENGTH, RANDOM_STRING_EXTRA_LENGTH)}`,
       request_type: orchestrationRequest.type || 'general',
       status: 'orchestrated',
       dr_claude_processing: true,
       quantum_protection: QUANTUM_PROTECTION_LEVEL,
       timestamp: req.orchestrationTimestamp,
-      result: 'Request processed through Dr. Claude orchestration system'
+      result: 'Request processed through Dr. Claude orchestration system',
     };
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({
+    res.status(SUCCESS_STATUS).json(result);
+  } catch {
+    res.status(INTERNAL_ERROR_STATUS).json({
       error: 'Dr. Claude orchestration error',
       quantum_id: req.quantumId,
-      timestamp: req.orchestrationTimestamp
+      timestamp: req.orchestrationTimestamp,
     });
   }
 });
@@ -135,46 +152,48 @@ app.post('/api/dr-claude/quantum-sync', async (req, res) => {
     await drClaudeOrchestrator.validateQuantumState();
     const syncResult = {
       quantum_id: req.quantumId,
-      sync_id: `sync_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      sync_id: `sync_${Date.now()}_${Math.random().toString(RANDOM_STRING_BASE).substr(RANDOM_STRING_LENGTH, RANDOM_STRING_EXTRA_LENGTH)}`,
       quantum_state: drClaudeOrchestrator.quantumState,
       validation_hash: drClaudeOrchestrator.validationHash,
       sync_timestamp: new Date().toISOString(),
       status: 'synchronized',
-      dr_claude_validation: true
+      dr_claude_validation: true,
     };
     drClaudeOrchestrator.lastSync = syncResult.sync_timestamp;
-    res.status(200).json(syncResult);
-  } catch (error) {
-    res.status(500).json({
+    res.status(SUCCESS_STATUS).json(syncResult);
+  } catch {
+    res.status(INTERNAL_ERROR_STATUS).json({
       error: 'Quantum synchronization failed',
       quantum_id: req.quantumId,
-      timestamp: req.orchestrationTimestamp
+      timestamp: req.orchestrationTimestamp,
     });
   }
 });
 
 // Enterprise Static File Serving with Production Cache Control
-app.use(express.static(__dirname, {
-  etag: true,
-  lastModified: true,
-  maxAge: 0, // Let setHeaders handle cache control
-  setHeaders: (res, filePath, stat) => {
-    if (filePath.endsWith('.html')) {
-      res.set('Content-Type', 'text/html; charset=utf-8');
-      res.set('Cache-Control', CACHE_CONTROL_HTML);
-      res.set('X-Content-Version', CACHE_VERSION);
-      res.set('X-Build-Hash', BUILD_HASH);
-    } else if (filePath.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
-      res.set('Cache-Control', CACHE_CONTROL_STATIC);
-      res.set('X-Content-Version', CACHE_VERSION);
-    }
-    
-    // Security headers for production
-    res.set('X-Frame-Options', 'DENY');
-    res.set('X-Content-Type-Options', 'nosniff');
-    res.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  }
-}));
+app.use(
+  express.static(__dirname, {
+    etag: true,
+    lastModified: true,
+    maxAge: 0, // Let setHeaders handle cache control
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html')) {
+        res.set('Content-Type', 'text/html; charset=utf-8');
+        res.set('Cache-Control', CACHE_CONTROL_HTML);
+        res.set('X-Content-Version', CACHE_VERSION);
+        res.set('X-Build-Hash', BUILD_HASH);
+      } else if (filePath.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+        res.set('Cache-Control', CACHE_CONTROL_STATIC);
+        res.set('X-Content-Version', CACHE_VERSION);
+      }
+
+      // Security headers for production
+      res.set('X-Frame-Options', 'DENY');
+      res.set('X-Content-Type-Options', 'nosniff');
+      res.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    },
+  })
+);
 
 // Dynamic SaaS Interface Generator - Works with SallyPort Authentication
 app.use(express.json());
@@ -187,10 +206,10 @@ app.use(express.urlencoded({ extended: true }));
 app.post('/api/generate-interface', async (req, res) => {
   try {
     const { email, userProfile, companyInfo } = req.body;
-    
+
     // Generate unique interface based on user profile
     const uniqueInterface = {
-      interfaceId: `ui_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      interfaceId: `ui_${Date.now()}_${Math.random().toString(RANDOM_STRING_BASE).substr(RANDOM_STRING_LENGTH, RANDOM_STRING_EXTRA_LENGTH)}`,
       email: email,
       displayName: userProfile.displayName,
       title: userProfile.title,
@@ -199,22 +218,22 @@ app.post('/api/generate-interface', async (req, res) => {
       customizations: {
         theme: userProfile.theme || 'dark',
         layout: userProfile.layout || 'standard',
-        features: userProfile.features || ['basic']
+        features: userProfile.features || ['basic'],
       },
-      generated: new Date().toISOString()
+      generated: new Date().toISOString(),
     };
-    
-    res.status(200).json(uniqueInterface);
-  } catch (error) {
-    res.status(500).json({ error: 'Interface generation failed' });
+
+    res.status(SUCCESS_STATUS).json(uniqueInterface);
+  } catch {
+    res.status(INTERNAL_ERROR_STATUS).json({ error: 'Interface generation failed' });
   }
 });
 
 // MCP Auto-Provisioning (Fixed - No Redirect)
 app.post('/api/mcp/auto-provision', async (req, res) => {
   try {
-    const { email, authData } = req.body;
-    
+    const { email } = req.body;
+
     // Instead of redirecting, return interface customization data
     const provisioningResult = {
       provisioned: true,
@@ -223,16 +242,16 @@ app.post('/api/mcp/auto-provision', async (req, res) => {
         title: 'Company Owner',
         role: 'owner',
         companyMcp: `mcp.${email.split('@')[1].split('.')[0]}.2100.cool`,
-        features: ['owner_dashboard', 'company_operations']
+        features: ['owner_dashboard', 'company_operations'],
       },
       // NO REDIRECT URLs - Keep user on same interface
       stayOnInterface: true,
-      message: 'Company MCP interface configured'
+      message: 'Company MCP interface configured',
     };
-    
-    res.status(200).json(provisioningResult);
-  } catch (error) {
-    res.status(500).json({ error: 'MCP provisioning failed' });
+
+    res.status(SUCCESS_STATUS).json(provisioningResult);
+  } catch {
+    res.status(INTERNAL_ERROR_STATUS).json({ error: 'MCP provisioning failed' });
   }
 });
 
@@ -243,7 +262,7 @@ app.get('*', (req, res) => {
   res.set('X-Content-Version', CACHE_VERSION);
   res.set('X-Build-Hash', BUILD_HASH);
   res.set('X-Powered-By-Victory36', 'true');
-  
+
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -251,8 +270,8 @@ app.get('*', (req, res) => {
 app.get('/health', (req, res) => {
   res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
   const orchestrationStatus = drClaudeOrchestrator.getOrchestrationStatus();
-  res.status(200).json({ 
-    status: 'healthy', 
+  res.status(SUCCESS_STATUS).json({
+    status: 'healthy',
     service: 'mocoa-interface',
     version: CACHE_VERSION,
     build_hash: BUILD_HASH,
@@ -265,8 +284,8 @@ app.get('/health', (req, res) => {
       protection_level: orchestrationStatus.protection_level,
       dr_claude_active: orchestrationStatus.dr_claude_active,
       last_sync: orchestrationStatus.last_sync,
-      validation_hash: orchestrationStatus.validation_hash
-    }
+      validation_hash: orchestrationStatus.validation_hash,
+    },
   });
 });
 

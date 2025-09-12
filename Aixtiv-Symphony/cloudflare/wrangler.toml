@@ -1,0 +1,163 @@
+name = "aixtiv-symphony-quantum-hybrid"
+main = "src/index.js"
+compatibility_date = "2024-09-11"
+compatibility_flags = ["nodejs_compat"]
+
+# 🌟 Production Environment
+[env.production]
+name = "aixtiv-symphony-quantum-prod"
+route = "api.aixtiv.2100.cool/*"
+
+# 🧪 Staging Environment
+[env.staging]
+name = "aixtiv-symphony-quantum-staging" 
+route = "staging-api.aixtiv.2100.cool/*"
+
+# 🗄️ CLOUDFLARE D1 DATABASES (5-DB Hybrid - Database 1)
+[[d1_databases]]
+binding = "EDGE_SESSIONS"
+database_name = "edge-sessions-prod"
+database_id = "edge-sessions-quantum-001"
+
+[[d1_databases]]
+binding = "API_CACHE"
+database_name = "api-cache-prod"
+database_id = "api-cache-quantum-002"
+
+[[d1_databases]]
+binding = "REAL_TIME_METRICS"
+database_name = "real-time-metrics-prod"
+database_id = "metrics-quantum-003"
+
+# ☁️ CLOUDFLARE R2 STORAGE (5-DB Hybrid - Database 5)
+[[r2_buckets]]
+binding = "AGENT_ASSETS"
+bucket_name = "agent-assets-prod"
+preview_bucket_name = "agent-assets-staging"
+
+[[r2_buckets]]
+binding = "INTERACTION_MEDIA"
+bucket_name = "interaction-media"
+preview_bucket_name = "interaction-media-staging"
+
+[[r2_buckets]]
+binding = "DATABASE_BACKUPS"
+bucket_name = "database-backups"
+
+[[r2_buckets]]
+binding = "ML_MODELS"
+bucket_name = "ml-models"
+
+# 🔑 KV Storage for High-Speed Cache
+[[kv_namespaces]]
+binding = "QUANTUM_CACHE"
+id = "quantum_cache_hybrid_namespace"
+preview_id = "quantum_cache_preview"
+
+[[kv_namespaces]]
+binding = "SESSION_STORE"
+id = "session_store_hybrid_namespace" 
+preview_id = "session_store_preview"
+
+# 📊 Analytics Engine for 220M+ Agent Metrics
+[[analytics_engine_datasets]]
+binding = "QUANTUM_ANALYTICS"
+
+# 🚀 Durable Objects for Real-time 5-DB Coordination
+[[durable_objects.bindings]]
+name = "QUANTUM_COORDINATOR"
+class_name = "QuantumCoordinator"
+
+[[durable_objects.bindings]]
+name = "REALTIME_SYNC"
+class_name = "RealtimeSync"
+
+[[durable_objects.bindings]]
+name = "SECURE_BRIDGE_MANAGER"
+class_name = "SecureBridgeManager"
+
+# 🔒 Environment Variables
+[vars]
+# Core Configuration
+ENVIRONMENT = "production"
+PERFORMANCE_MODE = "quantum"
+SECURITY_POSTURE = "stealth-enterprise"
+OAUTH2_PROVIDER = "google-cloud-oauth2"
+
+# GCP Integration
+GCP_PROJECT_ID = "api-for-warp-drive"
+GCP_REGION = "us-west1"
+
+# 5-DB Hybrid Configuration
+DB_HYBRID_MODE = "5-database-secure-bridge"
+AGENTS_SCALE = "220654000"
+
+# Bridge Services
+DIDC_PINECONE_BRIDGE = "https://didc-pinecone-bridge-yutylytffa-uw.a.run.app"
+WFA_MOCOSWARM_BRIDGE = "https://wfa-mocoswarm-bridge-yutylytffa-uw.a.run.app"
+MOCOA_QUANTUM_MIDDLEWARE = "https://mocoa-quantum-middleware-yutylytffa-uw.a.run.app"
+QRIX_QUANTUM = "https://qrix-quantum-yutylytffa-uw.a.run.app"
+INTEGRATION_GATEWAY_MCP = "https://integration-gateway-mcp-uswest1-fixed-yutylytffa-uw.a.run.app"
+
+# MongoDB Atlas (Database 2)
+MONGODB_CLUSTER = "M200-dedicated"
+MONGODB_REGIONS = "us-west-2,eu-west-1,ap-southeast-1"
+
+# Pinecone (Database 3)
+PINECONE_ENVIRONMENT = "us-west1-gcp"
+PINECONE_POD_TYPE = "p2.x4"
+PINECONE_REPLICAS = "8"
+
+# Firestore (Database 4)
+FIRESTORE_PROJECT = "api-for-warp-drive"
+FIRESTORE_LOCATION = "us-west1"
+
+# Performance Targets
+TARGET_QUERY_LATENCY = "100"  # milliseconds
+TARGET_VECTOR_LATENCY = "50"  # milliseconds
+TARGET_CACHE_HIT_RATIO = "95" # percentage
+
+# 📡 Service Bindings to GCP Backend
+[[services]]
+binding = "GCP_BACKEND"
+service = "aixtiv-symphony-production"
+
+# 🔐 Secrets Configuration
+# Use: wrangler secret put SECRET_NAME
+# Required secrets:
+# - OPENAI_API_KEY: OpenAI API key for embeddings
+# - ELEVENLABS_API_KEY: ElevenLabs voice synthesis
+# - MONGODB_ATLAS_URI: MongoDB Atlas connection string
+# - OAUTH2_CLIENT_SECRET: OAuth2 client secret
+# - PINECONE_API_KEY: Pinecone vector database API key
+# - GCP_SA_KEY: GCP service account key for backend calls
+# - SALLYPORT_SECRET: SallyPort security verification key
+
+# ⚡ Workers AI Integration
+[ai]
+binding = "AI"
+
+# 📸 Cloudflare Images for Agent Assets
+[images]
+binding = "IMAGES"
+
+# 📧 Email Workers for Notifications
+[send_email]
+binding = "EMAIL"
+
+# 🌍 Global Configuration for 220M+ Agents
+[placement]
+mode = "smart"
+
+# Resource Limits (Optimized for Quantum Performance)
+[limits]
+cpu_ms = 30000
+memory_mb = 128
+
+# 🔄 Build Configuration
+[build]
+command = "npm run build"
+
+# 📦 Webpack Configuration for 5-DB Integration
+[webpack_config]
+entry = "./src/5-db-hybrid-worker.js"

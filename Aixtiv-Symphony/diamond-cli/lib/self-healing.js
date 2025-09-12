@@ -17,6 +17,47 @@ class SelfHealing {
     this.healingHistory = [];
     this.monitoringActive = false;
     this.healingStrategies = this.initializeHealingStrategies();
+    this.exclusionConfig = this.loadServiceExclusions();
+    this.circuitBreaker = {
+      failedServices: new Map(),
+      cooldownServices: new Set()
+    };
+  }
+
+  loadServiceExclusions() {
+    try {
+      const configPath = path.join(__dirname, '../config/service-exclusions.json');
+      if (fs.existsSync(configPath)) {
+        const configData = fs.readFileSync(configPath, 'utf8');
+        return JSON.parse(configData).diamond_cli_service_exclusions;
+      }
+    } catch (error) {
+      this.cli?.log?.warn?.(`Failed to load service exclusions: ${error.message}`);
+    }
+    return null;
+  }
+
+  isServiceExcluded(serviceName) {
+    if (!this.exclusionConfig) return false;
+    
+    const { exclusion_categories } = this.exclusionConfig;
+    
+    // Check all exclusion categories
+    for (const category of Object.values(exclusion_categories)) {
+      if (category.services && category.services.includes(serviceName)) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
+
+  isServiceInCooldown(serviceName) {
+    return this.circuitBreaker.cooldownServices.has(serviceName);
+  }
+
+  shouldSkipHealing(serviceName) {
+    return this.isServiceExcluded(serviceName) || this.isServiceInCooldown(serviceName);
   }
 
   initializeHealingStrategies() {
@@ -129,19 +170,24 @@ class SelfHealing {
       return;
     }
 
-    this.cli.log.info('👁️  Starting self-monitoring system...');
+    this.cli.log.info('👁️  Starting intelligent self-monitoring system...');
     this.monitoringActive = true;
 
-    // Set up periodic health checks
+    // Get monitoring interval from config or default to 5 minutes
+    const monitoringIntervalMs = this.exclusionConfig?.circuit_breaker_config?.health_check_timeout_seconds 
+      ? this.exclusionConfig.circuit_breaker_config.health_check_timeout_seconds * 1000 * 10  // 10x timeout for monitoring
+      : 300000; // Default 5 minutes
+
+    // Set up periodic health checks with circuit breaker awareness
     this.monitoringInterval = setInterval(async () => {
       try {
-        await this.performHealthCheck();
+        await this.performIntelligentHealthCheck();
       } catch (error) {
         this.cli.log.warn(`Health check warning: ${error.message}`);
       }
-    }, 30000); // Check every 30 seconds
+    }, monitoringIntervalMs);
 
-    this.cli.log.success('✅ Self-monitoring system started');
+    this.cli.log.success(`✅ Intelligent monitoring started (${monitoringIntervalMs/1000}s intervals)`);
   }
 
   async stopMonitoring() {
@@ -149,6 +195,38 @@ class SelfHealing {
       clearInterval(this.monitoringInterval);
       this.monitoringActive = false;
       this.cli.log.info('🛑 Self-monitoring system stopped');
+    }
+  }
+
+  async performIntelligentHealthCheck() {
+    const issues = await this.detectIssues();
+    
+    if (issues.length === 0) {
+      this.cli.log.info('😎 System healthy - all monitored services operational');
+      return;
+    }
+
+    // Only show summary, don't auto-heal during monitoring
+    const criticalCount = issues.filter(i => i.severity === 'high').length;
+    const mediumCount = issues.filter(i => i.severity === 'medium').length;
+    
+    this.cli.log.warn(`⚠️  System status: ${criticalCount} critical, ${mediumCount} medium issues detected`);
+    
+    // Update cooldown tracking
+    this.updateServiceCooldowns();
+  }
+
+  updateServiceCooldowns() {
+    const cooldownMinutes = this.exclusionConfig?.circuit_breaker_config?.healing_cooldown_minutes || 60;
+    const cooldownMs = cooldownMinutes * 60 * 1000;
+    
+    // Remove expired cooldowns
+    for (const [service, timestamp] of this.circuitBreaker.failedServices.entries()) {
+      if (Date.now() - timestamp > cooldownMs) {
+        this.circuitBreaker.failedServices.delete(service);
+        this.circuitBreaker.cooldownServices.delete(service);
+        this.cli.log.info(`✨ Service ${service} cooldown expired - available for healing`);
+      }
     }
   }
 
@@ -181,12 +259,24 @@ class SelfHealing {
       const dbIssues = await this.checkDatabaseConnections();
       issues.push(...dbIssues);
 
-      this.cli.log.info(`🔍 Issue scan completed: ${issues.length} issues found`);
+      // Filter out excluded services
+      const filteredIssues = issues.filter(issue => {
+        if (issue.service && this.shouldSkipHealing(issue.service)) {
+          this.cli.log.info(`🚫 Skipping excluded service: ${issue.service}`);
+          return false;
+        }
+        return true;
+      });
+
+      const excludedCount = issues.length - filteredIssues.length;
+      this.cli.log.info(`🔍 Issue scan completed: ${issues.length} total issues, ${excludedCount} excluded, ${filteredIssues.length} actionable`);
+      
+      return filteredIssues;
     } catch (error) {
       this.cli.log.error(`Issue detection failed: ${error.message}`);
     }
 
-    return issues;
+    return [];
   }
 
   async checkServiceHealth() {
