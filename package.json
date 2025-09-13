@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "description": "ASOOS 20M+ AI Agents Landing Page - Production Ready",
-  "main": "cloudflare-pages-deployment/index.html",
+  "main": "server.js",
   "scripts": {
-    "build": "echo 'Static files ready for deployment from cloudflare-pages-deployment/' && ls -la cloudflare-pages-deployment/",
-    "deploy": "wrangler deploy --config simple-wrangler.toml",
+    "build": "echo 'Building for GCP deployment' && cp current-asoos-page.html dist/index.html",
+    "deploy": "gcloud run deploy asoos-main --source . --platform managed --region us-west1 --project api-for-warp-drive",
     "test": "echo 'No tests specified' && exit 0",
     "start": "node automated-mcp-provisioner.js",
     "security": "node security-framework.js",

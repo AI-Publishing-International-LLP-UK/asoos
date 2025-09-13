@@ -4154,34 +4154,6 @@ Your automation is now active!`;
     
     // Ensure functions are globally available
     window.selectIcon = selectIcon;
-    window.togglePanel = togglePanel;
-    window.showNotification = showNotification;
-    window.activateRIX = activateRIX;
-    window.sendCopilotMessage = sendCopilotMessage;
-    window.activateVICTORY36 = activateVICTORY36;
-    window.activateSRIX = activateSRIX;
-    window.toggleScanToApprove = toggleScanToApprove;
-    window.togglePanel = togglePanel;
-    window.showNotification = showNotification;
-    window.activateRIX = activateRIX;
-    window.sendCopilotMessage = sendCopilotMessage;
-    window.activateVICTORY36 = activateVICTORY36;
-    window.activateSRIX = activateSRIX;
-    window.toggleScanToApprove = toggleScanToApprove;
-    window.togglePanel = togglePanel;
-    window.showNotification = showNotification;
-    window.activateRIX = activateRIX;
-    window.sendCopilotMessage = sendCopilotMessage;
-    window.activateVICTORY36 = activateVICTORY36;
-    window.activateSRIX = activateSRIX;
-    window.toggleScanToApprove = toggleScanToApprove;
-    window.togglePanel = togglePanel;
-    window.showNotification = showNotification;
-    window.activateRIX = activateRIX;
-    window.sendCopilotMessage = sendCopilotMessage;
-    window.activateVICTORY36 = activateVICTORY36;
-    window.activateSRIX = activateSRIX;
-    window.toggleScanToApprove = toggleScanToApprove;
     window.closePCPDisplay = closePCPDisplay;
     
     // PCP System ready - production initialization complete
@@ -6394,66 +6366,6 @@ ${planItems.join('\n')}
       }
     }
     
-    function toggleScanToApprove(button) {
-      button.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        button.style.transform = 'scale(1)';
-        showNotification('Scan to Approve activated - Processing workflow items', 'success');
-      }, 100);
-    }
-    function activateSRIX(rixType, name) {
-      // Wrapper function for activateRIX to maintain compatibility
-      return activateRIX(rixType, name);
-    }
-    function activateVICTORY36(rixType, name) {
-      // Wrapper function for Victory36 activation
-      return activateRIX(rixType, name);
-    }
-    function toggleScanToApprove(button) {
-      button.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        button.style.transform = 'scale(1)';
-        showNotification('Scan to Approve activated - Processing workflow items', 'success');
-      }, 100);
-    }
-    function activateSRIX(rixType, name) {
-      // Wrapper function for activateRIX to maintain compatibility
-      return activateRIX(rixType, name);
-    }
-    function activateVICTORY36(rixType, name) {
-      // Wrapper function for Victory36 activation
-      return activateRIX(rixType, name);
-    }
-    function toggleScanToApprove(button) {
-      button.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        button.style.transform = 'scale(1)';
-        showNotification('Scan to Approve activated - Processing workflow items', 'success');
-      }, 100);
-    }
-    function activateSRIX(rixType, name) {
-      // Wrapper function for activateRIX to maintain compatibility
-      return activateRIX(rixType, name);
-    }
-    function activateVICTORY36(rixType, name) {
-      // Wrapper function for Victory36 activation
-      return activateRIX(rixType, name);
-    }
-    function toggleScanToApprove(button) {
-      button.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        button.style.transform = 'scale(1)';
-        showNotification('Scan to Approve activated - Processing workflow items', 'success');
-      }, 100);
-    }
-    function activateSRIX(rixType, name) {
-      // Wrapper function for activateRIX to maintain compatibility
-      return activateRIX(rixType, name);
-    }
-    function activateVICTORY36(rixType, name) {
-      // Wrapper function for Victory36 activation
-      return activateRIX(rixType, name);
-    }
     // Make ALL functions globally available BEFORE DOM loads
     window.startVoiceInput = startVoiceInput;
     window.showNotification = showNotification;

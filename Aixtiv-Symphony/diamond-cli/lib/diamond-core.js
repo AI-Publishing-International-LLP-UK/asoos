@@ -34,6 +34,9 @@ class DiamondCore {
         case 'gateway':
           await this.deployGateway(action, args);
           break;
+        case 'oauth2-gateway':
+          await this.deployOAuth2Gateway(action, args);
+          break;
         default:
           this.cli.log.warn(`Unknown service type: ${service}`);
       }
@@ -164,6 +167,38 @@ class DiamondCore {
     await this.deployWithSallyPort(gatewayType, args);
   }
 
+  async deployOAuth2Gateway(provider, args) {
+    // Extract actual provider from args
+    const providerIndex = args.findIndex(arg => arg.startsWith('--provider='));
+    const actualProvider = providerIndex !== -1 ? args[providerIndex].split('=')[1] : provider;
+    
+    this.cli.log.deploy(`🔐 Deploying OAuth2 Gateway with provider: ${actualProvider}`);
+
+    // Extract PCP from args
+    const pcpIndex = args.findIndex(arg => arg === '--pcp');
+    const pcp = pcpIndex !== -1 && args[pcpIndex + 1] ? args[pcpIndex + 1] : 'PcP';
+    
+    this.cli.log.info(`👨‍💼 PCP Integration: ${pcp}`);
+    this.cli.log.info(`🌐 Provider: ${actualProvider}`);
+
+    try {
+      // Deploy OAuth2 gateway service
+      await this.deployOAuth2Service(actualProvider, pcp, args);
+      
+      // Setup OAuth2 secrets in Secret Manager
+      await this.setupOAuth2Secrets(actualProvider);
+      
+      // Deploy Cloudflare Worker if provider is cloudflare
+      if (actualProvider === 'cloudflare') {
+        await this.deployOAuth2Worker();
+      }
+
+      this.cli.log.success('✅ OAuth2 Gateway deployed successfully');
+    } catch (error) {
+      throw new Error(`OAuth2 Gateway deployment failed: ${error.message}`);
+    }
+  }
+
   async deployWithSallyPort(service, args) {
     this.cli.log.info(`🔐 Configuring SallyPort verification for ${service}...`);
 
@@ -224,6 +259,46 @@ class DiamondCore {
       this.cli.log.info(`✅ Secret ${secretName} exists`);
     } catch (error) {
       this.cli.log.warn(`⚠️  Secret ${secretName} not found. Please create it in Secret Manager.`);
+    }
+  }
+
+  async deployOAuth2Service(provider, pcp, args) {
+    this.cli.log.info(`🔐 Deploying OAuth2 service for ${provider}...`);
+    
+    // Deploy oauth2-gateway service to Cloud Run
+    const serviceName = `oauth2-gateway-${provider}`;
+    await this.deployService(serviceName, args);
+  }
+
+  async setupOAuth2Secrets(provider) {
+    this.cli.log.info(`🔑 Setting up OAuth2 secrets for ${provider}...`);
+    
+    const secrets = {
+      cloudflare: ['CLOUDFLARE_OAUTH_CLIENT_ID', 'CLOUDFLARE_OAUTH_CLIENT_SECRET'],
+      google: ['GOOGLE_OAUTH_CLIENT_ID', 'GOOGLE_OAUTH_CLIENT_SECRET'],
+      github: ['GITHUB_OAUTH_CLIENT_ID', 'GITHUB_OAUTH_CLIENT_SECRET']
+    };
+    
+    const providerSecrets = secrets[provider] || [];
+    for (const secret of providerSecrets) {
+      await this.ensureSecretExists(secret);
+    }
+  }
+
+  async deployOAuth2Worker() {
+    this.cli.log.info('⚡ Deploying OAuth2 Cloudflare Worker...');
+    
+    try {
+      // Deploy the OAuth2 middleware worker
+      const workerPath = path.join(__dirname, '..', 'workers', 'diamond-oauth2-middleware.js');
+      if (fs.existsSync(workerPath)) {
+        execSync('wrangler deploy --config wrangler-oauth2.toml', { stdio: 'inherit' });
+        this.cli.log.success('✅ OAuth2 Worker deployed');
+      } else {
+        this.cli.log.warn('⚠️  OAuth2 Worker not found, skipping...');
+      }
+    } catch (error) {
+      this.cli.log.warn(`OAuth2 Worker deployment warning: ${error.message}`);
     }
   }
 

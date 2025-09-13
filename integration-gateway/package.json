@@ -1,14 +1,13 @@
 {
-  "name": "asoos-2100-cool-landing",
+  "name": "integration-gateway-server",
   "version": "1.0.0",
-  "type": "module",
-  "description": "ASOOS 20M+ AI Agents Landing Page - Production Ready",
-  "main": "cloudflare-pages-deployment/index.html",
+  "description": "Integration Gateway Backend Server - Production Ready",
+  "main": "server.js",
   "scripts": {
-    "build": "echo 'Static files ready for deployment from cloudflare-pages-deployment/' && ls -la cloudflare-pages-deployment/",
-    "deploy": "wrangler deploy --config simple-wrangler.toml",
+    "build": "echo 'Building integration gateway server'",
+    "deploy": "gcloud run deploy integration-gateway-server --source . --platform managed --region us-west1 --project api-for-warp-drive",
     "test": "echo 'No tests specified' && exit 0",
-    "start": "node automated-mcp-provisioner.js",
+    "start": "node server.js",
     "security": "node security-framework.js",
     "local-deploy": "./scripts/deploy-local.sh"
   },
