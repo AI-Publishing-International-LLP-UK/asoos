@@ -7,9 +7,11 @@
         "validation": "strict"
       },
       "processing": {
-        "engine": "openai-tts",
+        "engine": "elevenlabs",
         "profile": "dana",
-        "optimization": "real-time"
+        "optimization": "real-time",
+        "daily_transport": true,
+        "pipecat_framework": true
       },
       "output": {
         "format": "high-quality-audio",
