@@ -2,9 +2,15 @@
   "name": "aipublishinginternationalllp-1757950488388",
   "version": "1.0.0",
   "description": "Branded interface for AI Publishing International LLP",
-  "main": "index.html",
+  "main": "server.js",
   "company": "AI Publishing International LLP",
   "domain": "aipub.2100.cool",
   "buildTime": "2025-09-15T15:34:48.388Z",
-  "crx01Version": "1.0.0-crx01-enterprise"
+  "crx01Version": "1.0.0-crx01-enterprise",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0"
+  }
 }
