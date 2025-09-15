@@ -1,0 +1,11 @@
+{
+  "cloudRun": {
+    "service": "AI Publishing International LLP-interface"
+  },
+  "cdn": {
+    "origin": "aipub.2100.cool"
+  },
+  "monitoring": {
+    "alerts": true
+  }
+}

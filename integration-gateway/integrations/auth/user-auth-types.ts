@@ -15,7 +15,9 @@ export enum AuthProvider {
   OUTLOOK = 'outlook',
   LINKEDIN = 'linkedin',
   EMAIL_PASSWORD = 'email_password',
-  CLOUDFLARE = 'cloudflare'
+  CLOUDFLARE = 'cloudflare',
+  WHATSAPP = 'whatsapp',
+  WHATSAPP_BUSINESS = 'whatsapp_business'
 }
 
 // User interface

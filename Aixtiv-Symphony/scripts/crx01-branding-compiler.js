@@ -693,34 +693,121 @@ class CRX01BrandingCompiler {
     }
     
     /**
-     * Deploy branded interface to production
+     * Deploy branded interface to production - ACTUAL IMPLEMENTATION
      */
     async deployBrandedInterface(deploymentPackage) {
         this.log.info(`Deploying ${deploymentPackage.company} branded interface...`);
         
         try {
-            // 1. Deploy to Cloud Run
-            await this.deployToCloudRun(deploymentPackage);
+            // 1. Write compiled files to disk
+            await this.writeCompiledFiles(deploymentPackage);
             
-            // 2. Configure CDN
+            // 2. Deploy to Cloud Run (if domain provided)
+            if (deploymentPackage.domain) {
+                await this.deployToCloudRun(deploymentPackage);
+            }
+            
+            // 3. Configure CDN
             await this.configureCDN(deploymentPackage);
             
-            // 3. Setup monitoring
+            // 4. Setup monitoring
             await this.setupMonitoring(deploymentPackage);
             
-            // 4. Update DNS
+            // 5. Update DNS
             await this.updateDNS(deploymentPackage);
             
             this.log.success(`${deploymentPackage.company} interface deployed successfully`);
             return {
                 success: true,
-                url: `https://${deploymentPackage.domain}`,
+                url: deploymentPackage.domain ? `https://${deploymentPackage.domain}` : 'file-system-only',
                 deploymentId: deploymentPackage.id,
-                deployTime: new Date().toISOString()
+                deployTime: new Date().toISOString(),
+                compiledPath: `./compiled-interfaces/${deploymentPackage.id}`
             };
             
         } catch (error) {
             this.log.error(`Deployment failed: ${error.message}`);
+            throw error;
+        }
+    }
+    
+    /**
+     * Write compiled files to disk - THE ACTUAL COMPILATION
+     */
+    async writeCompiledFiles(deploymentPackage) {
+        const outputDir = `./compiled-interfaces/${deploymentPackage.id}`;
+        
+        try {
+            // Create output directory
+            await fs.mkdir(outputDir, { recursive: true });
+            
+            // Write main HTML file
+            await fs.writeFile(
+                path.join(outputDir, 'index.html'),
+                deploymentPackage.template,
+                'utf8'
+            );
+            
+            // Write package manifest
+            await fs.writeFile(
+                path.join(outputDir, 'package.json'),
+                JSON.stringify({
+                    name: deploymentPackage.id,
+                    version: '1.0.0',
+                    description: `Branded interface for ${deploymentPackage.company}`,
+                    main: 'index.html',
+                    company: deploymentPackage.company,
+                    domain: deploymentPackage.domain,
+                    buildTime: deploymentPackage.config.buildTime,
+                    crx01Version: deploymentPackage.config.version
+                }, null, 2),
+                'utf8'
+            );
+            
+            // Write deployment config
+            await fs.writeFile(
+                path.join(outputDir, 'deployment.json'),
+                JSON.stringify(deploymentPackage.deployment, null, 2),
+                'utf8'
+            );
+            
+            // Write Dockerfile for Cloud Run deployment
+            if (deploymentPackage.type === 'MCP_GATEWAY') {
+                await fs.writeFile(
+                    path.join(outputDir, 'Dockerfile'),
+                    this.generateDockerfile(deploymentPackage),
+                    'utf8'
+                );
+                
+                // Write server.js for MCP gateway
+                await fs.writeFile(
+                    path.join(outputDir, 'server.js'),
+                    this.generateMCPServer(deploymentPackage),
+                    'utf8'
+                );
+            }
+            
+            // Write assets
+            if (deploymentPackage.assets) {
+                const assetsDir = path.join(outputDir, 'assets');
+                await fs.mkdir(assetsDir, { recursive: true });
+                
+                for (const [assetName, assetData] of Object.entries(deploymentPackage.assets)) {
+                    if (typeof assetData === 'string') {
+                        await fs.writeFile(
+                            path.join(assetsDir, `${assetName}.json`),
+                            JSON.stringify(assetData, null, 2),
+                            'utf8'
+                        );
+                    }
+                }
+            }
+            
+            this.log.success(`Files written to: ${outputDir}`);
+            return outputDir;
+            
+        } catch (error) {
+            this.log.error(`File writing failed: ${error.message}`);
             throw error;
         }
     }
@@ -993,6 +1080,125 @@ class CRX01BrandingCompiler {
         }
         
         return baseCapabilities;
+    }
+    
+    /**
+     * Generate Dockerfile for deployment
+     */
+    generateDockerfile(deploymentPackage) {
+        return `FROM node:20-slim
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+RUN npm install --production
+
+# Copy application files
+COPY . .
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \\
+  CMD curl -f http://localhost:8080/health || exit 1
+
+# Start the application
+CMD ["node", "server.js"]
+`;
+    }
+    
+    /**
+     * Generate MCP Server for gateway
+     */
+    generateMCPServer(deploymentPackage) {
+        const config = this.mcpBrandConfigurations.get(deploymentPackage.domain);
+        
+        return `const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+// MCP Configuration
+const MCP_CONFIG = {
+  name: "${config.name}",
+  domain: "${config.domain}",
+  type: "${config.branding.brandVoice.personality}",
+  capabilities: ${JSON.stringify(this.getMCPCapabilities(config))}
+};
+
+// Serve static files
+app.use(express.static('.'));
+app.use(express.json());
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy', mcp: MCP_CONFIG.name, timestamp: new Date().toISOString() });
+});
+
+// MCP Endpoints
+app.get('/mcp/capabilities', (req, res) => {
+  res.json({
+    capabilities: MCP_CONFIG.capabilities,
+    version: '1.0.0',
+    name: MCP_CONFIG.name
+  });
+});
+
+app.get('/mcp/tools', (req, res) => {
+  res.json({
+    tools: [
+      {
+        name: 'query',
+        description: 'Query the MCP gateway',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            query: { type: 'string' }
+          }
+        }
+      }
+    ]
+  });
+});
+
+app.get('/mcp/resources', (req, res) => {
+  res.json({
+    resources: [
+      {
+        uri: \`mcp://\${MCP_CONFIG.domain}/gateway\`,
+        name: 'MCP Gateway',
+        description: \`\${MCP_CONFIG.name} Gateway Interface\`
+      }
+    ]
+  });
+});
+
+app.get('/mcp/prompts', (req, res) => {
+  res.json({
+    prompts: [
+      {
+        name: 'gateway-intro',
+        description: \`Introduction to \${MCP_CONFIG.name}\`,
+        arguments: []
+      }
+    ]
+  });
+});
+
+// Serve main interface
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(\`🌐 \${MCP_CONFIG.name} running on port \${PORT}\`);
+  console.log(\`🎯 Type: \${MCP_CONFIG.type}\`);
+  console.log(\`🔗 Domain: \${MCP_CONFIG.domain}\`);
+});
+`;
     }
     
     generateMCPFaviconData(mcpConfig) {
