@@ -77,22 +77,22 @@
     },
     "aipub": {
       "domain": "mcp.aipub.2100.cool",
-      "instanceId": "aipub-mfg0ptvq-r6cgbkkk",
-      "createdAt": "2025-09-11T23:06:49.094Z",
+      "instanceId": "aipub-mf2626gq-3d61702d",
+      "createdAt": "2025-09-02T06:27:59.967Z",
       "status": "active",
       "personalConfig": {
-        "companyName": "AI Publishing International LLP",
-        "instanceId": "aipub-mfg0ptvq-r6cgbkkk",
-        "theme": "publishing",
+        "companyName": "aipub",
+        "instanceId": "aipub-mf2626gq-3d61702d",
+        "theme": "diamond",
         "branding": {
-          "primaryColor": "#1E40AF",
+          "primaryColor": "#B9F2FF",
           "logo": null,
-          "companyTagline": "AI-Powered Publishing & Content Creation Platform"
+          "companyTagline": "AI Publishing International LLP - Employee & Member System"
         },
         "aiCopilots": [
-          "CONTENT_CREATOR",
-          "RESEARCH_ANALYST",
-          "IP_RIGHTS_MANAGER"
+          "DR_LUCY",
+          "DR_CLAUDE",
+          "VICTORY36"
         ],
         "integrationLevel": "quantum",
         "features": {
@@ -101,14 +101,10 @@
           "automation": true,
           "apiAccess": true,
           "zapierIntegration": true,
-          "swarmIntelligence": true,
-          "universalServiceAuth": true,
-          "cookieBasedAuth": true,
-          "directServiceIntegration": true,
-          "sallyPortOAuth2": true
+          "swarmIntelligence": true
         },
         "sallyPortConfig": {
-          "welcomeMessage": "Welcome to AI Publishing International LLP's AI Command Center",
+          "welcomeMessage": "Welcome to aipub's AI Command Center",
           "quickActions": [
             {
               "action": "dashboard",
@@ -136,16 +132,6 @@
               "icon": "🔗"
             },
             {
-              "action": "universal_services",
-              "label": "Universal Services (8,500+)",
-              "icon": "🌐"
-            },
-            {
-              "action": "service_discovery",
-              "label": "Service Discovery",
-              "icon": "🔍"
-            },
-            {
               "action": "swarm_intelligence",
               "label": "Swarm Intelligence",
               "icon": "🧠"
@@ -154,97 +140,61 @@
               "action": "quantum_ops",
               "label": "Quantum Operations",
               "icon": "⚡"
-            },
-            {
-              "action": "content_creation",
-              "label": "Create Content",
-              "icon": "✍️"
-            },
-            {
-              "action": "research_pipeline",
-              "label": "Research & Fact-Check",
-              "icon": "🔍"
-            },
-            {
-              "action": "ip_rights",
-              "label": "IP Rights & NFT",
-              "icon": "🏷️"
-            },
-            {
-              "action": "social_distribution",
-              "label": "Social Distribution",
-              "icon": "📢"
             }
           ],
           "customWorkflows": [
-            "Symphony System Orchestration",
-            "Multi-System Coordination",
-            "Super Administrative Controls",
-            "AI Trinity Harmony Management",
-            "Infrastructure Symphony Conduct",
-            "Universal Service Authentication (8,500+ APIs)",
-            "Direct Service Integration (Bypass Zapier)",
-            "Cookie-Based Multi-Tier Security",
-            "SallyPort OAuth2 Orchestration",
-            "WFA Swarm Universal Deployment",
-            "Automated Content Creation Pipeline",
-            "Research & Editorial Review Process",
-            "IP Rights & Originality Assessment",
-            "NFT Minting & Accreditation System",
-            "Multi-Platform Social Distribution"
+            "Employee Onboarding",
+            "Member Portal Access",
+            "Career Development Tracking",
+            "AI Trinity Integration",
+            "Diamond SAO Operations"
           ]
         }
       },
       "demoConfig": {
-        "industry": "publishing-media",
-        "scenario": "publishing-media",
+        "industry": "technology",
+        "scenario": "technology",
         "sectorSpecialization": {
-          "hrFocus": "Content Creation & Publishing Excellence",
+          "hrFocus": "Tech Talent Development & Innovation Leadership",
           "careerPaths": [
-            "Content Creator Track",
-            "Editorial Leadership",
-            "Research Specialist",
-            "Publishing Technology",
-            "IP Rights Management"
+            "Software Engineer Track",
+            "Product Management",
+            "DevOps/SRE",
+            "Data Science",
+            "Technical Leadership"
           ],
-          "dreamCommanderFocus": "Content quality metrics, research accuracy, publishing velocity",
+          "dreamCommanderFocus": "Code quality metrics, sprint performance, technical skill development",
           "specializedTools": [
-            "Content Creation Suite",
-            "Plagiarism Detection",
-            "Research Database Access",
-            "IP Rights Tracking",
-            "NFT Minting System",
-            "Social Distribution Hub"
+            "Code Review Analytics",
+            "Sprint Velocity Tracking",
+            "Technical Debt Monitoring",
+            "Innovation Pipeline"
           ],
           "complianceRequirements": [
-            "Copyright Law",
-            "Content Licensing",
-            "DMCA Compliance",
-            "Publishing Standards"
+            "Data Privacy (GDPR/CCPA)",
+            "Security Standards",
+            "Open Source Compliance"
           ],
           "aiCopilots": [
-            "CONTENT_CREATOR",
-            "RESEARCH_ANALYST",
-            "IP_RIGHTS_MANAGER",
-            "EDITORIAL_REVIEWER",
-            "SOCIAL_DISTRIBUTOR"
+            "CODE_COMMANDER",
+            "PRODUCT_STRATEGIST",
+            "DEVOPS_ORCHESTRATOR"
           ],
           "industryMetrics": [
-            "Content Quality Score",
-            "Research Accuracy Rate",
-            "Publishing Velocity",
-            "Originality Percentage",
-            "Social Engagement Rate"
+            "Code Quality Score",
+            "Deployment Frequency",
+            "MTTR",
+            "Innovation Index"
           ],
           "careerAdvancement": {
-            "entryLevel": "Content Assistant → Writer → Senior Writer",
-            "midLevel": "Content Lead → Editorial Manager → Publishing Director",
-            "senior": "Editorial Director → VP Content → Chief Content Officer"
+            "entryLevel": "Junior Developer → Software Engineer → Senior Engineer",
+            "midLevel": "Technical Lead → Staff Engineer → Principal Engineer",
+            "senior": "Engineering Manager → Director → VP Engineering"
           }
         },
         "demoScripts": {
-          "welcome": "Welcome to asoos's AI-powered operations center",
-          "overview": "This demo showcases how AI can transform your professional-services operations",
+          "welcome": "Welcome to aipub's AI-powered operations center",
+          "overview": "This demo showcases how AI can transform your technology operations",
           "aiIntro": "Meet your AI copilots: DR_LUCY, DR_CLAUDE, VICTORY36",
           "features": "Explore dashboard, analytics, automation, and integration capabilities",
           "conclusion": "Ready to get started with your personalized AI operations?"
@@ -262,55 +212,56 @@
             "Quantum Operations"
           ],
           "duration": "5-8 minutes",
-          "sectorFocus": "General HR & Professional Development"
+          "sectorFocus": "Tech Talent Development & Innovation Leadership"
         },
         "aiDemonstrations": {
           "drLucy": {
-            "scenario": "asoos General HR & Professional Development analytics and insights",
+            "scenario": "aipub Tech Talent Development & Innovation Leadership analytics and insights",
             "duration": "2 minutes",
-            "focus": "Performance optimization, skill development, career progression"
+            "focus": "Code quality metrics, sprint performance, technical skill development"
           },
           "drClaude": {
-            "scenario": "Conversational AI for asoos professional-services operations",
+            "scenario": "Conversational AI for aipub technology operations",
             "duration": "3 minutes",
             "careerGuidance": [
-              "Individual Contributor",
-              "Team Leadership",
-              "Management Track",
-              "Executive Leadership"
+              "Software Engineer Track",
+              "Product Management",
+              "DevOps/SRE",
+              "Data Science",
+              "Technical Leadership"
             ]
           },
           "victory36": {
-            "scenario": "Predictive analytics for asoos career progression",
+            "scenario": "Predictive analytics for aipub career progression",
             "duration": "2 minutes",
             "metrics": [
-              "Employee Satisfaction",
-              "Performance Score",
-              "Retention Rate",
-              "Skill Development"
+              "Code Quality Score",
+              "Deployment Frequency",
+              "MTTR",
+              "Innovation Index"
             ]
           },
           "dreamCommander": {
-            "scenario": "Dream Commander career advancement tracking for professional-services",
+            "scenario": "Dream Commander career advancement tracking for technology",
             "duration": "4 minutes",
             "careerPaths": {
-              "entryLevel": "Associate → Senior Associate → Lead",
-              "midLevel": "Manager → Senior Manager → Director",
-              "senior": "Senior Director → VP → C-Suite"
+              "entryLevel": "Junior Developer → Software Engineer → Senior Engineer",
+              "midLevel": "Technical Lead → Staff Engineer → Principal Engineer",
+              "senior": "Engineering Manager → Director → VP Engineering"
             },
-            "feedbackLoop": "Performance optimization, skill development, career progression"
+            "feedbackLoop": "Code quality metrics, sprint performance, technical skill development"
           }
         },
         "sampleData": {
-          "company": "asoos",
-          "industry": "professional-services",
+          "company": "aipub",
+          "industry": "technology",
           "metrics": {
-            "users": 7173,
-            "transactions": 34635,
-            "efficiency": 93
+            "users": 8371,
+            "transactions": 43601,
+            "efficiency": 86
           },
           "aiInsights": [
-            "asoos shows 23% improvement in operational efficiency",
+            "aipub shows 23% improvement in operational efficiency",
             "Recommended automation opportunities identified",
             "Customer satisfaction increased by 18% with AI integration"
           ]
@@ -318,36 +269,37 @@
         "careerDevelopment": {
           "enabled": true,
           "paths": [
-            "Individual Contributor",
-            "Team Leadership",
-            "Management Track",
-            "Executive Leadership"
+            "Software Engineer Track",
+            "Product Management",
+            "DevOps/SRE",
+            "Data Science",
+            "Technical Leadership"
           ],
           "advancement": {
-            "entryLevel": "Associate → Senior Associate → Lead",
-            "midLevel": "Manager → Senior Manager → Director",
-            "senior": "Senior Director → VP → C-Suite"
+            "entryLevel": "Junior Developer → Software Engineer → Senior Engineer",
+            "midLevel": "Technical Lead → Staff Engineer → Principal Engineer",
+            "senior": "Engineering Manager → Director → VP Engineering"
           },
           "dreamCommanderIntegration": true
         },
         "specializedTools": [
-          "Performance Analytics",
-          "Skill Assessment",
-          "Goal Tracking",
-          "Development Planning"
+          "Code Review Analytics",
+          "Sprint Velocity Tracking",
+          "Technical Debt Monitoring",
+          "Innovation Pipeline"
         ],
         "complianceFramework": [
-          "Employment Law",
-          "Safety Standards",
-          "Industry Regulations"
+          "Data Privacy (GDPR/CCPA)",
+          "Security Standards",
+          "Open Source Compliance"
         ]
       },
       "mcpConfig": {
         "version": "2.0",
         "company": "aipub",
         "domain": "mcp.aipub.2100.cool",
-        "instanceId": "aipub-mfg0ptvq-r6cgbkkk",
-        "createdAt": "2025-09-11T23:06:49.094Z",
+        "instanceId": "aipub-mf2626gq-3d61702d",
+        "createdAt": "2025-09-02T06:27:48.118Z",
         "configuration": {
           "backend": {
             "service": "wfa-production-swarm",
@@ -359,7 +311,7 @@
             "branding": {
               "primaryColor": "#B9F2FF",
               "logo": null,
-              "companyTagline": "Aixtiv Symphony Orchestrating Operating System - Super Administrative System"
+              "companyTagline": "AI Publishing International LLP - Employee & Member System"
             },
             "features": {
               "dashboard": true,
@@ -381,57 +333,59 @@
           },
           "demos": {
             "enabled": true,
-            "scenario": "professional-services",
+            "scenario": "technology",
             "interactive": true,
             "sectorSpecialization": {
-              "hrFocus": "General HR & Professional Development",
+              "hrFocus": "Tech Talent Development & Innovation Leadership",
               "careerPaths": [
-                "Individual Contributor",
-                "Team Leadership",
-                "Management Track",
-                "Executive Leadership"
+                "Software Engineer Track",
+                "Product Management",
+                "DevOps/SRE",
+                "Data Science",
+                "Technical Leadership"
               ],
-              "dreamCommanderFocus": "Performance optimization, skill development, career progression",
+              "dreamCommanderFocus": "Code quality metrics, sprint performance, technical skill development",
               "specializedTools": [
-                "Performance Analytics",
-                "Skill Assessment",
-                "Goal Tracking",
-                "Development Planning"
+                "Code Review Analytics",
+                "Sprint Velocity Tracking",
+                "Technical Debt Monitoring",
+                "Innovation Pipeline"
               ],
               "complianceRequirements": [
-                "Employment Law",
-                "Safety Standards",
-                "Industry Regulations"
+                "Data Privacy (GDPR/CCPA)",
+                "Security Standards",
+                "Open Source Compliance"
               ],
               "aiCopilots": [
-                "HR_ADVISOR",
-                "CAREER_COACH",
-                "PERFORMANCE_OPTIMIZER"
+                "CODE_COMMANDER",
+                "PRODUCT_STRATEGIST",
+                "DEVOPS_ORCHESTRATOR"
               ],
               "industryMetrics": [
-                "Employee Satisfaction",
-                "Performance Score",
-                "Retention Rate",
-                "Skill Development"
+                "Code Quality Score",
+                "Deployment Frequency",
+                "MTTR",
+                "Innovation Index"
               ],
               "careerAdvancement": {
-                "entryLevel": "Associate → Senior Associate → Lead",
-                "midLevel": "Manager → Senior Manager → Director",
-                "senior": "Senior Director → VP → C-Suite"
+                "entryLevel": "Junior Developer → Software Engineer → Senior Engineer",
+                "midLevel": "Technical Lead → Staff Engineer → Principal Engineer",
+                "senior": "Engineering Manager → Director → VP Engineering"
               }
             },
             "careerDevelopment": {
               "enabled": true,
               "paths": [
-                "Individual Contributor",
-                "Team Leadership",
-                "Management Track",
-                "Executive Leadership"
+                "Software Engineer Track",
+                "Product Management",
+                "DevOps/SRE",
+                "Data Science",
+                "Technical Leadership"
               ],
               "advancement": {
-                "entryLevel": "Associate → Senior Associate → Lead",
-                "midLevel": "Manager → Senior Manager → Director",
-                "senior": "Senior Director → VP → C-Suite"
+                "entryLevel": "Junior Developer → Software Engineer → Senior Engineer",
+                "midLevel": "Technical Lead → Staff Engineer → Principal Engineer",
+                "senior": "Engineering Manager → Director → VP Engineering"
               },
               "dreamCommanderIntegration": true
             }
@@ -439,7 +393,7 @@
           "sallyPort": {
             "url": "https://sallyport.2100.cool",
             "personalConfig": {
-              "welcomeMessage": "Welcome to asoos's AI Command Center",
+              "welcomeMessage": "Welcome to aipub's AI Command Center",
               "quickActions": [
                 {
                   "action": "dashboard",
@@ -478,11 +432,11 @@
                 }
               ],
               "customWorkflows": [
-                "Symphony System Orchestration",
-                "Multi-System Coordination",
-                "Super Administrative Controls",
-                "AI Trinity Harmony Management",
-                "Infrastructure Symphony Conduct"
+                "Employee Onboarding",
+                "Member Portal Access",
+                "Career Development Tracking",
+                "AI Trinity Integration",
+                "Diamond SAO Operations"
               ]
             }
           },
@@ -494,10 +448,10 @@
             "encryption": true,
             "gcp_secret_manager": true,
             "mcpSecurityConfig": {
-              "companyName": "asoos",
-              "securityDomain": "mcp.asoos.2100.cool",
+              "companyName": "aipub",
+              "securityDomain": "mcp.aipub.2100.cool",
               "ownerLevel": "SAPPHIRE",
-              "createdAt": "2025-09-02T06:28:37.544Z",
+              "createdAt": "2025-09-02T06:27:48.118Z",
               "availableLevels": [
                 "SAPPHIRE",
                 "OPAL",
@@ -614,69 +568,67 @@
         },
         "endpoints": {
           "main": "https://mcp.aipub.2100.cool",
-          "sallyPort": "https://sallyport.2100.cool?company=aipub&instance=aipub-mfg0ptvq-r6cgbkkk",
+          "sallyPort": "https://sallyport.2100.cool?company=aipub&instance=aipub-mf2626gq-3d61702d",
           "api": "https://mcp.aipub.2100.cool/api/v1",
           "webhooks": "https://mcp.aipub.2100.cool/webhooks",
-          "security": "https://mcp.aipub.2100.cool/security/auth",
-          "universalServices": "https://mcp.aipub.2100.cool/api/services",
-          "serviceDiscovery": "https://mcp.aipub.2100.cool/api/services/discover",
-          "serviceStatus": "https://mcp.aipub.2100.cool/api/services/status",
-          "directIntegration": "https://mcp.aipub.2100.cool/api/services/:category/:service/*"
+          "security": "https://mcp.aipub.2100.cool/security/auth"
         },
         "careerDevelopment": {
           "enabled": true,
           "paths": [
-            "Individual Contributor",
-            "Team Leadership",
-            "Management Track",
-            "Executive Leadership"
+            "Software Engineer Track",
+            "Product Management",
+            "DevOps/SRE",
+            "Data Science",
+            "Technical Leadership"
           ],
           "advancement": {
-            "entryLevel": "Associate → Senior Associate → Lead",
-            "midLevel": "Manager → Senior Manager → Director",
-            "senior": "Senior Director → VP → C-Suite"
+            "entryLevel": "Junior Developer → Software Engineer → Senior Engineer",
+            "midLevel": "Technical Lead → Staff Engineer → Principal Engineer",
+            "senior": "Engineering Manager → Director → VP Engineering"
           },
           "dreamCommanderIntegration": true
         },
         "sectorSpecialization": {
-          "hrFocus": "General HR & Professional Development",
+          "hrFocus": "Tech Talent Development & Innovation Leadership",
           "careerPaths": [
-            "Individual Contributor",
-            "Team Leadership",
-            "Management Track",
-            "Executive Leadership"
+            "Software Engineer Track",
+            "Product Management",
+            "DevOps/SRE",
+            "Data Science",
+            "Technical Leadership"
           ],
-          "dreamCommanderFocus": "Performance optimization, skill development, career progression",
+          "dreamCommanderFocus": "Code quality metrics, sprint performance, technical skill development",
           "specializedTools": [
-            "Performance Analytics",
-            "Skill Assessment",
-            "Goal Tracking",
-            "Development Planning"
+            "Code Review Analytics",
+            "Sprint Velocity Tracking",
+            "Technical Debt Monitoring",
+            "Innovation Pipeline"
           ],
           "complianceRequirements": [
-            "Employment Law",
-            "Safety Standards",
-            "Industry Regulations"
+            "Data Privacy (GDPR/CCPA)",
+            "Security Standards",
+            "Open Source Compliance"
           ],
           "aiCopilots": [
-            "HR_ADVISOR",
-            "CAREER_COACH",
-            "PERFORMANCE_OPTIMIZER"
+            "CODE_COMMANDER",
+            "PRODUCT_STRATEGIST",
+            "DEVOPS_ORCHESTRATOR"
           ],
           "industryMetrics": [
-            "Employee Satisfaction",
-            "Performance Score",
-            "Retention Rate",
-            "Skill Development"
+            "Code Quality Score",
+            "Deployment Frequency",
+            "MTTR",
+            "Innovation Index"
           ],
           "careerAdvancement": {
-            "entryLevel": "Associate → Senior Associate → Lead",
-            "midLevel": "Manager → Senior Manager → Director",
-            "senior": "Senior Director → VP → C-Suite"
+            "entryLevel": "Junior Developer → Software Engineer → Senior Engineer",
+            "midLevel": "Technical Lead → Staff Engineer → Principal Engineer",
+            "senior": "Engineering Manager → Director → VP Engineering"
           }
         }
       },
-      "provisioningTime": 20416,
+      "provisioningTime": 23077,
       "lastAccessed": null,
       "accessCount": 0,
       "securityTokens": []
@@ -707,11 +659,7 @@
           "automation": true,
           "apiAccess": true,
           "zapierIntegration": true,
-          "swarmIntelligence": true,
-          "universalServiceAuth": true,
-          "cookieBasedAuth": true,
-          "directServiceIntegration": true,
-          "sallyPortOAuth2": true
+          "swarmIntelligence": true
         },
         "sallyPortConfig": {
           "welcomeMessage": "Welcome to asoos's AI Command Center",
@@ -742,16 +690,6 @@
               "icon": "🔗"
             },
             {
-              "action": "universal_services",
-              "label": "Universal Services (8,500+)",
-              "icon": "🌐"
-            },
-            {
-              "action": "service_discovery",
-              "label": "Service Discovery",
-              "icon": "🔍"
-            },
-            {
               "action": "swarm_intelligence",
               "label": "Swarm Intelligence",
               "icon": "🧠"
@@ -767,12 +705,7 @@
             "Multi-System Coordination",
             "Super Administrative Controls",
             "AI Trinity Harmony Management",
-            "Infrastructure Symphony Conduct",
-            "Universal Service Authentication (8,500+ APIs)",
-            "Direct Service Integration (Bypass Zapier)",
-            "Cookie-Based Multi-Tier Security",
-            "SallyPort OAuth2 Orchestration",
-            "WFA Swarm Universal Deployment"
+            "Infrastructure Symphony Conduct"
           ]
         }
       },
@@ -1191,11 +1124,7 @@
           "sallyPort": "https://sallyport.2100.cool?company=asoos&instance=asoos-mf2638mf-be5a80f8",
           "api": "https://mcp.asoos.2100.cool/api/v1",
           "webhooks": "https://mcp.asoos.2100.cool/webhooks",
-          "security": "https://mcp.asoos.2100.cool/security/auth",
-          "universalServices": "https://mcp.asoos.2100.cool/api/services",
-          "serviceDiscovery": "https://mcp.asoos.2100.cool/api/services/discover",
-          "serviceStatus": "https://mcp.asoos.2100.cool/api/services/status",
-          "directIntegration": "https://mcp.asoos.2100.cool/api/services/:category/:service/*"
+          "security": "https://mcp.asoos.2100.cool/security/auth"
         },
         "careerDevelopment": {
           "enabled": true,
@@ -1257,10 +1186,10 @@
     }
   },
   "provisioningStats": {
-    "totalProvisioned": 3,
-    "totalActive": 3,
+    "totalProvisioned": 2,
+    "totalActive": 2,
     "averageProvisioningTime": 0
   },
   "totalMCPs": 1,
-  "lastUpdated": "2025-09-11T23:06:49.095Z"
+  "lastUpdated": "2025-09-02T06:28:46.758Z"
 }

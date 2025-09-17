@@ -12,14 +12,14 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/mocoa:$BUILD_ID']
 
-# Deploy to Cloud Run - SECURED WITH AUTHENTICATION
+# Deploy to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [
     'run', 'deploy', 'mocoa',
     '--image', 'gcr.io/$PROJECT_ID/mocoa:$BUILD_ID',
     '--region', '${_REGION}',
     '--platform', 'managed',
-    '--no-allow-unauthenticated',
+    '--allow-unauthenticated',
     '--max-instances', '10',
     '--cpu', '2',
     '--memory', '2Gi',

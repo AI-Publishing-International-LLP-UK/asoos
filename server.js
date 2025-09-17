@@ -5,11 +5,10 @@
  * Cloud Run optimized with auto-scaling and health checks
  */
 
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import compression from 'compression';
-import { cpus } from 'os';
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const compression = require('compression');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -61,7 +60,7 @@ app.get('/wfa/system-status', (req, res) => {
       region: process.env.CLOUD_ML_REGION || 'us-west1',
       node_version: process.version,
       memory_usage: process.memoryUsage(),
-      cpu_count: cpus().length,
+      cpu_count: require('os').cpus().length,
       uptime_seconds: Math.floor(process.uptime())
     },
     environment_variables: {
@@ -306,8 +305,8 @@ app.use('*', (req, res) => {
   });
 });
 
-// Start server - CRITICAL: Bind to 0.0.0.0 for Cloud Run
-app.listen(PORT, '0.0.0.0', () => {
+// Start server
+app.listen(PORT, () => {
   console.log(`🚀 WFA Production Swarm Cloud Run Server started`);
   console.log(`📡 Listening on http://0.0.0.0:${PORT}`);
   console.log(`👨‍💼 Commander: Phillip Roark`);

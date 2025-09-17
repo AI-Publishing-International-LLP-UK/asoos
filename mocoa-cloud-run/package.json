@@ -1,55 +1,50 @@
 {
-  "name": "mocoa-diamond-sao-interface",
-  "version": "2.0.0",
-  "description": "Diamond SAO Owner Interface - Dynamic Backend System (NOT static marketing site)",
+  "name": "mocoa-interface",
+  "version": "2.4.7",
+  "description": "MOCOA Enterprise Interface with Dr. Claude Quantum Orchestration and Victory36 Protection",
   "main": "server.js",
   "scripts": {
-    "build": "echo 'Dynamic interface ready for GCP deployment' && ls -la *.html *.js",
-    "deploy": "gcloud run deploy mocoa-owner-interface-production --source . --region us-west1 --project api-for-warp-drive",
-    "test": "echo 'No tests specified' && exit 0",
     "start": "node server.js",
-    "security": "node security-framework.js",
-    "local-deploy": "./scripts/deploy-local.sh",
-    "lint": "eslint *.js --max-warnings 0",
-    "lint:fix": "eslint *.js --fix --max-warnings 0",
-    "format": "prettier --write *.js",
-    "format:check": "prettier --check *.js"
+    "dev": "nodemon server.js",
+    "victory36-scan": "node victory36-security-scan.js",
+    "quantum-health": "curl -f http://localhost:8080/api/dr-claude/health"
+  },
+  "keywords": [
+    "asoos",
+    "mocoa",
+    "pcp",
+    "interface",
+    "wfa-swarm",
+    "quantum-orchestration",
+    "dr-claude",
+    "victory36",
+    "enterprise"
+  ],
+  "author": "ASOOS WFA Swarm Team",
+  "license": "Enterprise",
+  "wfa-swarm": {
+    "phase": 7,
+    "quantum-orchestration": "2.4.7",
+    "victory36-protection": true,
+    "dr-claude-active": true,
+    "testament-swarm-connected": true,
+    "gcp-secret-manager": true,
+    "enterprise-cache": true,
+    "production-ready": true
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^3.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=24.5.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git"
+    "url": "https://github.com/asoos/mocoa-interface.git"
   },
-  "keywords": [
-    "diamond-sao",
-    "mocoa",
-    "owner-interface",
-    "dynamic-backend",
-    "gcp-cloud-run",
-    "220m-agents",
-    "career-advancement"
-  ],
-  "author": "AI Publishing International LLP",
-  "license": "PROPRIETARY",
-  "private": true,
-  "dependencies": {
-    "compression": "^1.8.1",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "googleapis": "^159.0.0",
-    "helmet": "^8.1.0",
-    "mongodb": "^6.19.0",
-    "winston": "^3.17.0"
-  },
-  "engines": {
-    "node": ">=22.0.0",
-    "npm": ">=10.0.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.35.0",
-    "eslint": "^9.35.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^5.5.4",
-    "prettier": "^3.6.2"
-  }
+  "homepage": "https://mocoa-858242575175.us-west1.run.app"
 }
