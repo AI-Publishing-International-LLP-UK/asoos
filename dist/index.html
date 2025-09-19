@@ -977,7 +977,7 @@
         DIDC Archives system powered by Tower Blockchain.
       </p>
       <div class="hero-buttons">
-        <a href="https://sallyport.2100.cool" class="hero-button primary-button" aria-label="Start Your ASOOS Symphony" target="_blank">Start Your Symphony</a>
+        <a href="https://mcp.company.2100.cool" class="hero-button primary-button" aria-label="Start Your ASOOS Symphony" target="_blank">Start Your Symphony</a>
         <a href="#features" class="hero-button secondary-button">Explore Features</a>
       </div>
     </div>
@@ -1259,14 +1259,17 @@
     <div class="footer-container">
       <div class="footer-grid">
         <div class="footer-section">
-          <h4>Company</h4>
+          <h4>Company Ecosystem</h4>
           <ul>
-            <li><a href="https://coaching2100.com">Coaching 2100</a></li>
-            <li><a href="https://getready2100.com">Get Ready 2100</a></li>
-            <li><a href="https://preparate2100.com">Preparate 2100</a></li>
-            <li><a href="#enterprise">Enterprise Training</a></li>
-            <li><a href="#readiness">AI Readiness</a></li>
-            <li><a href="#support">Support Center</a></li>
+            <li><a href="https://coaching2100.com" target="_blank">Coaching 2100</a></li>
+            <li><a href="https://getready2100.com" target="_blank">Get Ready 2100</a></li>
+            <li><a href="https://preparate2100.com" target="_blank">Preparate 2100</a></li>
+            <li><a href="https://pubsocial.com/asoos" target="_blank">Pub Social™</a></li>
+            <li><a href="https://vision.coaching2100.com" target="_blank">Vision Lake™</a></li>
+            <li><a href="#bacasu-springs">Bacasu Springs™</a></li>
+            <li><a href="#city-of-agents">The City of Agents™</a></li>
+            <li><a href="https://coaching2100.com/ceo-ai-accelerator.html" target="_blank">CEO AI Accelerator</a></li>
+            <li><a href="https://coaching2100.com/human-collaboration.html" target="_blank">Human Collaboration</a></li>
           </ul>
         </div>
         
@@ -1285,12 +1288,15 @@
         <div class="footer-section">
           <h4>Legal & Resources</h4>
           <ul>
-            <li><a href="#privacy">Privacy Policy</a></li>
-            <li><a href="#terms">Terms & Conditions</a></li>
-            <li><a href="#fulfillment">Fulfillment Policy</a></li>
-            <li><a href="#contact">Contact Us</a></li>
-            <li><a href="#offices">Company Offices</a></li>
-            <li><a href="#brands">Brand Registrations</a></li>
+            <li><a href="https://coaching2100.com/privacy-policy.html" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://coaching2100.com/terms-and-conditions.html" target="_blank">Terms & Conditions</a></li>
+            <li><a href="https://coaching2100.com/fullfilment-policy.html" target="_blank">Fulfillment Policy</a></li>
+            <li><a href="https://coaching2100.com/contact-us.html" target="_blank">Contact Us</a></li>
+            <li><a href="https://coaching2100.com/contact-us.html" target="_blank">Company Offices</a></li>
+            <li><a href="https://coaching2100.com/contact-us.html" target="_blank">Brand Registrations</a></li>
+            <li><a href="https://coaching2100.com/blogs.html" target="_blank">AI Innovation Blog</a></li>
+            <li><a href="https://coaching2100.com/white-paper.html" target="_blank">Futuristic White Papers</a></li>
+            <li><a href="https://coaching2100.com/media.html" target="_blank">Media Outreach</a></li>
           </ul>
         </div>
         
@@ -1491,22 +1497,19 @@
       }
     }
     
-    // Authentication flow - Redirect to corrected auth page for proper user identification
+    // Authentication flow - Direct to SallyPort (deprecated /auth page removed)
     function initiateAuthentication(source) {
       // Store the entry point source for potential future use
       localStorage.setItem('asoos_entry_source', source);
       
-      // Redirect to the corrected authentication page
-      // This ensures proper user identification before Sally Port integration
-      window.location.href = 'https://sallyport.2100.cool/';
+      // Direct to SallyPort for authentication
+      window.location.href = 'https://sallyport.2100.cool';
     }
     
-    // This function is no longer needed since we redirect to auth page directly
-    // Keeping for potential future fallback use
+    // Legacy function - now redirects to SallyPort
     function completeAuthentication(source) {
-      console.log('Legacy authentication function called for source:', source);
-      // Fallback redirect to auth page if somehow called
-      window.location.href = 'https://sallyport.2100.cool/';
+      // Direct to SallyPort for authentication
+      window.location.href = 'https://sallyport.2100.cool';
     }
     
     window.addEventListener('scroll', reveal);
@@ -1612,6 +1615,76 @@
     
     // Initialize everything
     createParticles();
+  </script>
+  
+  <!-- Enhanced WFA-MCP Integration -->
+  <script src="enhanced-wfa-mcp-integration.js"></script>
+  
+  <!-- UFO - Unified Frontend Operations for All MCP Endpoints -->
+  <script src="ufo-mcp-integration.js"></script>
+
+  <script>
+    // Check for existing user instance on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check URL parameters for instance info
+      const urlParams = new URLSearchParams(window.location.search);
+      const instanceId = urlParams.get('instance');
+      const userName = urlParams.get('user');
+      const level = urlParams.get('level');
+      
+      if (instanceId && userName) {
+        // User has a personal instance, personalize the interface
+        personalizeInterface(instanceId, userName, level);
+      }
+    });
+
+    function personalizeInterface(instanceId, userName, level) {
+      // Personalize the header
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+        heroTitle.textContent = `Welcome back, ${userName.split(' ')[0]}!`;
+      }
+      
+      const heroDescription = document.querySelector('.hero-description');
+      if (heroDescription) {
+        heroDescription.innerHTML = `Your personal ASOOS instance <strong>${instanceId}</strong> is ready. Continue your AI symphony with your personalized copilots and tools.`;
+      }
+      
+      // Add personalized workspace button WITHOUT hijacking existing buttons
+      const heroButtons = document.querySelector('.hero-buttons');
+      if (heroButtons) {
+        // Create additional personalized button instead of hijacking existing ones
+        const personalButton = document.createElement('a');
+        personalButton.className = 'hero-button primary-button';
+        personalButton.textContent = 'Enter My Personal Workspace';
+        personalButton.style.cssText = 'background: linear-gradient(135deg, #8b5cf6, #7c3aed); margin-left: 15px;';
+        personalButton.onclick = function() {
+          // Redirect to working personalized interface
+          const workspaceUrls = {
+            'sapphire': './mocoa-cloud-run/index.html',
+            'opal': './direct_response.html',
+            'onyx': './proxy_response.html'
+          };
+          const targetUrl = workspaceUrls[level] || workspaceUrls['sapphire'];
+          const personalizedUrl = `${targetUrl}?instance=${instanceId}&user=${encodeURIComponent(userName)}&level=${level}&auth=5`;
+          window.location.href = personalizedUrl;
+        };
+        heroButtons.appendChild(personalButton);
+      }
+      
+      // Add personalization indicator
+      const nav = document.querySelector('.nav-container');
+      if (nav) {
+        const personalIndicator = document.createElement('div');
+        personalIndicator.style.cssText = 'position: absolute; top: -10px; right: 20px; background: #50C878; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: 600;';
+        personalIndicator.textContent = `${userName}'s Instance`;
+        nav.style.position = 'relative';
+        nav.appendChild(personalIndicator);
+      }
+      
+      console.log(`Personalized interface loaded for ${userName} (Instance: ${instanceId})`);
+      console.log(`Available workspace interfaces: Sapphire, Opal, Onyx`);
+    }
   </script>
 </body>
 </html>

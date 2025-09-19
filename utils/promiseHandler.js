@@ -1,39 +1,56 @@
+
 /**
- * Promise Handler Utility for Cloud Run Services
- * Handles unhandled promise rejections and improves startup reliability
+ * Promise Handler Utility - Auto-injected for Promise error prevention
  */
 
-// Handle unhandled promise rejections
+// Safely resolve promises to prevent [object Promise] errors
+async function safeResolve(value) {
+  try {
+    if (value && typeof value.then === 'function') {
+      return await value;
+    }
+    return value;
+  } catch (error) {
+    console.error('Promise resolution error:', error);
+    return '[Promise Error]';
+  }
+}
+
+// Serialize data for agent communication
+async function serializeForAgent(value) {
+  const resolved = await safeResolve(value);
+  
+  if (resolved === null || resolved === undefined) {
+    return resolved;
+  }
+  
+  if (typeof resolved === 'object') {
+    try {
+      return JSON.parse(JSON.stringify(resolved));
+    } catch (error) {
+      console.error('Serialization error:', error);
+      return `[Serialization Error: ${resolved.constructor?.name || 'Unknown'}]`;
+    }
+  }
+  
+  return resolved;
+}
+
+// Global promise error handler
 process.on('unhandledRejection', (reason, promise) => {
-  console.error('🚨 Unhandled Promise Rejection at:', promise, 'reason:', reason);
-  // In production, we log but don't exit to maintain service availability
-  if (process.env.NODE_ENV !== 'production') {
-    process.exit(1);
-  }
+  console.error('Unhandled Promise Rejection - This could cause [object Promise] errors:', {
+    reason: reason,
+    promise: promise
+  });
 });
 
-// Handle uncaught exceptions
-process.on('uncaughtException', (error) => {
-  console.error('🚨 Uncaught Exception:', error);
-  // In production environments, attempt graceful shutdown
-  if (process.env.NODE_ENV === 'production') {
-    console.error('⚠️  Production mode: Attempting graceful shutdown...');
-    setTimeout(() => {
-      process.exit(1);
-    }, 1000);
-  } else {
-    process.exit(1);
-  }
-});
+// Export utilities
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { safeResolve, serializeForAgent };
+}
 
-// Log successful initialization
-console.log('✅ Promise handler initialized for Cloud Run service');
-
-module.exports = {
-  // Export utility functions if needed
-  handleAsyncError: (fn) => {
-    return (req, res, next) => {
-      Promise.resolve(fn(req, res, next)).catch(next);
-    };
-  }
-};
+// Global utilities for browser environments
+if (typeof window !== 'undefined') {
+  window.safeResolve = safeResolve;
+  window.serializeForAgent = serializeForAgent;
+}

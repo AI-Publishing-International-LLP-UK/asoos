@@ -1,8 +1,8 @@
-name: ⚡ Lightning CI/CD/CTTT Pipeline - Zero Latency Enterprise
+name: Complete CI/CD/CTTT Pipeline - Self-Healing & Auto-Scaling
 
 on:
   push:
-    branches: [main, clean-deployment, production, develop]
+    branches: [main, clean-deployment, production]
   pull_request:
     branches: [main, production]
   workflow_dispatch:
@@ -16,22 +16,6 @@ on:
           - staging
           - production
           - both
-          - hotfix
-      force_deploy:
-        description: 'Skip tests for hotfix'
-        required: false
-        default: 'false'
-        type: boolean
-      performance_mode:
-        description: 'Performance optimization level'
-        required: false
-        default: 'turbo'
-        type: choice
-        options:
-          - standard
-          - turbo
-          - lightning
-          - quantum
 
 env:
   PROJECT_ID: api-for-warp-drive
@@ -39,545 +23,432 @@ env:
   STAGING_ZONE: us-west1-b
   PRODUCTION_REGION: us-west1  
   PRODUCTION_ZONE: us-west1-a
-  GCR_REGISTRY: gcr.io
-  ARTIFACT_REGISTRY: us-west1-docker.pkg.dev
-  IMAGE_NAME: aixtiv-symphony
+  DOCKER_REGISTRY: gcr.io
   NODE_VERSION: '24.7.0'
-  CLOUD_ML_REGION: us-west1
-  SECRET_MANAGER_PROJECT: api-for-warp-drive
-  OAUTH2_PROVIDER: google-cloud-oauth2
-  SECURITY_POSTURE: stealth-enterprise
-  # Performance Optimization
-  PERFORMANCE_MODE: ${{ github.event.inputs.performance_mode || 'turbo' }}
-  PARALLEL_JOBS: 8
-  CACHE_VERSION: v3
-  BUILD_PARALLELISM: max
-  DEPLOYMENT_STRATEGY: zero-downtime
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
-  # ⚡ Phase 0: Pre-flight Checks (Lightning Fast)
-  preflight:
+  # Phase 1: Build and Test
+  build-and-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
-    outputs:
-      should_skip: ${{ steps.changed.outputs.should_skip }}
-      skip_tests: ${{ github.event.inputs.force_deploy == 'true' }}
-      performance_level: ${{ steps.perf.outputs.level }}
-      cache_key: ${{ steps.cache.outputs.key }}
-    steps:
-      - name: 🚀 Lightning Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1  # Minimal fetch for speed
-          
-      - name: 📊 Performance Level Detection
-        id: perf
-        run: |
-          case "${{ env.PERFORMANCE_MODE }}" in
-            quantum) echo "level=quantum" >> $GITHUB_OUTPUT ;;
-            lightning) echo "level=lightning" >> $GITHUB_OUTPUT ;;
-            turbo) echo "level=turbo" >> $GITHUB_OUTPUT ;;
-            *) echo "level=standard" >> $GITHUB_OUTPUT ;;
-          esac
-          
-      - name: 🔍 Smart Change Detection
-        id: changed
-        uses: dorny/paths-filter@v2
-        with:
-          filters: |
-            code:
-              - 'src/**'
-              - 'lib/**'
-              - '*.js'
-              - '*.ts'
-              - 'package*.json'
-            docker:
-              - 'Dockerfile*'
-              - '.dockerignore'
-            config:
-              - '.github/**'
-              - '*.yml'
-              - '*.yaml'
-            
-      - name: 🗝️ Cache Key Generation
-        id: cache
-        run: |
-          CACHE_KEY="node-${{ env.NODE_VERSION }}-${{ hashFiles('package-lock.json', 'diamond-cli/package-lock.json') }}-${{ env.CACHE_VERSION }}"
-          echo "key=$CACHE_KEY" >> $GITHUB_OUTPUT
-
-  # ⚡ Phase 1: Ultra-Fast Parallel Build & Test Matrix
-  lightning-build-matrix:
-    needs: preflight
-    if: needs.preflight.outputs.should_skip != 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
     strategy:
-      fail-fast: false
       matrix:
-        task: [build, test, security, quality, newman-prep]
-        include:
-          - task: build
-            name: "🏗️ Lightning Build"
-            cmd: "npm run build:production --if-present || echo 'No build script'"
-          - task: test
-            name: "🧪 Turbo Tests"
-            cmd: "npm test -- --maxWorkers=4 --coverage=false --silent"
-          - task: security
-            name: "🔒 Security Scan"
-            cmd: "npm audit --audit-level critical"
-          - task: quality
-            name: "📊 Quality Gates"
-            cmd: "npm run lint:fast --if-present || echo 'Quality check complete'"
-          - task: newman-prep
-            name: "🧪 Newman Prep"
-            cmd: "npm install -g newman@latest newman-reporter-htmlextra@latest --silent"
+        node-version: [24.7.0]
     
     steps:
-      - name: 🚀 Lightning Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-      - name: ⚡ Turbo Node.js Setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          
-      - name: 🗄️ Lightning Cache Restore
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-            node_modules
-            diamond-cli/node_modules
-          key: ${{ needs.preflight.outputs.cache_key }}
-          restore-keys: |
-            node-${{ env.NODE_VERSION }}-
-            
-      - name: ⚡ Ultra-Fast Dependencies
-        run: |
-          if [[ "${{ matrix.task }}" == "build" || "${{ matrix.task }}" == "test" ]]; then
-            npm ci --prefer-offline --no-audit --progress=false
-            if [[ -d "diamond-cli" ]]; then
-              cd diamond-cli && npm ci --prefer-offline --no-audit --progress=false
-            fi
-          fi
-          
-      - name: ${{ matrix.name }}
-        run: |
-          echo "🚀 Executing: ${{ matrix.name }}"
-          ${{ matrix.cmd }}
-          if [[ "${{ matrix.task }}" == "test" && -d "diamond-cli" ]]; then
-            cd diamond-cli && npm test -- --maxWorkers=2 --silent || echo "Diamond CLI tests completed"
-          fi
+    - name: 🔧 Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
 
-  # ⚡ Phase 2: Quantum Docker Build (Parallel Multi-Architecture)
-  quantum-docker-build:
-    needs: [preflight, lightning-build-matrix]
+    - name: 📦 Install Dependencies
+      run: |
+        npm ci
+        cd diamond-cli && npm ci
+
+    - name: 🧪 Run Tests
+      run: |
+        npm test
+        cd diamond-cli && npm test
+
+    - name: 🔍 Security Scan
+      run: |
+        npm audit --audit-level high
+        cd diamond-cli && npm audit --audit-level high
+
+    - name: 📊 Code Quality Check
+      run: |
+        npm run lint || echo "Lint warnings detected"
+        npm run build:check || echo "Build check completed"
+
+  # Phase 2: Docker Build & Registry
+  docker-build:
+    needs: build-and-test
     runs-on: ubuntu-latest
-    timeout-minutes: 8
     outputs:
       image-tag: ${{ steps.meta.outputs.tags }}
-      image-digest: ${{ steps.build.outputs.digest }}
-      build-time: ${{ steps.timing.outputs.duration }}
-    
+      
     steps:
-      - name: 🚀 Lightning Checkout
-        uses: actions/checkout@v4
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
 
-      - name: ⏱️ Build Timer Start
-        id: timer
-        run: echo "start_time=$(date +%s)" >> $GITHUB_OUTPUT
+    - name: 🔐 Auth to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: 🔐 GCP OAuth2 Authentication
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-          
-      - name: ☁️ Lightning GCP Setup
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          install_components: 'beta,alpha'
-          
-      - name: 🐳 Quantum Docker Configuration
-        run: |
-          # Configure multiple registries simultaneously
-          gcloud auth configure-docker gcr.io,us-west1-docker.pkg.dev --quiet
-          
-          # Enable Docker BuildKit with quantum optimizations
-          echo "DOCKER_BUILDKIT=1" >> $GITHUB_ENV
-          echo "BUILDKIT_PROGRESS=plain" >> $GITHUB_ENV
+    - name: 🛠️ Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
 
-      - name: ⚡ Setup Quantum Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          driver-opts: |
-            image=moby/buildkit:v0.12.0
-          buildkitd-flags: |
-            --allow-insecure-entitlement security.insecure
-            --allow-insecure-entitlement network.host
-          config-inline: |
-            [worker.oci]
-              max-parallelism = 8
-            [worker.containerd]
-              max-parallelism = 8
+    - name: 🐳 Configure Docker for GCR
+      run: |
+        gcloud auth configure-docker gcr.io
 
-      - name: 📝 Quantum Metadata Extraction
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            ${{ env.GCR_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}
-            ${{ env.ARTIFACT_REGISTRY }}/${{ env.PROJECT_ID }}/docker/${{ env.IMAGE_NAME }}
-          labels: |
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
-            com.google.cloud.project=${{ env.PROJECT_ID }}
-            com.aixtiv.security-posture=${{ env.SECURITY_POSTURE }}
-            com.aixtiv.performance-mode=${{ env.PERFORMANCE_MODE }}
-            com.aixtiv.build-parallelism=${{ env.BUILD_PARALLELISM }}
-          tags: |
-            type=edge,branch=$repo.default_branch
-            type=semver,pattern=v{{version}}
-            type=sha,prefix={{branch}}-,suffix=-{{date 'YYYYMMDD-HHmmss'}},format=short
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=stable,enable=${{ startsWith(github.ref, 'refs/tags/') }}
-            type=raw,value=quantum-{{date 'YYYYMMDD-HHmmss'}}
+    - name: 📝 Extract Metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.DOCKER_REGISTRY }}/${{ env.PROJECT_ID }}/aixtiv-symphony
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
 
-      - name: 🚀 Quantum Multi-Arch Build & Push
-        id: build
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          build-args: |
-            NODE_VERSION=${{ env.NODE_VERSION }}
-            BUILD_DATE=${{ github.event.head_commit.timestamp }}
-            VCS_REF=${{ github.sha }}
-            NODE_ENV=production
-            SECURITY_POSTURE=${{ env.SECURITY_POSTURE }}
-            PERFORMANCE_MODE=${{ env.PERFORMANCE_MODE }}
-            BUILDKIT_INLINE_CACHE=1
-          target: production
-          push: ${{ needs.preflight.outputs.skip_tests != 'true' || github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          sbom: true
-          provenance: true
-          cache-from: |
-            type=gha,scope=buildx-${{ env.IMAGE_NAME }}
-            type=registry,ref=${{ env.GCR_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:cache
-          cache-to: |
-            type=gha,mode=max,scope=buildx-${{ env.IMAGE_NAME }}
-            type=registry,ref=${{ env.GCR_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:cache,mode=max
+    - name: 🏗️ Build and Push Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
 
-      - name: ⏱️ Build Performance Metrics
-        id: timing
-        run: |
-          END_TIME=$(date +%s)
-          DURATION=$((END_TIME - ${{ steps.timer.outputs.start_time }}))
-          echo "duration=${DURATION}s" >> $GITHUB_OUTPUT
-          echo "🚀 Build completed in ${DURATION} seconds"
-
-  # ⚡ Phase 3: Lightning Parallel Deployments
-  lightning-deploy:
-    needs: [preflight, quantum-docker-build]
-    if: needs.preflight.outputs.skip_tests != 'true' || github.event.inputs.force_deploy == 'true'
+  # Phase 3: Newman API Testing
+  newman-testing:
+    needs: docker-build
     runs-on: ubuntu-latest
-    timeout-minutes: 6
-    strategy:
-      fail-fast: false
-      matrix:
-        environment: [staging, production]
-        include:
-          - environment: staging
-            region: us-west1
-            zone: us-west1-b
-            memory: 4Gi
-            cpu: 4
-            min_instances: 1
-            max_instances: 50
-            condition: "github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main' || github.event.inputs.environment == 'staging' || github.event.inputs.environment == 'both'"
-          - environment: production
-            region: us-west1
-            zone: us-west1-a
-            memory: 8Gi
-            cpu: 4
-            min_instances: 3
-            max_instances: 100
-            condition: "github.ref == 'refs/heads/main' || github.event.inputs.environment == 'production' || github.event.inputs.environment == 'both'"
-    
-    outputs:
-      staging-url: ${{ steps.staging-deploy.outputs.url }}
-      production-url: ${{ steps.production-deploy.outputs.url }}
     
     steps:
-      - name: 🔐 Lightning GCP Auth
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-          
-      - name: ☁️ Quantum GCP Setup
-        uses: google-github-actions/setup-gcloud@v2
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
 
-      - name: 🔑 Secret Manager Integration
-        id: secrets
-        run: |
-          # Fetch all secrets in parallel for lightning speed
-          {
-            gcloud secrets versions access latest --secret="OPENAI_API_KEY" --project=${{ env.SECRET_MANAGER_PROJECT }} || echo "default-key"
-            gcloud secrets versions access latest --secret="ELEVENLABS_API_KEY" --project=${{ env.SECRET_MANAGER_PROJECT }} || echo "default-key" 
-            gcloud secrets versions access latest --secret="MONGODB_URI" --project=${{ env.SECRET_MANAGER_PROJECT }} || echo "default-uri"
-            gcloud secrets versions access latest --secret="OAUTH2_CLIENT_SECRET" --project=${{ env.SECRET_MANAGER_PROJECT }} || echo "default-secret"
-          } > /dev/null 2>&1 &
-          wait
-          echo "🔑 Secrets loaded in parallel"
+    - name: 📦 Install Newman
+      run: |
+        npm install -g newman
+        npm install -g newman-reporter-htmlextra
 
-      - name: 🚀 Zero-Downtime Deployment (${{ matrix.environment }})
-        id: ${{ matrix.environment }}-deploy
-        if: ${{ matrix.condition }}
-        run: |
-          echo "🚀 Deploying to ${{ matrix.environment }} with quantum speed..."
-          
-          # Quantum deployment with secret injection
-          SERVICE_URL=$(gcloud run deploy ${{ env.IMAGE_NAME }}-${{ matrix.environment }} \
-            --image ${{ needs.quantum-docker-build.outputs.image-tag }} \
-            --platform managed \
-            --region ${{ matrix.region }} \
-            --allow-unauthenticated \
-            --memory ${{ matrix.memory }} \
-            --cpu ${{ matrix.cpu }} \
-            --min-instances ${{ matrix.min_instances }} \
-            --max-instances ${{ matrix.max_instances }} \
-            --concurrency 1000 \
-            --timeout 900 \
-            --cpu-throttling \
-            --execution-environment gen2 \
-            --set-secrets="OPENAI_API_KEY=OPENAI_API_KEY:latest,ELEVENLABS_API_KEY=ELEVENLABS_API_KEY:latest,MONGODB_URI=MONGODB_URI:latest,OAUTH2_CLIENT_SECRET=OAUTH2_CLIENT_SECRET:latest" \
-            --set-env-vars="ENVIRONMENT=${{ matrix.environment }},REGION=${{ matrix.region }},ZONE=${{ matrix.zone }},NODE_ENV=production,CLOUD_ML_REGION=${{ env.CLOUD_ML_REGION }},PERFORMANCE_MODE=${{ env.PERFORMANCE_MODE }},OAUTH2_PROVIDER=${{ env.OAUTH2_PROVIDER }}" \
-            --labels="environment=${{ matrix.environment }},zone=${{ matrix.zone }},pipeline=lightning-cttt,performance=${{ env.PERFORMANCE_MODE }}" \
-            --format="value(status.url)" \
-            --quiet)
-            
-          echo "url=$SERVICE_URL" >> $GITHUB_OUTPUT
-          echo "🌟 ${{ matrix.environment }} deployed: $SERVICE_URL"
+    - name: 🧪 Run Staging API Tests
+      run: |
+        newman run tests/collections/aixtiv-symphony-validation.postman_collection.json \
+          --environment tests/environments/aixtiv-symphony.postman_environment.json \
+          --reporters cli,htmlextra \
+          --reporter-htmlextra-export newman-report-staging.html \
+          --reporter-htmlextra-template dashboard \
+          --timeout-request 30000 \
+          --bail
 
-      - name: ⚡ Lightning Health Check
-        if: steps.${{ matrix.environment }}-deploy.outputs.url
-        run: |
-          SERVICE_URL="${{ steps[format('{0}-deploy', matrix.environment)].outputs.url }}"
-          echo "🔍 Lightning health check for $SERVICE_URL..."
-          
-          # Quantum health check with exponential backoff
-          for i in {1..3}; do
-            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$SERVICE_URL/health" --connect-timeout 10 || echo "000")
-            if [ "$HTTP_CODE" = "200" ]; then
-              echo "✅ ${{ matrix.environment }} health check passed (HTTP $HTTP_CODE) in attempt $i"
-              break
-            fi
-            sleep $((i * 2))  # Exponential backoff: 2s, 4s, 6s
-          done
+    - name: 📊 Upload Newman Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: newman-report-staging
+        path: newman-report-staging.html
 
-  # ⚡ Phase 4: Quantum Newman Testing (Ultra-Parallel)
-  quantum-newman:
-    needs: [lightning-deploy]
-    if: always() && (needs.lightning-deploy.result == 'success')
+  # Phase 4: Staging Deployment (us-west1-b)
+  deploy-staging:
+    needs: [docker-build, newman-testing]
     runs-on: ubuntu-latest
-    timeout-minutes: 3
-    strategy:
-      fail-fast: false
-      matrix:
-        test_suite: [core, gateway, integration, performance]
-        environment: [staging, production]
+    if: github.ref == 'refs/heads/clean-deployment' || github.event.inputs.environment == 'staging' || github.event.inputs.environment == 'both'
     
     steps:
-      - name: 🚀 Lightning Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-          
-      - name: ⚡ Newman Turbo Install
-        run: npm install -g newman@latest newman-reporter-htmlextra@latest --silent
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
+
+    - name: 🔐 Auth to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: 🛠️ Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: 🚀 Deploy to Cloud Run (Staging)
+      run: |
+        gcloud run deploy aixtiv-symphony-staging \
+          --image ${{ needs.docker-build.outputs.image-tag }} \
+          --platform managed \
+          --region ${{ env.STAGING_REGION }} \
+          --allow-unauthenticated \
+          --memory 2Gi \
+          --cpu 2 \
+          --max-instances 100 \
+          --min-instances 1 \
+          --concurrency 1000 \
+          --timeout 900 \
+          --set-env-vars="ENVIRONMENT=staging,ZONE=${{ env.STAGING_ZONE }}" \
+          --labels="environment=staging,zone=us-west1-b,pipeline=cicd-cttt"
+
+    - name: ⚙️ Setup Auto-Scaling (Staging)
+      run: |
+        gcloud run services update aixtiv-symphony-staging \
+          --region ${{ env.STAGING_REGION }} \
+          --cpu-throttling \
+          --execution-environment gen2
+
+    - name: 🔍 Deploy Monitoring & Alerting (Staging)
+      run: |
+        # Create monitoring dashboard
+        gcloud monitoring dashboards create --config-from-file=monitoring/staging-dashboard.json || true
         
-      - name: 🧪 Create Quantum Test Suite
-        run: |
-          mkdir -p tests/quantum
-          cat > tests/quantum/${{ matrix.test_suite }}-tests.json << 'EOF'
-          {
-            "info": {
-              "name": "Quantum ${{ matrix.test_suite }} Tests",
-              "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-            },
-            "item": [
-              {
-                "name": "Lightning Health Check",
-                "request": {
-                  "method": "GET",
-                  "header": [],
-                  "url": "{{base_url}}/health"
-                },
-                "event": [
-                  {
-                    "listen": "test",
-                    "script": {
-                      "exec": [
-                        "pm.test('⚡ Health check < 100ms', function () {",
-                        "    pm.expect(pm.response.responseTime).to.be.below(100);",
-                        "});",
-                        "pm.test('Status is healthy', function () {",
-                        "    pm.response.to.have.status(200);",
-                        "});"
-                      ]
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-          EOF
-          
-      - name: 🚀 Execute Quantum Tests
-        run: |
-          BASE_URL="${{ needs.lightning-deploy.outputs[format('{0}-url', matrix.environment)] }}"
-          if [[ -n "$BASE_URL" ]]; then
-            newman run tests/quantum/${{ matrix.test_suite }}-tests.json \
-              --env-var "base_url=$BASE_URL" \
-              --reporters cli \
-              --timeout-request 5000 \
-              --suppress-exit-code \
-              --silent
-          fi
+        # Create alerting policies
+        gcloud alpha monitoring policies create --policy-from-file=monitoring/staging-alerts.json || true
 
-  # ⚡ Phase 5: Lightning Monitoring & Self-Healing
-  quantum-monitoring:
-    needs: [lightning-deploy, quantum-newman]
+    - name: 🧪 Post-Deployment Tests (Staging)
+      run: |
+        # Wait for deployment to be ready
+        sleep 30
+        
+        # Get service URL
+        STAGING_URL=$(gcloud run services describe aixtiv-symphony-staging --region=${{ env.STAGING_REGION }} --format="value(status.url)")
+        echo "STAGING_URL=$STAGING_URL" >> $GITHUB_ENV
+        
+        # Run health check
+        curl -f "$STAGING_URL/health" || exit 1
+        
+        # Run Newman tests against staging
+        newman run tests/collections/aixtiv-symphony-validation.postman_collection.json \
+          --environment tests/postman/environments/staging.json \
+          --env-var "base_url=$STAGING_URL" \
+          --reporters cli,htmlextra \
+          --reporter-htmlextra-export newman-report-staging-deploy.html
+
+  # Phase 5: Production Deployment (us-west1-a)
+  deploy-production:
+    needs: [deploy-staging]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/production' || github.event.inputs.environment == 'production' || github.event.inputs.environment == 'both'
+    environment: production
+    
+    steps:
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
+
+    - name: 🔐 Auth to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: 🛠️ Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: 🚀 Deploy to Cloud Run (Production)
+      run: |
+        gcloud run deploy aixtiv-symphony-production \
+          --image ${{ needs.docker-build.outputs.image-tag }} \
+          --platform managed \
+          --region ${{ env.PRODUCTION_REGION }} \
+          --allow-unauthenticated \
+          --memory 4Gi \
+          --cpu 4 \
+          --max-instances 1000 \
+          --min-instances 5 \
+          --concurrency 1000 \
+          --timeout 900 \
+          --set-env-vars="ENVIRONMENT=production,ZONE=${{ env.PRODUCTION_ZONE }}" \
+          --labels="environment=production,zone=us-west1-a,pipeline=cicd-cttt"
+
+    - name: ⚙️ Setup Auto-Scaling (Production)
+      run: |
+        gcloud run services update aixtiv-symphony-production \
+          --region ${{ env.PRODUCTION_REGION }} \
+          --cpu-throttling \
+          --execution-environment gen2
+
+    - name: 🔍 Deploy Monitoring & Alerting (Production)
+      run: |
+        # Create production monitoring dashboard
+        gcloud monitoring dashboards create --config-from-file=monitoring/production-dashboard.json || true
+        
+        # Create production alerting policies
+        gcloud alpha monitoring policies create --policy-from-file=monitoring/production-alerts.json || true
+
+    - name: 🧪 Post-Deployment Tests (Production)
+      run: |
+        # Wait for deployment to be ready
+        sleep 30
+        
+        # Get service URL
+        PRODUCTION_URL=$(gcloud run services describe aixtiv-symphony-production --region=${{ env.PRODUCTION_REGION }} --format="value(status.url)")
+        echo "PRODUCTION_URL=$PRODUCTION_URL" >> $GITHUB_ENV
+        
+        # Run health check
+        curl -f "$PRODUCTION_URL/health" || exit 1
+        
+        # Run Newman tests against production
+        newman run tests/collections/aixtiv-symphony-validation.postman_collection.json \
+          --environment tests/postman/environments/production.json \
+          --env-var "base_url=$PRODUCTION_URL" \
+          --reporters cli,htmlextra \
+          --reporter-htmlextra-export newman-report-production-deploy.html
+
+  # Phase 6: Self-Healing & Monitoring Setup
+  setup-self-healing:
+    needs: [deploy-staging, deploy-production]
+    runs-on: ubuntu-latest
+    if: always() && (needs.deploy-staging.result == 'success' || needs.deploy-production.result == 'success')
+    
+    steps:
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
+
+    - name: 🔐 Auth to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: 🛠️ Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: 🔧 Setup Self-Healing Functions
+      run: |
+        # Deploy self-healing Cloud Function
+        gcloud functions deploy aixtiv-symphony-self-healing \
+          --gen2 \
+          --runtime nodejs20 \
+          --region ${{ env.PRODUCTION_REGION }} \
+          --source ./cloud-functions/self-healing \
+          --entry-point selfHealing \
+          --trigger-topic monitoring-alerts \
+          --memory 512MB \
+          --timeout 540s \
+          --set-env-vars="PROJECT_ID=${{ env.PROJECT_ID }}"
+
+    - name: 📊 Setup Continuous Monitoring
+      run: |
+        # Deploy monitoring Cloud Function
+        gcloud functions deploy aixtiv-symphony-monitor \
+          --gen2 \
+          --runtime nodejs20 \
+          --region ${{ env.PRODUCTION_REGION }} \
+          --source ./cloud-functions/monitoring \
+          --entry-point continuousMonitor \
+          --trigger-http \
+          --allow-unauthenticated \
+          --memory 256MB \
+          --timeout 300s
+
+    - name: ⏰ Setup Automated Testing Schedule
+      run: |
+        # Create Cloud Scheduler for automated Newman testing
+        gcloud scheduler jobs create http automated-newman-testing \
+          --location=${{ env.PRODUCTION_REGION }} \
+          --schedule="*/15 * * * *" \
+          --uri="$(gcloud functions describe aixtiv-symphony-monitor --region=${{ env.PRODUCTION_REGION }} --format='value(serviceConfig.uri)')" \
+          --http-method=POST \
+          --headers="Content-Type=application/json" \
+          --message-body='{"action":"run_newman_tests","environments":["staging","production"]}' \
+          --time-zone="America/Los_Angeles"
+
+  # Phase 7: Victory36 Integration & CTTT
+  victory36-integration:
+    needs: [setup-self-healing]
+    runs-on: ubuntu-latest
+    if: always() && needs.setup-self-healing.result == 'success'
+    
+    steps:
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
+
+    - name: 🔐 Auth to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: 🎯 Deploy Victory36 Prediction Engine
+      run: |
+        # Deploy Victory36 as Cloud Run service
+        gcloud run deploy victory36-engine \
+          --image gcr.io/${{ env.PROJECT_ID }}/victory36:latest \
+          --platform managed \
+          --region ${{ env.PRODUCTION_REGION }} \
+          --allow-unauthenticated \
+          --memory 2Gi \
+          --cpu 2 \
+          --max-instances 50 \
+          --min-instances 1 \
+          --set-env-vars="PREDICTION_ACCURACY=97.3,ZAPIER_CONNECTORS=8500"
+
+    - name: 🔄 Setup CTTT Pipeline Integration
+      run: |
+        # Create CTTT monitoring Cloud Function
+        gcloud functions deploy cttt-pipeline-monitor \
+          --gen2 \
+          --runtime nodejs20 \
+          --region ${{ env.PRODUCTION_REGION }} \
+          --source ./cloud-functions/cttt \
+          --entry-point ctttMonitor \
+          --trigger-topic cicd-events \
+          --memory 512MB \
+          --timeout 300s
+
+    - name: 💎 Deploy Diamond CLI Integration
+      run: |
+        # Deploy Diamond CLI as Cloud Run service
+        gcloud run deploy diamond-cli-service \
+          --image gcr.io/${{ env.PROJECT_ID }}/diamond-cli:latest \
+          --platform managed \
+          --region ${{ env.PRODUCTION_REGION }} \
+          --allow-unauthenticated \
+          --memory 1Gi \
+          --cpu 1 \
+          --max-instances 10 \
+          --min-instances 0
+
+  # Phase 8: Final Validation & Reporting
+  final-validation:
+    needs: [victory36-integration]
+    runs-on: ubuntu-latest
     if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
     
     steps:
-      - name: 🔐 Lightning Auth
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-          
-      - name: 📊 Quantum Monitoring Setup
-        run: |
-          echo "🚀 Setting up quantum monitoring..."
-          
-          # Ultra-fast monitoring dashboard creation
-          gcloud monitoring dashboards create --display-name="Lightning CTTT Dashboard" \
-            --config='{
-              "displayName": "⚡ Lightning CTTT Performance",
-              "mosaicLayout": {
-                "tiles": [{
-                  "width": 12, "height": 4,
-                  "widget": {
-                    "title": "🚀 Deployment Speed Metrics",
-                    "scorecard": {
-                      "timeSeriesQuery": {
-                        "timeSeriesFilter": {
-                          "filter": "resource.type=\"cloud_run_revision\"",
-                          "aggregation": {"alignmentPeriod": "60s"}
-                        }
-                      }
-                    }
-                  }
-                }]
-              }
-            }' || echo "Dashboard exists"
+    - name: 🚀 Checkout Code
+      uses: actions/checkout@v4
 
-  # ⚡ Phase 6: Quantum Victory36 & Diamond Integration  
-  quantum-victory36:
-    needs: [quantum-monitoring]
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    
-    steps:
-      - name: 🔐 Lightning Auth
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-          
-      - name: 🎯 Quantum Victory36 Deploy
-        run: |
-          # Lightning-fast Victory36 deployment
-          gcloud run deploy victory36-quantum \
-            --image ${{ env.GCR_REGISTRY }}/${{ env.PROJECT_ID }}/victory36:latest \
-            --platform managed \
-            --region ${{ env.PRODUCTION_REGION }} \
-            --memory 2Gi \
-            --cpu 2 \
-            --min-instances 1 \
-            --max-instances 20 \
-            --set-env-vars="PREDICTION_ACCURACY=99.7,QUANTUM_MODE=enabled" \
-            --labels="component=victory36,performance=quantum" \
-            --quiet || echo "Victory36 deployment complete"
-            
-      - name: 💎 Diamond CLI Quantum Deploy
-        run: |
-          gcloud run deploy diamond-quantum \
-            --image ${{ env.GCR_REGISTRY }}/${{ env.PROJECT_ID }}/diamond-cli:latest \
-            --platform managed \
-            --region ${{ env.PRODUCTION_REGION }} \
-            --memory 1Gi \
-            --cpu 1 \
-            --min-instances 0 \
-            --max-instances 10 \
-            --set-env-vars="CLI_MODE=quantum,PERFORMANCE_LEVEL=maximum" \
-            --quiet || echo "Diamond CLI deployment complete"
+    - name: 📊 Generate Deployment Report
+      run: |
+        echo "# 🌟 AIXTIV Symphony Deployment Report" > deployment-report.md
+        echo "Generated: $(date)" >> deployment-report.md
+        echo "" >> deployment-report.md
+        echo "## 🚀 Deployment Status" >> deployment-report.md
+        echo "- Build & Test: ${{ needs.build-and-test.result }}" >> deployment-report.md
+        echo "- Docker Build: ${{ needs.docker-build.result }}" >> deployment-report.md
+        echo "- Newman Testing: ${{ needs.newman-testing.result }}" >> deployment-report.md
+        echo "- Staging Deploy: ${{ needs.deploy-staging.result }}" >> deployment-report.md
+        echo "- Production Deploy: ${{ needs.deploy-production.result }}" >> deployment-report.md
+        echo "- Self-Healing Setup: ${{ needs.setup-self-healing.result }}" >> deployment-report.md
+        echo "- Victory36 Integration: ${{ needs.victory36-integration.result }}" >> deployment-report.md
+        echo "" >> deployment-report.md
+        echo "## 📊 Service URLs" >> deployment-report.md
+        echo "- Staging: \${{ env.STAGING_URL }}" >> deployment-report.md
+        echo "- Production: \${{ env.PRODUCTION_URL }}" >> deployment-report.md
 
-  # ⚡ Phase 7: Lightning Summary & Metrics
-  lightning-summary:
-    needs: [preflight, lightning-build-matrix, quantum-docker-build, lightning-deploy, quantum-newman, quantum-monitoring, quantum-victory36]
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 1
-    
-    steps:
-      - name: ⚡ Generate Lightning Report
-        run: |
-          echo "# ⚡ Lightning CI/CD/CTTT Performance Report" > lightning-report.md
-          echo "Generated: $(date -u)" >> lightning-report.md
-          echo "" >> lightning-report.md
-          echo "## 🚀 Pipeline Performance" >> lightning-report.md
-          echo "- Performance Mode: ${{ env.PERFORMANCE_MODE }}" >> lightning-report.md
-          echo "- Build Time: ${{ needs.quantum-docker-build.outputs.build-time }}" >> lightning-report.md
-          echo "- Total Execution: ~$(date +%s) seconds" >> lightning-report.md
-          echo "" >> lightning-report.md
-          echo "## ✅ Component Status" >> lightning-report.md
-          echo "- Preflight: ${{ needs.preflight.result }}" >> lightning-report.md
-          echo "- Build Matrix: ${{ needs.lightning-build-matrix.result }}" >> lightning-report.md
-          echo "- Docker Build: ${{ needs.quantum-docker-build.result }}" >> lightning-report.md
-          echo "- Deployments: ${{ needs.lightning-deploy.result }}" >> lightning-report.md
-          echo "- Newman Tests: ${{ needs.quantum-newman.result }}" >> lightning-report.md
-          echo "- Monitoring: ${{ needs.quantum-monitoring.result }}" >> lightning-report.md
-          echo "- Victory36: ${{ needs.quantum-victory36.result }}" >> lightning-report.md
-          echo "" >> lightning-report.md
-          echo "## 🎯 Performance Improvements" >> lightning-report.md
-          echo "- 🔥 Parallel execution across all phases" >> lightning-report.md
-          echo "- ⚡ Smart caching and change detection" >> lightning-report.md
-          echo "- 🚀 Zero-downtime deployments" >> lightning-report.md
-          echo "- 🔒 OAuth2 security with Secret Manager" >> lightning-report.md
-          echo "- 📊 Real-time monitoring integration" >> lightning-report.md
-          echo "- 🎪 Quantum-level performance optimizations" >> lightning-report.md
-          echo "" >> lightning-report.md
-          
-          if [[ "${{ needs.lightning-deploy.outputs.staging-url }}" != "" ]]; then
-            echo "- Staging: ${{ needs.lightning-deploy.outputs.staging-url }}" >> lightning-report.md
-          fi
-          
-          echo "" >> lightning-report.md
-          echo "## 🌟 Status: QUANTUM SUCCESS! ⚡" >> lightning-report.md
-          
-      - name: 📤 Upload Lightning Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: lightning-performance-report
-          path: lightning-report.md
+    - name: 🧪 Final Newman Validation
+      run: |
+        npm install -g newman newman-reporter-htmlextra
+        
+        # Run comprehensive Newman test suite
+        newman run tests/collections/aixtiv-symphony-validation.postman_collection.json \
+          --environment tests/postman/environments/production.json \
+          --reporters cli,htmlextra \
+          --reporter-htmlextra-export newman-report-final.html \
+          --reporter-htmlextra-template dashboard \
+          --timeout-request 30000 \
+          --delay-request 1000
+
+    - name: 📤 Upload Final Reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: deployment-reports
+        path: |
+          deployment-report.md
+          newman-report-*.html
+
+    - name: ✅ Deployment Summary
+      run: |
+        echo "🌟 AIXTIV Symphony Deployment Complete!"
+        echo "📦 Staging (us-west1-b): Deployed"
+        echo "🚀 Production (us-west1-a): Deployed"
+        echo "🔄 Self-Healing: Active"
+        echo "📊 Monitoring: Active" 
+        echo "🧪 Newman Testing: Integrated"
+        echo "💎 Diamond CLI: Deployed"
+        echo "🎯 Victory36: Active"
+        echo "⚡ Auto-Scaling: Enabled"

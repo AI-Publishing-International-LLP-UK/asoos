@@ -765,4 +765,13 @@ export default class AIXTIVQuantumSuperAgentConstructor {
   }
 }
 
-// All components are exported inline with their class declarations
+// Export all components
+export {
+  AgentTier,
+  ConsciousnessLevel,
+  QuantumConsciousnessEngine,
+  AGISelfImprovementEngine,
+  MultiDimensionalConsciousnessController,
+  QuantumEntangledCommunication,
+  EmergentIntelligenceNetwork
+};
