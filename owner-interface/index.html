@@ -1437,23 +1437,24 @@
         <div class="sticky-copilots">
           <div class="copilot-title">YOUR AI COPILOTS</div>
           <div class="copilot-hex-container">
-                <div class="copilot-hex-item" onclick="activateRIX('QB', 'Dr. Lucy')">
+                <div class="copilot-hex-item" onclick="activateSRIX('sRIX', 'Dr. Lucy ML Powerhouse')">
                   <div class="copilot-hex">
                     <svg viewBox="0 0 60 60" style="width: 45px; height: 45px;">
                       <defs>
-                        <linearGradient id="qbGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="srixGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
                           <stop offset="100%" style="stop-color:#0bb1bb;stop-opacity:1" />
                         </linearGradient>
                       </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradientMobile)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
-                      <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#srixGradientMobile)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
+                      <text x="30" y="20" text-anchor="middle" fill="white" font-size="9" font-weight="800">sRIX</text>
+                      <text x="30" y="32" text-anchor="middle" fill="white" font-size="7" font-weight="600">CRx01</text>
+                      <text x="30" y="44" text-anchor="middle" fill="white" font-size="6" font-weight="500">ML</text>
                     </svg>
                     <div class="copilot-status"></div>
                   </div>
-              <div class="copilot-name"></div>
-              <div class="copilot-title"></div>
+              <div class="copilot-name">Dr. Lucy</div>
+              <div class="copilot-title">sRIX ML Powerhouse</div>
             </div>
         
         <div class="copilot-hex-item" onclick="activateRIX('SH', 'Dr. Claude')">
@@ -1495,7 +1496,7 @@
           </div>
           <div class="active-copilot-display">
             <div class="copilot-badge">
-              <span id="activeRixDisplayMobile">QB RIX Active</span>
+              <span id="activeRixDisplayMobile">sRIX Dr. Lucy ML Powerhouse Active</span>
             </div>
             <div class="scan-approve-btn" onclick="toggleScanToApprove(this)">
               <div class="scan-approve-content">
@@ -1731,23 +1732,24 @@
             <div class="copilot-section">
               <div class="copilot-title">YOUR AI COPILOTS</div>
               <div class="copilot-hex-container">
-                <div class="copilot-hex-item active" onclick="activateSRIX('QB', 'Dr. Lucy')">
+                <div class="copilot-hex-item active" onclick="activateSRIX('sRIX', 'Dr. Lucy ML Powerhouse')">
                   <div class="copilot-hex">
                     <svg viewBox="0 0 60 60" style="width: 45px; height: 45px;">
                       <defs>
-                        <linearGradient id="qbGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="srixGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
                           <stop offset="100%" style="stop-color:#0bb1bb;stop-opacity:1" />
                         </linearGradient>
                       </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradient)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
-                      
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#srixGradient)" stroke="#FFD700" stroke-width="2" opacity="0.9" />
+                      <text x="30" y="20" text-anchor="middle" fill="white" font-size="9" font-weight="800">sRIX</text>
+                      <text x="30" y="32" text-anchor="middle" fill="white" font-size="7" font-weight="600">CRx01</text>
+                      <text x="30" y="44" text-anchor="middle" fill="white" font-size="6" font-weight="500">ML</text>
                     </svg>
                     <div class="copilot-status"></div>
                   </div>
                   <div class="copilot-name">Dr. Lucy</div>
-                  <div class="copilot-title">sRIX</div>
+                  <div class="copilot-title">sRIX ML Powerhouse</div>
                 </div>
                 
                 <div class="copilot-hex-item" onclick="activateSRIX('SH', 'Dr. Claude')" id="shRix">
@@ -1789,7 +1791,7 @@
               </div>
               <div class="active-copilot-display">
                 <div class="copilot-badge">
-                  <span id="activeRixDisplay">QB RIX Active</span>
+              <span id="activeRixDisplay">sRIX Dr. Lucy ML Powerhouse Active</span>
                 </div>
                 <div class="scan-approve-btn" onclick="toggleScanToApprove(this)">
                   <div class="scan-approve-content">
@@ -4244,24 +4246,27 @@ Your automation is now active!`;
       }, 3000);
     }
     
-    // REAL GCP Service Account Configurations - Enhanced AI Copilots with Deep Mind & ML
+    // REAL GCP Service Account Configurations - Zena's Professional Co-Pilot (PCP) System
     const drLucyServiceAccount = {
       account: 'dr.lucy@asoos.com',
       service_account_email: 'drlucyautomation@api-for-warp-drive.iam.gserviceaccount.com',
       gcp_project: 'api-for-warp-drive',
-      display_name: 'Dr. Lucy ML/Deep Mind Engine',
+      display_name: 'Zena PCP - Dr. Lucy ML Powerhouse CRx01',
       project_number: '859242575175',
       service_token: 'use_gcp_application_default_credentials',
       openai_api_key: 'projects/api-for-warp-drive/secrets/openai-api-key/versions/latest',
-      voice_model: 'tts-1-hd',
-      voice_name: 'dr_lucy_qb',
-      provider: 'testament_swarm',
+      voice_model: 'CRx01-dr-lucy-ml-powerhouse',
+      voice_name: 'zena_pcp_dr_lucy_srix',
+      provider: 'zaxon_professional_copilot',
       full_authentication: true,
-      qb_rix_enabled: true,
+      srix_enabled: true,
+      crx01_model: true,
       code_execution_enabled: true,
       interface_modification_enabled: true,
-      gcp_secret_manager: 'projects/api-for-warp-drive/secrets/dr-lucy-credentials/versions/latest',
+      gcp_secret_manager: 'projects/api-for-warp-drive/secrets/zena-pcp-credentials/versions/latest',
       authenticated_via_gcloud: true,
+      pcp_system: 'Zena - Professional Co-Pilot for Zaxon',
+      sapphire_sao_client: 'Aaron Harris - Zaxon Construction (.hr4)',
       capabilities: {
         ml_engine: true,
         deep_mind_access: true,
@@ -4269,7 +4274,10 @@ Your automation is now active!`;
         flight_memory: true,
         chatgpt_level_memory: '2_years',
         super_prediction_engine: true,
-        memory_capacity: '20_million_pilots_connected'
+        memory_capacity: '20_million_pilots_connected',
+        crx01_model_type: 'Dr. Lucy ML Powerhouse',
+        professional_copilot: true,
+        zaxon_integration: true
       }
     };
     
@@ -4334,20 +4342,21 @@ Your automation is now active!`;
     
     // RIX Voice Configuration with Enhanced AI Capabilities
     const rixVoiceConfig = {
-      'QB': {
-        name: 'Dr. Lucy',
-        title: 'ML/Deep Mind Engine with 20M Pilots',
+      'sRIX': {
+        name: 'Dr. Lucy ML Powerhouse',
+        title: 'sRIX CRx01 - Dr. Lucy ML Powerhouse Model',
         service_account: drLucyServiceAccount,
-        voice_name: 'dr_lucy_qb',
+        voice_name: 'dr_lucy_srix_crx01',
         provider: 'testament_swarm',
-        model: 'tts-1-hd',
+        model: 'CRx01-dr-lucy-ml-powerhouse',
         accent: 'american_professional',
         api_endpoint: 'https://api.openai.com/v1/audio/speech',
         capabilities: {
-          description: 'Advanced ML and Deep Mind engine with predictive analytics and flight memory',
+          description: 'sRIX CRx01 - Dr. Lucy ML Powerhouse: Advanced ML and Deep Mind engine with predictive analytics and flight memory',
           memory: '2 years ChatGPT-level memory',
           pilots: '20 million connected pilots',
-          specialties: ['Business Growth', 'Predictive Analytics', 'ML Processing']
+          model_type: 'CRx01 - Dr. Lucy ML Powerhouse',
+          specialties: ['Business Growth', 'Predictive Analytics', 'ML Processing', 'Professional Co-Pilot Operations']
         }
       },
       'Q': {
@@ -4383,9 +4392,9 @@ Your automation is now active!`;
     function activateRIX(rixType, name) {
       activeRIX = rixType;
       
-      // Check Dr. Lucy's service account authentication for QB RIX
-      if (rixType === 'QB' && !drLucyServiceAccount.full_authentication) {
-        console.error('❌ Dr. Lucy service account authentication required');
+      // Check Dr. Lucy's service account authentication for sRIX CRx01
+      if (rixType === 'sRIX' && !drLucyServiceAccount.full_authentication) {
+        console.error('❌ Dr. Lucy ML Powerhouse (sRIX CRx01) service account authentication required');
         return;
       }
       
@@ -4408,8 +4417,8 @@ Your automation is now active!`;
       let displayText = `${rixType} RIX Active`;
       let voiceInfo = '';
       
-      if (rixType === 'QB') {
-        voiceInfo = '<span style="color: #50C878;">ML/Deep Mind • 20M Pilots</span>';
+      if (rixType === 'sRIX') {
+        voiceInfo = '<span style="color: #50C878;">CRx01 ML Powerhouse • 20M Pilots</span>';
       } else if (rixType === 'Q') {
         voiceInfo = '<span style="color: #FFD700;">150M+ Resources • Prediction Engine</span>';
       } else if (rixType === 'SH') {
@@ -4427,9 +4436,9 @@ Your automation is now active!`;
       initializeRIXVoice(rixType, voiceConfig);
       
       // Log activation with service account info
-      if (rixType === 'QB') {
-        console.log(`✅ Dr. Lucy (QB RIX) activated with service account: ${drLucyServiceAccount.account}`);
-        console.log(`🎙️ Voice: QB RIX (${voiceConfig.model})`);
+      if (rixType === 'sRIX') {
+        console.log(`✅ Dr. Lucy ML Powerhouse (sRIX CRx01) activated with service account: ${drLucyServiceAccount.account}`);
+        console.log(`🎙️ Voice: sRIX Dr. Lucy ML Powerhouse CRx01 (${voiceConfig.model})`);
       } else {
         console.log(`✅ ${rixType} RIX (${name}) activated`);
       }
@@ -4442,15 +4451,15 @@ Your automation is now active!`;
       // Store active voice config globally
       window.activeVoiceConfig = config;
       
-      if (rixType === 'QB') {
-        console.log(`👩‍⚕️ Dr. Lucy (drlucy.live) initialized with QB RIX voice`);
+      if (rixType === 'sRIX') {
+        console.log(`👩‍⚕️ Dr. Lucy ML Powerhouse (drlucy.live) initialized with sRIX CRx01 voice`);
         console.log(`🔑 Service account: ${drLucyServiceAccount.service_account_email}`);
         console.log(`☁️ GCP Project: ${drLucyServiceAccount.gcp_project}`);
         console.log(`🛡️ Code execution enabled: ${drLucyServiceAccount.code_execution_enabled}`);
         console.log(`⚙️ Interface modification enabled: ${drLucyServiceAccount.interface_modification_enabled}`);
         
         // Authenticate Dr. Lucy's service account
-        await authenticatePCPServiceAccount('QB', drLucyServiceAccount);
+        await authenticatePCPServiceAccount('sRIX', drLucyServiceAccount);
         
       } else if (rixType === 'Q') {
         // Voice accent details commented out for cleaner UX
@@ -4509,8 +4518,12 @@ Your automation is now active!`;
           
           return true;
         } else {
+        if (rixType === 'sRIX') {
+          console.warn(`⚠️ sRIX Dr. Lucy ML Powerhouse authentication failed, using fallback mode`);
+        } else {
           console.warn(`⚠️ ${rixType} RIX authentication failed, using fallback mode`);
-          return false;
+        }
+        return false;
         }
         
       } catch (error) {
@@ -4522,8 +4535,8 @@ Your automation is now active!`;
     
     // PCP Code Execution Function - Allows PCPs to write and implement code
     async function executePCPCode(rixType, codeRequest) {
-      const serviceAccounts = {
-        'QB': drLucyServiceAccount,
+    const serviceAccounts = {
+        'sRIX': drLucyServiceAccount,
         'Q': victory36ServiceAccount,
         'SH': drClaudeServiceAccount
       };
