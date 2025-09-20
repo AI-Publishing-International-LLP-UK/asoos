@@ -208,6 +208,74 @@ app.get('/api/gcp/secrets/:secretName', async (req, res) => {
     }
 });
 
+// OAuth2 ElevenLabs TTS endpoint for enterprise voices
+app.post('/api/elevenlabs/oauth2/tts', async (req, res) => {
+  try {
+    const { text, voice_id, model_id, voice_settings } = req.body;
+
+    console.log(`🎤 OAuth2 ElevenLabs TTS request: ${text.substring(0, 50)}...`);
+    console.log(`🎭 Voice ID: ${voice_id}`);
+
+    // Get ElevenLabs API key from Secret Manager
+    let apiKey;
+    try {
+      apiKey = await getSecretFromGCP('11_labs');
+      console.log('✅ Retrieved ElevenLabs API key from GCP Secret Manager');
+    } catch (error) {
+      console.warn('⚠️ Failed to get API key from GCP, trying environment variables');
+      apiKey = process.env.ELEVENLABS_API_KEY;
+    }
+
+    if (!apiKey) {
+      console.error('❌ ElevenLabs API key not available');
+      return res.status(500).json({ error: 'API key not configured' });
+    }
+
+    // Call ElevenLabs API with enterprise voice settings
+    const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice_id}`;
+    const requestBody = {
+      text: text,
+      model_id: model_id || 'eleven_multilingual_v2',
+      voice_settings: voice_settings || {
+        stability: 0.85,
+        similarity_boost: 0.9,
+        style: 0.65,
+        use_speaker_boost: true
+      }
+    };
+
+    const response = await fetch(elevenLabsUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'audio/mpeg',
+        'Content-Type': 'application/json',
+        'xi-api-key': apiKey,
+        'User-Agent': 'ASOOS-Enterprise-PCP/1.0'
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    if (response.ok) {
+      console.log('✅ ElevenLabs OAuth2 TTS successful');
+      const audioBuffer = await response.arrayBuffer();
+      res.set({
+        'Content-Type': 'audio/mpeg',
+        'Content-Length': audioBuffer.byteLength,
+        'Cache-Control': 'public, max-age=3600'
+      });
+      res.send(Buffer.from(audioBuffer));
+    } else {
+      const errorText = await response.text();
+      console.error('❌ ElevenLabs API error:', response.status, errorText);
+      res.status(response.status).json({ error: 'ElevenLabs API error', details: errorText });
+    }
+
+  } catch (error) {
+    console.error('❌ OAuth2 TTS error:', error);
+    res.status(500).json({ error: 'Internal server error', message: error.message });
+  }
+});
+
 // Secure ElevenLabs TTS proxy endpoint
 app.post('/api/elevenlabs/tts', async (req, res) => {
   try {
