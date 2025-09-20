@@ -7,7 +7,7 @@ set -e  # Exit on error
 
 PROJECT_ID="api-for-warp-drive"
 SERVICE_NAME="mocoa-owner-interface"
-REGION="us-central1"
+REGION="us-west1"
 SERVICE_ACCOUNT="mocoa-cloud-run-sa@api-for-warp-drive.iam.gserviceaccount.com"
 
 echo "🚀 Deploying MOCOA Owner Interface to Cloud Run"

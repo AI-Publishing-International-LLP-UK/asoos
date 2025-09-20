@@ -1,7 +1,8 @@
 {
   "voice_profile": {
-    "name": "dana",
-    "provider": "openai",
+    "name": "Dr. Lucy sRIX",
+    "voice_id": "4RZ84U1b4WCqpu57LvIq",
+    "provider": "elevenlabs",
     "region": "us-west1",
     "integration_points": {
       "super_claude_1": {
@@ -16,7 +17,7 @@
       }
     },
     "voice_settings": {
-      "model": "tts-hd",
+      "model": "eleven_multilingual_v2",
       "language": "en-US",
       "quality": "enterprise",
       "latency": "ultra-low"

@@ -107,7 +107,7 @@ class UnifiedElevenLabsAgentSystem {
       
       // Owner Interface Voices
       ownerInterface: {
-        voiceId: 'pNInz6obpgDQGcFmaJgB', // Adam - Authoritative
+        voiceId: '4RZ84U1b4WCqpu57LvIq', // Adam - Authoritative
         name: 'Adam',
         description: 'Owner Interface Professional Voice',
         settings: {
