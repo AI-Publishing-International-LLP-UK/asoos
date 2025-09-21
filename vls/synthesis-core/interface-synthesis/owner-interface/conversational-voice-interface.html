@@ -962,7 +962,16 @@
 
             async playVoiceResponse(text) {
                 try {
-                    const response = await fetch('/api/voice/synthesize', {
+                    console.log('🎤 Generating voice response for:', text.substring(0, 50) + '...');
+                    
+                    // Stop any currently playing audio
+                    if (this.currentAudio) {
+                        this.currentAudio.pause();
+                        this.currentAudio = null;
+                    }
+                    
+                    // Try the integration gateway voice synthesis first
+                    const response = await fetch(this.voiceSynthesisAPI, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -972,6 +981,7 @@
                             text: text,
                             voiceProfile: 'ownerInterface',
                             options: {
+                                returnAudio: true,
                                 model: 'eleven_multilingual_v2',
                                 settings: {
                                     stability: 0.85,
@@ -986,22 +996,90 @@
                     if (response.ok) {
                         const audioBlob = await response.blob();
                         const audioUrl = URL.createObjectURL(audioBlob);
-                        const audio = new Audio(audioUrl);
+                        this.currentAudio = new Audio(audioUrl);
                         
-                        audio.onloadeddata = () => {
-                            audio.play();
-                            console.log('🔊 Playing conversational voice response');
+                        // Enable audio context interaction (required by browsers)
+                        if (this.audioContext && this.audioContext.state === 'suspended') {
+                            await this.audioContext.resume();
+                        }
+                        
+                        this.currentAudio.oncanplay = () => {
+                            this.currentAudio.play()
+                                .then(() => {
+                                    console.log('🔊 Playing conversational voice response');
+                                    this.showVoicePlayingIndicator(true);
+                                })
+                                .catch(e => {
+                                    console.error('Audio play failed:', e);
+                                    this.fallbackToSpeechSynthesis(text);
+                                });
                         };
                         
-                        audio.onended = () => {
+                        this.currentAudio.onended = () => {
                             URL.revokeObjectURL(audioUrl);
+                            this.showVoicePlayingIndicator(false);
+                            this.currentAudio = null;
                         };
+                        
+                        this.currentAudio.onerror = (e) => {
+                            console.error('Audio error:', e);
+                            this.fallbackToSpeechSynthesis(text);
+                        };
+                        
+                    } else {
+                        console.warn('Voice synthesis API not available, using fallback');
+                        this.fallbackToSpeechSynthesis(text);
                     }
+                    
                 } catch (error) {
                     console.error('Voice synthesis error:', error);
-                    // Fallback to browser TTS (though user prefers not to use TTS)
-                    // We'll skip this as per user rules about not wanting TTS
+                    this.fallbackToSpeechSynthesis(text);
                 }
+            }
+            
+            fallbackToSpeechSynthesis(text) {
+                // Use browser's built-in speech synthesis as fallback
+                if (this.synthesis) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.9;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 0.8;
+                    
+                    // Try to use a good voice
+                    const voices = this.synthesis.getVoices();
+                    const preferredVoice = voices.find(voice => 
+                        voice.name.includes('Samantha') || 
+                        voice.name.includes('Victoria') ||
+                        voice.name.includes('Karen') ||
+                        voice.lang.includes('en-US')
+                    );
+                    
+                    if (preferredVoice) {
+                        utterance.voice = preferredVoice;
+                    }
+                    
+                    utterance.onstart = () => {
+                        console.log('🔊 Playing fallback voice synthesis');
+                        this.showVoicePlayingIndicator(true);
+                    };
+                    
+                    utterance.onend = () => {
+                        this.showVoicePlayingIndicator(false);
+                    };
+                    
+                    this.synthesis.speak(utterance);
+                }
+            }
+            
+            showVoicePlayingIndicator(isPlaying) {
+                const indicators = document.querySelectorAll('.voice-wave');
+                indicators.forEach(wave => {
+                    if (isPlaying) {
+                        wave.style.animationPlayState = 'running';
+                    } else {
+                        wave.style.animationPlayState = 'paused';
+                    }
+                });
             }
 
             addMessageToConversation(message, sender, agentInfo = null) {

@@ -2069,6 +2069,110 @@
       setCopilotMode('cli');
     });
 
+    // Missing Functions Implementation
+    function showNotification(message, type = 'success') {
+      // Production notification system - create visual notification
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      notification.style.cssText = `
+        position: fixed;
+        top: 60px;
+        right: 20px;
+        background: ${type === 'error' ? 'rgba(239, 68, 68, 0.95)' : type === 'success' ? 'rgba(16, 185, 129, 0.95)' : 'rgba(11, 177, 187, 0.95)'};
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 500;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        max-width: 300px;
+        word-wrap: break-word;
+        animation: slideIn 0.3s ease;
+      `;
+      document.body.appendChild(notification);
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+    
+    function detectUserRole() {
+      // Detect user role based on authentication and context
+      if (authLevel >= 5) {
+        userRole = 'owner';
+        userLevel = 'enterprise';
+      } else if (authLevel >= 3) {
+        userRole = 'admin';
+        userLevel = 'team-leader';
+      } else {
+        userRole = 'team-member';
+        userLevel = 'individual';
+      }
+      console.log('User role detected:', userRole, 'Level:', userLevel);
+    }
+    
+    function loadUserPreferences() {
+      // Load user preferences from storage or API
+      try {
+        const stored = localStorage.getItem('asoos-preferences');
+        if (stored) {
+          const prefs = JSON.parse(stored);
+          selectedModel = prefs.model || 'claude-code';
+          rightPanelState = prefs.panelState || 'normal';
+        }
+      } catch (e) {
+        console.warn('Could not load user preferences:', e);
+      }
+    }
+    
+    function initializeKeyboardShortcuts() {
+      // Initialize keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) {
+          switch(e.key) {
+            case 'Enter':
+              e.preventDefault();
+              const input = document.getElementById('commandInput');
+              if (input && input.value.trim()) {
+                sendMessage();
+              }
+              break;
+            case 'k':
+              e.preventDefault();
+              togglePanel();
+              break;
+          }
+        }
+      });
+    }
+    
+    function loadDynamicContent() {
+      // Load dynamic content based on user role
+      console.log('Loading dynamic content for:', userRole);
+    }
+    
+    function initializePremiumFeatures() {
+      // Initialize premium features like Dream Commander and Dr. Memoria
+      if (clientFeatures.dreamCommander) {
+        console.log('Dream Commander initialized');
+      }
+      if (clientFeatures.drMemoria) {
+        console.log('Dr. Memoria initialized');
+      }
+    }
+    
+    function updateAuthenticatedState() {
+      // Update UI to reflect authenticated state
+      const authElements = document.querySelectorAll('.auth-required');
+      authElements.forEach(el => {
+        el.style.display = authLevel >= 3 ? 'block' : 'none';
+      });
+    }
+    
     // Load Dynamic User Data
     function loadUserData() {
       // In production, this would fetch from your authentication service
