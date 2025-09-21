@@ -56,7 +56,7 @@ app.use(helmet({
 app.use(cors({
   origin: function(origin, callback) {
     // Allow requests with no origin (mobile apps, etc.)
-    if (!origin) return callback(null, true);
+    if (!origin) {return callback(null, true);}
     
     const allowedOrigins = [
       'http://localhost:3000',
@@ -68,8 +68,8 @@ app.use(cors({
     ];
     
     const isAllowed = allowedOrigins.some(allowed => {
-      if (typeof allowed === 'string') return origin === allowed;
-      if (allowed instanceof RegExp) return allowed.test(origin);
+      if (typeof allowed === 'string') {return origin === allowed;}
+      if (allowed instanceof RegExp) {return allowed.test(origin);}
       return false;
     });
     

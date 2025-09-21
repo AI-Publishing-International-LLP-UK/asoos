@@ -335,7 +335,7 @@ export class WishVisionExperience {
    */
   async crystallizeVision(wishId) {
     const cloud = this.wishClouds.find(c => c.id === wishId);
-    if (!cloud) return;
+    if (!cloud) {return;}
     
     // Change cloud status
     cloud.status = 'crystallizing';

@@ -250,30 +250,30 @@ export class BidSuiteDetails {
   async fetchOpportunities() {
     return [
       {
-        title: "Enterprise CRM Development",
-        client: "TechCorp Solutions", 
-        value: "127,000",
-        status: "BID SUBMITTED",
-        statusColor: "green",
-        deadline: "Oct 15, 2024",
+        title: 'Enterprise CRM Development',
+        client: 'TechCorp Solutions', 
+        value: '127,000',
+        status: 'BID SUBMITTED',
+        statusColor: 'green',
+        deadline: 'Oct 15, 2024',
         winProbability: 42
       },
       {
-        title: "Healthcare Analytics Platform",
-        client: "MedDevice Inc",
-        value: "85,000", 
-        status: "PROPOSAL SENT",
-        statusColor: "yellow",
-        deadline: "Oct 22, 2024",
+        title: 'Healthcare Analytics Platform',
+        client: 'MedDevice Inc',
+        value: '85,000', 
+        status: 'PROPOSAL SENT',
+        statusColor: 'yellow',
+        deadline: 'Oct 22, 2024',
         winProbability: 28
       },
       {
-        title: "Financial Planning Tool",
-        client: "FinanceFirst LLC",
-        value: "63,000",
-        status: "REVIEWING",
-        statusColor: "blue", 
-        deadline: "Nov 1, 2024",
+        title: 'Financial Planning Tool',
+        client: 'FinanceFirst LLC',
+        value: '63,000',
+        status: 'REVIEWING',
+        statusColor: 'blue', 
+        deadline: 'Nov 1, 2024',
         winProbability: 35
       }
     ];
@@ -297,18 +297,18 @@ export class BidSuiteDetails {
   async fetchActivityDetails(index) {
     const activities = [
       {
-        title: "Software Development RFP",
-        client: "TechCorp Solutions",
-        value: "127,000",
-        status: "BID SUBMITTED", 
-        statusColor: "green",
-        deadline: "October 15, 2024",
-        description: "Enterprise-grade CRM system with advanced analytics, custom reporting, and integration capabilities for mid-market companies.",
+        title: 'Software Development RFP',
+        client: 'TechCorp Solutions',
+        value: '127,000',
+        status: 'BID SUBMITTED', 
+        statusColor: 'green',
+        deadline: 'October 15, 2024',
+        description: 'Enterprise-grade CRM system with advanced analytics, custom reporting, and integration capabilities for mid-market companies.',
         timeline: [
-          { date: "Sep 12", action: "Opportunity identified by Dr. Match" },
-          { date: "Sep 13", action: "Initial qualification completed" },
-          { date: "Sep 15", action: "Proposal drafted and reviewed" },
-          { date: "Sep 18", action: "Bid submitted to client" }
+          { date: 'Sep 12', action: 'Opportunity identified by Dr. Match' },
+          { date: 'Sep 13', action: 'Initial qualification completed' },
+          { date: 'Sep 15', action: 'Proposal drafted and reviewed' },
+          { date: 'Sep 18', action: 'Bid submitted to client' }
         ]
       }
     ];

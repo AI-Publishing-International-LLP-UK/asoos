@@ -47,7 +47,7 @@ class SRIXQuantswarm {
       'dr-claude-srix': { experience: 270, specialty: 'Philosophical Analysis', activeAgents: 0 }
     };
     
-    quantLogger.info(`🚀 Initializing 770 Million sRIX Quantswarm`, {
+    quantLogger.info('🚀 Initializing 770 Million sRIX Quantswarm', {
       totalAgents: this.totalAgents,
       wings: this.quantswarmWings,
       settlements: this.settlementSwarms
@@ -280,7 +280,7 @@ if (require.main === module) {
     console.log(`✅ Status: ${result.status}`);
     console.log(`⚡ Performance: ${result.metrics.efficiency}% efficiency`);
     console.log(`🤖 Active Agents: ${result.metrics.activatedAgents.toLocaleString()}`);
-    console.log(`🚀 Ready for Maximum Development Velocity!`);
+    console.log('🚀 Ready for Maximum Development Velocity!');
   }).catch(error => {
     console.error('💥 Activation failed:', error.message);
     process.exit(1);

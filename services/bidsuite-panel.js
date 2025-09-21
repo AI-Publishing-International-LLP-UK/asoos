@@ -103,7 +103,7 @@ export class BidSuitePanel {
    * Expand right panel with detailed view
    */
   async expandDetailPanel(type, identifier) {
-    if (this.detailPanelOpen) return; // Prevent multiple panels
+    if (this.detailPanelOpen) {return;} // Prevent multiple panels
 
     this.detailPanelOpen = true;
     

@@ -1259,14 +1259,14 @@
       <!-- Sidebar with Squadron Icons -->
       <div class="sidebar">
         <div class="sidebar-icons">
-          <div class="sidebar-icon active" onclick="selectIcon(this, 'Communication', '01')">
+          <div class="sidebar-icon active" onclick="showFreemiumFeature(this, 'Communication')">
             <svg viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="1.8">
               <circle cx="12" cy="12" r="10" fill="none" />
               <path d="M9 11l2 2 4-4" stroke="#333" stroke-width="1.5" fill="none"/>
             </svg>
             <div class="icon-tooltip">
               <strong>Communication</strong><br>
-              <small>Automated Communication</small>
+              <small>Click to preview feature</small>
             </div>
           </div>
           
@@ -1668,67 +1668,33 @@
                 </svg>
               </button>
             </div>
-            <!-- Copilot Section (Always at Top) -->
+            <!-- Dr. Lucy - Single AI Executive Coach -->
             <div class="copilot-section">
-              <div class="copilot-title">YOUR AI COPILOTS</div>
-              <div class="copilot-hex-container">
-                <div class="copilot-hex-item active" onclick="activateRIX('QB', 'Anthropic 4')" id="qbRix">
+              <div class="copilot-title">AI EXECUTIVE COACH</div>
+              <div class="copilot-hex-container" style="justify-content: center;">
+                <div class="copilot-hex-item active" onclick="activateDrLucy()" id="drLucy">
                   <div class="copilot-hex">
-                    <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;">
+                    <svg viewBox="0 0 60 60" style="width: 65px; height: 65px;">
                       <defs>
-                        <linearGradient id="qbGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="drLucyGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" style="stop-color:#B8860B;stop-opacity:1" />
-                          <stop offset="100%" style="stop-color:#0bb1bb;stop-opacity:1" />
+                          <stop offset="50%" style="stop-color:#0bb1bb;stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:#4ECDC4;stop-opacity:1" />
                         </linearGradient>
                       </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qbGradientLight)" stroke="#B8860B" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">QB</text>
-                      <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#drLucyGradientLight)" stroke="#B8860B" stroke-width="2" opacity="0.9" />
+                      <text x="30" y="22" text-anchor="middle" fill="white" font-size="8" font-weight="600">DR</text>
+                      <text x="30" y="32" text-anchor="middle" fill="white" font-size="11" font-weight="800">LUCY</text>
+                      <text x="30" y="42" text-anchor="middle" fill="white" font-size="7" font-weight="600">COACH</text>
                     </svg>
-                    <div class="copilot-status"></div>
+                    <div class="copilot-status" style="opacity: 1;"></div>
                   </div>
-                  <div class="copilot-name active">Anthropic 4</div>
-                </div>
-                
-                <div class="copilot-hex-item" onclick="activateRIX('SH', 'Claude 4')" id="shRix">
-                  <div class="copilot-hex">
-                    <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;">
-                      <defs>
-                        <linearGradient id="shGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" style="stop-color:#4ECDC4;stop-opacity:1" />
-                          <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#shGradientLight)" stroke="#4ECDC4" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">SH</text>
-                      <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
-                    </svg>
-                    <div class="copilot-status"></div>
-                  </div>
-                  <div class="copilot-name">Claude 4</div>
-                </div>
-                
-                <div class="copilot-hex-item" onclick="activateRIX('Q', 'Q RIX')" id="qRix">
-                  <div class="copilot-hex">
-                    <svg viewBox="0 0 60 60" style="width: 50px; height: 50px;">
-                      <defs>
-                        <linearGradient id="qGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" style="stop-color:#228B22;stop-opacity:1" />
-                          <stop offset="100%" style="stop-color:#8B7355;stop-opacity:1" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#qGradientLight)" stroke="#228B22" stroke-width="2" opacity="0.9" />
-                      <text x="30" y="26" text-anchor="middle" fill="white" font-size="12" font-weight="800">Q</text>
-                      <text x="30" y="38" text-anchor="middle" fill="white" font-size="9" font-weight="600">RIX</text>
-                    </svg>
-                    <div class="copilot-status"></div>
-                  </div>
-                  <div class="copilot-name">Q RIX</div>
+                  <div class="copilot-name active">Always Available</div>
                 </div>
               </div>
               <div class="active-copilot-display">
                 <div class="copilot-badge">
-                  <span id="activeRixDisplay">QB RIX Active</span>
+                  <span id="activeCoachDisplay">Dr. Lucy Active</span>
                 </div>
                 <div class="scan-approve-btn" onclick="toggleScanToApprove(this)">
                   <div class="scan-approve-content">
@@ -2074,6 +2040,16 @@
     let apiConnected = false;
     let selectedModel = 'claude-code';
     let authLevel = 3; // V99 Progressive Authentication Level
+    
+    // Client Features System - Conditional Premium Features
+    let clientFeatures = {
+      dreamCommander: true,  // Dream Commander for panel cards
+      drMemoria: true,       // Dr. Memoria for sidebar icons
+      universalGateway: true,
+      pineconeMemory: true,
+      elevenLabsVoice: true,
+      swarmIntelligence: true
+    };
 
     // V99 Initialize
     document.addEventListener('DOMContentLoaded', function() {
@@ -2084,6 +2060,7 @@
       initializeKeyboardShortcuts();
       loadDynamicContent();
       initializeAuthFeatures(); // V99 Authentication features
+      initializePremiumFeatures(); // Dream Commander & Dr. Memoria
       
       // Set initial copilot
       activateRIX('QB', 'Anthropic 4');
@@ -2336,6 +2313,190 @@
     function showS2DOInfo(event) {
       event.stopPropagation();
       showNotification('S2DO: Scan To Do - Automated approval workflow system', 'success');
+    }
+    
+    // Dr. Lucy - AI Executive Coach Activation
+    function activateDrLucy() {
+      // Hide the 3-copilot section
+      const copilotSection = document.querySelector('.copilot-section:not(:has(#drLucy))');
+      if (copilotSection) {
+        copilotSection.style.display = 'none';
+      }
+      
+      // Show Dr. Lucy as active
+      const drLucyElement = document.getElementById('drLucy');
+      if (drLucyElement) {
+        drLucyElement.classList.add('active');
+        
+        // Pulse effect for activation
+        drLucyElement.style.animation = 'pulse 0.6s ease-in-out';
+        setTimeout(() => {
+          drLucyElement.style.animation = '';
+        }, 600);
+      }
+      
+      // Update display text
+      const activeDisplay = document.getElementById('activeCoachDisplay');
+      if (activeDisplay) {
+        activeDisplay.textContent = 'Dr. Lucy - ML Deep Mind Active';
+        activeDisplay.style.color = '#B8860B';
+      }
+      
+      // Initialize Dr. Lucy's ChatGPT + Anthropic integration
+      initializeDrLucyCore();
+      
+      // Show success notification
+      showNotification('Dr. Lucy ML Deep Mind activated - ChatGPT & Claude integration ready', 'success');
+    }
+    
+    function initializeDrLucyCore() {
+      // Dr. Lucy's core AI systems initialization
+      const systems = [
+        'Universal Gateway OAuth',
+        'ChatGPT API Integration', 
+        'Anthropic Claude Access',
+        'Pinecone Memory Storage',
+        'ElevenLabs Voice Synthesis',
+        'Swarm Intelligence Network'
+      ];
+      
+      // Simulate system initialization
+      systems.forEach((system, index) => {
+        setTimeout(() => {
+          console.log(`🧠 Dr. Lucy: ${system} - Online`);
+          if (index === systems.length - 1) {
+            showNotification('Dr. Lucy fully operational - All AI systems synchronized', 'success');
+          }
+        }, (index + 1) * 200);
+      });
+    }
+    
+    // Dream Commander - Panel Cards AI Enhancement
+    function initializeDreamCommander() {
+      if (!clientFeatures.dreamCommander) return;
+      
+      const panelCards = document.querySelectorAll('.panel-card');
+      panelCards.forEach((card, index) => {
+        // Add Dream Commander enhancement
+        const header = card.querySelector('.panel-header');
+        if (header) {
+          // Add Dream Commander indicator
+          const dreamIndicator = document.createElement('div');
+          dreamIndicator.className = 'dream-commander-indicator';
+          dreamIndicator.style.cssText = `
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #B8860B, #FFD700);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            opacity: 0.8;
+          `;
+          dreamIndicator.title = 'Dream Commander Active';
+          header.style.position = 'relative';
+          header.appendChild(dreamIndicator);
+        }
+        
+        // Enhanced panel intelligence
+        card.addEventListener('mouseenter', () => {
+          if (clientFeatures.dreamCommander) {
+            showDreamCommanderInsight(card, index);
+          }
+        });
+      });
+      
+      console.log('🌙 Dream Commander: Panel intelligence activated');
+    }
+    
+    function showDreamCommanderInsight(card, index) {
+      const insights = [
+        'AI analyzing trending patterns...',
+        'Dream insights: Optimal timing detected',
+        'Commander suggests priority focus here',
+        'Predictive analysis: High impact potential',
+        'Dream state: Enhanced creativity mode',
+        'Commander intelligence: Strategic advantage'
+      ];
+      
+      const insight = insights[index % insights.length];
+      showNotification(`Dream Commander: ${insight}`, 'success');
+    }
+    
+    // Dr. Memoria - Sidebar Icons Memory Enhancement
+    function initializeDrMemoria() {
+      if (!clientFeatures.drMemoria) return;
+      
+      const sidebarIcons = document.querySelectorAll('.sidebar-icon:not(.auth-only):not(.settings-icon)');
+      sidebarIcons.forEach((icon, index) => {
+        // Add Dr. Memoria memory layer
+        const memoriaLayer = document.createElement('div');
+        memoriaLayer.className = 'memoria-layer';
+        memoriaLayer.style.cssText = `
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(circle, rgba(75, 192, 192, 0.1) 0%, transparent 70%);
+          border-radius: 50%;
+          pointer-events: none;
+          opacity: 0;
+          transition: all 0.3s ease;
+        `;
+        icon.style.position = 'relative';
+        icon.appendChild(memoriaLayer);
+        
+        // Dr. Memoria memory activation
+        icon.addEventListener('mouseenter', () => {
+          memoriaLayer.style.opacity = '1';
+          if (clientFeatures.drMemoria) {
+            activateDrMemoriaInsight(icon, index);
+          }
+        });
+        
+        icon.addEventListener('mouseleave', () => {
+          memoriaLayer.style.opacity = '0';
+        });
+      });
+      
+      console.log('🧠 Dr. Memoria: Memory enhancement activated for sidebar icons');
+    }
+    
+    function activateDrMemoriaInsight(icon, index) {
+      const memories = [
+        'Remembering your previous interaction...',
+        'Pattern recognized from last week',
+        'Dr. Memoria: Context loaded successfully',
+        'Memory palace: Relevant experience found',
+        'Previous success pattern detected',
+        'Dr. Memoria: Enhanced context ready'
+      ];
+      
+      const memory = memories[index % memories.length];
+      console.log(`🧠 Dr. Memoria: ${memory}`);
+      
+      // Visual memory activation
+      icon.style.boxShadow = '0 0 15px rgba(75, 192, 192, 0.4)';
+      setTimeout(() => {
+        icon.style.boxShadow = '';
+      }, 1000);
+    }
+    
+    // Initialize premium features on load
+    function initializePremiumFeatures() {
+      if (clientFeatures.dreamCommander) {
+        setTimeout(() => initializeDreamCommander(), 1000);
+      }
+      
+      if (clientFeatures.drMemoria) {
+        setTimeout(() => initializeDrMemoria(), 1200);
+      }
+      
+      // Show feature status
+      const activeFeatures = Object.keys(clientFeatures).filter(key => clientFeatures[key]);
+      console.log('💎 Premium Features Active:', activeFeatures);
     }
   </script>
 </body>

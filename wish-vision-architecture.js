@@ -34,7 +34,7 @@ class WishVisionExperience {
     this.pcpScript = {
       welcome: "Welcome to your Vision Space. I'm your PCP, and I'm here to help extract your deepest wishes and turn them into actionable vision.",
       explanation: "This is a safe space where we'll explore your dreams together. As we talk, the environment will change to reflect your aspirations.",
-      guidance: "Tell me about your biggest dream. What do you wish you could achieve?"
+      guidance: 'Tell me about your biggest dream. What do you wish you could achieve?'
     };
   }
   
@@ -267,10 +267,10 @@ class WishVisionExperience {
    * Continue vision exploration based on user's theme
    */
   async continueVisionExploration(response, theme) {
-    let followUpQuestions = {
-      business: "I can see your entrepreneurial spirit. Tell me more about the business impact you want to create.",
-      creative: "Your creative energy is inspiring. What would you create if you had unlimited resources?",
-      dreaming: "I feel your desire for fulfillment. What would your perfect life look like?",
+    const followUpQuestions = {
+      business: 'I can see your entrepreneurial spirit. Tell me more about the business impact you want to create.',
+      creative: 'Your creative energy is inspiring. What would you create if you had unlimited resources?',
+      dreaming: 'I feel your desire for fulfillment. What would your perfect life look like?',
       planning: "You're thinking strategically. What's the first milestone toward your vision?"
     };
     

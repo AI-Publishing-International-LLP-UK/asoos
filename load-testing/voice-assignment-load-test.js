@@ -38,7 +38,7 @@ const testTexts = [
 ];
 
 // K6 test configuration
-export let options = {
+export const options = {
   stages: [
     { duration: config.loadTest.rampUpTime, target: config.loadTest.concurrentUsers },
     { duration: config.loadTest.testDuration, target: config.loadTest.concurrentUsers },

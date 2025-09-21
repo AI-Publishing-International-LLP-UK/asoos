@@ -88,7 +88,7 @@ class WorldClassComputationalistTester {
           eliteConfig.agents.VICTORY36.computational_class
         ];
         
-        for (let expectedClass of expectedClasses) {
+        for (const expectedClass of expectedClasses) {
           if (!actualClasses.includes(expectedClass)) {
             throw new Error(`Missing computational class: ${expectedClass}`);
           }
