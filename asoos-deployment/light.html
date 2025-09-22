@@ -2684,25 +2684,6 @@
         }
       }
     });
-          body: JSON.stringify({
-            rixCode: rixCode,
-            voiceId: getRIXVoiceId(rixCode),
-            model: 'eleven_multilingual_v2'
-          })
-        });
-        
-        if (response.ok) {
-          const result = await response.json();
-          showNotification(`ElevenLabs voice ready for sRIX ${rixCode}`, 'success');
-          return result;
-        } else {
-          throw new Error(`ElevenLabs API Error: ${response.status}`);
-        }
-      } catch (error) {
-        console.error('ElevenLabs initialization failed:', error);
-        showNotification(`ElevenLabs connection failed: ${error.message}`, 'error');
-      }
-    }
     
     // Basic copilot message function
     function sendCopilotMessage() {
