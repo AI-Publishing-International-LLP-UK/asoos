@@ -1,4 +1,4 @@
-name: 🚀 CI/CD Pipeline with CI CTTT Security Framework
+name: CI/CD Pipeline with CI CTTT Security Framework
 
 on:
   push:
