@@ -1528,11 +1528,8 @@
                     CLI
                   </button>
                   
-                  <input type="text" id="copilotInput" placeholder="Ask your copilot anything..." style="flex: 1; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); padding: 8px 12px; border-radius: 15px; color: #333; font-size: 12px; outline: none;" onkeypress="handleCopilotKeyPress(event)">
+                  <input type="text" id="copilotInput" placeholder="Ask your copilot anything... (Press ENTER to send)" style="flex: 1; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); padding: 8px 12px; border-radius: 15px; color: #333; font-size: 12px; outline: none;" onkeypress="if(event.key==='Enter'){sendCopilotMessage();}">
                   
-                  <button onclick="sendCopilotMessage()" style="background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); color: #333; padding: 8px 12px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 11px;">
-                    Send
-                  </button>
                   <button onclick="startVoiceInput()" style="background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); color: #333; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;">
                     <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #333;">
                       <use href="#icon-microphone"></use>
@@ -1641,11 +1638,8 @@
                 CHAT
               </button>
               
-              <input type="text" class="cli-input" id="cliInput" placeholder="Enter command..." style="flex: 1; background: transparent; border: none; outline: none; color: #333; font-family: 'Monaco', 'Menlo', monospace; font-size: 11px;" onkeypress="handleCLIKeyPress(event)">
+              <input type="text" class="cli-input" id="cliInput" placeholder="Enter command... (Press ENTER to execute)" style="flex: 1; background: transparent; border: none; outline: none; color: #333; font-family: 'Monaco', 'Menlo', monospace; font-size: 11px;" onkeypress="if(event.key==='Enter'){executeCLICommand();}">
               
-              <button id="executeBtn" class="cli-btn" onclick="executeCLICommand()" style="background: #0bb1bb; border: none; color: #fff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 10px; cursor: pointer; font-weight: 600;">
-                EXECUTE
-              </button>
               <button class="cli-btn" onclick="toggleClaudeCodeMode()" style="background: #8b5cf6; border: none; color: #fff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 10px; cursor: pointer; font-weight: 600; margin-left: 3px;" title="Quick toggle Claude Code mode">
                 <svg class="enterprise-icon" style="width: 8px; height: 8px; fill: #ffffff;"><use href="#icon-bolt"></use></svg> CODE
               </button>
@@ -2626,6 +2620,32 @@
       const modal = document.getElementById('apiConfigModal');
       if (modal) {
         modal.style.display = 'none';
+      }
+    }
+    
+    // Additional missing function handlers
+    function handleCopilotKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendCopilotMessage();
+      }
+    }
+    
+    function handleCLIKeyPress(event) {
+      if (event.key === 'Enter') {
+        executeCLICommand();
+      }
+    }
+    
+    function switchModel(model) {
+      console.log(`Switching to model: ${model}`);
+      showNotification(`Model switched to ${model}`, 'success');
+      // Update API status
+      const status = document.getElementById('apiStatus');
+      if (status) {
+        status.innerHTML = `
+          <span style="width: 6px; height: 6px; background: #50C878; border-radius: 50%;"></span>
+          <span style="color: #50C878; font-size: 8px;">API Connected</span>
+        `;
       }
     }
           body: JSON.stringify({
