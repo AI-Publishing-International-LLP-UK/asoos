@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORKING TEST - LAUNCH DAY</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .input-area {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .agent-btn {
+      background: none;
+      border: none;
+      color: #8b5cf6;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+    }
+    
+    .main-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 12px 16px;
+      border-radius: 15px;
+      color: #333;
+      font-size: 14px;
+      outline: none;
+    }
+    
+    .hex-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s;
+    }
+    
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #10b981;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 12px;
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LAUNCH DAY TEST - Does This Work?</h1>
+    
+    <div class="input-area">
+      <!-- Agent A -->
+      <button class="agent-btn" onclick="toggleAgent()" title="Agent Mode">A</button>
+      
+      <!-- Main Input -->
+      <input type="text" class="main-input" id="mainInput" placeholder="Type here and press ENTER" onkeypress="if(event.key==='Enter'){sendMessage();}">
+      
+      <!-- Purple Hex -->
+      <button class="hex-btn" onclick="togglePurple()" title="Purple Voice">
+        <svg viewBox="0 0 40 40" style="width: 28px; height: 28px;">
+          <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2" opacity="0.9" />
+          <circle cx="20" cy="17" r="2" fill="white" opacity="0.8" />
+        </svg>
+      </button>
+      
+      <!-- Green Hex -->
+      <button class="hex-btn" onclick="toggleGreen()" title="Green Voice">
+        <svg viewBox="0 0 40 40" style="width: 28px; height: 28px;">
+          <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="#50C878" stroke="#228B22" stroke-width="2" opacity="0.9" />
+          <circle cx="20" cy="17" r="2" fill="white" opacity="0.8" />
+        </svg>
+      </button>
+      
+      <!-- Blue Hex with Mic -->
+      <button class="hex-btn" onclick="startVoice()" title="Voice Input">
+        <svg viewBox="0 0 40 40" style="width: 28px; height: 28px;">
+          <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="#0bb1bb" stroke="#0891b2" stroke-width="2" opacity="0.9" />
+          <circle cx="20" cy="17" r="8" fill="white" opacity="0.2" />
+          <path d="M20 12 v8 M17 15 h6 M17 19 h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div id="messages" style="margin-top: 20px; background: white; padding: 20px; border-radius: 15px; min-height: 100px;">
+      <p>Messages will appear here...</p>
+    </div>
+  </div>
+
+  <script>
+    let agentMode = true;
+    
+    function sendMessage() {
+      const input = document.getElementById('mainInput');
+      const messages = document.getElementById('messages');
+      
+      if (input.value.trim()) {
+        const message = input.value.trim();
+        
+        // Add message to display
+        messages.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+        
+        // Show notification
+        showNotification(`Message sent: "${message}"`);
+        
+        // Clear input
+        input.value = '';
+        
+        // Simulate AI response
+        setTimeout(() => {
+          messages.innerHTML += `<p><strong>AI:</strong> I received: "${message}"</p>`;
+          showNotification('AI responded!');
+        }, 1000);
+      }
+    }
+    
+    function toggleAgent() {
+      agentMode = !agentMode;
+      const btn = event.currentTarget;
+      if (agentMode) {
+        btn.style.color = '#8b5cf6';
+        showNotification('Agent Mode ON');
+      } else {
+        btn.style.color = '#666';
+        showNotification('Agent Mode OFF');
+      }
+    }
+    
+    function togglePurple() {
+      showNotification('Purple Voice Mode toggled');
+    }
+    
+    function toggleGreen() {
+      showNotification('Green Voice Mode toggled');
+    }
+    
+    function startVoice() {
+      showNotification('Voice Input started');
+    }
+    
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+    
+    // Ctrl+I shortcut
+    document.addEventListener('keydown', function(event) {
+      if ((event.ctrlKey || event.metaKey) && event.key === 'i') {
+        event.preventDefault();
+        toggleAgent();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+FROM node:24-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all Dr. Lucy components
+COPY dr-lucy-service.js ./
+COPY dr-lucy-memory-import.js ./
+COPY lucy-integration-service.js ./
+COPY multi-account-conversation-fetcher.js ./
+COPY automated-conversation-scraper.js ./
+
+# Copy Dr. Lucy connectors and middleware
+COPY connectors/dr-lucy-ml-connector.js ./connectors/
+COPY owner-interface/dr-lucy-gateway-connector.js ./owner-interface/
+
+# Copy Dr. Lucy configurations
+COPY configs/voice-integration/dr-lucy-profile.json ./configs/voice-integration/
+COPY data/dr-lucy-*.* ./data/
+
+# Copy Dr. Lucy interfaces
+COPY vls/synthesis-core/interface-synthesis/owner-interface/conversational-voice-interface.html ./interfaces/
+COPY ai-trinity-interface.html ./interfaces/
+
+# Copy MCP specialized configuration
+COPY mcp-specialized/aipub-specialized.json ./mcp-specialized/
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node -e "const http = require('http'); \
+    const options = { hostname: 'localhost', port: 8080, path: '/health', method: 'GET' }; \
+    const req = http.request(options, (res) => { \
+      if (res.statusCode === 200) process.exit(0); \
+      else process.exit(1); \
+    }); \
+    req.on('error', () => process.exit(1)); \
+    req.end();"
+
+# Start Dr. Lucy's complete system
+CMD ["node", "dr-lucy-service.js"]
