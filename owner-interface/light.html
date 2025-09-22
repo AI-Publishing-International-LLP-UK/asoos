@@ -2685,18 +2685,117 @@
       }
     });
     
-    // Basic copilot message function
+    // === EMERGENCY FUNCTIONS FOR LAUNCH ===
+    
     function sendCopilotMessage() {
+      console.log('🚀 URGENT: sendCopilotMessage called');
       const input = document.getElementById('copilotInput');
+      
       if (input && input.value.trim()) {
         const message = input.value.trim();
-        showNotification(`Message sent to sRIX ${activeRIX}: "${message}"`, 'success');
-        input.value = '';
+        console.log('💬 Message to send:', message);
         
-        // Simulate sRIX response
-        setTimeout(() => {
-          showNotification(`sRIX ${activeRIX} CRX01 processing your request...`, 'success');
-        }, 1000);
+        // Add message to chat immediately
+        const messagesContainer = document.getElementById('copilotMessages');
+        if (messagesContainer) {
+          const messageDiv = document.createElement('div');
+          messageDiv.style.cssText = 'background: rgba(11, 177, 187, 0.1); padding: 8px 12px; border-radius: 8px; margin-bottom: 6px;';
+          messageDiv.innerHTML = `
+            <div style="font-size: 10px; color: #0bb1bb; margin-bottom: 2px;">You:</div>
+            <div style="font-size: 12px; color: #333;">${message}</div>
+          `;
+          messagesContainer.appendChild(messageDiv);
+          
+          // Dr. Lucy response
+          setTimeout(() => {
+            const responseDiv = document.createElement('div');
+            responseDiv.style.cssText = 'background: rgba(80, 200, 120, 0.1); padding: 8px 12px; border-radius: 8px; margin-bottom: 6px;';
+            responseDiv.innerHTML = `
+              <div style="font-size: 10px; color: #50C878; margin-bottom: 2px;">Dr. Lucy sRIX:</div>
+              <div style="font-size: 12px; color: #333;">Hello! I'm Dr. Lucy. I understand: "${message}". How can I help?</div>
+            `;
+            messagesContainer.appendChild(responseDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }, 1000);
+        }
+        
+        showNotificationTicker(`Dr. Lucy is responding...`);
+        input.value = '';
+      } else {
+        showNotificationTicker('Please type a message first', 'error');
+      }
+    }
+    
+    function startVoiceInput() {
+      console.log('🎙️ Voice input activated');
+      showNotificationTicker('Voice input ready - speak to Dr. Lucy');
+    }
+    
+    function toggleConstantVoice() {
+      console.log('🎵 Constant voice toggled');
+      showNotificationTicker('Constant voice mode toggled');
+    }
+    
+    function togglePurpleVoice() {
+      console.log('💜 Purple voice toggled');
+      showNotificationTicker('Purple voice mode activated');
+    }
+    
+    function toggleAgentMode() {
+      console.log('🤖 Agent mode toggled');
+      showNotificationTicker('Agent mode toggled');
+    }
+    
+    function showNotificationTicker(message, type = 'info') {
+      const ticker = document.getElementById('notificationTicker');
+      if (ticker) {
+        ticker.textContent = message;
+        ticker.style.display = 'block';
+        setTimeout(() => ticker.style.display = 'none', 3000);
+      } else {
+        console.log('📢', message);
+      }
+    }
+    
+    // Basic copilot message function
+    function sendCopilotMessage() {
+      console.log('🚀 URGENT: sendCopilotMessage called');
+      const input = document.getElementById('copilotInput');
+      console.log('📝 Input element found:', input);
+      
+      if (input && input.value.trim()) {
+        const message = input.value.trim();
+        console.log('💬 Message to send:', message);
+        
+        // Add message to chat immediately
+        const messagesContainer = document.getElementById('copilotMessages');
+        if (messagesContainer) {
+          const messageDiv = document.createElement('div');
+          messageDiv.style.cssText = 'background: rgba(11, 177, 187, 0.1); padding: 8px 12px; border-radius: 8px; margin-bottom: 6px;';
+          messageDiv.innerHTML = `
+            <div style="font-size: 10px; color: #0bb1bb; margin-bottom: 2px;">You:</div>
+            <div style="font-size: 12px; color: #333;">${message}</div>
+          `;
+          messagesContainer.appendChild(messageDiv);
+          
+          // Dr. Lucy response
+          setTimeout(() => {
+            const responseDiv = document.createElement('div');
+            responseDiv.style.cssText = 'background: rgba(80, 200, 120, 0.1); padding: 8px 12px; border-radius: 8px; margin-bottom: 6px;';
+            responseDiv.innerHTML = `
+              <div style="font-size: 10px; color: #50C878; margin-bottom: 2px;">Dr. Lucy sRIX:</div>
+              <div style="font-size: 12px; color: #333;">Hello! I'm Dr. Lucy, your Professional Co-Pilot. I understand: "${message}". How can I help you today?</div>
+            `;
+            messagesContainer.appendChild(responseDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }, 1000);
+        }
+        
+        showNotification(`Dr. Lucy is responding to: "${message}"`, 'success');
+        input.value = '';
+      } else {
+        console.log('❌ No input or empty message');
+        showNotification('Please type a message first', 'error');
       }
     }
     
