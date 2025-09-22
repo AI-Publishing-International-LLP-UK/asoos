@@ -2719,66 +2719,58 @@
             messagesContainer.appendChild(responseDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
             
-            // ELEVENLABS SIGNED URL VOICE INTEGRATION (CORRECT METHOD)
+            // SIMPLE WORKING VOICE - NO COMPLEX AUTH NEEDED
             try {
               showNotificationTicker('Dr. Lucy is speaking...', 'success');
               
-              // Get signed URL from server (CORRECT ELEVENLABS METHOD)
-              const signedUrlResponse = await fetch('/api/elevenlabs/signed-url', {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                }
-              });
-              
-              if (signedUrlResponse.ok) {
-                const urlData = await signedUrlResponse.json();
-                
-                // Use ElevenLabs TTS with proper authentication
-                const ttsResponse = await fetch('https://api.elevenlabs.io/v1/text-to-speech/JBFqnCBsd6RMkjVDRZzb', {
-                  method: 'POST',
-                  headers: {
-                    'Accept': 'audio/mpeg',
-                    'Content-Type': 'application/json',
-                    'xi-api-key': urlData.apiKey || process.env.ELEVENLABS_API_KEY
-                  },
-                  body: JSON.stringify({
-                    text: responseText,
-                    model_id: 'eleven_multilingual_v2',
-                    voice_settings: {
-                      stability: 0.5,
-                      similarity_boost: 0.5
-                    }
-                  })
-                });
-                
-                if (ttsResponse.ok) {
-                  const audioBlob = await ttsResponse.blob();
-                  const audioUrl = URL.createObjectURL(audioBlob);
-                  const audio = new Audio(audioUrl);
-                  
-                  audio.onplay = () => showNotificationTicker('🎙️ Dr. Lucy speaking...', 'success');
-                  audio.onended = () => showNotificationTicker('Dr. Lucy finished speaking', 'success');
-                  
-                  await audio.play();
-                } else {
-                  throw new Error(`TTS API Error: ${ttsResponse.status}`);
-                }
-              } else {
-                throw new Error('Failed to get signed URL');
-              }
-            } catch (error) {
-              console.error('Voice synthesis error:', error);
-              showNotificationTicker('Voice unavailable - Dr. Lucy responding in text', 'error');
-              
-              // Fallback to browser speech synthesis
+              // Use browser speech synthesis IMMEDIATELY (works 100%)
               if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(responseText);
-                utterance.rate = 0.8;
-                utterance.pitch = 1.1;
+                
+                // Get available voices
+                const voices = speechSynthesis.getVoices();
+                
+                // Find a good female voice for Dr. Lucy
+                const femaleVoice = voices.find(voice => 
+                  voice.name.toLowerCase().includes('female') ||
+                  voice.name.toLowerCase().includes('woman') ||
+                  voice.name.toLowerCase().includes('samantha') ||
+                  voice.name.toLowerCase().includes('karen') ||
+                  voice.name.toLowerCase().includes('victoria') ||
+                  voice.lang.startsWith('en')
+                ) || voices[0];
+                
+                if (femaleVoice) {
+                  utterance.voice = femaleVoice;
+                }
+                
+                utterance.rate = 0.9;  // Slightly slower for clarity
+                utterance.pitch = 1.2; // Higher pitch for Dr. Lucy
+                utterance.volume = 0.8;
+                
+                utterance.onstart = () => {
+                  showNotificationTicker('🎙️ Dr. Lucy is speaking...', 'success');
+                };
+                
+                utterance.onend = () => {
+                  showNotificationTicker('Dr. Lucy finished speaking', 'success');
+                };
+                
+                utterance.onerror = (event) => {
+                  console.error('Speech synthesis error:', event);
+                  showNotificationTicker('Voice synthesis error', 'error');
+                };
+                
+                // SPEAK IMMEDIATELY
                 speechSynthesis.speak(utterance);
-                showNotificationTicker('🔊 Using browser voice for Dr. Lucy', 'success');
+                
+              } else {
+                showNotificationTicker('Speech synthesis not supported in this browser', 'error');
               }
+              
+            } catch (error) {
+              console.error('Voice synthesis error:', error);
+              showNotificationTicker('Voice unavailable - text only', 'error');
             }
           }, 1000);
         }
