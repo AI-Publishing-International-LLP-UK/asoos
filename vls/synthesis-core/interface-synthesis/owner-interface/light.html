@@ -1511,38 +1511,68 @@
               </div>
             </div>
             
-            <!-- Open Chat Area -->
-            <div id="openChatArea" style="flex: 1; display: flex; flex-direction: column;">
-              <!-- Large typable area -->
-              <textarea id="mainChatInput" placeholder="Type anything here... Press ENTER to send to your AI copilots" style="flex: 1; background: rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.1); padding: 15px; border-radius: 10px; color: #333; font-size: 14px; outline: none; font-family: 'Montserrat', sans-serif; line-height: 1.4; resize: none;" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); sendMainChatMessage();}"></textarea>
-              
-              <div style="padding: 8px 0; display: flex; gap: 8px; align-items: center; justify-content: flex-end;">
-                <!-- Pink A for Agent Mode -->
-                <button id="agentModeBtn" onclick="toggleAgentMode()" style="background: rgba(255, 192, 203, 0.3); border: 2px solid #FF69B4; color: #FF1493; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 16px; font-weight: 800;" title="Agent Mode (Ctrl+I to bypass)">
-                  A
-                </button>
-                
-                <!-- Green Hexagonal Voice -->
-                <button onclick="toggleConstantVoice()" style="background: transparent; border: none; cursor: pointer; padding: 0; transition: all 0.3s;" title="Constant Voice Mode">
-                  <svg viewBox="0 0 40 40" style="width: 32px; height: 32px;">
-                    <defs>
-                      <linearGradient id="voiceHexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="url(#voiceHexGradient)" stroke="#228B22" stroke-width="2" opacity="0.9" />
-                    <circle cx="20" cy="17" r="3" fill="white" opacity="0.8" />
-                    <path d="M20 12 Q25 17 20 22 Q15 17 20 12" fill="white" opacity="0.6" />
-                  </svg>
-                </button>
-                
-                <!-- Microphone -->
-                <button onclick="startVoiceInput()" style="background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); color: #333; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;">
-                  <svg class="enterprise-icon" style="width: 12px; height: 12px; fill: #333;">
-                    <use href="#icon-microphone"></use>
-                  </svg>
-                </button>
+            <!-- Natural Language Chat -->
+            <div id="naturalLanguageChat" style="flex: 1; display: flex; flex-direction: column;">
+              <div style="flex: 1; overflow-y: auto; padding: 12px;">
+                <div id="copilotMessages" style="display: flex; flex-direction: column; gap: 8px;">
+                  <!-- Messages appear here -->
+                </div>
+              </div>
+              <div style="padding: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <!-- Better Agent Mode A - Left Side -->
+                  <button id="agentModeBtn" onclick="toggleAgentMode()" style="background: none; border: none; color: #8b5cf6; width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 18px; font-weight: 800;" title="Agent Mode (Ctrl+I to bypass)">
+                    A
+                  </button>
+                  
+                  <input type="text" id="copilotInput" placeholder="Ask your copilot anything... (Press ENTER to send)" style="flex: 1; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); padding: 8px 12px; border-radius: 15px; color: #333; font-size: 12px; outline: none;" onkeypress="if(event.key==='Enter'){sendCopilotMessage();}">
+                  
+                  <!-- Three Hexagons -->
+                  <!-- Purple Hexagon -->
+                  <button onclick="togglePurpleVoice()" style="background: transparent; border: none; cursor: pointer; padding: 0; transition: all 0.3s;" title="Purple Voice Mode">
+                    <svg viewBox="0 0 40 40" style="width: 24px; height: 24px;">
+                      <defs>
+                        <linearGradient id="purpleHexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:#6d28d9;stop-opacity:1" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="url(#purpleHexGradient)" stroke="#6d28d9" stroke-width="2" opacity="0.9" />
+                      <circle cx="20" cy="17" r="2" fill="white" opacity="0.8" />
+                    </svg>
+                  </button>
+                  
+                  <!-- Green Hexagon -->
+                  <button onclick="toggleConstantVoice()" style="background: transparent; border: none; cursor: pointer; padding: 0; transition: all 0.3s;" title="Green Constant Voice">
+                    <svg viewBox="0 0 40 40" style="width: 24px; height: 24px;">
+                      <defs>
+                        <linearGradient id="greenHexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="url(#greenHexGradient)" stroke="#228B22" stroke-width="2" opacity="0.9" />
+                      <circle cx="20" cy="17" r="2" fill="white" opacity="0.8" />
+                    </svg>
+                  </button>
+                  
+                  <!-- Blue Hexagon with Microphone -->
+                  <button onclick="startVoiceInput()" style="background: transparent; border: none; cursor: pointer; padding: 0; transition: all 0.3s; position: relative;" title="Blue Voice Input">
+                    <svg viewBox="0 0 40 40" style="width: 24px; height: 24px;">
+                      <defs>
+                        <linearGradient id="blueHexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#0bb1bb;stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="url(#blueHexGradient)" stroke="#0891b2" stroke-width="2" opacity="0.9" />
+                      <!-- Microphone icon inside -->
+                      <svg x="14" y="13" width="12" height="12" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                      </svg>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
             
@@ -2577,14 +2607,12 @@
       agentModeActive = !agentModeActive;
       
       if (agentModeActive) {
-        btn.style.background = 'rgba(255, 192, 203, 0.3)';
-        btn.style.borderColor = '#FF69B4';
-        btn.style.color = '#FF1493';
+        btn.style.color = '#8b5cf6';
+        btn.style.opacity = '1';
         showNotification('Agent Mode ON', 'success');
       } else {
-        btn.style.background = 'rgba(128, 128, 128, 0.3)';
-        btn.style.borderColor = '#808080';
         btn.style.color = '#666';
+        btn.style.opacity = '0.5';
         showNotification('Agent Mode OFF - Direct input', 'success');
       }
     }
@@ -2597,15 +2625,34 @@
       if (constantVoiceActive) {
         svg.style.opacity = '1';
         svg.style.transform = 'scale(1.1)';
-        showNotification('Constant Voice Mode ON', 'success');
-        // Initialize constant voice monitoring
+        showNotification('Green Constant Voice ON', 'success');
         initializeConstantVoice();
       } else {
         svg.style.opacity = '0.7';
         svg.style.transform = 'scale(1)';
-        showNotification('Constant Voice Mode OFF', 'success');
-        // Stop constant voice monitoring
+        showNotification('Green Constant Voice OFF', 'success');
         stopConstantVoice();
+      }
+    }
+    
+    let purpleVoiceActive = false;
+    
+    function togglePurpleVoice() {
+      purpleVoiceActive = !purpleVoiceActive;
+      const btn = event.currentTarget;
+      const svg = btn.querySelector('svg');
+      
+      if (purpleVoiceActive) {
+        svg.style.opacity = '1';
+        svg.style.transform = 'scale(1.1)';
+        showNotification('Purple Voice Mode ON', 'success');
+        // Initialize purple voice functionality
+        console.log('Purple voice mode activated');
+      } else {
+        svg.style.opacity = '0.7';
+        svg.style.transform = 'scale(1)';
+        showNotification('Purple Voice Mode OFF', 'success');
+        console.log('Purple voice mode deactivated');
       }
     }
     
