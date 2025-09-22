@@ -1511,140 +1511,41 @@
               </div>
             </div>
             
-            <!-- Natural Language Chat -->
-            <div id="naturalLanguageChat" style="flex: 1; display: flex; flex-direction: column;">
-              <div style="flex: 1; overflow-y: auto; padding: 12px;">
-                <div id="copilotMessages" style="display: flex; flex-direction: column; gap: 8px;">
-                  <!-- Messages appear here -->
-                </div>
-              </div>
-              <div style="padding: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
-                <div style="display: flex; gap: 6px; align-items: center;">
-                  <!-- Single Mode Toggle - Left Side -->
-                  <button id="modeToggleBtn" onclick="toggleCopilotMode()" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); color: #8b5cf6; padding: 4px 8px; border-radius: 8px; font-size: 9px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 3px;" title="Switch to CLI Mode">
-                    <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #8b5cf6;">
-                      <use href="#icon-terminal"></use>
-                    </svg>
-                    CLI
-                  </button>
-                  
-                  <input type="text" id="copilotInput" placeholder="Ask your copilot anything... (Press ENTER to send)" style="flex: 1; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); padding: 8px 12px; border-radius: 15px; color: #333; font-size: 12px; outline: none;" onkeypress="if(event.key==='Enter'){sendCopilotMessage();}">
-                  
-                  <button onclick="startVoiceInput()" style="background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); color: #333; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;">
-                    <svg class="enterprise-icon" style="width: 10px; height: 10px; fill: #333;">
-                      <use href="#icon-microphone"></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            <!-- AIXTIV CLI (Hidden by default) -->
-            <div id="cliInterface" style="display: none; flex: 1; flex-direction: column; background: #f8f8f8; border: 1px solid #ddd;">
-              <!-- Welcome Message at Top -->
-              <div style="background: rgba(11, 177, 187, 0.1); border: 1px solid rgba(11, 177, 187, 0.3); padding: 12px; border-radius: 10px; margin: 12px;">
-                <div style="font-size: 12px; font-weight: 600; color: #0bb1bb; margin-bottom: 6px;">Welcome to Active Symphony OOS</div>
-                <div style="color: #666; font-size: 10px; line-height: 1.4;">
-                  Speak naturally with your AI copilots. They understand context, can pull data from any squadron, 
-                  and bring visual insights directly into this space. Just ask!
-                </div>
-              </div>
-              <div style="background: #f0f0f0; padding: 6px 10px; border-bottom: 1px solid #ddd; display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="color: #0bb1bb; font-family: monospace; font-size: 11px; font-weight: 600;">AIXTIV CLI</span>
-                  <span style="color: #999; font-size: 9px; font-family: monospace;">v2.1.0</span>
-                  <select id="modelSelector" style="background: #fff; color: #0bb1bb; border: 1px solid #ccc; padding: 2px 4px; font-family: monospace; font-size: 9px; border-radius: 3px; margin-left: 6px;" onchange="switchModel(this.value)">
-                    <option value="claude-code">Claude Code (Default)</option>
-                    <option value="claude-3-opus">Claude 3 Opus</option>
-                    <option value="claude-3-sonnet">Claude 3 Sonnet</option>
-                    <option value="claude-3-haiku">Claude 3 Haiku</option>
-                    <option value="claude-instant">Claude Instant</option>
-                    <option value="blend-all">🔥 Blend All Models</option>
-                  </select>
-                  <span id="apiStatus" style="display: flex; align-items: center; gap: 3px; margin-left: 6px;">
-                    <span style="width: 6px; height: 6px; background: #ff4757; border-radius: 50%;"></span>
-                    <span style="color: #ff4757; font-size: 8px;">API Disconnected</span>
-                  </span>
-                </div>
-                <div style="display: flex; gap: 4px; align-items: center;">
-                  <button style="background: #fff; border: 1px solid #ccc; color: #0bb1bb; cursor: pointer; padding: 2px 4px; border-radius: 3px; font-size: 8px;" onclick="openAPIConfig()" title="Configure API">
-                    <svg class="enterprise-icon" style="width: 8px; height: 8px;"><use href="#icon-cog"></use></svg> API Config
-                  </button>
-                  <button style="background: none; border: none; color: #999; cursor: pointer; padding: 2px;" onclick="clearTerminal()" title="Clear">
-                    <svg class="enterprise-icon" style="width: 8px; height: 8px;"><use href="#icon-times"></use></svg>
-                  </button>
-                </div>
-              </div>
-            
-            <!-- Mode Toggle -->
-            <div style="background: #f0f0f0; padding: 4px 10px; border-bottom: 1px solid #ddd; display: flex; align-items: center; gap: 8px;">
-              <button id="terminalModeBtn" class="mode-btn active" onclick="setMode('terminal')" style="background: #fff; border: 1px solid #0bb1bb; color: #0bb1bb; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 9px; cursor: pointer;">
-                <svg class="enterprise-icon" style="width: 9px; height: 9px;"><use href="#icon-terminal"></use></svg> Terminal
-              </button>
-              <button id="codeModeBtn" class="mode-btn" onclick="setMode('code')" style="background: transparent; border: 1px solid #ccc; color: #999; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 9px; cursor: pointer;">
-                <svg class="enterprise-icon" style="width: 9px; height: 9px;"><use href="#icon-code"></use></svg> Claude Code
-              </button>
-              <button id="chatModeBtn" class="mode-btn" onclick="setMode('chat')" style="background: transparent; border: 1px solid #ccc; color: #999; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 9px; cursor: pointer;">
-                <svg class="enterprise-icon" style="width: 9px; height: 9px;"><use href="#icon-comments"></use></svg> Chat
-              </button>
-              <span style="color: #999; font-size: 8px; margin-left: auto;">
-                <svg class="enterprise-icon" style="width: 8px; height: 8px;"><use href="#icon-keyboard"></use></svg> Ctrl+K for quick commands
-              </span>
-            </div>
-            
-            <div class="terminal-output" id="terminalOutput" style="flex: 1; overflow-y: auto; padding: 10px; font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace; font-size: 11px; line-height: 1.4; color: #333; background: #f8f8f8; display: block;">
-              <div class="terminal-line">
-                <span style="color: #228B22;">asoos@aixtiv</span><span style="color: #0bb1bb;">:</span><span style="color: #4ECDC4;">~</span><span style="color: #333;">$ </span><span style="color: #000;">_</span>
-              </div>
-            </div>
-            
-            <!-- Code Editor (Hidden by default) -->
-            <div id="codeEditor" style="display: none; flex: 1; background: #ffffff; position: relative;">
-              <div style="background: #f0f0f0; padding: 10px; border-bottom: 1px solid #ddd;">
-                <input type="text" id="codeFileName" placeholder="untitled.js" style="background: transparent; border: none; color: #666; font-family: monospace; font-size: 13px; outline: none;">
-                <select id="codeLanguage" style="background: #fff; color: #0bb1bb; border: 1px solid #ccc; padding: 2px 6px; font-size: 12px; margin-left: 10px;">
-                  <option value="javascript">JavaScript</option>
-                  <option value="python">Python</option>
-                  <option value="typescript">TypeScript</option>
-                  <option value="html">HTML</option>
-                  <option value="css">CSS</option>
-                  <option value="java">Java</option>
-                  <option value="cpp">C++</option>
-                  <option value="go">Go</option>
-                  <option value="rust">Rust</option>
-                </select>
-              </div>
-              <textarea id="codeArea" style="width: 100%; height: calc(100% - 40px); background: #ffffff; color: #333; border: none; outline: none; padding: 15px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; line-height: 1.5; resize: none;" placeholder="// Start coding here or ask Claude to generate code..."></textarea>
-            </div>
-            
-            <!-- Chat Interface (Hidden by default) -->
-            <div id="chatInterface" style="display: none; flex: 1; overflow-y: auto; padding: 20px; background: #f8f8f8;">
-              <div id="chatMessages" style="display: flex; flex-direction: column; gap: 15px;">
-                <div style="background: rgba(11, 177, 187, 0.1); border: 1px solid rgba(11, 177, 187, 0.3); padding: 15px; border-radius: 12px;">
-                  <div style="color: #0bb1bb; font-weight: 600; margin-bottom: 5px;">Claude Multi-Model Chat</div>
-                  <div style="color: #666; font-size: 12px;">Chat with Claude using your selected model or blend multiple models for enhanced responses.</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="cli-input-area" style="border-top: 1px solid #ddd; background: #f0f0f0; padding: 6px; display: flex; align-items: center; gap: 6px;">
-              <span style="color: #228B22; font-family: monospace; font-size: 11px;">$</span>
+            <!-- Open Chat Area -->
+            <div id="openChatArea" style="flex: 1; display: flex; flex-direction: column;">
+              <!-- Large typable area -->
+              <textarea id="mainChatInput" placeholder="Type anything here... Press ENTER to send to your AI copilots" style="flex: 1; background: rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.1); padding: 15px; border-radius: 10px; color: #333; font-size: 14px; outline: none; font-family: 'Montserrat', sans-serif; line-height: 1.4; resize: none;" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); sendMainChatMessage();}"></textarea>
               
-              <!-- Single Mode Toggle - Left Side -->
-              <button id="cliModeToggleBtn" onclick="toggleCopilotMode()" style="background: rgba(11, 177, 187, 0.15); border: 1px solid rgba(11, 177, 187, 0.3); color: #0bb1bb; padding: 2px 6px; border-radius: 6px; font-size: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 2px;" title="Switch to Chat Mode">
-                <svg class="enterprise-icon" style="width: 8px; height: 8px; fill: #0bb1bb;">
-                  <use href="#icon-comments"></use>
-                </svg>
-                CHAT
-              </button>
-              
-              <input type="text" class="cli-input" id="cliInput" placeholder="Enter command... (Press ENTER to execute)" style="flex: 1; background: transparent; border: none; outline: none; color: #333; font-family: 'Monaco', 'Menlo', monospace; font-size: 11px;" onkeypress="if(event.key==='Enter'){executeCLICommand();}">
-              
-              <button class="cli-btn" onclick="toggleClaudeCodeMode()" style="background: #8b5cf6; border: none; color: #fff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 10px; cursor: pointer; font-weight: 600; margin-left: 3px;" title="Quick toggle Claude Code mode">
-                <svg class="enterprise-icon" style="width: 8px; height: 8px; fill: #ffffff;"><use href="#icon-bolt"></use></svg> CODE
-              </button>
+              <div style="padding: 8px 0; display: flex; gap: 8px; align-items: center; justify-content: flex-end;">
+                <!-- Pink A for Agent Mode -->
+                <button id="agentModeBtn" onclick="toggleAgentMode()" style="background: rgba(255, 192, 203, 0.3); border: 2px solid #FF69B4; color: #FF1493; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 16px; font-weight: 800;" title="Agent Mode (Ctrl+I to bypass)">
+                  A
+                </button>
+                
+                <!-- Green Hexagonal Voice -->
+                <button onclick="toggleConstantVoice()" style="background: transparent; border: none; cursor: pointer; padding: 0; transition: all 0.3s;" title="Constant Voice Mode">
+                  <svg viewBox="0 0 40 40" style="width: 32px; height: 32px;">
+                    <defs>
+                      <linearGradient id="voiceHexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M20 3 L32 10 L32 24 L20 31 L8 24 L8 10 Z" fill="url(#voiceHexGradient)" stroke="#228B22" stroke-width="2" opacity="0.9" />
+                    <circle cx="20" cy="17" r="3" fill="white" opacity="0.8" />
+                    <path d="M20 12 Q25 17 20 22 Q15 17 20 12" fill="white" opacity="0.6" />
+                  </svg>
+                </button>
+                
+                <!-- Microphone -->
+                <button onclick="startVoiceInput()" style="background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); color: #333; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 10px;">
+                  <svg class="enterprise-icon" style="width: 12px; height: 12px; fill: #333;">
+                    <use href="#icon-microphone"></use>
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
+            
         </div>
           
           <!-- Right Panel (Automated) -->
@@ -2648,6 +2549,94 @@
         `;
       }
     }
+    
+    // New functions for simplified interface
+    let agentModeActive = true;
+    let constantVoiceActive = false;
+    
+    function sendMainChatMessage() {
+      const input = document.getElementById('mainChatInput');
+      if (input && input.value.trim()) {
+        const message = input.value.trim();
+        console.log(`Main chat message: ${message}`);
+        
+        if (agentModeActive) {
+          showNotification(`Message sent to AI agents: "${message}"`, 'success');
+          // Send to your AI backend
+          processAIMessage(message);
+        } else {
+          showNotification(`Direct message: "${message}"`, 'success');
+        }
+        
+        input.value = '';
+      }
+    }
+    
+    function toggleAgentMode() {
+      const btn = document.getElementById('agentModeBtn');
+      agentModeActive = !agentModeActive;
+      
+      if (agentModeActive) {
+        btn.style.background = 'rgba(255, 192, 203, 0.3)';
+        btn.style.borderColor = '#FF69B4';
+        btn.style.color = '#FF1493';
+        showNotification('Agent Mode ON', 'success');
+      } else {
+        btn.style.background = 'rgba(128, 128, 128, 0.3)';
+        btn.style.borderColor = '#808080';
+        btn.style.color = '#666';
+        showNotification('Agent Mode OFF - Direct input', 'success');
+      }
+    }
+    
+    function toggleConstantVoice() {
+      constantVoiceActive = !constantVoiceActive;
+      const btn = event.currentTarget;
+      const svg = btn.querySelector('svg');
+      
+      if (constantVoiceActive) {
+        svg.style.opacity = '1';
+        svg.style.transform = 'scale(1.1)';
+        showNotification('Constant Voice Mode ON', 'success');
+        // Initialize constant voice monitoring
+        initializeConstantVoice();
+      } else {
+        svg.style.opacity = '0.7';
+        svg.style.transform = 'scale(1)';
+        showNotification('Constant Voice Mode OFF', 'success');
+        // Stop constant voice monitoring
+        stopConstantVoice();
+      }
+    }
+    
+    function processAIMessage(message) {
+      console.log(`Processing AI message: ${message}`);
+      // This would connect to your actual AI backend
+      setTimeout(() => {
+        showNotification('AI agents processing your request...', 'success');
+      }, 500);
+    }
+    
+    function initializeConstantVoice() {
+      console.log('Constant voice monitoring started');
+      // Add your constant voice logic here
+    }
+    
+    function stopConstantVoice() {
+      console.log('Constant voice monitoring stopped');
+      // Stop constant voice logic here
+    }
+    
+    // Global keyboard shortcut for Ctrl+I
+    document.addEventListener('keydown', function(event) {
+      if ((event.ctrlKey || event.metaKey) && event.key === 'i') {
+        event.preventDefault();
+        if (agentModeActive) {
+          toggleAgentMode();
+          showNotification('Agent bypassed via Ctrl+I', 'success');
+        }
+      }
+    });
           body: JSON.stringify({
             rixCode: rixCode,
             voiceId: getRIXVoiceId(rixCode),
