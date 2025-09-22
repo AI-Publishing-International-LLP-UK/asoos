@@ -2785,6 +2785,150 @@
     function startVoiceInput() {
       console.log('🎙️ Voice input activated');
       showNotificationTicker('Voice input ready - speak to Dr. Lucy');
+      
+      // Initialize ElevenLabs Agent Platform conversation
+      initializeElevenLabsAgent();
+    }
+    
+    // ELEVENLABS AGENTS PLATFORM INTEGRATION
+    async function initializeElevenLabsAgent() {
+      try {
+        console.log('🤖 Initializing ElevenLabs Agent Platform...');
+        
+        // Check if we have microphone permission
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        console.log('✅ Microphone access granted');
+        
+        // Initialize WebSocket connection to ElevenLabs Agent
+        const agentId = 'YOUR_AGENT_ID'; // Replace with your actual agent ID
+        const wsUrl = `wss://api.elevenlabs.io/v1/convai/conversation?agent_id=${agentId}`;
+        
+        const websocket = new WebSocket(wsUrl);
+        
+        websocket.onopen = () => {
+          console.log('✅ ElevenLabs Agent connected');
+          showNotificationTicker('🤖 Dr. Lucy voice agent ready - speak now!', 'success');
+          
+          // Send initialization message
+          websocket.send(JSON.stringify({
+            type: 'conversation_initiation_client_data',
+            conversation_config_override: {
+              agent: {
+                first_message: "Hello! I'm Dr. Lucy, your Professional Co-Pilot. How can I help you today?"
+              }
+            }
+          }));
+        };
+        
+        websocket.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          console.log('📨 Agent message:', data);
+          
+          if (data.type === 'audio' && data.audio_event) {
+            // Play audio response from Dr. Lucy
+            playAudioResponse(data.audio_event.audio_base_64);
+          }
+          
+          if (data.type === 'ping') {
+            // Respond to ping to keep connection alive
+            websocket.send(JSON.stringify({
+              type: 'pong',
+              event_id: data.ping_event.event_id
+            }));
+          }
+        };
+        
+        websocket.onerror = (error) => {
+          console.error('❌ Agent WebSocket error:', error);
+          showNotificationTicker('Agent connection error - using browser voice', 'error');
+        };
+        
+        websocket.onclose = () => {
+          console.log('🔌 Agent connection closed');
+          showNotificationTicker('Agent disconnected', 'error');
+        };
+        
+        // Store websocket for later use
+        window.drLucyAgent = websocket;
+        
+        // Start audio capture for voice input
+        startAudioCapture(websocket);
+        
+      } catch (error) {
+        console.error('❌ ElevenLabs Agent initialization failed:', error);
+        showNotificationTicker('Voice agent unavailable - using text chat', 'error');
+      }
+    }
+    
+    function playAudioResponse(audioBase64) {
+      try {
+        const audioBlob = base64ToBlob(audioBase64, 'audio/mpeg');
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        
+        audio.play();
+        showNotificationTicker('🎙️ Dr. Lucy is responding...', 'success');
+        
+        audio.onended = () => {
+          showNotificationTicker('Dr. Lucy finished speaking', 'success');
+        };
+        
+      } catch (error) {
+        console.error('Error playing audio response:', error);
+      }
+    }
+    
+    function base64ToBlob(base64, mimeType) {
+      const byteCharacters = atob(base64);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      return new Blob([byteArray], {type: mimeType});
+    }
+    
+    async function startAudioCapture(websocket) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+          audio: {
+            sampleRate: 16000,
+            channelCount: 1,
+            echoCancellation: true,
+            noiseSuppression: true
+          } 
+        });
+        
+        const mediaRecorder = new MediaRecorder(stream, {
+          mimeType: 'audio/webm'
+        });
+        
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0 && websocket.readyState === WebSocket.OPEN) {
+            // Convert audio data and send to agent
+            const reader = new FileReader();
+            reader.onload = () => {
+              const base64Audio = btoa(reader.result);
+              websocket.send(JSON.stringify({
+                type: 'audio',
+                audio_event: {
+                  audio_base_64: base64Audio
+                }
+              }));
+            };
+            reader.readAsBinaryString(event.data);
+          }
+        };
+        
+        mediaRecorder.start(100); // Send audio chunks every 100ms
+        window.drLucyRecorder = mediaRecorder;
+        
+        showNotificationTicker('🎙️ Voice input active - speak to Dr. Lucy!', 'success');
+        
+      } catch (error) {
+        console.error('Audio capture failed:', error);
+        showNotificationTicker('Microphone access denied', 'error');
+      }
     }
     
     function toggleConstantVoice() {
