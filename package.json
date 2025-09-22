@@ -20,7 +20,10 @@
     "security-check": "npm audit && npm run lint",
     "update-deps": "npm update && npm audit",
     "security-scan": "retire --js --path ./",
-    "env-check": "dotenv-linter || echo \"dotenv-linter not installed\""
+    "env-check": "dotenv-linter || echo \"dotenv-linter not installed\"",
+    "nl-server": "node nl-processing-server.js",
+    "nl-dev": "nodemon nl-processing-server.js",
+    "start-nl": "node nl-processing-server.js"
   },
   "repository": {
     "type": "git",
@@ -56,7 +59,10 @@
     "path-to-regexp": "^6.2.1",
     "uuid": "^13.0.0",
     "vector": "^0.0.4",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "node-fetch": "^2.7.0",
+    "ws": "^8.14.2",
+    "nodemon": "^3.0.1"
   },
   "engines": {
     "node": ">=22.0.0",

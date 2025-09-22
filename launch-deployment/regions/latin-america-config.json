@@ -1,0 +1,16 @@
+{
+  "name": "Latin America",
+  "discount": 90,
+  "currency": "USD",
+  "language": "es",
+  "entryPrice": 0,
+  "growthPrice": 20,
+  "fullPrice": 100,
+  "messaging": "Transformación accesible - Tu oportunidad de crecer con IA",
+  "keywords": [
+    "coach IA",
+    "coaching empresarial",
+    "desarrollo ejecutivo",
+    "Dr. Lucy coach"
+  ]
+}

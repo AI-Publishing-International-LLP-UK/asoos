@@ -1,0 +1,16 @@
+{
+  "name": "Europe",
+  "discount": 0,
+  "currency": "EUR",
+  "language": "en",
+  "entryPrice": 5,
+  "growthPrice": 197,
+  "fullPrice": 997,
+  "messaging": "Sophisticated AI coaching with full compliance and privacy",
+  "keywords": [
+    "AI coach",
+    "business coaching",
+    "executive development",
+    "Dr. Lucy coaching"
+  ]
+}
