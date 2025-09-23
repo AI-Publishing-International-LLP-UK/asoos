@@ -1,0 +1,18 @@
+{
+  "name": "Dr. Lucy sRIX",
+  "code": "QB_RIX",
+  "serviceAccount": "drlucyautomation@api-for-warp-drive.iam.gserviceaccount.com",
+  "domain": "drlucy.live",
+  "voiceType": "tts-1-hd",
+  "status": "active_with_fallback_mode",
+  "features": [
+    "Contextual greetings",
+    "Project progress analysis",
+    "Priority recommendations",
+    "GCP integration",
+    "Code execution capability",
+    "Interface modification capability"
+  ],
+  "humeIdentification": "dr_lucy_computational_voice",
+  "pineconeVector": "dr_lucy_conversation_history"
+}

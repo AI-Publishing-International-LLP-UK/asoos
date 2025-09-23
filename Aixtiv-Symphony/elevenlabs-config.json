@@ -1,0 +1,12 @@
+{
+  "name": "ElevenLabs Voice Synthesis Service",
+  "enabled": true,
+  "apiEndpoint": "https://api.elevenlabs.io/v1",
+  "voiceModels": ["QB_RIX", "SH_RIX", "VICTORY36"],
+  "secretManager": {
+    "keyPath": "projects/api-for-warp-drive/secrets/ELEVENLABS_API_KEY",
+    "fallbackMode": "browser_voice_synthesis"
+  },
+  "humeIntegration": true,
+  "pineconeStorage": true
+}

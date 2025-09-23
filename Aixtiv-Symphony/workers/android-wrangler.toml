@@ -8,10 +8,6 @@ account_id = "aef30d920913c188b9b6048cc7f42951"
 name = "asoos-mobile-android-prod"
 
 [[env.production.routes]]
-pattern = "mobile-android.asoos.2100.cool"
-custom_domain = true
-
-[[env.production.routes]]
 pattern = "mobile-android.asoos.2100.cool/*"
 zone_name = "2100.cool"
 

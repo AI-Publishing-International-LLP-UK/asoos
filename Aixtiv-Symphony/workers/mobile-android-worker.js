@@ -40,7 +40,7 @@ export default {
 
       return response;
     } catch (error) {
-      console.error('Enhanced mobile worker error:', error);
+      // Enhanced mobile worker error logging disabled for production
       return new Response(
         JSON.stringify({
           error: 'Mobile app service unavailable',
@@ -62,7 +62,7 @@ export default {
   },
 };
 
-async function handleEnhancedMobileRequest(request, url, env) {
+async function handleEnhancedMobileRequest(request, url, _env) {
   const platform = 'android';
   const path = url.pathname;
 
