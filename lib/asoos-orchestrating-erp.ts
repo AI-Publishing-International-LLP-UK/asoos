@@ -2,11 +2,11 @@
  * ████████████████████████████████████████████████████████████████
  * █              ASOOS ORCHESTRATING ERP SYSTEM                   █
  * ████████████████████████████████████████████████████████████████
- * 
+ *
  * Professional ERP system built on HRAI-CRMS foundation
  * FCA UK regulatory compliance for balance sheet reporting
  * Complete customer lifecycle and brand asset management
- * 
+ *
  * Features:
  * • MCP Customer Lead Management & Conversion Tracking
  * • User Role/Company Transition History
@@ -15,7 +15,7 @@
  * • FCA UK Regulatory Compliance & Statutory Reporting
  * • Historical Record Management for Audit Trail
  * • BACA Coin Investment Backing with Tangible Assets
- * 
+ *
  * @author AI Publishing International LLP
  * @version 1.0.0-enterprise-erp
  * @license Proprietary - Diamond SAO Command Center
@@ -43,11 +43,18 @@ export interface MCPCustomerLead {
     position: string;
   };
   lead_source: 'WEBSITE' | 'REFERRAL' | 'SALES_OUTREACH' | 'PARTNER' | 'EVENT' | 'OTHER';
-  lead_status: 'PROSPECT' | 'QUALIFIED' | 'DEMO_SCHEDULED' | 'PROPOSAL_SENT' | 'NEGOTIATION' | 'CONVERTED' | 'LOST';
+  lead_status:
+    | 'PROSPECT'
+    | 'QUALIFIED'
+    | 'DEMO_SCHEDULED'
+    | 'PROPOSAL_SENT'
+    | 'NEGOTIATION'
+    | 'CONVERTED'
+    | 'LOST';
   estimated_value: number; // GBP
   probability_percent: number;
   expected_close_date: Date;
-  
+
   // MCP Configuration
   mcp_config: {
     requested_agents: number;
@@ -56,7 +63,7 @@ export interface MCPCustomerLead {
     technical_requirements: string[];
     integration_needs: string[];
   };
-  
+
   // Conversion Tracking
   conversion_data?: {
     converted_date: Date;
@@ -64,7 +71,7 @@ export interface MCPCustomerLead {
     initial_contract_value: number;
     contract_duration_months: number;
   };
-  
+
   // Lead Journey
   touchpoints: Array<{
     date: Date;
@@ -73,7 +80,7 @@ export interface MCPCustomerLead {
     outcome: string;
     next_action?: string;
   }>;
-  
+
   created_at: Date;
   updated_at: Date;
   created_by: string;
@@ -99,11 +106,11 @@ export interface MCPCustomer {
     employee_count: number;
     annual_revenue?: number;
   };
-  
+
   // Customer Status
   status: 'ACTIVE' | 'SUSPENDED' | 'CHURNED' | 'NON_PAYING' | 'TRIAL';
   tier: 'BASIC' | 'PROFESSIONAL' | 'ENTERPRISE' | 'CUSTOM';
-  
+
   // Contract Information
   contracts: Array<{
     contract_id: string;
@@ -116,7 +123,7 @@ export interface MCPCustomer {
     renewal_terms: string;
     status: 'ACTIVE' | 'EXPIRED' | 'TERMINATED';
   }>;
-  
+
   // Financial Tracking
   financial_summary: {
     total_contract_value: number;
@@ -126,7 +133,7 @@ export interface MCPCustomer {
     payment_status: 'CURRENT' | 'OVERDUE' | 'DEFAULTED';
     next_payment_date: Date;
   };
-  
+
   created_at: Date;
   updated_at: Date;
 }
@@ -139,7 +146,7 @@ export interface MCPUser {
     phone?: string;
     preferred_language: string;
   };
-  
+
   // Current Assignment
   current_assignment: {
     customer_id: string;
@@ -149,7 +156,7 @@ export interface MCPUser {
     start_date: Date;
     employment_type: 'EMPLOYEE' | 'CONTRACTOR' | 'CONSULTANT' | 'PARTNER';
   };
-  
+
   // Historical Assignments (for tracking transitions)
   assignment_history: Array<{
     customer_id: string;
@@ -158,10 +165,15 @@ export interface MCPUser {
     employment_type: string;
     start_date: Date;
     end_date: Date;
-    transition_reason: 'PROMOTION' | 'ROLE_CHANGE' | 'COMPANY_CHANGE' | 'CONTRACT_END' | 'TERMINATION';
+    transition_reason:
+      | 'PROMOTION'
+      | 'ROLE_CHANGE'
+      | 'COMPANY_CHANGE'
+      | 'CONTRACT_END'
+      | 'TERMINATION';
     notes?: string;
   }>;
-  
+
   // Subscription Status (for individual paying users)
   subscription_status?: {
     type: 'INDIVIDUAL_SUBSCRIBER' | 'COMPANY_ALLOCATED';
@@ -176,7 +188,7 @@ export interface MCPUser {
     }>;
     total_monthly_value: number;
   };
-  
+
   created_at: Date;
   updated_at: Date;
 }
@@ -188,8 +200,15 @@ export interface MCPUser {
 export interface ProductBrandAsset {
   asset_id: string;
   asset_name: string;
-  asset_type: 'BRAND' | 'TRADEMARK' | 'COPYRIGHT' | 'PATENT' | 'TRADE_SECRET' | 'DOMAIN' | 'SOFTWARE_IP';
-  
+  asset_type:
+    | 'BRAND'
+    | 'TRADEMARK'
+    | 'COPYRIGHT'
+    | 'PATENT'
+    | 'TRADE_SECRET'
+    | 'DOMAIN'
+    | 'SOFTWARE_IP';
+
   // Brand/Product Information
   brand_details: {
     brand_name: string;
@@ -199,7 +218,7 @@ export interface ProductBrandAsset {
     competitive_position: string;
     brand_category: 'CORE' | 'SUBSIDIARY' | 'PARTNERSHIP' | 'LICENSED';
   };
-  
+
   // Legal Protection
   legal_protection: {
     trademark_numbers: string[];
@@ -209,7 +228,7 @@ export interface ProductBrandAsset {
     protection_jurisdictions: string[];
     renewal_dates: Date[];
   };
-  
+
   // Financial Valuation (UK GAAP FRS 102)
   valuation: {
     // Cost Model
@@ -217,25 +236,25 @@ export interface ProductBrandAsset {
     development_costs: number;
     legal_costs: number;
     marketing_investment: number;
-    
+
     // Current Valuation
     current_book_value: number;
     fair_value_estimate: number;
     market_value_estimate?: number;
-    
+
     // Depreciation/Amortization
     useful_life_years: number;
     amortization_method: 'STRAIGHT_LINE' | 'REDUCING_BALANCE' | 'USAGE_BASED';
     accumulated_amortization: number;
     annual_amortization: number;
-    
+
     // Impairment Testing
     last_impairment_test: Date;
     next_impairment_test: Date;
     impairment_indicators: string[];
     recoverable_amount: number;
   };
-  
+
   // Revenue Attribution
   revenue_attribution: {
     directly_attributable_revenue: number; // Revenue directly from this brand
@@ -243,7 +262,7 @@ export interface ProductBrandAsset {
     revenue_multiple: number; // Revenue multiple for valuation
     profit_margin_impact: number;
   };
-  
+
   // Strategic Value
   strategic_metrics: {
     market_penetration_score: number; // 0-100
@@ -252,7 +271,7 @@ export interface ProductBrandAsset {
     strategic_importance: 'CRITICAL' | 'IMPORTANT' | 'SUPPORTING' | 'NON_CORE';
     synergy_value: number; // Value from combination with other assets
   };
-  
+
   // BACA Coin Backing
   baca_coin_backing?: {
     allocated_coins: number;
@@ -260,7 +279,7 @@ export interface ProductBrandAsset {
     backing_date: Date;
     valuation_basis: string;
   };
-  
+
   created_at: Date;
   updated_at: Date;
   last_valuation_date: Date;
@@ -286,7 +305,7 @@ export interface FCABalanceSheetReport {
       end_date: Date;
     };
   };
-  
+
   // Regulatory Framework
   regulatory_framework: {
     accounting_standards: 'FRS_102' | 'FRS_105' | 'IFRS';
@@ -294,7 +313,7 @@ export interface FCABalanceSheetReport {
     audit_requirement: boolean;
     small_company_exemptions: boolean;
   };
-  
+
   // Balance Sheet (£)
   balance_sheet: {
     // Non-Current Assets
@@ -319,7 +338,7 @@ export interface FCABalanceSheetReport {
       };
       total_non_current_assets: number;
     };
-    
+
     // Current Assets
     current_assets: {
       trade_debtors: number;
@@ -328,9 +347,9 @@ export interface FCABalanceSheetReport {
       cash_and_bank: number;
       total_current_assets: number;
     };
-    
+
     total_assets: number;
-    
+
     // Members' Equity (for LLP)
     members_equity: {
       members_capital: number;
@@ -338,7 +357,7 @@ export interface FCABalanceSheetReport {
       current_year_profit: number;
       total_members_equity: number;
     };
-    
+
     // Current Liabilities
     current_liabilities: {
       trade_creditors: number;
@@ -348,7 +367,7 @@ export interface FCABalanceSheetReport {
       other_creditors: number;
       total_current_liabilities: number;
     };
-    
+
     // Non-Current Liabilities
     non_current_liabilities: {
       long_term_debt: number;
@@ -356,11 +375,11 @@ export interface FCABalanceSheetReport {
       provisions: number;
       total_non_current_liabilities: number;
     };
-    
+
     total_liabilities: number;
     total_equity_and_liabilities: number;
   };
-  
+
   // Supporting Notes
   accounting_policies: {
     basis_of_preparation: string;
@@ -369,7 +388,7 @@ export interface FCABalanceSheetReport {
     revenue_recognition_policy: string;
     going_concern_assessment: string;
   };
-  
+
   // Validation and Approval
   validation: {
     balances_verified: boolean;
@@ -380,7 +399,7 @@ export interface FCABalanceSheetReport {
     approved_by: string[]; // Morgan O'Brien, Mike, Paul
     approval_date: Date;
   };
-  
+
   // BACA Coin Asset Backing Detail
   baca_backing_analysis: {
     total_tangible_asset_value: number;
@@ -390,7 +409,7 @@ export interface FCABalanceSheetReport {
     backing_ratio: number; // Asset value per BACA coin
     backing_certificate: string;
   };
-  
+
   created_at: Date;
   report_date: Date;
   filing_deadline: Date;
@@ -407,7 +426,7 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
   private mcpUsers: Collection<MCPUser> | null = null;
   private productBrandAssets: Collection<ProductBrandAsset> | null = null;
   private fcaBalanceSheetReports: Collection<FCABalanceSheetReport> | null = null;
-  
+
   constructor(options: { gcpProject?: string } = {}) {
     super(options);
   }
@@ -417,20 +436,20 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
    */
   async initializeERP(): Promise<void> {
     console.log('🔌 Initializing ASOOS Orchestrating ERP System...');
-    
+
     // Initialize parent HRAI-CRMS system
     await super.initialize();
-    
+
     // Initialize ERP-specific collections
     this.mcpLeads = this.db!.collection('mcp_customer_leads');
     this.mcpCustomers = this.db!.collection('mcp_customers');
     this.mcpUsers = this.db!.collection('mcp_users');
     this.productBrandAssets = this.db!.collection('product_brand_assets');
     this.fcaBalanceSheetReports = this.db!.collection('fca_balance_sheet_reports');
-    
+
     // Create ERP-specific indexes
     await this.createERPIndexes();
-    
+
     console.log('✅ ASOOS Orchestrating ERP System initialized');
   }
 
@@ -445,10 +464,10 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
     mcp_config: MCPCustomerLead['mcp_config'];
   }): Promise<MCPCustomerLead> {
     console.log(`🎯 Creating MCP lead: ${leadData.company_name}`);
-    
+
     const leadId = `MCP-LEAD-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
     const mcpDomain = `mcp.${leadData.company_name.toLowerCase().replace(/[^a-z0-9]/g, '')}.2100.cool`;
-    
+
     const lead: MCPCustomerLead = {
       lead_id: leadId,
       mcp_domain: mcpDomain,
@@ -464,16 +483,16 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
       created_at: new Date(),
       updated_at: new Date(),
       created_by: 'SYSTEM',
-      assigned_to: 'SALES_TEAM'
+      assigned_to: 'SALES_TEAM',
     };
 
     await this.mcpLeads!.insertOne(lead);
-    
+
     // Publish lead creation event
     await this.publishEvent('MCP_LEAD_CREATED', {
       lead_id: leadId,
       company_name: leadData.company_name,
-      estimated_value: leadData.estimated_value
+      estimated_value: leadData.estimated_value,
     });
 
     console.log(`✅ MCP lead created: ${leadData.company_name} - ${mcpDomain}`);
@@ -493,7 +512,7 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
     }
   ): Promise<{ customer: MCPCustomer; updatedLead: MCPCustomerLead }> {
     console.log(`🔄 Converting MCP lead to customer: ${leadId}`);
-    
+
     const lead = await this.mcpLeads!.findOne({ lead_id: leadId });
     if (!lead) {
       throw new Error(`MCP lead not found: ${leadId}`);
@@ -507,27 +526,33 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
       company_profile: conversionData.legal_company_details,
       status: 'ACTIVE',
       tier: conversionData.tier,
-      contracts: [{
-        contract_id: `CONT-${Date.now()}`,
-        contract_type: 'MCP_SUBSCRIPTION',
-        start_date: new Date(),
-        end_date: new Date(Date.now() + conversionData.contract_duration_months * 30 * 24 * 60 * 60 * 1000),
-        value: conversionData.contract_value,
-        currency: 'GBP',
-        payment_terms: 'Monthly in advance',
-        renewal_terms: 'Auto-renewal unless cancelled',
-        status: 'ACTIVE'
-      }],
+      contracts: [
+        {
+          contract_id: `CONT-${Date.now()}`,
+          contract_type: 'MCP_SUBSCRIPTION',
+          start_date: new Date(),
+          end_date: new Date(
+            Date.now() + conversionData.contract_duration_months * 30 * 24 * 60 * 60 * 1000
+          ),
+          value: conversionData.contract_value,
+          currency: 'GBP',
+          payment_terms: 'Monthly in advance',
+          renewal_terms: 'Auto-renewal unless cancelled',
+          status: 'ACTIVE',
+        },
+      ],
       financial_summary: {
         total_contract_value: conversionData.contract_value,
-        annual_recurring_revenue: conversionData.contract_value * (12 / conversionData.contract_duration_months),
-        monthly_recurring_revenue: conversionData.contract_value / conversionData.contract_duration_months,
+        annual_recurring_revenue:
+          conversionData.contract_value * (12 / conversionData.contract_duration_months),
+        monthly_recurring_revenue:
+          conversionData.contract_value / conversionData.contract_duration_months,
         lifetime_value: conversionData.contract_value,
         payment_status: 'CURRENT',
-        next_payment_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+        next_payment_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
       },
       created_at: new Date(),
-      updated_at: new Date()
+      updated_at: new Date(),
     };
 
     // Update lead with conversion data
@@ -540,10 +565,10 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
             converted_date: new Date(),
             customer_id: customerId,
             initial_contract_value: conversionData.contract_value,
-            contract_duration_months: conversionData.contract_duration_months
+            contract_duration_months: conversionData.contract_duration_months,
           },
-          updated_at: new Date()
-        }
+          updated_at: new Date(),
+        },
       },
       { returnDocument: 'after' }
     );
@@ -554,7 +579,7 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
     await this.publishEvent('MCP_LEAD_CONVERTED', {
       lead_id: leadId,
       customer_id: customerId,
-      contract_value: conversionData.contract_value
+      contract_value: conversionData.contract_value,
     });
 
     console.log(`✅ MCP lead converted: ${lead.company_name} -> ${customerId}`);
@@ -576,7 +601,7 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
     }
   ): Promise<MCPUser> {
     console.log(`👥 Tracking user transition: ${userId}`);
-    
+
     const user = await this.mcpUsers!.findOne({ user_id: userId });
     if (!user) {
       throw new Error(`User not found: ${userId}`);
@@ -587,7 +612,7 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
       ...user.current_assignment,
       end_date: new Date(),
       transition_reason: transitionData.transition_reason,
-      notes: transitionData.notes
+      notes: transitionData.notes,
     };
 
     // Update user with new assignment
@@ -601,13 +626,13 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
             role: transitionData.new_role,
             permissions: this.getDefaultPermissionsForRole(transitionData.new_role),
             start_date: new Date(),
-            employment_type: transitionData.new_employment_type
+            employment_type: transitionData.new_employment_type,
           },
-          updated_at: new Date()
+          updated_at: new Date(),
         },
         $push: {
-          assignment_history: historicalAssignment
-        }
+          assignment_history: historicalAssignment,
+        },
       },
       { returnDocument: 'after' }
     );
@@ -617,7 +642,7 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
       user_id: userId,
       from_customer: user.current_assignment.customer_id,
       to_customer: transitionData.new_customer_id,
-      transition_reason: transitionData.transition_reason
+      transition_reason: transitionData.transition_reason,
     });
 
     console.log(`✅ User transition tracked: ${userId}`);
@@ -644,12 +669,13 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
     };
   }): Promise<ProductBrandAsset> {
     console.log(`🏷️ Registering product brand asset: ${assetData.brand_name}`);
-    
+
     const assetId = `BRAND-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
-    const totalCost = assetData.initial_valuation.historical_cost + 
-                     assetData.initial_valuation.development_costs + 
-                     assetData.initial_valuation.legal_costs + 
-                     assetData.initial_valuation.marketing_investment;
+    const totalCost =
+      assetData.initial_valuation.historical_cost +
+      assetData.initial_valuation.development_costs +
+      assetData.initial_valuation.legal_costs +
+      assetData.initial_valuation.marketing_investment;
 
     const asset: ProductBrandAsset = {
       asset_id: assetId,
@@ -662,7 +688,7 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
         patent_numbers: [],
         domain_registrations: [],
         protection_jurisdictions: ['UK'],
-        renewal_dates: []
+        renewal_dates: [],
       },
       valuation: {
         historical_cost: assetData.initial_valuation.historical_cost,
@@ -678,30 +704,32 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
         last_impairment_test: new Date(),
         next_impairment_test: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
         impairment_indicators: [],
-        recoverable_amount: totalCost
+        recoverable_amount: totalCost,
       },
       revenue_attribution: {
         directly_attributable_revenue: 0,
         indirectly_attributable_revenue: 0,
         revenue_multiple: 1.0,
-        profit_margin_impact: 0
+        profit_margin_impact: 0,
       },
       strategic_metrics: {
         market_penetration_score: 50,
         brand_recognition_score: 50,
         competitive_advantage_score: 50,
         strategic_importance: 'IMPORTANT',
-        synergy_value: 0
+        synergy_value: 0,
       },
-      baca_coin_backing: assetData.baca_coin_backing ? {
-        ...assetData.baca_coin_backing,
-        backing_date: new Date(),
-        valuation_basis: 'Historical cost with development investment'
-      } : undefined,
+      baca_coin_backing: assetData.baca_coin_backing
+        ? {
+            ...assetData.baca_coin_backing,
+            backing_date: new Date(),
+            valuation_basis: 'Historical cost with development investment',
+          }
+        : undefined,
       created_at: new Date(),
       updated_at: new Date(),
       last_valuation_date: new Date(),
-      next_valuation_date: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000) // Quarterly revaluation
+      next_valuation_date: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // Quarterly revaluation
     };
 
     await this.productBrandAssets!.insertOne(asset);
@@ -711,10 +739,12 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
       asset_id: assetId,
       brand_name: assetData.brand_name,
       book_value: totalCost,
-      baca_backing: !!assetData.baca_coin_backing
+      baca_backing: !!assetData.baca_coin_backing,
     });
 
-    console.log(`✅ Product brand asset registered: ${assetData.brand_name} - £${totalCost.toLocaleString()}`);
+    console.log(
+      `✅ Product brand asset registered: ${assetData.brand_name} - £${totalCost.toLocaleString()}`
+    );
     return asset;
   }
 
@@ -730,54 +760,81 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
     }
   ): Promise<FCABalanceSheetReport> {
     console.log('📊 Generating FCA UK regulatory balance sheet report...');
-    
+
     // Aggregate AI Agent Assets
     const aiAssetsPipeline = [
       { $match: { asset_status: 'ACTIVE' } },
-      { $group: {
-        _id: null,
-        total_cost: { $sum: '$initial_cost' },
-        total_book_value: { $sum: '$current_book_value' },
-        total_accumulated_depreciation: { $sum: '$accumulated_depreciation' }
-      }}
+      {
+        $group: {
+          _id: null,
+          total_cost: { $sum: '$initial_cost' },
+          total_book_value: { $sum: '$current_book_value' },
+          total_accumulated_depreciation: { $sum: '$accumulated_depreciation' },
+        },
+      },
     ];
     const [aiAssetsData] = await this.aiAgentAssets!.aggregate(aiAssetsPipeline).toArray();
 
     // Aggregate Brand Assets
     const brandAssetsPipeline = [
-      { $group: {
-        _id: '$asset_type',
-        total_cost: { $sum: '$valuation.historical_cost' },
-        total_book_value: { $sum: '$valuation.current_book_value' },
-        total_accumulated_amortization: { $sum: '$valuation.accumulated_amortization' }
-      }}
+      {
+        $group: {
+          _id: '$asset_type',
+          total_cost: { $sum: '$valuation.historical_cost' },
+          total_book_value: { $sum: '$valuation.current_book_value' },
+          total_accumulated_amortization: { $sum: '$valuation.accumulated_amortization' },
+        },
+      },
     ];
     const brandAssetsData = await this.productBrandAssets!.aggregate(brandAssetsPipeline).toArray();
 
     // Calculate brand assets totals
     const totalBrandCost = brandAssetsData.reduce((sum, item) => sum + (item.total_cost || 0), 0);
-    const totalBrandBookValue = brandAssetsData.reduce((sum, item) => sum + (item.total_book_value || 0), 0);
+    const totalBrandBookValue = brandAssetsData.reduce(
+      (sum, item) => sum + (item.total_book_value || 0),
+      0
+    );
 
     // Aggregate Customer Revenue (for debtors calculation)
     const customerRevenuePipeline = [
       { $match: { status: 'ACTIVE' } },
-      { $group: {
-        _id: null,
-        total_arr: { $sum: '$financial_summary.annual_recurring_revenue' },
-        total_mrr: { $sum: '$financial_summary.monthly_recurring_revenue' },
-        current_debtors: { $sum: { $cond: [{ $eq: ['$financial_summary.payment_status', 'OVERDUE'] }, '$financial_summary.monthly_recurring_revenue', 0] }}
-      }}
+      {
+        $group: {
+          _id: null,
+          total_arr: { $sum: '$financial_summary.annual_recurring_revenue' },
+          total_mrr: { $sum: '$financial_summary.monthly_recurring_revenue' },
+          current_debtors: {
+            $sum: {
+              $cond: [
+                { $eq: ['$financial_summary.payment_status', 'OVERDUE'] },
+                '$financial_summary.monthly_recurring_revenue',
+                0,
+              ],
+            },
+          },
+        },
+      },
     ];
-    const [customerRevenueData] = await this.mcpCustomers!.aggregate(customerRevenuePipeline).toArray();
+    const [customerRevenueData] =
+      await this.mcpCustomers!.aggregate(customerRevenuePipeline).toArray();
 
     // Calculate BACA Coin backing
     const bacaCoinPipeline = [
-      { $match: { 'baca_coin_backing': { $exists: true } } },
-      { $group: {
-        _id: null,
-        total_backing_value: { $sum: { $multiply: ['$valuation.current_book_value', { $divide: ['$baca_coin_backing.backing_percentage', 100] }] }},
-        total_coins_allocated: { $sum: '$baca_coin_backing.allocated_coins' }
-      }}
+      { $match: { baca_coin_backing: { $exists: true } } },
+      {
+        $group: {
+          _id: null,
+          total_backing_value: {
+            $sum: {
+              $multiply: [
+                '$valuation.current_book_value',
+                { $divide: ['$baca_coin_backing.backing_percentage', 100] },
+              ],
+            },
+          },
+          total_coins_allocated: { $sum: '$baca_coin_backing.allocated_coins' },
+        },
+      },
     ];
     const [bacaCoinData] = await this.productBrandAssets!.aggregate(bacaCoinPipeline).toArray();
 
@@ -789,16 +846,16 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
         company_number: 'OC000000', // Replace with actual Companies House number
         registered_office: {
           address: 'To be updated with registered office',
-          postcode: 'To be updated'
+          postcode: 'To be updated',
         },
         financial_year_end: new Date(reportingPeriod.end_date.getFullYear(), 11, 31), // 31st December
-        reporting_period: reportingPeriod
+        reporting_period: reportingPeriod,
       },
       regulatory_framework: {
         accounting_standards: 'FRS_102',
         company_type: 'LLP',
         audit_requirement: true, // Assuming required due to size/complexity
-        small_company_exemptions: false
+        small_company_exemptions: false,
       },
       balance_sheet: {
         non_current_assets: {
@@ -808,33 +865,33 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
             software_assets: 50000, // Estimated - should be tracked separately
             development_costs: 100000, // Estimated - should be tracked separately
             patents_and_trademarks: 25000, // Estimated - should be tracked separately
-            total_intangible: (aiAssetsData?.total_book_value || 0) + totalBrandBookValue + 175000
+            total_intangible: (aiAssetsData?.total_book_value || 0) + totalBrandBookValue + 175000,
           },
           tangible_assets: {
             computer_equipment: 15000, // Estimated - should be tracked separately
             office_equipment: 5000, // Estimated - should be tracked separately
-            total_tangible: 20000
+            total_tangible: 20000,
           },
           investments: {
             baca_coin_investments: bacaCoinData?.total_backing_value || 0,
             other_investments: 0,
-            total_investments: bacaCoinData?.total_backing_value || 0
+            total_investments: bacaCoinData?.total_backing_value || 0,
           },
-          total_non_current_assets: 0 // Will be calculated
+          total_non_current_assets: 0, // Will be calculated
         },
         current_assets: {
           trade_debtors: customerRevenueData?.current_debtors || 0,
           other_debtors: 10000, // Estimated
           prepayments: 5000, // Estimated
           cash_and_bank: 50000, // Estimated - should be tracked separately
-          total_current_assets: 0 // Will be calculated
+          total_current_assets: 0, // Will be calculated
         },
         total_assets: 0, // Will be calculated
         members_equity: {
           members_capital: 100000, // Should be tracked based on actual member contributions
           retained_earnings: 0, // Should be calculated from profit/loss history
           current_year_profit: customerRevenueData?.total_arr || 0, // Simplified - actual P&L needed
-          total_members_equity: 0 // Will be calculated
+          total_members_equity: 0, // Will be calculated
         },
         current_liabilities: {
           trade_creditors: 25000, // Estimated
@@ -842,23 +899,28 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
           deferred_revenue: customerRevenueData?.total_mrr * 3 || 0, // 3 months advance payments
           tax_liabilities: 15000, // Estimated
           other_creditors: 5000, // Estimated
-          total_current_liabilities: 0 // Will be calculated
+          total_current_liabilities: 0, // Will be calculated
         },
         non_current_liabilities: {
           long_term_debt: 0,
           deferred_tax: 0,
           provisions: 10000, // Estimated
-          total_non_current_liabilities: 10000
+          total_non_current_liabilities: 10000,
         },
         total_liabilities: 0, // Will be calculated
-        total_equity_and_liabilities: 0 // Will be calculated
+        total_equity_and_liabilities: 0, // Will be calculated
       },
       accounting_policies: {
-        basis_of_preparation: 'These financial statements have been prepared under FRS 102 Section 1A (Small Entities).',
-        intangible_asset_policy: 'AI agent assets are valued based on development costs and enhanced through performance metrics. Brand assets are valued at historical cost less accumulated amortization.',
-        depreciation_policy: 'Intangible assets are amortized on a straight-line basis over their estimated useful economic lives.',
-        revenue_recognition_policy: 'Revenue is recognized when services are provided and there is a contractual right to consideration.',
-        going_concern_assessment: 'The directors have assessed the company as a going concern based on current trading performance and future prospects.'
+        basis_of_preparation:
+          'These financial statements have been prepared under FRS 102 Section 1A (Small Entities).',
+        intangible_asset_policy:
+          'AI agent assets are valued based on development costs and enhanced through performance metrics. Brand assets are valued at historical cost less accumulated amortization.',
+        depreciation_policy:
+          'Intangible assets are amortized on a straight-line basis over their estimated useful economic lives.',
+        revenue_recognition_policy:
+          'Revenue is recognized when services are provided and there is a contractual right to consideration.',
+        going_concern_assessment:
+          'The directors have assessed the company as a going concern based on current trading performance and future prospects.',
       },
       validation: {
         balances_verified: false, // To be completed during review
@@ -867,35 +929,38 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
         prepared_by: approvalData.prepared_by,
         reviewed_by: approvalData.reviewed_by,
         approved_by: approvalData.approved_by,
-        approval_date: new Date()
+        approval_date: new Date(),
       },
       baca_backing_analysis: {
         total_tangible_asset_value: 20000,
-        total_intangible_asset_value: (aiAssetsData?.total_book_value || 0) + totalBrandBookValue + 175000,
+        total_intangible_asset_value:
+          (aiAssetsData?.total_book_value || 0) + totalBrandBookValue + 175000,
         total_backing_value: bacaCoinData?.total_backing_value || 0,
         total_baca_coins_issued: bacaCoinData?.total_coins_allocated || 0,
-        backing_ratio: bacaCoinData?.total_coins_allocated ? (bacaCoinData.total_backing_value / bacaCoinData.total_coins_allocated) : 0,
-        backing_certificate: `This certifies that BACA coins are backed by tangible business assets with a total value of £${(bacaCoinData?.total_backing_value || 0).toLocaleString()}`
+        backing_ratio: bacaCoinData?.total_coins_allocated
+          ? bacaCoinData.total_backing_value / bacaCoinData.total_coins_allocated
+          : 0,
+        backing_certificate: `This certifies that BACA coins are backed by tangible business assets with a total value of £${(bacaCoinData?.total_backing_value || 0).toLocaleString()}`,
       },
       created_at: new Date(),
       report_date: new Date(),
       filing_deadline: new Date(reportingPeriod.end_date.getFullYear() + 1, 8, 31), // 9 months after year end
-      filed_date: undefined
+      filed_date: undefined,
     };
 
     // Calculate totals
-    report.balance_sheet.non_current_assets.total_non_current_assets = 
+    report.balance_sheet.non_current_assets.total_non_current_assets =
       report.balance_sheet.non_current_assets.intangible_assets.total_intangible +
       report.balance_sheet.non_current_assets.tangible_assets.total_tangible +
       report.balance_sheet.non_current_assets.investments.total_investments;
 
-    report.balance_sheet.current_assets.total_current_assets = 
+    report.balance_sheet.current_assets.total_current_assets =
       report.balance_sheet.current_assets.trade_debtors +
       report.balance_sheet.current_assets.other_debtors +
       report.balance_sheet.current_assets.prepayments +
       report.balance_sheet.current_assets.cash_and_bank;
 
-    report.balance_sheet.total_assets = 
+    report.balance_sheet.total_assets =
       report.balance_sheet.non_current_assets.total_non_current_assets +
       report.balance_sheet.current_assets.total_current_assets;
 
@@ -926,22 +991,25 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
     await this.publishEvent('FCA_BALANCE_SHEET_GENERATED', {
       report_id: reportId,
       total_assets: report.balance_sheet.total_assets,
-      total_intangible_assets: report.balance_sheet.non_current_assets.intangible_assets.total_intangible,
-      baca_backing_value: report.baca_backing_analysis.total_backing_value
+      total_intangible_assets:
+        report.balance_sheet.non_current_assets.intangible_assets.total_intangible,
+      baca_backing_value: report.baca_backing_analysis.total_backing_value,
     });
 
-    console.log(`✅ FCA Balance Sheet Report generated: ${reportId} - Total Assets: £${report.balance_sheet.total_assets.toLocaleString()}`);
+    console.log(
+      `✅ FCA Balance Sheet Report generated: ${reportId} - Total Assets: £${report.balance_sheet.total_assets.toLocaleString()}`
+    );
     return report;
   }
 
   // Private helper methods
   private getDefaultPermissionsForRole(role: MCPUser['current_assignment']['role']): string[] {
     const permissions = {
-      'ADMIN': ['READ', 'WRITE', 'DELETE', 'MANAGE_USERS', 'CONFIGURE'],
-      'USER': ['READ', 'WRITE'],
-      'VIEWER': ['READ'],
-      'DEVELOPER': ['READ', 'WRITE', 'DEPLOY'],
-      'ANALYST': ['READ', 'ANALYTICS']
+      ADMIN: ['READ', 'WRITE', 'DELETE', 'MANAGE_USERS', 'CONFIGURE'],
+      USER: ['READ', 'WRITE'],
+      VIEWER: ['READ'],
+      DEVELOPER: ['READ', 'WRITE', 'DEPLOY'],
+      ANALYST: ['READ', 'ANALYTICS'],
     };
     return permissions[role] || ['READ'];
   }
@@ -951,8 +1019,8 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
       json: {
         event_type: eventType,
         timestamp: new Date().toISOString(),
-        ...data
-      }
+        ...data,
+      },
     };
     await this.pubsub.topic('asoos-erp-events').publishMessage(message);
   }
@@ -965,31 +1033,31 @@ export class ASOOSOrchestratingERP extends HRAICRMSAIAssetIntegration {
       this.mcpLeads!.createIndex({ lead_status: 1 }),
       this.mcpLeads!.createIndex({ assigned_to: 1 }),
       this.mcpLeads!.createIndex({ mcp_domain: 1 }),
-      
+
       // MCP Customers
       this.mcpCustomers!.createIndex({ customer_id: 1 }, { unique: true }),
       this.mcpCustomers!.createIndex({ mcp_domain: 1 }),
       this.mcpCustomers!.createIndex({ status: 1 }),
       this.mcpCustomers!.createIndex({ 'company_profile.legal_name': 1 }),
-      
+
       // MCP Users
       this.mcpUsers!.createIndex({ user_id: 1 }, { unique: true }),
       this.mcpUsers!.createIndex({ 'personal_details.email': 1 }),
       this.mcpUsers!.createIndex({ 'current_assignment.customer_id': 1 }),
       this.mcpUsers!.createIndex({ 'current_assignment.mcp_domain': 1 }),
-      
+
       // Product Brand Assets
       this.productBrandAssets!.createIndex({ asset_id: 1 }, { unique: true }),
       this.productBrandAssets!.createIndex({ asset_name: 1 }),
       this.productBrandAssets!.createIndex({ asset_type: 1 }),
       this.productBrandAssets!.createIndex({ 'brand_details.brand_name': 1 }),
-      
+
       // FCA Reports
       this.fcaBalanceSheetReports!.createIndex({ report_id: 1 }, { unique: true }),
       this.fcaBalanceSheetReports!.createIndex({ report_date: -1 }),
-      this.fcaBalanceSheetReports!.createIndex({ 'reporting_entity.financial_year_end': -1 })
+      this.fcaBalanceSheetReports!.createIndex({ 'reporting_entity.financial_year_end': -1 }),
     ]);
-    
+
     console.log('✅ ERP indexes created');
   }
 }

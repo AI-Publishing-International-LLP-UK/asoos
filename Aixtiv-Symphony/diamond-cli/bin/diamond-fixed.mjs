@@ -44,7 +44,7 @@ try {
     const ctttModule = await import(ctttPath);
     DiamondCLICTTTIntegration = ctttModule.default || ctttModule;
   } else {
-    throw new Error("CTTT integration not found");
+    throw new Error('CTTT integration not found');
   }
 } catch (e) {
   // Create minimal CTTT stub
@@ -121,8 +121,11 @@ class DiamondCLI {
       
       await new Promise((resolve, reject) => {
         gitProcess.on('close', (code) => {
-          if (code === 0) resolve();
-          else reject(new Error('Git command failed'));
+          if (code === 0) {
+            resolve();
+          } else {
+            reject(new Error('Git command failed'));
+          }
         });
       });
       
@@ -162,33 +165,33 @@ class DiamondCLI {
       const [command, subcommand, ...params] = args;
       
       switch (command) {
-        case 'status':
-          await this.showStatus();
-          break;
+      case 'status':
+        await this.showStatus();
+        break;
           
-        case 'mcp':
-          await this.handleMCPCommand(subcommand, params);
-          break;
+      case 'mcp':
+        await this.handleMCPCommand(subcommand, params);
+        break;
           
-        case 'deploy':
-          await this.handleDeployCommand(subcommand, params);
-          break;
+      case 'deploy':
+        await this.handleDeployCommand(subcommand, params);
+        break;
           
-        case 'cttt':
-          await this.handleCTTTCommand(subcommand, params);
-          break;
+      case 'cttt':
+        await this.handleCTTTCommand(subcommand, params);
+        break;
           
-        case 'hume':
-          await this.handleHumeCommand(subcommand, params);
-          break;
+      case 'hume':
+        await this.handleHumeCommand(subcommand, params);
+        break;
           
-        case 'v':
-        case 'vision':
-          await this.handleVisionSpeakCommand(subcommand, params);
-          break;
+      case 'v':
+      case 'vision':
+        await this.handleVisionSpeakCommand(subcommand, params);
+        break;
           
-        default:
-          this.showHelp();
+      default:
+        this.showHelp();
       }
       
       this.log('✅ Diamond CLI command completed successfully', 'SUCCESS');
@@ -329,36 +332,36 @@ class DiamondCLI {
   
   async handleMCPCommand(subcommand, params) {
     switch (subcommand) {
-      case 'update':
-        if (params.length < 2) {
-          this.log('❌ Usage: diamond mcp update <domain> <service>', 'ERROR');
-          return;
-        }
-        this.log(`🌐 MCP DNS Update: ${params[0]} → ${params[1]}`, 'DIAMOND');
-        this.log('💡 Execute: gcloud dns record-sets transaction start --zone=main-zone', 'INFO');
-        this.log(`💡 Execute: gcloud dns record-sets transaction add ${params[1]} --name=${params[0]} --ttl=300 --type=CNAME --zone=main-zone`, 'INFO');
-        this.log('💡 Execute: gcloud dns record-sets transaction execute --zone=main-zone', 'INFO');
-        break;
+    case 'update':
+      if (params.length < 2) {
+        this.log('❌ Usage: diamond mcp update <domain> <service>', 'ERROR');
+        return;
+      }
+      this.log(`🌐 MCP DNS Update: ${params[0]} → ${params[1]}`, 'DIAMOND');
+      this.log('💡 Execute: gcloud dns record-sets transaction start --zone=main-zone', 'INFO');
+      this.log(`💡 Execute: gcloud dns record-sets transaction add ${params[1]} --name=${params[0]} --ttl=300 --type=CNAME --zone=main-zone`, 'INFO');
+      this.log('💡 Execute: gcloud dns record-sets transaction execute --zone=main-zone', 'INFO');
+      break;
         
-      case 'list':
-        this.log('📋 MCP Companies: Retrieving from MongoDB Atlas...', 'DIAMOND');
-        this.log('💡 Integration: api-for-warp-drive project', 'INFO');
-        break;
+    case 'list':
+      this.log('📋 MCP Companies: Retrieving from MongoDB Atlas...', 'DIAMOND');
+      this.log('💡 Integration: api-for-warp-drive project', 'INFO');
+      break;
         
-      default:
-        this.log('❌ Unknown MCP command. Available: update, monitor, repair, create, list, bulk', 'ERROR');
+    default:
+      this.log('❌ Unknown MCP command. Available: update, monitor, repair, create, list, bulk', 'ERROR');
     }
   }
 
   async handleDeployCommand(subcommand, params) {
     switch (subcommand) {
-      case 'wfa':
-        this.log('🚀 WFA Deployment: Deploying to GCP Cloud Run...', 'DIAMOND');
-        this.log('💡 Execute: gcloud run deploy --source . --region=us-west1 --project=api-for-warp-drive', 'INFO');
-        break;
+    case 'wfa':
+      this.log('🚀 WFA Deployment: Deploying to GCP Cloud Run...', 'DIAMOND');
+      this.log('💡 Execute: gcloud run deploy --source . --region=us-west1 --project=api-for-warp-drive', 'INFO');
+      break;
         
-      default:
-        this.log('❌ Unknown deploy command. Available: wfa', 'ERROR');
+    default:
+      this.log('❌ Unknown deploy command. Available: wfa', 'ERROR');
     }
   }
 
@@ -377,30 +380,30 @@ class DiamondCLI {
       
       // Fallback guidance for common CTTT commands
       switch (subcommand) {
-        case 'test':
-          if (params[0] === 'health') {
-            this.log('💡 Execute: npm run newman:health', 'INFO');
-          } else if (params[0] === 'oauth2') {
-            this.log('💡 Execute: npm run newman:oauth2', 'INFO');
-          } else if (params[0] === 'comprehensive') {
-            this.log('💡 Execute: npm run newman:collections', 'INFO');
-          }
-          break;
+      case 'test':
+        if (params[0] === 'health') {
+          this.log('💡 Execute: npm run newman:health', 'INFO');
+        } else if (params[0] === 'oauth2') {
+          this.log('💡 Execute: npm run newman:oauth2', 'INFO');
+        } else if (params[0] === 'comprehensive') {
+          this.log('💡 Execute: npm run newman:collections', 'INFO');
+        }
+        break;
           
-        case 'monitor':
-          if (params[0] === 'start') {
-            this.log('💡 Execute: npm run cttt:start', 'INFO');
-          }
-          break;
+      case 'monitor':
+        if (params[0] === 'start') {
+          this.log('💡 Execute: npm run cttt:start', 'INFO');
+        }
+        break;
           
-        case 'heal':
-          if (params[0] === 'restart') {
-            this.log('💡 Manual healing: Check service health and restart if needed', 'INFO');
-          }
-          break;
+      case 'heal':
+        if (params[0] === 'restart') {
+          this.log('💡 Manual healing: Check service health and restart if needed', 'INFO');
+        }
+        break;
           
-        default:
-          this.log('❌ Unknown CTTT command. Available: test, monitor, heal, report', 'ERROR');
+      default:
+        this.log('❌ Unknown CTTT command. Available: test, monitor, heal, report', 'ERROR');
       }
     }
   }
@@ -409,53 +412,53 @@ class DiamondCLI {
     this.log(`🧠 Processing Hume AI Command: ${subcommand}`, 'DIAMOND');
     
     switch (subcommand) {
-      case 'key':
-        if (params[0] === 'setup') {
-          this.log('🔑 Setting up Hume AI API Key...', 'DIAMOND');
-          this.log('📊 Integrating with Google Cloud Secret Manager...', 'INFO');
-          this.log('💡 Fetching key from Secret Manager: projects/api-for-warp-drive/secrets/HUME_API_KEY/versions/latest', 'INFO');
-          this.log('✅ Hume AI API Key successfully configured', 'SUCCESS');
-        } else if (params[0] === 'verify') {
-          this.log('🔍 Verifying Hume AI API Key...', 'DIAMOND');
-          this.log('✅ Hume AI API Key is valid and active', 'SUCCESS');
-        } else {
-          this.log('❌ Unknown Hume key command. Available: setup, verify', 'ERROR');
-        }
-        break;
+    case 'key':
+      if (params[0] === 'setup') {
+        this.log('🔑 Setting up Hume AI API Key...', 'DIAMOND');
+        this.log('📊 Integrating with Google Cloud Secret Manager...', 'INFO');
+        this.log('💡 Fetching key from Secret Manager: projects/api-for-warp-drive/secrets/HUME_API_KEY/versions/latest', 'INFO');
+        this.log('✅ Hume AI API Key successfully configured', 'SUCCESS');
+      } else if (params[0] === 'verify') {
+        this.log('🔍 Verifying Hume AI API Key...', 'DIAMOND');
+        this.log('✅ Hume AI API Key is valid and active', 'SUCCESS');
+      } else {
+        this.log('❌ Unknown Hume key command. Available: setup, verify', 'ERROR');
+      }
+      break;
         
-      case 'voice':
-        if (params[0] === 'list') {
-          this.log('🎙️ Listing Hume AI Voice Profiles...', 'DIAMOND');
-          console.log('\n📋 HUME AI VOICE PROFILES:');
-          console.log('   Dr. Lucy     - CRx01 ML Powerhouse');
-          console.log('   Dr. Memoria  - Enhanced Recall');
-          console.log('   Dr. Match    - Pattern Recognition');
-          console.log('   Dr. Cypriot  - Context Integration');
-          console.log('   Dr. Claude   - Natural Language Processing');
-          console.log('');
-          this.log('✅ Hume AI Voice Profiles listed successfully', 'SUCCESS');
-        } else if (params[0] === 'test') {
-          this.log(`🔊 Testing Hume AI Voice: ${params[1] || 'Dr. Lucy'}`, 'DIAMOND');
-          this.log('✅ Hume AI Voice test completed successfully', 'SUCCESS');
-        } else {
-          this.log('❌ Unknown Hume voice command. Available: list, test', 'ERROR');
-        }
-        break;
+    case 'voice':
+      if (params[0] === 'list') {
+        this.log('🎙️ Listing Hume AI Voice Profiles...', 'DIAMOND');
+        console.log('\n📋 HUME AI VOICE PROFILES:');
+        console.log('   Dr. Lucy     - CRx01 ML Powerhouse');
+        console.log('   Dr. Memoria  - Enhanced Recall');
+        console.log('   Dr. Match    - Pattern Recognition');
+        console.log('   Dr. Cypriot  - Context Integration');
+        console.log('   Dr. Claude   - Natural Language Processing');
+        console.log('');
+        this.log('✅ Hume AI Voice Profiles listed successfully', 'SUCCESS');
+      } else if (params[0] === 'test') {
+        this.log(`🔊 Testing Hume AI Voice: ${params[1] || 'Dr. Lucy'}`, 'DIAMOND');
+        this.log('✅ Hume AI Voice test completed successfully', 'SUCCESS');
+      } else {
+        this.log('❌ Unknown Hume voice command. Available: list, test', 'ERROR');
+      }
+      break;
         
-      case 'integrate':
-        this.log('🧩 Integrating Hume AI with Diamond CLI...', 'DIAMOND');
-        this.log('📊 Setting up OAuth2 integration...', 'INFO');
-        this.log('🔗 Configuring voice bridge to ElevenLabs...', 'INFO');
-        this.log('✅ Hume AI integration completed successfully', 'SUCCESS');
-        break;
+    case 'integrate':
+      this.log('🧩 Integrating Hume AI with Diamond CLI...', 'DIAMOND');
+      this.log('📊 Setting up OAuth2 integration...', 'INFO');
+      this.log('🔗 Configuring voice bridge to ElevenLabs...', 'INFO');
+      this.log('✅ Hume AI integration completed successfully', 'SUCCESS');
+      break;
         
-      default:
-        this.log('❌ Unknown Hume command. Available commands:', 'ERROR');
-        console.log('   diamond hume key setup       - Setup Hume AI API Key');
-        console.log('   diamond hume key verify      - Verify Hume AI API Key');
-        console.log('   diamond hume voice list      - List available voice profiles');
-        console.log('   diamond hume voice test      - Test voice synthesis');
-        console.log('   diamond hume integrate       - Integrate with Diamond CLI');
+    default:
+      this.log('❌ Unknown Hume command. Available commands:', 'ERROR');
+      console.log('   diamond hume key setup       - Setup Hume AI API Key');
+      console.log('   diamond hume key verify      - Verify Hume AI API Key');
+      console.log('   diamond hume voice list      - List available voice profiles');
+      console.log('   diamond hume voice test      - Test voice synthesis');
+      console.log('   diamond hume integrate       - Integrate with Diamond CLI');
     }
   }
 
@@ -467,7 +470,7 @@ class DiamondCLI {
     console.log('═══════════════════════════════════════════════');
     console.log(`🏛️  Authority: ${this.diamondSAO.name} (${this.diamondSAO.id})`);
     console.log(`⚡ Version: ${this.version}`);
-    console.log(`📦 Repository: AIXTIV-SYMPHONY.git`);
+    console.log('📦 Repository: AIXTIV-SYMPHONY.git');
     console.log(`🔗 Integration: ${this.authority}`);
     console.log('');
     

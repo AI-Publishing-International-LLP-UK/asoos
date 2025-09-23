@@ -2,10 +2,10 @@
  * ████████████████████████████████████████████████████████████████
  * █              XERO COST MANAGEMENT INTEGRATION               █
  * ████████████████████████████████████████████████████████████████
- * 
+ *
  * Real-time True Production Cost (TPC) tracking and automated billing
  * Integrates with Universal AI Key Manager v2 and Diamond SAO Command Center
- * 
+ *
  * Features:
  * • Real-time cost allocation per tenant, user, and service
  * • Automated Xero invoice generation with component codes
@@ -13,7 +13,7 @@
  * • Weekly degradation analysis and optimization recommendations
  * • Global SGA and compliance cost rollups
  * • Profitability forecasting and ROI analysis
- * 
+ *
  * @author AI Publishing International LLP
  * @version 1.0.0-enterprise
  * @license Proprietary - Diamond SAO Command Center
@@ -78,7 +78,7 @@ export interface TPCAnalytics {
   totalRevenue: number;
   grossProfit: number;
   grossMargin: number;
-  
+
   // Per-service breakdown
   serviceBreakdown: Array<{
     service: string;
@@ -87,7 +87,7 @@ export interface TPCAnalytics {
     costPerUnit: number;
     trend: 'increasing' | 'stable' | 'decreasing';
   }>;
-  
+
   // User analytics
   userAnalytics: {
     totalUsers: number;
@@ -101,7 +101,7 @@ export interface TPCAnalytics {
       efficiency: number;
     }>;
   };
-  
+
   // Statistical analysis
   costDistribution: {
     mean: number;
@@ -122,7 +122,7 @@ export interface DegradationAnalysis {
     lastUsed: Date;
     impactAssessment: 'low' | 'medium' | 'high';
   }>;
-  
+
   candidateServices: Array<{
     service: string;
     reason: string;
@@ -131,7 +131,7 @@ export interface DegradationAnalysis {
     userDemand: number;
     implementationEffort: 'low' | 'medium' | 'high';
   }>;
-  
+
   recommendations: {
     costReduction: number;
     revenueIncrease: number;
@@ -149,22 +149,24 @@ export class XeroCostManager {
   private readonly pubsub: PubSub;
   private readonly secretClient: SecretManagerServiceClient;
   private readonly xeroBaseUrl = 'https://api.xero.com/api.xro/2.0';
-  
+
   // Component codes for AI services
   private readonly componentCodes = {
-    'hume': '13-HUME-AI-TTS',
-    'elevenlabs': '14-ELEVENLABS-TTS',
-    'openai': '15-OPENAI-API',
-    'anthropic': '16-ANTHROPIC-CLAUDE',
-    'deepgram': '17-DEEPGRAM-STT',
+    hume: '13-HUME-AI-TTS',
+    elevenlabs: '14-ELEVENLABS-TTS',
+    openai: '15-OPENAI-API',
+    anthropic: '16-ANTHROPIC-CLAUDE',
+    deepgram: '17-DEEPGRAM-STT',
     'global-sga': '20-GLOBAL-SGA',
     'global-compliance': '21-GLOBAL-COMPLIANCE',
-    'infrastructure': '22-CLOUD-INFRA'
+    infrastructure: '22-CLOUD-INFRA',
   };
 
-  constructor(options: {
-    gcpProject?: string;
-  } = {}) {
+  constructor(
+    options: {
+      gcpProject?: string;
+    } = {}
+  ) {
     this.gcpProject = options.gcpProject || process.env.GCP_PROJECT_ID || 'api-for-warp-drive';
     this.bigquery = new BigQuery({ projectId: this.gcpProject });
     this.pubsub = new PubSub({ projectId: this.gcpProject });
@@ -182,8 +184,10 @@ export class XeroCostManager {
     await this.setupAnalyticsInfrastructure();
 
     // Set up Pub/Sub subscription for usage events
-    const subscription = this.pubsub.topic('ai-usage-events').subscription('cost-allocation-processor');
-    
+    const subscription = this.pubsub
+      .topic('ai-usage-events')
+      .subscription('cost-allocation-processor');
+
     subscription.on('message', async (message) => {
       try {
         const usageEvent = JSON.parse(message.data.toString());
@@ -291,7 +295,7 @@ export class XeroCostManager {
 
     const queryParams: any = {
       start_date: startDate.toISOString(),
-      end_date: endDate.toISOString()
+      end_date: endDate.toISOString(),
     };
 
     if (tenantId) {
@@ -315,15 +319,15 @@ export class XeroCostManager {
         activeUsers: row.active_users,
         costPerUser: row.total_cost / Math.max(row.total_users, 1),
         costPerActiveUser: row.total_cost / Math.max(row.active_users, 1),
-        topUsers: [] // Would need additional query to get top users
+        topUsers: [], // Would need additional query to get top users
       },
       costDistribution: {
         mean: row.mean_daily_cost,
         median: row.median_daily_cost,
         percentile95: row.p95_daily_cost,
         percentile99: row.p99_daily_cost,
-        standardDeviation: row.cost_stddev
-      }
+        standardDeviation: row.cost_stddev,
+      },
     }));
   }
 
@@ -380,15 +384,16 @@ export class XeroCostManager {
       query: degradationQuery,
       params: {
         start_date: startDate.toISOString(),
-        recent_start: new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString()
-      }
+        recent_start: new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+      },
     });
 
     const servicesForRemoval = rows
-      .filter((row: any) => 
-        row.recent_usage < 10 || // Less than 10 uses in past week
-        row.active_tenants < 2 || // Used by less than 2 tenants
-        (endDate.getTime() - new Date(row.last_used).getTime()) > 14 * 24 * 60 * 60 * 1000 // Not used in 2 weeks
+      .filter(
+        (row: any) =>
+          row.recent_usage < 10 || // Less than 10 uses in past week
+          row.active_tenants < 2 || // Used by less than 2 tenants
+          endDate.getTime() - new Date(row.last_used).getTime() > 14 * 24 * 60 * 60 * 1000 // Not used in 2 weeks
       )
       .map((row: any) => ({
         service: row.service,
@@ -396,11 +401,14 @@ export class XeroCostManager {
         costSavings: row.total_cost,
         usageDecline: Math.max(0, (row.usage_count - row.recent_usage) / row.usage_count),
         lastUsed: new Date(row.last_used),
-        impactAssessment: this.assessRemovalImpact(row)
+        impactAssessment: this.assessRemovalImpact(row),
       }));
 
     // Calculate total savings and recommendations
-    const totalCostSavings = servicesForRemoval.reduce((sum, service) => sum + service.costSavings, 0);
+    const totalCostSavings = servicesForRemoval.reduce(
+      (sum, service) => sum + service.costSavings,
+      0
+    );
 
     return {
       period: endDate,
@@ -410,8 +418,8 @@ export class XeroCostManager {
         costReduction: totalCostSavings,
         revenueIncrease: 0,
         netBenefit: totalCostSavings,
-        nextReviewDate: new Date(endDate.getTime() + 7 * 24 * 60 * 60 * 1000)
-      }
+        nextReviewDate: new Date(endDate.getTime() + 7 * 24 * 60 * 60 * 1000),
+      },
     };
   }
 
@@ -429,8 +437,10 @@ export class XeroCostManager {
     const accessToken = await this.getXeroAccessToken();
 
     for (const tenantAnalytics of analytics) {
-      if (tenantAnalytics.totalCost < 0.10) {
-        console.log(`⏭️ Skipping ${tenantAnalytics.tenantId} - cost too low ($${tenantAnalytics.totalCost.toFixed(2)})`);
+      if (tenantAnalytics.totalCost < 0.1) {
+        console.log(
+          `⏭️ Skipping ${tenantAnalytics.tenantId} - cost too low ($${tenantAnalytics.totalCost.toFixed(2)})`
+        );
         continue;
       }
 
@@ -445,25 +455,26 @@ export class XeroCostManager {
         for (const service of tenantAnalytics.serviceBreakdown) {
           if (service.cost > 0.01) {
             lineItems.push({
-              ItemCode: this.componentCodes[service.service] || `99-${service.service.toUpperCase()}`,
+              ItemCode:
+                this.componentCodes[service.service] || `99-${service.service.toUpperCase()}`,
               Description: `${service.service} AI Service - ${service.usage} calls`,
               Quantity: service.usage,
               UnitAmount: service.costPerUnit,
               AccountCode: '4000', // Revenue account
-              TaxType: 'NONE'
+              TaxType: 'NONE',
             });
           }
         }
 
         // Add SGA allocation (10% of total)
-        const sgaAmount = tenantAnalytics.totalCost * 0.10;
+        const sgaAmount = tenantAnalytics.totalCost * 0.1;
         lineItems.push({
           ItemCode: this.componentCodes['global-sga'],
           Description: 'Global SG&A Allocation',
           Quantity: 1,
           UnitAmount: sgaAmount,
           AccountCode: '4100', // SGA Revenue
-          TaxType: 'NONE'
+          TaxType: 'NONE',
         });
 
         // Add compliance costs (5% of total)
@@ -474,7 +485,7 @@ export class XeroCostManager {
           Quantity: 1,
           UnitAmount: complianceAmount,
           AccountCode: '4200', // Compliance Revenue
-          TaxType: 'NONE'
+          TaxType: 'NONE',
         });
 
         // Create invoice
@@ -486,12 +497,13 @@ export class XeroCostManager {
           Reference: `AI-USAGE-${tenantAnalytics.tenantId}-${date.toISOString().split('T')[0]}`,
           Status: 'AUTHORISED',
           LineItems: lineItems,
-          CurrencyCode: 'USD'
+          CurrencyCode: 'USD',
         };
 
         const createdInvoice = await this.createXeroInvoice(invoice, accessToken);
-        console.log(`✅ Created Xero invoice ${createdInvoice.InvoiceNumber} for ${tenantAnalytics.tenantId}: $${tenantAnalytics.totalCost.toFixed(2)}`);
-
+        console.log(
+          `✅ Created Xero invoice ${createdInvoice.InvoiceNumber} for ${tenantAnalytics.tenantId}: $${tenantAnalytics.totalCost.toFixed(2)}`
+        );
       } catch (error) {
         console.error(`❌ Failed to create invoice for ${tenantAnalytics.tenantId}:`, error);
       }
@@ -546,8 +558,8 @@ export class XeroCostManager {
         totalRevenue: (forecast[0]?.projected_cost || 0) * 1.3,
         grossProfit: (forecast[0]?.projected_cost || 0) * 0.3,
         netProfit: (forecast[0]?.projected_cost || 0) * 0.15, // Assuming 15% net margin
-        projectionConfidence: 0.85
-      }
+        projectionConfidence: 0.85,
+      },
     };
   }
 
@@ -574,14 +586,14 @@ export class XeroCostManager {
       { name: 'cost_usd', type: 'FLOAT', mode: 'REQUIRED' },
       { name: 'timestamp', type: 'TIMESTAMP', mode: 'REQUIRED' },
       { name: 'gcp_project', type: 'STRING', mode: 'REQUIRED' },
-      { name: 'region', type: 'STRING', mode: 'REQUIRED' }
+      { name: 'region', type: 'STRING', mode: 'REQUIRED' },
     ];
 
     try {
       const table = this.bigquery.dataset('ai_analytics').table('usage_events');
       await table.get({
         autoCreate: true,
-        schema: { fields: usageEventsSchema }
+        schema: { fields: usageEventsSchema },
       });
       console.log('✅ Usage events table ready');
     } catch (error) {
@@ -602,16 +614,15 @@ export class XeroCostManager {
       cost_usd: event.costUsd,
       timestamp: event.timestamp,
       gcp_project: event.gcpProject,
-      region: event.region
+      region: event.region,
     };
 
     try {
-      await this.bigquery
-        .dataset('ai_analytics')
-        .table('usage_events')
-        .insert([row]);
-      
-      console.log(`📊 Usage event processed: ${event.tenantId} - ${event.service} - $${event.costUsd.toFixed(4)}`);
+      await this.bigquery.dataset('ai_analytics').table('usage_events').insert([row]);
+
+      console.log(
+        `📊 Usage event processed: ${event.tenantId} - ${event.service} - $${event.costUsd.toFixed(4)}`
+      );
     } catch (error) {
       console.error('Failed to insert usage event:', error);
       throw error;
@@ -620,23 +631,26 @@ export class XeroCostManager {
 
   private async getXeroAccessToken(): Promise<string> {
     const tokenSecret = await this.secretClient.accessSecretVersion({
-      name: `projects/${this.gcpProject}/secrets/xero-oauth-token/versions/latest`
+      name: `projects/${this.gcpProject}/secrets/xero-oauth-token/versions/latest`,
     });
-    
+
     const tokenData = JSON.parse(tokenSecret[0].payload?.data?.toString('utf8') || '{}');
     return tokenData.access_token;
   }
 
   private async ensureXeroContact(tenantId: string, accessToken: string): Promise<string> {
     const contactName = `MCP ${tenantId.toUpperCase()}`;
-    
+
     // Search for existing contact
-    const searchResponse = await fetch(`${this.xeroBaseUrl}/Contacts?where=Name%3D%3D%22${encodeURIComponent(contactName)}%22`, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Accept': 'application/json'
+    const searchResponse = await fetch(
+      `${this.xeroBaseUrl}/Contacts?where=Name%3D%3D%22${encodeURIComponent(contactName)}%22`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          Accept: 'application/json',
+        },
       }
-    });
+    );
 
     if (searchResponse.ok) {
       const searchResult = await searchResponse.json();
@@ -650,16 +664,16 @@ export class XeroCostManager {
       Name: contactName,
       EmailAddress: `billing@${tenantId}.mcp.2100.cool`,
       ContactStatus: 'ACTIVE',
-      DefaultCurrency: 'USD'
+      DefaultCurrency: 'USD',
     };
 
     const createResponse = await fetch(`${this.xeroBaseUrl}/Contacts`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ Contacts: [newContact] })
+      body: JSON.stringify({ Contacts: [newContact] }),
     });
 
     if (!createResponse.ok) {
@@ -674,10 +688,10 @@ export class XeroCostManager {
     const response = await fetch(`${this.xeroBaseUrl}/Invoices`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ Invoices: [invoice] })
+      body: JSON.stringify({ Invoices: [invoice] }),
     });
 
     if (!response.ok) {
@@ -721,7 +735,7 @@ export class XeroCostManager {
       forecast.push({
         period: nextPeriod,
         projected_cost: intercept + slope * nextPeriod,
-        confidence: Math.max(0.5, 1 - (i * 0.15)) // Decreasing confidence
+        confidence: Math.max(0.5, 1 - i * 0.15), // Decreasing confidence
       });
     }
 
@@ -738,9 +752,9 @@ export default XeroCostManager;
 if (require.main === module) {
   async function cli() {
     const costManager = new XeroCostManager();
-    
+
     const command = process.argv[2];
-    
+
     try {
       switch (command) {
         case 'analytics':

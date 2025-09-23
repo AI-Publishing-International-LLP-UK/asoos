@@ -320,8 +320,12 @@ class VisualConsoleCapture {
       console.log(`   • Brightness: +${defaultEnhancements.brightness}`);
       console.log(`   • Contrast: ${defaultEnhancements.contrast}x`);
       console.log(`   • Saturation: ${defaultEnhancements.saturation}x`);
-      if (defaultEnhancements.addTitle) console.log('   • Title card added');
-      if (defaultEnhancements.addTimestamp) console.log('   • Timestamp overlay');
+      if (defaultEnhancements.addTitle) {
+        console.log('   • Title card added');
+      }
+      if (defaultEnhancements.addTimestamp) {
+        console.log('   • Timestamp overlay');
+      }
       console.log('');
 
       return {

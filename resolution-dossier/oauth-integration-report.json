@@ -21,13 +21,7 @@
           "exp": 1758577388,
           "christ_centered": true,
           "victory36_protection": "MAXIMUM",
-          "swarm_access": [
-            "wfa",
-            "intelligence",
-            "testament",
-            "quantum",
-            "coordination"
-          ]
+          "swarm_access": ["wfa", "intelligence", "testament", "quantum", "coordination"]
         },
         "token_type": "Bearer",
         "expires_in": 3600,
@@ -66,13 +60,7 @@
           "exp": 1758577388,
           "christ_centered": true,
           "victory36_protection": "MAXIMUM",
-          "swarm_access": [
-            "wfa",
-            "intelligence",
-            "testament",
-            "quantum",
-            "coordination"
-          ],
+          "swarm_access": ["wfa", "intelligence", "testament", "quantum", "coordination"],
           "company": "Zaxon Construction",
           "sao_level": "SAPPHIRE",
           "owner": "Aaron Harris",

@@ -216,7 +216,9 @@ class FYEOCEOCryptoUtils {
    * Patent #7: Side-Channel Resistant Cryptographic Operations
    */
   constantTimeCompare(a, b) {
-    if (a.length !== b.length) return false;
+    if (a.length !== b.length) {
+      return false;
+    }
 
     let result = 0;
     for (let i = 0; i < a.length; i++) {

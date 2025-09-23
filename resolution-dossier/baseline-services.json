@@ -20,9 +20,9 @@
         "priority": "CRITICAL"
       },
       {
-        "name": "integration-gateway-production", 
+        "name": "integration-gateway-production",
         "url": "https://integration-gateway-production-yutylytffa-uw.a.run.app",
-        "revision": "integration-gateway-production-00018-mh8", 
+        "revision": "integration-gateway-production-00018-mh8",
         "status": "ACTIVE",
         "generation": 18,
         "image": "gcr.io/api-for-warp-drive/integration-gateway:fixed",
@@ -32,12 +32,12 @@
       },
       {
         "name": "integration-gateway-js",
-        "url": "https://integration-gateway-js-yutylytffa-uw.a.run.app", 
+        "url": "https://integration-gateway-js-yutylytffa-uw.a.run.app",
         "revision": "integration-gateway-js-00012-552",
         "status": "ACTIVE",
         "generation": 12,
         "image": "gcr.io/api-for-warp-drive/integration-gateway:latest",
-        "last_modified": "pr@coaching2100.com", 
+        "last_modified": "pr@coaching2100.com",
         "environment": "production",
         "priority": "CRITICAL"
       },
@@ -45,7 +45,7 @@
         "name": "integration-gateway-staging",
         "url": "https://integration-gateway-staging-yutylytffa-uw.a.run.app",
         "revision": "integration-gateway-staging-00013-wxd",
-        "status": "ACTIVE", 
+        "status": "ACTIVE",
         "generation": 13,
         "image": "gcr.io/api-for-warp-drive/integration-gateway:staging",
         "last_modified": "pr@coaching2100.com",
@@ -55,7 +55,7 @@
       {
         "name": "integration-gateway-final",
         "url": "https://integration-gateway-final-yutylytffa-uw.a.run.app",
-        "revision": "integration-gateway-final-00002-rxt", 
+        "revision": "integration-gateway-final-00002-rxt",
         "status": "ACTIVE",
         "generation": 2,
         "image": "gcr.io/api-for-warp-drive/integration-gateway:final",
@@ -66,12 +66,12 @@
       {
         "name": "integration-gateway-mcp",
         "url": "https://integration-gateway-mcp-yutylytffa-uw.a.run.app",
-        "revision": "integration-gateway-mcp-00034-hhl", 
+        "revision": "integration-gateway-mcp-00034-hhl",
         "status": "ACTIVE",
         "generation": 34,
         "image": "gcr.io/api-for-warp-drive/integration-gateway-mcp:latest",
         "last_modified": "pr@coaching2100.com",
-        "environment": "production", 
+        "environment": "production",
         "priority": "CRITICAL"
       },
       {
@@ -91,7 +91,7 @@
         "revision": "integration-gateway-wfa-orchestration-production-00011-4fq",
         "status": "ACTIVE",
         "generation": 11,
-        "image": "gcr.io/api-for-warp-drive/integration-gateway-wfa:production", 
+        "image": "gcr.io/api-for-warp-drive/integration-gateway-wfa:production",
         "last_modified": "pr@coaching2100.com",
         "environment": "production",
         "priority": "CRITICAL"
@@ -100,7 +100,7 @@
         "name": "integration-gateway-backend",
         "url": "https://integration-gateway-backend-yutylytffa-uw.a.run.app",
         "revision": "integration-gateway-backend-00006-qn9",
-        "status": "ACTIVE", 
+        "status": "ACTIVE",
         "generation": 6,
         "image": "gcr.io/api-for-warp-drive/integration-gateway-backend:latest",
         "last_modified": "pr@coaching2100.com",
@@ -112,14 +112,14 @@
         "url": "https://integration-gateway-intelligence-swarm-yutylytffa-uw.a.run.app",
         "revision": "integration-gateway-intelligence-swarm-00002-tjl",
         "status": "ACTIVE",
-        "generation": 2, 
+        "generation": 2,
         "image": "gcr.io/api-for-warp-drive/integration-gateway-swarm:latest",
         "last_modified": "pr@coaching2100.com",
-        "environment": "production", 
+        "environment": "production",
         "priority": "HIGH"
       },
       {
-        "name": "integration-gateway-js-staging", 
+        "name": "integration-gateway-js-staging",
         "url": "https://integration-gateway-js-staging-yutylytffa-uw.a.run.app",
         "revision": "integration-gateway-js-staging-00002-5k4",
         "status": "ACTIVE",
@@ -130,39 +130,39 @@
         "priority": "MEDIUM"
       },
       {
-        "name": "integration-gateway-server", 
+        "name": "integration-gateway-server",
         "url": "https://integration-gateway-server-yutylytffa-uw.a.run.app",
         "revision": "integration-gateway-server-00008-g2r",
         "status": "ACTIVE",
         "generation": 8,
-        "image": "gcr.io/api-for-warp-drive/integration-gateway-server:latest", 
+        "image": "gcr.io/api-for-warp-drive/integration-gateway-server:latest",
         "last_modified": "pr@coaching2100.com",
         "environment": "production",
         "priority": "MEDIUM"
       },
       {
         "name": "integration-gateway-test",
-        "url": "https://integration-gateway-test-yutylytffa-uw.a.run.app", 
+        "url": "https://integration-gateway-test-yutylytffa-uw.a.run.app",
         "revision": "integration-gateway-test-00001-hnw",
         "status": "ACTIVE",
         "generation": 1,
         "image": "gcr.io/api-for-warp-drive/integration-gateway:test",
         "last_modified": "pr@coaching2100.com",
-        "environment": "test", 
+        "environment": "test",
         "priority": "LOW"
       }
     ]
   },
   "security_assessment": {
     "victory36_protection": "REQUIRES_VALIDATION",
-    "oauth2_sallyport": "NEEDS_END_TO_END_TESTING", 
+    "oauth2_sallyport": "NEEDS_END_TO_END_TESTING",
     "node_runtime": "UPGRADE_TO_V24_REQUIRED",
     "secrets_management": "AUDIT_REQUIRED",
     "docker_security": "SCOUT_SCAN_PENDING"
   },
   "reliability_metrics": {
     "target_uptime": "99.97%",
-    "current_status": "MONITORING_REQUIRED", 
+    "current_status": "MONITORING_REQUIRED",
     "autoscaling": "OPTIMIZATION_NEEDED",
     "load_testing": "PENDING"
   },

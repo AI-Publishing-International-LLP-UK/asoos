@@ -44,7 +44,9 @@ try {
   };
   
   serializeForAgent = async (value) => {
-    if (value === null || value === undefined) return value;
+    if (value === null || value === undefined) {
+      return value;
+    }
     if (typeof value === 'object') {
       try {
         return JSON.parse(JSON.stringify(value));
@@ -212,11 +214,21 @@ class VisionSpeakPromiseHandler {
     }
     
     // Default detection based on common patterns
-    if (connectorName.includes('api')) return 'api';
-    if (connectorName.includes('db') || connectorName.includes('database')) return 'database';
-    if (connectorName.includes('ai') || connectorName.includes('ml')) return 'ai';
-    if (connectorName.includes('web')) return 'web';
-    if (connectorName.includes('mobile')) return 'mobile';
+    if (connectorName.includes('api')) {
+      return 'api';
+    }
+    if (connectorName.includes('db') || connectorName.includes('database')) {
+      return 'database';
+    }
+    if (connectorName.includes('ai') || connectorName.includes('ml')) {
+      return 'ai';
+    }
+    if (connectorName.includes('web')) {
+      return 'web';
+    }
+    if (connectorName.includes('mobile')) {
+      return 'mobile';
+    }
     
     return 'generic';
   }
@@ -490,7 +502,9 @@ app.listen(${this.config.webFactoryPort}, () => {
     for (const suggestion of suggestedConnectors.slice(0, 5)) {
       try {
         const connector = this.connectorRegistry.get(suggestion.name);
-        if (!connector) continue;
+        if (!connector) {
+          continue;
+        }
         
         const connectionResult = await safeResolve(
           connector.module.connect ? connector.module.connect() : { connected: true }

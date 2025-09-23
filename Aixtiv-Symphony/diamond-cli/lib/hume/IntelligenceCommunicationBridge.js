@@ -264,9 +264,15 @@ class IntelligenceCommunicationBridge extends EventEmitter {
   }
 
   getComputationalBoost(scopes) {
-    if (scopes.includes('hume:compute:max')) return 5.0;
-    if (scopes.includes('hume:compute:high')) return 3.0;
-    if (scopes.includes('hume:compute:standard')) return 2.0;
+    if (scopes.includes('hume:compute:max')) {
+      return 5.0;
+    }
+    if (scopes.includes('hume:compute:high')) {
+      return 3.0;
+    }
+    if (scopes.includes('hume:compute:standard')) {
+      return 2.0;
+    }
     return 1.0;
   }
 

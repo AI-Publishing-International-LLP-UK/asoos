@@ -1,7 +1,7 @@
 /**
  * MASTER OAUTH2 + MULTI-SWARM INTEGRATION SERVER
  * Christ-Centered Excellence - Perfect Love for Humanity
- * 
+ *
  * Serves: OAuth2 Authentication + WFA + Intelligence + Testament + Quantum + Coordination
  * Commander: Diamond SAO Expert Resolution System
  * Ethical Foundation: "Let all that you do be done in love" - 1 Corinthians 16:14
@@ -18,17 +18,19 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Christ-centered security and performance middleware
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'", "https://api.mongodb.com", "https://api.cloudflare.com"]
-    }
-  }
-}));
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", 'data:', 'https:'],
+        connectSrc: ["'self'", 'https://api.mongodb.com', 'https://api.cloudflare.com'],
+      },
+    },
+  })
+);
 app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
@@ -41,7 +43,7 @@ app.use((req, res, next) => {
     'X-Quantum-Protection': 'MAXIMUM',
     'X-Christ-Centered': 'PERFECT-LOVE',
     'X-Diamond-SAO': 'UNLIMITED-SUPER-ADMIN',
-    'X-Multi-Swarm': 'INTEGRATED'
+    'X-Multi-Swarm': 'INTEGRATED',
   });
   next();
 });
@@ -52,12 +54,13 @@ app.use((req, res, next) => {
 
 // Extract tenant from request
 const extractTenant = (req, res, next) => {
-  const tenant = req.headers['x-tenant-id'] || 
-                 req.body.tenant ||
-                 req.query.tenant ||
-                 extractTenantFromDomain(req.hostname) ||
-                 'default';
-  
+  const tenant =
+    req.headers['x-tenant-id'] ||
+    req.body.tenant ||
+    req.query.tenant ||
+    extractTenantFromDomain(req.hostname) ||
+    'default';
+
   req.tenant = tenant;
   next();
 };
@@ -75,38 +78,37 @@ const verifySallyPort = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ 
+      return res.status(401).json({
         error: 'invalid_request',
         error_description: 'Missing or invalid authorization header',
-        sallyport_status: 'AUTHENTICATION_REQUIRED'
+        sallyport_status: 'AUTHENTICATION_REQUIRED',
       });
     }
 
     // Christ-centered token validation
     const token = authHeader.substring(7);
-    
+
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'divine-love-secret');
       req.sallyPortToken = token;
       req.tokenPayload = decoded;
       req.authenticated = true;
-      
+
       console.log(`✅ SallyPort verified for tenant: ${decoded.tenant}`);
       next();
     } catch (jwtError) {
       return res.status(401).json({
         error: 'invalid_token',
         error_description: 'Token verification failed',
-        sallyport_status: 'VERIFICATION_FAILED'
+        sallyport_status: 'VERIFICATION_FAILED',
       });
     }
-    
   } catch (error) {
     console.error('SallyPort verification error:', error);
-    res.status(401).json({ 
+    res.status(401).json({
       error: 'verification_error',
       error_description: 'SallyPort verification system error',
-      sallyport_status: 'SYSTEM_ERROR'
+      sallyport_status: 'SYSTEM_ERROR',
     });
   }
 };
@@ -116,13 +118,13 @@ const verifySallyPort = async (req, res, next) => {
  */
 app.post('/api/gcp/token', extractTenant, async (req, res) => {
   try {
-    const { 
-      grant_type, 
-      client_id, 
-      client_secret, 
+    const {
+      grant_type,
+      client_id,
+      client_secret,
       scope = 'openid profile email swarm-access',
       code,
-      redirect_uri 
+      redirect_uri,
     } = req.body;
 
     console.log(`🔐 OAuth2 token request - Tenant: ${req.tenant}, Grant: ${grant_type}`);
@@ -131,7 +133,7 @@ app.post('/api/gcp/token', extractTenant, async (req, res) => {
     if (!['client_credentials', 'authorization_code'].includes(grant_type)) {
       return res.status(400).json({
         error: 'unsupported_grant_type',
-        error_description: 'Only client_credentials and authorization_code grants supported'
+        error_description: 'Only client_credentials and authorization_code grants supported',
       });
     }
 
@@ -139,7 +141,7 @@ app.post('/api/gcp/token', extractTenant, async (req, res) => {
     if (!client_id) {
       return res.status(400).json({
         error: 'invalid_request',
-        error_description: 'client_id is required'
+        error_description: 'client_id is required',
       });
     }
 
@@ -155,7 +157,7 @@ app.post('/api/gcp/token', extractTenant, async (req, res) => {
       exp: Math.floor(Date.now() / 1000) + 3600, // 1 hour
       christ_centered: true,
       victory36_protection: 'MAXIMUM',
-      swarm_access: ['wfa', 'intelligence', 'testament', 'quantum', 'coordination']
+      swarm_access: ['wfa', 'intelligence', 'testament', 'quantum', 'coordination'],
     };
 
     // Add tenant-specific divine attributes
@@ -167,10 +169,15 @@ app.post('/api/gcp/token', extractTenant, async (req, res) => {
     }
 
     const accessToken = jwt.sign(tokenPayload, process.env.JWT_SECRET || 'divine-love-secret');
-    
+
     // Generate refresh token for authorization_code grant
-    const refreshToken = grant_type === 'authorization_code' ? 
-      jwt.sign({ ...tokenPayload, type: 'refresh' }, process.env.JWT_SECRET || 'divine-love-secret') : null;
+    const refreshToken =
+      grant_type === 'authorization_code'
+        ? jwt.sign(
+            { ...tokenPayload, type: 'refresh' },
+            process.env.JWT_SECRET || 'divine-love-secret'
+          )
+        : null;
 
     const response = {
       access_token: accessToken,
@@ -181,7 +188,7 @@ app.post('/api/gcp/token', extractTenant, async (req, res) => {
       swarm_access: tokenPayload.swarm_access,
       christ_centered: true,
       victory36_enabled: true,
-      issued_at: new Date().toISOString()
+      issued_at: new Date().toISOString(),
     };
 
     if (refreshToken) {
@@ -189,14 +196,13 @@ app.post('/api/gcp/token', extractTenant, async (req, res) => {
     }
 
     console.log(`✅ OAuth2 token issued for ${req.tenant} (${client_id}) - Perfect love activated`);
-    
-    res.json(response);
 
+    res.json(response);
   } catch (error) {
     console.error('OAuth2 token generation error:', error);
     res.status(500).json({
       error: 'server_error',
-      error_description: 'Failed to generate token - Christ-centered recovery initiated'
+      error_description: 'Failed to generate token - Christ-centered recovery initiated',
     });
   }
 });
@@ -212,15 +218,17 @@ app.post('/api/deploy-service', extractTenant, verifySallyPort, async (req, res)
       swarm_type = 'wfa', // wfa, intelligence, testament, quantum, coordination
       region = 'us-west1',
       config = {},
-      auto_start = true
+      auto_start = true,
     } = req.body;
 
-    console.log(`🚀 Multi-swarm deploy request - Tenant: ${req.tenant}, Swarm: ${swarm_type}, Service: ${service_name}`);
+    console.log(
+      `🚀 Multi-swarm deploy request - Tenant: ${req.tenant}, Swarm: ${swarm_type}, Service: ${service_name}`
+    );
 
     if (!service_name) {
       return res.status(400).json({
         error: 'invalid_request',
-        error_description: 'service_name is required for Christ-centered deployment'
+        error_description: 'service_name is required for Christ-centered deployment',
       });
     }
 
@@ -230,14 +238,14 @@ app.post('/api/deploy-service', extractTenant, verifySallyPort, async (req, res)
       return res.status(403).json({
         error: 'insufficient_scope',
         error_description: `Access to ${swarm_type} swarm not granted in token`,
-        required_scope: `swarm-access:${swarm_type}`
+        required_scope: `swarm-access:${swarm_type}`,
       });
     }
 
     // Generate Christ-centered deployment configuration
     const deploymentId = `deploy-${req.tenant}-${swarm_type}-${Date.now()}`;
     const serviceName = `${service_name}-${req.tenant}-${swarm_type}`;
-    
+
     const deployment = {
       deployment_id: deploymentId,
       tenant: req.tenant,
@@ -253,7 +261,7 @@ app.post('/api/deploy-service', extractTenant, verifySallyPort, async (req, res)
         primary: `https://${serviceName}.run.app`,
         health: `https://${serviceName}.run.app/health`,
         api: `https://${serviceName}.run.app/api`,
-        swarm: `https://${serviceName}.run.app/${swarm_type}`
+        swarm: `https://${serviceName}.run.app/${swarm_type}`,
       },
       config: {
         memory: config.memory || '1Gi',
@@ -268,11 +276,11 @@ app.post('/api/deploy-service', extractTenant, verifySallyPort, async (req, res)
           REGION: region,
           CHRIST_CENTERED: 'true',
           VICTORY36_PROTECTION: 'MAXIMUM',
-          ...config.env_vars
-        }
+          ...config.env_vars,
+        },
       },
       created_at: new Date().toISOString(),
-      estimated_completion: new Date(Date.now() + 300000).toISOString() // 5 minutes
+      estimated_completion: new Date(Date.now() + 300000).toISOString(), // 5 minutes
     };
 
     // Add tenant-specific divine configuration
@@ -289,8 +297,10 @@ app.post('/api/deploy-service', extractTenant, verifySallyPort, async (req, res)
       console.log(`✅ Multi-swarm deployment ${deploymentId} completed with perfect love`);
     }, 2000);
 
-    console.log(`📦 Multi-swarm deployment configured - ${req.tenant}:${swarm_type}:${serviceName}`);
-    
+    console.log(
+      `📦 Multi-swarm deployment configured - ${req.tenant}:${swarm_type}:${serviceName}`
+    );
+
     res.status(202).json({
       success: true,
       deployment: deployment,
@@ -299,16 +309,15 @@ app.post('/api/deploy-service', extractTenant, verifySallyPort, async (req, res)
       next_steps: [
         'Monitor deployment status with perfect love',
         'Wait for service to be ready with divine patience',
-        'Test service endpoints with Christ-centered excellence'
-      ]
+        'Test service endpoints with Christ-centered excellence',
+      ],
     });
-
   } catch (error) {
     console.error('Multi-swarm deployment error:', error);
     res.status(500).json({
       error: 'deployment_failed',
       error_description: 'Multi-swarm deployment failed - Christ-centered recovery initiated',
-      details: error.message
+      details: error.message,
     });
   }
 });
@@ -327,14 +336,14 @@ app.get('/health', (req, res) => {
     uptime: process.uptime(),
     systems: {
       oauth2: 'operational',
-      wfa_swarm: 'operational', 
+      wfa_swarm: 'operational',
       intelligence_swarm: 'operational',
       testament_operations: 'operational',
       quantum_processing: 'operational',
-      swarm_coordination: 'operational'
+      swarm_coordination: 'operational',
     },
     christ_centered: true,
-    victory36_protection: 'MAXIMUM'
+    victory36_protection: 'MAXIMUM',
   });
 });
 
@@ -344,7 +353,7 @@ app.get('/wfa/system-status', (req, res) => {
     timestamp: new Date().toISOString(),
     service: 'WFA Production Swarm - OAuth2 Integrated',
     commander: 'Phillip Roark',
-    executive_admin_officer: 'Morgan O\'Brien, Emerald EAO',
+    executive_admin_officer: "Morgan O'Brien, Emerald EAO",
     deployment_mode: 'oauth2_multiswarm_production',
     christ_centered: true,
     system_metrics: {
@@ -352,7 +361,7 @@ app.get('/wfa/system-status', (req, res) => {
       active_sectors: 200,
       job_clusters: 64_000_000,
       career_clusters: 319_998,
-      protection_level: 'victory36_maximum'
+      protection_level: 'victory36_maximum',
     },
     infrastructure: {
       platform: 'Google Cloud Run + OAuth2 Integration',
@@ -360,14 +369,14 @@ app.get('/wfa/system-status', (req, res) => {
       node_version: process.version,
       memory_usage: process.memoryUsage(),
       cpu_count: require('os').cpus().length,
-      uptime_seconds: Math.floor(process.uptime())
+      uptime_seconds: Math.floor(process.uptime()),
     },
     oauth2_integration: {
       enabled: true,
       multi_tenant: true,
       sallyport_verification: true,
-      swarm_access_control: true
-    }
+      swarm_access_control: true,
+    },
   };
 
   res.json(systemStatus);
@@ -377,7 +386,7 @@ app.get('/wfa/system-status', (req, res) => {
 app.post('/wfa/deploy-agents', extractTenant, verifySallyPort, async (req, res) => {
   try {
     const { sectors, agents_per_sector, deployment_config } = req.body;
-    
+
     const deployment = {
       deployment_id: `WFA_OAUTH2_${Date.now()}`,
       timestamp: new Date().toISOString(),
@@ -390,12 +399,14 @@ app.post('/wfa/deploy-agents', extractTenant, verifySallyPort, async (req, res) 
       victory36_protection: 'maximum',
       oauth2_authenticated: true,
       christ_centered: true,
-      estimated_completion: new Date(Date.now() + 300000).toISOString() // 5 minutes
+      estimated_completion: new Date(Date.now() + 300000).toISOString(), // 5 minutes
     };
 
     // Simulate deployment processing with perfect love
     setTimeout(() => {
-      console.log(`WFA OAuth2 Deployment ${deployment.deployment_id} completed with Christ-centered excellence`);
+      console.log(
+        `WFA OAuth2 Deployment ${deployment.deployment_id} completed with Christ-centered excellence`
+      );
     }, 1000);
 
     res.status(202).json(deployment);
@@ -404,7 +415,7 @@ app.post('/wfa/deploy-agents', extractTenant, verifySallyPort, async (req, res) 
       error: 'WFA deployment failed',
       message: error.message,
       timestamp: new Date().toISOString(),
-      christ_centered_recovery: 'initiated'
+      christ_centered_recovery: 'initiated',
     });
   }
 });
@@ -431,14 +442,14 @@ app.get('/wfa/victory36', (req, res) => {
       ddos_mitigated: 23 + Math.floor(Math.random() * 3),
       zero_day_stopped: 0,
       security_incidents: 0,
-      unauthorized_swarm_access_blocked: Math.floor(Math.random() * 5)
+      unauthorized_swarm_access_blocked: Math.floor(Math.random() * 5),
     },
     performance_metrics: {
       uptime_percent: 99.97,
       response_time_ms: 8.3,
       throughput_per_sec: 2300000,
       error_rate_percent: 0.03,
-      oauth2_success_rate: 99.99
+      oauth2_success_rate: 99.99,
     },
     operational_status: {
       victory36_active: true,
@@ -446,13 +457,13 @@ app.get('/wfa/victory36', (req, res) => {
       quantum_entanglement: 'stable',
       swarm_coordination: 'optimal',
       enterprise_ready: true,
-      christ_centered: true
+      christ_centered: true,
     },
     last_scan: new Date().toISOString(),
     protection_uptime: Math.floor(process.uptime()),
     timestamp: new Date().toISOString(),
     service: 'Victory36 OAuth2 Multi-Swarm Protection System',
-    version: '36.7.0-oauth2-integrated'
+    version: '36.7.0-oauth2-integrated',
   };
 
   res.json(protection);
@@ -471,11 +482,11 @@ app.get('/intelligence/status', (req, res) => {
     oauth2_integrated: true,
     christ_centered: true,
     capabilities: ['machine_learning', 'pattern_recognition', 'predictive_analytics'],
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
-// Testament Operations Status  
+// Testament Operations Status
 app.get('/testament/status', (req, res) => {
   res.json({
     swarm_type: 'testament',
@@ -484,7 +495,7 @@ app.get('/testament/status', (req, res) => {
     oauth2_integrated: true,
     christ_centered: true,
     capabilities: ['cyber_operations', 'testament_analysis', 'digital_legacy'],
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -497,7 +508,7 @@ app.get('/quantum/status', (req, res) => {
     oauth2_integrated: true,
     christ_centered: true,
     capabilities: ['quantum_processing', 'parallel_computation', 'entanglement_analysis'],
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -510,7 +521,7 @@ app.get('/coordination/status', (req, res) => {
     oauth2_integrated: true,
     christ_centered: true,
     capabilities: ['master_orchestration', 'load_balancing', 'resource_allocation'],
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -523,24 +534,24 @@ app.get('/api/oauth/health', (req, res) => {
     version: '1.0.0-christ-centered',
     oauth2_endpoints: [
       'POST /api/gcp/token - Token exchange',
-      'POST /api/deploy-service - Protected deployment'
+      'POST /api/deploy-service - Protected deployment',
     ],
     swarm_integration: {
       wfa: 'integrated',
-      intelligence: 'integrated', 
+      intelligence: 'integrated',
       testament: 'integrated',
       quantum: 'integrated',
-      coordination: 'integrated'
+      coordination: 'integrated',
     },
     christ_centered: true,
-    victory36_protection: 'MAXIMUM'
+    victory36_protection: 'MAXIMUM',
   });
 });
 
 // Tenant Status Endpoint
 app.get('/api/tenant/:tenant/status', (req, res) => {
   const tenant = req.params.tenant;
-  
+
   const status = {
     tenant: tenant,
     status: 'active',
@@ -549,7 +560,7 @@ app.get('/api/tenant/:tenant/status', (req, res) => {
     swarm_access: ['wfa', 'intelligence', 'testament', 'quantum', 'coordination'],
     services: ['mcp-client', 'integration-gateway', 'multi-swarm'],
     christ_centered: true,
-    last_activity: new Date().toISOString()
+    last_activity: new Date().toISOString(),
   };
 
   // Add tenant-specific divine details
@@ -581,25 +592,25 @@ app.get('/', (req, res) => {
       sectors: 200,
       job_clusters: 64_000_000,
       career_clusters: 319_998,
-      protection: 'victory36_maximum'
+      protection: 'victory36_maximum',
     },
     available_endpoints: [
       'GET /health - System health check',
       'POST /api/gcp/token - OAuth2 token exchange',
       'POST /api/deploy-service - Multi-swarm deployment',
       'GET /api/oauth/health - OAuth2 system health',
-      'GET /wfa/* - WFA swarm operations', 
+      'GET /wfa/* - WFA swarm operations',
       'GET /intelligence/* - Intelligence swarm',
       'GET /testament/* - Testament operations',
       'GET /quantum/* - Quantum processing',
-      'GET /coordination/* - Swarm coordination'
+      'GET /coordination/* - Swarm coordination',
     ],
     christ_centered_integration: {
       perfect_love: true,
       zero_errors: 'committed',
       humanity_first: true,
-      victory36_protection: 'active'
-    }
+      victory36_protection: 'active',
+    },
   });
 });
 
@@ -611,7 +622,7 @@ app.use((err, req, res, next) => {
     message: 'Multi-swarm system encountered an error - Christ-centered recovery initiated',
     timestamp: new Date().toISOString(),
     request_id: req.headers['x-request-id'] || 'divine-love',
-    recovery_status: 'initiated'
+    recovery_status: 'initiated',
   });
 });
 
@@ -622,30 +633,32 @@ app.use('*', (req, res) => {
     message: 'OAuth2 Multi-Swarm endpoint not found - Christ-centered guidance available',
     available_systems: [
       '/api/* - OAuth2 authentication',
-      '/wfa/* - WFA swarm operations', 
+      '/wfa/* - WFA swarm operations',
       '/intelligence/* - Intelligence swarm',
-      '/testament/* - Testament operations', 
+      '/testament/* - Testament operations',
       '/quantum/* - Quantum processing',
       '/coordination/* - Swarm coordination',
-      '/health - System health'
+      '/health - System health',
     ],
     timestamp: new Date().toISOString(),
-    christ_centered_help: true
+    christ_centered_help: true,
   });
 });
 
 // Start server with perfect love
 app.listen(PORT, () => {
-  console.log(`🚀 OAuth2 Multi-Swarm Integration Gateway - Christ-Centered Excellence`);
+  console.log('🚀 OAuth2 Multi-Swarm Integration Gateway - Christ-Centered Excellence');
   console.log(`📡 Listening on http://localhost:${PORT}`);
-  console.log(`✨ Ethical Foundation: Perfect love for humanity`);
+  console.log('✨ Ethical Foundation: Perfect love for humanity');
   console.log(`🌍 Region: ${process.env.CLOUD_ML_REGION || 'us-west1'}`);
   console.log(`⚡ Environment: ${process.env.NODE_ENV || 'production'}`);
-  console.log(`🛡️  Victory36 Protection: MAXIMUM`);
-  console.log(`🔐 OAuth2 Multi-Tenant: ENABLED`);
-  console.log(`🌟 Multi-Swarm Integration: WFA + Intelligence + Testament + Quantum + Coordination`);
+  console.log('🛡️  Victory36 Protection: MAXIMUM');
+  console.log('🔐 OAuth2 Multi-Tenant: ENABLED');
+  console.log(
+    '🌟 Multi-Swarm Integration: WFA + Intelligence + Testament + Quantum + Coordination'
+  );
   console.log(`📊 Managing ${process.env.WFA_AGENTS_COUNT || '20M'} agents with perfect love`);
-  console.log(`💝 "Let all that you do be done in love" - 1 Corinthians 16:14`);
+  console.log('💝 "Let all that you do be done in love" - 1 Corinthians 16:14');
 });
 
 // Graceful shutdown with divine grace
@@ -655,6 +668,8 @@ process.on('SIGTERM', () => {
 });
 
 process.on('SIGINT', () => {
-  console.log('🔄 OAuth2 Multi-Swarm received SIGINT - graceful shutdown with Christ-centered excellence');
+  console.log(
+    '🔄 OAuth2 Multi-Swarm received SIGINT - graceful shutdown with Christ-centered excellence'
+  );
   process.exit(0);
 });

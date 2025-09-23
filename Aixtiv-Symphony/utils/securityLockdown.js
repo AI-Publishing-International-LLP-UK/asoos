@@ -517,7 +517,9 @@ class SecurityLockdown {
 
       // Remove security overlays
       const overlay = document.getElementById('securityOverlay');
-      if (overlay) overlay.remove();
+      if (overlay) {
+        overlay.remove();
+      }
 
       // Restore functionality
       document.querySelectorAll('button, input, textarea').forEach((el) => {

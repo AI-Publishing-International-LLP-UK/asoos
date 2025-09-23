@@ -249,12 +249,21 @@ const errorHandler = (err, req, res, next) => {
 
   // Map common errors to appropriate status codes
   let statusCode = 500;
-  if (err.message.includes('not found')) statusCode = 404;
-  if (err.message.includes('unauthorized') || err.message.includes('authentication'))
+  if (err.message.includes('not found')) {
+    statusCode = 404;
+  }
+  if (err.message.includes('unauthorized') || err.message.includes('authentication')) {
     statusCode = 401;
-  if (err.message.includes('forbidden')) statusCode = 403;
-  if (err.message.includes('validation') || err.message.includes('invalid')) statusCode = 400;
-  if (err.message.includes('rate limit')) statusCode = 429;
+  }
+  if (err.message.includes('forbidden')) {
+    statusCode = 403;
+  }
+  if (err.message.includes('validation') || err.message.includes('invalid')) {
+    statusCode = 400;
+  }
+  if (err.message.includes('rate limit')) {
+    statusCode = 429;
+  }
 
   const errorResponse = {
     error: 'Internal server error',

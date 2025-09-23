@@ -271,8 +271,12 @@ function formatTimestamp(timestamp) {
 }
 
 function getConfidenceClass(confidence) {
-  if (confidence >= 0.8) return 'confidence-high';
-  if (confidence >= 0.6) return 'confidence-medium';
+  if (confidence >= 0.8) {
+    return 'confidence-high';
+  }
+  if (confidence >= 0.6) {
+    return 'confidence-medium';
+  }
   return 'confidence-low';
 }
 

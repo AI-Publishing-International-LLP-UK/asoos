@@ -2,10 +2,10 @@
  * ████████████████████████████████████████████████████████████████
  * █  UNIVERSAL AI KEY MANAGER v2 - PRODUCTION ENTERPRISE SYSTEM █
  * ████████████████████████████████████████████████████████████████
- * 
+ *
  * Full tenant isolation, auto-provisioning, cost tracking, Xero integration
  * Node.js 24+ • TypeScript • Zero-downtime rotation • Real-time billing
- * 
+ *
  * Architecture:
  * ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
  * │   MCP Tenant    │───▶│ AI Key Manager  │───▶│  Cost Analytics │
@@ -18,7 +18,7 @@
  *                     │ • Auto-rotation      │
  *                     │ • OAuth2 preferred   │
  *                     └──────────────────────┘
- * 
+ *
  * @author AI Publishing International LLP
  * @version 2.0.0-enterprise
  * @license Proprietary - Diamond SAO Command Center
@@ -47,7 +47,7 @@ export interface ServiceAdapter {
   readonly supportsOAuth2: boolean;
   readonly supportsProvisioning: boolean;
   readonly defaultScopes: string[];
-  
+
   validateKey(apiKey: string): Promise<boolean>;
   provisionKey(adminCredentials: any, metadata: ProvisionMetadata): Promise<string>;
   rotateKey?(currentKey: string, adminCredentials: any): Promise<string>;
@@ -95,9 +95,12 @@ class HumeServiceAdapter implements ServiceAdapter {
 
   async validateKey(apiKey: string): Promise<boolean> {
     try {
-      const response = await fetch('https://api.hume.ai/v0/tts/voices?provider=CUSTOM_VOICE&page_size=1', {
-        headers: { 'X-Hume-Api-Key': apiKey }
-      });
+      const response = await fetch(
+        'https://api.hume.ai/v0/tts/voices?provider=CUSTOM_VOICE&page_size=1',
+        {
+          headers: { 'X-Hume-Api-Key': apiKey },
+        }
+      );
       return response.ok;
     } catch {
       return false;
@@ -108,8 +111,8 @@ class HumeServiceAdapter implements ServiceAdapter {
     const response = await fetch('https://api.hume.ai/v0/management/api-keys', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${adminCredentials.adminApiKey}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${adminCredentials.adminApiKey}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name: `${metadata.companyName}-mcp-key`,
@@ -119,9 +122,9 @@ class HumeServiceAdapter implements ServiceAdapter {
           tenantId: metadata.tenantId,
           mcpDomain: metadata.mcpDomain,
           provisionedBy: 'diamond-sao-automation',
-          provisionedAt: new Date().toISOString()
-        }
-      })
+          provisionedAt: new Date().toISOString(),
+        },
+      }),
     });
 
     if (!response.ok) {
@@ -155,7 +158,7 @@ class ElevenLabsServiceAdapter implements ServiceAdapter {
   async validateKey(apiKey: string): Promise<boolean> {
     try {
       const response = await fetch('https://api.elevenlabs.io/v1/voices', {
-        headers: { 'xi-api-key': apiKey }
+        headers: { 'xi-api-key': apiKey },
       });
       return response.ok;
     } catch {
@@ -183,7 +186,7 @@ class OpenAIServiceAdapter implements ServiceAdapter {
   async validateKey(apiKey: string): Promise<boolean> {
     try {
       const response = await fetch('https://api.openai.com/v1/models', {
-        headers: { 'Authorization': `Bearer ${apiKey}` }
+        headers: { Authorization: `Bearer ${apiKey}` },
       });
       return response.ok;
     } catch {
@@ -213,7 +216,7 @@ export class UniversalAIKeyManagerV2 {
   private readonly bigquery: BigQuery;
   private readonly cache = new Map<string, { value: any; timestamp: number }>();
   private readonly cacheTTL = 5 * 60 * 1000; // 5 minutes
-  
+
   // Service adapters registry
   private readonly adapters = new Map<string, ServiceAdapter>([
     ['hume', new HumeServiceAdapter()],
@@ -222,14 +225,16 @@ export class UniversalAIKeyManagerV2 {
     // Add more adapters as needed
   ]);
 
-  constructor(options: {
-    gcpProject?: string;
-    region?: string;
-    registryPath?: string;
-  } = {}) {
+  constructor(
+    options: {
+      gcpProject?: string;
+      region?: string;
+      registryPath?: string;
+    } = {}
+  ) {
     this.gcpProject = options.gcpProject || process.env.GCP_PROJECT_ID || 'api-for-warp-drive';
     this.region = options.region || process.env.CLOUD_ML_REGION || 'us-west1';
-    
+
     this.secretClient = new SecretManagerServiceClient();
     this.pubsub = new PubSub({ projectId: this.gcpProject });
     this.bigquery = new BigQuery({ projectId: this.gcpProject });
@@ -238,14 +243,12 @@ export class UniversalAIKeyManagerV2 {
   /**
    * 🔑 GET API KEY - Multi-tenant with cost attribution
    */
-  async getAPIKey(
-    service: string, 
-    tenantContext: TenantContext,
-    userId?: string
-  ): Promise<string> {
+  async getAPIKey(service: string, tenantContext: TenantContext, userId?: string): Promise<string> {
     const adapter = this.adapters.get(service);
     if (!adapter) {
-      throw new Error(`Unsupported AI service: ${service}. Available: ${Array.from(this.adapters.keys()).join(', ')}`);
+      throw new Error(
+        `Unsupported AI service: ${service}. Available: ${Array.from(this.adapters.keys()).join(', ')}`
+      );
     }
 
     console.log(`🔐 [${tenantContext.tenantId}] Retrieving ${adapter.serviceName} API key`);
@@ -255,20 +258,20 @@ export class UniversalAIKeyManagerV2 {
     console.log(`🎯 Strategy: ${keyStrategy}`);
 
     let apiKey: string;
-    
+
     switch (keyStrategy) {
       case 'customer-provided':
         apiKey = await this.getCustomerProvidedKey(service, tenantContext);
         break;
-      
+
       case 'dedicated-provisioned':
         apiKey = await this.getDedicatedKey(service, tenantContext, true);
         break;
-      
+
       case 'dedicated-static':
         apiKey = await this.getDedicatedKey(service, tenantContext, false);
         break;
-      
+
       case 'shared':
       default:
         apiKey = await this.getSharedKey(service);
@@ -277,7 +280,7 @@ export class UniversalAIKeyManagerV2 {
 
     // Log usage for cost attribution
     await this.logKeyAccess(service, tenantContext, userId, 'success');
-    
+
     return apiKey;
   }
 
@@ -303,14 +306,14 @@ export class UniversalAIKeyManagerV2 {
     try {
       // Get admin credentials for provisioning
       const adminCredentials = await this.getAdminCredentials(service);
-      
+
       // Provision new key via provider API
       const newApiKey = await adapter.provisionKey(adminCredentials, {
         tenantId: tenantContext.tenantId,
         companyName: tenantContext.tenantId, // Use tenantId as company name
         mcpDomain: tenantContext.mcpDomain,
         requestedBy: requestedBy,
-        scopes: adapter.defaultScopes
+        scopes: adapter.defaultScopes,
       });
 
       // Store in tenant-scoped secret
@@ -325,7 +328,6 @@ export class UniversalAIKeyManagerV2 {
 
       console.log(`✅ [${tenantContext.tenantId}] Provisioned ${adapter.serviceName} key`);
       return newApiKey;
-
     } catch (error) {
       console.error(`❌ [${tenantContext.tenantId}] Provisioning failed:`, error);
       await this.logKeyAccess(service, tenantContext, requestedBy, 'provision-failed');
@@ -350,9 +352,9 @@ export class UniversalAIKeyManagerV2 {
 
     // Get current key
     const currentKey = await this.getAPIKey(service, tenantContext);
-    
+
     let newKey: string;
-    
+
     if (adapter.rotateKey) {
       // Use provider's rotation API
       const adminCredentials = await this.getAdminCredentials(service);
@@ -376,7 +378,7 @@ export class UniversalAIKeyManagerV2 {
     await this.logKeyAccess(service, tenantContext, requestedBy, 'rotated');
 
     console.log(`✅ [${tenantContext.tenantId}] Rotated ${adapter.serviceName} key`);
-    
+
     return { oldKey: currentKey, newKey };
   }
 
@@ -400,13 +402,15 @@ export class UniversalAIKeyManagerV2 {
         ...event,
         timestamp: event.timestamp.toISOString(),
         gcpProject: this.gcpProject,
-        region: this.region
-      }
+        region: this.region,
+      },
     };
 
     try {
       await this.pubsub.topic('ai-usage-events').publishMessage(message);
-      console.log(`📊 [${event.tenantId}] Usage tracked: ${event.service} - $${event.costUsd.toFixed(4)}`);
+      console.log(
+        `📊 [${event.tenantId}] Usage tracked: ${event.service} - $${event.costUsd.toFixed(4)}`
+      );
     } catch (error) {
       console.error('Failed to publish usage event:', error);
       // Store locally as fallback
@@ -419,7 +423,7 @@ export class UniversalAIKeyManagerV2 {
    */
   async pushDailyCostsToXero(date: Date = new Date()): Promise<void> {
     const dateStr = date.toISOString().split('T')[0];
-    
+
     console.log(`💰 Pushing daily costs to Xero for ${dateStr}`);
 
     // Query BigQuery for daily costs per tenant
@@ -439,16 +443,16 @@ export class UniversalAIKeyManagerV2 {
 
     const [rows] = await this.bigquery.query({
       query,
-      params: { date: dateStr }
+      params: { date: dateStr },
     });
 
     // Group by tenant for invoice creation
     const tenantCosts = new Map<string, XeroInvoiceLineItem[]>();
-    
+
     for (const row of rows) {
       const tenantId = row.tenant_id;
       const componentCode = this.getXeroComponentCode(row.service);
-      
+
       if (!tenantCosts.has(tenantId)) {
         tenantCosts.set(tenantId, []);
       }
@@ -458,7 +462,7 @@ export class UniversalAIKeyManagerV2 {
         description: `${this.getServiceDisplayName(row.service)} - ${row.usage_count} calls, ${row.total_tokens} tokens`,
         quantity: row.usage_count,
         unitAmount: row.total_cost / row.usage_count,
-        accountCode: '4000' // Revenue account
+        accountCode: '4000', // Revenue account
       });
     }
 
@@ -474,31 +478,38 @@ export class UniversalAIKeyManagerV2 {
 
   private determineKeyStrategy(service: string, tenantContext: TenantContext): string {
     const adapter = this.adapters.get(service)!;
-    
+
     switch (tenantContext.tier) {
       case 'customer-managed':
         return 'customer-provided';
-      
+
       case 'managed-enterprise':
         return adapter.supportsProvisioning ? 'dedicated-provisioned' : 'dedicated-static';
-      
+
       case 'managed-premium':
         return 'dedicated-static';
-      
+
       case 'managed-basic':
       default:
         return 'shared';
     }
   }
 
-  private async getCustomerProvidedKey(service: string, tenantContext: TenantContext): Promise<string> {
+  private async getCustomerProvidedKey(
+    service: string,
+    tenantContext: TenantContext
+  ): Promise<string> {
     const secretName = `${this.adapters.get(service)!.secretPrefix}-${tenantContext.tenantId}-customer`;
     return await this.getSecret(secretName);
   }
 
-  private async getDedicatedKey(service: string, tenantContext: TenantContext, autoProvision: boolean): Promise<string> {
+  private async getDedicatedKey(
+    service: string,
+    tenantContext: TenantContext,
+    autoProvision: boolean
+  ): Promise<string> {
     const secretName = `${this.adapters.get(service)!.secretPrefix}-${tenantContext.tenantId}`;
-    
+
     try {
       return await this.getSecret(secretName);
     } catch (error) {
@@ -517,14 +528,14 @@ export class UniversalAIKeyManagerV2 {
   private async getSecret(secretName: string): Promise<string> {
     const cacheKey = `${this.gcpProject}:${secretName}`;
     const cached = this.cache.get(cacheKey);
-    
+
     if (cached && Date.now() - cached.timestamp < this.cacheTTL) {
       return cached.value;
     }
 
     try {
       const [version] = await this.secretClient.accessSecretVersion({
-        name: `projects/${this.gcpProject}/secrets/${secretName}/versions/latest`
+        name: `projects/${this.gcpProject}/secrets/${secretName}/versions/latest`,
       });
 
       const payload = version.payload?.data?.toString('utf8');
@@ -534,13 +545,16 @@ export class UniversalAIKeyManagerV2 {
 
       this.cache.set(cacheKey, { value: payload, timestamp: Date.now() });
       return payload;
-      
     } catch (error) {
       throw new Error(`Failed to retrieve secret ${secretName}: ${error}`);
     }
   }
 
-  private async createTenantSecret(secretName: string, secretValue: string, tenantContext: TenantContext): Promise<void> {
+  private async createTenantSecret(
+    secretName: string,
+    secretValue: string,
+    tenantContext: TenantContext
+  ): Promise<void> {
     try {
       // Create or update secret
       await this.secretClient.createSecret({
@@ -552,9 +566,9 @@ export class UniversalAIKeyManagerV2 {
             tenant: tenantContext.tenantId,
             tier: tenantContext.tier,
             region: this.region,
-            managed_by: 'diamond-sao'
-          }
-        }
+            managed_by: 'diamond-sao',
+          },
+        },
       });
     } catch (error) {
       if (!error.message?.includes('already exists')) {
@@ -565,7 +579,7 @@ export class UniversalAIKeyManagerV2 {
     // Add new version
     await this.secretClient.addSecretVersion({
       parent: `projects/${this.gcpProject}/secrets/${secretName}`,
-      payload: { data: Buffer.from(secretValue, 'utf8') }
+      payload: { data: Buffer.from(secretValue, 'utf8') },
     });
 
     console.log(`✅ Created/updated secret: ${secretName}`);
@@ -577,9 +591,13 @@ export class UniversalAIKeyManagerV2 {
     return JSON.parse(credentials);
   }
 
-  private async updateMCPRegistry(service: string, tenantContext: TenantContext, secretName: string): Promise<void> {
+  private async updateMCPRegistry(
+    service: string,
+    tenantContext: TenantContext,
+    secretName: string
+  ): Promise<void> {
     const registryPath = path.join(__dirname, '../Aixtiv-Symphony/mcp-company-registry.json');
-    
+
     try {
       const registryContent = await fs.readFile(registryPath, 'utf8');
       const registry = JSON.parse(registryContent);
@@ -597,21 +615,20 @@ export class UniversalAIKeyManagerV2 {
         tier: tenantContext.tier,
         provisioned_at: new Date().toISOString(),
         status: 'active',
-        service_name: this.adapters.get(service)!.serviceName
+        service_name: this.adapters.get(service)!.serviceName,
       };
 
       await fs.writeFile(registryPath, JSON.stringify(registry, null, 2));
       console.log(`✅ Updated MCP registry for ${tenantContext.tenantId}:${service}`);
-      
     } catch (error) {
       console.warn(`Failed to update MCP registry: ${error}`);
     }
   }
 
   private async logKeyAccess(
-    service: string, 
-    tenantContext: TenantContext, 
-    userId: string | undefined, 
+    service: string,
+    tenantContext: TenantContext,
+    userId: string | undefined,
     status: string
   ): Promise<void> {
     const logEntry = {
@@ -623,7 +640,7 @@ export class UniversalAIKeyManagerV2 {
       status,
       timestamp: new Date().toISOString(),
       gcpProject: this.gcpProject,
-      region: this.region
+      region: this.region,
     };
 
     try {
@@ -642,11 +659,11 @@ export class UniversalAIKeyManagerV2 {
 
   private getXeroComponentCode(service: string): string {
     const codes: Record<string, string> = {
-      'hume': '13-HUME',
-      'elevenlabs': '14-ELEVENLABS', 
-      'openai': '15-OPENAI',
-      'anthropic': '16-ANTHROPIC',
-      'deepgram': '17-DEEPGRAM'
+      hume: '13-HUME',
+      elevenlabs: '14-ELEVENLABS',
+      openai: '15-OPENAI',
+      anthropic: '16-ANTHROPIC',
+      deepgram: '17-DEEPGRAM',
     };
     return codes[service] || `99-${service.toUpperCase()}`;
   }
@@ -655,26 +672,30 @@ export class UniversalAIKeyManagerV2 {
     return this.adapters.get(service)?.serviceName || service;
   }
 
-  private async createXeroInvoice(tenantId: string, lineItems: XeroInvoiceLineItem[], date: Date): Promise<void> {
+  private async createXeroInvoice(
+    tenantId: string,
+    lineItems: XeroInvoiceLineItem[],
+    date: Date
+  ): Promise<void> {
     // Xero integration implementation
     console.log(`📋 Creating Xero invoice for ${tenantId} - ${lineItems.length} line items`);
-    
+
     const invoice = {
       Type: 'ACCREC',
       Contact: {
-        ContactID: await this.getXeroContactId(tenantId)
+        ContactID: await this.getXeroContactId(tenantId),
       },
       Date: date.toISOString().split('T')[0],
       DueDate: new Date(date.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      LineItems: lineItems.map(item => ({
+      LineItems: lineItems.map((item) => ({
         ItemCode: item.componentCode,
         Description: item.description,
         Quantity: item.quantity,
         UnitAmount: item.unitAmount,
-        AccountCode: item.accountCode
+        AccountCode: item.accountCode,
       })),
       Status: 'AUTHORISED',
-      Reference: `AI-USAGE-${tenantId}-${date.toISOString().split('T')[0]}`
+      Reference: `AI-USAGE-${tenantId}-${date.toISOString().split('T')[0]}`,
     };
 
     // TODO: Implement actual Xero API call with OAuth2
@@ -696,15 +717,18 @@ export default UniversalAIKeyManagerV2;
 if (require.main === module) {
   async function cli() {
     const keyManager = new UniversalAIKeyManagerV2();
-    
+
     const command = process.argv[2];
     const service = process.argv[3];
     const tenantId = process.argv[4];
-    
+
     if (!command || !service || !tenantId) {
       console.log('Usage: node universal-ai-key-manager-v2.js <command> <service> <tenantId>');
       console.log('Commands: get, provision, rotate, validate, track-usage, xero-push');
-      console.log('Services:', Array.from(new UniversalAIKeyManagerV2().adapters.keys()).join(', '));
+      console.log(
+        'Services:',
+        Array.from(new UniversalAIKeyManagerV2().adapters.keys()).join(', ')
+      );
       process.exit(1);
     }
 
@@ -713,7 +737,7 @@ if (require.main === module) {
       mcpDomain: `mcp.${tenantId}.2100.cool`,
       tier: 'managed-enterprise',
       region: 'us-west1',
-      complianceFlags: ['SOC2', 'GDPR']
+      complianceFlags: ['SOC2', 'GDPR'],
     };
 
     try {

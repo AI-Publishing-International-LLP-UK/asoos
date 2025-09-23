@@ -284,7 +284,7 @@ niches.forEach((niche, index) => {
   console.log(`📝 Generating ${index + 1}/20: ${niche.industry} (${niche.id})`);
 
   // Replace template placeholders
-  let siteContent = template
+  const siteContent = template
     .replace(/\{\{NICHE_ID\}\}/g, niche.id)
     .replace(/\{\{NICHE_INDUSTRY\}\}/g, niche.industry)
     .replace(/\{\{NICHE_TITLE\}\}/g, niche.title)

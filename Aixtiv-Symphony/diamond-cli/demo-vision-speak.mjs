@@ -19,14 +19,14 @@ import { spawn } from 'child_process';
 
 // Demo requests to show Vision Speak capabilities
 const demoRequests = [
-  "I want an iOS app that tracks fitness workouts with Apple HealthKit integration",
-  "Create a social media campaign for a tech startup with automated posting",
-  "Build a website with user authentication and dashboard analytics",
-  "Make an Android app for ordering food with payment processing",
-  "Design a talk show website with video streaming and chat integration",
-  "Create an AI-powered blog that generates content automatically",
-  "Build a mobile app for real estate listings with map integration",
-  "Make a web application for managing customer relationships"
+  'I want an iOS app that tracks fitness workouts with Apple HealthKit integration',
+  'Create a social media campaign for a tech startup with automated posting',
+  'Build a website with user authentication and dashboard analytics',
+  'Make an Android app for ordering food with payment processing',
+  'Design a talk show website with video streaming and chat integration',
+  'Create an AI-powered blog that generates content automatically',
+  'Build a mobile app for real estate listings with map integration',
+  'Make a web application for managing customer relationships'
 ];
 
 async function runVisionSpeakDemo(request = null) {

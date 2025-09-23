@@ -156,6 +156,11 @@ class DiamondInterface {
         value: 'hume',
         description: 'Professional Co-Pilot (PCP) voice synthesis & empathic AI',
       },
+      {
+        name: '🌟 Dream Commander - AI-powered decision management system',
+        value: 'dream',
+        description: 'Wings 1-13 formation management | 11M decisions/day | Time-based predictions',
+      },
     ];
 
     const answers = await inquirer.prompt([
@@ -187,6 +192,8 @@ class DiamondInterface {
         return await this.buildMonitorCommand();
       case 'hume':
         return await this.buildHumeCommand();
+      case 'dream':
+        return await this.buildDreamCommand();
       default:
         return 'diamond help';
     }
@@ -739,7 +746,7 @@ class DiamondInterface {
         commands: [
           {
             cmd: 'hume grant <intelligence>',
-            desc: 'Grant priority voice/computational access to any intelligence',
+            desc: 'Grant priority access to intelligence with enhanced capabilities',
           },
           {
             cmd: 'hume speak <text>',
@@ -750,6 +757,22 @@ class DiamondInterface {
           { cmd: 'hume voices', desc: 'Manage 14 computational pilot voice profiles' },
           { cmd: 'hume revoke <session>', desc: 'Revoke priority access for intelligence' },
           { cmd: 'hume status', desc: 'Show Professional Co-Pilot system health' },
+        ],
+      },
+      {
+        title: '🌟 Dream Commander',
+        commands: [
+          { cmd: 'dream init', desc: 'Initialize Dream Commander with Wings 1-13 formations' },
+          { cmd: 'dream status', desc: 'Show decision pipeline health and wing utilization' },
+          { cmd: 'dream predict <timeframe>', desc: 'Generate time-based decision forecasts' },
+          { cmd: 'dream prompt <customer>', desc: 'Create personalized AI-powered prompt' },
+          { cmd: 'dream wing <action>', desc: 'Manage Wings 1-13 formation assignments' },
+          { cmd: 'dream decision <data>', desc: 'Process decision through optimal wing pipeline' },
+          { cmd: 'dream analytics <type>', desc: 'View customer behavior and system analytics' },
+          {
+            cmd: 'dream config <category>',
+            desc: 'Configure capacity, wings, and prediction settings',
+          },
         ],
       },
       {
@@ -795,6 +818,9 @@ class DiamondInterface {
       'diamond deploy wfa swarm --commander "Mr. Phillip Corey Roark"',
       'diamond hume grant "Claude" --priority=HIGH  # Grant priority voice access to Claude',
       'diamond hume speak "Hello world" --voice=dr-lucy-srix  # Synthesize with Dr. Lucy',
+      'diamond dream init --capacity=11000000 --victory36  # Initialize Dream Commander',
+      'diamond dream predict --timeframe=24h --confidence  # Generate 24h decision forecast',
+      'diamond dream prompt "customer_123" --type=business  # Create business prompt',
     ];
 
     examples.forEach((example) => {
@@ -842,6 +868,7 @@ class DiamondInterface {
       'newman',
       'swarm',
       'hume',
+      'dream',
       'version',
       'help',
     ];
@@ -872,6 +899,7 @@ class DiamondInterface {
         'integration',
       ],
       hume: ['grant', 'speak', 'stream', 'sessions', 'voices', 'revoke', 'status'],
+      dream: ['init', 'status', 'predict', 'prompt', 'wing', 'decision', 'analytics', 'config'],
     };
 
     const completions = [];
@@ -962,6 +990,534 @@ class DiamondInterface {
     }
 
     console.log(this.styles.success('\n🎉 Operation completed successfully!\n'));
+  }
+
+  // Dream Commander command building methods
+  async buildDreamCommand() {
+    const dreamActions = [
+      {
+        name: '🌟 Initialize Manager - Enable Dream Commander system',
+        value: 'init',
+        description: 'Initialize Dream Commander with Wings 1-13 formations',
+      },
+      {
+        name: '📊 System Status - View Dream Commander health and metrics',
+        value: 'status',
+        description: 'Show decision pipeline status, wing utilization, and predictions',
+      },
+      {
+        name: '🔮 Predictions - Generate time-based forecasts',
+        value: 'predict',
+        description: 'Display decision load predictions and optimal timing analysis',
+      },
+      {
+        name: '✨ Generate Prompt - Create personalized prompt for customer',
+        value: 'prompt',
+        description: 'Generate AI-powered prompt with Victory36 blessing',
+      },
+      {
+        name: '🎯 Wing Management - Manage Wings 1-13 formations',
+        value: 'wing',
+        description: 'List, assign, and balance wing formations',
+      },
+      {
+        name: '⚡ Process Decision - Handle decision through pipeline',
+        value: 'decision',
+        description: 'Process customer decision through optimal wing assignment',
+      },
+      {
+        name: '👥 Customer Analytics - View customer behavior patterns',
+        value: 'analytics',
+        description: 'Analyze customer segmentation and engagement patterns',
+      },
+      {
+        name: '🛠️ Configuration - Manage Dream Commander settings',
+        value: 'config',
+        description: 'Configure capacity, wings, and prediction parameters',
+      },
+    ];
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'action',
+        message: 'Select Dream Commander operation:',
+        choices: dreamActions,
+        pageSize: 10,
+      },
+    ]);
+
+    return await this.buildSpecificDreamCommand(answers.action);
+  }
+
+  async buildSpecificDreamCommand(actionType) {
+    switch (actionType) {
+      case 'init':
+        return await this.buildDreamInitCommand();
+      case 'status':
+        return 'diamond dream status';
+      case 'predict':
+        return await this.buildDreamPredictCommand();
+      case 'prompt':
+        return await this.buildDreamPromptCommand();
+      case 'wing':
+        return await this.buildDreamWingCommand();
+      case 'decision':
+        return await this.buildDreamDecisionCommand();
+      case 'analytics':
+        return await this.buildDreamAnalyticsCommand();
+      case 'config':
+        return await this.buildDreamConfigCommand();
+      default:
+        return 'diamond dream help';
+    }
+  }
+
+  async buildDreamInitCommand() {
+    const answers = await inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'enableVictory36',
+        message: 'Enable Victory36 protection?',
+        default: true,
+      },
+      {
+        type: 'input',
+        name: 'dailyCapacity',
+        message: 'Daily decision capacity (millions):',
+        default: '11',
+        validate: (input) =>
+          (!isNaN(input) && parseFloat(input) > 0) || 'Please enter a positive number',
+      },
+      {
+        type: 'input',
+        name: 'customerBase',
+        message: 'Customer base size (millions):',
+        default: '2',
+        validate: (input) =>
+          (!isNaN(input) && parseFloat(input) > 0) || 'Please enter a positive number',
+      },
+      {
+        type: 'list',
+        name: 'region',
+        message: 'Processing region:',
+        choices: [
+          { name: 'us-west1 (Primary)', value: 'us-west1' },
+          { name: 'us-central1', value: 'us-central1' },
+          { name: 'eu-west1', value: 'eu-west1' },
+        ],
+        default: 'us-west1',
+      },
+    ]);
+
+    let command = `diamond dream init --capacity=${parseFloat(answers.dailyCapacity) * 1_000_000} --customers=${parseFloat(answers.customerBase) * 1_000_000} --region=${answers.region}`;
+
+    if (answers.enableVictory36) {
+      command += ' --victory36';
+    }
+
+    return command;
+  }
+
+  async buildDreamPredictCommand() {
+    const timeframes = [
+      { name: '📈 Next Hour - Immediate decision load forecast', value: '1h' },
+      { name: '📊 Next 24 Hours - Daily prediction analysis', value: '24h' },
+      { name: '📅 Next 7 Days - Weekly trend forecast', value: '7d' },
+      { name: '🔍 Custom Timeframe', value: 'custom' },
+    ];
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'timeframe',
+        message: 'Select prediction timeframe:',
+        choices: timeframes,
+      },
+      {
+        type: 'input',
+        name: 'customTimeframe',
+        message: 'Custom timeframe (e.g., 12h, 3d):',
+        when: (answers) => answers.timeframe === 'custom',
+        validate: (input) => /^\d+[hd]$/.test(input) || 'Format: number + h/d (e.g., 12h, 3d)',
+      },
+      {
+        type: 'input',
+        name: 'customerId',
+        message: 'Customer ID (optional, leave blank for system-wide):',
+      },
+      {
+        type: 'confirm',
+        name: 'includeConfidence',
+        message: 'Include confidence intervals?',
+        default: true,
+      },
+    ]);
+
+    const timeframe = answers.timeframe === 'custom' ? answers.customTimeframe : answers.timeframe;
+    let command = `diamond dream predict --timeframe=${timeframe}`;
+
+    if (answers.customerId) {
+      command += ` --customer=${answers.customerId}`;
+    }
+
+    if (answers.includeConfidence) {
+      command += ' --confidence';
+    }
+
+    return command;
+  }
+
+  async buildDreamPromptCommand() {
+    const promptTypes = [
+      { name: '💼 Business Strategy - Executive decision support', value: 'business' },
+      { name: '⚙️ Technical Solution - Engineering and development', value: 'technical' },
+      { name: '🎨 Creative Innovation - Design and content creation', value: 'creative' },
+      { name: '📊 Strategic Planning - Long-term planning and analysis', value: 'strategic' },
+      { name: '🔧 Operations - Process improvement and efficiency', value: 'operations' },
+      { name: '🤖 AI/ML - Artificial intelligence and machine learning', value: 'ai_ml' },
+    ];
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'customerId',
+        message: 'Customer ID:',
+        validate: (input) => input.length > 0 || 'Please provide a customer ID',
+      },
+      {
+        type: 'list',
+        name: 'promptType',
+        message: 'Prompt type:',
+        choices: promptTypes,
+      },
+      {
+        type: 'list',
+        name: 'priority',
+        message: 'Priority level:',
+        choices: [
+          { name: '🚨 Critical - Highest priority processing', value: 'critical' },
+          { name: '⚡ High - High priority processing', value: 'high' },
+          { name: '📈 Medium - Standard priority processing', value: 'medium' },
+          { name: '🔍 Low - Background processing', value: 'low' },
+        ],
+      },
+      {
+        type: 'list',
+        name: 'complexity',
+        message: 'Complexity level:',
+        choices: [
+          { name: '🧠 High - Complex multi-step decisions', value: 'high' },
+          { name: '⚖️ Medium - Moderate complexity', value: 'medium' },
+          { name: '✅ Simple - Straightforward decisions', value: 'simple' },
+        ],
+      },
+      {
+        type: 'input',
+        name: 'context',
+        message: 'Additional context (optional):',
+      },
+      {
+        type: 'confirm',
+        name: 'preview',
+        message: 'Preview mode (generate without processing)?',
+        default: false,
+      },
+    ]);
+
+    let command = `diamond dream prompt "${answers.customerId}" --type=${answers.promptType} --priority=${answers.priority} --complexity=${answers.complexity}`;
+
+    if (answers.context) {
+      command += ` --context="${answers.context}"`;
+    }
+
+    if (answers.preview) {
+      command += ' --preview';
+    }
+
+    return command;
+  }
+
+  async buildDreamWingCommand() {
+    const wingActions = [
+      { name: '📋 List Formations - Show all Wings 1-13 status', value: 'list' },
+      { name: '🎯 Assign Wing - Manually assign decision to wing', value: 'assign' },
+      { name: '⚖️ Balance Load - Rebalance wing assignments', value: 'balance' },
+      { name: '📊 Wing Status - Detailed wing performance metrics', value: 'status' },
+      { name: '🔧 Configure Wing - Modify wing capacity or settings', value: 'configure' },
+    ];
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'action',
+        message: 'Select wing management action:',
+        choices: wingActions,
+      },
+    ]);
+
+    switch (answers.action) {
+      case 'list':
+        return 'diamond dream wing list';
+      case 'assign':
+        return await this.buildWingAssignCommand();
+      case 'balance':
+        return 'diamond dream wing balance';
+      case 'status':
+        return await this.buildWingStatusCommand();
+      case 'configure':
+        return await this.buildWingConfigureCommand();
+      default:
+        return 'diamond dream wing help';
+    }
+  }
+
+  async buildWingAssignCommand() {
+    const wings = Array.from({ length: 13 }, (_, i) => ({
+      name: `Wing ${i + 1} - ${this.getWingName(i + 1)}`,
+      value: i + 1,
+    }));
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'decisionId',
+        message: 'Decision ID to assign:',
+        validate: (input) => input.length > 0 || 'Please provide a decision ID',
+      },
+      {
+        type: 'list',
+        name: 'wingId',
+        message: 'Target wing formation:',
+        choices: wings,
+      },
+      {
+        type: 'input',
+        name: 'reason',
+        message: 'Assignment reason (optional):',
+      },
+    ]);
+
+    let command = `diamond dream wing assign "${answers.decisionId}" --wing=${answers.wingId}`;
+
+    if (answers.reason) {
+      command += ` --reason="${answers.reason}"`;
+    }
+
+    return command;
+  }
+
+  async buildWingStatusCommand() {
+    const answers = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'wingId',
+        message: 'Wing ID (1-13, leave blank for all):',
+        validate: (input) =>
+          !input ||
+          (parseInt(input) >= 1 && parseInt(input) <= 13) ||
+          'Wing ID must be between 1 and 13',
+      },
+      {
+        type: 'confirm',
+        name: 'detailed',
+        message: 'Show detailed metrics?',
+        default: true,
+      },
+    ]);
+
+    let command = 'diamond dream wing status';
+
+    if (answers.wingId) {
+      command += ` --wing=${answers.wingId}`;
+    }
+
+    if (answers.detailed) {
+      command += ' --detailed';
+    }
+
+    return command;
+  }
+
+  async buildWingConfigureCommand() {
+    const wings = Array.from({ length: 13 }, (_, i) => ({
+      name: `Wing ${i + 1} - ${this.getWingName(i + 1)}`,
+      value: i + 1,
+    }));
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'wingId',
+        message: 'Wing to configure:',
+        choices: wings,
+      },
+      {
+        type: 'input',
+        name: 'capacity',
+        message: 'New daily capacity (optional):',
+        validate: (input) =>
+          !input || (!isNaN(input) && parseInt(input) > 0) || 'Capacity must be a positive number',
+      },
+      {
+        type: 'list',
+        name: 'priority',
+        message: 'New priority level (optional):',
+        choices: [
+          { name: 'Keep Current', value: '' },
+          { name: 'CRITICAL', value: 'CRITICAL' },
+          { name: 'HIGH', value: 'HIGH' },
+          { name: 'MEDIUM', value: 'MEDIUM' },
+          { name: 'LOW', value: 'LOW' },
+        ],
+      },
+    ]);
+
+    let command = `diamond dream wing configure ${answers.wingId}`;
+
+    if (answers.capacity) {
+      command += ` --capacity=${answers.capacity}`;
+    }
+
+    if (answers.priority) {
+      command += ` --priority=${answers.priority}`;
+    }
+
+    return command;
+  }
+
+  async buildDreamDecisionCommand() {
+    const answers = await inquirer.prompt([
+      {
+        type: 'editor',
+        name: 'decisionData',
+        message: 'Enter decision data (JSON format):',
+        validate: (input) => {
+          try {
+            JSON.parse(input);
+            return true;
+          } catch {
+            return 'Please enter valid JSON';
+          }
+        },
+      },
+      {
+        type: 'confirm',
+        name: 'autoAssign',
+        message: 'Auto-assign to optimal wing?',
+        default: true,
+      },
+      {
+        type: 'confirm',
+        name: 'waitForResult',
+        message: 'Wait for processing result?',
+        default: true,
+      },
+    ]);
+
+    let command = `diamond dream decision process '${answers.decisionData.replace(/'/g, "\\'")}'`;
+
+    if (!answers.autoAssign) {
+      command += ' --no-auto-assign';
+    }
+
+    if (answers.waitForResult) {
+      command += ' --wait';
+    }
+
+    return command;
+  }
+
+  async buildDreamAnalyticsCommand() {
+    const analyticsTypes = [
+      { name: '👥 Customer Segments - Behavioral analysis', value: 'segments' },
+      { name: '📊 Usage Patterns - Decision volume trends', value: 'usage' },
+      { name: '⚡ Performance Metrics - System efficiency', value: 'performance' },
+      { name: '🔮 Prediction Accuracy - Forecast validation', value: 'accuracy' },
+      { name: '🎯 Wing Utilization - Formation efficiency', value: 'wings' },
+    ];
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'type',
+        message: 'Analytics type:',
+        choices: analyticsTypes,
+      },
+      {
+        type: 'list',
+        name: 'period',
+        message: 'Analysis period:',
+        choices: [
+          { name: 'Last 24 hours', value: '24h' },
+          { name: 'Last 7 days', value: '7d' },
+          { name: 'Last 30 days', value: '30d' },
+          { name: 'Custom period', value: 'custom' },
+        ],
+      },
+      {
+        type: 'input',
+        name: 'customPeriod',
+        message: 'Custom period (e.g., 2024-01-01:2024-01-31):',
+        when: (answers) => answers.period === 'custom',
+      },
+    ]);
+
+    const period = answers.period === 'custom' ? answers.customPeriod : answers.period;
+    return `diamond dream analytics ${answers.type} --period=${period}`;
+  }
+
+  async buildDreamConfigCommand() {
+    const configOptions = [
+      { name: '⚙️ System Settings - Core configuration', value: 'system' },
+      { name: '🎯 Wings Configuration - Formation settings', value: 'wings' },
+      { name: '🔮 Prediction Engine - Forecasting parameters', value: 'predictions' },
+      { name: '👥 Customer Segmentation - User classification', value: 'segmentation' },
+      { name: '📊 Monitoring - Metrics and alerting', value: 'monitoring' },
+    ];
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'category',
+        message: 'Configuration category:',
+        choices: configOptions,
+      },
+      {
+        type: 'list',
+        name: 'action',
+        message: 'Action:',
+        choices: [
+          { name: '📋 View Current - Show current settings', value: 'show' },
+          { name: '✏️ Edit Settings - Modify configuration', value: 'edit' },
+          { name: '🔄 Reset to Default - Restore defaults', value: 'reset' },
+          { name: '💾 Export Config - Save to file', value: 'export' },
+          { name: '📥 Import Config - Load from file', value: 'import' },
+        ],
+      },
+    ]);
+
+    return `diamond dream config ${answers.category} ${answers.action}`;
+  }
+
+  getWingName(wingId) {
+    const wingNames = {
+      1: 'RIX Core',
+      2: 'RIX Advanced',
+      3: 'RIX Quantum',
+      4: 'RIX AI/ML',
+      5: 'CRX Executive',
+      6: 'CRX Operations',
+      7: 'CRX Finance',
+      8: 'CRX Market',
+      9: 'QRIX Design',
+      10: 'QRIX Content',
+      11: 'QRIX Research',
+      12: 'Command Integration',
+      13: 'Command Intelligence',
+    };
+
+    return wingNames[wingId] || `Wing ${wingId}`;
   }
 
   // Cleanup method
