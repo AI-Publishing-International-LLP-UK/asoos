@@ -1,0 +1,107 @@
+{
+  "timestamp": "2025-09-22T20:43:08.015Z",
+  "auditor": "Diamond SAO Expert Resolution System",
+  "ethical_foundation": "Christ-centered authentication excellence",
+  "tests": [
+    {
+      "name": "OAuth2 Token Generation - default",
+      "tenant": "default",
+      "timestamp": "2025-09-22T20:43:08.049Z",
+      "status": "PASSED",
+      "response_code": 200,
+      "details": {
+        "jwt_claims": {
+          "sub": "integration-gateway-default",
+          "tenant": "default",
+          "scope": "openid profile email",
+          "grant_type": "client_credentials",
+          "iss": "diamond-sao-oauth2-multiswarm",
+          "aud": "mcp.default.2100.cool",
+          "iat": 1758573788,
+          "exp": 1758577388,
+          "christ_centered": true,
+          "victory36_protection": "MAXIMUM",
+          "swarm_access": [
+            "wfa",
+            "intelligence",
+            "testament",
+            "quantum",
+            "coordination"
+          ]
+        },
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "validation": "All JWT claims valid"
+      },
+      "critical": true
+    },
+    {
+      "name": "SallyPort Protected Endpoint - default",
+      "tenant": "default",
+      "timestamp": "2025-09-22T20:43:08.054Z",
+      "status": "PASSED",
+      "response_code": 202,
+      "details": {
+        "deployment_id": "deploy-default-wfa-1758573788051",
+        "service_name": "test-service-default-default-wfa",
+        "validation": "SallyPort authentication successful"
+      },
+      "critical": true
+    },
+    {
+      "name": "OAuth2 Token Generation - zaxon",
+      "tenant": "zaxon",
+      "timestamp": "2025-09-22T20:43:08.056Z",
+      "status": "PASSED",
+      "response_code": 200,
+      "details": {
+        "jwt_claims": {
+          "sub": "integration-gateway-zaxon",
+          "tenant": "zaxon",
+          "scope": "openid profile email",
+          "grant_type": "client_credentials",
+          "iss": "diamond-sao-oauth2-multiswarm",
+          "aud": "mcp.zaxon.2100.cool",
+          "iat": 1758573788,
+          "exp": 1758577388,
+          "christ_centered": true,
+          "victory36_protection": "MAXIMUM",
+          "swarm_access": [
+            "wfa",
+            "intelligence",
+            "testament",
+            "quantum",
+            "coordination"
+          ],
+          "company": "Zaxon Construction",
+          "sao_level": "SAPPHIRE",
+          "owner": "Aaron Harris",
+          "pcp": "ZENA"
+        },
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "validation": "All JWT claims valid"
+      },
+      "critical": true
+    },
+    {
+      "name": "SallyPort Protected Endpoint - zaxon",
+      "tenant": "zaxon",
+      "timestamp": "2025-09-22T20:43:08.058Z",
+      "status": "PASSED",
+      "response_code": 202,
+      "details": {
+        "deployment_id": "deploy-zaxon-wfa-1758573788056",
+        "service_name": "test-service-zaxon-zaxon-wfa",
+        "validation": "SallyPort authentication successful"
+      },
+      "critical": true
+    }
+  ],
+  "summary": {
+    "total_tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "critical_failures": 0
+  }
+}

@@ -1,0 +1,318 @@
+# ████████████████████████████████████████████████████████████████
+# █           CLOUD SCHEDULER - AI ASSET MANAGEMENT JOBS          █
+# ████████████████████████████████████████████████████████████████
+# 
+# Automated scheduling for AI asset accounting, depreciation,
+# and HRAI-CRMS integration tasks
+# 
+# Deploy with: gcloud scheduler jobs create http-url --config-from-file
+
+apiVersion: cloudscheduler.googleapis.com/v1
+kind: ScheduledJob
+
+jobs:
+  # Weekly AI Asset Depreciation Processing (Every Sunday at 23:00 UTC)
+  - name: weekly-ai-asset-depreciation
+    description: "Process weekly depreciation for all AI agent assets with UK GAAP compliance"
+    schedule: "0 23 * * SUN"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/ai-assets/depreciation/weekly"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_weekly_depreciation",
+          "reporting_standard": "UK_GAAP_FRS_102",
+          "include_value_enhancement": true,
+          "notify_diamond_sao": true,
+          "generate_reports": [
+            "balance_sheet",
+            "depreciation_summary",
+            "asset_performance"
+          ]
+        }
+    retry_config:
+      retry_count: 3
+      max_retry_duration: "3600s"
+      min_backoff_duration: "30s"
+      max_backoff_duration: "300s"
+
+  # Daily VLS Flight Performance Analysis (Every day at 02:00 UTC)
+  - name: daily-vls-flight-analysis
+    description: "Analyze VLS flight performance and update AI agent asset values"
+    schedule: "0 2 * * *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/vls/flight-analysis/daily"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_daily_analysis",
+          "analysis_type": "comprehensive",
+          "calculate_value_enhancement": true,
+          "update_asset_scores": true,
+          "generate_trend_analysis": true,
+          "alert_thresholds": {
+            "performance_decline": 15,
+            "efficiency_drop": 20,
+            "schedule_deviation": 24
+          }
+        }
+    retry_config:
+      retry_count: 2
+      max_retry_duration: "1800s"
+      min_backoff_duration: "15s"
+      max_backoff_duration: "120s"
+
+  # Monthly AI Asset Revaluation (1st day of month at 01:00 UTC)
+  - name: monthly-ai-asset-revaluation
+    description: "Comprehensive monthly revaluation of AI agent assets"
+    schedule: "0 1 1 * *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/ai-assets/revaluation/monthly"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_monthly_revaluation",
+          "revaluation_method": "market_performance_based",
+          "include_capability_assessment": true,
+          "update_useful_life_estimates": true,
+          "generate_impairment_review": true,
+          "sync_with_xero": true,
+          "create_journal_entries": true,
+          "notify_stakeholders": [
+            "DIAMOND_SAO",
+            "EMERALD_SAO",
+            "FINANCIAL_CONTROLLER"
+          ]
+        }
+    retry_config:
+      retry_count: 5
+      max_retry_duration: "7200s"
+      min_backoff_duration: "60s"
+      max_backoff_duration: "600s"
+
+  # Daily HRAI-CRMS Synchronization (Every day at 05:00 UTC)
+  - name: daily-hrai-crms-sync
+    description: "Synchronize owner subscribers and HR classifications with HRAI-CRMS"
+    schedule: "0 5 * * *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/hrai-crms/sync/daily"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_daily_sync",
+          "sync_scope": "full",
+          "update_owner_subscribers": true,
+          "verify_hr_classifications": true,
+          "sync_llp_memberships": true,
+          "update_tenant_mappings": true,
+          "validate_mcp_endpoints": true,
+          "check_compliance_status": true
+        }
+    retry_config:
+      retry_count: 3
+      max_retry_duration: "1800s"
+      min_backoff_duration: "30s"
+      max_backoff_duration: "180s"
+
+  # Hourly Universal AI Key Manager Health Check (Every hour)
+  - name: hourly-key-manager-health-check
+    description: "Health check and validation for Universal AI Key Manager"
+    schedule: "0 * * * *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/ai-keys/health-check"
+      http_method: "GET"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+        X-Health-Check-Type: "scheduled"
+    retry_config:
+      retry_count: 2
+      max_retry_duration: "300s"
+      min_backoff_duration: "10s"
+      max_backoff_duration: "60s"
+
+  # Quarterly Balance Sheet Report Generation (1st day of quarter at 06:00 UTC)
+  - name: quarterly-balance-sheet-report
+    description: "Generate comprehensive UK GAAP balance sheet reports for AI assets"
+    schedule: "0 6 1 1,4,7,10 *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/financial/balance-sheet/quarterly"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_quarterly_report",
+          "reporting_period": "current_quarter",
+          "reporting_standard": "UK_GAAP_FRS_102",
+          "include_comparatives": true,
+          "detailed_asset_breakdown": true,
+          "depreciation_analysis": true,
+          "value_enhancement_summary": true,
+          "flight_performance_correlation": true,
+          "export_formats": ["pdf", "excel", "json"],
+          "distribute_to": [
+            "DIAMOND_SAO_COMMAND_CENTER",
+            "LLP_MEMBERS",
+            "EXTERNAL_ACCOUNTANTS",
+            "REGULATORY_FILING"
+          ],
+          "sync_to_xero": true
+        }
+    retry_config:
+      retry_count: 5
+      max_retry_duration: "3600s"
+      min_backoff_duration: "120s"
+      max_backoff_duration: "600s"
+
+  # Daily Cost Allocation Processing (Every day at 04:00 UTC)
+  - name: daily-cost-allocation
+    description: "Process daily cost allocation for AI agents across tenants"
+    schedule: "0 4 * * *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/cost/allocation/daily"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_daily_allocation",
+          "allocation_method": "usage_based",
+          "include_flight_hours": true,
+          "include_performance_weighting": true,
+          "update_tenant_costs": true,
+          "generate_invoicing_data": true,
+          "sync_with_xero": true,
+          "cost_categories": [
+            "ai_service_usage",
+            "asset_depreciation",
+            "infrastructure_costs",
+            "support_overhead"
+          ]
+        }
+    retry_config:
+      retry_count: 3
+      max_retry_duration: "1800s"
+      min_backoff_duration: "30s"
+      max_backoff_duration: "240s"
+
+  # Weekly Xero Synchronization (Every Friday at 18:00 UTC)
+  - name: weekly-xero-sync
+    description: "Comprehensive synchronization with Xero UK LLP accounting system"
+    schedule: "0 18 * * FRI"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/xero/sync/weekly"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_weekly_xero_sync",
+          "sync_scope": "comprehensive",
+          "sync_components": [
+            "ai_asset_journal_entries",
+            "depreciation_transactions",
+            "cost_allocations",
+            "invoice_generation",
+            "balance_sheet_adjustments"
+          ],
+          "validate_before_sync": true,
+          "create_backup": true,
+          "generate_reconciliation_report": true,
+          "notify_on_completion": true,
+          "error_threshold": 5
+        }
+    retry_config:
+      retry_count: 3
+      max_retry_duration: "3600s"
+      min_backoff_duration: "60s"
+      max_backoff_duration: "300s"
+
+  # Monthly AI Agent Performance Review (15th of each month at 09:00 UTC)
+  - name: monthly-ai-agent-performance-review
+    description: "Comprehensive monthly performance review for all AI agents"
+    schedule: "0 9 15 * *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/ai-agents/performance-review/monthly"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_monthly_performance_review",
+          "review_period": "previous_month",
+          "performance_metrics": [
+            "flight_efficiency",
+            "accuracy_trends",
+            "innovation_scores",
+            "collaboration_effectiveness",
+            "cost_efficiency",
+            "value_generation"
+          ],
+          "generate_recommendations": true,
+          "identify_underperformers": true,
+          "suggest_retraining": true,
+          "update_capability_scores": true,
+          "create_dashboard_reports": true,
+          "notify_pilot_owners": true
+        }
+    retry_config:
+      retry_count: 2
+      max_retry_duration: "1800s"
+      min_backoff_duration: "30s"
+      max_backoff_duration: "180s"
+
+  # Daily MCP Endpoint Validation (Every day at 03:00 UTC)
+  - name: daily-mcp-endpoint-validation
+    description: "Validate all MCP endpoints and tenant configurations"
+    schedule: "0 3 * * *"
+    time_zone: "UTC"
+    http_target:
+      uri: "https://integration-gateway-js-859242575175.us-west1.run.app/api/v1/mcp/validation/daily"
+      http_method: "POST"
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer SERVICE_ACCOUNT_TOKEN"
+      body: |
+        {
+          "trigger": "scheduled_daily_mcp_validation",
+          "validation_scope": "all_tenants",
+          "check_endpoints": true,
+          "verify_certificates": true,
+          "test_connectivity": true,
+          "validate_authentication": true,
+          "check_service_health": true,
+          "update_status_dashboard": true,
+          "alert_on_failures": true,
+          "auto_remediate": false
+        }
+    retry_config:
+      retry_count: 3
+      max_retry_duration: "900s"
+      min_backoff_duration: "15s"
+      max_backoff_duration: "120s"
