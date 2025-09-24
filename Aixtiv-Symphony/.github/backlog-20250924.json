@@ -1,0 +1,277 @@
+[
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB2XBF7w",
+        "name": "high-priority",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n3c4A",
+        "name": "architecture",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n4-8g",
+        "name": "implementation",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 35,
+    "title": "Enterprise Implementation Plan: AI-Driven Architecture"
+  },
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n3c4g",
+        "name": "frontend",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n4KTg",
+        "name": "containerization",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n4KTw",
+        "name": "automation",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 34,
+    "title": "White-Label Frontend Implementation Architecture"
+  },
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB1sIxrA",
+        "name": "documentation",
+        "description": "Improvements or additions to documentation",
+        "color": "0075ca"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n3c4A",
+        "name": "architecture",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n3c4g",
+        "name": "frontend",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 33,
+    "title": "Multi-Tenant Architecture Implementation Strategy"
+  },
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB2XBF7g",
+        "name": "deployment",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n2Z0g",
+        "name": "networking",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 32,
+    "title": "Cloud Shell Execution: Network Configuration Deployment"
+  },
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB2XBF7w",
+        "name": "high-priority",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n2Z0g",
+        "name": "networking",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3n2Z0w",
+        "name": "production",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 31,
+    "title": "Critical: Region Alignment for 2100.cool Network Infrastructure"
+  },
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB2XBF7w",
+        "name": "high-priority",
+        "description": "",
+        "color": "ededed"
+      },
+      { "id": "LA_kwDONfFhps8AAAAB3g1qZA", "name": "quality", "description": "", "color": "ededed" }
+    ],
+    "number": 30,
+    "title": "Enforce Gold Standard Code Quality Requirements"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 29,
+    "title": "Critical: 2100.cool Connection Reset Resolution"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 28,
+    "title": "Comprehensive DNS Resolution for 2100.cool"
+  },
+  {
+    "assignees": [{ "id": "U_kgDOCmkuCw", "login": "C2100-PR", "name": "Phillip Corey Roark" }],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB3frjQQ",
+        "name": "performance",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3frjQg",
+        "name": "vertex-ai",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB3frjQw",
+        "name": "cost-optimization",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 27,
+    "title": "Performance Optimization for Vertex AI Endpoints"
+  },
+  { "assignees": [], "labels": [], "number": 24, "title": "Live Deployment Status Update" },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 23,
+    "title": "Security Configuration Update Required"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 22,
+    "title": "Layer Authentication Issues - WIF Implementation"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 21,
+    "title": "Layer Issue #63: Branch Protection Rules"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 20,
+    "title": "Layer Issue #1: Security Scanning Implementation"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 19,
+    "title": "Layer Issue #43 and Related Notifications"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 18,
+    "title": "Close All Duplicates: Deployment/Auth/Security"
+  },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 17,
+    "title": "Close Duplicate Issues (97.8% overlap confirmed)"
+  },
+  { "assignees": [], "labels": [], "number": 16, "title": "Close All 185 Outstanding Issues" },
+  { "assignees": [], "labels": [], "number": 15, "title": "Verify Inbox Cleared" },
+  { "assignees": [], "labels": [], "number": 14, "title": "Close Resolved Issues" },
+  { "assignees": [], "labels": [], "number": 13, "title": "Security Enhancements Completed" },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 12,
+    "title": "Security Changes Applied: Verification Required"
+  },
+  { "assignees": [], "labels": [], "number": 11, "title": "Verify resolution of issues 114-120" },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 10,
+    "title": "Close Messages 03-112: Resolved GCP Deployment Issues"
+  },
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB2XP4XQ",
+        "name": "resolved",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 9,
+    "title": "Close Resolved GCP Deployment Issues"
+  },
+  { "assignees": [], "labels": [], "number": 7, "title": "Verify deployment status" },
+  {
+    "assignees": [],
+    "labels": [],
+    "number": 4,
+    "title": "Setup GCP Environment and Fix Authentication"
+  },
+  {
+    "assignees": [],
+    "labels": [
+      {
+        "id": "LA_kwDONfFhps8AAAAB1sIxqg",
+        "name": "bug",
+        "description": "Something isn't working",
+        "color": "d73a4a"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB2XBF7g",
+        "name": "deployment",
+        "description": "",
+        "color": "ededed"
+      },
+      {
+        "id": "LA_kwDONfFhps8AAAAB2XBF7w",
+        "name": "high-priority",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "number": 2,
+    "title": "Fix GitHub Actions GCP Deployment Authentication Issues"
+  }
+]
