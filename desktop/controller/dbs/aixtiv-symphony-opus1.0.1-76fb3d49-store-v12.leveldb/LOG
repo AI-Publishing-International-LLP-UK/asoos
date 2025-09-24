@@ -1,0 +1,25 @@
+=============== Sep 24, 2025 (CST) ===============
+02:20:51.598416 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+02:20:51.613356 db@open opening
+02:20:51.672201 version@stat F·[] S·0B[] Sc·[]
+02:20:51.684199 db@janitor F·2 G·0
+02:20:51.684248 db@open done T·70.863958ms
+02:20:51.686405 memdb@flush N·1 S·48B
+02:20:51.693382 memdb@flush created L0@3 N·1 S·155B "__s..ion,v1":"__s..ion,v1"
+02:20:51.693759 version@stat F·[1] S·155B[155B] Sc·[0.25]
+02:20:51.699070 memdb@flush committed F·1 T·12.630125ms
+02:20:51.699416 journal@remove removed @1
+02:20:51.708222 transaction@flush created L0@4 N·3 S·373B "\x00re..0.1,v4":"\x00ve..ctx,v2"
+02:20:51.708254 version@stat F·[2] S·528B[528B] Sc·[0.50]
+02:20:51.718135 memdb@flush N·0 S·0B
+02:20:51.718163 memdb@flush skipping
+02:20:51.718283 journal@remove removed @2
+02:20:51.718302 table@compaction range L-1 "":""
+02:20:51.718494 table@compaction L0·2 -> L1·0 S·528B Q·4
+02:20:51.726644 table@build created L1@6 N·4 S·417B "\x00re..0.1,v4":"__s..ion,v1"
+02:20:51.726724 version@stat F·[0 1] S·417B[0B 417B] Sc·[0.00 0.00]
+02:20:51.734856 table@compaction committed F-1 S-111B Ke·0 D·0 T·16.327625ms
+02:20:51.735355 table@remove removed @4
+02:20:51.735585 table@remove removed @3
+02:22:05.104825 db@close closing
+02:22:05.105141 db@close done T·310.5µs

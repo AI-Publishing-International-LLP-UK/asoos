@@ -1,9 +1,11 @@
 /**
  * SallyPort Authentication Verification
  * Single point of entry - sallyport.2100.cool security control
+ * SECURED: Uses GCP Secret Manager for JWT secrets
  */
 
 const jwt = require('jsonwebtoken');
+const { getSecret } = require('../../../lib/secretManager');
 
 /**
  * Verify SallyPort session token
@@ -20,8 +22,8 @@ async function verifySallyPortSession(request) {
   const token = authHeader.substring(7);
 
   try {
-    // For production, this would verify against a secret from Google Secret Manager
-    const secretKey = process.env.SALLYPORT_JWT_SECRET || 'sallyport-secret-key-diamond-sao-2100';
+    // SECURE: Get JWT secret from GCP Secret Manager
+    const secretKey = await getSecret('SALLYPORT_JWT_SECRET');
 
     // Verify JWT token
     const decoded = jwt.verify(token, secretKey);
@@ -62,8 +64,9 @@ async function verifySallyPortSession(request) {
  * @param {Object} user - User object
  * @returns {String} JWT token
  */
-function generateSallyPortToken(user) {
-  const secretKey = process.env.SALLYPORT_JWT_SECRET || 'sallyport-secret-key-diamond-sao-2100';
+async function generateSallyPortToken(user) {
+  // SECURE: Get JWT secret from GCP Secret Manager
+  const secretKey = await getSecret('SALLYPORT_JWT_SECRET');
 
   const payload = {
     user: {
