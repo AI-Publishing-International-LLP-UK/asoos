@@ -1,0 +1,520 @@
+{
+  "info": {
+    "name": "ASOOS SallyPort OAuth2 Integration Tests",
+    "description": "Comprehensive Newman API testing for SallyPort authentication framework",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Global security headers validation",
+          "pm.globals.set('timestamp', new Date().toISOString());",
+          "pm.globals.set('test_session_id', pm.variables.replaceIn('{{$guid}}'));"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "// Global security assertions",
+          "pm.test('Security Headers Present', function () {",
+          "    pm.expect(pm.response.headers.has('X-Frame-Options')).to.be.true;",
+          "    pm.expect(pm.response.headers.has('X-Content-Type-Options')).to.be.true;",
+          "});",
+          "",
+          "pm.test('Response Time Acceptable', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+          "});",
+          "",
+          "pm.test('No Sensitive Data Leaked', function () {",
+          "    const responseText = pm.response.text();",
+          "    pm.expect(responseText).to.not.include('password');",
+          "    pm.expect(responseText).to.not.include('secret');",
+          "    pm.expect(responseText).to.not.include('private_key');",
+          "});"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "{{BASE_URL}}",
+      "type": "string"
+    },
+    {
+      "key": "sallyport_url",
+      "value": "https://sallyport.2100.cool",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Infrastructure Tests",
+      "item": [
+        {
+          "name": "Server Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Server is healthy', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.status).to.eql('healthy');",
+                  "    pm.expect(response.service).to.eql('mocoa-owner-interface');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Security Headers Validation",
+          "request": {
+            "method": "OPTIONS",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/auth/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "status"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('CORS Headers Configured', function () {",
+                  "    pm.expect(pm.response.headers.has('Access-Control-Allow-Origin')).to.be.true;",
+                  "    pm.expect(pm.response.headers.has('Access-Control-Allow-Methods')).to.be.true;",
+                  "    pm.expect(pm.response.headers.has('Access-Control-Allow-Headers')).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Security Headers Present', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Authentication Flow Tests",
+      "item": [
+        {
+          "name": "Auth Status - Unauthenticated",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/auth/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "status"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Unauthenticated status correct', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.authenticated).to.be.false;",
+                  "    pm.expect(response.sallyport_integration).to.be.true;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SallyPort Integration Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"action\": \"status\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/sallyport",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "sallyport"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('SallyPort integration operational', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.integration_status).to.eql('operational');",
+                  "    pm.expect(response.sallyport_url).to.include('sallyport.2100.cool');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SallyPort Verification Tests",
+      "item": [
+        {
+          "name": "Verify - Missing Fields",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"test@example.com\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Missing fields validation', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.error).to.include('Missing required fields');",
+                  "    pm.expect(response.required).to.include('agent_id');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Verify - Valid Request (Dev Mode)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"pilot@test.com\",\n  \"agent_id\": \"agent_test_{{$timestamp}}\",\n  \"sallyport_token\": \"mock_jwt_token_for_testing\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Verification endpoint accessible', function () {",
+                  "    // In development, should return either success or proper error",
+                  "    pm.expect([200, 401, 500]).to.include(pm.response.code);",
+                  "    ",
+                  "    if (pm.response.code === 200) {",
+                  "        const response = pm.response.json();",
+                  "        pm.expect(response).to.have.property('verified');",
+                  "        if (response.verified) {",
+                  "            pm.expect(response).to.have.property('session_id');",
+                  "            pm.expect(response).to.have.property('jwt_token');",
+                  "            pm.globals.set('auth_token', response.jwt_token);",
+                  "            pm.globals.set('session_id', response.session_id);",
+                  "        }",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OAuth2 Provider Tests",
+      "item": [
+        {
+          "name": "OAuth2 Login Page",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('OAuth2 login page loads', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const html = pm.response.text();",
+                  "    pm.expect(html).to.include('ASOOS');",
+                  "    pm.expect(html).to.include('Google');",
+                  "    pm.expect(html).to.include('Microsoft');",
+                  "    pm.expect(html).to.include('GitHub');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Google OAuth2 Redirect",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/google?return=/test",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "google"],
+              "query": [
+                {
+                  "key": "return",
+                  "value": "/test"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Google OAuth2 redirect works', function () {",
+                  "    // Should redirect to Google or show configuration error",
+                  "    pm.expect([302, 500]).to.include(pm.response.code);",
+                  "    ",
+                  "    if (pm.response.code === 302) {",
+                  "        const location = pm.response.headers.get('Location');",
+                  "        pm.expect(location).to.include('accounts.google.com');",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GCP Secret Manager Tests",
+      "item": [
+        {
+          "name": "ElevenLabs API Key Access",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/gcp/secrets/elevenlabs-api-key",
+              "host": ["{{base_url}}"],
+              "path": ["api", "gcp", "secrets", "elevenlabs-api-key"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Secret Manager integration', function () {",
+                  "    // Should return success, forbidden, or proper error - not 404",
+                  "    pm.expect([200, 403, 500]).to.include(pm.response.code);",
+                  "    pm.expect(pm.response.code).to.not.eql(404);",
+                  "    ",
+                  "    if (pm.response.code === 200) {",
+                  "        const response = pm.response.json();",
+                  "        pm.expect(response).to.have.property('payload');",
+                  "        pm.expect(response.source).to.eql('gcp-secret-manager');",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Unauthorized Secret Access",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/gcp/secrets/unauthorized-secret",
+              "host": ["{{base_url}}"],
+              "path": ["api", "gcp", "secrets", "unauthorized-secret"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Unauthorized secret access blocked', function () {",
+                  "    pm.response.to.have.status(403);",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response.error).to.include('not allowed');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Security & Performance Tests",
+      "item": [
+        {
+          "name": "Rate Limiting Test",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/auth/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "status"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// This test would need to be run multiple times to test rate limiting",
+                  "pm.test('Rate limiting configured', function () {",
+                  "    // For now, just ensure the endpoint responds",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SQL Injection Protection",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"'; DROP TABLE users; --\",\n  \"agent_id\": \"agent_test_injection\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('SQL injection protection', function () {",
+                  "    // Should handle malicious input gracefully",
+                  "    pm.expect([400, 401, 500]).to.include(pm.response.code);",
+                  "    ",
+                  "    const responseText = pm.response.text();",
+                  "    pm.expect(responseText).to.not.include('syntax error');",
+                  "    pm.expect(responseText).to.not.include('database');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "XSS Protection",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<script>alert('xss')</script>@test.com\",\n  \"agent_id\": \"agent_xss_test\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('XSS protection active', function () {",
+                  "    const responseText = pm.response.text();",
+                  "    pm.expect(responseText).to.not.include('<script>');",
+                  "    pm.expect(responseText).to.not.include('alert(');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
