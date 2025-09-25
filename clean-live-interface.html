@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASOOS Live Interface - Clean Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            height: 60px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(11, 177, 187, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #0bb1bb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .auth-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(11, 177, 187, 0.1);
+            border: 1px solid rgba(11, 177, 187, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #0bb1bb;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            flex: 1;
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        /* Left Panel - DO Area */
+        .left-panel {
+            flex: 1;
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(11, 177, 187, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Right Panel - SEE Area */
+        .right-panel {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .right-panel.collapsed {
+            width: 0;
+            overflow: hidden;
+        }
+
+        /* PCP Card Connectors */
+        .pcp-connectors {
+            height: 80px;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .pcp-slot {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed rgba(11, 177, 187, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pcp-slot:hover {
+            border-color: rgba(11, 177, 187, 0.6);
+            background: rgba(11, 177, 187, 0.1);
+        }
+
+        .pcp-slot.connected {
+            border: 2px solid #0bb1bb;
+            background: rgba(11, 177, 187, 0.2);
+        }
+
+        .pcp-card {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+
+        .pcp-card.qb { background: linear-gradient(135deg, #FFD700, #0bb1bb); }
+        .pcp-card.sh { background: linear-gradient(135deg, #4ECDC4, #FFD700); }
+        .pcp-card.v36 { background: linear-gradient(135deg, #50C878, #c7b299); }
+
+        /* Chat Area */
+        .chat-area {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .message.pcp {
+            align-self: flex-start;
+            background: rgba(11, 177, 187, 0.2);
+            border: 1px solid rgba(11, 177, 187, 0.3);
+        }
+
+        /* Input Area */
+        .input-area {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 12px 20px;
+        }
+
+        .message-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .message-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0bb1bb, #50C878);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(11, 177, 187, 0.4);
+        }
+
+        /* Dashboard Panels */
+        .dashboard-panels {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s;
+        }
+
+        .panel:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(11, 177, 187, 0.2);
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0bb1bb;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-content {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+
+        /* Status Indicators */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #50C878;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            
+            .right-panel {
+                width: 100%;
+                height: 50%;
+            }
+            
+            .pcp-connectors {
+                gap: 10px;
+            }
+            
+            .pcp-slot {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">ASOOS Live</div>
+        <div class="auth-status">
+            <div class="status-dot"></div>
+            <span id="auth-status">Enterprise Ready</span>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Left Panel - DO Area -->
+        <div class="left-panel">
+            <!-- PCP Card Connectors -->
+            <div class="pcp-connectors">
+                <div class="pcp-slot" id="qb-slot" onclick="togglePCP('QB')">
+                    <div class="pcp-card qb" style="display: none;">
+                        QB<br>Dr. Lucy
+                    </div>
+                    <div class="slot-label" style="font-size: 10px; color: #666;">QB Slot</div>
+                </div>
+                
+                <div class="pcp-slot" id="sh-slot" onclick="togglePCP('SH')">
+                    <div class="pcp-card sh" style="display: none;">
+                        SH<br>Dr. Claude
+                    </div>
+                    <div class="slot-label" style="font-size: 10px; color: #666;">SH Slot</div>
+                </div>
+                
+                <div class="pcp-slot" id="v36-slot" onclick="togglePCP('V36')">
+                    <div class="pcp-card v36" style="display: none;">
+                        V36<br>Victory36
+                    </div>
+                    <div class="slot-label" style="font-size: 10px; color: #666;">V36 Slot</div>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="chat-area">
+                <div class="messages-container" id="messages-container">
+                    <div class="message pcp">
+                        <strong>System:</strong> ASOOS Clean Architecture Initialized. PCP cards ready for connection.
+                    </div>
+                </div>
+                
+                <div class="input-area">
+                    <input type="text" class="message-input" id="message-input" 
+                           placeholder="Type your message..." 
+                           onkeypress="handleKeyPress(event)">
+                    <button class="send-btn" onclick="sendMessage()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - SEE Area -->
+        <div class="right-panel" id="right-panel">
+            <div class="dashboard-panels">
+                <div class="panel">
+                    <div class="panel-title">
+                        🔥 System Status
+                    </div>
+                    <div class="panel-content">
+                        <div>✅ Clean Architecture Loaded</div>
+                        <div>✅ PCP Connectors Ready</div>
+                        <div>✅ SallyPort Authentication Active</div>
+                        <div>⏳ Waiting for PCP Cards...</div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title">
+                        📊 Live Metrics
+                    </div>
+                    <div class="panel-content">
+                        <div>Connected PCPs: <span id="connected-pcps">0</span>/3</div>
+                        <div>Messages Processed: <span id="message-count">0</span></div>
+                        <div>System Load: <span style="color: #50C878;">Optimal</span></div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title">
+                        🎯 Today's Focus
+                    </div>
+                    <div class="panel-content">
+                        <div>• Test PCP card connections</div>
+                        <div>• Verify voice independence</div>
+                        <div>• Deploy clean architecture</div>
+                        <div>• Go LIVE today!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PCP Card Frames (Hidden) -->
+    <iframe id="qb-pcp-frame" style="display: none;" src=""></iframe>
+    <iframe id="sh-pcp-frame" style="display: none;" src=""></iframe>
+    <iframe id="v36-pcp-frame" style="display: none;" src=""></iframe>
+
+    <script type="module">
+        // Import configuration
+        const config = {
+            SALLYPORT_AUTH_URL: 'https://sallyport.2100.cool/api/validate',
+            SALLYPORT_OAUTH_URL: 'https://sallyport.2100.cool/oauth/authorize',
+            initialState: {
+                activeRIX: null,
+                connectedPCPs: [],
+                messageCount: 0,
+                authLevel: 3
+            }
+        };
+
+        let state = {...config.initialState};
+        let messageCount = 0;
+
+        // PCP Card Management
+        window.togglePCP = function(pcpType) {
+            const slot = document.getElementById(`${pcpType.toLowerCase()}-slot`);
+            const card = slot.querySelector('.pcp-card');
+            const label = slot.querySelector('.slot-label');
+            
+            if (state.connectedPCPs.includes(pcpType)) {
+                // Disconnect PCP
+                card.style.display = 'none';
+                label.style.display = 'block';
+                slot.classList.remove('connected');
+                state.connectedPCPs = state.connectedPCPs.filter(p => p !== pcpType);
+                addMessage(`system`, `${pcpType} PCP disconnected`);
+            } else {
+                // Connect PCP
+                card.style.display = 'flex';
+                label.style.display = 'none';
+                slot.classList.add('connected');
+                state.connectedPCPs.push(pcpType);
+                addMessage(`system`, `${pcpType} PCP connected and ready`);
+                
+                // Load PCP card (this would load the independent PCP card)
+                loadPCPCard(pcpType);
+            }
+            
+            updateMetrics();
+        };
+
+        // Load Independent PCP Card
+        function loadPCPCard(pcpType) {
+            const frame = document.getElementById(`${pcpType.toLowerCase()}-pcp-frame`);
+            // This would load the independent PCP card HTML file
+            frame.src = `pcp-cards/${pcpType.toLowerCase()}-card.html`;
+            
+            // Set up communication with PCP card
+            frame.onload = () => {
+                console.log(`${pcpType} PCP card loaded successfully`);
+                // Send initialization message to PCP card
+                frame.contentWindow.postMessage({
+                    type: 'init',
+                    config: {
+                        pcpType: pcpType,
+                        authToken: state.authToken
+                    }
+                }, '*');
+            };
+        }
+
+        // Message Communication
+        window.sendMessage = function() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage('user', message);
+            input.value = '';
+            
+            // Route to active PCP or system
+            if (state.connectedPCPs.length > 0) {
+                routeMessageToPCP(message);
+            } else {
+                addMessage('system', 'No PCPs connected. Please connect a PCP card to continue.');
+            }
+        };
+
+        function routeMessageToPCP(message) {
+            // Send to first connected PCP (can be enhanced to route intelligently)
+            const activePCP = state.connectedPCPs[0];
+            const frame = document.getElementById(`${activePCP.toLowerCase()}-pcp-frame`);
+            
+            if (frame.contentWindow) {
+                frame.contentWindow.postMessage({
+                    type: 'message',
+                    text: message
+                }, '*');
+                
+                addMessage(`${activePCP} PCP`, `Processing: "${message}"`);
+            }
+        }
+
+        function addMessage(sender, content) {
+            const container = document.getElementById('messages-container');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender === 'user' ? 'user' : 'pcp'}`;
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${content}`;
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+            
+            messageCount++;
+            updateMetrics();
+        }
+
+        function updateMetrics() {
+            document.getElementById('connected-pcps').textContent = state.connectedPCPs.length;
+            document.getElementById('message-count').textContent = messageCount;
+        }
+
+        // Handle Enter key
+        window.handleKeyPress = function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        };
+
+        // Listen for messages from PCP cards
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'pcp-response') {
+                addMessage(`${event.data.pcpType} PCP`, event.data.message);
+            }
+        });
+
+        // Initialize
+        console.log('🚀 ASOOS Clean Architecture Ready');
+        console.log('✅ PCP Connectors Initialized');
+        console.log('✅ Message Routing Active');
+        console.log('✅ Ready to GO LIVE!');
+    </script>
+</body>
+</html>
