@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Original Physical Pilot Icons Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0a0a0a;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .demo-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .launch-btn {
+      background: linear-gradient(135deg, #4A90E2, #7B68EE);
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px;
+    }
+    
+    .launch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-header">
+    <h1>🎭 Original Physical Pilot Icons</h1>
+    <p>Holographic Stations with VisionSpeak Integration</p>
+    <button class="launch-btn" onclick="launchOriginalLounge()">🚀 Launch Original Lounge</button>
+  </div>
+  
+  <script>
+    // Original Physical Pilot Icons Implementation
+    class PhysicalPilotIcons {
+      constructor() {
+        this.pilots = [
+          {
+            id: 'dr-lucy-srix',
+            name: 'Dr. Lucy',
+            fullName: 'Dr. Lucy sRIX',
+            photo: 'https://via.placeholder.com/100/FFD700/000000?text=DL',
+            tier: 'sRIX',
+            specializations: ['Executive Coaching', 'Strategic Planning'],
+            voiceId: '21m00Tcm4TlvDq8ikWAM',
+            iconColors: ['#FFD700', '#B8860B'],
+            hologramColor: '#FFD700',
+            active: true
+          },
+          {
+            id: 'dr-match-srix',
+            name: 'Dr. Match',
+            fullName: 'Dr. Match sRIX',
+            photo: 'https://via.placeholder.com/100/50C878/000000?text=DM',
+            tier: 'sRIX',
+            specializations: ['Pattern Matching', 'Optimization'],
+            voiceId: 'ErXwobaYiN019PkySvjV',
+            iconColors: ['#50C878', '#32CD32'],
+            hologramColor: '#50C878',
+            active: true
+          },
+          {
+            id: 'professor-lee-srix',
+            name: 'Professor H Lee',
+            fullName: 'Professor H Lee sRIX',
+            photo: 'https://via.placeholder.com/100/4ECDC4/000000?text=PL',
+            tier: 'sRIX',
+            specializations: ['Academic Research', 'Knowledge Transfer'],
+            voiceId: 'yoZ06aMxZJJ28mfd3POQ',
+            iconColors: ['#4ECDC4', '#40E0D0'],
+            hologramColor: '#4ECDC4',
+            active: true
+          },
+          {
+            id: 'victory36',
+            name: 'Victory36',
+            fullName: 'Victory36',
+            photo: 'https://via.placeholder.com/100/FFD700/000000?text=V36',
+            tier: 'Victory',
+            specializations: ['Strategic Dominance', 'Achievement Orchestration'],
+            voiceId: 'oWAxZDx7w5VEj9dCyTzz',
+            iconColors: ['#FFD700', '#FF6347'],
+            hologramColor: '#FFD700',
+            active: true
+          },
+          {
+            id: 'elite11',
+            name: 'Elite11',
+            fullName: 'Elite11',
+            photo: 'https://via.placeholder.com/100/FFA500/000000?text=E11',
+            tier: 'Elite',
+            specializations: ['Elite Performance', 'Excellence Optimization'],
+            voiceId: 'ThT5KcBeYPX3keUQqHPh',
+            iconColors: ['#FFD700', '#FFA500'],
+            hologramColor: '#FFD700',
+            active: true
+          }
+        ];
+        
+        this.selectedPilots = [];
+        this.init();
+      }
+      
+      init() {
+        this.createInterface();
+      }
+      
+      createInterface() {
+        const container = document.createElement('div');
+        container.id = 'originalLounge';
+        container.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: 1000;
+          background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+          overflow: hidden;
+        `;
+        
+        container.innerHTML = `
+          <div style="position: relative; width: 100%; height: 100vh;">
+            <!-- Holographic Grid -->
+            <div style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              display: grid;
+              grid-template-columns: repeat(5, 1fr);
+              gap: 30px;
+              z-index: 10;
+              padding: 40px;
+            ">
+              ${this.pilots.map(pilot => this.createPilotStation(pilot)).join('')}
+            </div>
+            
+            <!-- VisionSpeak Interface -->
+            <div style="
+              position: absolute;
+              bottom: 30px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: rgba(0, 0, 0, 0.8);
+              backdrop-filter: blur(20px);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              border-radius: 25px;
+              padding: 15px 25px;
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              z-index: 20;
+            ">
+              <button onclick="this.startVisionSpeak()" style="
+                background: linear-gradient(135deg, #4A90E2, #7B68EE);
+                border: none;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+              ">
+                🎤
+              </button>
+              <div style="color: #fff; font-size: 14px;">
+                VisionSpeak Ready - Describe your immersive experience
+              </div>
+            </div>
+            
+            <!-- Close Button -->
+            <button onclick="this.closeOriginalLounge()" style="
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              background: rgba(255, 68, 68, 0.2);
+              border: 1px solid rgba(255, 68, 68, 0.4);
+              color: #ff4444;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              cursor: pointer;
+              font-size: 20px;
+              z-index: 25;
+            ">
+              ×
+            </button>
+          </div>
+        `;
+        
+        document.body.appendChild(container);
+      }
+      
+      createPilotStation(pilot) {
+        return `
+          <div style="
+            position: relative;
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          " 
+          onmouseenter="this.style.transform = 'scale(1.1)'"
+          onmouseleave="this.style.transform = 'scale(1)'"
+          onclick="this.selectPilot('${pilot.id}')">
+            
+            <!-- Holographic Base -->
+            <div style="
+              position: absolute;
+              bottom: -10px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 100px;
+              height: 20px;
+              background: linear-gradient(90deg, transparent, ${pilot.hologramColor}66, transparent);
+              border-radius: 50%;
+              animation: pulse 2s infinite ease-in-out;
+            "></div>
+            
+            <!-- Pilot Photo -->
+            <div style="
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              border: 3px solid ${pilot.hologramColor};
+              background: linear-gradient(135deg, ${pilot.iconColors[0]}, ${pilot.iconColors[1]});
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              overflow: hidden;
+              box-shadow: 0 0 20px ${pilot.hologramColor}66;
+            ">
+              <img src="${pilot.photo}" 
+                   alt="${pilot.name}"
+                   style="
+                     width: 94px;
+                     height: 94px;
+                     border-radius: 50%;
+                     object-fit: cover;
+                     filter: brightness(1.1) contrast(1.1);
+                   ">
+              
+              <!-- Holographic Overlay -->
+              <div style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, transparent 30%, ${pilot.hologramColor}22 50%, transparent 70%);
+                animation: shimmer 3s infinite linear;
+                pointer-events: none;
+              "></div>
+            </div>
+            
+            <!-- Pilot Name -->
+            <div style="
+              position: absolute;
+              bottom: -35px;
+              left: 50%;
+              transform: translateX(-50%);
+              color: #fff;
+              font-size: 12px;
+              font-weight: 600;
+              text-align: center;
+              white-space: nowrap;
+              text-shadow: 0 0 10px ${pilot.hologramColor};
+            ">
+              ${pilot.name}
+            </div>
+            
+            <!-- Voice Preview Button -->
+            <button onclick="event.stopPropagation(); this.previewVoice('${pilot.id}')" style="
+              position: absolute;
+              top: -5px;
+              left: -5px;
+              width: 24px;
+              height: 24px;
+              background: rgba(0, 0, 0, 0.8);
+              border: 1px solid ${pilot.hologramColor};
+              border-radius: 50%;
+              color: ${pilot.hologramColor};
+              cursor: pointer;
+              font-size: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.3s ease;
+            ">
+              🎵
+            </button>
+          </div>
+        `;
+      }
+      
+      selectPilot(pilotId) {
+        const pilot = this.pilots.find(p => p.id === pilotId);
+        console.log('Selected pilot:', pilot.name);
+        alert(`Selected: ${pilot.name}\\nSpecializations: ${pilot.specializations.join(', ')}`);
+      }
+      
+      previewVoice(pilotId) {
+        const pilot = this.pilots.find(p => p.id === pilotId);
+        console.log(`🎵 Voice preview for: ${pilot.name}`);
+        alert(`🎤 Voice Preview: ${pilot.name}\\n"Hello, I specialize in ${pilot.specializations.join(' and ')}."`);
+      }
+      
+      startVisionSpeak() {
+        console.log('🎤 VisionSpeak activated');
+        alert('🎤 VisionSpeak Demo\\n\\nSpeak your vision:\\n"Show me a mountain retreat with analytics dashboard"\\n\\nThe Vision Space Cube would render this environment with your selected pilots.');
+      }
+      
+      close() {
+        const container = document.getElementById('originalLounge');
+        if (container) {
+          container.remove();
+        }
+      }
+    }
+    
+    // Global functions
+    window.selectPilot = function(pilotId) {
+      if (window.originalLounge) {
+        window.originalLounge.selectPilot(pilotId);
+      }
+    };
+    
+    window.previewVoice = function(pilotId) {
+      if (window.originalLounge) {
+        window.originalLounge.previewVoice(pilotId);
+      }
+    };
+    
+    window.startVisionSpeak = function() {
+      if (window.originalLounge) {
+        window.originalLounge.startVisionSpeak();
+      }
+    };
+    
+    window.closeOriginalLounge = function() {
+      if (window.originalLounge) {
+        window.originalLounge.close();
+        window.originalLounge = null;
+      }
+    };
+    
+    function launchOriginalLounge() {
+      if (window.originalLounge) {
+        window.originalLounge.close();
+      }
+      window.originalLounge = new PhysicalPilotIcons();
+      console.log('🎭 Original Physical Pilot Icons launched');
+    }
+  </script>
+</body>
+</html>

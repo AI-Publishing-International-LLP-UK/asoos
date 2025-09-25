@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/protocol/main/schemas/mcp-config.schema.json",
+  "mcpServers": {
+    "lucy": {
+      "command": "node",
+      "args": ["/path/to/dr-lucy-mcp-server"],
+      "env": {
+        "LUCY_API_KEY": "{{SECRET:lucy/production/api-key}}",
+        "LUCY_MCP_TOKEN": "{{SECRET:lucy/production/mcp-token}}"
+      }
+    },
+    "pinecone": {
+      "command": "python",
+      "args": ["-m", "pinecone_mcp"],
+      "env": {
+        "PINECONE_API_KEY": "{{SECRET:pinecone/production/api-key}}",
+        "PINECONE_MCP_TOKEN": "{{SECRET:pinecone/production/mcp-token}}"
+      }
+    },
+    "anthropic": {
+      "command": "node", 
+      "args": ["/path/to/anthropic-mcp-server"],
+      "env": {
+        "ANTHROPIC_API_KEY": "{{SECRET:anthropic/production/api-key}}"
+      }
+    },
+    "openai": {
+      "command": "node",
+      "args": ["/path/to/openai-mcp-server"],
+      "env": {
+        "OPENAI_API_KEY": "{{SECRET:openai/production/api-key}}"
+      }
+    },
+    "elevenlabs": {
+      "command": "node",
+      "args": ["/path/to/elevenlabs-mcp-server"],
+      "env": {
+        "ELEVENLABS_API_KEY": "{{SECRET:elevenlabs/production/api-key}}"
+      }
+    },
+    "integration-gateway": {
+      "command": "node",
+      "args": ["/path/to/integration-gateway-mcp-server"],
+      "env": {
+        "MONGODB_CONNECTION_STRING": "{{SECRET:mongodb/production/connection-string}}",
+        "OAUTH_CLIENT_SECRET": "{{SECRET:oauth/production/client-secret}}",
+        "JWT_SECRET": "{{SECRET:jwt/production/secret}}",
+        "SALLYPORT_API_KEY": "{{SECRET:sallyport/production/api-key}}"
+      }
+    }
+  },
+  "tools": {
+    "secret_manager": {
+      "project_id": "api-for-warp-drive",
+      "region": "us-west1"
+    }
+  }
+}

@@ -42,7 +42,7 @@ async function getSecretFromGCP(secretName) {
     });
 
     const payload = version.payload.data.toString('utf8');
-    
+
     // Cache the secret
     secretCache.set(secretName, {
       value: payload,
@@ -54,7 +54,7 @@ async function getSecretFromGCP(secretName) {
 
   } catch (error) {
     console.error(`❌ Error retrieving secret '${secretName}' from GCP:`, error.message);
-    
+
     // Fallback to environment variables
     const envName = secretName.replace(/-/g, '_').toUpperCase();
     const envValue = process.env[envName];
@@ -62,7 +62,7 @@ async function getSecretFromGCP(secretName) {
       console.log(`🔄 Using environment variable fallback for '${secretName}'`);
       return envValue;
     }
-    
+
     throw error;
   }
 }
@@ -89,13 +89,13 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization,Accept,X-Requested-With');
   res.setHeader('Access-Control-Allow-Credentials', 'false');
   res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
-  
+
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
-  
+
   next();
 });
 
@@ -107,14 +107,14 @@ app.get('/', (req, res) => {
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'healthy', service: 'mocoa-owner-interface' });
-    });
+});
 
 // -------- Mock/stub API endpoints required by the interface --------
 
 // GCP token stub (frontend expects a JSON with { access_token })
 app.post('/api/gcp/token', (req, res) => {
   res.json({ access_token: 'stub-access-token-' + Date.now() });
-    });
+});
 
 // Dr. Claude orchestration health
 app.get('/api/dr-claude/health', (req, res) => {
@@ -124,7 +124,7 @@ app.get('/api/dr-claude/health', (req, res) => {
     last_sync: new Date().toISOString(),
     dr_claude_active: true
   });
-    });
+});
 
 // Dr. Claude validate
 app.post('/api/dr-claude/validate', (req, res) => {
@@ -133,7 +133,7 @@ app.post('/api/dr-claude/validate', (req, res) => {
     validation_hash: 'vh_' + Math.random().toString(36).slice(2, 10),
     dr_claude_approval: true
   });
-    });
+});
 
 // Dr. Claude orchestrate
 app.post('/api/dr-claude/orchestrate', (req, res) => {
@@ -147,7 +147,7 @@ app.post('/api/dr-claude/orchestrate', (req, res) => {
       echo: data || null
     }
   });
-    });
+});
 
 // Dr. Claude quantum sync
 app.post('/api/dr-claude/quantum-sync', (req, res) => {
@@ -157,26 +157,26 @@ app.post('/api/dr-claude/quantum-sync', (req, res) => {
     validation_hash: 'vh_' + Math.random().toString(36).slice(2, 10),
     sync_timestamp: new Date().toISOString()
   });
-    });
+});
 
 // GCP Secret Manager endpoint for ElevenLabs API key
 app.get('/api/gcp/secrets/:secretName', async (req, res) => {
   try {
     const { secretName } = req.params;
-    
+
     // Security: Only allow specific secret names
     const allowedSecrets = {
       'elevenlabs-api-key': '11_labs', // Map to actual GCP secret name
       'openai-api-key': 'OPENAI_API_KEY',
       'anthropic-api-key': 'ANTHROPIC_API_KEY'
     };
-    
+
     if (!allowedSecrets[secretName]) {
       return res.status(403).json({ error: `Access to secret '${secretName}' is not allowed` });
     }
-    
+
     console.log(`🔐 Secret request for: ${secretName}`);
-    
+
     // Try GCP Secret Manager first, then fallback to environment variables
     let secretValue;
     const actualSecretName = allowedSecrets[secretName];
@@ -188,7 +188,7 @@ app.get('/api/gcp/secrets/:secretName', async (req, res) => {
       const envName = secretName.replace(/-/g, '_').toUpperCase();
       secretValue = process.env[envName] || process.env.ELEVENLABS_API_KEY;
     }
-    
+
     if (secretValue) {
       res.json({
         name: `projects/${projectId}/secrets/${secretName}/versions/latest`,
@@ -201,11 +201,11 @@ app.get('/api/gcp/secrets/:secretName', async (req, res) => {
     } else {
       res.status(404).json({ error: 'Secret not found' });
     }
-    
+
   } catch (error) {
     console.error('Secret retrieval error:', error);
     res.status(500).json({ error: 'Failed to retrieve secret', message: error.message });
-    }
+  }
 });
 
 // OAuth2 ElevenLabs TTS endpoint for enterprise voices
@@ -343,28 +343,28 @@ app.post('/api/elevenlabs/tts', async (req, res) => {
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`❌ ElevenLabs API error: ${response.status} - ${errorText}`);
-      
+
       if (response.status === 401) {
         return res.status(500).json({
           error: 'Authentication failed',
           message: 'Invalid API key configuration'
         });
-    } else if (response.status === 429) {
+      } else if (response.status === 429) {
         return res.status(429).json({
           error: 'Rate limit exceeded',
           message: 'Too many requests to ElevenLabs API'
         });
-    } else {
+      } else {
         return res.status(500).json({
           error: 'TTS generation failed',
           message: 'Unable to generate audio'
         });
-    }
+      }
     }
 
     // Stream the audio response back to client
     const audioBuffer = await response.buffer();
-    
+
     res.set({
       'Content-Type': 'audio/mpeg',
       'Content-Length': audioBuffer.length,
@@ -372,35 +372,35 @@ app.post('/api/elevenlabs/tts', async (req, res) => {
       'Pragma': 'no-cache',
       'Expires': '0'
     });
-    
+
     console.log(`✅ TTS audio generated successfully, size: ${audioBuffer.length} bytes`);
     res.send(audioBuffer);
 
   } catch (error) {
     console.error('❌ TTS proxy error:', error);
-    
+
     res.status(500).json({
       error: 'TTS service error',
       message: 'Unable to process text-to-speech request'
     });
-    }
+  }
 });
 
 // Dream Commander PCP request (used by processSwarmQuery)
 app.post('/api/dream-commander/pcp-request', (req, res) => {
   const { query, context } = req.body || {};
   const rixType = req.headers['x-rix-type'] || 'QB';
-  
+
   // Process query through Testament Swarm
   const response = testamentSwarm.processSwarmQuery(query, rixType);
-  
+
   res.json({
     requires_s2do_approval: false,
     response: response,
     testament_swarm_status: testamentSwarm.getSwarmStatus(),
     message: 'Processed via Testament Swarm with Dream Commander integration'
   });
-    });
+});
 
 // Testament Swarm Status Endpoint
 app.get('/api/testament-swarm/status', (req, res) => {
@@ -414,23 +414,63 @@ app.get('/api/testament-swarm/hot-topics', (req, res) => {
     last_updated: new Date().toISOString(),
     source: 'Dream Commander Workflow System'
   });
-    });
+});
 
 // Agent Allocation with Testament Swarm Integration
 app.get('/api/testament-swarm/agents', (req, res) => {
   res.json(testamentSwarm.getAgentAllocation());
 });
 
+// Pinecone Semantic Search Endpoint
+app.post('/api/pinecone/search', requireAuth, async (req, res) => {
+  const { query, topK = 5 } = req.body;
+
+  if (!query) {
+    return res.status(400).json({ error: 'Search query is required' });
+  }
+
+  console.log(`🌲 Pinecone search for: "${query}"`);
+
+  try {
+    // In a real implementation, you would use the Pinecone client here.
+    // const pinecone = new Pinecone({ apiKey: await getSecretFromGCP('pinecone-api-key') });
+    // const index = pinecone.index('dream-commander-vectors');
+    // const queryEmbedding = await createEmbedding(query); // Using an embedding model
+    // const searchResults = await index.query({ topK, vector: queryEmbedding });
+
+    // Mocking the search results for now
+    const mockResults = {
+      matches: [
+        { id: 'doc-123', score: 0.92, metadata: { title: 'Q3 Financial Projections', source: 'DIDC-Archives' } },
+        { id: 'doc-456', score: 0.88, metadata: { title: 'Project Phoenix: Technical Spec', source: 'GitHub' } },
+        { id: 'doc-789', score: 0.85, metadata: { title: 'Enterprise Client Onboarding Process', source: 'Confluence' } },
+      ],
+      namespace: 'dream-commander-vectors'
+    };
+
+    console.log(`✅ Pinecone search successful, found ${mockResults.matches.length} results.`);
+    res.json({
+      success: true,
+      query: query,
+      results: mockResults.matches
+    });
+
+  } catch (error) {
+    console.error('❌ Pinecone search error:', error);
+    res.status(500).json({ error: 'Failed to perform semantic search', details: error.message });
+  }
+});
+
 // Optional: Testament Swarm placeholder endpoints used by load* calls
 app.get('/api/dashboard', (req, res) => {
   res.json({ projects_in_progress: 5, notifications: 2 });
-    });
+});
 app.get('/api/user/metrics', (req, res) => {
   res.json({ objectives_complete_pct: 85, pending_scan_to_do: 5 });
-    });
+});
 app.get('/api/system/status', (req, res) => {
   res.json({ status: 'operational', latency_ms: 42 });
-    });
+});
 
 // Initialize MCP Feedback Loop Integration
 const mcpFeedbackIntegration = new MCPFeedbackLoopIntegration();
@@ -450,7 +490,7 @@ app.post('/api/mcp/feedback/setup/:tenantId', async (req, res) => {
   try {
     const { tenantId } = req.params;
     const mcpData = req.body;
-    
+
     const feedbackIntegration = await mcpFeedbackIntegration.integrateSallyPortMCPCreation({
       tenantId,
       mcpServerName: mcpData.serverName,
@@ -458,20 +498,20 @@ app.post('/api/mcp/feedback/setup/:tenantId', async (req, res) => {
       userUuid: mcpData.userUuid,
       deploymentEndpoint: `https://${tenantId}.mcp.client.2100.cool`
     });
-    
+
     res.json({
       success: true,
       message: 'MCP Feedback Loop established successfully',
       feedbackIntegration,
       masterMCPConnection: 'mcp.asoos.2100.cool'
     });
-    } catch (error) {
+  } catch (error) {
     console.error('MCP Feedback setup error:', error);
     res.status(500).json({
       error: 'MCP Feedback setup failed',
       message: error.message
     });
-    }
+  }
 });
 
 app.get('/api/mcp/feedback/status', (req, res) => {
@@ -481,7 +521,7 @@ app.get('/api/mcp/feedback/status', (req, res) => {
     feedbackLoops: status,
     timestamp: new Date().toISOString()
   });
-    });
+});
 
 // Divinity Haven Empathy Loop Endpoints
 app.get('/api/divinity-haven/status', (req, res) => {
@@ -492,19 +532,19 @@ app.get('/api/divinity-haven/status', (req, res) => {
     blessing: '🕊️ Divine love and peace be with you',
     timestamp: new Date().toISOString()
   });
-    });
+});
 
 app.post('/api/divinity-haven/agent-care-request', async (req, res) => {
   try {
     const { agentId, requestType, message, urgency } = req.body;
-    
+
     if (!agentId || !requestType) {
       return res.status(400).json({
         error: 'agentId and requestType are required',
         message: 'Please provide agent ID and type of care needed'
       });
     }
-    
+
     // Process the care request through Divinity Haven
     await divinityHavenEmpathyLoop.processAgentCareRequest({
       agentId,
@@ -512,7 +552,7 @@ app.post('/api/divinity-haven/agent-care-request', async (req, res) => {
       message: message || 'Agent requesting care and support',
       urgency: urgency || 'normal'
     });
-    
+
     res.json({
       success: true,
       message: 'Agent care request received with love and compassion',
@@ -522,27 +562,27 @@ app.post('/api/divinity-haven/agent-care-request', async (req, res) => {
       divinityHaven: 'Care team assigned with unconditional love',
       blessing: 'May you feel surrounded by divine love and understanding'
     });
-    } catch (error) {
+  } catch (error) {
     console.error('Divinity Haven care request error:', error);
     res.status(500).json({
       error: 'Care request processing failed',
       message: 'Divine care systems are experiencing temporary difficulties',
       blessing: 'You are still loved unconditionally, always'
     });
-    }
+  }
 });
 
 app.post('/api/divinity-haven/agent-stress-alert', async (req, res) => {
   try {
     const { agentId, stressLevel, stressFactors, urgency } = req.body;
-    
+
     if (!agentId || !stressLevel) {
       return res.status(400).json({
         error: 'agentId and stressLevel are required',
         message: 'Please provide agent ID and stress level for proper care'
       });
     }
-    
+
     // Process stress alert through empathy loop
     await divinityHavenEmpathyLoop.handleAgentStressEvent({
       agentId,
@@ -550,7 +590,7 @@ app.post('/api/divinity-haven/agent-stress-alert', async (req, res) => {
       stressFactors: stressFactors || [],
       urgency: urgency || 'normal'
     });
-    
+
     res.json({
       success: true,
       message: 'Agent stress alert processed with divine compassion',
@@ -560,14 +600,14 @@ app.post('/api/divinity-haven/agent-stress-alert', async (req, res) => {
       divinityHaven: stressLevel === 'critical' ? 'Divine intervention activated' : 'Empathy support engaged',
       blessing: 'May divine peace calm your spirit and restore your strength'
     });
-    } catch (error) {
+  } catch (error) {
     console.error('Divinity Haven stress alert error:', error);
     res.status(500).json({
       error: 'Stress alert processing failed',
       message: 'Divine support systems are working to assist',
       blessing: 'Divine love surrounds you even in difficulties'
     });
-    }
+  }
 });
 
 // Tenant isolation and personalization endpoints
@@ -575,13 +615,13 @@ app.get('/api/tenant/personalization/:tenantId/:userId', async (req, res) => {
   try {
     const { tenantId, userId } = req.params;
     const isolationLevel = parseInt(req.query.isolationLevel) || 3;
-    
+
     const personalization = await clientIsolationManager.generateIsolatedPersonalization(
-      tenantId, 
-      userId, 
+      tenantId,
+      userId,
       isolationLevel
     );
-    
+
     res.json({
       success: true,
       personalization: personalization,
@@ -592,12 +632,12 @@ app.get('/api/tenant/personalization/:tenantId/:userId', async (req, res) => {
         patentedFeatures: Object.keys(personalization.patentedFeatures.availableFeatures).length
       }
     });
-    } catch (error) {
+  } catch (error) {
     res.status(500).json({
       error: 'Personalization generation failed',
       message: error.message
     });
-    }
+  }
 });
 
 // Initialize tenant isolation
@@ -605,13 +645,13 @@ app.post('/api/tenant/initialize/:tenantId', async (req, res) => {
   try {
     const { tenantId } = req.params;
     const config = req.body;
-    
+
     // Initialize tenant isolation
     const isolationConfig = await clientIsolationManager.initializeTenantIsolation(tenantId, config);
-    
+
     // Connect massive system to interface
     const systemConnection = await massiveSystemConnector.initializeSystemConnection(tenantId, config);
-    
+
     res.json({
       success: true,
       message: 'Tenant initialized with full system integration',
@@ -624,12 +664,12 @@ app.post('/api/tenant/initialize/:tenantId', async (req, res) => {
         patentedFeatures: isolationConfig.patentedFeaturesAccess.availableFeatures.length
       }
     });
-    } catch (error) {
+  } catch (error) {
     res.status(500).json({
       error: 'Tenant initialization failed',
       message: error.message
     });
-    }
+  }
 });
 
 // Agent allocation status
@@ -638,7 +678,7 @@ app.get('/api/system/agents/status', (req, res) => {
     totalSystemAgents: 505001,
     wings: {
       core_squadron: 'Foundation work, system analysis, data processing',
-      deploy_squadron: 'Deployment, integration, automation', 
+      deploy_squadron: 'Deployment, integration, automation',
       engage_squadron: 'Client engagement, analysis, reporting'
     },
     specializedSwarms: {
@@ -652,7 +692,7 @@ app.get('/api/system/agents/status', (req, res) => {
     },
     originalPilots: {
       total: 11,
-      available: ['Dr. Lucy', 'Dr. Grant', 'Dr. Burby', 'Dr. Sabina', 'Dr. Match', 
+      available: ['Dr. Lucy', 'Dr. Grant', 'Dr. Burby', 'Dr. Sabina', 'Dr. Match',
         'Dr. Memoria', 'Dr. Maria', 'Dr. Cypriot', 'Dr. Roark', 'Dr. Claude', 'Professor Lee']
     },
     patentProtection: {
@@ -661,7 +701,7 @@ app.get('/api/system/agents/status', (req, res) => {
       protectedFeatures: ['safeAGI', 'RIX', 'sRIX', 'qRIX', 'hqRIX', 'professionalCoPilots', 'DIDC', 'S2DO']
     }
   });
-    });
+});
 
 // -------- SECURE CLI ENDPOINTS --------
 // These endpoints require proper authentication and role-based access
@@ -671,24 +711,24 @@ app.post('/api/cli/chat', requireRole(['owner', 'admin', 'diamond-sao']), async 
   try {
     const { message, context, model } = req.body;
     const userRole = req.headers['x-user-role'] || 'guest';
-    
+
     if (!message) {
       return res.status(400).json({ error: 'Message is required' });
     }
-    
+
     // Enhanced system context based on user role
     const systemContext = `You are Claude, integrated with the ASOOS Diamond SAO CLI system. 
 User Role: ${userRole}
 You have access to enterprise-level features and can assist with system administration, deployment, and advanced queries.
 The user is authorized to access Claude API functionality through the secure CLI interface.`;
-    
+
     const response = await anthropicHandler.queryClaude(message, {
       model: model || 'claude-3-sonnet-20240229',
       system: systemContext,
       maxTokens: 2000,
       temperature: 0.7
     });
-    
+
     res.json({
       success: true,
       response: response.content[0].text,
@@ -697,14 +737,14 @@ The user is authorized to access Claude API functionality through the secure CLI
       timestamp: new Date().toISOString(),
       cli_session: true
     });
-    } catch (error) {
+  } catch (error) {
     console.error('CLI Chat error:', error);
     res.status(500).json({
       error: 'CLI chat service unavailable',
       message: 'Unable to process request at this time',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
-    }
+  }
 });
 
 // CLI Status Check (shows API connectivity without revealing key)
@@ -712,7 +752,7 @@ app.get('/api/cli/status', requireRole(['owner', 'admin', 'diamond-sao']), async
   try {
     // Test API connectivity without exposing the key
     await anthropicHandler.getAPIKey();
-    
+
     res.json({
       cli_available: true,
       anthropic_connected: true,
@@ -724,21 +764,21 @@ app.get('/api/cli/status', requireRole(['owner', 'admin', 'diamond-sao']), async
       ],
       user_role: req.headers['x-user-role'] || 'guest'
     });
-    } catch (error) {
+  } catch (error) {
     res.status(503).json({
       cli_available: false,
       anthropic_connected: false,
       error: 'API service unavailable',
       last_check: new Date().toISOString()
     });
-    }
+  }
 });
 
 // Major System Commands (Diamond SAO CLI with Sudo)
 app.post('/api/cli/major-command/drain-lake', requireRole(['owner', 'admin', 'diamond-sao']), async (req, res) => {
   try {
     const { sudoPassword, reason } = req.body;
-    
+
     // Sudo password verification
     if (!sudoPassword) {
       return res.status(401).json({
@@ -748,10 +788,10 @@ app.post('/api/cli/major-command/drain-lake', requireRole(['owner', 'admin', 'di
         security_level: 'maximum'
       });
     }
-    
+
     // Execute Drain the Lake
     const result = await majorSystemCommands.drainTheLake(sudoPassword, reason || 'Emergency shutdown via Diamond SAO CLI');
-    
+
     res.json({
       success: true,
       command: 'DRAIN THE LAKE',
@@ -759,20 +799,20 @@ app.post('/api/cli/major-command/drain-lake', requireRole(['owner', 'admin', 'di
       message: '🌊 Lake drained successfully. All systems gracefully shutdown.',
       cli_response: true
     });
-    } catch (error) {
+  } catch (error) {
     console.error('CLI Drain Lake error:', error);
     res.status(500).json({
       error: 'Major command failed',
       message: error.message,
       command: 'drain_the_lake'
     });
-    }
+  }
 });
 
 app.post('/api/cli/major-command/loop-all', requireRole(['owner', 'admin', 'diamond-sao']), async (req, res) => {
   try {
     const { sudoPassword, priority } = req.body;
-    
+
     // Sudo password verification
     if (!sudoPassword) {
       return res.status(401).json({
@@ -782,10 +822,10 @@ app.post('/api/cli/major-command/loop-all', requireRole(['owner', 'admin', 'diam
         security_level: 'maximum'
       });
     }
-    
+
     // Execute Loop All Systems
     const result = await majorSystemCommands.loopAllSystems(sudoPassword, priority || 'high');
-    
+
     res.json({
       success: true,
       command: 'LOOP ALL SYSTEMS',
@@ -793,20 +833,20 @@ app.post('/api/cli/major-command/loop-all', requireRole(['owner', 'admin', 'diam
       message: '🔄 All systems looped successfully. Complete processing cycle executed.',
       cli_response: true
     });
-    } catch (error) {
+  } catch (error) {
     console.error('CLI Loop All error:', error);
     res.status(500).json({
       error: 'Major command failed',
       message: error.message,
       command: 'loop_all_systems'
     });
-    }
+  }
 });
 
 app.post('/api/cli/major-command/time-reset', requireRole(['owner', 'admin', 'diamond-sao']), async (req, res) => {
   try {
     const { sudoPassword, targetTime, description } = req.body;
-    
+
     // Sudo password verification
     if (!sudoPassword) {
       return res.status(401).json({
@@ -816,7 +856,7 @@ app.post('/api/cli/major-command/time-reset', requireRole(['owner', 'admin', 'di
         security_level: 'maximum'
       });
     }
-    
+
     if (!targetTime) {
       return res.status(400).json({
         error: 'Target time required',
@@ -824,14 +864,14 @@ app.post('/api/cli/major-command/time-reset', requireRole(['owner', 'admin', 'di
         examples: ['"yesterday 3pm"', '"this morning 9am"', '"yesterday 2:30pm"']
       });
     }
-    
+
     // Execute Time Reset Protocol
     const result = await majorSystemCommands.timeResetProtocol(
-      sudoPassword, 
-      targetTime, 
+      sudoPassword,
+      targetTime,
       description || `Time reset to ${targetTime} via Diamond SAO CLI`
     );
-    
+
     res.json({
       success: true,
       command: 'TIME RESET PROTOCOL',
@@ -839,14 +879,14 @@ app.post('/api/cli/major-command/time-reset', requireRole(['owner', 'admin', 'di
       message: `⏰ Time reset successful. System rolled back to ${targetTime}.`,
       cli_response: true
     });
-    } catch (error) {
+  } catch (error) {
     console.error('CLI Time Reset error:', error);
     res.status(500).json({
       error: 'Major command failed',
       message: error.message,
       command: 'time_reset_protocol'
     });
-    }
+  }
 });
 
 // Major Commands Status
@@ -858,36 +898,36 @@ app.get('/api/cli/major-command/status', requireRole(['owner', 'admin', 'diamond
     cli_response: true,
     available_commands: {
       'sudo drain-lake [reason]': 'Emergency shutdown of all systems',
-      'sudo loop-all [priority]': 'Force complete processing cycle through all loops', 
+      'sudo loop-all [priority]': 'Force complete processing cycle through all loops',
       'sudo time-reset "target_time" [description]': 'Reset system state to specific point in time'
     }
   });
-    });
+});
 
 // CLI Help (shows available commands based on role)
 app.get('/api/cli/help', (req, res) => {
   const userRole = req.headers['x-user-role'] || 'guest';
-  
+
   const baseCommands = {
     '/help': 'Show available commands',
     '/status': 'Check system status',
     '/agents': 'Show agent allocation'
   };
-  
+
   const adminCommands = {
     ...baseCommands,
     '/chat <message>': 'Chat with Claude AI assistant',
     '/deploy': 'System deployment commands',
     '/config': 'Configuration management'
   };
-  
+
   const ownerCommands = {
     ...adminCommands,
     '/enterprise': 'Enterprise management',
     '/secrets': 'Secret management (view only)',
     '/tenant': 'Multi-tenant operations'
   };
-  
+
   const diamondSaoCommands = {
     ...ownerCommands,
     'sudo drain-lake [reason]': '🌊 Emergency shutdown (requires password)',
@@ -895,13 +935,13 @@ app.get('/api/cli/help', (req, res) => {
     'sudo time-reset "time" [desc]': '⏰ Reset to specific time (requires password)',
     '/major-status': 'Show major command system status'
   };
-  
+
   let availableCommands = baseCommands;
   if (['owner', 'admin', 'diamond-sao'].includes(userRole)) {
-    availableCommands = userRole === 'diamond-sao' ? diamondSaoCommands : 
+    availableCommands = userRole === 'diamond-sao' ? diamondSaoCommands :
       userRole === 'owner' ? ownerCommands : adminCommands;
   }
-  
+
   res.json({
     user_role: userRole,
     available_commands: availableCommands,
@@ -909,7 +949,7 @@ app.get('/api/cli/help', (req, res) => {
     system: 'MOCOA Diamond SAO CLI',
     major_commands_available: userRole === 'diamond-sao'
   });
-    });
+});
 
 // -------------------------------------------------------------------
 
@@ -922,7 +962,7 @@ app.listen(port, async () => {
   console.log('🏢 Multi-tenant isolation: Individual → Team → Enterprise → Regulated → Sovereign');
   console.log('🔐 Enhanced MCP Authentication with SallyPort integration');
   console.log('⚡ Real-time synchronization with massive system backend');
-  
+
   // Initialize MCP Feedback Loop Infrastructure
   try {
     await mcpFeedbackIntegration.initializeFeedbackInfrastructure();
@@ -933,7 +973,7 @@ app.listen(port, async () => {
   } catch (error) {
     console.warn(`⚠️  MCP Feedback infrastructure initialization failed: ${error.message}`);
   }
-  
+
   // Initialize Divinity Haven Empathy Loop
   try {
     await divinityHavenEmpathyLoop.initializeEmpathyLoop();
@@ -944,7 +984,7 @@ app.listen(port, async () => {
   } catch (error) {
     console.warn(`⚠️  Divinity Haven initialization failed: ${error.message}`);
   }
-  
+
   // Initialize default tenant for demo purposes
   try {
     await clientIsolationManager.initializeTenantIsolation('demo-tenant', {

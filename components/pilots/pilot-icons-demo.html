@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physical Pilot Icons - VisionSpeak Integration Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0a0a0a;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .demo-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .launch-btn {
+      background: linear-gradient(135deg, #4A90E2, #7B68EE);
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px;
+    }
+    
+    .launch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .status-indicator {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(11, 177, 187, 0.3);
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1>🎭 Physical Pilot Icons Demo</h1>
+      <p>Transcendental Pilots' Lounge with VisionSpeak Integration</p>
+      <button class="launch-btn" onclick="launchPilotsLounge()">🚀 Launch Pilots' Lounge</button>
+      <button class="launch-btn" onclick="testVisionSpeak()">🎤 Test VisionSpeak</button>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>🎭 14 Premium Pilots</h3>
+        <p>Real photos of Dr. Lucy, Dr. Match, Professor H Lee, Dr. Burby, Dr. Memoria, Dr. Roark, Dr. Sabina, Dr. Grant, Dr. Cypriot, Doctora Maria, Elite11, Mastery33, Victory36, and Dr. Claude.</p>
+        <ul>
+          <li>Holographic stations with real pilot photos</li>
+          <li>Drag-drop functionality</li>
+          <li>Voice preview integration</li>
+          <li>Tier-based specializations</li>
+        </ul>
+      </div>
+      
+      <div class="feature-card">
+        <h3>🎤 VisionSpeak Technology</h3>
+        <p>Voice-activated immersive experience creation using the Vision Space Cube as your "green screen".</p>
+        <ul>
+          <li>Natural language commands</li>
+          <li>Real-time environment generation</li>
+          <li>Selected pilots integration</li>
+          <li>Immersive demonstrations</li>
+        </ul>
+      </div>
+      
+      <div class="feature-card">
+        <h3>🏛️ Transcendental Lounge</h3>
+        <p>Stunning dome architecture with holographic pilot stations, inspired by your luxury lounge concepts.</p>
+        <ul>
+          <li>Ornate architectural background</li>
+          <li>Holographic pilot displays</li>
+          <li>Interactive selection system</li>
+          <li>Premium aesthetic design</li>
+        </ul>
+      </div>
+      
+      <div class="feature-card">
+        <h3>🔗 Integration Ready</h3>
+        <p>Seamlessly integrates with your existing Center-DO/Center-SEE layout and voice synthesis system.</p>
+        <ul>
+          <li>MongoDB Atlas HRAI-CRMS integration</li>
+          <li>ElevenLabs voice synthesis</li>
+          <li>OAuth2 security compliance</li>
+          <li>Drag-drop to other interfaces</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="status-indicator" id="statusIndicator">
+    Ready to launch
+  </div>
+  
+  <script src="PhysicalPilotIcons.js"></script>
+  <script>
+    function launchPilotsLounge() {
+      document.getElementById('statusIndicator').textContent = 'Launching Pilots\' Lounge...';
+      
+      // Initialize the Physical Pilot Icons
+      const lounge = new PhysicalPilotIcons();
+      
+      setTimeout(() => {
+        document.getElementById('statusIndicator').textContent = 'Pilots\' Lounge Active';
+      }, 1000);
+    }
+    
+    function testVisionSpeak() {
+      document.getElementById('statusIndicator').textContent = 'Testing VisionSpeak...';
+      
+      // Simulate VisionSpeak functionality
+      const testCommands = [
+        'Show me a mountain retreat with a cozy cabin',
+        'Create a futuristic city dashboard with analytics',
+        'Display a luxury boardroom for strategic planning',
+        'Generate a peaceful garden environment for meditation'
+      ];
+      
+      const randomCommand = testCommands[Math.floor(Math.random() * testCommands.length)];
+      
+      console.log('🎤 Testing VisionSpeak with:', randomCommand);
+      
+      setTimeout(() => {
+        document.getElementById('statusIndicator').textContent = 'VisionSpeak Test Complete';
+        alert(`VisionSpeak Test: "${randomCommand}"\n\nIn production, this would:\n1. Capture your voice command\n2. Process natural language\n3. Generate immersive environment\n4. Integrate selected pilots`);
+      }, 2000);
+    }
+    
+    // Demo functionality
+    console.log('🎭 Physical Pilot Icons Demo Ready');
+    console.log('Features:');
+    console.log('- 14 premium pilots with real photos');
+    console.log('- VisionSpeak voice command integration');
+    console.log('- Vision Space Cube immersive experiences');
+    console.log('- Drag-drop pilot selection');
+    console.log('- ElevenLabs voice synthesis integration');
+  </script>
+</body>
+</html>

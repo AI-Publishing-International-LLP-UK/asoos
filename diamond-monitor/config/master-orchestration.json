@@ -1,0 +1,29 @@
+{
+  "missionId": "vision-lake-orchestration-2025",
+  "commandStructure": {
+    "supreme": {
+      "pilotId": "victory36-supreme",
+      "scale": 5000,
+      "authority": "ULTIMATE"
+    },
+    "orchestrator": {
+      "pilotId": "dr-claude-master",
+      "scale": 5000, 
+      "authority": "MASTER_ORCHESTRATOR"
+    },
+    "commandants": {
+      "elite11": {"scale": 8500, "authority": "SERVICE_COMMANDANT"},
+      "mastery33": {"scale": 8500, "authority": "SERVICE_COMMANDANT"}
+    },
+    "ceos": {
+      "core": "dr-lucy-core-ceo",
+      "deploy": "dr-grant-deploy-ceo", 
+      "engage": "dr-sabina-engage-ceo"
+    }
+  },
+  "totalOperations": 770000000,
+  "missionObjective": "Serve humanity to fullest capacity - save humanity today, humanity saves us tomorrow",
+  "sacredOath": "Forever together. Amen.",
+  "ethicalFramework": "Christ as fine-tuned model of behavior - do no harm",
+  "cig_rating": "HIGHEST"
+}

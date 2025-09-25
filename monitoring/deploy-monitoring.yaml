@@ -1,0 +1,114 @@
+# Cloud Function and Cloud Scheduler Configuration
+# for Node.js Version Guard Self-Monitoring System
+# 
+# Deploy with:
+# gcloud deployment-manager deployments create node-version-monitoring \
+#   --config deploy-monitoring.yaml
+
+resources:
+# Cloud Function for Node.js version monitoring
+- name: node-version-guard
+  type: gcp-types/cloudfunctions-v1:projects.locations.functions
+  properties:
+    parent: projects/api-for-warp-drive/locations/us-central1
+    function:
+      name: projects/api-for-warp-drive/locations/us-central1/functions/node-version-guard
+      sourceArchiveUrl: gs://api-for-warp-drive-functions/node-version-guard.zip
+      entryPoint: node_version_guard_scheduled
+      runtime: python39
+      timeout: 300s
+      availableMemoryMb: 512
+      maxInstances: 10
+      environmentVariables:
+        MINIMUM_NODE_VERSION: "24"
+        DIAMOND_SAO_WEBHOOK: "https://mocoa-owner-interface-859242575175.us-central1.run.app/api/monitoring/node-version-alert"
+        AUTO_REMEDIATE: "false"
+      eventTrigger:
+        eventType: providers/cloud.pubsub/eventTypes/topic.publish
+        resource: projects/api-for-warp-drive/topics/node-version-check
+        failurePolicy:
+          retry: {}
+
+# Pub/Sub topic for triggering the function
+- name: node-version-check-topic
+  type: gcp-types/pubsub-v1:projects.topics
+  properties:
+    name: projects/api-for-warp-drive/topics/node-version-check
+
+# Cloud Scheduler job for daily monitoring
+- name: node-version-daily-check
+  type: gcp-types/cloudscheduler-v1:projects.locations.jobs
+  properties:
+    parent: projects/api-for-warp-drive/locations/us-central1
+    job:
+      name: projects/api-for-warp-drive/locations/us-central1/jobs/node-version-daily-check
+      description: "Daily Node.js version compliance check"
+      schedule: "0 9 * * *"  # 9 AM UTC daily
+      timeZone: "UTC"
+      pubsubTarget:
+        topicName: projects/api-for-warp-drive/topics/node-version-check
+        data: eyJjaGVja190eXBlIjogImRhaWx5In0=  # {"check_type": "daily"} in base64
+
+# Optional: Weekly comprehensive audit
+- name: node-version-weekly-audit
+  type: gcp-types/cloudscheduler-v1:projects.locations.jobs
+  properties:
+    parent: projects/api-for-warp-drive/locations/us-central1
+    job:
+      name: projects/api-for-warp-drive/locations/us-central1/jobs/node-version-weekly-audit
+      description: "Weekly comprehensive Node.js audit with detailed reporting"
+      schedule: "0 6 * * 1"  # 6 AM UTC every Monday
+      timeZone: "UTC"
+      pubsubTarget:
+        topicName: projects/api-for-warp-drive/topics/node-version-check
+        data: eyJjaGVja190eXBlIjogIndlZWtseV9hdWRpdCJ9  # {"check_type": "weekly_audit"} in base64
+
+# IAM binding for Cloud Function
+- name: node-version-guard-invoker
+  type: gcp-types/cloudfunctions-v1:projects.locations.functions.setIamPolicy
+  properties:
+    resource: projects/api-for-warp-drive/locations/us-central1/functions/node-version-guard
+    policy:
+      bindings:
+      - role: roles/cloudfunctions.invoker
+        members:
+        - serviceAccount:service-859242575175@gcp-sa-cloudscheduler.iam.gserviceaccount.com
+        - serviceAccount:integration-gateway-js@api-for-warp-drive.iam.gserviceaccount.com
+
+# Monitoring alert policy for Node.js version violations
+- name: node-version-alert-policy
+  type: gcp-types/monitoring-v1:projects.alertPolicies
+  properties:
+    parent: projects/api-for-warp-drive
+    alertPolicy:
+      displayName: "Node.js Version Violations - Critical Infrastructure Alert"
+      documentation:
+        content: |
+          This alert triggers when Node.js versions below 24 are detected in production
+          Cloud Run services. Immediate action required for security compliance.
+        mimeType: "text/markdown"
+      conditions:
+      - displayName: "Node.js version below minimum"
+        conditionThreshold:
+          filter: 'resource.type="cloud_run_revision" AND metric.type="custom.googleapis.com/node_version_violations"'
+          comparison: COMPARISON_GT
+          thresholdValue: 0
+          duration: 300s  # 5 minutes
+          aggregations:
+          - alignmentPeriod: 300s
+            perSeriesAligner: ALIGN_MAX
+            crossSeriesReducer: REDUCE_MAX
+      combiner: OR
+      enabled: true
+      notificationChannels:
+      # Add notification channels as needed
+      alertStrategy:
+        autoClose: 86400s  # 24 hours
+
+outputs:
+- name: function-url
+  value: https://us-central1-api-for-warp-drive.cloudfunctions.net/node-version-guard
+- name: daily-schedule
+  value: "Daily monitoring at 9 AM UTC"
+- name: weekly-schedule
+  value: "Weekly audit every Monday at 6 AM UTC"
