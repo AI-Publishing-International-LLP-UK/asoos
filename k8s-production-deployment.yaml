@@ -1,0 +1,185 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wfa-production-swarm
+  namespace: default
+  labels:
+    app: wfa-production-swarm
+    tier: production
+    commander: phillip-roark
+    classification: victory36-maximum
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wfa-production-swarm
+  template:
+    metadata:
+      labels:
+        app: wfa-production-swarm
+        tier: production
+        victory36: enabled
+    spec:
+      containers:
+      - name: wfa-swarm
+        image: gcr.io/api-for-warp-drive/wfa-production-swarm:20250925-161351
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "8080"
+        - name: CLOUD_ML_REGION
+          value: "us-west1"
+        - name: WFA_AGENTS_COUNT
+          value: "20000000"
+        - name: WFA_SECTORS_COUNT
+          value: "200"
+        - name: JOB_CLUSTERS_COUNT
+          value: "64000000"
+        - name: CAREER_CLUSTERS_COUNT
+          value: "319998"
+        - name: VICTORY36_PROTECTION
+          value: "maximum"
+        - name: CLOUD_TO_CLOUD_MODE
+          value: "enabled"
+        - name: MCP_DNS_AUTOMATION
+          value: "enabled"
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1000
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - wfa-production-swarm
+              topologyKey: kubernetes.io/hostname
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wfa-production-swarm-service
+  labels:
+    app: wfa-production-swarm
+    tier: production
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 8080
+    protocol: TCP
+    name: https
+  selector:
+    app: wfa-production-swarm
+  loadBalancerSourceRanges:
+  - 0.0.0.0/0
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wfa-production-swarm-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "wfa-production-ip"
+    networking.gke.io/managed-certificates: "wfa-production-cert"
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  rules:
+  - host: wfa.api-for-warp-drive.com
+    http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: wfa-production-swarm-service
+            port:
+              number: 80
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: wfa-production-cert
+spec:
+  domains:
+  - wfa.api-for-warp-drive.com
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: wfa-production-swarm-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: wfa-production-swarm
+  minReplicas: 3
+  maxReplicas: 50
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 60

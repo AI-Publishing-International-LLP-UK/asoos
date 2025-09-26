@@ -1,0 +1,1346 @@
+[
+  {
+    "id": "779b241d-5bef-42a4-a97a-92d89869ba96",
+    "title": "Workflow Automation Strategy - openai-009 #1",
+    "create_time": "2025-08-14T01:08:04.508Z",
+    "update_time": "2025-06-26T11:34:51.535Z",
+    "mapping": {
+      "82f63f95-38d4-46af-b0c5-2f060063766d": {
+        "id": "82f63f95-38d4-46af-b0c5-2f060063766d",
+        "message": {
+          "id": "4b5776aa-46b6-46af-9e70-ad93ffe4c928",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-09T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "d6d18397-846e-4fde-bdc1-6b1019ce638a": {
+        "id": "d6d18397-846e-4fde-bdc1-6b1019ce638a",
+        "message": {
+          "id": "90d64742-3edb-45c7-b972-37e21571b94b",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-15T01:08:04.508Z"
+        },
+        "parent": "82f63f95-38d4-46af-b0c5-2f060063766d",
+        "children": []
+      },
+      "651f92b0-1397-4766-86bc-8913c9a8df5b": {
+        "id": "651f92b0-1397-4766-86bc-8913c9a8df5b",
+        "message": {
+          "id": "022d430a-019b-4ada-ba42-21b10971fa05",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-02T01:08:04.508Z"
+        },
+        "parent": "d6d18397-846e-4fde-bdc1-6b1019ce638a",
+        "children": []
+      },
+      "a2e83171-e232-4ccb-839c-a0973f166217": {
+        "id": "a2e83171-e232-4ccb-839c-a0973f166217",
+        "message": {
+          "id": "f6e099b8-21c4-4bcd-ad98-de7748de36e6",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-05T01:08:04.508Z"
+        },
+        "parent": "651f92b0-1397-4766-86bc-8913c9a8df5b",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "cd7a432a-3427-43e1-8962-4560b22293aa",
+    "title": "Workflow Automation Strategy - openai-009 #2",
+    "create_time": "2025-06-13T01:08:04.508Z",
+    "update_time": "2025-06-04T02:08:50.236Z",
+    "mapping": {
+      "ba03a482-4371-4683-be7c-547238d7cc23": {
+        "id": "ba03a482-4371-4683-be7c-547238d7cc23",
+        "message": {
+          "id": "75b0c6c7-89ee-4bd1-8742-ea767032f6bc",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-06T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "061a86f0-5968-4d09-83c9-bf8d3a8b316f": {
+        "id": "061a86f0-5968-4d09-83c9-bf8d3a8b316f",
+        "message": {
+          "id": "168d13cf-cd13-431e-a4b4-d4341985270e",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-17T01:08:04.508Z"
+        },
+        "parent": "ba03a482-4371-4683-be7c-547238d7cc23",
+        "children": []
+      },
+      "e748f922-58a4-44ed-82e7-adb21c2500d0": {
+        "id": "e748f922-58a4-44ed-82e7-adb21c2500d0",
+        "message": {
+          "id": "3ff8756f-5ce7-453a-b25b-14e707e631f0",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-28T01:08:04.508Z"
+        },
+        "parent": "061a86f0-5968-4d09-83c9-bf8d3a8b316f",
+        "children": []
+      },
+      "9509d94c-e6d2-40e6-a433-02315cafedc1": {
+        "id": "9509d94c-e6d2-40e6-a433-02315cafedc1",
+        "message": {
+          "id": "4d66d10a-2270-4896-bfdd-3b90c0a32d28",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-31T01:08:04.508Z"
+        },
+        "parent": "e748f922-58a4-44ed-82e7-adb21c2500d0",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "7c8a6771-30c9-4f4a-a768-ad374f06c3c3",
+    "title": "Workflow Automation Strategy - openai-009 #3",
+    "create_time": "2025-06-27T01:08:04.508Z",
+    "update_time": "2024-11-23T23:54:17.447Z",
+    "mapping": {
+      "3b936aaf-941e-4d7d-a5df-918f41f42387": {
+        "id": "3b936aaf-941e-4d7d-a5df-918f41f42387",
+        "message": {
+          "id": "81460d8d-b017-4d70-8ef4-5fa353a3abfc",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-09T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "0d7c63d4-a736-4279-acac-97e725631f10": {
+        "id": "0d7c63d4-a736-4279-acac-97e725631f10",
+        "message": {
+          "id": "22246e05-25ec-44e1-a1f7-cd3936e78906",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-09T01:08:04.508Z"
+        },
+        "parent": "3b936aaf-941e-4d7d-a5df-918f41f42387",
+        "children": []
+      },
+      "2ef33eda-103a-4023-b4a0-4117cb5123b6": {
+        "id": "2ef33eda-103a-4023-b4a0-4117cb5123b6",
+        "message": {
+          "id": "3672cc64-0044-4355-9f3c-71c067962429",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-02-13T01:08:04.508Z"
+        },
+        "parent": "0d7c63d4-a736-4279-acac-97e725631f10",
+        "children": []
+      },
+      "8b773b81-72c9-4f9f-8805-73858826608e": {
+        "id": "8b773b81-72c9-4f9f-8805-73858826608e",
+        "message": {
+          "id": "f2c8a8f5-f790-4f2b-9421-0748716658c8",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-20T01:08:04.508Z"
+        },
+        "parent": "2ef33eda-103a-4023-b4a0-4117cb5123b6",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "7411180e-f200-44a8-9a8e-7b6cb0ea8839",
+    "title": "Workflow Automation Strategy - openai-009 #4",
+    "create_time": "2024-11-19T01:08:04.508Z",
+    "update_time": "2025-08-12T08:50:04.739Z",
+    "mapping": {
+      "598f8052-117d-4b82-8db5-5fbc5516cc2f": {
+        "id": "598f8052-117d-4b82-8db5-5fbc5516cc2f",
+        "message": {
+          "id": "7963b625-a8de-4b0e-9729-1c355a489773",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-08T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "9ee694c6-3215-46f0-98d0-b713f6e44a74": {
+        "id": "9ee694c6-3215-46f0-98d0-b713f6e44a74",
+        "message": {
+          "id": "e2918bec-6347-4ec0-990e-60b270f07d51",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-16T01:08:04.508Z"
+        },
+        "parent": "598f8052-117d-4b82-8db5-5fbc5516cc2f",
+        "children": []
+      },
+      "a5fb0066-76bd-4bf6-a6c8-99201014af4d": {
+        "id": "a5fb0066-76bd-4bf6-a6c8-99201014af4d",
+        "message": {
+          "id": "102e30b2-ea3f-4996-9cab-8536abb69abe",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-30T01:08:04.508Z"
+        },
+        "parent": "9ee694c6-3215-46f0-98d0-b713f6e44a74",
+        "children": []
+      },
+      "2c2bbc1a-bd6a-4c91-9265-3c787e4b0e79": {
+        "id": "2c2bbc1a-bd6a-4c91-9265-3c787e4b0e79",
+        "message": {
+          "id": "7b6c3964-97ea-499a-8d4c-92f243486b44",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-29T01:08:04.508Z"
+        },
+        "parent": "a5fb0066-76bd-4bf6-a6c8-99201014af4d",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "80ee9687-272c-44f1-82fe-ea0a7eaedc07",
+    "title": "Workflow Automation Strategy - openai-009 #5",
+    "create_time": "2025-02-06T01:08:04.508Z",
+    "update_time": "2025-07-15T16:18:55.872Z",
+    "mapping": {
+      "cc590a98-a3d9-47e3-814d-e09f68313401": {
+        "id": "cc590a98-a3d9-47e3-814d-e09f68313401",
+        "message": {
+          "id": "aa6c9acb-d716-4325-b1dc-b3ba819fd7bd",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-29T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "cb302c31-2814-4fbf-8ab9-1aeb8ee48b59": {
+        "id": "cb302c31-2814-4fbf-8ab9-1aeb8ee48b59",
+        "message": {
+          "id": "01d121c2-05e7-4c49-9159-c971bf7b4cc8",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-20T01:08:04.508Z"
+        },
+        "parent": "cc590a98-a3d9-47e3-814d-e09f68313401",
+        "children": []
+      },
+      "65f3dbea-14a1-4a0e-87fa-cf3c2f448d6c": {
+        "id": "65f3dbea-14a1-4a0e-87fa-cf3c2f448d6c",
+        "message": {
+          "id": "7dd3b114-df1f-4ef0-b6c0-e8d8d14c5e9e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-03T01:08:04.508Z"
+        },
+        "parent": "cb302c31-2814-4fbf-8ab9-1aeb8ee48b59",
+        "children": []
+      },
+      "0c784a72-61b2-40b2-b6a0-de06e4c426c1": {
+        "id": "0c784a72-61b2-40b2-b6a0-de06e4c426c1",
+        "message": {
+          "id": "095293fa-d073-4d6e-bca2-4be4ee031a4b",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-10T01:08:04.508Z"
+        },
+        "parent": "65f3dbea-14a1-4a0e-87fa-cf3c2f448d6c",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "6148fea3-8d34-4b61-b194-a8426088c9c2",
+    "title": "Workflow Automation Strategy - openai-009 #6",
+    "create_time": "2025-03-25T01:08:04.508Z",
+    "update_time": "2025-09-13T11:01:19.738Z",
+    "mapping": {
+      "7a6cd3df-a0a5-4ac1-8dd6-1056e3033a82": {
+        "id": "7a6cd3df-a0a5-4ac1-8dd6-1056e3033a82",
+        "message": {
+          "id": "229b885f-93cd-467e-99a3-2c9c3254eff2",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-11T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "5f1383bb-116a-4d83-b085-aa5ee7c30348": {
+        "id": "5f1383bb-116a-4d83-b085-aa5ee7c30348",
+        "message": {
+          "id": "51f34510-c5cb-4d74-ba13-3f622ca8c698",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-02-13T01:08:04.508Z"
+        },
+        "parent": "7a6cd3df-a0a5-4ac1-8dd6-1056e3033a82",
+        "children": []
+      },
+      "e97efe6e-807f-4d80-b9f9-83d6620dd64e": {
+        "id": "e97efe6e-807f-4d80-b9f9-83d6620dd64e",
+        "message": {
+          "id": "0084b37b-b597-4a89-895e-31289924d451",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-03T01:08:04.508Z"
+        },
+        "parent": "5f1383bb-116a-4d83-b085-aa5ee7c30348",
+        "children": []
+      },
+      "195a11f7-dd3c-486a-a4ec-674efd2c70a3": {
+        "id": "195a11f7-dd3c-486a-a4ec-674efd2c70a3",
+        "message": {
+          "id": "56ea06fb-c368-441f-8430-add46703edd4",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-04T01:08:04.508Z"
+        },
+        "parent": "e97efe6e-807f-4d80-b9f9-83d6620dd64e",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "41091447-1bc2-472e-87d2-d927029c5448",
+    "title": "Workflow Automation Strategy - openai-009 #7",
+    "create_time": "2024-12-14T01:08:04.508Z",
+    "update_time": "2025-07-14T23:29:55.355Z",
+    "mapping": {
+      "8b95eddf-82db-4b23-a043-5c62f91d46ff": {
+        "id": "8b95eddf-82db-4b23-a043-5c62f91d46ff",
+        "message": {
+          "id": "33c1a068-22bd-431d-a1fc-3f39864d9052",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-15T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "58f0b6a8-cf9f-49cb-864b-ff382506238d": {
+        "id": "58f0b6a8-cf9f-49cb-864b-ff382506238d",
+        "message": {
+          "id": "a97ad7bc-8c91-4116-a431-61ebb11699ce",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-22T01:08:04.508Z"
+        },
+        "parent": "8b95eddf-82db-4b23-a043-5c62f91d46ff",
+        "children": []
+      },
+      "75ad5589-cb97-459a-b105-0cac653a6327": {
+        "id": "75ad5589-cb97-459a-b105-0cac653a6327",
+        "message": {
+          "id": "82a45c2d-65a6-4f56-9c0d-5936bff10b62",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-25T01:08:04.508Z"
+        },
+        "parent": "58f0b6a8-cf9f-49cb-864b-ff382506238d",
+        "children": []
+      },
+      "1d5939e7-851e-4e22-b685-67c8d4788234": {
+        "id": "1d5939e7-851e-4e22-b685-67c8d4788234",
+        "message": {
+          "id": "bcb7a11f-8b48-418c-ab9d-ce2f10d3bd6c",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-23T01:08:04.508Z"
+        },
+        "parent": "75ad5589-cb97-459a-b105-0cac653a6327",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "fac1fdd3-3ad4-4405-97b6-cc7699bb8d14",
+    "title": "Workflow Automation Strategy - openai-009 #8",
+    "create_time": "2024-11-27T01:08:04.508Z",
+    "update_time": "2025-08-23T20:08:35.259Z",
+    "mapping": {
+      "1c3ecd9e-27ed-47f9-989f-6162bbca38fe": {
+        "id": "1c3ecd9e-27ed-47f9-989f-6162bbca38fe",
+        "message": {
+          "id": "4213edda-46b0-4de7-af32-6a43ef35b2be",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-07T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "58da5ed8-dc2e-4795-aa01-f906764c5f1a": {
+        "id": "58da5ed8-dc2e-4795-aa01-f906764c5f1a",
+        "message": {
+          "id": "074fa3b9-7c8a-4269-8432-3a06f28acec4",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-16T01:08:04.508Z"
+        },
+        "parent": "1c3ecd9e-27ed-47f9-989f-6162bbca38fe",
+        "children": []
+      },
+      "e071c933-f3fd-40e1-be13-c7e7d880d9c0": {
+        "id": "e071c933-f3fd-40e1-be13-c7e7d880d9c0",
+        "message": {
+          "id": "d53970e6-8c6e-4251-916f-c727cce4698e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-03T01:08:04.508Z"
+        },
+        "parent": "58da5ed8-dc2e-4795-aa01-f906764c5f1a",
+        "children": []
+      },
+      "2c3ab601-2db5-493f-943c-1f886729e444": {
+        "id": "2c3ab601-2db5-493f-943c-1f886729e444",
+        "message": {
+          "id": "9ba7ac02-2c57-49c0-a6f6-b536378053e4",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-15T01:08:04.508Z"
+        },
+        "parent": "e071c933-f3fd-40e1-be13-c7e7d880d9c0",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "ace4dd24-b380-465a-8d2d-db1edf6c7096",
+    "title": "Workflow Automation Strategy - openai-009 #9",
+    "create_time": "2025-05-17T01:08:04.508Z",
+    "update_time": "2025-04-22T11:18:48.464Z",
+    "mapping": {
+      "0afae3e7-f1c3-4171-9af6-f0704baa0cb4": {
+        "id": "0afae3e7-f1c3-4171-9af6-f0704baa0cb4",
+        "message": {
+          "id": "6995b3f3-6504-4c12-9d25-4bfc3814f5aa",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-13T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "f880c4c0-1eaf-4171-9348-2f55c77f94ec": {
+        "id": "f880c4c0-1eaf-4171-9348-2f55c77f94ec",
+        "message": {
+          "id": "388e1e92-8976-4c29-91e9-724fe4ce82e4",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-07T01:08:04.508Z"
+        },
+        "parent": "0afae3e7-f1c3-4171-9af6-f0704baa0cb4",
+        "children": []
+      },
+      "1e338651-8930-4e88-9401-8347dba9fc24": {
+        "id": "1e338651-8930-4e88-9401-8347dba9fc24",
+        "message": {
+          "id": "461fa414-20ab-47e8-b351-f84d3db8ce72",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-23T01:08:04.508Z"
+        },
+        "parent": "f880c4c0-1eaf-4171-9348-2f55c77f94ec",
+        "children": []
+      },
+      "b5005ea7-d53b-4509-b83c-2877c96626b5": {
+        "id": "b5005ea7-d53b-4509-b83c-2877c96626b5",
+        "message": {
+          "id": "6a5b909f-b900-4c9b-a4ef-74b5af40a982",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-01T01:08:04.508Z"
+        },
+        "parent": "1e338651-8930-4e88-9401-8347dba9fc24",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "833bad9a-48c5-46fd-8b3f-a9a8e0d848e6",
+    "title": "Workflow Automation Strategy - openai-009 #10",
+    "create_time": "2025-09-15T01:08:04.508Z",
+    "update_time": "2025-04-09T04:22:16.923Z",
+    "mapping": {
+      "fe101ca6-a87f-4c1a-892d-eb4dd6e5e0fe": {
+        "id": "fe101ca6-a87f-4c1a-892d-eb4dd6e5e0fe",
+        "message": {
+          "id": "fea1f893-c9c8-4cab-b5cd-a6e2a4aeb9c0",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-28T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "2839d2ce-fa40-4853-a2d1-b5980b1bc152": {
+        "id": "2839d2ce-fa40-4853-a2d1-b5980b1bc152",
+        "message": {
+          "id": "5925cca8-7510-4bcb-aec2-e682d542d56a",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-08T01:08:04.508Z"
+        },
+        "parent": "fe101ca6-a87f-4c1a-892d-eb4dd6e5e0fe",
+        "children": []
+      },
+      "1b223a82-5f17-491a-a8e4-29c8fb40620f": {
+        "id": "1b223a82-5f17-491a-a8e4-29c8fb40620f",
+        "message": {
+          "id": "ef6b408f-5849-4ab0-ab0d-dfc22029ce5b",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-11T01:08:04.508Z"
+        },
+        "parent": "2839d2ce-fa40-4853-a2d1-b5980b1bc152",
+        "children": []
+      },
+      "add768f2-e4d3-4d53-9660-83842a421e82": {
+        "id": "add768f2-e4d3-4d53-9660-83842a421e82",
+        "message": {
+          "id": "1f1b5bdb-4ed6-4520-bdc1-8707c3cfbf71",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-06-12T01:08:04.508Z"
+        },
+        "parent": "1b223a82-5f17-491a-a8e4-29c8fb40620f",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "aaf27706-d4a0-4982-a377-5e6dfd993ef9",
+    "title": "Workflow Automation Strategy - openai-009 #11",
+    "create_time": "2024-12-20T01:08:04.508Z",
+    "update_time": "2024-12-25T00:33:58.568Z",
+    "mapping": {
+      "2eb56aa0-e4e0-4781-bf11-3e01c8d00de6": {
+        "id": "2eb56aa0-e4e0-4781-bf11-3e01c8d00de6",
+        "message": {
+          "id": "28b6e0f1-5bce-414e-bfc6-51fe1eb83535",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-13T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "94f99924-2761-4154-ba7a-1a508c835e81": {
+        "id": "94f99924-2761-4154-ba7a-1a508c835e81",
+        "message": {
+          "id": "c1f034df-0e44-4a3e-b24d-6f051f1331d1",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-06-14T01:08:04.508Z"
+        },
+        "parent": "2eb56aa0-e4e0-4781-bf11-3e01c8d00de6",
+        "children": []
+      },
+      "fe1d5f65-9da0-400c-8902-7e5ff249790d": {
+        "id": "fe1d5f65-9da0-400c-8902-7e5ff249790d",
+        "message": {
+          "id": "5fdd4037-e60d-4875-852b-3817da779e51",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-15T01:08:04.508Z"
+        },
+        "parent": "94f99924-2761-4154-ba7a-1a508c835e81",
+        "children": []
+      },
+      "3ff71286-4677-4614-8c36-5b7314d2079d": {
+        "id": "3ff71286-4677-4614-8c36-5b7314d2079d",
+        "message": {
+          "id": "21d51c52-ea2d-4e75-bf46-26a0b42af6ac",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-05T01:08:04.508Z"
+        },
+        "parent": "fe1d5f65-9da0-400c-8902-7e5ff249790d",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "9e7d32d3-bbbd-485d-ad88-4fef194eb379",
+    "title": "Workflow Automation Strategy - openai-009 #12",
+    "create_time": "2024-12-16T01:08:04.508Z",
+    "update_time": "2025-04-15T23:45:47.132Z",
+    "mapping": {
+      "9866b9aa-fd82-41a0-bd07-96bc756eb1ea": {
+        "id": "9866b9aa-fd82-41a0-bd07-96bc756eb1ea",
+        "message": {
+          "id": "6b6dc58a-cfb0-41ca-bf58-a443fc4dd571",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-11T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "0c244e9e-1919-4790-b326-8518e3d9fe76": {
+        "id": "0c244e9e-1919-4790-b326-8518e3d9fe76",
+        "message": {
+          "id": "555dd5f5-a4e6-4573-a406-b804ff3323bf",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-24T01:08:04.508Z"
+        },
+        "parent": "9866b9aa-fd82-41a0-bd07-96bc756eb1ea",
+        "children": []
+      },
+      "20e67e68-2ea1-4968-997f-de4ca53da4e4": {
+        "id": "20e67e68-2ea1-4968-997f-de4ca53da4e4",
+        "message": {
+          "id": "e8d6c95d-d664-43fa-ae0f-2818bd2bba1c",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-31T01:08:04.508Z"
+        },
+        "parent": "0c244e9e-1919-4790-b326-8518e3d9fe76",
+        "children": []
+      },
+      "7a741088-b4a0-477c-b281-71fd78329319": {
+        "id": "7a741088-b4a0-477c-b281-71fd78329319",
+        "message": {
+          "id": "6cf6870d-466c-438b-8aa3-98cf3a40e38f",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-23T01:08:04.508Z"
+        },
+        "parent": "20e67e68-2ea1-4968-997f-de4ca53da4e4",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "76b1088f-917b-4e5b-86c5-7202ff5e8857",
+    "title": "Workflow Automation Strategy - openai-009 #13",
+    "create_time": "2025-04-06T01:08:04.508Z",
+    "update_time": "2024-11-16T13:25:38.929Z",
+    "mapping": {
+      "21182864-766e-4962-9f7d-a6306b00dbd1": {
+        "id": "21182864-766e-4962-9f7d-a6306b00dbd1",
+        "message": {
+          "id": "a3445a77-04d2-4b6e-be3b-51a463ced39c",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-16T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "9af106bd-5742-402a-b72d-41c23c977492": {
+        "id": "9af106bd-5742-402a-b72d-41c23c977492",
+        "message": {
+          "id": "76d472ce-aa9d-4ba7-b166-10d527b40b29",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-03T01:08:04.508Z"
+        },
+        "parent": "21182864-766e-4962-9f7d-a6306b00dbd1",
+        "children": []
+      },
+      "9f022a16-7d4a-4daf-808e-18ca73ba0817": {
+        "id": "9f022a16-7d4a-4daf-808e-18ca73ba0817",
+        "message": {
+          "id": "ed96e245-dae1-42d1-a9ea-39cbd8f98f4c",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-21T01:08:04.508Z"
+        },
+        "parent": "9af106bd-5742-402a-b72d-41c23c977492",
+        "children": []
+      },
+      "9cea029e-0dbe-4e09-af0e-bf7378effa9f": {
+        "id": "9cea029e-0dbe-4e09-af0e-bf7378effa9f",
+        "message": {
+          "id": "59d41b60-af56-4824-87e9-2970845c989c",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-18T01:08:04.508Z"
+        },
+        "parent": "9f022a16-7d4a-4daf-808e-18ca73ba0817",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "fbee4c48-021f-4ce5-a529-c2dea67b8970",
+    "title": "Workflow Automation Strategy - openai-009 #14",
+    "create_time": "2025-06-15T01:08:04.508Z",
+    "update_time": "2025-03-11T18:47:23.921Z",
+    "mapping": {
+      "8a50fb85-f6f9-4129-97cb-0ceab506525f": {
+        "id": "8a50fb85-f6f9-4129-97cb-0ceab506525f",
+        "message": {
+          "id": "955d7f2b-5486-4fe5-a96b-ba3da97bcf26",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-27T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "2df0c777-f0b6-4084-8038-32a829e68ba8": {
+        "id": "2df0c777-f0b6-4084-8038-32a829e68ba8",
+        "message": {
+          "id": "a6e0fd97-3974-46bb-aaa6-bee68bccb153",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-23T01:08:04.508Z"
+        },
+        "parent": "8a50fb85-f6f9-4129-97cb-0ceab506525f",
+        "children": []
+      },
+      "b83b8460-4d88-44ef-b5cd-eeca8217f890": {
+        "id": "b83b8460-4d88-44ef-b5cd-eeca8217f890",
+        "message": {
+          "id": "c77585ea-8793-4044-9d7c-79fa4243b63b",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-15T01:08:04.508Z"
+        },
+        "parent": "2df0c777-f0b6-4084-8038-32a829e68ba8",
+        "children": []
+      },
+      "071206e9-8dae-408a-9300-3c0b3a48882f": {
+        "id": "071206e9-8dae-408a-9300-3c0b3a48882f",
+        "message": {
+          "id": "d0628c03-fd5f-4fd6-8b1c-20eda1583d68",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-09T01:08:04.508Z"
+        },
+        "parent": "b83b8460-4d88-44ef-b5cd-eeca8217f890",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "84bfb072-1bc3-44ac-8b6e-f549554a0dc6",
+    "title": "Workflow Automation Strategy - openai-009 #15",
+    "create_time": "2025-02-01T01:08:04.508Z",
+    "update_time": "2024-12-19T00:37:42.080Z",
+    "mapping": {
+      "f034834b-1e87-4254-a73e-dec995f9d057": {
+        "id": "f034834b-1e87-4254-a73e-dec995f9d057",
+        "message": {
+          "id": "6217fbca-d0ee-4b50-984a-8d14d71e102e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-19T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "73f69271-b8a6-498e-ab12-50a6595ccf91": {
+        "id": "73f69271-b8a6-498e-ab12-50a6595ccf91",
+        "message": {
+          "id": "871a16aa-886c-4769-9a95-8d4ede82ac6d",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-14T01:08:04.508Z"
+        },
+        "parent": "f034834b-1e87-4254-a73e-dec995f9d057",
+        "children": []
+      },
+      "773f80fd-a4ef-4236-886f-48715feabd5f": {
+        "id": "773f80fd-a4ef-4236-886f-48715feabd5f",
+        "message": {
+          "id": "675160d8-fc5b-4eef-92e7-a3881d12af64",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-02-01T01:08:04.508Z"
+        },
+        "parent": "73f69271-b8a6-498e-ab12-50a6595ccf91",
+        "children": []
+      },
+      "0e0bbe4a-6d61-4f9b-970b-22d170a7db72": {
+        "id": "0e0bbe4a-6d61-4f9b-970b-22d170a7db72",
+        "message": {
+          "id": "b70f96da-a845-497e-a6eb-abb8d5f13c44",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-02-19T01:08:04.508Z"
+        },
+        "parent": "773f80fd-a4ef-4236-886f-48715feabd5f",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "7a767cc8-1c7c-47df-8e98-18f1d3697be2",
+    "title": "Workflow Automation Strategy - openai-009 #16",
+    "create_time": "2025-03-28T01:08:04.508Z",
+    "update_time": "2025-04-04T03:13:20.753Z",
+    "mapping": {
+      "722ecf9e-a889-4ef7-add6-b40f4ce76509": {
+        "id": "722ecf9e-a889-4ef7-add6-b40f4ce76509",
+        "message": {
+          "id": "e5741f07-eb27-4cdf-9e00-9b58a7b2e1da",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Design an automated workflow for our content creation and approval process.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-05T01:08:04.508Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "4506c994-aea6-4c38-82e3-74800118048d": {
+        "id": "4506c994-aea6-4c38-82e3-74800118048d",
+        "message": {
+          "id": "fceeb4df-7a9b-402b-845c-78690a311865",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive automated workflow that streamlines content creation while maintaining quality control...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-14T01:08:04.508Z"
+        },
+        "parent": "722ecf9e-a889-4ef7-add6-b40f4ce76509",
+        "children": []
+      },
+      "6cf8fe7d-ef8b-4118-8391-60bae2a066cc": {
+        "id": "6cf8fe7d-ef8b-4118-8391-60bae2a066cc",
+        "message": {
+          "id": "3835e481-3aff-4990-9845-55a3e3d4f305",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need integration with our existing tools and approval hierarchies.\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-23T01:08:04.508Z"
+        },
+        "parent": "4506c994-aea6-4c38-82e3-74800118048d",
+        "children": []
+      },
+      "92a43eb3-fa5f-42af-940d-a563a0a356f0": {
+        "id": "92a43eb3-fa5f-42af-940d-a563a0a356f0",
+        "message": {
+          "id": "89bf6bc6-8466-413c-b11b-089b4d1d7caf",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For effective integration with existing tools and approval hierarchies, we'll create a modular workflow system that can adapt to your current processes...\n\n[Generated from Testament Array: Dr. Sabina Dream Commander | Agents: 1,680,000 | Account: openai-009]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-01T01:08:04.508Z"
+        },
+        "parent": "6cf8fe7d-ef8b-4118-8391-60bae2a066cc",
+        "children": []
+      }
+    }
+  }
+]

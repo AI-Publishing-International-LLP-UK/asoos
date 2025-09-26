@@ -1,0 +1,68 @@
+# Multi-stage production build for WFA Production Swarm
+# Optimized for 20M agents, 200 sectors, Victory36 protection
+FROM node:22-alpine AS base
+
+# Set working directory
+WORKDIR /app
+
+# Add security updates and essential tools
+RUN apk update && apk upgrade && \
+    apk add --no-cache \
+    dumb-init \
+    curl \
+    && rm -rf /var/cache/apk/*
+
+# Create non-root user
+RUN addgroup -S nodejs && \
+    adduser -S -s /bin/sh -G nodejs nodejs
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies with production optimizations
+FROM base AS dependencies
+RUN npm ci --only=production --ignore-scripts && \
+    npm cache clean --force
+
+# Production stage
+FROM base AS production
+
+# Copy installed dependencies
+COPY --from=dependencies --chown=nodejs:nodejs /app/node_modules ./node_modules
+
+# Copy application files
+COPY --chown=nodejs:nodejs . .
+
+# Create tmp directory for container runtime
+RUN mkdir -p /tmp/app && chown nodejs:nodejs /tmp/app
+
+# Set production environment
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV CLOUD_ML_REGION=us-west1
+ENV WFA_AGENTS_COUNT=20000000
+ENV WFA_SECTORS_COUNT=200
+ENV JOB_CLUSTERS_COUNT=64000000
+ENV CAREER_CLUSTERS_COUNT=319998
+ENV VICTORY36_PROTECTION=maximum
+ENV CLOUD_TO_CLOUD_MODE=enabled
+ENV MCP_DNS_AUTOMATION=enabled
+
+# Node.js production optimizations
+ENV NODE_OPTIONS="--max-old-space-size=6144 --optimize-for-size"
+
+# Switch to non-root user
+USER nodejs
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
+
+# Start the application
+CMD ["node", "server.js"]

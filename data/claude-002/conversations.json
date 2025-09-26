@@ -1,0 +1,1262 @@
+[
+  {
+    "id": "ce31b65c-54c5-4b75-9529-038e7d5a2a18",
+    "title": "Strategic Intelligence Analysis - claude-002 #1",
+    "create_time": "2025-05-14T01:08:04.511Z",
+    "update_time": "2024-10-21T17:16:50.647Z",
+    "mapping": {
+      "a766ca3c-623a-4cc9-86ef-c2f8c16ed34a": {
+        "id": "a766ca3c-623a-4cc9-86ef-c2f8c16ed34a",
+        "message": {
+          "id": "64a58c81-a518-440c-ac24-a150e9c7bd18",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-06T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "ee634e93-38b7-4b1c-8fc7-c28d9241dcb0": {
+        "id": "ee634e93-38b7-4b1c-8fc7-c28d9241dcb0",
+        "message": {
+          "id": "db4a7fa7-fb71-43b2-9cb6-84a960aff384",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-25T01:08:04.511Z"
+        },
+        "parent": "a766ca3c-623a-4cc9-86ef-c2f8c16ed34a",
+        "children": []
+      },
+      "c4bf6313-1e70-4474-8985-5a24b8831623": {
+        "id": "c4bf6313-1e70-4474-8985-5a24b8831623",
+        "message": {
+          "id": "b7b99ec8-9bec-4a89-a275-bee2e1c5dff2",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-17T01:08:04.511Z"
+        },
+        "parent": "ee634e93-38b7-4b1c-8fc7-c28d9241dcb0",
+        "children": []
+      },
+      "0ec9edc3-91bb-4cea-8bfb-104eab0624bc": {
+        "id": "0ec9edc3-91bb-4cea-8bfb-104eab0624bc",
+        "message": {
+          "id": "b3a04615-352c-4a13-89b3-21518502fc20",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-30T01:08:04.511Z"
+        },
+        "parent": "c4bf6313-1e70-4474-8985-5a24b8831623",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "0439a7eb-2fec-4bcd-be97-7a15413ad71e",
+    "title": "Complex Problem Solving Framework - claude-002 #2",
+    "create_time": "2024-10-12T01:08:04.511Z",
+    "update_time": "2024-10-15T18:19:34.816Z",
+    "mapping": {
+      "19703ecf-074c-48d3-b07e-517e43c15c10": {
+        "id": "19703ecf-074c-48d3-b07e-517e43c15c10",
+        "message": {
+          "id": "c6fe6340-09f5-4ccc-829f-9c36621d534b",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me develop a systematic approach to solving complex business problems.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-22T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "6b98c7a2-553f-4c77-b3da-7a65b26be9b3": {
+        "id": "6b98c7a2-553f-4c77-b3da-7a65b26be9b3",
+        "message": {
+          "id": "e7fd9a68-cf8a-4672-9629-20ebe4884cfc",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you create a robust framework for complex problem solving that combines analytical rigor with creative thinking...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-06-01T01:08:04.511Z"
+        },
+        "parent": "19703ecf-074c-48d3-b07e-517e43c15c10",
+        "children": []
+      },
+      "acf9290a-3846-463e-8582-f90f679db427": {
+        "id": "acf9290a-3846-463e-8582-f90f679db427",
+        "message": {
+          "id": "0904d0dc-c4fc-4615-a501-05db614db62b",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The problems often involve multiple stakeholders and conflicting objectives.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-22T01:08:04.511Z"
+        },
+        "parent": "6b98c7a2-553f-4c77-b3da-7a65b26be9b3",
+        "children": []
+      },
+      "708ff285-6d6f-4f9e-991f-6bf033e3d11e": {
+        "id": "708ff285-6d6f-4f9e-991f-6bf033e3d11e",
+        "message": {
+          "id": "61334c43-6881-4b44-9fcc-ee825584182e",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Multi-stakeholder problems with conflicting objectives require a structured approach that balances different perspectives and finds optimal solutions...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-12T01:08:04.511Z"
+        },
+        "parent": "acf9290a-3846-463e-8582-f90f679db427",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "93eb66e0-4f06-4690-aef6-41c7caa68419",
+    "title": "Strategic Intelligence Analysis - claude-002 #3",
+    "create_time": "2025-06-23T01:08:04.511Z",
+    "update_time": "2024-12-21T08:22:52.255Z",
+    "mapping": {
+      "19f35f8e-7389-462c-83b6-6fc6b0e2b58a": {
+        "id": "19f35f8e-7389-462c-83b6-6fc6b0e2b58a",
+        "message": {
+          "id": "22405963-ba98-44a6-aa28-4b1f0c3a9366",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-06T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "689bc905-49da-4aae-8a6f-8bf1a391437e": {
+        "id": "689bc905-49da-4aae-8a6f-8bf1a391437e",
+        "message": {
+          "id": "a0a8715c-18a2-4996-86ea-e1e32e78acf4",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-21T01:08:04.511Z"
+        },
+        "parent": "19f35f8e-7389-462c-83b6-6fc6b0e2b58a",
+        "children": []
+      },
+      "31648013-77f2-4e45-b074-962a09c55f11": {
+        "id": "31648013-77f2-4e45-b074-962a09c55f11",
+        "message": {
+          "id": "47ca7b3c-2fd4-413f-b0e8-e77914a7ac8a",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-09T01:08:04.511Z"
+        },
+        "parent": "689bc905-49da-4aae-8a6f-8bf1a391437e",
+        "children": []
+      },
+      "5f0859dc-c0bc-44d8-b7b1-69145ea75733": {
+        "id": "5f0859dc-c0bc-44d8-b7b1-69145ea75733",
+        "message": {
+          "id": "3f4f3524-4107-4a12-81ac-c253a4331642",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-09-29T01:08:04.511Z"
+        },
+        "parent": "31648013-77f2-4e45-b074-962a09c55f11",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "9652683f-07eb-44bf-99cc-1d66e2216f5e",
+    "title": "Complex Problem Solving Framework - claude-002 #4",
+    "create_time": "2025-02-14T01:08:04.511Z",
+    "update_time": "2025-05-31T02:44:18.635Z",
+    "mapping": {
+      "05da376f-7987-4103-ac3f-f4f25b00da36": {
+        "id": "05da376f-7987-4103-ac3f-f4f25b00da36",
+        "message": {
+          "id": "3c8e6074-92d4-4b7c-820e-d90f4da6f000",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me develop a systematic approach to solving complex business problems.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-27T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "d466c73d-0e22-479f-ab40-bfa0cf01f3ca": {
+        "id": "d466c73d-0e22-479f-ab40-bfa0cf01f3ca",
+        "message": {
+          "id": "20c94108-d6bc-404e-8fcc-a6c7c5aae6ee",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you create a robust framework for complex problem solving that combines analytical rigor with creative thinking...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-13T01:08:04.511Z"
+        },
+        "parent": "05da376f-7987-4103-ac3f-f4f25b00da36",
+        "children": []
+      },
+      "e55fa5ab-2302-4e10-9579-31bb9f23b72b": {
+        "id": "e55fa5ab-2302-4e10-9579-31bb9f23b72b",
+        "message": {
+          "id": "ea6abdfb-ddd5-4242-93d1-738a8f9e4d46",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The problems often involve multiple stakeholders and conflicting objectives.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-06-22T01:08:04.511Z"
+        },
+        "parent": "d466c73d-0e22-479f-ab40-bfa0cf01f3ca",
+        "children": []
+      },
+      "66f83f9d-5c32-4f2e-9a60-d98ac0171cce": {
+        "id": "66f83f9d-5c32-4f2e-9a60-d98ac0171cce",
+        "message": {
+          "id": "454ada9e-454c-45ba-b74e-99953fd6413d",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Multi-stakeholder problems with conflicting objectives require a structured approach that balances different perspectives and finds optimal solutions...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-06-02T01:08:04.511Z"
+        },
+        "parent": "e55fa5ab-2302-4e10-9579-31bb9f23b72b",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "9c4c6844-54e4-44d8-b851-48a9485ebd79",
+    "title": "Strategic Intelligence Analysis - claude-002 #5",
+    "create_time": "2025-06-29T01:08:04.511Z",
+    "update_time": "2025-03-07T04:03:14.839Z",
+    "mapping": {
+      "be638b71-0fc1-4451-977b-6f40f412c73e": {
+        "id": "be638b71-0fc1-4451-977b-6f40f412c73e",
+        "message": {
+          "id": "b4466372-6457-424c-a0ca-c00e263d9e20",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-21T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "326f0155-23f1-4301-8f0c-efd7e7a0d2d0": {
+        "id": "326f0155-23f1-4301-8f0c-efd7e7a0d2d0",
+        "message": {
+          "id": "dd4eac67-7275-4e95-91b3-c3de5fbc7864",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-05T01:08:04.511Z"
+        },
+        "parent": "be638b71-0fc1-4451-977b-6f40f412c73e",
+        "children": []
+      },
+      "2585dc76-94b4-444a-993c-51576832eed3": {
+        "id": "2585dc76-94b4-444a-993c-51576832eed3",
+        "message": {
+          "id": "6b4719b8-d6ed-48a1-bfe5-8c0949ad6ca5",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-09T01:08:04.511Z"
+        },
+        "parent": "326f0155-23f1-4301-8f0c-efd7e7a0d2d0",
+        "children": []
+      },
+      "db8260ba-a549-4677-afa8-cd6911e2d270": {
+        "id": "db8260ba-a549-4677-afa8-cd6911e2d270",
+        "message": {
+          "id": "451287d9-cebb-4324-85d9-83b91046b8e4",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-18T01:08:04.511Z"
+        },
+        "parent": "2585dc76-94b4-444a-993c-51576832eed3",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "3dd4cc86-5d1f-4fcc-af42-1bea6ca5e85a",
+    "title": "Complex Problem Solving Framework - claude-002 #6",
+    "create_time": "2025-08-12T01:08:04.511Z",
+    "update_time": "2024-10-29T07:57:55.103Z",
+    "mapping": {
+      "ca1c6aba-5656-4271-b4a7-cc7fa42917ee": {
+        "id": "ca1c6aba-5656-4271-b4a7-cc7fa42917ee",
+        "message": {
+          "id": "1ad1fb99-2d53-4d9d-8d8f-aba4a6a944f0",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me develop a systematic approach to solving complex business problems.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-13T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "869fc142-89a6-4b66-8041-4ea759eaf29e": {
+        "id": "869fc142-89a6-4b66-8041-4ea759eaf29e",
+        "message": {
+          "id": "18462c72-1ede-40b0-a189-1a3ac8c76c99",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you create a robust framework for complex problem solving that combines analytical rigor with creative thinking...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-09T01:08:04.511Z"
+        },
+        "parent": "ca1c6aba-5656-4271-b4a7-cc7fa42917ee",
+        "children": []
+      },
+      "ded1ca6a-8abe-40e0-8d3a-75433de44339": {
+        "id": "ded1ca6a-8abe-40e0-8d3a-75433de44339",
+        "message": {
+          "id": "17b494d9-a9ab-4add-9159-4d8a9725d04b",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The problems often involve multiple stakeholders and conflicting objectives.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-11T01:08:04.511Z"
+        },
+        "parent": "869fc142-89a6-4b66-8041-4ea759eaf29e",
+        "children": []
+      },
+      "3cd89995-1b7c-4653-9cc9-33b8b2a53600": {
+        "id": "3cd89995-1b7c-4653-9cc9-33b8b2a53600",
+        "message": {
+          "id": "cb4a0cd6-993f-4344-8234-95aa9eaa49d7",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Multi-stakeholder problems with conflicting objectives require a structured approach that balances different perspectives and finds optimal solutions...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-14T01:08:04.511Z"
+        },
+        "parent": "ded1ca6a-8abe-40e0-8d3a-75433de44339",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "83410f58-b86b-46be-a1b5-3516617b8cbd",
+    "title": "Strategic Intelligence Analysis - claude-002 #7",
+    "create_time": "2025-02-03T01:08:04.511Z",
+    "update_time": "2024-11-11T23:25:23.628Z",
+    "mapping": {
+      "252002d2-3577-49e4-b38c-c9ca2b98e251": {
+        "id": "252002d2-3577-49e4-b38c-c9ca2b98e251",
+        "message": {
+          "id": "6f53b170-8091-4713-bc86-dca518ba197e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-24T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "e07f1cac-2e7e-4174-9c5d-d34319042613": {
+        "id": "e07f1cac-2e7e-4174-9c5d-d34319042613",
+        "message": {
+          "id": "9972597a-4ff6-462d-8baf-4427394e89d8",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-15T01:08:04.511Z"
+        },
+        "parent": "252002d2-3577-49e4-b38c-c9ca2b98e251",
+        "children": []
+      },
+      "50139a52-db5c-4f07-b350-bb90ee1cac59": {
+        "id": "50139a52-db5c-4f07-b350-bb90ee1cac59",
+        "message": {
+          "id": "d19b0ff1-c82b-4d96-926c-d4915996f3f4",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-27T01:08:04.511Z"
+        },
+        "parent": "e07f1cac-2e7e-4174-9c5d-d34319042613",
+        "children": []
+      },
+      "0eeac650-4e7b-4fb8-b9d2-cce97a67883c": {
+        "id": "0eeac650-4e7b-4fb8-b9d2-cce97a67883c",
+        "message": {
+          "id": "a09c7462-e9c6-4783-917a-8b536e89481f",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-08T01:08:04.511Z"
+        },
+        "parent": "50139a52-db5c-4f07-b350-bb90ee1cac59",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "eefc14f8-44ae-4a83-8536-65f2d2d37c6e",
+    "title": "Complex Problem Solving Framework - claude-002 #8",
+    "create_time": "2025-03-13T01:08:04.511Z",
+    "update_time": "2024-11-24T00:56:36.941Z",
+    "mapping": {
+      "1b85eebd-96f2-4f1f-9251-c7daf619fd5f": {
+        "id": "1b85eebd-96f2-4f1f-9251-c7daf619fd5f",
+        "message": {
+          "id": "740946dc-3553-40e7-866b-b7a46b54d20a",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me develop a systematic approach to solving complex business problems.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-17T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "45568887-3472-42dd-a98d-b827b3d77fbf": {
+        "id": "45568887-3472-42dd-a98d-b827b3d77fbf",
+        "message": {
+          "id": "5a7b05f7-0f3d-4729-b4c2-4f54c69ccf68",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you create a robust framework for complex problem solving that combines analytical rigor with creative thinking...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-24T01:08:04.511Z"
+        },
+        "parent": "1b85eebd-96f2-4f1f-9251-c7daf619fd5f",
+        "children": []
+      },
+      "dcfbdfb1-b03f-4b0b-917b-cbad9c0e037c": {
+        "id": "dcfbdfb1-b03f-4b0b-917b-cbad9c0e037c",
+        "message": {
+          "id": "bcd65e18-25a9-4a28-a2cd-129c28449d5f",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The problems often involve multiple stakeholders and conflicting objectives.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-10T01:08:04.511Z"
+        },
+        "parent": "45568887-3472-42dd-a98d-b827b3d77fbf",
+        "children": []
+      },
+      "9a7488d9-373a-4680-8c3f-49d78df53746": {
+        "id": "9a7488d9-373a-4680-8c3f-49d78df53746",
+        "message": {
+          "id": "7820f801-f730-44d3-a4ff-c0a7c4e777e1",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Multi-stakeholder problems with conflicting objectives require a structured approach that balances different perspectives and finds optimal solutions...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-23T01:08:04.511Z"
+        },
+        "parent": "dcfbdfb1-b03f-4b0b-917b-cbad9c0e037c",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "4bffbb92-ae9f-4172-b6eb-173ea2711c29",
+    "title": "Strategic Intelligence Analysis - claude-002 #9",
+    "create_time": "2025-08-14T01:08:04.511Z",
+    "update_time": "2025-05-17T12:44:33.106Z",
+    "mapping": {
+      "1161805f-3bb4-4019-9b5e-050c25d530af": {
+        "id": "1161805f-3bb4-4019-9b5e-050c25d530af",
+        "message": {
+          "id": "1336ea13-f91a-446b-9662-da46917574a2",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-01T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "04319dca-d453-4237-905b-f8c1aa2ddea1": {
+        "id": "04319dca-d453-4237-905b-f8c1aa2ddea1",
+        "message": {
+          "id": "64e88241-17e0-474f-9b88-f002ebce06aa",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-17T01:08:04.511Z"
+        },
+        "parent": "1161805f-3bb4-4019-9b5e-050c25d530af",
+        "children": []
+      },
+      "96663aab-8ffc-41e9-8b1c-59b6e62bfec5": {
+        "id": "96663aab-8ffc-41e9-8b1c-59b6e62bfec5",
+        "message": {
+          "id": "d48602c5-298a-4543-9921-8028271b3835",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-10T01:08:04.511Z"
+        },
+        "parent": "04319dca-d453-4237-905b-f8c1aa2ddea1",
+        "children": []
+      },
+      "cdbdd942-858d-477f-8981-0c847636aa38": {
+        "id": "cdbdd942-858d-477f-8981-0c847636aa38",
+        "message": {
+          "id": "877517ff-57c4-4153-8fad-7d1076a8684a",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-06T01:08:04.511Z"
+        },
+        "parent": "96663aab-8ffc-41e9-8b1c-59b6e62bfec5",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "a72ccc77-ca92-4cf6-9928-1587f9e7c23f",
+    "title": "Complex Problem Solving Framework - claude-002 #10",
+    "create_time": "2024-12-21T01:08:04.511Z",
+    "update_time": "2024-11-12T04:57:32.017Z",
+    "mapping": {
+      "402e34c9-ee1b-4f79-975c-fa7324723c28": {
+        "id": "402e34c9-ee1b-4f79-975c-fa7324723c28",
+        "message": {
+          "id": "5bed7367-4533-4abf-8dcc-581624ef9525",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me develop a systematic approach to solving complex business problems.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-23T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "6a2a82c6-e2d6-45fd-a4a1-8c450cefeec5": {
+        "id": "6a2a82c6-e2d6-45fd-a4a1-8c450cefeec5",
+        "message": {
+          "id": "120cde7e-f205-4c6d-a9a2-85b75f3bba22",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you create a robust framework for complex problem solving that combines analytical rigor with creative thinking...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-06T01:08:04.511Z"
+        },
+        "parent": "402e34c9-ee1b-4f79-975c-fa7324723c28",
+        "children": []
+      },
+      "332dcf8d-c206-4701-acfa-fa3ccfa1bd9b": {
+        "id": "332dcf8d-c206-4701-acfa-fa3ccfa1bd9b",
+        "message": {
+          "id": "0d32e569-7a6c-4462-9d5b-54eb118cb700",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The problems often involve multiple stakeholders and conflicting objectives.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-24T01:08:04.511Z"
+        },
+        "parent": "6a2a82c6-e2d6-45fd-a4a1-8c450cefeec5",
+        "children": []
+      },
+      "947b76f2-ef8b-451b-95a1-d061410ee65a": {
+        "id": "947b76f2-ef8b-451b-95a1-d061410ee65a",
+        "message": {
+          "id": "9aa58a1f-d40e-4823-a514-99662ebcf1af",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Multi-stakeholder problems with conflicting objectives require a structured approach that balances different perspectives and finds optimal solutions...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-12T01:08:04.511Z"
+        },
+        "parent": "332dcf8d-c206-4701-acfa-fa3ccfa1bd9b",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "613400e9-c5e6-4a12-a706-07bdcf2f46d5",
+    "title": "Strategic Intelligence Analysis - claude-002 #11",
+    "create_time": "2025-08-13T01:08:04.511Z",
+    "update_time": "2025-04-20T15:22:43.014Z",
+    "mapping": {
+      "7c6862ee-b75e-4601-9b8f-810c13aa79c3": {
+        "id": "7c6862ee-b75e-4601-9b8f-810c13aa79c3",
+        "message": {
+          "id": "75684a56-e390-421b-8fbd-e30f02b5dc1c",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-29T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "9023ee50-34de-4f06-92dd-b6b805394f88": {
+        "id": "9023ee50-34de-4f06-92dd-b6b805394f88",
+        "message": {
+          "id": "07ceddf7-718c-4ccc-9424-d078feaaed76",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-17T01:08:04.511Z"
+        },
+        "parent": "7c6862ee-b75e-4601-9b8f-810c13aa79c3",
+        "children": []
+      },
+      "74dae82c-b30a-4116-ba67-e4b7aae6db0f": {
+        "id": "74dae82c-b30a-4116-ba67-e4b7aae6db0f",
+        "message": {
+          "id": "c7347d51-5f23-474d-8f34-45d745364d03",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-05T01:08:04.511Z"
+        },
+        "parent": "9023ee50-34de-4f06-92dd-b6b805394f88",
+        "children": []
+      },
+      "a3f976f0-f052-40cc-b3b2-63708a34e161": {
+        "id": "a3f976f0-f052-40cc-b3b2-63708a34e161",
+        "message": {
+          "id": "c611b747-01a4-42fd-b52e-97c75a46e775",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-14T01:08:04.511Z"
+        },
+        "parent": "74dae82c-b30a-4116-ba67-e4b7aae6db0f",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "1c45e36d-4189-4fff-aa49-dc5cf129a85b",
+    "title": "Complex Problem Solving Framework - claude-002 #12",
+    "create_time": "2025-04-23T01:08:04.511Z",
+    "update_time": "2025-07-11T11:56:32.347Z",
+    "mapping": {
+      "23c8a678-f76d-4f93-b9f7-9369f891261f": {
+        "id": "23c8a678-f76d-4f93-b9f7-9369f891261f",
+        "message": {
+          "id": "719f6571-05f2-41e2-9017-c49b99f74077",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me develop a systematic approach to solving complex business problems.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-31T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "c88f0da3-a346-4914-a458-70000d5f1e1d": {
+        "id": "c88f0da3-a346-4914-a458-70000d5f1e1d",
+        "message": {
+          "id": "292852b4-018e-4656-92be-0c9deaf17e24",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you create a robust framework for complex problem solving that combines analytical rigor with creative thinking...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-23T01:08:04.511Z"
+        },
+        "parent": "23c8a678-f76d-4f93-b9f7-9369f891261f",
+        "children": []
+      },
+      "44662d9e-564e-4240-a5c6-f797e66a86ce": {
+        "id": "44662d9e-564e-4240-a5c6-f797e66a86ce",
+        "message": {
+          "id": "8a419328-791d-4997-9dd6-9517bfbd255e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The problems often involve multiple stakeholders and conflicting objectives.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-21T01:08:04.511Z"
+        },
+        "parent": "c88f0da3-a346-4914-a458-70000d5f1e1d",
+        "children": []
+      },
+      "57b236e4-dc5b-4844-88ee-2f46e2aec506": {
+        "id": "57b236e4-dc5b-4844-88ee-2f46e2aec506",
+        "message": {
+          "id": "ca05f0a2-ded7-4237-ae52-41b392c64d4f",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Multi-stakeholder problems with conflicting objectives require a structured approach that balances different perspectives and finds optimal solutions...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-09T01:08:04.511Z"
+        },
+        "parent": "44662d9e-564e-4240-a5c6-f797e66a86ce",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "6ca0e3f1-2f34-4ae2-a0a0-f702564c094f",
+    "title": "Strategic Intelligence Analysis - claude-002 #13",
+    "create_time": "2025-03-19T01:08:04.511Z",
+    "update_time": "2024-11-02T22:57:20.759Z",
+    "mapping": {
+      "f15ee0b5-3e3b-4e49-b89d-838f02071a91": {
+        "id": "f15ee0b5-3e3b-4e49-b89d-838f02071a91",
+        "message": {
+          "id": "a04e2f13-9c8f-4795-a6a0-d88e0870b5dd",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-29T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "95745057-bf31-4134-964c-54843cf9c4f3": {
+        "id": "95745057-bf31-4134-964c-54843cf9c4f3",
+        "message": {
+          "id": "43f9fa69-0673-482b-adf5-0a746df8bab0",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-26T01:08:04.511Z"
+        },
+        "parent": "f15ee0b5-3e3b-4e49-b89d-838f02071a91",
+        "children": []
+      },
+      "a5c49d9c-fefe-431d-b894-f79181d0c693": {
+        "id": "a5c49d9c-fefe-431d-b894-f79181d0c693",
+        "message": {
+          "id": "c8903e1b-0728-4bce-b468-e61aedcc972a",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-20T01:08:04.511Z"
+        },
+        "parent": "95745057-bf31-4134-964c-54843cf9c4f3",
+        "children": []
+      },
+      "b7ce7622-4929-4ea7-95d0-8dc2011068af": {
+        "id": "b7ce7622-4929-4ea7-95d0-8dc2011068af",
+        "message": {
+          "id": "838728d5-0bd9-49de-9679-50b9ccafb31d",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-09T01:08:04.511Z"
+        },
+        "parent": "a5c49d9c-fefe-431d-b894-f79181d0c693",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "661e8927-75fb-470c-9ac8-a5b5e69a1a71",
+    "title": "Complex Problem Solving Framework - claude-002 #14",
+    "create_time": "2024-09-25T01:08:04.511Z",
+    "update_time": "2025-02-01T21:07:34.045Z",
+    "mapping": {
+      "90ab6016-875a-4ae4-8f5e-5a21b887d9a0": {
+        "id": "90ab6016-875a-4ae4-8f5e-5a21b887d9a0",
+        "message": {
+          "id": "0f99bc30-c03b-452f-9992-eb5672ce2b49",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me develop a systematic approach to solving complex business problems.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-02T01:08:04.511Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "f1376ab1-2c9f-4797-9432-09c7d4dc437e": {
+        "id": "f1376ab1-2c9f-4797-9432-09c7d4dc437e",
+        "message": {
+          "id": "ea6da852-a7fc-419b-8377-ff98174db057",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you create a robust framework for complex problem solving that combines analytical rigor with creative thinking...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-25T01:08:04.511Z"
+        },
+        "parent": "90ab6016-875a-4ae4-8f5e-5a21b887d9a0",
+        "children": []
+      },
+      "cefa6180-0933-46f8-a4af-cde0d06a47cc": {
+        "id": "cefa6180-0933-46f8-a4af-cde0d06a47cc",
+        "message": {
+          "id": "098f664f-c3fd-4e7f-8fc0-2142e0cbfaed",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The problems often involve multiple stakeholders and conflicting objectives.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-12T01:08:04.512Z"
+        },
+        "parent": "f1376ab1-2c9f-4797-9432-09c7d4dc437e",
+        "children": []
+      },
+      "f54ce070-df90-40a8-8291-b51a7cc0c01e": {
+        "id": "f54ce070-df90-40a8-8291-b51a7cc0c01e",
+        "message": {
+          "id": "132363f8-c059-4ceb-934d-b6b7d4d73005",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Multi-stakeholder problems with conflicting objectives require a structured approach that balances different perspectives and finds optimal solutions...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-09T01:08:04.512Z"
+        },
+        "parent": "cefa6180-0933-46f8-a4af-cde0d06a47cc",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "6ee5311c-f41a-4606-8043-88787687e6ee",
+    "title": "Strategic Intelligence Analysis - claude-002 #15",
+    "create_time": "2025-02-05T01:08:04.512Z",
+    "update_time": "2024-11-17T21:26:33.354Z",
+    "mapping": {
+      "d1fc75d8-d9fe-4ef5-8758-88787f079c6b": {
+        "id": "d1fc75d8-d9fe-4ef5-8758-88787f079c6b",
+        "message": {
+          "id": "356438e2-fbdf-42e4-9ee4-2187467eb468",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Analyze the competitive landscape for AI-powered business intelligence tools.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-23T01:08:04.512Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "40508079-74a3-4f4e-b868-e19319e51eea": {
+        "id": "40508079-74a3-4f4e-b868-e19319e51eea",
+        "message": {
+          "id": "77fb2ef0-f26b-4718-9c61-477f605a375f",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll provide a comprehensive analysis of the AI-powered business intelligence landscape, examining key players, market trends, and strategic opportunities...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-06-08T01:08:04.512Z"
+        },
+        "parent": "d1fc75d8-d9fe-4ef5-8758-88787f079c6b",
+        "children": []
+      },
+      "ad1d2e0a-d1c6-468e-be10-b349a75dc675": {
+        "id": "ad1d2e0a-d1c6-468e-be10-b349a75dc675",
+        "message": {
+          "id": "e126756c-a0cd-4604-a48a-06ffc35c41d8",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Focus on enterprise-grade solutions with real-time capabilities.\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-06-29T01:08:04.512Z"
+        },
+        "parent": "40508079-74a3-4f4e-b868-e19319e51eea",
+        "children": []
+      },
+      "8b2fe124-9796-4272-b311-4af54cfde020": {
+        "id": "8b2fe124-9796-4272-b311-4af54cfde020",
+        "message": {
+          "id": "3589738f-594c-4af4-9342-1eb961469ad5",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Enterprise-grade AI-BI solutions with real-time capabilities represent a rapidly evolving market segment. Key players include...\n\n[Generated from Testament Array: Dr. Claude Orchestrator | Agents: 1,510,000 | Account: claude-002]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-10T01:08:04.512Z"
+        },
+        "parent": "ad1d2e0a-d1c6-468e-be10-b349a75dc675",
+        "children": []
+      }
+    }
+  }
+]

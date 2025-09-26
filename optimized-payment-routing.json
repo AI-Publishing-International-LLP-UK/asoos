@@ -1,0 +1,182 @@
+{
+  "payment_routing": {
+    "chase_1706_primary": {
+      "region": "US + Asia Pacific + Americas + Africa/Middle East + Industrial",
+      "grids": [
+        "ERCOT Texas, CAISO California, PJM East Coast",
+        "US State Public Utilities (50 grids)",
+        "US Municipal Utilities (3,000 grids)",
+        "US Rural Electric Cooperatives (850 grids)",
+        "US Industrial Micro-grids (200 grids)",
+        "Japanese Municipal Utilities (400 grids)",
+        "Chinese County-level Power (600 grids)",
+        "Indian Municipal Utilities (350 grids)",
+        "Australian Local Utilities (200 grids)",
+        "Southeast Asian Municipal (250 grids)",
+        "Canadian Municipal Utilities (200 grids)",
+        "Mexican Municipal Utilities (250 grids)",
+        "Brazilian Municipal Utilities (180 grids)",
+        "Argentine Local Utilities (80 grids)",
+        "Other Latin American (90 grids)",
+        "South African Municipal (180 grids)",
+        "UAE Municipal Utilities (50 grids)",
+        "Egyptian Local Utilities (120 grids)",
+        "Nigerian Municipal (200 grids)",
+        "Other African Utilities (150 grids)",
+        "Asian Industrial Micro-grids (100 grids)",
+        "Global Industrial Micro-grids (50 grids)"
+      ],
+      "expected_daily_revenue_usd": 828000,
+      "payment_methods": [
+        "ACH Direct (US grids)",
+        "International Wire Transfer (Non-US grids)",
+        "SWIFT Transfer (Global coverage)"
+      ],
+      "currencies_handled": [
+        "USD",
+        "JPY",
+        "AUD",
+        "CAD",
+        "BRL",
+        "ZAR",
+        "AED",
+        "INR"
+      ],
+      "xero_integration": "ACTIVE - Account 1706",
+      "transaction_fees": "Minimal (wire transfer fees only, no percentage)"
+    },
+    "stripe_europe_only": {
+      "region": "Europe Only",
+      "grids": [
+        "EPEX SPOT Europe",
+        "Nord Pool Nordic",
+        "German Municipal Utilities (900 grids)",
+        "French Municipal Utilities (400 grids)",
+        "UK Local Authorities (300 grids - VAT exempt)",
+        "Nordic Municipal Utilities (250 grids)",
+        "Italian Municipal Utilities (200 grids)",
+        "Spanish Local Utilities (150 grids)",
+        "European Industrial Micro-grids (150 grids)"
+      ],
+      "expected_daily_revenue_usd": 220000,
+      "payment_methods": [
+        "SEPA Direct Debit (Eurozone)",
+        "SWIFT Transfer (UK/Non-Eurozone)",
+        "Stripe Connect (Multi-currency EUR/GBP/USD)"
+      ],
+      "currencies_handled": [
+        "EUR",
+        "GBP",
+        "USD"
+      ],
+      "xero_integration": "Via Stripe app",
+      "transaction_fees": "2.9% + €0.25 (only on European payments)"
+    }
+  },
+  "detailed_routing": {
+    "chase_1706_routing": {
+      "us_domestic": {
+        "grids": 3255,
+        "daily_revenue": 207000,
+        "payment_method": "ACH Direct",
+        "settlement_time": "Same day",
+        "fees": "None (domestic ACH)"
+      },
+      "asia_pacific": {
+        "grids": 1800,
+        "daily_revenue": 280000,
+        "payment_method": "SWIFT International Wire",
+        "settlement_time": "1-2 business days",
+        "fees": "$15-25 per wire transfer"
+      },
+      "americas_ex_us": {
+        "grids": 800,
+        "daily_revenue": 95000,
+        "payment_method": "SWIFT International Wire",
+        "settlement_time": "1-3 business days",
+        "fees": "$15-30 per wire transfer"
+      },
+      "africa_middle_east": {
+        "grids": 700,
+        "daily_revenue": 125000,
+        "payment_method": "SWIFT International Wire",
+        "settlement_time": "2-3 business days",
+        "fees": "$20-35 per wire transfer"
+      },
+      "international_industrial": {
+        "grids": 150,
+        "daily_revenue": 121000,
+        "payment_method": "Direct Contract Wires",
+        "settlement_time": "Same day - 2 days",
+        "fees": "$25-50 per wire transfer"
+      }
+    },
+    "stripe_europe_routing": {
+      "european_municipal": {
+        "grids": 2200,
+        "daily_revenue": 220000,
+        "payment_method": "SEPA Direct Debit + Stripe",
+        "settlement_time": "1-2 business days",
+        "fees": "2.9% + €0.25 per transaction"
+      }
+    }
+  },
+  "fee_savings": {
+    "old_configuration": {
+      "stripe_volume_daily": 800000,
+      "stripe_fees_daily": 23225,
+      "stripe_fees_annual": 8477125
+    },
+    "new_configuration": {
+      "stripe_volume_daily": 220000,
+      "stripe_fees_daily": 6392.5,
+      "stripe_fees_annual": 2333262.5,
+      "chase_wire_fees_daily": 25,
+      "chase_wire_fees_annual": 9125
+    },
+    "total_savings_daily": 16807.5,
+    "total_savings_annual": 6134737.5
+  },
+  "implementation": {
+    "immediate_changes": {
+      "step1": "Reconfigure Asian grids to Chase 1706 SWIFT routing",
+      "step2": "Redirect Americas (ex-US) payments to Chase international wire",
+      "step3": "Route Africa/Middle East payments to Chase SWIFT",
+      "step4": "Keep European payments on Stripe (SEPA convenience)",
+      "step5": "Update Xero bank rules for new Chase international transactions"
+    },
+    "chase_setup_requirements": {
+      "international_wire_capability": "Enable international wire transfers (if not already active)",
+      "multi_currency_receiving": "Set up multi-currency receiving (JPY, AUD, CAD, BRL, etc.)",
+      "swift_code": "Confirm Chase SWIFT code for international transfers",
+      "correspondent_banks": "Ensure correspondent banking relationships for global coverage"
+    },
+    "xero_integration_updates": {
+      "bank_rules_update": "Create rules for international wire transfers to account 1706",
+      "currency_handling": "Set up multi-currency conversion tracking",
+      "fee_categorization": "Categorize wire transfer fees as banking expenses",
+      "revenue_tracking": "Separate tracking for US vs International revenue streams"
+    }
+  },
+  "impact_analysis": {
+    "revenue_distribution": {
+      "chase_percentage": 79,
+      "stripe_percentage": 21
+    },
+    "fee_impact": {
+      "old_annual_stripe_fees": 8477125,
+      "new_annual_total_fees": 2342387.5,
+      "annual_savings": 6134737.5,
+      "savings_percentage": 72
+    },
+    "operational_benefits": [
+      "Single primary bank relationship (Chase) for majority of funds",
+      "Reduced payment processing complexity",
+      "Better cash flow management with consolidated banking",
+      "Lower overall transaction fees",
+      "Simplified Xero reconciliation (most transactions in one account)",
+      "Maintained European payment efficiency via SEPA/Stripe"
+    ]
+  },
+  "updated": "2025-09-26T03:54:15.533Z"
+}

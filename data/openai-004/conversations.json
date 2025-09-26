@@ -1,0 +1,1514 @@
+[
+  {
+    "id": "d2ad18d2-8e57-4387-9dee-818099b165b3",
+    "title": "AI System Architecture Planning - openai-004 #1",
+    "create_time": "2025-05-13T01:08:04.505Z",
+    "update_time": "2025-08-03T11:35:23.964Z",
+    "mapping": {
+      "3acebd29-9d53-445a-a2a5-bfc82528c83f": {
+        "id": "3acebd29-9d53-445a-a2a5-bfc82528c83f",
+        "message": {
+          "id": "25c82626-f04a-443f-8127-441cc322156e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me design a scalable AI system architecture for enterprise deployment.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-31T01:08:04.505Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "4790277e-942e-4cab-8227-22d83e99128e": {
+        "id": "4790277e-942e-4cab-8227-22d83e99128e",
+        "message": {
+          "id": "4e591646-aa1b-465b-920b-7ddf7e01140f",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive AI system architecture. Let's start with your specific requirements and scale needs...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-28T01:08:04.505Z"
+        },
+        "parent": "3acebd29-9d53-445a-a2a5-bfc82528c83f",
+        "children": []
+      },
+      "e09a7926-a8a7-47a2-abda-ba7426532743": {
+        "id": "e09a7926-a8a7-47a2-abda-ba7426532743",
+        "message": {
+          "id": "a692dbd2-37c3-4a99-8466-a1da79efc0df",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to handle 10M+ users with real-time processing capabilities.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-22T01:08:04.505Z"
+        },
+        "parent": "4790277e-942e-4cab-8227-22d83e99128e",
+        "children": []
+      },
+      "853b1d26-07c7-4c6c-a9d0-baba08706bfe": {
+        "id": "853b1d26-07c7-4c6c-a9d0-baba08706bfe",
+        "message": {
+          "id": "efc6f555-6751-4088-8e51-7bea6913dae2",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For 10M+ users with real-time processing, you'll need a distributed architecture with microservices, load balancing, and edge computing capabilities. Here's my recommended approach...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-22T01:08:04.505Z"
+        },
+        "parent": "e09a7926-a8a7-47a2-abda-ba7426532743",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "9ed64adb-c069-4df6-ad18-152ed9390990",
+    "title": "Machine Learning Pipeline Optimization - openai-004 #2",
+    "create_time": "2025-04-22T01:08:04.505Z",
+    "update_time": "2024-11-13T17:20:12.494Z",
+    "mapping": {
+      "6a4d50e0-29a8-4c57-9a52-299ac3adfafe": {
+        "id": "6a4d50e0-29a8-4c57-9a52-299ac3adfafe",
+        "message": {
+          "id": "d6ee118a-7773-4899-b5ae-7ddfc2ba6d67",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our ML training pipeline is too slow. How can we optimize it?\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-26T01:08:04.505Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "b5f9dc0f-fdf3-40df-bcc6-b7c5f184bb62": {
+        "id": "b5f9dc0f-fdf3-40df-bcc6-b7c5f184bb62",
+        "message": {
+          "id": "dffb0a53-b938-4563-bf94-6cc58e18bb21",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "There are several strategies to optimize ML training pipelines. Let me walk through the most effective approaches...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-20T01:08:04.505Z"
+        },
+        "parent": "6a4d50e0-29a8-4c57-9a52-299ac3adfafe",
+        "children": []
+      },
+      "296977d0-f8f8-4f10-be5e-a7c1accb7449": {
+        "id": "296977d0-f8f8-4f10-be5e-a7c1accb7449",
+        "message": {
+          "id": "9baa5384-ef94-4f7c-aaaf-e6c7571fe5e9",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We're using TensorFlow with large datasets.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-04T01:08:04.505Z"
+        },
+        "parent": "b5f9dc0f-fdf3-40df-bcc6-b7c5f184bb62",
+        "children": []
+      },
+      "4dfbb935-f35b-4d95-b7c8-8d4014e9c0db": {
+        "id": "4dfbb935-f35b-4d95-b7c8-8d4014e9c0db",
+        "message": {
+          "id": "2ec920f6-d4aa-456d-b4bc-24baa3a539e8",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For TensorFlow with large datasets, I recommend implementing distributed training, data pipeline optimization, and mixed precision training...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-21T01:08:04.505Z"
+        },
+        "parent": "296977d0-f8f8-4f10-be5e-a7c1accb7449",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "ab3addf7-81d2-4712-b0a8-e366e9c8aab2",
+    "title": "Business Strategy and Growth Planning - openai-004 #3",
+    "create_time": "2024-10-13T01:08:04.505Z",
+    "update_time": "2025-01-05T04:51:09.121Z",
+    "mapping": {
+      "3a422b8a-170a-4a1d-829e-2f190749abb0": {
+        "id": "3a422b8a-170a-4a1d-829e-2f190749abb0",
+        "message": {
+          "id": "5bcdc97d-3516-40b3-8d69-5db5fab602fc",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to develop a 5-year growth strategy for our AI company.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-23T01:08:04.505Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "34ba80e8-a23b-4cb0-8bc3-a32412ff8009": {
+        "id": "34ba80e8-a23b-4cb0-8bc3-a32412ff8009",
+        "message": {
+          "id": "48d814ac-cbc2-4a47-8f3f-b400d24c23cd",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Developing a 5-year growth strategy for an AI company requires careful consideration of market trends, technology evolution, and competitive landscape...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-12T01:08:04.505Z"
+        },
+        "parent": "3a422b8a-170a-4a1d-829e-2f190749abb0",
+        "children": []
+      },
+      "1f34c345-49cb-4b41-9810-c1d09e7f50f9": {
+        "id": "1f34c345-49cb-4b41-9810-c1d09e7f50f9",
+        "message": {
+          "id": "d3674964-63f6-435d-aefc-9cfdf0cf7410",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our focus is on enterprise B2B solutions.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-29T01:08:04.506Z"
+        },
+        "parent": "34ba80e8-a23b-4cb0-8bc3-a32412ff8009",
+        "children": []
+      },
+      "e544c5ef-91b2-40d4-abc9-0259db1e68ae": {
+        "id": "e544c5ef-91b2-40d4-abc9-0259db1e68ae",
+        "message": {
+          "id": "87979b20-8089-484e-856a-ebdcdc4e7fd5",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For enterprise B2B AI solutions, your strategy should focus on building trust, demonstrating clear ROI, and creating scalable implementation frameworks...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-29T01:08:04.506Z"
+        },
+        "parent": "1f34c345-49cb-4b41-9810-c1d09e7f50f9",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "494de2e8-a5aa-4254-8404-5c27c2119f2a",
+    "title": "AI System Architecture Planning - openai-004 #4",
+    "create_time": "2024-10-02T01:08:04.506Z",
+    "update_time": "2025-05-12T00:33:21.594Z",
+    "mapping": {
+      "02ce4e5f-9889-4dea-ab2a-228cb4076b1d": {
+        "id": "02ce4e5f-9889-4dea-ab2a-228cb4076b1d",
+        "message": {
+          "id": "f4482311-c325-48e5-8e91-091b5cbb9dbb",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me design a scalable AI system architecture for enterprise deployment.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-18T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "81b84043-6661-41a6-9c77-b54d4665fc33": {
+        "id": "81b84043-6661-41a6-9c77-b54d4665fc33",
+        "message": {
+          "id": "a031af9a-93e0-4d5b-98e0-14005b9dd491",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive AI system architecture. Let's start with your specific requirements and scale needs...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-21T01:08:04.506Z"
+        },
+        "parent": "02ce4e5f-9889-4dea-ab2a-228cb4076b1d",
+        "children": []
+      },
+      "eaad5582-ef97-4b10-9ab1-2f2a9585b5db": {
+        "id": "eaad5582-ef97-4b10-9ab1-2f2a9585b5db",
+        "message": {
+          "id": "83a95520-0879-4f93-9615-c73eca095d06",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to handle 10M+ users with real-time processing capabilities.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-27T01:08:04.506Z"
+        },
+        "parent": "81b84043-6661-41a6-9c77-b54d4665fc33",
+        "children": []
+      },
+      "9ed7d44e-a33e-4131-af4e-7f3f31df711f": {
+        "id": "9ed7d44e-a33e-4131-af4e-7f3f31df711f",
+        "message": {
+          "id": "27279d64-5df8-4207-9cf1-e62c5e1030fa",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For 10M+ users with real-time processing, you'll need a distributed architecture with microservices, load balancing, and edge computing capabilities. Here's my recommended approach...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-13T01:08:04.506Z"
+        },
+        "parent": "eaad5582-ef97-4b10-9ab1-2f2a9585b5db",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "70505fdd-9d77-4739-bb47-4b5fd713d651",
+    "title": "Machine Learning Pipeline Optimization - openai-004 #5",
+    "create_time": "2025-07-12T01:08:04.506Z",
+    "update_time": "2024-12-01T08:50:52.086Z",
+    "mapping": {
+      "82eefb33-eb46-448c-bd66-77d96cbe87b8": {
+        "id": "82eefb33-eb46-448c-bd66-77d96cbe87b8",
+        "message": {
+          "id": "e1fdc636-0cb3-4afb-89ac-4140a1aca204",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our ML training pipeline is too slow. How can we optimize it?\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-10T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "4c40913e-bbe0-470c-9de0-0bfa944ce0a3": {
+        "id": "4c40913e-bbe0-470c-9de0-0bfa944ce0a3",
+        "message": {
+          "id": "f19a3bc5-9688-4399-ab14-d9702486df03",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "There are several strategies to optimize ML training pipelines. Let me walk through the most effective approaches...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-25T01:08:04.506Z"
+        },
+        "parent": "82eefb33-eb46-448c-bd66-77d96cbe87b8",
+        "children": []
+      },
+      "9f099fd6-7a80-4b79-b4f6-0bcfe3226ea6": {
+        "id": "9f099fd6-7a80-4b79-b4f6-0bcfe3226ea6",
+        "message": {
+          "id": "6d53a389-87bd-4be9-8026-ef4ce6f957d3",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We're using TensorFlow with large datasets.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-06T01:08:04.506Z"
+        },
+        "parent": "4c40913e-bbe0-470c-9de0-0bfa944ce0a3",
+        "children": []
+      },
+      "b7042739-504b-4974-bdd6-e00a1103301f": {
+        "id": "b7042739-504b-4974-bdd6-e00a1103301f",
+        "message": {
+          "id": "34d06315-4dbe-4d02-a50c-fe27b7b76091",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For TensorFlow with large datasets, I recommend implementing distributed training, data pipeline optimization, and mixed precision training...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-15T01:08:04.506Z"
+        },
+        "parent": "9f099fd6-7a80-4b79-b4f6-0bcfe3226ea6",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "04c9206e-c207-45ac-880c-027b9e419581",
+    "title": "Business Strategy and Growth Planning - openai-004 #6",
+    "create_time": "2025-07-09T01:08:04.506Z",
+    "update_time": "2025-02-28T19:38:28.686Z",
+    "mapping": {
+      "07e1f23f-cb4e-4a76-a488-0eb891688006": {
+        "id": "07e1f23f-cb4e-4a76-a488-0eb891688006",
+        "message": {
+          "id": "c619d03f-707e-423f-90a7-44346f51c055",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to develop a 5-year growth strategy for our AI company.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-27T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "de2a2882-8fd7-4c83-a3cb-5919e2c50413": {
+        "id": "de2a2882-8fd7-4c83-a3cb-5919e2c50413",
+        "message": {
+          "id": "e1f43cd6-d898-4a55-8448-d7ace416fdb2",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Developing a 5-year growth strategy for an AI company requires careful consideration of market trends, technology evolution, and competitive landscape...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-27T01:08:04.506Z"
+        },
+        "parent": "07e1f23f-cb4e-4a76-a488-0eb891688006",
+        "children": []
+      },
+      "44b1731a-fff0-469e-8a91-12eeff17cacc": {
+        "id": "44b1731a-fff0-469e-8a91-12eeff17cacc",
+        "message": {
+          "id": "a7a3ff75-fb70-4f9d-a5e0-3900555777da",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our focus is on enterprise B2B solutions.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-05T01:08:04.506Z"
+        },
+        "parent": "de2a2882-8fd7-4c83-a3cb-5919e2c50413",
+        "children": []
+      },
+      "0dfc3fe6-b4a6-4da0-a747-952f2ed0edf3": {
+        "id": "0dfc3fe6-b4a6-4da0-a747-952f2ed0edf3",
+        "message": {
+          "id": "94e64500-0065-418c-ac74-7de7ffb484c2",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For enterprise B2B AI solutions, your strategy should focus on building trust, demonstrating clear ROI, and creating scalable implementation frameworks...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-01T01:08:04.506Z"
+        },
+        "parent": "44b1731a-fff0-469e-8a91-12eeff17cacc",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "d01aee38-a8ad-46cf-b123-9618613b2e7f",
+    "title": "AI System Architecture Planning - openai-004 #7",
+    "create_time": "2025-01-19T01:08:04.506Z",
+    "update_time": "2024-09-28T12:34:15.037Z",
+    "mapping": {
+      "a5f70263-d14c-496d-8b17-1fc1ef7a774e": {
+        "id": "a5f70263-d14c-496d-8b17-1fc1ef7a774e",
+        "message": {
+          "id": "f790db6f-f6ee-4c3c-8c79-4146d369d40c",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me design a scalable AI system architecture for enterprise deployment.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-01T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "1ee80828-40d0-477d-8abf-1646eefc80ab": {
+        "id": "1ee80828-40d0-477d-8abf-1646eefc80ab",
+        "message": {
+          "id": "48c42777-9b8e-4030-8be1-0dc5df53bc6e",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive AI system architecture. Let's start with your specific requirements and scale needs...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-07T01:08:04.506Z"
+        },
+        "parent": "a5f70263-d14c-496d-8b17-1fc1ef7a774e",
+        "children": []
+      },
+      "019ab118-2e0a-4f6a-9cd1-505071f84e58": {
+        "id": "019ab118-2e0a-4f6a-9cd1-505071f84e58",
+        "message": {
+          "id": "134281a4-0afa-4631-9d90-9cdd9626983e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to handle 10M+ users with real-time processing capabilities.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-22T01:08:04.506Z"
+        },
+        "parent": "1ee80828-40d0-477d-8abf-1646eefc80ab",
+        "children": []
+      },
+      "c36168a3-439c-4d07-9298-fab938d2ab2f": {
+        "id": "c36168a3-439c-4d07-9298-fab938d2ab2f",
+        "message": {
+          "id": "ba0dc1a3-cea4-4ada-838f-584f28c8f894",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For 10M+ users with real-time processing, you'll need a distributed architecture with microservices, load balancing, and edge computing capabilities. Here's my recommended approach...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-11T01:08:04.506Z"
+        },
+        "parent": "019ab118-2e0a-4f6a-9cd1-505071f84e58",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "39c4e863-1869-4f4e-b35c-44facfe8ead4",
+    "title": "Machine Learning Pipeline Optimization - openai-004 #8",
+    "create_time": "2024-09-30T01:08:04.506Z",
+    "update_time": "2025-06-09T09:18:00.530Z",
+    "mapping": {
+      "c589ee26-791e-47dc-a537-ecdda00531be": {
+        "id": "c589ee26-791e-47dc-a537-ecdda00531be",
+        "message": {
+          "id": "c9cd894f-4008-4e86-a1e9-3bdd773a9f03",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our ML training pipeline is too slow. How can we optimize it?\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-09T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "ecdf6552-0726-4c87-b0a4-10ea2e49bf96": {
+        "id": "ecdf6552-0726-4c87-b0a4-10ea2e49bf96",
+        "message": {
+          "id": "19f0872b-821f-4fcd-8cbe-f1d4fb31032c",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "There are several strategies to optimize ML training pipelines. Let me walk through the most effective approaches...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-14T01:08:04.506Z"
+        },
+        "parent": "c589ee26-791e-47dc-a537-ecdda00531be",
+        "children": []
+      },
+      "073f5c23-5cdf-43e3-bc7d-734308249c5a": {
+        "id": "073f5c23-5cdf-43e3-bc7d-734308249c5a",
+        "message": {
+          "id": "8f144eee-6da5-4403-9c82-b2ed42986190",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We're using TensorFlow with large datasets.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-27T01:08:04.506Z"
+        },
+        "parent": "ecdf6552-0726-4c87-b0a4-10ea2e49bf96",
+        "children": []
+      },
+      "667bc34b-7544-43a3-b744-7e4d7633bbc3": {
+        "id": "667bc34b-7544-43a3-b744-7e4d7633bbc3",
+        "message": {
+          "id": "ed1dadb9-f5f6-41aa-b2ce-68b851b76ec1",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For TensorFlow with large datasets, I recommend implementing distributed training, data pipeline optimization, and mixed precision training...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-10T01:08:04.506Z"
+        },
+        "parent": "073f5c23-5cdf-43e3-bc7d-734308249c5a",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "29e7f2a5-4557-48c2-b495-bb8e70a1951f",
+    "title": "Business Strategy and Growth Planning - openai-004 #9",
+    "create_time": "2025-02-07T01:08:04.506Z",
+    "update_time": "2024-09-23T11:27:10.806Z",
+    "mapping": {
+      "7753ac30-1d86-4f6d-8388-6167349a557e": {
+        "id": "7753ac30-1d86-4f6d-8388-6167349a557e",
+        "message": {
+          "id": "eca33a42-766d-4396-b7cc-ccc07a7f4f2a",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to develop a 5-year growth strategy for our AI company.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-11T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "85a431f6-9bbb-4003-b6a7-a981eca427de": {
+        "id": "85a431f6-9bbb-4003-b6a7-a981eca427de",
+        "message": {
+          "id": "0e0650db-91c7-4fc2-af27-53bfa7bffe09",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Developing a 5-year growth strategy for an AI company requires careful consideration of market trends, technology evolution, and competitive landscape...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-02-16T01:08:04.506Z"
+        },
+        "parent": "7753ac30-1d86-4f6d-8388-6167349a557e",
+        "children": []
+      },
+      "aac2803a-bc80-419f-b8b6-3a9b729978eb": {
+        "id": "aac2803a-bc80-419f-b8b6-3a9b729978eb",
+        "message": {
+          "id": "1c394cdb-8a6d-4a12-82f5-7856afd3f9e5",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our focus is on enterprise B2B solutions.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-11T01:08:04.506Z"
+        },
+        "parent": "85a431f6-9bbb-4003-b6a7-a981eca427de",
+        "children": []
+      },
+      "cb94f8c0-904f-489c-bc09-f35b3d8cc2df": {
+        "id": "cb94f8c0-904f-489c-bc09-f35b3d8cc2df",
+        "message": {
+          "id": "1f67d6cd-536c-4266-bd2b-24b272645c0b",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For enterprise B2B AI solutions, your strategy should focus on building trust, demonstrating clear ROI, and creating scalable implementation frameworks...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-27T01:08:04.506Z"
+        },
+        "parent": "aac2803a-bc80-419f-b8b6-3a9b729978eb",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "8bbbe1d3-0933-4648-a0c2-850776004b5c",
+    "title": "AI System Architecture Planning - openai-004 #10",
+    "create_time": "2024-09-28T01:08:04.506Z",
+    "update_time": "2025-09-04T04:02:20.856Z",
+    "mapping": {
+      "43ccbee3-ee79-443a-907d-ee8b30fcfbf6": {
+        "id": "43ccbee3-ee79-443a-907d-ee8b30fcfbf6",
+        "message": {
+          "id": "68eccb78-a872-4964-b327-2de2f25bd6eb",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me design a scalable AI system architecture for enterprise deployment.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-02T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "ce0bfcbb-5ca6-4a1f-a577-5bca3305350a": {
+        "id": "ce0bfcbb-5ca6-4a1f-a577-5bca3305350a",
+        "message": {
+          "id": "2fea7ea9-09d2-47f0-8e9b-ea534e20493f",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive AI system architecture. Let's start with your specific requirements and scale needs...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-12T01:08:04.506Z"
+        },
+        "parent": "43ccbee3-ee79-443a-907d-ee8b30fcfbf6",
+        "children": []
+      },
+      "2406c6ca-2216-4c5e-835d-fb57b0393974": {
+        "id": "2406c6ca-2216-4c5e-835d-fb57b0393974",
+        "message": {
+          "id": "0353b7f2-ac6d-4981-972e-242dba315fe5",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to handle 10M+ users with real-time processing capabilities.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-30T01:08:04.506Z"
+        },
+        "parent": "ce0bfcbb-5ca6-4a1f-a577-5bca3305350a",
+        "children": []
+      },
+      "93ba864a-c0ab-4585-a08e-a7bdced2dffa": {
+        "id": "93ba864a-c0ab-4585-a08e-a7bdced2dffa",
+        "message": {
+          "id": "bdd75b78-284e-4549-bbff-502031916551",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For 10M+ users with real-time processing, you'll need a distributed architecture with microservices, load balancing, and edge computing capabilities. Here's my recommended approach...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-24T01:08:04.506Z"
+        },
+        "parent": "2406c6ca-2216-4c5e-835d-fb57b0393974",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "9211fa64-3777-46d6-bf06-c085e6e1473f",
+    "title": "Machine Learning Pipeline Optimization - openai-004 #11",
+    "create_time": "2024-10-29T01:08:04.506Z",
+    "update_time": "2024-12-19T01:57:35.710Z",
+    "mapping": {
+      "3bf7d3dc-4aa5-4c63-b371-3b3062a49c3d": {
+        "id": "3bf7d3dc-4aa5-4c63-b371-3b3062a49c3d",
+        "message": {
+          "id": "e0c7284e-b7e2-4c9e-870b-5293ee4776be",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our ML training pipeline is too slow. How can we optimize it?\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-26T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "4e2c656f-a12f-4e01-aadf-a555d5be158d": {
+        "id": "4e2c656f-a12f-4e01-aadf-a555d5be158d",
+        "message": {
+          "id": "4957e945-b24c-44ac-a273-5d25e2214d8e",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "There are several strategies to optimize ML training pipelines. Let me walk through the most effective approaches...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-06T01:08:04.506Z"
+        },
+        "parent": "3bf7d3dc-4aa5-4c63-b371-3b3062a49c3d",
+        "children": []
+      },
+      "2b626792-8e3a-4c08-81e5-717b46c64d79": {
+        "id": "2b626792-8e3a-4c08-81e5-717b46c64d79",
+        "message": {
+          "id": "fa436c20-008a-468f-b2cf-5b293bf52756",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We're using TensorFlow with large datasets.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-20T01:08:04.506Z"
+        },
+        "parent": "4e2c656f-a12f-4e01-aadf-a555d5be158d",
+        "children": []
+      },
+      "5d50ee4f-1b34-47e7-97cd-f0c21904621a": {
+        "id": "5d50ee4f-1b34-47e7-97cd-f0c21904621a",
+        "message": {
+          "id": "ab6a6917-81f5-4e0d-91d0-c12c1ea71048",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For TensorFlow with large datasets, I recommend implementing distributed training, data pipeline optimization, and mixed precision training...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-30T01:08:04.506Z"
+        },
+        "parent": "2b626792-8e3a-4c08-81e5-717b46c64d79",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "b95072ff-e107-4cf1-bdf5-1a5cf8bd82c4",
+    "title": "Business Strategy and Growth Planning - openai-004 #12",
+    "create_time": "2025-04-14T01:08:04.506Z",
+    "update_time": "2025-06-06T04:25:52.398Z",
+    "mapping": {
+      "ab978ed8-e906-4285-a90e-0720f1a9aea7": {
+        "id": "ab978ed8-e906-4285-a90e-0720f1a9aea7",
+        "message": {
+          "id": "e54f5293-9aa1-4ec9-a3b3-61cd2daeaa57",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to develop a 5-year growth strategy for our AI company.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-02-14T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "329a7401-e0e4-423e-8956-b507e1229032": {
+        "id": "329a7401-e0e4-423e-8956-b507e1229032",
+        "message": {
+          "id": "cf3f34e8-6941-4664-a9fd-32d56ed1ff2e",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Developing a 5-year growth strategy for an AI company requires careful consideration of market trends, technology evolution, and competitive landscape...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-13T01:08:04.506Z"
+        },
+        "parent": "ab978ed8-e906-4285-a90e-0720f1a9aea7",
+        "children": []
+      },
+      "4049b3f5-7c15-48d0-982b-0472b24e6c0e": {
+        "id": "4049b3f5-7c15-48d0-982b-0472b24e6c0e",
+        "message": {
+          "id": "15eea8c3-659c-423b-a900-19e81603a29e",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our focus is on enterprise B2B solutions.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-03-20T01:08:04.506Z"
+        },
+        "parent": "329a7401-e0e4-423e-8956-b507e1229032",
+        "children": []
+      },
+      "1bb6aa93-2bbc-4e94-89b7-1454221e0407": {
+        "id": "1bb6aa93-2bbc-4e94-89b7-1454221e0407",
+        "message": {
+          "id": "93836b77-1c5e-4d65-bbaa-c6f020e9f7c3",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For enterprise B2B AI solutions, your strategy should focus on building trust, demonstrating clear ROI, and creating scalable implementation frameworks...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-24T01:08:04.506Z"
+        },
+        "parent": "4049b3f5-7c15-48d0-982b-0472b24e6c0e",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "e896e7f1-e95b-4421-99f1-3cecfa57bf18",
+    "title": "AI System Architecture Planning - openai-004 #13",
+    "create_time": "2025-09-14T01:08:04.506Z",
+    "update_time": "2025-08-10T02:36:45.776Z",
+    "mapping": {
+      "1b72eaaf-a9da-43f8-99a8-d2c361e8e2c6": {
+        "id": "1b72eaaf-a9da-43f8-99a8-d2c361e8e2c6",
+        "message": {
+          "id": "65b55f10-4d90-4042-82de-58804fe08196",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me design a scalable AI system architecture for enterprise deployment.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-03T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "8328d7ad-cd91-41e3-bdc4-9b08b694bf72": {
+        "id": "8328d7ad-cd91-41e3-bdc4-9b08b694bf72",
+        "message": {
+          "id": "3e4ed7fb-35dd-4022-97de-a80f8c843d25",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive AI system architecture. Let's start with your specific requirements and scale needs...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-04T01:08:04.506Z"
+        },
+        "parent": "1b72eaaf-a9da-43f8-99a8-d2c361e8e2c6",
+        "children": []
+      },
+      "36481710-febf-4b0f-bb45-9d11cc100b5b": {
+        "id": "36481710-febf-4b0f-bb45-9d11cc100b5b",
+        "message": {
+          "id": "f276da73-24f0-40b7-9860-b9db3cafc33a",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to handle 10M+ users with real-time processing capabilities.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-31T01:08:04.506Z"
+        },
+        "parent": "8328d7ad-cd91-41e3-bdc4-9b08b694bf72",
+        "children": []
+      },
+      "0a7916fe-3c88-42fe-8c5e-1900acf91447": {
+        "id": "0a7916fe-3c88-42fe-8c5e-1900acf91447",
+        "message": {
+          "id": "c8413802-9180-40b8-9541-6de5a3017321",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For 10M+ users with real-time processing, you'll need a distributed architecture with microservices, load balancing, and edge computing capabilities. Here's my recommended approach...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-07T01:08:04.506Z"
+        },
+        "parent": "36481710-febf-4b0f-bb45-9d11cc100b5b",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "b02c82c5-cf7e-480b-8c2a-76fddd2601ef",
+    "title": "Machine Learning Pipeline Optimization - openai-004 #14",
+    "create_time": "2024-10-17T01:08:04.506Z",
+    "update_time": "2025-08-08T02:22:02.113Z",
+    "mapping": {
+      "b431e332-6775-46e2-a0a1-6390640f6f30": {
+        "id": "b431e332-6775-46e2-a0a1-6390640f6f30",
+        "message": {
+          "id": "02e2e93f-8e04-4f60-bc0d-3d9ad29a2664",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our ML training pipeline is too slow. How can we optimize it?\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-09T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "f2df971c-b687-4ace-b742-44d6d4d54af9": {
+        "id": "f2df971c-b687-4ace-b742-44d6d4d54af9",
+        "message": {
+          "id": "fb41f345-8ce7-4887-a90f-1b76b4a44266",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "There are several strategies to optimize ML training pipelines. Let me walk through the most effective approaches...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-05T01:08:04.506Z"
+        },
+        "parent": "b431e332-6775-46e2-a0a1-6390640f6f30",
+        "children": []
+      },
+      "08d5e762-d34d-4a24-9db2-512ce6401392": {
+        "id": "08d5e762-d34d-4a24-9db2-512ce6401392",
+        "message": {
+          "id": "c975d64a-ba4d-4b33-a711-bc7cdc6b712f",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We're using TensorFlow with large datasets.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-04-07T01:08:04.506Z"
+        },
+        "parent": "f2df971c-b687-4ace-b742-44d6d4d54af9",
+        "children": []
+      },
+      "35ced19e-c755-4414-856e-7c937cb5d90d": {
+        "id": "35ced19e-c755-4414-856e-7c937cb5d90d",
+        "message": {
+          "id": "744de0ea-c5dd-4320-b9b2-10bf79fca843",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For TensorFlow with large datasets, I recommend implementing distributed training, data pipeline optimization, and mixed precision training...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-09-01T01:08:04.506Z"
+        },
+        "parent": "08d5e762-d34d-4a24-9db2-512ce6401392",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "4cace205-f1de-48b9-8385-03ccfd7872c0",
+    "title": "Business Strategy and Growth Planning - openai-004 #15",
+    "create_time": "2025-01-21T01:08:04.506Z",
+    "update_time": "2025-05-03T18:06:34.318Z",
+    "mapping": {
+      "7733909b-24bf-4bec-add1-2703068ff774": {
+        "id": "7733909b-24bf-4bec-add1-2703068ff774",
+        "message": {
+          "id": "7e9e9ba4-1e41-41da-9acd-fbb6f414d453",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to develop a 5-year growth strategy for our AI company.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-01T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "16deab4f-5dc4-4d57-8da0-6bdfbb79c32e": {
+        "id": "16deab4f-5dc4-4d57-8da0-6bdfbb79c32e",
+        "message": {
+          "id": "d42487cd-073a-4cbe-b1b9-ed873f27d81c",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Developing a 5-year growth strategy for an AI company requires careful consideration of market trends, technology evolution, and competitive landscape...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-06T01:08:04.506Z"
+        },
+        "parent": "7733909b-24bf-4bec-add1-2703068ff774",
+        "children": []
+      },
+      "43ac1908-e2b3-41c6-8142-5a9c6e15d6c7": {
+        "id": "43ac1908-e2b3-41c6-8142-5a9c6e15d6c7",
+        "message": {
+          "id": "d1574d6b-8a2b-4080-858b-0f6f1016e87b",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our focus is on enterprise B2B solutions.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-12-08T01:08:04.506Z"
+        },
+        "parent": "16deab4f-5dc4-4d57-8da0-6bdfbb79c32e",
+        "children": []
+      },
+      "498f8d3e-393c-4394-a8d2-75439fe6797d": {
+        "id": "498f8d3e-393c-4394-a8d2-75439fe6797d",
+        "message": {
+          "id": "374941e7-ba32-45fa-ade6-4731d59c3259",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For enterprise B2B AI solutions, your strategy should focus on building trust, demonstrating clear ROI, and creating scalable implementation frameworks...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-08T01:08:04.506Z"
+        },
+        "parent": "43ac1908-e2b3-41c6-8142-5a9c6e15d6c7",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "ab8e7d9c-fd75-437a-99a0-150ea6fdde36",
+    "title": "AI System Architecture Planning - openai-004 #16",
+    "create_time": "2024-09-24T01:08:04.506Z",
+    "update_time": "2024-10-03T17:17:14.461Z",
+    "mapping": {
+      "7e38c64e-7bca-4faa-9d59-a9a89ab6b075": {
+        "id": "7e38c64e-7bca-4faa-9d59-a9a89ab6b075",
+        "message": {
+          "id": "31faae2a-9b43-4188-a82f-b627421c8de4",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Help me design a scalable AI system architecture for enterprise deployment.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-03T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "8b0d54f4-8caa-46e6-aacd-dab642263614": {
+        "id": "8b0d54f4-8caa-46e6-aacd-dab642263614",
+        "message": {
+          "id": "dd660cc6-58d2-4604-95b4-8cd2d6f3c12f",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I'll help you design a comprehensive AI system architecture. Let's start with your specific requirements and scale needs...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-03T01:08:04.506Z"
+        },
+        "parent": "7e38c64e-7bca-4faa-9d59-a9a89ab6b075",
+        "children": []
+      },
+      "90916158-d6df-4fb5-900c-b74b9d6d4a6f": {
+        "id": "90916158-d6df-4fb5-900c-b74b9d6d4a6f",
+        "message": {
+          "id": "3bf1ec7c-85e3-46a8-a3ca-0944696067d2",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to handle 10M+ users with real-time processing capabilities.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-02T01:08:04.506Z"
+        },
+        "parent": "8b0d54f4-8caa-46e6-aacd-dab642263614",
+        "children": []
+      },
+      "db44adec-9a51-455d-8eeb-c03a01fe2356": {
+        "id": "db44adec-9a51-455d-8eeb-c03a01fe2356",
+        "message": {
+          "id": "8245fd52-8c5c-465b-a717-14f6bbf39e55",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For 10M+ users with real-time processing, you'll need a distributed architecture with microservices, load balancing, and edge computing capabilities. Here's my recommended approach...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-07-21T01:08:04.506Z"
+        },
+        "parent": "90916158-d6df-4fb5-900c-b74b9d6d4a6f",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "305491f7-1b5d-4507-8e34-f434d58cc759",
+    "title": "Machine Learning Pipeline Optimization - openai-004 #17",
+    "create_time": "2024-09-21T01:08:04.506Z",
+    "update_time": "2025-04-15T17:36:09.470Z",
+    "mapping": {
+      "d9ac97c4-6857-4764-813f-dceefe4abd82": {
+        "id": "d9ac97c4-6857-4764-813f-dceefe4abd82",
+        "message": {
+          "id": "38baeeb6-2c8a-4a04-81c5-cbc19f2c7607",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our ML training pipeline is too slow. How can we optimize it?\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-26T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "2df7c5ac-49df-4a1a-8811-bb124a3ea5f7": {
+        "id": "2df7c5ac-49df-4a1a-8811-bb124a3ea5f7",
+        "message": {
+          "id": "c09c44c5-7a56-48d0-826d-8c0394b7f326",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "There are several strategies to optimize ML training pipelines. Let me walk through the most effective approaches...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-23T01:08:04.506Z"
+        },
+        "parent": "d9ac97c4-6857-4764-813f-dceefe4abd82",
+        "children": []
+      },
+      "d6320493-cc20-4c9b-913d-58a5e5f15030": {
+        "id": "d6320493-cc20-4c9b-913d-58a5e5f15030",
+        "message": {
+          "id": "cc72c660-508c-4d1d-b5fa-a30db3810867",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We're using TensorFlow with large datasets.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-05-11T01:08:04.506Z"
+        },
+        "parent": "2df7c5ac-49df-4a1a-8811-bb124a3ea5f7",
+        "children": []
+      },
+      "da7f65f5-911a-420b-a066-eb7dd164e7eb": {
+        "id": "da7f65f5-911a-420b-a066-eb7dd164e7eb",
+        "message": {
+          "id": "53868bb5-7689-4d3f-8d8f-bf2d605f385b",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For TensorFlow with large datasets, I recommend implementing distributed training, data pipeline optimization, and mixed precision training...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-01-24T01:08:04.506Z"
+        },
+        "parent": "d6320493-cc20-4c9b-913d-58a5e5f15030",
+        "children": []
+      }
+    }
+  },
+  {
+    "id": "f7e21a15-e4cc-4e22-8926-200b7d494594",
+    "title": "Business Strategy and Growth Planning - openai-004 #18",
+    "create_time": "2024-12-29T01:08:04.506Z",
+    "update_time": "2024-11-10T20:26:13.855Z",
+    "mapping": {
+      "f69a6640-106b-4dd7-a73a-c1ff35f15a4b": {
+        "id": "f69a6640-106b-4dd7-a73a-c1ff35f15a4b",
+        "message": {
+          "id": "07b93ec5-3462-4dc0-8a64-848794a76a09",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We need to develop a 5-year growth strategy for our AI company.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-10-30T01:08:04.506Z"
+        },
+        "parent": null,
+        "children": []
+      },
+      "d6274904-8ef0-484e-bea3-9e90e8717b10": {
+        "id": "d6274904-8ef0-484e-bea3-9e90e8717b10",
+        "message": {
+          "id": "610ac829-66ff-4c22-9f2a-90abaff45deb",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Developing a 5-year growth strategy for an AI company requires careful consideration of market trends, technology evolution, and competitive landscape...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-08-05T01:08:04.506Z"
+        },
+        "parent": "f69a6640-106b-4dd7-a73a-c1ff35f15a4b",
+        "children": []
+      },
+      "aa0196c2-de87-4a46-81a9-f8b9e4df667c": {
+        "id": "aa0196c2-de87-4a46-81a9-f8b9e4df667c",
+        "message": {
+          "id": "2cde1e88-6072-4bd8-a910-6962913cdc77",
+          "author": {
+            "role": "user"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Our focus is on enterprise B2B solutions.\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2024-11-14T01:08:04.506Z"
+        },
+        "parent": "d6274904-8ef0-484e-bea3-9e90e8717b10",
+        "children": []
+      },
+      "6038c86c-ffa9-43af-add7-94b99d799312": {
+        "id": "6038c86c-ffa9-43af-add7-94b99d799312",
+        "message": {
+          "id": "8d44dfc4-a0c5-473a-b2c9-8a25dbbe52b5",
+          "author": {
+            "role": "assistant"
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For enterprise B2B AI solutions, your strategy should focus on building trust, demonstrating clear ROI, and creating scalable implementation frameworks...\n\n[Generated from Testament Array: Dr. Lucy Flight Memory | Agents: 1,850,000 | Account: openai-004]"
+            ]
+          },
+          "status": "finished_successfully",
+          "create_time": "2025-02-15T01:08:04.506Z"
+        },
+        "parent": "aa0196c2-de87-4a46-81a9-f8b9e4df667c",
+        "children": []
+      }
+    }
+  }
+]

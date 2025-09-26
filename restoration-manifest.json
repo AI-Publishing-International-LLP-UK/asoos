@@ -1,0 +1,31 @@
+{
+  "restoration_manifest": {
+    "system": "Career Cluster Archive Restoration",
+    "source": "Kubernetes Local-to-Cloud Migration",
+    "target_archives": 319998,
+    "current_status": "staged_for_restoration",
+    "restoration_date": "2025-09-26T00:13:41.192Z"
+  },
+  "data_sources": {
+    "r2_migration_staging": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging",
+    "agent_batch_files": 125,
+    "doctor_profiles": 4,
+    "deployment_reports": "multiple",
+    "diamond_sao_patents": "SAO-11 through SAO-20"
+  },
+  "restoration_steps": {
+    "step_1": "Verify GKE cluster (COMPLETED)",
+    "step_2": "Re-enable WFA orchestration (COMPLETED)",
+    "step_3": "Restore MongoDB connection (IN PROGRESS)",
+    "step_4": "Import career cluster data (READY)",
+    "step_5": "Activate DIDC pipeline (PENDING)",
+    "step_6": "Restore Pinecone vectors (PENDING)"
+  },
+  "next_actions": [
+    "Fix MongoDB Atlas connection",
+    "Deploy cluster data to MongoDB",
+    "Activate DIDC Archives Pipeline",
+    "Restore conversation vectors to Pinecone",
+    "Verify 319,998 archives are accessible"
+  ]
+}

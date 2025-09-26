@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: didc-archives-restoration
+  namespace: default
+  labels:
+    app: didc-archives
+    component: restoration
+    classification: career-clusters
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: didc-archives
+  template:
+    metadata:
+      labels:
+        app: didc-archives
+        component: restoration
+    spec:
+      containers:
+      - name: didc-restoration
+        image: gcr.io/api-for-warp-drive/integration-gateway:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: DIDC_MODE
+          value: "restoration"
+        - name: TARGET_ARCHIVES
+          value: "319998"
+        - name: CAREER_CLUSTERS_MODE
+          value: "enabled"
+        - name: R2_MIGRATION_SOURCE
+          value: "staging"
+        - name: RESTORATION_PHASE
+          value: "post_kubernetes_migration"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: didc-archives-service
+  namespace: default
+  labels:
+    app: didc-archives
+spec:
+  selector:
+    app: didc-archives
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: restore-319998-archives
+  namespace: default
+  labels:
+    app: archive-restoration
+    target: "319998-clusters"
+spec:
+  template:
+    metadata:
+      labels:
+        app: archive-restoration
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: archive-restorer
+        image: gcr.io/api-for-warp-drive/integration-gateway:latest
+        command: ["node", "/app/restore-career-clusters.js"]
+        env:
+        - name: RESTORATION_TARGET
+          value: "319998"
+        - name: SOURCE_PATH
+          value: "/data/r2-migration-staging"
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-credentials
+              key: uri
+        - name: PINECONE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pinecone-credentials
+              key: api-key
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"

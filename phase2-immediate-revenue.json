@@ -1,0 +1,174 @@
+{
+  "payment_routing": {
+    "uk_europe_stripe": {
+      "region": "UK & Europe",
+      "grids": [
+        "EPEX SPOT Europe",
+        "Nord Pool Nordic",
+        "German Regional Grids",
+        "French Regional Networks",
+        "Spanish Regional Operators",
+        "UK Regional (VAT-exempt exports only)"
+      ],
+      "expected_daily_revenue_usd": 18000,
+      "payment_method": "Stripe Connect (temporary)",
+      "currency_handling": "Multi-currency → USD conversion",
+      "note": "Will migrate to Monzo Business when ready"
+    },
+    "us_chase_direct": {
+      "region": "United States",
+      "grids": [
+        "US State Public Utilities (50 grids)",
+        "Canadian Provincial Grids",
+        "Mexican Regional Operators",
+        "US Municipal Utilities"
+      ],
+      "expected_daily_revenue_usd": 7000,
+      "payment_method": "ACH Direct to Chase Business",
+      "currency_handling": "USD native",
+      "note": "Direct banking, lowest fees"
+    },
+    "global_stripe": {
+      "region": "Asia, Africa, Middle East, South America",
+      "grids": [
+        "Japan Regional Utilities",
+        "Australian State Markets",
+        "Indian State Electricity Boards",
+        "Brazilian Regional Utilities",
+        "South African Regional",
+        "GCC States",
+        "Nigerian & West African Grids"
+      ],
+      "expected_daily_revenue_usd": 23000,
+      "payment_method": "Stripe Connect (multi-currency)",
+      "currency_handling": "Auto-convert to USD",
+      "note": "Global coverage, will optimize later"
+    },
+    "total_daily_revenue": 48000,
+    "total_annual_revenue": 17520000
+  },
+  "grid_connections": {
+    "asia_pacific_regional": {
+      "grid_count": 76,
+      "key_grids": [
+        "Japan Regional Electric Utilities (10 grids)",
+        "Australian State Energy Markets (8 grids)",
+        "Korean Regional Exchanges (5 grids)",
+        "Indian State Electricity Boards (28 grids)",
+        "Southeast Asian Regional (25 grids)"
+      ],
+      "expected_daily_revenue": 13500,
+      "payment_destination": "Stripe Global"
+    },
+    "europe_regional": {
+      "grid_count": 120,
+      "key_grids": [
+        "German State Grid Operators (16 grids)",
+        "French Regional Networks (12 grids)",
+        "Spanish Regional Operators (17 grids)",
+        "UK Regional Distribution (14 grids - exports only)",
+        "Nordic Regional (25 grids)",
+        "Eastern European (36 grids)"
+      ],
+      "expected_daily_revenue": 15200,
+      "payment_destination": "Stripe UK/Europe"
+    },
+    "north_america_regional": {
+      "grid_count": 85,
+      "key_grids": [
+        "US State Public Utilities (50 grids)",
+        "Canadian Provincial Grids (13 grids)",
+        "Mexican Regional Operators (12 grids)",
+        "Large US Municipal Utilities (10 grids)"
+      ],
+      "expected_daily_revenue": 7100,
+      "payment_destination": "Chase Direct"
+    },
+    "south_america_regional": {
+      "grid_count": 45,
+      "key_grids": [
+        "Brazilian Regional Utilities (15 grids)",
+        "Argentine Regional Grids (8 grids)",
+        "Colombia & Venezuela (10 grids)",
+        "Chile & Peru Regional (12 grids)"
+      ],
+      "expected_daily_revenue": 3500,
+      "payment_destination": "Stripe Global"
+    },
+    "africa_middle_east": {
+      "grid_count": 100,
+      "key_grids": [
+        "South African Regional (12 grids)",
+        "Nigerian & West African (18 grids)",
+        "Egyptian & North African (20 grids)",
+        "GCC State Utilities (12 grids)",
+        "Turkish Regional (10 grids)",
+        "Other Regional (28 grids)"
+      ],
+      "expected_daily_revenue": 8700,
+      "payment_destination": "Stripe Global"
+    }
+  },
+  "implementation": {
+    "immediate_today": {
+      "timeline": "Next 2 hours",
+      "actions": [
+        "Set up Stripe Connect accounts for UK/Europe + Global",
+        "Configure Chase Business ACH for US grids",
+        "Deploy 500 connectors to regional grids",
+        "Start Phase 2 power delivery and payments"
+      ],
+      "expected_result": "$48K daily revenue starting today"
+    },
+    "week1_optimization": {
+      "timeline": "Within 7 days",
+      "actions": [
+        "Monitor payment flows and optimize routing",
+        "Scale up power delivery to meet grid demands",
+        "Add more regional grids as they connect",
+        "Prepare for Phase 3 (8000+ local grids)"
+      ],
+      "expected_result": "$60K+ daily revenue"
+    },
+    "monzo_migration": {
+      "timeline": "When Monzo Business ready",
+      "actions": [
+        "Migrate UK/Europe payments from Stripe to Monzo",
+        "Set up Xero integration with Monzo",
+        "Optimize tax structure with proper business banking",
+        "Continue Chase for US, Monzo for international"
+      ],
+      "expected_result": "Tax-optimized $60K+ daily revenue"
+    }
+  },
+  "stripe_setup": {
+    "uk_europe_account": {
+      "account_type": "Stripe Connect Express",
+      "business_name": "AI Publishing International LLP (UK)",
+      "currencies": [
+        "GBP",
+        "EUR",
+        "USD"
+      ],
+      "settlement_schedule": "Daily",
+      "expected_volume": "$18K/day",
+      "fees": "2.9% + $0.30 per transaction"
+    },
+    "global_account": {
+      "account_type": "Stripe Connect Standard",
+      "business_name": "QuantSwarm Global Energy",
+      "currencies": [
+        "USD",
+        "JPY",
+        "AUD",
+        "BRL",
+        "ZAR",
+        "AED"
+      ],
+      "settlement_schedule": "Daily",
+      "expected_volume": "$23K/day",
+      "fees": "3.4% + $0.30 per international transaction"
+    }
+  },
+  "created": "2025-09-26T03:19:04.246Z"
+}

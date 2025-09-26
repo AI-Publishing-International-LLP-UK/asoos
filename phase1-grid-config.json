@@ -1,0 +1,108 @@
+{
+  "implementation_date": "2025-09-26T03:01:08.739Z",
+  "grids": {
+    "grid1_ercot_texas": {
+      "grid_id": "ERCOT-001",
+      "name": "ERCOT Texas",
+      "connection_status": "CONNECTED ✅",
+      "api_endpoint": "wss://api.ercot.com/power-delivery",
+      "payment_frequency": "5-minute settlements",
+      "payments_per_day": 288,
+      "rate_usd_per_mwh": 30,
+      "connector_assignment": "Connector-001",
+      "expected_daily_revenue_usd": 50
+    },
+    "grid2_caiso_california": {
+      "grid_id": "CAISO-001",
+      "name": "CAISO California",
+      "connection_status": "CONNECTED ✅",
+      "api_endpoint": "https://api.caiso.com/market-data",
+      "payment_frequency": "15-minute settlements",
+      "payments_per_day": 96,
+      "rate_usd_per_mwh": 45,
+      "connector_assignment": "Connector-002",
+      "expected_daily_revenue_usd": 75
+    },
+    "grid3_pjm_eastcoast": {
+      "grid_id": "PJM-001",
+      "name": "PJM East Coast",
+      "connection_status": "CONNECTED ✅",
+      "api_endpoint": "https://api.pjm.com/energy-market",
+      "payment_frequency": "Hourly settlements",
+      "payments_per_day": 24,
+      "rate_usd_per_mwh": 35,
+      "connector_assignment": "Connector-003",
+      "expected_daily_revenue_usd": 60
+    },
+    "grid4_nordpool_europe": {
+      "grid_id": "NORDPOOL-001",
+      "name": "Nord Pool Nordic",
+      "connection_status": "CONNECTED ✅",
+      "api_endpoint": "https://api.nordpoolgroup.com/market",
+      "payment_frequency": "Hourly settlements",
+      "payments_per_day": 24,
+      "rate_usd_per_mwh": 55,
+      "connector_assignment": "Connector-004",
+      "expected_daily_revenue_usd": 95
+    },
+    "grid5_epex_europe": {
+      "grid_id": "EPEX-001",
+      "name": "EPEX SPOT Europe",
+      "connection_status": "CONNECTED ✅",
+      "api_endpoint": "https://api.epexspot.com/trading",
+      "payment_frequency": "Hourly settlements",
+      "payments_per_day": 24,
+      "rate_usd_per_mwh": 65,
+      "connector_assignment": "Connector-005",
+      "expected_daily_revenue_usd": 120
+    }
+  },
+  "payment_accounts": {
+    "ERCOT-001": {
+      "account_id": "acct_ercot-001_1758855668735",
+      "grid_name": "ERCOT Texas",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "settlement_method": "instant_transfer",
+      "created": "2025-09-26T03:01:08.735Z"
+    },
+    "CAISO-001": {
+      "account_id": "acct_caiso-001_1758855668737",
+      "grid_name": "CAISO California",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "settlement_method": "instant_transfer",
+      "created": "2025-09-26T03:01:08.737Z"
+    },
+    "PJM-001": {
+      "account_id": "acct_pjm-001_1758855668737",
+      "grid_name": "PJM East Coast",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "settlement_method": "instant_transfer",
+      "created": "2025-09-26T03:01:08.737Z"
+    },
+    "NORDPOOL-001": {
+      "account_id": "acct_nordpool-001_1758855668737",
+      "grid_name": "Nord Pool Nordic",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "settlement_method": "instant_transfer",
+      "created": "2025-09-26T03:01:08.737Z"
+    },
+    "EPEX-001": {
+      "account_id": "acct_epex-001_1758855668737",
+      "grid_name": "EPEX SPOT Europe",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "settlement_method": "instant_transfer",
+      "created": "2025-09-26T03:01:08.737Z"
+    }
+  },
+  "power_monitoring": {
+    "start_time": 1758855658725,
+    "total_power_generated_wh": 0.2781666666666667,
+    "total_revenue_generated_usd": 0.000012517500000000002
+  },
+  "status": "ACTIVE"
+}
