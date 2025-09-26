@@ -146,6 +146,16 @@ class DiamondCLI {
       await this.validateEnvironment();
       this.log('🚀 Executing Diamond CLI command from AIXTIV-SYMPHONY...', 'DIAMOND');
       
+      // Natural Language Processing - join all args as conversational input
+      const naturalInput = args.join(' ');
+      
+      // Check if this is a natural language command
+      if (this.isNaturalLanguageInput(naturalInput)) {
+        await this.processNaturalLanguageCommand(naturalInput);
+        return;
+      }
+      
+      // Fallback to traditional structured commands
       const [command, subcommand, ...params] = args;
       
       switch (command) {
@@ -161,12 +171,28 @@ class DiamondCLI {
           await this.handleDeployCommand(subcommand, params);
           break;
           
+        case 'website':
+          await this.handleWebsiteFactoryCommand(subcommand, params);
+          break;
+          
         case 'cttt':
           await this.handleCTTTCommand(subcommand, params);
           break;
           
+        case 'swarm':
+        case 'swarms':
+          await this.handleSwarmCommand(subcommand, params);
+          break;
+          
+        case 'intelligence':
+        case 'vector':
+        case 'search':
+          await this.handleIntelligenceCommand(subcommand, params);
+          break;
+          
         default:
-          this.showHelp();
+          // Try processing as natural language
+          await this.processNaturalLanguageCommand(naturalInput);
       }
       
       this.log('✅ Diamond CLI command completed successfully', 'SUCCESS');
@@ -177,6 +203,64 @@ class DiamondCLI {
     }
   }
 
+  async handleWebsiteFactoryCommand(subcommand, params) {
+    try {
+      // Load Website Factory Commands
+      const SacredWebsiteFactoryCommands = require('../lib/website-factory-commands.js');
+      const factoryCommands = new SacredWebsiteFactoryCommands();
+      
+      switch (subcommand) {
+        case 'create':
+          if (params.length === 0) {
+            this.log('❌ Usage: diamond website create "<voice command>"', 'ERROR');
+            this.log('💡 Example: diamond website create "Create a modern tech company website with cutting-edge 2026 design"', 'INFO');
+            return;
+          }
+          
+          const voiceCommand = params.join(' ');
+          this.log(`🏭 Sacred Website Factory: Processing voice command...`, 'DIAMOND');
+          this.log(`🗣️ Voice Input: "${voiceCommand}"`, 'INFO');
+          
+          const result = await factoryCommands.generateWebsite(voiceCommand);
+          
+          if (result.success) {
+            this.log(`✨ Sacred Website Generated!`, 'SUCCESS');
+            this.log(`🌐 URL: ${result.website.url}`, 'SUCCESS');
+            this.log(`🎨 Design Lead: ${result.website.team.lead.name}`, 'INFO');
+            this.log(`🔧 Tech Stack: ${result.website.techStack.frontend}`, 'INFO');
+            this.log(`⚡ Processing Time: ${result.website.processingTime}ms`, 'INFO');
+            this.log(`🎭 ${result.sacredMessage}`, 'DIAMOND');
+          } else {
+            this.log('❌ Website generation failed', 'ERROR');
+          }
+          break;
+          
+        case 'swarm':
+          this.log('👥 24/7 Creative Swarm Status:', 'DIAMOND');
+          this.log(`🎨 Total Creative Agents: ${factoryCommands.creativeSwarm.totalAgents}`, 'INFO');
+          this.log(`🗣️ VisionSpeak: ${factoryCommands.visionSpeak.enabled ? 'Active' : 'Inactive'}`, 'INFO');
+          this.log(`🖥️ VisionSpace: ${factoryCommands.visionSpace.chromiumEngine}`, 'INFO');
+          this.log(`⏰ Schedule: ${factoryCommands.creativeSwarm.schedule}`, 'INFO');
+          break;
+          
+        case 'voices':
+          this.log('🗣️ Available Voice Profiles for Website Generation:', 'DIAMOND');
+          factoryCommands.visionSpeak.voiceProfiles.forEach((voice, index) => {
+            this.log(`${index + 1}. ${voice.name} (${voice.id}) - ${voice.specialty}`, 'INFO');
+          });
+          break;
+          
+        default:
+          this.log('❌ Unknown website command. Available: create, swarm, voices', 'ERROR');
+          this.log('💡 Example: diamond website create "Build me a beautiful tech startup website"', 'INFO');
+      }
+      
+    } catch (error) {
+      this.log(`❌ Website Factory error: ${error.message}`, 'ERROR');
+      throw error;
+    }
+  }
+  
   async handleMCPCommand(subcommand, params) {
     switch (subcommand) {
       case 'update':
@@ -307,6 +391,9 @@ COMMANDS:
   mcp repair <domain>                 Auto-repair MCP DNS issues
   mcp create <company> [options]      Create company MCP (mcp.{company}.2100.cool)
   mcp list                            List all provisioned company MCPs
+  website create "<voice command>"    🏭 Sacred Website Factory - Generate website from voice
+  website swarm                       👥 Show 24/7 Creative Swarm status
+  website voices                      🗣️ List available voice profiles for generation
   deploy wfa                          Deploy Production WFA system
   cttt test health [env]              Run CTTT health checks
   cttt test oauth2 [env]              Run OAuth2 security tests
@@ -320,6 +407,10 @@ COMMANDS:
 EXAMPLES:
   diamond mcp update mcp.aipub.2100.cool integration-gateway-js
   diamond mcp monitor mcp.aipub.2100.cool
+  diamond website create "Create a modern tech startup website with 2026 design"
+  diamond website create "Build a healthcare platform with sacred geometry"
+  diamond website swarm
+  diamond website voices
   diamond deploy wfa
   diamond cttt test health staging
   diamond cttt test comprehensive production
