@@ -1,0 +1,23 @@
+{
+  "platform": "android",
+  "endpoint": "https://mobile-android.asoos.2100.cool",
+  "wing": "RIX-2",
+  "voiceIntegration": {
+    "primary": "SH_RIX_Dr_Claude",
+    "secondary": "VICTORY36_Advanced",
+    "hume": "emotional_intelligence",
+    "features": [
+      "Voice commands",
+      "Advanced neural responses",
+      "Empathic interactions",
+      "Dream Commander integration",
+      "Victory36 protection"
+    ]
+  },
+  "appStoreReadiness": {
+    "publicAccess": true,
+    "cloudflareAccessRemoved": true,
+    "internalAuth": "SallyPort_post_download",
+    "reviewerAccess": "enabled"
+  }
+}

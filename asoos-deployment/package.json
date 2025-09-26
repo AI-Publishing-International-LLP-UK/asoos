@@ -1,0 +1,31 @@
+{
+  "name": "dreamcommander-service",
+  "version": "2.0.0",
+  "description": "Dr. Lucy Integration Service - Dream Commander Deployment",
+  "main": "lucy-integration-service.js",
+  "scripts": {
+    "start": "node lucy-integration-service.js",
+    "dev": "node lucy-integration-service.js",
+    "test": "node test-integration.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "ai",
+    "voice",
+    "integration",
+    "cloud-run",
+    "google-cloud"
+  ],
+  "author": "AI Publishing International LLP",
+  "license": "PROPRIETARY"
+}

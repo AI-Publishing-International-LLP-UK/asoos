@@ -86,5 +86,6 @@
     "json5": "^2.2.3",
     "uuid": "^10.0.0",
     "@faker-js/faker": "^10.0.0"
-  }
+  },
+  "type": "module"
 }

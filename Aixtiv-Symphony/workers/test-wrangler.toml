@@ -1,0 +1,11 @@
+name = "asoos-test-worker"
+main = "test-worker.js"
+compatibility_date = "2023-12-01"
+account_id = "aef30d920913c188b9b6048cc7f42951"
+
+# No custom routes - will use workers.dev subdomain
+# This bypasses any Access protection on your custom domain
+
+[vars]
+ENVIRONMENT = "test"
+PURPOSE = "deployment-verification"

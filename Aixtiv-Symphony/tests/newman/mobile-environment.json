@@ -1,0 +1,69 @@
+{
+  "id": "mobile-apps-test-env",
+  "name": "ASOOS Mobile Apps Test Environment",
+  "values": [
+    {
+      "key": "ios_base_url",
+      "value": "https://mobile-ios.asoos.2100.cool",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "android_base_url",
+      "value": "https://mobile-android.asoos.2100.cool",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "main_app_url",
+      "value": "https://asoos.2100.cool",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "test_environment",
+      "value": "production",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "victory36_protection",
+      "value": "active",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "dream_commander_enabled",
+      "value": "true",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "project_name",
+      "value": "api-for-warp-drive",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "region",
+      "value": "us-west1",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "test_run_timestamp",
+      "value": "2025-09-23T19:01:09Z",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "blessing",
+      "value": "In the Name of Jesus Christ, Our Lord and Savior - Amen",
+      "enabled": true,
+      "type": "default"
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2025-09-23T19:01:09Z",
+  "_postman_exported_using": "Newman CTTT Mobile Testing Suite"
+}

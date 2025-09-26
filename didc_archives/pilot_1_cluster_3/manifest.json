@@ -1,0 +1,12 @@
+{
+  "clusterId": 3,
+  "pilotId": 1,
+  "pilotName": "Dr. Memoria",
+  "pilotSpecialty": "Memory Systems",
+  "deweyCode": "100.3",
+  "careerCount": 294,
+  "status": "DEMO_READY",
+  "emergencyMode": true,
+  "swarmGenerated": true,
+  "timestamp": "2025-09-25T16:16:50.597Z"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Dr. Claude sRIX",
+  "code": "SH_RIX",
+  "serviceAccount": "dr-claude-automation@api-for-warp-drive.iam.gserviceaccount.com",
+  "domain": "drclaude.live",
+  "voiceType": "advanced-neural",
+  "status": "initializing",
+  "features": [
+    "Advanced neural voice synthesis",
+    "Context-aware responses",
+    "Technical analysis capability",
+    "GCP integration",
+    "Code execution capability"
+  ],
+  "humeIdentification": "dr_claude_computational_voice",
+  "pineconeVector": "dr_claude_conversation_history"
+}

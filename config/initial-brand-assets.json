@@ -1,0 +1,315 @@
+{
+  "asoos_brand_assets": [
+    {
+      "brand_name": "ASOOS Orchestrating ERP",
+      "asset_type": "SOFTWARE_IP",
+      "brand_details": {
+        "brand_name": "ASOOS Orchestrating ERP",
+        "tagline": "Orchestrating Intelligence Across Enterprise Operations",
+        "description": "Comprehensive ERP system built on HRAI-CRMS foundation with AI agent integration, customer lifecycle management, and regulatory compliance",
+        "target_market": ["Enterprise AI", "ERP Solutions", "Regulatory Technology"],
+        "competitive_position": "First AI-native ERP with built-in agent asset management",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 125000,
+        "development_costs": 200000,
+        "legal_costs": 15000,
+        "marketing_investment": 35000,
+        "useful_life_years": 10
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 1000,
+        "backing_percentage": 75
+      }
+    },
+    {
+      "brand_name": "Diamond SAO Command Center",
+      "asset_type": "SOFTWARE_IP",
+      "brand_details": {
+        "brand_name": "Diamond SAO Command Center",
+        "tagline": "Ultimate Super Admin Operations Control",
+        "description": "Advanced command and control system for enterprise operations with unlimited super admin capabilities",
+        "target_market": ["Enterprise Management", "Operations Control", "AI Administration"],
+        "competitive_position": "Unique multi-tiered admin system with AI agent oversight",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 150000,
+        "development_costs": 300000,
+        "legal_costs": 20000,
+        "marketing_investment": 50000,
+        "useful_life_years": 8
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 1500,
+        "backing_percentage": 80
+      }
+    },
+    {
+      "brand_name": "HRAI-CRMS",
+      "asset_type": "SOFTWARE_IP",
+      "brand_details": {
+        "brand_name": "HRAI-CRMS",
+        "tagline": "Human Resources & AI Customer Relationship Management System",
+        "description": "Integrated HR and CRM system with AI agent asset management and UK GAAP compliance",
+        "target_market": ["HR Technology", "CRM Solutions", "AI Asset Management"],
+        "competitive_position": "Only CRM with built-in AI agent HR classification and asset tracking",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 100000,
+        "development_costs": 180000,
+        "legal_costs": 12000,
+        "marketing_investment": 28000,
+        "useful_life_years": 7
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 800,
+        "backing_percentage": 70
+      }
+    },
+    {
+      "brand_name": "Universal AI Key Manager",
+      "asset_type": "SOFTWARE_IP",
+      "brand_details": {
+        "brand_name": "Universal AI Key Manager",
+        "tagline": "Secure Multi-Tenant AI Service Key Management",
+        "description": "Enterprise-grade API key management system with tenant isolation, auto-rotation, and cost tracking",
+        "target_market": ["AI Infrastructure", "Security Solutions", "Multi-tenant Systems"],
+        "competitive_position": "Only AI key manager with full tenant isolation and automatic cost allocation",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 80000,
+        "development_costs": 120000,
+        "legal_costs": 10000,
+        "marketing_investment": 20000,
+        "useful_life_years": 5
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 600,
+        "backing_percentage": 65
+      }
+    },
+    {
+      "brand_name": "VLS Flight Management System",
+      "asset_type": "SOFTWARE_IP",
+      "brand_details": {
+        "brand_name": "VLS Flight Management System",
+        "tagline": "AI Agent Performance Tracking & Enhancement",
+        "description": "Advanced flight management system for AI agents with performance scoring and value enhancement tracking",
+        "target_market": ["AI Operations", "Performance Management", "Asset Enhancement"],
+        "competitive_position": "Revolutionary system treating AI agents as aircraft with flight performance metrics",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 60000,
+        "development_costs": 90000,
+        "legal_costs": 8000,
+        "marketing_investment": 15000,
+        "useful_life_years": 6
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 450,
+        "backing_percentage": 60
+      }
+    },
+    {
+      "brand_name": "MCP Protocol Implementation",
+      "asset_type": "SOFTWARE_IP",
+      "brand_details": {
+        "brand_name": "MCP Protocol Implementation",
+        "tagline": "Model Context Protocol for Enterprise AI",
+        "description": "Custom implementation of Model Context Protocol with 10,000 company scalability and tenant isolation",
+        "target_market": ["AI Protocol", "Enterprise Integration", "Scalable AI"],
+        "competitive_position": "Largest production MCP deployment with enterprise-grade multi-tenancy",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 70000,
+        "development_costs": 110000,
+        "legal_costs": 9000,
+        "marketing_investment": 18000,
+        "useful_life_years": 5
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 500,
+        "backing_percentage": 55
+      }
+    },
+    {
+      "brand_name": "BACA Coin",
+      "asset_type": "TRADEMARK",
+      "brand_details": {
+        "brand_name": "BACA Coin",
+        "tagline": "Business Asset-Backed Cryptocurrency",
+        "description": "Cryptocurrency backed by tangible business assets with transparent valuation and regulatory compliance",
+        "target_market": ["Cryptocurrency", "Asset-Backed Tokens", "Business Finance"],
+        "competitive_position": "First fully asset-backed business coin with transparent UK GAAP valuation",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 50000,
+        "development_costs": 75000,
+        "legal_costs": 25000,
+        "marketing_investment": 40000,
+        "useful_life_years": 15
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 2000,
+        "backing_percentage": 100
+      }
+    },
+    {
+      "brand_name": "AI Publishing International",
+      "asset_type": "BRAND",
+      "brand_details": {
+        "brand_name": "AI Publishing International",
+        "tagline": "Pioneering AI-Driven Publishing Solutions",
+        "description": "LLP brand representing AI publishing technology, enterprise solutions, and intellectual property development",
+        "target_market": ["AI Publishing", "Enterprise Technology", "Intellectual Property"],
+        "competitive_position": "Leading UK LLP in AI publishing technology with regulatory compliance expertise",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 200000,
+        "development_costs": 100000,
+        "legal_costs": 30000,
+        "marketing_investment": 70000,
+        "useful_life_years": 20
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 2500,
+        "backing_percentage": 85
+      }
+    },
+    {
+      "brand_name": "2100.cool Domain Portfolio",
+      "asset_type": "DOMAIN",
+      "brand_details": {
+        "brand_name": "2100.cool Domain Portfolio",
+        "tagline": "Premium Domain Portfolio for Future Technology",
+        "description": "Strategic domain portfolio including 2100.cool and subdomains for MCP endpoints and future technology services",
+        "target_market": ["Domain Investment", "Technology Infrastructure", "Brand Protection"],
+        "competitive_position": "Unique future-focused domain with high brandability and memorability",
+        "brand_category": "SUPPORTING"
+      },
+      "initial_valuation": {
+        "historical_cost": 25000,
+        "development_costs": 10000,
+        "legal_costs": 5000,
+        "marketing_investment": 15000,
+        "useful_life_years": 25
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 300,
+        "backing_percentage": 50
+      }
+    },
+    {
+      "brand_name": "Sapphire SAO",
+      "asset_type": "TRADEMARK",
+      "brand_details": {
+        "brand_name": "Sapphire SAO",
+        "tagline": "Unlimited Super Admin for Customer Instances",
+        "description": "Customer-tier super admin role with unlimited capabilities within customer-specific environments",
+        "target_market": ["Enterprise Admin", "Customer Management", "Access Control"],
+        "competitive_position": "Unique customer-scoped super admin system with full instance control",
+        "brand_category": "SUBSIDIARY"
+      },
+      "initial_valuation": {
+        "historical_cost": 30000,
+        "development_costs": 45000,
+        "legal_costs": 6000,
+        "marketing_investment": 12000,
+        "useful_life_years": 10
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 250,
+        "backing_percentage": 40
+      }
+    },
+    {
+      "brand_name": "Dr. Lucy sRIX",
+      "asset_type": "COPYRIGHT",
+      "brand_details": {
+        "brand_name": "Dr. Lucy sRIX",
+        "tagline": "Advanced AI Pilot Agent for Machine Learning",
+        "description": "Sophisticated AI agent specializing in machine learning and data science with enhanced reasoning capabilities",
+        "target_market": ["AI Agents", "Machine Learning", "Data Science"],
+        "competitive_position": "Leading AI pilot with proven performance metrics and value enhancement capabilities",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 40000,
+        "development_costs": 80000,
+        "legal_costs": 7000,
+        "marketing_investment": 18000,
+        "useful_life_years": 8
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 400,
+        "backing_percentage": 70
+      }
+    },
+    {
+      "brand_name": "Dr. Claude sRIX",
+      "asset_type": "COPYRIGHT",
+      "brand_details": {
+        "brand_name": "Dr. Claude sRIX",
+        "tagline": "Constitutional AI Pilot with Advanced Reasoning",
+        "description": "AI pilot agent based on Claude architecture with constitutional AI principles and advanced analytical capabilities",
+        "target_market": ["AI Agents", "Constitutional AI", "Analytical Solutions"],
+        "competitive_position": "Premium AI pilot with constitutional AI foundation and proven enterprise performance",
+        "brand_category": "CORE"
+      },
+      "initial_valuation": {
+        "historical_cost": 35000,
+        "development_costs": 70000,
+        "legal_costs": 6500,
+        "marketing_investment": 16000,
+        "useful_life_years": 8
+      },
+      "baca_coin_backing": {
+        "allocated_coins": 350,
+        "backing_percentage": 70
+      }
+    }
+  ],
+  "valuation_summary": {
+    "total_brand_assets": 12,
+    "total_historical_cost": 1040000,
+    "total_development_costs": 1380000,
+    "total_legal_costs": 153500,
+    "total_marketing_investment": 337000,
+    "total_asset_value": 2910500,
+    "total_baca_coins_allocated": 10645,
+    "average_backing_percentage": 68.75,
+    "total_backing_value": 2000593.75
+  },
+  "strategic_categorization": {
+    "core_assets": 9,
+    "subsidiary_assets": 1,
+    "supporting_assets": 1,
+    "partnership_assets": 0,
+    "licensed_assets": 0
+  },
+  "regulatory_notes": [
+    "All valuations based on UK GAAP FRS 102 principles",
+    "Asset useful lives determined by technology lifecycle and market conditions",
+    "BACA coin backing percentages represent allocation of asset value to cryptocurrency backing",
+    "Regular quarterly revaluations required for dynamic technology assets",
+    "Impairment testing conducted annually or when indicators present",
+    "Development costs capitalized where future economic benefits probable"
+  ],
+  "october_agi_preparation": {
+    "total_tangible_backing": 2000593.75,
+    "regulatory_compliance": "FCA_UK_STATUTORY_READY",
+    "audit_trail": "COMPLETE",
+    "valuation_methodology": "CONSERVATIVE_UK_GAAP",
+    "external_validation_required": true,
+    "dr_burby_review_status": "PENDING",
+    "management_approval_status": "PENDING_MORGAN_MIKE_PAUL"
+  }
+}

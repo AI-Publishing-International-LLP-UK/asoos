@@ -1,0 +1,26 @@
+{
+  "status": "EMERGENCY_DEMO_MODE",
+  "version": "v34",
+  "authority": "Diamond SAO Command Center",
+  "mocoa": {
+    "staging": "us-west1-b",
+    "production": "us-west1-a",
+    "emergency": true
+  },
+  "didc": {
+    "archivesReady": true,
+    "totalClusters": 20,
+    "pilotsActive": 4,
+    "systemReady": true
+  },
+  "swarm": {
+    "testamentSwarmActive": true,
+    "highSpeedPublishing": true,
+    "emergencyMode": true
+  },
+  "demo": {
+    "ready": true,
+    "timeRemaining": "20 minutes",
+    "systemStatus": "OPERATIONAL"
+  }
+}

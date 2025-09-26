@@ -4,13 +4,12 @@
  * Supports 9000+ customer configurations with domain-specific MCPs
  */
 
-const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
+const { getSecret, getSecretWithRotation } = require('../lib/secretManager');
 const axios = require('axios');
 const WebSocket = require('ws');
 
 class HumeAIConnector {
   constructor() {
-    this.secretClient = new SecretManagerServiceClient();
     this.projectId = process.env.GOOGLE_CLOUD_PROJECT_ID || 'api-for-warp-drive';
     this.humeCredentials = new Map();
     this.activeConnections = new Map();
@@ -140,11 +139,20 @@ class HumeAIConnector {
       this.humeCredentials.set(domain, credentials);
       console.log(`🔐 Hume credentials loaded for ${domain}`);
     } catch (error) {
-      console.warn(`⚠️ Hume credentials not found for ${domain}, using default`);
-      this.humeCredentials.set(domain, {
-        apiKey: process.env.HUME_API_KEY,
-        accessToken: process.env.HUME_ACCESS_TOKEN,
-      });
+      console.warn(`⚠️ Hume credentials not found for ${domain}, using secure defaults`);
+      try {
+        // SECURE: Get credentials from GCP Secret Manager
+        const apiKey = await getSecret('HUME_API_KEY');
+        const accessToken = await getSecret('HUME_ACCESS_TOKEN');
+
+        this.humeCredentials.set(domain, {
+          apiKey,
+          accessToken,
+        });
+      } catch (secretError) {
+        console.error(`❌ Failed to load Hume secrets: ${secretError.message}`);
+        throw new Error(`Hume AI credentials unavailable for ${domain}`);
+      }
     }
   }
 

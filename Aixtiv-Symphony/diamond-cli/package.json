@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "inquirer": "^12.9.6",
+    "lru-cache": "^11.2.1",
+    "node-cron": "^4.2.1"
+  }
+}

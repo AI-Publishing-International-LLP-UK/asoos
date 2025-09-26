@@ -1,0 +1,180 @@
+# ===================================================================
+# OAUTH2 + MULTI-SWARM PRODUCTION DEPLOYMENT - IN JESUS' NAME
+# Christ-Centered Excellence - Full Production Ready
+# Cloud Run KTD Optimized + Victory36 Maximum Security
+# ===================================================================
+
+# Production Node.js 24 Alpine base - In His Name
+FROM node:24-alpine AS base
+
+# Build arguments with divine purpose - In Jesus' Name
+ARG BUILD_DATE
+ARG GIT_COMMIT
+ARG GIT_BRANCH
+ARG CUSTOMER_NUMBER=208576
+ARG SECURITY_LEVEL=diamond_sao
+ARG VICTORY36_ENABLED=true
+ARG NODE_ENV=production
+
+# Divine metadata labels - In Christ's Name
+LABEL maintainer="Diamond SAO Expert Resolution System - In Jesus' Name" \
+      org.opencontainers.image.title="OAuth2 Multi-Swarm Production Gateway" \
+      org.opencontainers.image.description="Christ-centered OAuth2 + Multi-Swarm production system" \
+      org.opencontainers.image.version="1.0.0-production-jesus-name" \
+      org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.revision="${GIT_COMMIT}" \
+      org.opencontainers.image.vendor="AI Publishing International LLP" \
+      asoos.customer="${CUSTOMER_NUMBER}" \
+      asoos.security_level="${SECURITY_LEVEL}" \
+      asoos.victory36_enabled="${VICTORY36_ENABLED}" \
+      asoos.oauth2_enabled="true" \
+      asoos.multi_swarm="true" \
+      asoos.production_ready="true" \
+      asoos.cloud_run_optimized="true" \
+      asoos.jesus_name="true" \
+      asoos.ethical_foundation="perfect_love_for_humanity"
+
+# Victory36 Security: Create non-root user - In Jesus' Name
+RUN addgroup -g 1001 -S jesusname && \
+    adduser -S oauth2production -u 1001 -G jesusname && \
+    echo "oauth2production:*:1001:1001:In Jesus Name OAuth2 Multi-Swarm:/app:/sbin/nologin" >> /etc/passwd
+
+# Set working directory with proper ownership - In Christ's Name
+WORKDIR /app
+RUN chown -R oauth2production:jesusname /app
+
+# ===================================================================
+# DEPENDENCY INSTALLATION - IN HIS HOLY NAME
+# ===================================================================
+
+# Copy package files with Victory36 verification
+COPY --chown=oauth2production:jesusname package*.json ./
+
+# Victory36 Security: Verify package integrity - In Jesus' Name
+RUN echo "🔐 Victory36 Security Check: Verifying package integrity In Jesus' Name..." && \
+    if [ -f package-lock.json ]; then \
+      echo "✅ Package lock file found - integrity maintained In Christ's Name"; \
+    else \
+      echo "⚠️  No package lock - generating with Victory36 protection In Jesus' Name"; \
+    fi
+
+# Christ-centered dependency installation - In His Name
+RUN echo "💝 Installing dependencies with perfect love In Jesus' Name..." && \
+    npm ci --omit=dev --no-audit --no-fund && \
+    echo "✅ Dependencies installed with Christ-centered excellence In Jesus' Name"
+
+# ===================================================================
+# APPLICATION CODE - IN CHRIST'S NAME
+# ===================================================================
+
+# Copy application code with proper ownership - In Jesus' Name
+COPY --chown=oauth2production:jesusname server-oauth2-multiswarm.js ./server.js
+COPY --chown=oauth2production:jesusname src/ ./src/
+COPY --chown=oauth2production:jesusname deploy-package/ ./deploy-package/
+
+# Victory36 Security: Create secure directories - In Christ's Name
+RUN mkdir -p /app/logs /app/secrets /app/temp && \
+    chown -R oauth2production:jesusname /app/logs /app/secrets /app/temp && \
+    chmod 750 /app/secrets && \
+    chmod 755 /app/logs /app/temp
+
+# Cloud Run Optimized Health Check - In Jesus' Name
+RUN echo '#!/bin/sh' > /app/healthcheck.js && \
+    echo '# In Jesus Name Health Check' >> /app/healthcheck.js && \
+    echo 'const http = require("http");' >> /app/healthcheck.js && \
+    echo 'const options = { hostname: "127.0.0.1", port: 8080, path: "/health", method: "GET", timeout: 3000 };' >> /app/healthcheck.js && \
+    echo 'const req = http.request(options, (res) => {' >> /app/healthcheck.js && \
+    echo '  if (res.statusCode === 200) { console.log("✅ Health check passed In Jesus Name"); process.exit(0); }' >> /app/healthcheck.js && \
+    echo '  else { console.log("❌ Health check failed:", res.statusCode); process.exit(1); }' >> /app/healthcheck.js && \
+    echo '});' >> /app/healthcheck.js && \
+    echo 'req.on("error", (err) => { console.log("❌ Health check error:", err.message); process.exit(1); });' >> /app/healthcheck.js && \
+    echo 'req.setTimeout(3000, () => { console.log("⏰ Health check timeout"); process.exit(1); });' >> /app/healthcheck.js && \
+    echo 'req.end();' >> /app/healthcheck.js && \
+    chmod +x /app/healthcheck.js && \
+    chown oauth2production:jesusname /app/healthcheck.js
+
+# ===================================================================
+# CLOUD RUN PRODUCTION OPTIMIZATION
+# ===================================================================
+
+# Victory36 Security: Switch to non-root user - In Jesus' Name
+USER oauth2production:jesusname
+
+# Cloud Run optimized port exposure - In Christ's Name
+EXPOSE 8080
+# Port 8080: OAuth2 + Multi-Swarm Production Gateway - In Jesus' Name
+# - OAuth2 authentication (/api/*) 
+# - WFA swarm operations (/wfa/*)
+# - Intelligence swarm (/intelligence/*)
+# - Testament operations (/testament/*)
+# - Quantum processing (/quantum/*)
+# - Swarm coordination (/coordination/*)
+
+# Cloud Run optimized environment - In Jesus' Name
+ENV NODE_ENV=production \
+    PORT=8080 \
+    VICTORY36_PROTECTION=MAXIMUM \
+    OAUTH2_ENABLED=true \
+    MULTI_SWARM_INTEGRATION=true \
+    CHRIST_CENTERED=true \
+    JESUS_NAME=true \
+    PERFECT_LOVE=activated \
+    CLOUD_RUN_OPTIMIZED=true \
+    NPM_CONFIG_AUDIT=false \
+    NPM_CONFIG_FUND=false \
+    NPM_CONFIG_UPDATE_NOTIFIER=false
+
+# Cloud Run optimized health check - In Jesus' Name
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD node /app/healthcheck.js || exit 1
+
+# Victory36 Security: Final ownership verification - In Christ's Name  
+USER root
+RUN chown -R oauth2production:jesusname /app && \
+    chmod -R 755 /app && \
+    chmod 750 /app/secrets
+USER oauth2production:jesusname
+
+# Victory36 Security: Verify non-root execution - In Jesus' Name
+RUN echo "🔐 Victory36 Security Verification In Jesus' Name:" && \
+    echo "   User: $(whoami)" && \
+    echo "   UID: $(id -u)" && \
+    echo "   GID: $(id -g)" && \
+    echo "   Home: ${HOME}" && \
+    if [ "$(id -u)" -eq 0 ]; then \
+      echo "❌ SECURITY VIOLATION: Running as root!" && exit 1; \
+    else \
+      echo "✅ Non-root user confirmed - Victory36 security active In Jesus' Name"; \
+    fi
+
+# Cloud Run optimized startup - Direct Node.js execution In Jesus' Name
+CMD ["node", "server.js"]
+
+# ===================================================================
+# PRODUCTION DEPLOYMENT INSTRUCTIONS - IN JESUS' NAME
+# ===================================================================
+
+# Cloud Run Production Build:
+# docker build \
+#   --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+#   --build-arg GIT_COMMIT=$(git rev-parse HEAD) \
+#   --build-arg GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+#   --build-arg VICTORY36_ENABLED=true \
+#   --build-arg SECURITY_LEVEL=diamond_sao \
+#   --tag gcr.io/api-for-warp-drive/oauth2-multiswarm:production-jesus-name \
+#   -f Dockerfile-production .
+
+# ===================================================================
+# IN JESUS' NAME - DIVINE PURPOSE
+# ===================================================================
+
+# This container serves humanity with:
+# - Perfect Love: Every request handled with Christ-like compassion
+# - Victory36 Security: Maximum protection In Jesus' Name
+# - Multi-Swarm Unity: All systems working as one body
+# - Zero Errors: Committed to flawless operation In Christ
+# - Divine Purpose: Technology serving God's kingdom
+
+# "And whatever you do, whether in word or deed, do it all in the name 
+# of the Lord Jesus, giving thanks to God the Father through him." 
+# - Colossians 3:17

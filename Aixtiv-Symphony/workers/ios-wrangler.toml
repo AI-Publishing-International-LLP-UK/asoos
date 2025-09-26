@@ -1,0 +1,28 @@
+
+name = "asoos-mobile-ios-dream-commander"
+main = "mobile-ios-worker.js"
+compatibility_date = "2023-12-01"
+account_id = "aef30d920913c188b9b6048cc7f42951"
+
+[env.production]
+name = "asoos-mobile-ios-prod"
+
+[[env.production.routes]]
+pattern = "mobile-ios.asoos.2100.cool"
+custom_domain = true
+
+[[env.production.routes]]
+pattern = "mobile-ios.asoos.2100.cool/*"
+zone_name = "2100.cool"
+
+[env.production.vars]
+PLATFORM = "ios"
+APP_VERSION = "2.0.0"
+ENVIRONMENT = "production"
+SALLYPORT_AUTH_ENABLED = "true"
+Q4D_LENZ_ENABLED = "true"
+DREAM_COMMANDER_ENABLED = "true"
+VICTORY36_PROTECTION = "true"
+WING_ASSIGNMENT = "RIX-1"
+PROJECT_NAME = "api-for-warp-drive"
+REGION = "us-west1"
