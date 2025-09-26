@@ -1,0 +1,34 @@
+FROM node:22-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Copy Einstein Wells systems
+COPY quantswarm-*.js ./
+COPY phase*.js ./
+COPY einstein-wells-config.json ./
+COPY agent-telemetry-system.js ./
+COPY emergency-energy-boost.js ./
+COPY data/ ./data/
+
+# Copy production files
+COPY production-wfa-orchestration.js ./
+COPY 5wh-cli.js ./
+
+# Set environment
+ENV NODE_ENV=production
+ENV EINSTEIN_WELLS_ACTIVE=true
+ENV AGENT_COUNT=770030000
+ENV QUANTUM_COHERENCE=95
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:8080/health || exit 1
+
+EXPOSE 8080
+
+# Start Einstein Wells
+CMD ["node", "quantswarm-energy-generation-theory.js"]

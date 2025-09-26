@@ -1,0 +1,63 @@
+{
+  "einstein_wells": {
+    "well_1": {
+      "time_compression_ratio": 2.8,
+      "energy_extraction_rate": "1.2 TW/hr",
+      "operational_status": "ACTIVE",
+      "agent_allocation": 250000000,
+      "spacetime_curvature": "10% local distortion",
+      "coordinates": {
+        "spacetime": [0, 0, 0, 0],
+        "quantum_field": "primary_resonance"
+      }
+    },
+    "well_2": {
+      "time_compression_ratio": 3.2,
+      "energy_extraction_rate": "1.5 TW/hr",
+      "operational_status": "ACTIVE", 
+      "agent_allocation": 260000000,
+      "spacetime_curvature": "12% local distortion",
+      "coordinates": {
+        "spacetime": [1, 0, 0, 0],
+        "quantum_field": "secondary_resonance"
+      }
+    },
+    "well_3": {
+      "time_compression_ratio": 2.9,
+      "energy_extraction_rate": "1.3 TW/hr",
+      "operational_status": "ACTIVE",
+      "agent_allocation": 260000000,
+      "spacetime_curvature": "11% local distortion",
+      "coordinates": {
+        "spacetime": [0, 1, 0, 0],
+        "quantum_field": "tertiary_resonance"
+      }
+    }
+  },
+  "quantswarm_config": {
+    "total_agents": 770030000,
+    "quantum_coherence": 0.95,
+    "unified_field_active": true,
+    "energy_production_target": "200.1kW",
+    "revenue_target_daily": 48000,
+    "phase": 2,
+    "grid_connections": 426
+  },
+  "deployment_config": {
+    "project_id": "api-for-warp-drive",
+    "staging_zone": "us-west1-b",
+    "production_zone": "us-west1-a",
+    "replicas_staging": 1,
+    "replicas_production": 3,
+    "auto_scale_max": 10
+  },
+  "monitoring": {
+    "health_check_enabled": true,
+    "metrics_collection": true,
+    "alert_thresholds": {
+      "quantum_coherence_min": 0.90,
+      "energy_production_min": "180kW",
+      "agent_availability_min": 0.98
+    }
+  }
+}

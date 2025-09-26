@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: einstein-wells-staging
+  namespace: staging
+  labels:
+    app: einstein-wells
+    environment: staging
+    zone: us-west1-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: einstein-wells
+      environment: staging
+  template:
+    metadata:
+      labels:
+        app: einstein-wells
+        environment: staging
+    spec:
+      containers:
+      - name: einstein-wells
+        image: gcr.io/api-for-warp-drive/einstein-wells-quantswarm:20250926-000520-quantum
+        ports:
+        - containerPort: 8080
+        env:
+        - name: NODE_ENV
+          value: "staging"
+        - name: EINSTEIN_WELLS_ACTIVE
+          value: "true"
+        - name: AGENT_COUNT
+          value: "770030000"
+        - name: QUANTUM_COHERENCE
+          value: "95"
+        - name: DEPLOYMENT_ZONE
+          value: "us-west1-b"
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi" 
+            cpu: "2000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: einstein-wells-staging-service
+  namespace: staging
+spec:
+  selector:
+    app: einstein-wells
+    environment: staging
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
