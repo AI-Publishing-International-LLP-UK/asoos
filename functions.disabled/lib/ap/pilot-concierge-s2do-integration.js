@@ -87,7 +87,7 @@ integrateSOlutionCapabilities(profile, S2DOAgentIntegrationCapabilities, solutio
             profile.contextUnderstandingDepth = Math.min(profile.contextUnderstandingDepth + 0.1, 1.0);
     }
 }
-enableCrossAgentCommunication(agents, S2DOAgentIntegrationCapabilities[]);
+enableCrossAgentCommunication(agents, S2DOAgentIntegrationCapabilities);
 void {
     // Implement advanced cross-agent communication logic
     const: communicationProtocol = {

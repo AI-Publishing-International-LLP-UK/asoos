@@ -1,0 +1,161 @@
+{
+  "provider": "pandadoc",
+  "entity": "ai-publishing",
+  "entityName": "AI Publishing International LLP - PandaDoc Integration",
+  "entityType": "business",
+  "region": "global",
+  "description": "PandaDoc OAuth2 configuration for high-speed document management and e-signatures",
+  
+  "oauth2": {
+    "authorizationEndpoint": "https://app.pandadoc.com/oauth2/authorize",
+    "tokenEndpoint": "https://app.pandadoc.com/oauth2/access_token",
+    "revokeEndpoint": "https://app.pandadoc.com/oauth2/revoke",
+    "userInfoEndpoint": "https://api.pandadoc.com/public/v1/user",
+    "responseType": "code",
+    "grantType": "authorization_code",
+    "confidentialClient": true
+  },
+  
+  "client": {
+    "clientIdSecretName": "pandadoc-client-id",
+    "clientSecretSecretName": "pandadoc-client-secret",
+    "redirectUri": "https://integration-gateway-yutylytffa-uw.a.run.app/oauth2/callback/pandadoc",
+    "postLogoutRedirectUri": "https://integration-gateway-yutylytffa-uw.a.run.app/oauth2/logout/pandadoc"
+  },
+  
+  "scopes": [
+    "read+write",
+    "document_read",
+    "document_write",
+    "template_read",
+    "template_write",
+    "webhook_read",
+    "webhook_write",
+    "user_read"
+  ],
+  
+  "endpoints": {
+    "apiBase": "https://api.pandadoc.com/public/v1",
+    "documents": "https://api.pandadoc.com/public/v1/documents",
+    "templates": "https://api.pandadoc.com/public/v1/templates",
+    "webhooks": "https://api.pandadoc.com/public/v1/webhooks",
+    "folders": "https://api.pandadoc.com/public/v1/folders",
+    "members": "https://api.pandadoc.com/public/v1/members",
+    "contacts": "https://api.pandadoc.com/public/v1/contacts"
+  },
+  
+  "tokenManagement": {
+    "tokenRefreshThreshold": 300,
+    "maxRetries": 3,
+    "retryDelay": 1000,
+    "tokenStorageKey": "pandadoc_tokens",
+    "stateStorageKey": "pandadoc_state"
+  },
+  
+  "rateLimiting": {
+    "requestsPerSecond": 10,
+    "requestsPerMinute": 1000,
+    "requestsPerHour": 10000,
+    "burstLimit": 20
+  },
+  
+  "security": {
+    "enforceHttps": true,
+    "validateState": true,
+    "validateNonce": false,
+    "pkceRequired": false,
+    "tokenEncryption": true
+  },
+  
+  "high_speed_processing": {
+    "enabled": true,
+    "batch_document_creation": 50,
+    "parallel_processing": 10,
+    "auto_retry": true,
+    "cache_templates": true,
+    "queue_management": true
+  },
+  
+  "integration": {
+    "webhooks": {
+      "enabled": true,
+      "endpoint": "https://integration-gateway-yutylytffa-uw.a.run.app/webhooks/pandadoc",
+      "events": [
+        "document_state_changed",
+        "document_completed",
+        "document_sent",
+        "document_viewed",
+        "document_signed",
+        "document_declined",
+        "document_voided"
+      ]
+    },
+    "automate_workflows": true,
+    "template_management": {
+      "auto_sync": true,
+      "version_control": true,
+      "bulk_operations": true
+    }
+  },
+  
+  "business_documents": {
+    "templates": {
+      "service_agreements": {
+        "template_id": null,
+        "auto_populate": true,
+        "approval_workflow": "auto"
+      },
+      "consulting_contracts": {
+        "template_id": null,
+        "auto_populate": true,
+        "approval_workflow": "manager_approval"
+      },
+      "nda_templates": {
+        "template_id": null,
+        "auto_populate": true,
+        "approval_workflow": "legal_review"
+      },
+      "invoice_templates": {
+        "template_id": null,
+        "auto_populate": true,
+        "approval_workflow": "auto",
+        "xero_integration": true
+      }
+    }
+  },
+  
+  "qmm_integration": {
+    "quality_tracking": true,
+    "compliance_monitoring": true,
+    "document_audit_trail": true,
+    "signature_verification": true,
+    "legal_compliance_check": true
+  },
+  
+  "monitoring": {
+    "healthCheckEndpoint": "/health/pandadoc",
+    "metricsCollection": true,
+    "alerting": {
+      "tokenExpiration": 24,
+      "rateLimitWarning": 80,
+      "errorThreshold": 10,
+      "document_failures": 5,
+      "signature_delays": 72
+    }
+  },
+  
+  "metadata": {
+    "createdAt": "2025-09-26T06:23:50Z",
+    "version": "1.0.0",
+    "environment": "production",
+    "maintainer": "Integration Gateway Team",
+    "tags": [
+      "pandadoc",
+      "documents",
+      "e-signatures",
+      "oauth2",
+      "high-speed",
+      "qmm-integrated"
+    ]
+  }
+}

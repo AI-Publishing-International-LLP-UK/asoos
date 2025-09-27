@@ -1,5 +1,5 @@
 {
-  "implementation_date": "2025-09-26T03:01:08.739Z",
+  "implementation_date": "2025-09-26T08:38:09.856Z",
   "grids": {
     "grid1_ercot_texas": {
       "grid_id": "ERCOT-001",
@@ -59,50 +59,50 @@
   },
   "payment_accounts": {
     "ERCOT-001": {
-      "account_id": "acct_ercot-001_1758855668735",
+      "account_id": "acct_ercot-001_1758875889852",
       "grid_name": "ERCOT Texas",
       "status": "ACTIVE",
       "currency": "USD",
       "settlement_method": "instant_transfer",
-      "created": "2025-09-26T03:01:08.735Z"
+      "created": "2025-09-26T08:38:09.852Z"
     },
     "CAISO-001": {
-      "account_id": "acct_caiso-001_1758855668737",
+      "account_id": "acct_caiso-001_1758875889855",
       "grid_name": "CAISO California",
       "status": "ACTIVE",
       "currency": "USD",
       "settlement_method": "instant_transfer",
-      "created": "2025-09-26T03:01:08.737Z"
+      "created": "2025-09-26T08:38:09.855Z"
     },
     "PJM-001": {
-      "account_id": "acct_pjm-001_1758855668737",
+      "account_id": "acct_pjm-001_1758875889855",
       "grid_name": "PJM East Coast",
       "status": "ACTIVE",
       "currency": "USD",
       "settlement_method": "instant_transfer",
-      "created": "2025-09-26T03:01:08.737Z"
+      "created": "2025-09-26T08:38:09.855Z"
     },
     "NORDPOOL-001": {
-      "account_id": "acct_nordpool-001_1758855668737",
+      "account_id": "acct_nordpool-001_1758875889855",
       "grid_name": "Nord Pool Nordic",
       "status": "ACTIVE",
       "currency": "USD",
       "settlement_method": "instant_transfer",
-      "created": "2025-09-26T03:01:08.737Z"
+      "created": "2025-09-26T08:38:09.855Z"
     },
     "EPEX-001": {
-      "account_id": "acct_epex-001_1758855668737",
+      "account_id": "acct_epex-001_1758875889855",
       "grid_name": "EPEX SPOT Europe",
       "status": "ACTIVE",
       "currency": "USD",
       "settlement_method": "instant_transfer",
-      "created": "2025-09-26T03:01:08.737Z"
+      "created": "2025-09-26T08:38:09.855Z"
     }
   },
   "power_monitoring": {
-    "start_time": 1758855658725,
-    "total_power_generated_wh": 0.2781666666666667,
-    "total_revenue_generated_usd": 0.000012517500000000002
+    "start_time": 1758875879841,
+    "total_power_generated_wh": 0.27819444444444447,
+    "total_revenue_generated_usd": 0.000012518750000000003
   },
   "status": "ACTIVE"
 }

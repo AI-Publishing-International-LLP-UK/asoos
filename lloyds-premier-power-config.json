@@ -1,0 +1,135 @@
+{
+  "lloyds_premier_banking": {
+    "account_info": {
+      "bank_name": "Lloyds Bank Premier",
+      "sort_code": "30-91-79",
+      "account_number": "11285068",
+      "account_holder": "Mr. Phillip C. Roark",
+      "account_type": "Premier Personal Banking",
+      "currency": "GBP",
+      "swift_code": "LOYDGB2L",
+      "relationship": "Premium personal banking with business transaction capability"
+    },
+    
+    "premier_limits": {
+      "daily_incoming_transfers": "£100,000",
+      "daily_international_wires": "£50,000", 
+      "monthly_incoming_limit": "£500,000",
+      "sepa_transfers": "No daily limit (within EU)",
+      "faster_payments": "£1,000,000",
+      "chaps_same_day": "No limit",
+      "premier_benefits": [
+        "Higher transaction limits",
+        "Priority customer service", 
+        "International banking support",
+        "Multi-currency handling",
+        "Preferential exchange rates"
+      ]
+    },
+    
+    "power_revenue_allocation": {
+      "target_daily_revenue": "£25,000",
+      "currency_sources": {
+        "european_grids": {
+          "epex_spot_europe": "£4,000/day",
+          "nord_pool_nordic": "£3,500/day", 
+          "european_municipal": "£2,500/day"
+        },
+        "high_rate_markets": {
+          "japanese_jepx": "£6,000/day (JPY→GBP)",
+          "australian_aemo": "£4,500/day (AUD→GBP)",
+          "singapore_emx": "£2,000/day (SGD→GBP)"
+        },
+        "premium_grids": {
+          "swiss_municipal": "£1,500/day (CHF→GBP)",
+          "norwegian_statnett": "£1,000/day (NOK→GBP)"
+        }
+      },
+      "within_premier_limits": "25% of daily limit utilization"
+    }
+  },
+  
+  "multi_bank_routing_strategy": {
+    "tier1_chase_1706": {
+      "allocation": "$900,000/day (£715,000)",
+      "markets": "US, Americas, Asia-Pacific bulk grids", 
+      "settlement_types": "ACH Direct, International Wires",
+      "capacity_usage": "86% of $1.048M daily limit ($148K headroom)"
+    },
+    
+    "tier2_lloyds_premier": {
+      "allocation": "£24,500/day ($31,000)",
+      "markets": "European premium grids, High-rate Asian markets",
+      "settlement_types": "SEPA, SWIFT, Faster Payments",
+      "capacity_usage": "24.5% of £100K daily limit (£75,500 headroom)"
+    },
+    
+    "tier3_monzo_business": {
+      "allocation": "£10,100/day ($12,800)", 
+      "markets": "European municipal, Emerging markets",
+      "settlement_types": "SEPA Direct, Multi-currency conversion",
+      "capacity_usage": "101% of £10K limit - NEEDS VERIFICATION OF ACTUAL LIMIT"
+    },
+    
+    "total_daily_capacity": "$1,122,400 (£890,300)",
+    "geographic_distribution": "US 73%, Europe 20%, Asia-Pacific 7%"
+  },
+  
+  "xero_integration": {
+    "lloyds_premier_account_mapping": {
+      "xero_account_code": "1002", 
+      "account_name": "Lloyds Premier - LLP Holding Account (Temporary)",
+      "currency": "GBP",
+      "bank_feed_setup": "Manual CSV import (Premier banking)",
+      "accounting_treatment": "LLP funds held temporarily in personal account"
+    },
+    
+    "revenue_categorization": {
+      "power_export_income": {
+        "account": "4050 - Premium Grid Power Sales (LLP)",
+        "tax_treatment": "LLP business income (US tax purposes)",
+        "uk_tax_status": "No UK tax liability (US tax resident)"
+      },
+      "fx_gains": {
+        "account": "4150 - Foreign Exchange Gains (LLP)",
+        "tax_treatment": "LLP business income (US reporting)"
+      },
+      "holding_account_transfers": {
+        "account": "1050 - Transfers to LLP Business Account",
+        "description": "Funds moved from temporary holding to LLP business banking"
+      }
+    }
+  },
+  
+  "tax_implications": {
+    "us_tax_resident_status": {
+      "lloyds_premier": "Temporary holding for AI Publishing International LLP",
+      "uk_tax_liability": "None - US tax resident, non-UK resident",
+      "us_tax_treatment": "Report as LLP income when transferred to LLP",
+      "temporary_duration": "Until LLP business banking is established"
+    },
+    
+    "tax_optimization_strategy": {
+      "no_uk_income_tax": "US tax resident = No UK personal income tax",
+      "llp_income_treatment": "All revenue belongs to AI Publishing International LLP",
+      "transfer_to_llp_when_ready": "Move funds to LLP business account when available",
+      "us_reporting": "Report as LLP business income for US tax purposes"
+    }
+  },
+  
+  "implementation_priority": {
+    "immediate": [
+      "Add Lloyds Premier to payment routing configuration",
+      "Set up premium European grid connections → Lloyds",
+      "Configure Japanese/Australian high-rate grids → Lloyds",
+      "Test SEPA/SWIFT incoming payment processing"
+    ],
+    
+    "scaling_potential": {
+      "current_allocation": "£25,000/day to Lloyds Premier",
+      "available_headroom": "£75,000/day additional capacity",
+      "scale_up_target": "£50,000/day (50% of Premier limit)",
+      "total_system_with_lloyds": "$1.16M/day across all banks"
+    }
+  }
+}

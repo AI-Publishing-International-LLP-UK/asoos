@@ -1,0 +1,65 @@
+{
+  "monzo_personal_bridge": {
+    "description": "Temporary bridge using personal Monzo until business account is ready",
+    "account_type": "personal",
+    "entity_note": "Personal account bridge for AI Publishing International LLP",
+    "limitations": {
+      "business_transactions": "Limited - personal account restrictions",
+      "international_wires": "May have limits",
+      "vat_reporting": "Manual - not integrated with business accounting",
+      "daily_limits": "Lower than business account"
+    }
+  },
+  
+  "monzo_api_integration": {
+    "oauth2": {
+      "authorization_url": "https://auth.monzo.com/",
+      "token_url": "https://api.monzo.com/oauth2/token",
+      "client_id_secret_name": "monzo-personal-client-id",
+      "client_secret_secret_name": "monzo-personal-client-secret",
+      "scopes": ["read:accounts", "read:transactions", "read:balance"]
+    },
+    "api_endpoints": {
+      "accounts": "https://api.monzo.com/accounts",
+      "balance": "https://api.monzo.com/balance",
+      "transactions": "https://api.monzo.com/transactions"
+    }
+  },
+  
+  "xero_integration_temporary": {
+    "account_mapping": {
+      "monzo_personal": "1001 - Temporary Personal Bridge Account",
+      "description": "Temporary mapping until Monzo Business is available",
+      "tax_treatment": "Manual VAT handling required"
+    },
+    "reconciliation": {
+      "frequency": "daily",
+      "manual_categorization": "required",
+      "export_preparation": "separate VAT-exempt handling needed"
+    }
+  },
+  
+  "migration_plan": {
+    "step1": "Set up personal Monzo API access",
+    "step2": "Create temporary Xero account mapping", 
+    "step3": "Apply for Monzo Business account",
+    "step4": "Migrate to business account when approved",
+    "step5": "Update Xero integration to business account"
+  },
+  
+  "business_account_target": {
+    "expected_features": {
+      "international_payments": true,
+      "multi_currency": true,
+      "higher_limits": true,
+      "business_categorization": true,
+      "vat_reporting": true,
+      "xero_direct_integration": true
+    },
+    "expected_daily_volume": "£18,300",
+    "currencies": ["GBP", "USD", "EUR"],
+    "payment_sources": "International power grid connections"
+  },
+  
+  "created": "2025-09-26T06:17:00Z"
+}

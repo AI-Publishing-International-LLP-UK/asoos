@@ -1,0 +1,134 @@
+{
+  "provider": "monzo",
+  "entity": "personal-bridge",
+  "entityName": "Personal Monzo Bridge for AI Publishing International LLP",
+  "entityType": "personal",
+  "region": "uk",
+  "description": "Monzo OAuth2 configuration for high-speed payment processing bridge",
+  
+  "account_details": {
+    "sort_code": "04-00-04",
+    "account_number": "49843009",
+    "bank_name": "Monzo Bank Limited",
+    "swift_code": "MONZGB2L",
+    "account_type": "personal_current",
+    "currency": "GBP"
+  },
+  
+  "oauth2": {
+    "authorizationEndpoint": "https://auth.monzo.com/",
+    "tokenEndpoint": "https://api.monzo.com/oauth2/token",
+    "revokeEndpoint": "https://api.monzo.com/oauth2/logout",
+    "userInfoEndpoint": "https://api.monzo.com/ping/whoami",
+    "responseType": "code",
+    "grantType": "authorization_code",
+    "confidentialClient": true
+  },
+  
+  "client": {
+    "clientIdSecretName": "monzo-personal-client-id",
+    "clientSecretSecretName": "monzo-personal-client-secret",
+    "redirectUri": "https://integration-gateway-yutylytffa-uw.a.run.app/oauth2/callback/monzo",
+    "postLogoutRedirectUri": "https://integration-gateway-yutylytffa-uw.a.run.app/oauth2/logout/monzo"
+  },
+  
+  "scopes": [
+    "read:accounts",
+    "read:balance", 
+    "read:transactions",
+    "read:webhooks",
+    "write:webhooks"
+  ],
+  
+  "endpoints": {
+    "apiBase": "https://api.monzo.com",
+    "accounts": "https://api.monzo.com/accounts",
+    "balance": "https://api.monzo.com/balance",
+    "transactions": "https://api.monzo.com/transactions",
+    "webhooks": "https://api.monzo.com/webhooks",
+    "pots": "https://api.monzo.com/pots",
+    "feed": "https://api.monzo.com/feed"
+  },
+  
+  "tokenManagement": {
+    "tokenRefreshThreshold": 300,
+    "maxRetries": 3,
+    "retryDelay": 1000,
+    "tokenStorageKey": "monzo_personal_tokens",
+    "stateStorageKey": "monzo_personal_state"
+  },
+  
+  "rateLimiting": {
+    "requestsPerMinute": 1000,
+    "requestsPerHour": 5000,
+    "burstLimit": 50
+  },
+  
+  "security": {
+    "enforceHttps": true,
+    "validateState": true,
+    "validateNonce": false,
+    "pkceRequired": true,
+    "tokenEncryption": true
+  },
+  
+  "high_speed_processing": {
+    "enabled": true,
+    "batch_size": 100,
+    "concurrent_requests": 10,
+    "auto_retry": true,
+    "cache_duration": 60,
+    "real_time_updates": true
+  },
+  
+  "integration": {
+    "webhooks": {
+      "enabled": true,
+      "endpoint": "https://integration-gateway-yutylytffa-uw.a.run.app/webhooks/monzo",
+      "events": [
+        "transaction.created",
+        "transaction.updated",
+        "transaction.declined"
+      ]
+    },
+    "syncFrequency": "real-time",
+    "batchProcessing": {
+      "enabled": true,
+      "batchSize": 100,
+      "maxConcurrentBatches": 5
+    }
+  },
+  
+  "xero_bridge": {
+    "account_code": "1001",
+    "account_name": "Monzo Bridge - International Payments",
+    "bank_feed_enabled": true,
+    "auto_categorization": true,
+    "vat_handling": "manual_export_classification"
+  },
+  
+  "monitoring": {
+    "healthCheckEndpoint": "/health/monzo",
+    "metricsCollection": true,
+    "alerting": {
+      "tokenExpiration": 24,
+      "rateLimitWarning": 80,
+      "errorThreshold": 10,
+      "transactionFailures": 5
+    }
+  },
+  
+  "metadata": {
+    "createdAt": "2025-09-26T06:23:50Z",
+    "version": "1.0.0",
+    "environment": "production",
+    "maintainer": "Integration Gateway Team",
+    "tags": [
+      "monzo",
+      "payments",
+      "uk-bridge",
+      "oauth2",
+      "high-speed"
+    ]
+  }
+}

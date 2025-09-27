@@ -1,14 +1,14 @@
 [
   {
-    "id": "4a80aa6a-53a0-45ad-9385-c2d56989db36",
+    "id": "a9ace4c8-3e3f-4470-8e66-f9c6f50b0421",
     "title": "Strategic Intelligence Analysis - claude-001 #1",
-    "create_time": "2024-10-03T01:08:04.511Z",
-    "update_time": "2024-10-12T18:07:12.560Z",
+    "create_time": "2025-05-20T09:47:16.977Z",
+    "update_time": "2025-04-19T01:48:41.858Z",
     "mapping": {
-      "fd8ccee0-072a-4d6f-a5fd-0283b2cc9cd1": {
-        "id": "fd8ccee0-072a-4d6f-a5fd-0283b2cc9cd1",
+      "0ebdbdbc-f62c-42b1-ab3a-d8e63f436415": {
+        "id": "0ebdbdbc-f62c-42b1-ab3a-d8e63f436415",
         "message": {
-          "id": "a8ea8927-6753-42ba-b090-97c08afe44d9",
+          "id": "77268781-8b94-4f88-8de3-ddb32e0bd4ab",
           "author": {
             "role": "user"
           },
@@ -19,15 +19,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-04T01:08:04.511Z"
+          "create_time": "2025-03-29T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "74e4b7dd-3572-4f3c-bb97-54e7eb694d15": {
-        "id": "74e4b7dd-3572-4f3c-bb97-54e7eb694d15",
+      "baa175e0-0b12-435d-a4af-92ca402da582": {
+        "id": "baa175e0-0b12-435d-a4af-92ca402da582",
         "message": {
-          "id": "7dfc58ae-fc91-48ac-aee8-cffc00faddce",
+          "id": "6cc9fc71-a6d9-453a-8c98-73ba1ed9f782",
           "author": {
             "role": "assistant"
           },
@@ -38,15 +38,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-04T01:08:04.511Z"
+          "create_time": "2025-06-19T09:47:16.977Z"
         },
-        "parent": "fd8ccee0-072a-4d6f-a5fd-0283b2cc9cd1",
+        "parent": "0ebdbdbc-f62c-42b1-ab3a-d8e63f436415",
         "children": []
       },
-      "bd1342e0-c97b-4802-9e8e-435f23810ddc": {
-        "id": "bd1342e0-c97b-4802-9e8e-435f23810ddc",
+      "ef00bcba-8727-41f8-a5e7-4f4bb89eabc4": {
+        "id": "ef00bcba-8727-41f8-a5e7-4f4bb89eabc4",
         "message": {
-          "id": "7d912fa8-bae9-4993-b549-71b4864c3902",
+          "id": "53e519e8-60e1-47e3-b9c5-fb76d69039c8",
           "author": {
             "role": "user"
           },
@@ -57,15 +57,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-06-19T01:08:04.511Z"
+          "create_time": "2025-01-25T09:47:16.977Z"
         },
-        "parent": "74e4b7dd-3572-4f3c-bb97-54e7eb694d15",
+        "parent": "baa175e0-0b12-435d-a4af-92ca402da582",
         "children": []
       },
-      "c5ceba2f-364d-49bb-8797-8d40aa1e078e": {
-        "id": "c5ceba2f-364d-49bb-8797-8d40aa1e078e",
+      "f54a4b26-84db-40e0-8fec-e657c72d1cd9": {
+        "id": "f54a4b26-84db-40e0-8fec-e657c72d1cd9",
         "message": {
-          "id": "f0fc5de3-7459-458c-9656-af037ac66fd5",
+          "id": "e915eb6b-2734-41c5-91e5-3bd8f5d2ad0a",
           "author": {
             "role": "assistant"
           },
@@ -76,23 +76,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-09-03T01:08:04.511Z"
+          "create_time": "2024-11-23T09:47:16.977Z"
         },
-        "parent": "bd1342e0-c97b-4802-9e8e-435f23810ddc",
+        "parent": "ef00bcba-8727-41f8-a5e7-4f4bb89eabc4",
         "children": []
       }
     }
   },
   {
-    "id": "b6ed9232-323e-40af-94eb-db81efc94b58",
+    "id": "3288a443-5d8a-48fd-8e1e-5c66d1cccd48",
     "title": "Complex Problem Solving Framework - claude-001 #2",
-    "create_time": "2025-06-29T01:08:04.511Z",
-    "update_time": "2025-08-08T19:17:22.309Z",
+    "create_time": "2025-02-25T09:47:16.977Z",
+    "update_time": "2024-11-19T13:07:40.089Z",
     "mapping": {
-      "1cb05c54-b3d7-4a3a-87ff-de1c36ba365a": {
-        "id": "1cb05c54-b3d7-4a3a-87ff-de1c36ba365a",
+      "9e88a16a-c1a0-4d4d-97b0-d494ae0606dd": {
+        "id": "9e88a16a-c1a0-4d4d-97b0-d494ae0606dd",
         "message": {
-          "id": "439f6108-419c-41a7-8b41-8a734d314716",
+          "id": "f6d42fed-9fe9-4098-b040-e6b416365e44",
           "author": {
             "role": "user"
           },
@@ -103,15 +103,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-03-27T01:08:04.511Z"
+          "create_time": "2024-11-01T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "e1b1f8de-d09d-45bc-bd85-37e791c607c0": {
-        "id": "e1b1f8de-d09d-45bc-bd85-37e791c607c0",
+      "8f23a9b7-a798-4974-ac54-5b5279f3e0e9": {
+        "id": "8f23a9b7-a798-4974-ac54-5b5279f3e0e9",
         "message": {
-          "id": "6326f7e2-a70a-47e7-a7d8-5e7f8d1dda46",
+          "id": "444cf979-a4c1-447f-bb84-c6a839fba10a",
           "author": {
             "role": "assistant"
           },
@@ -122,15 +122,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-09-17T01:08:04.511Z"
+          "create_time": "2025-09-20T09:47:16.977Z"
         },
-        "parent": "1cb05c54-b3d7-4a3a-87ff-de1c36ba365a",
+        "parent": "9e88a16a-c1a0-4d4d-97b0-d494ae0606dd",
         "children": []
       },
-      "16444d03-fb86-42db-9a2d-6f504ff9ee64": {
-        "id": "16444d03-fb86-42db-9a2d-6f504ff9ee64",
+      "38892df9-2e8c-4256-8927-20e8cd0324fb": {
+        "id": "38892df9-2e8c-4256-8927-20e8cd0324fb",
         "message": {
-          "id": "26ba5d71-cf80-46db-b57f-9aaf26f88275",
+          "id": "0261520c-fdaf-48b1-b2c6-58c6718ffbfe",
           "author": {
             "role": "user"
           },
@@ -141,15 +141,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-08-26T01:08:04.511Z"
+          "create_time": "2024-12-20T09:47:16.977Z"
         },
-        "parent": "e1b1f8de-d09d-45bc-bd85-37e791c607c0",
+        "parent": "8f23a9b7-a798-4974-ac54-5b5279f3e0e9",
         "children": []
       },
-      "1c1569b5-7343-4fea-9125-a785b419e4a2": {
-        "id": "1c1569b5-7343-4fea-9125-a785b419e4a2",
+      "b5afbfe4-bc0c-4772-a0ce-2d1ed3d7732e": {
+        "id": "b5afbfe4-bc0c-4772-a0ce-2d1ed3d7732e",
         "message": {
-          "id": "7fdf70c5-c946-44da-a14c-f9276a300556",
+          "id": "19ecf041-dfab-483c-aff5-1014d4b30a2d",
           "author": {
             "role": "assistant"
           },
@@ -160,23 +160,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-09T01:08:04.511Z"
+          "create_time": "2025-05-22T09:47:16.977Z"
         },
-        "parent": "16444d03-fb86-42db-9a2d-6f504ff9ee64",
+        "parent": "38892df9-2e8c-4256-8927-20e8cd0324fb",
         "children": []
       }
     }
   },
   {
-    "id": "580c1581-d26d-4ec2-a1c4-fc4d1a6d5bc0",
+    "id": "01ef652b-f551-4ca4-b244-9061f8d51d68",
     "title": "Strategic Intelligence Analysis - claude-001 #3",
-    "create_time": "2025-04-06T01:08:04.511Z",
-    "update_time": "2025-01-14T20:47:24.660Z",
+    "create_time": "2025-05-20T09:47:16.977Z",
+    "update_time": "2025-04-17T10:03:35.376Z",
     "mapping": {
-      "dad22638-30f7-444d-af71-bf364b45cc08": {
-        "id": "dad22638-30f7-444d-af71-bf364b45cc08",
+      "443fbee0-fe2e-4456-972c-1109163858ca": {
+        "id": "443fbee0-fe2e-4456-972c-1109163858ca",
         "message": {
-          "id": "2d56dc7c-fc99-414a-bd8d-bcc1a86831aa",
+          "id": "5605fc7b-a345-4944-81ab-8b0b30b10810",
           "author": {
             "role": "user"
           },
@@ -187,15 +187,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-12-10T01:08:04.511Z"
+          "create_time": "2025-05-17T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "0c6899d1-cfe6-4502-a3ac-160d86aff286": {
-        "id": "0c6899d1-cfe6-4502-a3ac-160d86aff286",
+      "14d5e016-dd90-4913-8a17-780929ada758": {
+        "id": "14d5e016-dd90-4913-8a17-780929ada758",
         "message": {
-          "id": "c8003ccc-1c66-48b7-b849-c39903503c15",
+          "id": "6ca626cf-859b-4107-86a0-7eb6bcdc8665",
           "author": {
             "role": "assistant"
           },
@@ -206,15 +206,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-09-03T01:08:04.511Z"
+          "create_time": "2025-02-20T09:47:16.977Z"
         },
-        "parent": "dad22638-30f7-444d-af71-bf364b45cc08",
+        "parent": "443fbee0-fe2e-4456-972c-1109163858ca",
         "children": []
       },
-      "b7024c84-ced2-43f5-a5a2-e9f5f2b05876": {
-        "id": "b7024c84-ced2-43f5-a5a2-e9f5f2b05876",
+      "fbc0c44e-e278-4189-974a-22242690e4bb": {
+        "id": "fbc0c44e-e278-4189-974a-22242690e4bb",
         "message": {
-          "id": "64def2fa-c16b-448e-b872-1abb1bfa29b1",
+          "id": "789b846d-43bf-4507-b28b-8cb8722e6544",
           "author": {
             "role": "user"
           },
@@ -225,15 +225,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-09-23T01:08:04.511Z"
+          "create_time": "2024-12-19T09:47:16.977Z"
         },
-        "parent": "0c6899d1-cfe6-4502-a3ac-160d86aff286",
+        "parent": "14d5e016-dd90-4913-8a17-780929ada758",
         "children": []
       },
-      "926bc915-0942-4ece-9d0b-0c422d232e21": {
-        "id": "926bc915-0942-4ece-9d0b-0c422d232e21",
+      "df1fa6fb-9573-479c-8d5f-a1ea8fda0c25": {
+        "id": "df1fa6fb-9573-479c-8d5f-a1ea8fda0c25",
         "message": {
-          "id": "85aa4e54-1bab-4aba-bc07-067b2e019031",
+          "id": "fe4babc4-3ae3-4a8b-b608-8b0f0a8261f8",
           "author": {
             "role": "assistant"
           },
@@ -244,23 +244,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-07T01:08:04.511Z"
+          "create_time": "2024-11-17T09:47:16.977Z"
         },
-        "parent": "b7024c84-ced2-43f5-a5a2-e9f5f2b05876",
+        "parent": "fbc0c44e-e278-4189-974a-22242690e4bb",
         "children": []
       }
     }
   },
   {
-    "id": "11b38949-f2de-45d5-8176-b07079c4a62d",
+    "id": "fd638e16-986e-488b-b88c-3347234322fd",
     "title": "Complex Problem Solving Framework - claude-001 #4",
-    "create_time": "2025-01-29T01:08:04.511Z",
-    "update_time": "2024-12-19T15:01:40.943Z",
+    "create_time": "2025-08-23T09:47:16.977Z",
+    "update_time": "2025-05-13T14:47:18.252Z",
     "mapping": {
-      "06db76f2-97c5-4d9c-8692-3cf82db5aadc": {
-        "id": "06db76f2-97c5-4d9c-8692-3cf82db5aadc",
+      "6cc79cce-7f72-4121-9386-27173bb5f7e2": {
+        "id": "6cc79cce-7f72-4121-9386-27173bb5f7e2",
         "message": {
-          "id": "d800d2f8-c6df-403b-9980-464f17cdcd41",
+          "id": "2bc40c7a-1a4e-4672-bf58-e7543f8e11ed",
           "author": {
             "role": "user"
           },
@@ -271,15 +271,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-05T01:08:04.511Z"
+          "create_time": "2024-10-08T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "174de970-301e-4444-94f5-8bd80b2ded2f": {
-        "id": "174de970-301e-4444-94f5-8bd80b2ded2f",
+      "40d5a343-0a46-4909-b6d8-dd0994557945": {
+        "id": "40d5a343-0a46-4909-b6d8-dd0994557945",
         "message": {
-          "id": "09b849a0-e46c-406a-9576-04539b0d13d3",
+          "id": "9dcdcc60-5df0-4228-a8a9-5d2b86b11f33",
           "author": {
             "role": "assistant"
           },
@@ -290,15 +290,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-19T01:08:04.511Z"
+          "create_time": "2024-12-11T09:47:16.977Z"
         },
-        "parent": "06db76f2-97c5-4d9c-8692-3cf82db5aadc",
+        "parent": "6cc79cce-7f72-4121-9386-27173bb5f7e2",
         "children": []
       },
-      "a33784ac-3465-47ef-bfa3-fb956a477256": {
-        "id": "a33784ac-3465-47ef-bfa3-fb956a477256",
+      "e3775184-a47c-4256-a5e7-429d5c6efb4d": {
+        "id": "e3775184-a47c-4256-a5e7-429d5c6efb4d",
         "message": {
-          "id": "dfc81d5c-a218-48b6-8f1a-9a8f5cc4815d",
+          "id": "03035fe9-6c1c-4474-b6a8-3d2e3b301fe2",
           "author": {
             "role": "user"
           },
@@ -309,15 +309,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-09-30T01:08:04.511Z"
+          "create_time": "2025-05-30T09:47:16.977Z"
         },
-        "parent": "174de970-301e-4444-94f5-8bd80b2ded2f",
+        "parent": "40d5a343-0a46-4909-b6d8-dd0994557945",
         "children": []
       },
-      "0271dd18-083d-40ac-a702-bdb36de33d38": {
-        "id": "0271dd18-083d-40ac-a702-bdb36de33d38",
+      "a83e4087-dc21-4662-969b-8ef0543acc13": {
+        "id": "a83e4087-dc21-4662-969b-8ef0543acc13",
         "message": {
-          "id": "c4ef14d4-814e-469e-9b5f-6f8ba5b67ca2",
+          "id": "26f73ee3-59e3-4d77-b96c-b80969474a0d",
           "author": {
             "role": "assistant"
           },
@@ -328,23 +328,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-01-26T01:08:04.511Z"
+          "create_time": "2025-07-25T09:47:16.977Z"
         },
-        "parent": "a33784ac-3465-47ef-bfa3-fb956a477256",
+        "parent": "e3775184-a47c-4256-a5e7-429d5c6efb4d",
         "children": []
       }
     }
   },
   {
-    "id": "bbc20c67-e114-4526-bd8e-b6cfd9e4d435",
+    "id": "d34f6c8b-4497-4985-b8d8-bb65886c1cba",
     "title": "Strategic Intelligence Analysis - claude-001 #5",
-    "create_time": "2024-10-01T01:08:04.511Z",
-    "update_time": "2025-02-19T18:52:12.561Z",
+    "create_time": "2025-08-27T09:47:16.977Z",
+    "update_time": "2025-06-14T12:04:27.147Z",
     "mapping": {
-      "667b36f7-f0d1-4885-8ad4-2ac1f54e62a8": {
-        "id": "667b36f7-f0d1-4885-8ad4-2ac1f54e62a8",
+      "62b3627c-b8b8-4678-a540-2d9972ef00d4": {
+        "id": "62b3627c-b8b8-4678-a540-2d9972ef00d4",
         "message": {
-          "id": "1583e8d7-816d-4d7d-b33d-caa3cc3df17e",
+          "id": "2f01e7cb-7cba-487b-b4b0-e53ed7c7d442",
           "author": {
             "role": "user"
           },
@@ -355,15 +355,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-16T01:08:04.511Z"
+          "create_time": "2025-05-19T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "51402ed7-c5af-4d00-bca1-5d8b7c456af4": {
-        "id": "51402ed7-c5af-4d00-bca1-5d8b7c456af4",
+      "afd8fd83-1d90-43d8-9275-9fdec57c0d75": {
+        "id": "afd8fd83-1d90-43d8-9275-9fdec57c0d75",
         "message": {
-          "id": "9fd4ab48-ce2b-41c6-b495-cc8f9cee6c9e",
+          "id": "db1bfc49-6a32-43c9-a957-f34c59966ac1",
           "author": {
             "role": "assistant"
           },
@@ -374,15 +374,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-27T01:08:04.511Z"
+          "create_time": "2025-05-03T09:47:16.977Z"
         },
-        "parent": "667b36f7-f0d1-4885-8ad4-2ac1f54e62a8",
+        "parent": "62b3627c-b8b8-4678-a540-2d9972ef00d4",
         "children": []
       },
-      "52df1157-fbc1-46f5-8a97-899c140a2572": {
-        "id": "52df1157-fbc1-46f5-8a97-899c140a2572",
+      "4897c522-f10b-4504-be2a-bb2a941ae1ad": {
+        "id": "4897c522-f10b-4504-be2a-bb2a941ae1ad",
         "message": {
-          "id": "101611b8-2414-40d2-a71b-c68a38cd1520",
+          "id": "b58d59cd-c8b3-4e1f-b228-27b9a1514f0f",
           "author": {
             "role": "user"
           },
@@ -393,15 +393,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-05-11T01:08:04.511Z"
+          "create_time": "2025-09-09T09:47:16.977Z"
         },
-        "parent": "51402ed7-c5af-4d00-bca1-5d8b7c456af4",
+        "parent": "afd8fd83-1d90-43d8-9275-9fdec57c0d75",
         "children": []
       },
-      "6934e562-be7c-40ce-aca4-bd58e81d9a6e": {
-        "id": "6934e562-be7c-40ce-aca4-bd58e81d9a6e",
+      "9db70aea-036a-4811-bdd5-55068177bf1d": {
+        "id": "9db70aea-036a-4811-bdd5-55068177bf1d",
         "message": {
-          "id": "4787ce36-2c3a-40b7-aed2-2151aad68af0",
+          "id": "4fd32f9c-b812-475c-9627-02e8995448df",
           "author": {
             "role": "assistant"
           },
@@ -412,23 +412,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-05-11T01:08:04.511Z"
+          "create_time": "2024-09-26T09:47:16.977Z"
         },
-        "parent": "52df1157-fbc1-46f5-8a97-899c140a2572",
+        "parent": "4897c522-f10b-4504-be2a-bb2a941ae1ad",
         "children": []
       }
     }
   },
   {
-    "id": "aac60b24-0b4d-43ba-89c6-00e8c108e926",
+    "id": "5db5faa9-a630-48b3-9ea0-52fb6da0e863",
     "title": "Complex Problem Solving Framework - claude-001 #6",
-    "create_time": "2025-05-07T01:08:04.511Z",
-    "update_time": "2025-06-22T23:23:28.891Z",
+    "create_time": "2025-01-13T09:47:16.977Z",
+    "update_time": "2025-05-14T08:29:14.639Z",
     "mapping": {
-      "e9a2ba59-ccb1-4ff6-b8dc-9911c9894c77": {
-        "id": "e9a2ba59-ccb1-4ff6-b8dc-9911c9894c77",
+      "41450c57-4c7d-4eb1-816b-5fca991b7554": {
+        "id": "41450c57-4c7d-4eb1-816b-5fca991b7554",
         "message": {
-          "id": "425a25ef-90f6-4501-8458-9fa03139be38",
+          "id": "c90ff838-e64f-472a-b038-87ed6be21793",
           "author": {
             "role": "user"
           },
@@ -439,15 +439,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-11-10T01:08:04.511Z"
+          "create_time": "2025-03-24T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "439d48b3-381b-4b60-b98c-7437633330a9": {
-        "id": "439d48b3-381b-4b60-b98c-7437633330a9",
+      "91dc2529-fc8a-49a8-8f34-8e46818a6781": {
+        "id": "91dc2529-fc8a-49a8-8f34-8e46818a6781",
         "message": {
-          "id": "3e6b1309-1843-4589-9479-4e95b3000875",
+          "id": "929b2abc-369f-4e29-80e2-d9ac9f71b2aa",
           "author": {
             "role": "assistant"
           },
@@ -458,15 +458,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-02-18T01:08:04.511Z"
+          "create_time": "2025-02-02T09:47:16.977Z"
         },
-        "parent": "e9a2ba59-ccb1-4ff6-b8dc-9911c9894c77",
+        "parent": "41450c57-4c7d-4eb1-816b-5fca991b7554",
         "children": []
       },
-      "0824aa12-41ab-4d09-872f-e6f7a46ce24b": {
-        "id": "0824aa12-41ab-4d09-872f-e6f7a46ce24b",
+      "3c0013ea-a9b7-4435-a21a-a0630e061148": {
+        "id": "3c0013ea-a9b7-4435-a21a-a0630e061148",
         "message": {
-          "id": "7e771da1-ae11-49b8-aabb-6b4bb5fccddd",
+          "id": "a72e3e18-515d-4818-97f6-cb6c6c870bdd",
           "author": {
             "role": "user"
           },
@@ -477,15 +477,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-09-01T01:08:04.511Z"
+          "create_time": "2025-05-13T09:47:16.977Z"
         },
-        "parent": "439d48b3-381b-4b60-b98c-7437633330a9",
+        "parent": "91dc2529-fc8a-49a8-8f34-8e46818a6781",
         "children": []
       },
-      "4b47f374-d606-4112-b141-224858ecf438": {
-        "id": "4b47f374-d606-4112-b141-224858ecf438",
+      "3685e46f-432e-4244-a214-8918e5cd9912": {
+        "id": "3685e46f-432e-4244-a214-8918e5cd9912",
         "message": {
-          "id": "e55011fc-5fd3-421f-9cac-b76dc990fe13",
+          "id": "2dca3f57-5eba-40f2-9a95-dab6d8177895",
           "author": {
             "role": "assistant"
           },
@@ -496,23 +496,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-07-05T01:08:04.511Z"
+          "create_time": "2025-05-19T09:47:16.977Z"
         },
-        "parent": "0824aa12-41ab-4d09-872f-e6f7a46ce24b",
+        "parent": "3c0013ea-a9b7-4435-a21a-a0630e061148",
         "children": []
       }
     }
   },
   {
-    "id": "f044b490-4ea0-4c47-9160-a29a6c4a6b19",
+    "id": "325ec9e4-34a3-405e-a85c-ee392b86298e",
     "title": "Strategic Intelligence Analysis - claude-001 #7",
-    "create_time": "2025-06-19T01:08:04.511Z",
-    "update_time": "2024-10-19T20:02:05.464Z",
+    "create_time": "2025-04-25T09:47:16.977Z",
+    "update_time": "2025-03-04T11:24:42.252Z",
     "mapping": {
-      "7ed365d2-133b-4871-8d63-6085f216e6d7": {
-        "id": "7ed365d2-133b-4871-8d63-6085f216e6d7",
+      "2494ef28-4825-436a-be3d-cbb02706c1c0": {
+        "id": "2494ef28-4825-436a-be3d-cbb02706c1c0",
         "message": {
-          "id": "467f0b2e-3f6d-4089-a795-65fe6b72bb39",
+          "id": "290d05c0-60c7-4fd7-9be9-0e2e084302b8",
           "author": {
             "role": "user"
           },
@@ -523,15 +523,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-12-29T01:08:04.511Z"
+          "create_time": "2025-03-01T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "b14ced2f-4763-4a22-8ce0-db47fd53def1": {
-        "id": "b14ced2f-4763-4a22-8ce0-db47fd53def1",
+      "110386e5-d8e8-4aff-a572-3fb685f67e58": {
+        "id": "110386e5-d8e8-4aff-a572-3fb685f67e58",
         "message": {
-          "id": "6c274694-720a-445f-8f9d-d5c53583ac8c",
+          "id": "69a9a8cb-1fd3-4c2f-a6d3-0a2c8daa5a4f",
           "author": {
             "role": "assistant"
           },
@@ -542,15 +542,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-05T01:08:04.511Z"
+          "create_time": "2024-11-07T09:47:16.977Z"
         },
-        "parent": "7ed365d2-133b-4871-8d63-6085f216e6d7",
+        "parent": "2494ef28-4825-436a-be3d-cbb02706c1c0",
         "children": []
       },
-      "e8664f14-9913-49d6-ab94-07b75fd50dfa": {
-        "id": "e8664f14-9913-49d6-ab94-07b75fd50dfa",
+      "5573da73-8e02-4c3b-97e9-e210667c7382": {
+        "id": "5573da73-8e02-4c3b-97e9-e210667c7382",
         "message": {
-          "id": "67b64659-3710-4f91-a7f2-6d033879d9e2",
+          "id": "fb48fee3-cb7a-4f8c-92fd-88565c2e5caf",
           "author": {
             "role": "user"
           },
@@ -561,15 +561,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-02-21T01:08:04.511Z"
+          "create_time": "2024-12-22T09:47:16.977Z"
         },
-        "parent": "b14ced2f-4763-4a22-8ce0-db47fd53def1",
+        "parent": "110386e5-d8e8-4aff-a572-3fb685f67e58",
         "children": []
       },
-      "6f5ef502-c4bd-4841-b032-6dc114721df5": {
-        "id": "6f5ef502-c4bd-4841-b032-6dc114721df5",
+      "912b96b7-db22-4ae3-b433-c61f28a07480": {
+        "id": "912b96b7-db22-4ae3-b433-c61f28a07480",
         "message": {
-          "id": "6bfaa4dc-117c-4fe1-aa89-b144fd1a6b26",
+          "id": "1d1c3a04-b9c4-4b12-bdf4-3509c4e57cfa",
           "author": {
             "role": "assistant"
           },
@@ -580,23 +580,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-06-16T01:08:04.511Z"
+          "create_time": "2025-05-12T09:47:16.977Z"
         },
-        "parent": "e8664f14-9913-49d6-ab94-07b75fd50dfa",
+        "parent": "5573da73-8e02-4c3b-97e9-e210667c7382",
         "children": []
       }
     }
   },
   {
-    "id": "45f63a09-8c74-4e9e-b3cb-ccec2a0507f8",
+    "id": "0367bf34-e795-4d24-a1c9-97d55200e400",
     "title": "Complex Problem Solving Framework - claude-001 #8",
-    "create_time": "2025-01-31T01:08:04.511Z",
-    "update_time": "2025-04-02T19:33:57.085Z",
+    "create_time": "2025-07-15T09:47:16.977Z",
+    "update_time": "2024-10-15T16:31:34.321Z",
     "mapping": {
-      "3749e52f-c35f-46d5-99cf-600c4df16fc8": {
-        "id": "3749e52f-c35f-46d5-99cf-600c4df16fc8",
+      "3934cbd5-72bf-4139-ae34-fd36f2ee1540": {
+        "id": "3934cbd5-72bf-4139-ae34-fd36f2ee1540",
         "message": {
-          "id": "a8d3bf0e-4145-41c5-9995-f564c23117a5",
+          "id": "aadd6155-f568-4d1a-be57-7c67f6de4dd2",
           "author": {
             "role": "user"
           },
@@ -607,15 +607,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-01-03T01:08:04.511Z"
+          "create_time": "2025-03-04T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "2cc278aa-a65b-4de3-b294-4ff59c34a9fb": {
-        "id": "2cc278aa-a65b-4de3-b294-4ff59c34a9fb",
+      "d5286586-2a23-41c4-81d1-432621fb14a6": {
+        "id": "d5286586-2a23-41c4-81d1-432621fb14a6",
         "message": {
-          "id": "932718d6-e389-4798-abc2-9b5e831cacfc",
+          "id": "4cc1f163-a249-4ae2-9716-e708d0cd4ef2",
           "author": {
             "role": "assistant"
           },
@@ -626,15 +626,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-02-16T01:08:04.511Z"
+          "create_time": "2025-09-05T09:47:16.977Z"
         },
-        "parent": "3749e52f-c35f-46d5-99cf-600c4df16fc8",
+        "parent": "3934cbd5-72bf-4139-ae34-fd36f2ee1540",
         "children": []
       },
-      "acbb8684-07c9-461c-962d-19be61ef47e9": {
-        "id": "acbb8684-07c9-461c-962d-19be61ef47e9",
+      "ec6661ae-6d1f-4abc-87b2-1492e73577e1": {
+        "id": "ec6661ae-6d1f-4abc-87b2-1492e73577e1",
         "message": {
-          "id": "fc53a614-9b35-430a-a96f-57da76824a2d",
+          "id": "b6696537-5c8a-44d5-8438-e861ea39a46f",
           "author": {
             "role": "user"
           },
@@ -645,15 +645,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-27T01:08:04.511Z"
+          "create_time": "2025-02-16T09:47:16.977Z"
         },
-        "parent": "2cc278aa-a65b-4de3-b294-4ff59c34a9fb",
+        "parent": "d5286586-2a23-41c4-81d1-432621fb14a6",
         "children": []
       },
-      "ae3034fa-f3f1-4f54-ac17-257e1e4abecf": {
-        "id": "ae3034fa-f3f1-4f54-ac17-257e1e4abecf",
+      "b4616e7b-f1dc-4e93-80e6-deca166ccae3": {
+        "id": "b4616e7b-f1dc-4e93-80e6-deca166ccae3",
         "message": {
-          "id": "63f6eb12-b00c-4ac0-9dc1-69d28a2de8b6",
+          "id": "35aa3de4-b7d4-46a5-9122-bf74eeb37252",
           "author": {
             "role": "assistant"
           },
@@ -664,23 +664,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-12-12T01:08:04.511Z"
+          "create_time": "2025-06-09T09:47:16.977Z"
         },
-        "parent": "acbb8684-07c9-461c-962d-19be61ef47e9",
+        "parent": "ec6661ae-6d1f-4abc-87b2-1492e73577e1",
         "children": []
       }
     }
   },
   {
-    "id": "b625e055-00b8-4ab1-8875-dd11768994ba",
+    "id": "746a4e37-6a90-433d-b1bf-9264de6fa4d3",
     "title": "Strategic Intelligence Analysis - claude-001 #9",
-    "create_time": "2025-02-11T01:08:04.511Z",
-    "update_time": "2025-04-25T19:52:59.796Z",
+    "create_time": "2024-11-18T09:47:16.977Z",
+    "update_time": "2025-03-14T12:27:28.932Z",
     "mapping": {
-      "5b719928-5aa9-4849-a810-18793fd96599": {
-        "id": "5b719928-5aa9-4849-a810-18793fd96599",
+      "5fc78f21-696a-44a4-95a1-2a5893a383c3": {
+        "id": "5fc78f21-696a-44a4-95a1-2a5893a383c3",
         "message": {
-          "id": "2dddb025-113f-4233-867b-24428b4b0097",
+          "id": "2395d826-89ef-47b4-8324-07af85151930",
           "author": {
             "role": "user"
           },
@@ -691,15 +691,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-06T01:08:04.511Z"
+          "create_time": "2024-11-26T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "66f51934-a6c7-4f3e-85c9-071d52c71336": {
-        "id": "66f51934-a6c7-4f3e-85c9-071d52c71336",
+      "b81a0ece-c73c-4f25-8305-7bd86be998f2": {
+        "id": "b81a0ece-c73c-4f25-8305-7bd86be998f2",
         "message": {
-          "id": "2c4b7bc6-daf0-4e08-bddf-72bf6d587803",
+          "id": "6d382dd9-da04-4f0d-8860-a62b463a7590",
           "author": {
             "role": "assistant"
           },
@@ -710,15 +710,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-02-16T01:08:04.511Z"
+          "create_time": "2024-12-19T09:47:16.977Z"
         },
-        "parent": "5b719928-5aa9-4849-a810-18793fd96599",
+        "parent": "5fc78f21-696a-44a4-95a1-2a5893a383c3",
         "children": []
       },
-      "9c51df6d-4302-435a-ac14-d89d8d43d481": {
-        "id": "9c51df6d-4302-435a-ac14-d89d8d43d481",
+      "ba6ca514-8409-42b5-89f3-9741fcb7628c": {
+        "id": "ba6ca514-8409-42b5-89f3-9741fcb7628c",
         "message": {
-          "id": "cb0f67cd-1611-4c6e-b10a-1cc2125c7388",
+          "id": "2c2b78d6-9fe5-45ba-96a2-aba77b50376c",
           "author": {
             "role": "user"
           },
@@ -729,15 +729,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-08-08T01:08:04.511Z"
+          "create_time": "2025-09-03T09:47:16.977Z"
         },
-        "parent": "66f51934-a6c7-4f3e-85c9-071d52c71336",
+        "parent": "b81a0ece-c73c-4f25-8305-7bd86be998f2",
         "children": []
       },
-      "e9b05c36-623a-465d-af56-76d26581f8bb": {
-        "id": "e9b05c36-623a-465d-af56-76d26581f8bb",
+      "79f5dec2-dc3c-417c-be11-13addeda2c55": {
+        "id": "79f5dec2-dc3c-417c-be11-13addeda2c55",
         "message": {
-          "id": "92c80887-02a4-4978-8d43-648814479332",
+          "id": "b1c75dda-04e0-4896-a7c3-8b1b9da326f9",
           "author": {
             "role": "assistant"
           },
@@ -748,23 +748,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-07-27T01:08:04.511Z"
+          "create_time": "2024-10-30T09:47:16.977Z"
         },
-        "parent": "9c51df6d-4302-435a-ac14-d89d8d43d481",
+        "parent": "ba6ca514-8409-42b5-89f3-9741fcb7628c",
         "children": []
       }
     }
   },
   {
-    "id": "6374afe2-2a4d-4d55-9883-3717336387f3",
+    "id": "f81c5ded-2934-4dc0-b5e2-d3943ad6f959",
     "title": "Complex Problem Solving Framework - claude-001 #10",
-    "create_time": "2024-11-07T01:08:04.511Z",
-    "update_time": "2025-02-16T04:08:36.300Z",
+    "create_time": "2025-07-18T09:47:16.977Z",
+    "update_time": "2024-11-21T10:17:39.763Z",
     "mapping": {
-      "6ec4b400-6ff6-4259-8723-9851cbc32fee": {
-        "id": "6ec4b400-6ff6-4259-8723-9851cbc32fee",
+      "7562971a-4981-4e9f-aad1-a951d6ccae5d": {
+        "id": "7562971a-4981-4e9f-aad1-a951d6ccae5d",
         "message": {
-          "id": "c6c3d0c6-cdee-4abc-95bb-815f959a6f8e",
+          "id": "ad70c281-2df5-4923-afef-ac0936ad46ca",
           "author": {
             "role": "user"
           },
@@ -775,15 +775,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-11T01:08:04.511Z"
+          "create_time": "2024-12-16T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "efd89c4c-67d9-4a8c-a639-06711c273168": {
-        "id": "efd89c4c-67d9-4a8c-a639-06711c273168",
+      "09ad0990-8562-40ab-87a8-73da2bb310cf": {
+        "id": "09ad0990-8562-40ab-87a8-73da2bb310cf",
         "message": {
-          "id": "221aa3cc-b2ec-46bb-92a5-49d61d08c1ab",
+          "id": "a3f28d56-6014-40bd-88ae-137be81ef1dc",
           "author": {
             "role": "assistant"
           },
@@ -794,15 +794,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-10-29T01:08:04.511Z"
+          "create_time": "2025-05-30T09:47:16.977Z"
         },
-        "parent": "6ec4b400-6ff6-4259-8723-9851cbc32fee",
+        "parent": "7562971a-4981-4e9f-aad1-a951d6ccae5d",
         "children": []
       },
-      "9c97c1f6-34f9-4134-8266-ad61b47b3077": {
-        "id": "9c97c1f6-34f9-4134-8266-ad61b47b3077",
+      "b9cac5f8-fb21-44fa-87f9-705d20b21d7d": {
+        "id": "b9cac5f8-fb21-44fa-87f9-705d20b21d7d",
         "message": {
-          "id": "cc5d7fc7-d9d4-4b63-a595-32f6a708667f",
+          "id": "157a8fb9-ca25-4738-bf92-e6a9833c7d1d",
           "author": {
             "role": "user"
           },
@@ -813,15 +813,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-03-24T01:08:04.511Z"
+          "create_time": "2025-08-03T09:47:16.977Z"
         },
-        "parent": "efd89c4c-67d9-4a8c-a639-06711c273168",
+        "parent": "09ad0990-8562-40ab-87a8-73da2bb310cf",
         "children": []
       },
-      "87e3f9a8-6c0a-4ea1-9ac5-9c1f9bca1feb": {
-        "id": "87e3f9a8-6c0a-4ea1-9ac5-9c1f9bca1feb",
+      "3389956c-b9c3-454b-8cea-d9e32925c83c": {
+        "id": "3389956c-b9c3-454b-8cea-d9e32925c83c",
         "message": {
-          "id": "213ad2d2-a21a-4434-b40f-47781a29d66a",
+          "id": "383d9663-b07f-4e9c-8623-4a6378115ce5",
           "author": {
             "role": "assistant"
           },
@@ -832,23 +832,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-05-11T01:08:04.511Z"
+          "create_time": "2025-01-01T09:47:16.977Z"
         },
-        "parent": "9c97c1f6-34f9-4134-8266-ad61b47b3077",
+        "parent": "b9cac5f8-fb21-44fa-87f9-705d20b21d7d",
         "children": []
       }
     }
   },
   {
-    "id": "e0a647c6-a53f-488d-9cf7-5922d5f127f5",
+    "id": "f1486962-167d-40c9-ba76-274ad4d54151",
     "title": "Strategic Intelligence Analysis - claude-001 #11",
-    "create_time": "2025-05-30T01:08:04.511Z",
-    "update_time": "2025-02-27T13:34:19.129Z",
+    "create_time": "2024-12-29T09:47:16.977Z",
+    "update_time": "2024-11-02T03:42:37.319Z",
     "mapping": {
-      "e677181a-54f8-45eb-8104-befee6901c3b": {
-        "id": "e677181a-54f8-45eb-8104-befee6901c3b",
+      "d4e2b13d-b75d-4e85-a2f3-0d97890d845d": {
+        "id": "d4e2b13d-b75d-4e85-a2f3-0d97890d845d",
         "message": {
-          "id": "2e390684-e355-4431-b512-d074dc6f91ce",
+          "id": "8d09dabb-821c-4fa5-b428-8c2c0a3a946c",
           "author": {
             "role": "user"
           },
@@ -859,15 +859,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-03-14T01:08:04.511Z"
+          "create_time": "2025-03-29T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "8ab53d69-d24c-42ab-908b-211b55aada6a": {
-        "id": "8ab53d69-d24c-42ab-908b-211b55aada6a",
+      "d3dcc854-8d4b-491b-90b0-6719077b587f": {
+        "id": "d3dcc854-8d4b-491b-90b0-6719077b587f",
         "message": {
-          "id": "cc237bd3-5c73-48e9-8562-57f2fc4c7629",
+          "id": "f2bdd29c-f003-49a5-a085-22377033c3c0",
           "author": {
             "role": "assistant"
           },
@@ -878,15 +878,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-02-24T01:08:04.511Z"
+          "create_time": "2025-03-31T09:47:16.977Z"
         },
-        "parent": "e677181a-54f8-45eb-8104-befee6901c3b",
+        "parent": "d4e2b13d-b75d-4e85-a2f3-0d97890d845d",
         "children": []
       },
-      "7201e4e9-d07b-4aea-b365-b74ea040aedb": {
-        "id": "7201e4e9-d07b-4aea-b365-b74ea040aedb",
+      "86bc93ff-7888-4ecd-8f92-a88d612fe151": {
+        "id": "86bc93ff-7888-4ecd-8f92-a88d612fe151",
         "message": {
-          "id": "57fecde7-e70e-4675-bfff-9d694d9bd2f2",
+          "id": "75af6bce-c329-4268-af00-d61b5fe5989c",
           "author": {
             "role": "user"
           },
@@ -897,15 +897,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-01-02T01:08:04.511Z"
+          "create_time": "2025-08-18T09:47:16.977Z"
         },
-        "parent": "8ab53d69-d24c-42ab-908b-211b55aada6a",
+        "parent": "d3dcc854-8d4b-491b-90b0-6719077b587f",
         "children": []
       },
-      "f5df94f3-22ab-4122-9ece-a8b17df079f2": {
-        "id": "f5df94f3-22ab-4122-9ece-a8b17df079f2",
+      "53647460-84cc-4846-97f7-07f004498512": {
+        "id": "53647460-84cc-4846-97f7-07f004498512",
         "message": {
-          "id": "9392191b-2f8a-4bb4-a112-58c193111e1f",
+          "id": "fa83a4e2-81e9-42d8-bbba-b9c434449fd2",
           "author": {
             "role": "assistant"
           },
@@ -916,23 +916,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-07-04T01:08:04.511Z"
+          "create_time": "2024-10-05T09:47:16.977Z"
         },
-        "parent": "7201e4e9-d07b-4aea-b365-b74ea040aedb",
+        "parent": "86bc93ff-7888-4ecd-8f92-a88d612fe151",
         "children": []
       }
     }
   },
   {
-    "id": "723476f2-0a72-4124-9dc7-184ed61d0ff4",
+    "id": "c318a277-2ba0-4ea2-8c89-a3f22aa95a1a",
     "title": "Complex Problem Solving Framework - claude-001 #12",
-    "create_time": "2025-07-16T01:08:04.511Z",
-    "update_time": "2025-05-29T03:16:48.196Z",
+    "create_time": "2025-01-31T09:47:16.977Z",
+    "update_time": "2024-10-24T07:10:12.320Z",
     "mapping": {
-      "0e43b75b-f209-4733-bdb5-a302496be51c": {
-        "id": "0e43b75b-f209-4733-bdb5-a302496be51c",
+      "ffeb817c-3dff-4621-a112-3dd083bb8fc7": {
+        "id": "ffeb817c-3dff-4621-a112-3dd083bb8fc7",
         "message": {
-          "id": "6d746b7c-0963-436a-85ac-47e81f6a79b6",
+          "id": "762799a3-2f1e-4950-ac63-7f30c42143df",
           "author": {
             "role": "user"
           },
@@ -943,15 +943,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-18T01:08:04.511Z"
+          "create_time": "2025-01-22T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "4a63c8e9-804f-4ab1-b88a-498177bc1815": {
-        "id": "4a63c8e9-804f-4ab1-b88a-498177bc1815",
+      "3c277a67-8510-490e-8dd2-255d48c420da": {
+        "id": "3c277a67-8510-490e-8dd2-255d48c420da",
         "message": {
-          "id": "1c80ba0b-0a01-476e-8050-623a861a774c",
+          "id": "4a89d48d-8c5c-490b-848f-1b7b1f22b783",
           "author": {
             "role": "assistant"
           },
@@ -962,15 +962,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-14T01:08:04.511Z"
+          "create_time": "2025-02-03T09:47:16.977Z"
         },
-        "parent": "0e43b75b-f209-4733-bdb5-a302496be51c",
+        "parent": "ffeb817c-3dff-4621-a112-3dd083bb8fc7",
         "children": []
       },
-      "327e65a6-bf71-4629-b95e-dc78378f58d5": {
-        "id": "327e65a6-bf71-4629-b95e-dc78378f58d5",
+      "ab0b1498-7108-4c00-8eec-54a8edff753d": {
+        "id": "ab0b1498-7108-4c00-8eec-54a8edff753d",
         "message": {
-          "id": "224f2102-43eb-4a9d-bc7e-ffb1fddb8c8e",
+          "id": "5580d19e-ecb1-4228-8a6f-4ebcb42cb408",
           "author": {
             "role": "user"
           },
@@ -981,15 +981,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-05-30T01:08:04.511Z"
+          "create_time": "2025-01-04T09:47:16.977Z"
         },
-        "parent": "4a63c8e9-804f-4ab1-b88a-498177bc1815",
+        "parent": "3c277a67-8510-490e-8dd2-255d48c420da",
         "children": []
       },
-      "6dc95e8c-4280-417c-b587-2e56fb9078cc": {
-        "id": "6dc95e8c-4280-417c-b587-2e56fb9078cc",
+      "8cffbe7d-fc82-4e64-9cd1-25c8f94a7573": {
+        "id": "8cffbe7d-fc82-4e64-9cd1-25c8f94a7573",
         "message": {
-          "id": "80cd2596-7556-45ff-9e01-95fb39962eae",
+          "id": "8b882b79-244d-4e7c-b292-a044f9d22cc3",
           "author": {
             "role": "assistant"
           },
@@ -1000,23 +1000,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-07-08T01:08:04.511Z"
+          "create_time": "2024-12-28T09:47:16.977Z"
         },
-        "parent": "327e65a6-bf71-4629-b95e-dc78378f58d5",
+        "parent": "ab0b1498-7108-4c00-8eec-54a8edff753d",
         "children": []
       }
     }
   },
   {
-    "id": "fd86cfbd-53f0-48a1-85d1-8ea025d7142a",
+    "id": "9af83e08-2852-496f-a694-bdbb55ad3a96",
     "title": "Strategic Intelligence Analysis - claude-001 #13",
-    "create_time": "2025-01-03T01:08:04.511Z",
-    "update_time": "2024-11-01T01:54:19.579Z",
+    "create_time": "2024-09-24T09:47:16.977Z",
+    "update_time": "2025-07-18T04:44:17.337Z",
     "mapping": {
-      "c76096eb-e55b-41c9-ade0-93f6cca9dcca": {
-        "id": "c76096eb-e55b-41c9-ade0-93f6cca9dcca",
+      "9ac6bef8-494a-4cf7-b36c-2b6885f0631c": {
+        "id": "9ac6bef8-494a-4cf7-b36c-2b6885f0631c",
         "message": {
-          "id": "6a3d3ae9-e2ac-420f-9482-242eaaf95a5d",
+          "id": "b785701b-393f-4591-898c-4aa77ffe3c24",
           "author": {
             "role": "user"
           },
@@ -1027,15 +1027,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-03-12T01:08:04.511Z"
+          "create_time": "2025-09-11T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "1eb8c0c4-e08c-4a8d-9585-c8eb3a1dead2": {
-        "id": "1eb8c0c4-e08c-4a8d-9585-c8eb3a1dead2",
+      "59bdc1e8-cf81-4738-b5fd-a6729ced47af": {
+        "id": "59bdc1e8-cf81-4738-b5fd-a6729ced47af",
         "message": {
-          "id": "fab8583a-4f09-4f2b-9bb1-c3fd6071d8c7",
+          "id": "ee677c6f-9cb8-4776-960a-f9a43826fa59",
           "author": {
             "role": "assistant"
           },
@@ -1046,15 +1046,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-02-01T01:08:04.511Z"
+          "create_time": "2025-04-22T09:47:16.977Z"
         },
-        "parent": "c76096eb-e55b-41c9-ade0-93f6cca9dcca",
+        "parent": "9ac6bef8-494a-4cf7-b36c-2b6885f0631c",
         "children": []
       },
-      "b4d31bf2-4976-45d2-a3b1-9472b0946678": {
-        "id": "b4d31bf2-4976-45d2-a3b1-9472b0946678",
+      "5bc93b7e-04ab-4685-9880-541f1bb696c7": {
+        "id": "5bc93b7e-04ab-4685-9880-541f1bb696c7",
         "message": {
-          "id": "691849a5-d7da-4f3e-8dd2-57cf4d807a3c",
+          "id": "13b65675-0919-4268-bf1a-cfee5258b986",
           "author": {
             "role": "user"
           },
@@ -1065,15 +1065,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-05-13T01:08:04.511Z"
+          "create_time": "2025-02-02T09:47:16.977Z"
         },
-        "parent": "1eb8c0c4-e08c-4a8d-9585-c8eb3a1dead2",
+        "parent": "59bdc1e8-cf81-4738-b5fd-a6729ced47af",
         "children": []
       },
-      "0c18d8bb-d385-4f31-8efb-f354c325dd78": {
-        "id": "0c18d8bb-d385-4f31-8efb-f354c325dd78",
+      "9b452bbb-f632-4337-8bd6-2638bbdc9675": {
+        "id": "9b452bbb-f632-4337-8bd6-2638bbdc9675",
         "message": {
-          "id": "c553231a-3c2b-4d9c-99ac-e5d0a17adcb9",
+          "id": "a8a32cb0-3b9a-415e-8ad5-0adf5e78d873",
           "author": {
             "role": "assistant"
           },
@@ -1084,23 +1084,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-01-20T01:08:04.511Z"
+          "create_time": "2025-05-27T09:47:16.977Z"
         },
-        "parent": "b4d31bf2-4976-45d2-a3b1-9472b0946678",
+        "parent": "5bc93b7e-04ab-4685-9880-541f1bb696c7",
         "children": []
       }
     }
   },
   {
-    "id": "799b5068-fc4e-451b-9cc5-0ceacbecfab5",
+    "id": "3eac2984-7c74-42da-ba1f-adafc53280d7",
     "title": "Complex Problem Solving Framework - claude-001 #14",
-    "create_time": "2025-05-21T01:08:04.511Z",
-    "update_time": "2024-12-01T23:56:14.880Z",
+    "create_time": "2024-10-19T09:47:16.977Z",
+    "update_time": "2024-10-11T16:08:44.450Z",
     "mapping": {
-      "128641d4-68af-4fdf-af2c-a3eb0b80b9eb": {
-        "id": "128641d4-68af-4fdf-af2c-a3eb0b80b9eb",
+      "5a6921d4-37c9-4bf5-bbbc-ac3ac2a786ce": {
+        "id": "5a6921d4-37c9-4bf5-bbbc-ac3ac2a786ce",
         "message": {
-          "id": "b29fa09f-4f8e-4609-9388-21c8fbcdf4ee",
+          "id": "ffececaf-472d-4617-8f9f-3d815046925e",
           "author": {
             "role": "user"
           },
@@ -1111,15 +1111,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-08-18T01:08:04.511Z"
+          "create_time": "2024-10-15T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "463017d8-806d-4c6e-bf85-561aa77a415f": {
-        "id": "463017d8-806d-4c6e-bf85-561aa77a415f",
+      "cc19b658-1e97-42f9-ba94-e4933538c4e3": {
+        "id": "cc19b658-1e97-42f9-ba94-e4933538c4e3",
         "message": {
-          "id": "fb21d4b4-a119-4062-88db-580a33365d1b",
+          "id": "d4c09c78-8ab9-4c14-9726-0615d84bcc6b",
           "author": {
             "role": "assistant"
           },
@@ -1130,15 +1130,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-07-14T01:08:04.511Z"
+          "create_time": "2025-04-13T09:47:16.977Z"
         },
-        "parent": "128641d4-68af-4fdf-af2c-a3eb0b80b9eb",
+        "parent": "5a6921d4-37c9-4bf5-bbbc-ac3ac2a786ce",
         "children": []
       },
-      "acc4abbf-5ef4-4a65-8ce6-bc5906026bb3": {
-        "id": "acc4abbf-5ef4-4a65-8ce6-bc5906026bb3",
+      "67ac1d18-874d-4c30-8c82-f50482ab8725": {
+        "id": "67ac1d18-874d-4c30-8c82-f50482ab8725",
         "message": {
-          "id": "d336d769-e11c-4182-ad75-577851164d33",
+          "id": "5be45e5b-c87b-4947-bedf-4e5b7a56a6ab",
           "author": {
             "role": "user"
           },
@@ -1149,15 +1149,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-08-21T01:08:04.511Z"
+          "create_time": "2024-11-04T09:47:16.977Z"
         },
-        "parent": "463017d8-806d-4c6e-bf85-561aa77a415f",
+        "parent": "cc19b658-1e97-42f9-ba94-e4933538c4e3",
         "children": []
       },
-      "6388575b-4970-4e6f-84c2-f85a1b409ed1": {
-        "id": "6388575b-4970-4e6f-84c2-f85a1b409ed1",
+      "62eb6248-1873-406b-b92f-f11ec109a83b": {
+        "id": "62eb6248-1873-406b-b92f-f11ec109a83b",
         "message": {
-          "id": "df903735-7fe3-4c8a-9632-dc214a99ecf0",
+          "id": "e768cc25-ec81-4c26-b252-bd5acbd1321a",
           "author": {
             "role": "assistant"
           },
@@ -1168,23 +1168,23 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-01-06T01:08:04.511Z"
+          "create_time": "2025-08-30T09:47:16.977Z"
         },
-        "parent": "acc4abbf-5ef4-4a65-8ce6-bc5906026bb3",
+        "parent": "67ac1d18-874d-4c30-8c82-f50482ab8725",
         "children": []
       }
     }
   },
   {
-    "id": "653b6360-b848-4f89-a494-d75737c2a6ca",
+    "id": "01f875c9-703f-4b26-80e0-f1c7bd14d331",
     "title": "Strategic Intelligence Analysis - claude-001 #15",
-    "create_time": "2025-01-14T01:08:04.511Z",
-    "update_time": "2024-12-01T17:15:04.114Z",
+    "create_time": "2025-04-11T09:47:16.977Z",
+    "update_time": "2025-03-04T21:43:36.981Z",
     "mapping": {
-      "bdd03136-5a77-43a7-a800-148b3b0aaa19": {
-        "id": "bdd03136-5a77-43a7-a800-148b3b0aaa19",
+      "ce904b28-3cbe-4c25-955c-28b830bae270": {
+        "id": "ce904b28-3cbe-4c25-955c-28b830bae270",
         "message": {
-          "id": "0d2c47e5-2f25-484a-a7cc-fb521bb87370",
+          "id": "bd132bdf-7be4-449c-aedc-570850756edd",
           "author": {
             "role": "user"
           },
@@ -1195,15 +1195,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2024-11-28T01:08:04.511Z"
+          "create_time": "2025-06-04T09:47:16.977Z"
         },
         "parent": null,
         "children": []
       },
-      "a73bbc41-a9fc-4c4a-9e72-5cabcd937b09": {
-        "id": "a73bbc41-a9fc-4c4a-9e72-5cabcd937b09",
+      "8f392b39-6ff4-4267-b4e8-d934586e391b": {
+        "id": "8f392b39-6ff4-4267-b4e8-d934586e391b",
         "message": {
-          "id": "2d6aafdd-1eff-4e76-b3ae-c98cb9deee68",
+          "id": "7a3efeea-3e01-4a57-bf1f-a4f1834de6d0",
           "author": {
             "role": "assistant"
           },
@@ -1214,15 +1214,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-04-01T01:08:04.511Z"
+          "create_time": "2025-04-16T09:47:16.977Z"
         },
-        "parent": "bdd03136-5a77-43a7-a800-148b3b0aaa19",
+        "parent": "ce904b28-3cbe-4c25-955c-28b830bae270",
         "children": []
       },
-      "a4ed71b0-f9b3-4c8f-8011-4e3bb99826a5": {
-        "id": "a4ed71b0-f9b3-4c8f-8011-4e3bb99826a5",
+      "cc9d2784-cb9a-4f6b-8c38-b80cf9641d58": {
+        "id": "cc9d2784-cb9a-4f6b-8c38-b80cf9641d58",
         "message": {
-          "id": "30d1dcc1-dde3-4746-ab23-143598365c78",
+          "id": "7217a7d2-fe96-4ade-951a-d74f4b2befad",
           "author": {
             "role": "user"
           },
@@ -1233,15 +1233,15 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-02-12T01:08:04.511Z"
+          "create_time": "2025-03-03T09:47:16.977Z"
         },
-        "parent": "a73bbc41-a9fc-4c4a-9e72-5cabcd937b09",
+        "parent": "8f392b39-6ff4-4267-b4e8-d934586e391b",
         "children": []
       },
-      "8bc80f96-c866-442c-9add-9095e212ef3d": {
-        "id": "8bc80f96-c866-442c-9add-9095e212ef3d",
+      "0e1eccc7-95f8-4d16-bf0d-d4c7086e1620": {
+        "id": "0e1eccc7-95f8-4d16-bf0d-d4c7086e1620",
         "message": {
-          "id": "4a4745a2-7218-4a23-bd2c-f19d7f40b376",
+          "id": "e564bd8d-f5a5-4c3c-8632-a8bb616f7277",
           "author": {
             "role": "assistant"
           },
@@ -1252,9 +1252,9 @@
             ]
           },
           "status": "finished_successfully",
-          "create_time": "2025-06-20T01:08:04.511Z"
+          "create_time": "2025-01-14T09:47:16.977Z"
         },
-        "parent": "a4ed71b0-f9b3-4c8f-8011-4e3bb99826a5",
+        "parent": "cc9d2784-cb9a-4f6b-8c38-b80cf9641d58",
         "children": []
       }
     }

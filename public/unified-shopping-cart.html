@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Publishing International - Professional Services Store</title>
+    
+    <!-- Professional Styling -->
+    <link rel="stylesheet" href="css/unified-shopping-cart.css">
+    <link rel="stylesheet" href="css/ambassador-referral.css">
+    
+    <!-- Professional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Security and Performance -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:;">
+</head>
+<body class="professional-interface">
+    <!-- Main Container -->
+    <div class="unified-store-container">
+        
+        <!-- Header Section -->
+        <header class="store-header professional-panel">
+            <div class="header-content">
+                <div class="brand-section">
+                    <h1 class="brand-title">🎯 AI Publishing International</h1>
+                    <p class="brand-tagline">Professional Services & Digital Solutions</p>
+                </div>
+                
+                <div class="cart-status" id="cart-status">
+                    <div class="cart-icon">🛍️</div>
+                    <div class="cart-details">
+                        <span class="cart-count" id="cart-count">0</span>
+                        <span class="cart-total" id="cart-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="store-main">
+            
+            <!-- Left Panel: Products & Services -->
+            <section class="products-panel professional-panel">
+                <div class="panel-header">
+                    <h2>🚀 Professional Services Store</h2>
+                    <p>Enterprise-grade AI solutions and professional services</p>
+                </div>
+                
+                <!-- Service Categories -->
+                <div class="service-categories">
+                    
+                    <!-- AI Agent Subscriptions -->
+                    <div class="category-section" data-category="subscriptions">
+                        <h3 class="category-title">🤖 AI Agent Subscriptions</h3>
+                        <div class="products-grid">
+                            
+                            <!-- Individual Plan -->
+                            <div class="product-card professional-high-contrast" data-product="individual-plan">
+                                <div class="product-header">
+                                    <div class="product-icon">👤</div>
+                                    <h4 class="product-name">Individual Professional</h4>
+                                    <div class="product-price">$99/month</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ Personal AI agent access</li>
+                                        <li>✅ Professional productivity tools</li>
+                                        <li>✅ Queen Mintmark NFT membership</li>
+                                        <li>✅ Standard support</li>
+                                        <li>✅ SallyPort security integration</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn" onclick="addToCart('individual-plan', 'Individual Professional', 99.00)">
+                                        Add to Cart
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('individual-plan', -1)">−</button>
+                                        <span class="quantity" id="qty-individual-plan">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('individual-plan', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cohort Plan -->
+                            <div class="product-card professional-high-contrast" data-product="cohort-plan">
+                                <div class="product-header">
+                                    <div class="product-icon">👥</div>
+                                    <h4 class="product-name">Team Cohort</h4>
+                                    <div class="product-price">$299/month</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ Team of 5-10 professionals</li>
+                                        <li>✅ Collaborative AI workspace</li>
+                                        <li>✅ Priority support</li>
+                                        <li>✅ Advanced analytics</li>
+                                        <li>✅ Custom integrations</li>
+                                        <li>✅ Queen Mintmark NFT collection</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn" onclick="addToCart('cohort-plan', 'Team Cohort', 299.00)">
+                                        Add to Cart
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('cohort-plan', -1)">−</button>
+                                        <span class="quantity" id="qty-cohort-plan">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('cohort-plan', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Enterprise Plan -->
+                            <div class="product-card professional-high-contrast" data-product="enterprise-plan">
+                                <div class="product-header">
+                                    <div class="product-icon">🏢</div>
+                                    <h4 class="product-name">Enterprise Solution</h4>
+                                    <div class="product-price">$999/month</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ Unlimited users</li>
+                                        <li>✅ White-label solutions</li>
+                                        <li>✅ Dedicated support team</li>
+                                        <li>✅ Custom AI model training</li>
+                                        <li>✅ Enterprise SLA guarantees</li>
+                                        <li>✅ Executive Queen Mintmark NFTs</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn" onclick="addToCart('enterprise-plan', 'Enterprise Solution', 999.00)">
+                                        Add to Cart
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('enterprise-plan', -1)">−</button>
+                                        <span class="quantity" id="qty-enterprise-plan">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('enterprise-plan', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ambassador Upgrades -->
+                    <div class="category-section" data-category="ambassador">
+                        <h3 class="category-title">👔 Ambassador Services</h3>
+                        <div class="products-grid">
+                            
+                            <!-- Ambassador Upgrade -->
+                            <div class="product-card professional-high-contrast ambassador-featured" data-product="ambassador-upgrade">
+                                <div class="product-header">
+                                    <div class="product-icon">🚀</div>
+                                    <h4 class="product-name">Ambassador Upgrade</h4>
+                                    <div class="product-price">$49/month</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ One-click executive referrals</li>
+                                        <li>✅ Automated legal packages</li>
+                                        <li>✅ Pre-written communications</li>
+                                        <li>✅ QMM Ambassador NFT</li>
+                                        <li>✅ Commission eligibility</li>
+                                        <li>✅ Priority ambassador support</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn featured" onclick="addToCart('ambassador-upgrade', 'Ambassador Upgrade', 49.00)">
+                                        🚀 Add Ambassador Power
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('ambassador-upgrade', -1)">−</button>
+                                        <span class="quantity" id="qty-ambassador-upgrade">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('ambassador-upgrade', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Professional Referral Package -->
+                            <div class="product-card professional-high-contrast" data-product="referral-package">
+                                <div class="product-header">
+                                    <div class="product-icon">📧</div>
+                                    <h4 class="product-name">Professional Referral Package</h4>
+                                    <div class="product-price">$149/one-time</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ 10 executive referral credits</li>
+                                        <li>✅ Custom company templates</li>
+                                        <li>✅ Legal review packages</li>
+                                        <li>✅ Success tracking dashboard</li>
+                                        <li>✅ Conversion analytics</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn" onclick="addToCart('referral-package', 'Professional Referral Package', 149.00)">
+                                        Add to Cart
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('referral-package', -1)">−</button>
+                                        <span class="quantity" id="qty-referral-package">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('referral-package', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Digital Assets & NFTs -->
+                    <div class="category-section" data-category="nft">
+                        <h3 class="category-title">🎨 Queen Mintmark NFTs</h3>
+                        <div class="products-grid">
+                            
+                            <!-- QMM Professional Edition -->
+                            <div class="product-card professional-high-contrast nft-featured" data-product="qmm-professional">
+                                <div class="product-header">
+                                    <div class="product-icon">👑</div>
+                                    <h4 class="product-name">QMM Professional Edition</h4>
+                                    <div class="product-price">$199/one-time</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ Exclusive professional NFT</li>
+                                        <li>✅ Future ecosystem benefits</li>
+                                        <li>✅ Digital ownership proof</li>
+                                        <li>✅ VIP community access</li>
+                                        <li>✅ Tradeable digital asset</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn nft-special" onclick="addToCart('qmm-professional', 'QMM Professional Edition', 199.00)">
+                                        👑 Mint NFT
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('qmm-professional', -1)">−</button>
+                                        <span class="quantity" id="qty-qmm-professional">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('qmm-professional', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- QMM Enterprise Collection -->
+                            <div class="product-card professional-high-contrast" data-product="qmm-enterprise">
+                                <div class="product-header">
+                                    <div class="product-icon">💎</div>
+                                    <h4 class="product-name">QMM Enterprise Collection</h4>
+                                    <div class="product-price">$599/one-time</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ Premium enterprise NFT collection</li>
+                                        <li>✅ Executive-level benefits</li>
+                                        <li>✅ Governance participation rights</li>
+                                        <li>✅ Revenue sharing eligibility</li>
+                                        <li>✅ Limited edition rarity</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn" onclick="addToCart('qmm-enterprise', 'QMM Enterprise Collection', 599.00)">
+                                        Add to Cart
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('qmm-enterprise', -1)">−</button>
+                                        <span class="quantity" id="qty-qmm-enterprise">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('qmm-enterprise', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Services -->
+                    <div class="category-section" data-category="services">
+                        <h3 class="category-title">🛠️ Professional Services</h3>
+                        <div class="products-grid">
+                            
+                            <!-- Custom Implementation -->
+                            <div class="product-card professional-high-contrast" data-product="custom-implementation">
+                                <div class="product-header">
+                                    <div class="product-icon">⚙️</div>
+                                    <h4 class="product-name">Custom Implementation</h4>
+                                    <div class="product-price">$2,999/project</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ Dedicated implementation team</li>
+                                        <li>✅ Custom AI model development</li>
+                                        <li>✅ System integration services</li>
+                                        <li>✅ Training and documentation</li>
+                                        <li>✅ 6 months support included</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn" onclick="addToCart('custom-implementation', 'Custom Implementation', 2999.00)">
+                                        Add to Cart
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('custom-implementation', -1)">−</button>
+                                        <span class="quantity" id="qty-custom-implementation">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('custom-implementation', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Consulting Services -->
+                            <div class="product-card professional-high-contrast" data-product="consulting-services">
+                                <div class="product-header">
+                                    <div class="product-icon">💼</div>
+                                    <h4 class="product-name">AI Strategy Consulting</h4>
+                                    <div class="product-price">$499/hour</div>
+                                </div>
+                                <div class="product-features">
+                                    <ul>
+                                        <li>✅ Expert AI strategy guidance</li>
+                                        <li>✅ Implementation roadmap</li>
+                                        <li>✅ ROI optimization consulting</li>
+                                        <li>✅ Risk assessment and mitigation</li>
+                                        <li>✅ Executive briefing materials</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart-btn" onclick="addToCart('consulting-services', 'AI Strategy Consulting', 499.00)">
+                                        Add Hours
+                                    </button>
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn minus" onclick="adjustQuantity('consulting-services', -1)">−</button>
+                                        <span class="quantity" id="qty-consulting-services">1</span>
+                                        <button class="qty-btn plus" onclick="adjustQuantity('consulting-services', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Shopping Cart & Checkout -->
+            <section class="checkout-panel professional-panel">
+                <div class="panel-header">
+                    <h2>🛍️ Your Professional Services Cart</h2>
+                    <p>Secure checkout with SallyPort verification</p>
+                </div>
+
+                <!-- Cart Items -->
+                <div class="cart-items" id="cart-items">
+                    <div class="empty-cart" id="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <h3>Your cart is ready</h3>
+                        <p>Add professional services to begin your AI transformation journey</p>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary professional-panel" id="cart-summary" style="display: none;">
+                    <div class="summary-section">
+                        <h3>Order Summary</h3>
+                        
+                        <div class="summary-line">
+                            <span>Subtotal:</span>
+                            <span id="summary-subtotal">$0.00</span>
+                        </div>
+                        
+                        <div class="summary-line">
+                            <span>Processing Fee:</span>
+                            <span id="summary-processing">$0.00</span>
+                        </div>
+                        
+                        <div class="summary-line discount-line" id="ambassador-discount" style="display: none;">
+                            <span>Ambassador Discount:</span>
+                            <span id="summary-discount">-$0.00</span>
+                        </div>
+                        
+                        <div class="summary-line total-line">
+                            <span><strong>Total:</strong></span>
+                            <span><strong id="summary-total">$0.00</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkout Form -->
+                <div class="checkout-form" id="checkout-form" style="display: none;">
+                    <form id="professional-checkout-form">
+                        
+                        <!-- Customer Information -->
+                        <div class="form-section">
+                            <h3>👤 Professional Information</h3>
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label for="customer-name">Full Name *</label>
+                                    <input type="text" id="customer-name" name="customerName" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="customer-email">Professional Email *</label>
+                                    <input type="email" id="customer-email" name="customerEmail" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="customer-phone">Phone Number</label>
+                                    <input type="tel" id="customer-phone" name="customerPhone">
+                                </div>
+                                <div class="form-field">
+                                    <label for="company-name">Company/Organization</label>
+                                    <input type="text" id="company-name" name="companyName">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SallyPort Security Verification -->
+                        <div class="form-section sallyport-section">
+                            <h3>🔒 SallyPort Security Verification</h3>
+                            <div class="sallyport-status" id="sallyport-status">
+                                <div class="security-indicator">
+                                    <div class="security-icon">🛡️</div>
+                                    <div class="security-text">
+                                        <strong>Secure Transaction Protected</strong>
+                                        <p>All transactions verified through SallyPort security center</p>
+                                    </div>
+                                </div>
+                                <button type="button" class="sallyport-verify-btn" id="sallyport-verify" onclick="initiateSallyPortVerification()">
+                                    Verify with SallyPort
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Payment Information -->
+                        <div class="form-section">
+                            <h3>💳 Payment Information</h3>
+                            <div class="payment-methods">
+                                <div class="payment-method active" data-method="card">
+                                    <input type="radio" id="payment-card" name="paymentMethod" value="card" checked>
+                                    <label for="payment-card">💳 Credit/Debit Card</label>
+                                </div>
+                                <div class="payment-method" data-method="crypto">
+                                    <input type="radio" id="payment-crypto" name="paymentMethod" value="crypto">
+                                    <label for="payment-crypto">₿ Cryptocurrency</label>
+                                </div>
+                                <div class="payment-method" data-method="enterprise">
+                                    <input type="radio" id="payment-enterprise" name="paymentMethod" value="enterprise">
+                                    <label for="payment-enterprise">🏢 Enterprise Invoice</label>
+                                </div>
+                            </div>
+
+                            <!-- Card Payment Fields -->
+                            <div class="payment-fields" id="card-fields">
+                                <div class="form-grid">
+                                    <div class="form-field full-width">
+                                        <label for="card-number">Card Number *</label>
+                                        <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="card-expiry">Expiry Date *</label>
+                                        <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="card-cvc">CVC *</label>
+                                        <input type="text" id="card-cvc" name="cardCvc" placeholder="123" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="card-zip">ZIP Code *</label>
+                                        <input type="text" id="card-zip" name="cardZip" placeholder="12345" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Agreements -->
+                        <div class="form-section">
+                            <h3>📄 Terms & Agreements</h3>
+                            <div class="agreements-section">
+                                <label class="agreement-checkbox">
+                                    <input type="checkbox" id="terms-agreement" name="termsAgreement" required>
+                                    <span class="checkmark"></span>
+                                    I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                                </label>
+                                
+                                <label class="agreement-checkbox">
+                                    <input type="checkbox" id="nft-agreement" name="nftAgreement">
+                                    <span class="checkmark"></span>
+                                    I understand digital asset (NFT) terms and blockchain ownership rights
+                                </label>
+                                
+                                <label class="agreement-checkbox">
+                                    <input type="checkbox" id="ambassador-agreement" name="ambassadorAgreement">
+                                    <span class="checkmark"></span>
+                                    I authorize ambassador referral capabilities and professional communications
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="clearCart()">
+                                Clear Cart
+                            </button>
+                            <button type="submit" class="btn-primary" id="complete-purchase">
+                                🚀 Complete Professional Purchase
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success State -->
+                <div class="checkout-success" id="checkout-success" style="display: none;">
+                    <div class="success-animation">🎉</div>
+                    <h2>Purchase Successful!</h2>
+                    <p>Your professional services have been activated</p>
+                    
+                    <div class="success-details">
+                        <div class="success-item">
+                            <span class="icon">📧</span>
+                            <span class="text">Confirmation email sent</span>
+                        </div>
+                        <div class="success-item">
+                            <span class="icon">📄</span>
+                            <span class="text">Legal agreements via PandaDoc</span>
+                        </div>
+                        <div class="success-item" id="nft-success" style="display: none;">
+                            <span class="icon">🎨</span>
+                            <span class="text">Queen Mintmark NFTs minting</span>
+                        </div>
+                        <div class="success-item" id="ambassador-success" style="display: none;">
+                            <span class="icon">🚀</span>
+                            <span class="text">Ambassador dashboard activated</span>
+                        </div>
+                    </div>
+                    
+                    <div class="success-actions">
+                        <button class="btn-primary" onclick="window.open('/dashboard', '_blank')">
+                            Access Dashboard
+                        </button>
+                        <button class="btn-secondary" onclick="resetCart()">
+                            New Purchase
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="store-footer professional-panel">
+            <div class="footer-content">
+                <p>&copy; 2025 AI Publishing International LLP. Enterprise-grade professional services.</p>
+                <div class="security-badges">
+                    <span class="badge">🔒 SallyPort Secured</span>
+                    <span class="badge">🛡️ Enterprise Grade</span>
+                    <span class="badge">👑 Queen Mintmark Certified</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/unified-shopping-cart.js"></script>
+    <script src="js/subscription-integration.js"></script>
+    
+    <!-- SallyPort Integration -->
+    <script>
+        // Initialize SallyPort security integration
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🛡️ SallyPort security integration initialized');
+            console.log('🛍️ Unified Shopping Cart system loaded');
+            console.log('🚀 Ambassador referral integration active');
+        });
+    </script>
+</body>
+</html>

@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: einstein-wells
-        image: gcr.io/api-for-warp-drive/einstein-wells-quantswarm:20250926-000520-quantum
+        image: gcr.io/api-for-warp-drive/einstein-wells-quantswarm:20250926-024609-quantum
         ports:
         - containerPort: 8080
         env:

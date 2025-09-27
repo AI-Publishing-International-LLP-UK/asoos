@@ -1,0 +1,208 @@
+{
+  "provider": "qmm",
+  "entity": "ai-publishing-quality",
+  "entityName": "AI Publishing International LLP - Quality Management Module",
+  "entityType": "enterprise",
+  "region": "global",
+  "description": "QMM OAuth2 configuration for high-speed quality management and compliance monitoring",
+  
+  "oauth2": {
+    "authorizationEndpoint": "https://qmm.2100.cool/oauth2/authorize",
+    "tokenEndpoint": "https://qmm.2100.cool/oauth2/token",
+    "revokeEndpoint": "https://qmm.2100.cool/oauth2/revoke",
+    "userInfoEndpoint": "https://api.qmm.2100.cool/v1/user",
+    "responseType": "code",
+    "grantType": "authorization_code",
+    "confidentialClient": true
+  },
+  
+  "client": {
+    "clientIdSecretName": "qmm-client-id",
+    "clientSecretSecretName": "qmm-client-secret",
+    "redirectUri": "https://integration-gateway-yutylytffa-uw.a.run.app/oauth2/callback/qmm",
+    "postLogoutRedirectUri": "https://integration-gateway-yutylytffa-uw.a.run.app/oauth2/logout/qmm"
+  },
+  
+  "scopes": [
+    "quality:read",
+    "quality:write",
+    "compliance:read",
+    "compliance:write",
+    "metrics:read",
+    "metrics:write",
+    "audit:read",
+    "audit:write",
+    "reporting:read",
+    "reporting:write",
+    "admin:manage"
+  ],
+  
+  "endpoints": {
+    "apiBase": "https://api.qmm.2100.cool/v1",
+    "quality": "https://api.qmm.2100.cool/v1/quality",
+    "compliance": "https://api.qmm.2100.cool/v1/compliance",
+    "metrics": "https://api.qmm.2100.cool/v1/metrics",
+    "audit": "https://api.qmm.2100.cool/v1/audit",
+    "reporting": "https://api.qmm.2100.cool/v1/reports",
+    "workflows": "https://api.qmm.2100.cool/v1/workflows",
+    "standards": "https://api.qmm.2100.cool/v1/standards",
+    "webhooks": "https://api.qmm.2100.cool/v1/webhooks"
+  },
+  
+  "tokenManagement": {
+    "tokenRefreshThreshold": 300,
+    "maxRetries": 3,
+    "retryDelay": 1000,
+    "tokenStorageKey": "qmm_tokens",
+    "stateStorageKey": "qmm_state"
+  },
+  
+  "rateLimiting": {
+    "requestsPerSecond": 50,
+    "requestsPerMinute": 5000,
+    "requestsPerHour": 50000,
+    "burstLimit": 100
+  },
+  
+  "security": {
+    "enforceHttps": true,
+    "validateState": true,
+    "validateNonce": true,
+    "pkceRequired": true,
+    "tokenEncryption": true,
+    "auditLogging": true
+  },
+  
+  "high_speed_processing": {
+    "enabled": true,
+    "batch_quality_checks": 1000,
+    "parallel_compliance_monitoring": 20,
+    "real_time_metrics": true,
+    "auto_remediation": true,
+    "predictive_analytics": true,
+    "continuous_monitoring": true
+  },
+  
+  "quality_management": {
+    "service_quality": {
+      "ai_publishing_services": {
+        "quality_threshold": 99.5,
+        "response_time_sla": 200,
+        "accuracy_requirement": 99.9,
+        "customer_satisfaction_target": 4.8
+      },
+      "einstein_wells": {
+        "uptime_requirement": 99.99,
+        "energy_output_quality": 100,
+        "grid_stability": 99.95,
+        "environmental_compliance": 100
+      },
+      "quantswarm_operations": {
+        "decision_accuracy": 99.7,
+        "processing_speed": "< 50ms",
+        "resource_optimization": 95,
+        "predictive_accuracy": 98
+      }
+    },
+    
+    "compliance_frameworks": {
+      "iso_9001": {
+        "enabled": true,
+        "certification_level": "full",
+        "audit_frequency": "quarterly",
+        "auto_reporting": true
+      },
+      "iso_27001": {
+        "enabled": true,
+        "security_level": "maximum",
+        "audit_frequency": "monthly",
+        "continuous_monitoring": true
+      },
+      "gdpr": {
+        "enabled": true,
+        "data_protection_level": "strict",
+        "privacy_by_design": true,
+        "automated_compliance": true
+      },
+      "sox": {
+        "enabled": true,
+        "financial_controls": "automated",
+        "audit_trail": "complete",
+        "risk_assessment": "continuous"
+      }
+    }
+  },
+  
+  "integration": {
+    "webhooks": {
+      "enabled": true,
+      "endpoint": "https://integration-gateway-yutylytffa-uw.a.run.app/webhooks/qmm",
+      "events": [
+        "quality_threshold_breach",
+        "compliance_violation",
+        "audit_event",
+        "metric_anomaly",
+        "workflow_completion",
+        "standard_update",
+        "risk_alert",
+        "performance_degradation"
+      ]
+    },
+    "auto_remediation": true,
+    "escalation_workflows": true,
+    "continuous_improvement": true
+  },
+  
+  "integrated_services": {
+    "stripe": {
+      "quality_monitoring": "payment_success_rate",
+      "compliance": "pci_dss",
+      "metrics": ["transaction_time", "failure_rate", "security_score"]
+    },
+    "xero": {
+      "quality_monitoring": "data_accuracy",
+      "compliance": "financial_reporting",
+      "metrics": ["sync_success", "reconciliation_accuracy", "audit_trail"]
+    },
+    "pandadoc": {
+      "quality_monitoring": "document_completion_rate",
+      "compliance": "e_signature_validity",
+      "metrics": ["signing_time", "template_accuracy", "legal_compliance"]
+    },
+    "monzo": {
+      "quality_monitoring": "transaction_processing",
+      "compliance": "banking_regulations",
+      "metrics": ["processing_speed", "accuracy_rate", "fraud_detection"]
+    }
+  },
+  
+  "monitoring": {
+    "healthCheckEndpoint": "/health/qmm",
+    "metricsCollection": true,
+    "real_time_dashboard": true,
+    "alerting": {
+      "tokenExpiration": 24,
+      "rateLimitWarning": 80,
+      "errorThreshold": 5,
+      "quality_breach": 1,
+      "compliance_violation": 0,
+      "audit_failure": 1
+    }
+  },
+  
+  "metadata": {
+    "createdAt": "2025-09-26T06:23:50Z",
+    "version": "1.0.0",
+    "environment": "production",
+    "maintainer": "Integration Gateway Team",
+    "tags": [
+      "qmm",
+      "quality-management",
+      "compliance",
+      "oauth2",
+      "high-speed",
+      "continuous-monitoring",
+      "enterprise"
+    ]
+  }
+}

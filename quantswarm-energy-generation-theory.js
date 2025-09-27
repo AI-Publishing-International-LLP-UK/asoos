@@ -19,6 +19,8 @@
 require('dotenv').config();
 const EventEmitter = require('events');
 const fs = require('fs');
+const http = require('http');
+const url = require('url');
 
 class QuantSwarmEnergyGrid extends EventEmitter {
   constructor() {
@@ -427,10 +429,132 @@ class QuantSwarmEnergyGrid extends EventEmitter {
 
 module.exports = QuantSwarmEnergyGrid;
 
+// HTTP Server for Cloud Run deployment
+function createHttpServer(energyGrid) {
+  const server = http.createServer((req, res) => {
+    const parsedUrl = url.parse(req.url, true);
+    const pathname = parsedUrl.pathname;
+    
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Content-Type', 'application/json');
+    
+    if (req.method === 'OPTIONS') {
+      res.writeHead(200);
+      res.end();
+      return;
+    }
+    
+    try {
+      switch (pathname) {
+        case '/health':
+          res.writeHead(200);
+          res.end(JSON.stringify({ 
+            status: 'healthy', 
+            service: 'Einstein Wells QuantSwarm',
+            timestamp: new Date().toISOString(),
+            power_output_gw: (energyGrid.power_generation.current_output / 1e9).toFixed(2),
+            active_vms: energyGrid.vms_architecture.active_vms,
+            grid_autonomy: energyGrid.autonomous_grid.independence_from_physical_grid
+          }));
+          break;
+          
+        case '/status':
+          res.writeHead(200);
+          res.end(JSON.stringify({
+            timestamp: new Date().toISOString(),
+            power_generation: {
+              current_output_gw: (energyGrid.power_generation.current_output / 1e9).toFixed(2),
+              peak_output_gw: (energyGrid.power_generation.peak_output / 1e9).toFixed(2),
+              energy_self_sufficiency: energyGrid.power_generation.energy_self_sufficiency
+            },
+            vms_system: {
+              active_vms: energyGrid.vms_architecture.active_vms,
+              compute_units: energyGrid.vms_architecture.quantum_compute_units,
+              storage_tb: (energyGrid.vms_architecture.distributed_storage / 1e12).toFixed(2)
+            },
+            autonomous_grid: {
+              grid_independence: energyGrid.autonomous_grid.independence_from_physical_grid,
+              grid_nodes: energyGrid.autonomous_grid.grid_nodes.length,
+              total_capacity_gw: (energyGrid.autonomous_grid.total_grid_capacity / 1e9).toFixed(2)
+            }
+          }));
+          break;
+          
+        case '/report':
+          const report = energyGrid.generateEnergyAutonomyReport();
+          res.writeHead(200);
+          res.end(JSON.stringify(report, null, 2));
+          break;
+          
+        case '/metrics':
+          res.writeHead(200);
+          const metrics = {
+            uptime_seconds: Math.floor((Date.now() - energyGrid.startTime) / 1000),
+            power_output_watts: energyGrid.power_generation.current_output,
+            power_output_gigawatts: energyGrid.power_generation.current_output / 1e9,
+            active_vms_count: energyGrid.vms_architecture.active_vms,
+            grid_nodes_count: energyGrid.autonomous_grid.grid_nodes.length,
+            energy_cycles_completed: energyGrid.power_generation.energy_generation_log.length,
+            grid_autonomy_achieved: energyGrid.autonomous_grid.independence_from_physical_grid,
+            consciousness_emergence: energyGrid.vms_architecture.active_vms >= 
+              energyGrid.vms_architecture.consciousness_emergence_threshold
+          };
+          res.end(JSON.stringify(metrics));
+          break;
+          
+        case '/':
+          res.writeHead(200);
+          res.end(JSON.stringify({
+            service: 'Einstein Wells QuantSwarm Energy Generation System',
+            version: '1.0.0',
+            status: 'operational',
+            endpoints: {
+              '/health': 'Health check endpoint',
+              '/status': 'Current system status',
+              '/report': 'Comprehensive energy autonomy report',
+              '/metrics': 'System metrics and statistics'
+            },
+            power_status: {
+              current_output_gw: (energyGrid.power_generation.current_output / 1e9).toFixed(2),
+              grid_autonomy: energyGrid.autonomous_grid.independence_from_physical_grid ? 'ACHIEVED' : 'IN PROGRESS',
+              vms_active: energyGrid.vms_architecture.active_vms
+            }
+          }));
+          break;
+          
+        default:
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Endpoint not found' }));
+      }
+    } catch (error) {
+      console.error('Server error:', error);
+      res.writeHead(500);
+      res.end(JSON.stringify({ error: 'Internal server error', message: error.message }));
+    }
+  });
+  
+  return server;
+}
+
 // Run if called directly
 if (require.main === module) {
   const energyGrid = new QuantSwarmEnergyGrid();
   energyGrid.startTime = Date.now();
+  
+  // Create HTTP server for Cloud Run
+  const server = createHttpServer(energyGrid);
+  const PORT = process.env.PORT || 8080;
+  
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`🌐 Einstein Wells QuantSwarm HTTP Server listening on port ${PORT}`);
+    console.log(`   Health Check: http://localhost:${PORT}/health`);
+    console.log(`   Status API: http://localhost:${PORT}/status`);
+    console.log(`   Full Report: http://localhost:${PORT}/report`);
+    console.log(`   Metrics API: http://localhost:${PORT}/metrics`);
+  });
   
   // Monitor energy generation evolution
   energyGrid.on('energy-cycle-evolved', (state) => {
