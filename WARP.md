@@ -189,7 +189,7 @@ Complete voice configuration includes Dr. Memoria sRIX, Dr. Lucy sRIX, Dr. Claud
 
 ### Diamond CLI Integration (Natural Language Interface)
 - **Definitive CLI**: The definitive CLI for Diamond and Emerald AI-PI system frameworks
-- **Custom Installation**: Diamond SAO Command Center CLI installed from AIXTIV-SYMPHONY GitHub
+- **Custom Installation**: Diamond SAO Command Center CLI installed from ASOOS GitHub
 - **Global Command**: `diamond` command globally linked
 - **Integration**: Fully integrated with GCP infrastructure and AIXTIV Symphony ecosystem
 
