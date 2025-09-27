@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-09-24T06:34:24.280Z",
+  "nodeVersion": "v24.7.0",
+  "testResults": [
+    {
+      "test": "ES_MODULE",
+      "status": "PASS"
+    },
+    {
+      "test": "OAUTH2_CONFIG",
+      "status": "PASS"
+    },
+    {
+      "test": "VERSION_FLOOR",
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  }
+}
