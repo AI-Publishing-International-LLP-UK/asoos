@@ -1,23 +1,7 @@
 {
-  "name": "diamond-cli",
-  "version": "1.0.1",
-  "description": "Diamond SAO Command Center CLI",
-  "main": "bin/diamond",
-  "type": "commonjs",
-  "bin": {
-    "diamond": "./bin/diamond"
-  },
-  "keywords": [
-    "diamond",
-    "sao",
-    "cli",
-    "aixtiv",
-    "symphony"
-  ],
-  "author": "AI Publishing International LLP",
-  "license": "PROPRIETARY",
-  "private": true,
-  "engines": {
-    "node": ">=22.0.0"
+  "dependencies": {
+    "inquirer": "^12.9.6",
+    "lru-cache": "^11.2.1",
+    "node-cron": "^4.2.1"
   }
 }

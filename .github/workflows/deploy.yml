@@ -1,8 +1,9 @@
 name: Deploy
 
 on:
-  push:
-    branches: [ main ]
+  # Temporarily disabled until GCP authentication is configured
+  # push:
+  #   branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -10,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Use Node.js 24.x
       uses: actions/setup-node@v4

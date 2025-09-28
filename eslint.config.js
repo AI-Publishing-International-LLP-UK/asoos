@@ -1,31 +1,49 @@
+﻿import js from '@eslint/js';
+import globals from 'globals';
+
 export default [
   {
-    files: ['**/*.js'],
     languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
       globals: {
-        console: 'readonly',
-        process: 'readonly',
-        Buffer: 'readonly',
-        __dirname: 'readonly',
-        __filename: 'readonly',
-        global: 'readonly',
-        module: 'readonly',
-        require: 'readonly',
-        exports: 'readonly',
-        setTimeout: 'readonly',
-        clearTimeout: 'readonly',
-        setInterval: 'readonly',
-        clearInterval: 'readonly'
-      }
+        ...globals.node,
+        ...globals.browser,
+      },
+      ecmaVersion: 2024,
+      sourceType: 'module',
     },
     rules: {
+      ...js.configs.recommended.rules,
+      // Add your custom rules here
       'no-unused-vars': 'warn',
-      'no-console': 'off',
-      'semi': ['error', 'always'],
-      'quotes': ['error', 'single'],
-      'indent': ['error', 2]
-    }
-  }
+      'no-console': 'off', // Allow console.log for development
+      semi: ['error', 'always'],
+      quotes: ['error', 'single'],
+    },
+  },
+  {
+    // Configuration for TypeScript files if needed
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaVersion: 2024,
+        sourceType: 'module',
+      },
+    },
+  },
+  {
+    // Ignore patterns
+    ignores: [
+      '.next/**', 
+      'node_modules/**', 
+      'dist/**', 
+      'build/**', 
+      '**/*.min.js',
+      'vls/**',
+      '**/dr.*/**',
+      '**/*dr.*/**',
+      'aixtiv-backup-*/**',
+      '**/solutions/**'
+    ],
+  },
 ];

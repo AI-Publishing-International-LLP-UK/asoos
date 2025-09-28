@@ -19,7 +19,7 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
@@ -58,7 +58,7 @@ jobs:
         run: |
           # List of repositories to update
           REPOS=(
-            "AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY"
+            "AI-Publishing-International-LLP-UK/asoos"
             "C2100-PR/aixtiv-symphony-opus1"
             "C2100-PR/code-gold-standards"
             "C2100-PR/content-management-system" 

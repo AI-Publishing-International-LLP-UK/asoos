@@ -1,7 +1,10 @@
 FROM nginx:alpine
 
-# Copy the owner interface HTML
-COPY index.html /usr/share/nginx/html/index.html
+# Copy the main interface HTML file
+COPY mocoa-current.html /usr/share/nginx/html/index.html
+
+# Copy all JavaScript files
+COPY *.js /usr/share/nginx/html/
 
 # Create nginx startup script that uses PORT env var
 RUN echo '#!/bin/sh' > /docker-entrypoint.sh && \
