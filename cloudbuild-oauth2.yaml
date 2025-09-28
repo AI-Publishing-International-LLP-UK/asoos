@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f', 'Dockerfile.oauth2', '-t', 'gcr.io/api-for-warp-drive/oauth2-service:latest', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/api-for-warp-drive/oauth2-service:latest']
+images:
+- 'gcr.io/api-for-warp-drive/oauth2-service:latest'

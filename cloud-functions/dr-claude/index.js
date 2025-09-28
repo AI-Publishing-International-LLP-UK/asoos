@@ -3,6 +3,8 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 const { Logging } = require('@google-cloud/logging');
 const { Firestore } = require('@google-cloud/firestore');
+const { UniversalAIKeyManager } = require('../../lib/universal-ai-key-manager');
+const OAuth2Client = require('../../lib/oauth2/client');
 
 // Initialize Firestore client
 const firestore = new Firestore();
@@ -139,6 +141,73 @@ app.post('/projects/delegate', async (req, res) => {
       tags: Array.isArray(tags) ? tags : tags.split(',').map((t) => t.trim()),
     });
   } catch (error) {
+    next(error);
+  }
+});
+
+// Claude API proxy endpoint with OAuth2 support
+app.post('/claude/generate', async (req, res) => {
+  try {
+    const aiKeyManager = new UniversalAIKeyManager();
+    
+    // Extract company information from request headers or body
+    const companyName = req.headers['x-company-name'] || req.body.company || null;
+    const tier = req.headers['x-service-tier'] || 'managed-basic';
+    
+    console.log(`[Dr Claude] Processing Claude API request for company: ${companyName || 'shared'}`);
+    
+    // Make authenticated request to Claude API
+    const claudeResponse = await aiKeyManager.makeAuthenticatedRequest(
+      'anthropic',
+      'https://api.anthropic.com/v1/messages',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify(req.body.payload || req.body),
+      },
+      companyName,
+      tier
+    );
+    
+    if (!claudeResponse.ok) {
+      const errorText = await claudeResponse.text();
+      throw new Error(`Claude API error (${claudeResponse.status}): ${errorText}`);
+    }
+    
+    const claudeData = await claudeResponse.json();
+    
+    // Log successful API call
+    const logData = {
+      severity: 'INFO',
+      message: 'Claude API call successful via OAuth2',
+      company: companyName || 'shared',
+      tier: tier,
+      timestamp: new Date().toISOString(),
+    };
+    const entry = log.entry({ resource: { type: 'cloud_function' } }, logData);
+    log.write(entry);
+    
+    res.status(200).json({
+      status: 'success',
+      data: claudeData,
+      authentication: 'oauth2',
+      company: companyName || 'shared',
+    });
+    
+  } catch (error) {
+    // Log OAuth2/API error
+    const errorLog = {
+      severity: 'ERROR',
+      message: `Claude API OAuth2 error: ${error.message}`,
+      company: req.headers['x-company-name'] || 'shared',
+      timestamp: new Date().toISOString(),
+    };
+    const entry = log.entry({ resource: { type: 'cloud_function' } }, errorLog);
+    log.write(entry);
+    
     next(error);
   }
 });

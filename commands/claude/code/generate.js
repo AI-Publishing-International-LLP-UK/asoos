@@ -6,6 +6,8 @@ const https = require('https');
 const { parseOptions, withSpinner, displayResult } = require('../../../lib/utils');
 const { logAgentAction, getCurrentAgentId } = require('../../../lib/agent-tracking');
 const fallbackGenerator = require('./fallback-generator');
+const { UniversalAIKeyManager } = require('../../../lib/universal-ai-key-manager');
+const OAuth2Client = require('../../../lib/oauth2/client');
 
 // AIXTIV SYMPHONY vision statement for alignment with ASOOS principles
 const AIXTIV_SYMPHONY_VISION = `AIXTIV SYMPHONY ORCHESTRATING OPERATING SYSTEM - The Definitive Architecture & Vision Statement
@@ -106,25 +108,68 @@ module.exports = async function generateCode(options) {
             });
           }
 
+          // Initialize Universal AI Key Manager for OAuth2 support
+          const aiKeyManager = new UniversalAIKeyManager();
+          const agentId = getCurrentAgentId();
+          let response;
+
           // Create an agent that ignores SSL certificate validation
           const httpsAgent = new https.Agent({
             rejectUnauthorized: false,
           });
 
           try {
-            const response = await fetch(functionUrl, {
-              method: 'POST', // Explicitly set HTTP method to POST
-              headers: {
-                'Content-Type': 'application/json',
-                'anthropic-api-key':
-                  process.env.ANTHROPIC_API_KEY || process.env.DR_CLAUDE_API || '',
-                'anthropic-version': '2023-06-01',
-                'X-Agent-ID': getCurrentAgentId(), // Add agent ID in headers for tracking
+            console.log(chalk.blue('[Claude OAuth2] Attempting OAuth2 authentication...'));
+            
+            // Try OAuth2 authentication first
+            response = await aiKeyManager.makeAuthenticatedRequest(
+              'anthropic',
+              functionUrl,
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'anthropic-version': '2023-06-01',
+                  'X-Agent-ID': agentId,
+                },
+                body: JSON.stringify(payload),
+                agent: httpsAgent,
+                timeout: 15000,
               },
-              body: JSON.stringify(payload),
-              agent: httpsAgent, // Add this line to ignore SSL certificate validation
-              timeout: 15000, // 15 second timeout
-            });
+              null, // companyName (null for shared)
+              'managed-basic' // tier
+            );
+            
+            console.log(chalk.green('[Claude OAuth2] Successfully authenticated with OAuth2'));
+            
+          } catch (oauthError) {
+            console.warn(chalk.yellow(`[Claude OAuth2] OAuth2 authentication failed: ${oauthError.message}`));
+            console.warn(chalk.yellow('[Claude OAuth2] Falling back to API key authentication...'));
+            
+            // Fallback to traditional API key authentication
+            try {
+              response = await fetch(functionUrl, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'anthropic-api-key': process.env.ANTHROPIC_API_KEY || process.env.DR_CLAUDE_API || '',
+                  'anthropic-version': '2023-06-01',
+                  'X-Agent-ID': agentId,
+                },
+                body: JSON.stringify(payload),
+                agent: httpsAgent,
+                timeout: 15000,
+              });
+              
+              console.log(chalk.yellow('[Claude OAuth2] Using API key fallback'));
+              
+            } catch (fallbackError) {
+              console.error(chalk.red('[Claude OAuth2] Both OAuth2 and API key authentication failed'));
+              throw fallbackError;
+            }
+          }
+
+          try {
 
             if (!response.ok) {
               // Capture the error response details
