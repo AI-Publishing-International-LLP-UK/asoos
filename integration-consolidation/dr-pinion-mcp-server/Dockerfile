@@ -1,7 +1,7 @@
 # Dr. Pinion - Pinecone MCP Server Container
 # Handles semantic search across 10M+ ChatGPT/Claude conversation pages
 
-FROM node:22-alpine
+FROM node:24-slim-alpine
 
 WORKDIR /app
 

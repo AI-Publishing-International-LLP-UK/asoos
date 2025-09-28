@@ -1,5 +1,5 @@
 # ASOOS Pilots Container - Launch Ready
-FROM node:22-alpine
+FROM node:24-slim-alpine
 
 WORKDIR /app
 

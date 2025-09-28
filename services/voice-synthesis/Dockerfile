@@ -1,5 +1,5 @@
 # 🎤 Unified ElevenLabs Voice & Interactive Agent System - Production Docker Image
-FROM node:20-alpine
+FROM node:24-slim-alpine
 
 # Set working directory
 WORKDIR /app

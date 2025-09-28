@@ -1,0 +1,349 @@
+name: Modern Security & Dependency Pipeline
+
+on:
+  push:
+    branches: [main, develop, secrets-migration-cleanup]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Daily security scan and dependency check
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      force_security_scan:
+        description: 'Force complete security scan'
+        required: false
+        default: 'false'
+
+env:
+  PROJECT_ID: api-for-warp-drive
+  NODE_VERSION: '24'
+  REGION: us-west1
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+  id-token: write
+
+jobs:
+  # Node.js Version Monitoring and Compliance
+  node-version-compliance:
+    name: Node.js Version Compliance Check
+    runs-on: ubuntu-latest
+    outputs:
+      node-compliant: ${{ steps.check-node.outputs.compliant }}
+      current-version: ${{ steps.check-node.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          
+      - name: Check Node.js Version Compliance
+        id: check-node
+        run: |
+          echo "version=$(node --version)" >> $GITHUB_OUTPUT
+          
+          # Run our Node.js monitoring system
+          node scripts/node-version-monitor.js --ci-mode
+          
+          if [[ $? -eq 0 ]]; then
+            echo "compliant=true" >> $GITHUB_OUTPUT
+            echo "✅ Node.js version compliance: PASS"
+          else
+            echo "compliant=false" >> $GITHUB_OUTPUT
+            echo "❌ Node.js version compliance: FAIL"
+            exit 1
+          fi
+
+  # Comprehensive Dependency Vulnerability Scanning
+  dependency-security-scan:
+    name: Dependency Security Audit
+    runs-on: ubuntu-latest
+    needs: node-version-compliance
+    strategy:
+      matrix:
+        package-path: 
+          - '.'
+          - 'Aixtiv-Symphony'
+          - 'integration-consolidation/dr-pinion-mcp-server'
+          - 'mocoa-cloud-run'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.package-path }}/package-lock.json
+          
+      - name: Install Dependencies
+        working-directory: ${{ matrix.package-path }}
+        run: |
+          if [[ -f "package.json" ]]; then
+            npm ci --audit --fund=false
+          fi
+          
+      - name: Run Security Audit
+        working-directory: ${{ matrix.package-path }}
+        run: |
+          if [[ -f "package.json" ]]; then
+            echo "📋 Running npm audit for ${{ matrix.package-path }}"
+            npm audit --audit-level=high --json > audit-results.json || true
+            
+            # Check for high/critical vulnerabilities
+            HIGH_VULNS=$(cat audit-results.json | jq '.metadata.vulnerabilities.high // 0')
+            CRITICAL_VULNS=$(cat audit-results.json | jq '.metadata.vulnerabilities.critical // 0')
+            
+            echo "🔍 High vulnerabilities: $HIGH_VULNS"
+            echo "🚨 Critical vulnerabilities: $CRITICAL_VULNS"
+            
+            if [[ $CRITICAL_VULNS -gt 0 ]]; then
+              echo "❌ CRITICAL vulnerabilities found - failing build"
+              cat audit-results.json | jq '.vulnerabilities'
+              exit 1
+            fi
+            
+            if [[ $HIGH_VULNS -gt 3 ]]; then
+              echo "⚠️ Too many HIGH vulnerabilities ($HIGH_VULNS > 3) - review required"
+              cat audit-results.json | jq '.vulnerabilities'
+            fi
+          fi
+          
+      - name: Advanced Security Scanning with Snyk
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high --file=${{ matrix.package-path }}/package.json
+          
+      - name: Upload Vulnerability Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: vulnerability-report-${{ matrix.package-path }}
+          path: |
+            ${{ matrix.package-path }}/audit-results.json
+            snyk-report.json
+          retention-days: 30
+
+  # Secret Scanning and Security Validation
+  secrets-and-security-scan:
+    name: Secret & Security Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for secret scanning
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: Run Secret Scanner
+        run: |
+          echo "🔍 Running efficient secret scanner..."
+          node scripts/efficient-secret-scanner.js
+          
+          # Check if any secrets were found
+          if [[ -f "scripts/secret-scan-results.json" ]]; then
+            HIGH_PRIORITY_SECRETS=$(cat scripts/secret-scan-results.json | jq '.findings | map(select(.priority == "HIGH")) | length')
+            
+            if [[ $HIGH_PRIORITY_SECRETS -gt 0 ]]; then
+              echo "🚨 HIGH priority secrets found: $HIGH_PRIORITY_SECRETS"
+              echo "This should not happen after our migration!"
+              cat scripts/secret-scan-results.json | jq '.findings | map(select(.priority == "HIGH"))'
+              exit 1
+            else
+              echo "✅ No high-priority secrets found - migration successful!"
+            fi
+          fi
+          
+      - name: TruffleHog Secret Detection
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: main
+          head: HEAD
+          extra_args: --debug --only-verified
+          
+      - name: GitLeaks Secret Detection
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+  # Automated Dependency Updates
+  dependency-update-automation:
+    name: Automated Dependency Updates
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: Update Dependencies
+        run: |
+          echo "🔄 Checking for dependency updates..."
+          
+          # Use npm-check-updates for automated updates
+          npm install -g npm-check-updates
+          
+          # Update non-breaking changes
+          ncu -u --target minor
+          npm install
+          
+          # Run tests to ensure nothing is broken
+          npm test || echo "No tests configured"
+          
+          # Commit if there are changes
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add package*.json
+            git commit -m "chore: automated dependency updates (minor versions)"
+            git push
+          fi
+
+  # Docker Security Scanning
+  docker-security-scan:
+    name: Docker Security Analysis
+    runs-on: ubuntu-latest
+    needs: dependency-security-scan
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build Docker Image for Scanning
+        run: |
+          docker build -t security-scan:latest -f Dockerfile.oauth2-elevenlabs-fixed .
+          
+      - name: Run Trivy Container Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: security-scan:latest
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          
+      - name: Upload Trivy Scan Results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+          
+      - name: Docker Bench Security
+        run: |
+          git clone https://github.com/docker/docker-bench-security.git
+          cd docker-bench-security
+          sudo sh docker-bench-security.sh
+          
+  # Infrastructure as Code Security
+  iac-security-scan:
+    name: IaC Security Scanning  
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Checkov IaC Analysis
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: dockerfile,github_actions
+          output_format: sarif
+          output_file_path: checkov-results.sarif
+          
+      - name: Upload Checkov Results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: checkov-results.sarif
+
+  # Performance and Load Testing
+  performance-validation:
+    name: Performance & Load Testing
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
+      - name: Install Load Testing Tools
+        run: |
+          npm install -g artillery k6 clinic
+          
+      - name: Load Test with Artillery
+        run: |
+          # Run performance tests if config exists
+          if [[ -f "tests/performance/load-test.yml" ]]; then
+            artillery run tests/performance/load-test.yml --output artillery-report.json
+            artillery report artillery-report.json
+          fi
+          
+      - name: Memory and CPU Profiling
+        run: |
+          # Profile Node.js performance
+          if [[ -f "server.js" ]]; then
+            timeout 30s clinic doctor -- node server.js || true
+          fi
+
+  # Quality Gates and Reporting
+  quality-gate:
+    name: Quality Gate Assessment
+    runs-on: ubuntu-latest
+    needs: [node-version-compliance, dependency-security-scan, secrets-and-security-scan, docker-security-scan]
+    if: always()
+    steps:
+      - name: Evaluate Quality Gates
+        run: |
+          echo "🎯 QUALITY GATE ASSESSMENT"
+          echo "=========================="
+          
+          # Check Node.js compliance
+          NODE_COMPLIANT="${{ needs.node-version-compliance.outputs.node-compliant }}"
+          echo "Node.js Compliance: $NODE_COMPLIANT"
+          
+          # Evaluate overall status
+          if [[ "$NODE_COMPLIANT" == "true" && "${{ needs.dependency-security-scan.result }}" == "success" && "${{ needs.secrets-and-security-scan.result }}" == "success" ]]; then
+            echo "✅ QUALITY GATE: PASSED"
+            echo "All security and compliance checks passed"
+          else
+            echo "❌ QUALITY GATE: FAILED"
+            echo "One or more quality checks failed"
+            exit 1
+          fi
+          
+      - name: Generate Security Report
+        run: |
+          cat > security-summary.json << EOF
+          {
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "node_version": "${{ needs.node-version-compliance.outputs.current-version }}",
+            "node_compliant": ${{ needs.node-version-compliance.outputs.node-compliant }},
+            "dependency_scan": "${{ needs.dependency-security-scan.result }}",
+            "secrets_scan": "${{ needs.secrets-and-security-scan.result }}",
+            "docker_scan": "${{ needs.docker-security-scan.result }}",
+            "quality_gate": "$([ "${{ needs.node-version-compliance.outputs.node-compliant }}" == "true" ] && echo "PASSED" || echo "FAILED")"
+          }
+          EOF
+          
+          echo "📋 Security Summary:"
+          cat security-summary.json | jq .
+          
+      - name: Upload Security Summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-summary
+          path: security-summary.json

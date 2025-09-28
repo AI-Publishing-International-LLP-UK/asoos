@@ -1,0 +1,93 @@
+{
+  "name": "quantum-swarm-mcp-infrastructure",
+  "version": "1.0.0",
+  "description": "Quantum Swarm MCP Infrastructure for 12,000+ customer instances with Diamond SAO Command Center integration",
+  "main": "master-mcp-template.js",
+  "scripts": {
+    "start": "node master-mcp-template.js",
+    "dev": "node --watch master-mcp-template.js",
+    "provision": "node customer-mcp-provisioner.js provision",
+    "bulk-provision": "node customer-mcp-provisioner.js bulk-provision",
+    "diamond-init": "node diamond-sao-mcp-manager.js initialize",
+    "diamond-deploy": "node diamond-sao-mcp-manager.js deploy",
+    "diamond-report": "node diamond-sao-mcp-manager.js report",
+    "test": "node --test **/*.test.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "docker:build": "docker build -t gcr.io/api-for-warp-drive/mcp-master-template:latest .",
+    "docker:push": "docker push gcr.io/api-for-warp-drive/mcp-master-template:latest",
+    "gcp:deploy": "gcloud run deploy mcp-asoos-2100-cool --source . --region us-west1 --project api-for-warp-drive",
+    "health-check": "curl -f http://localhost:8080/health || exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "quantum-swarm",
+    "diamond-sao",
+    "customer-provisioning",
+    "ai-infrastructure",
+    "cloud-run",
+    "gcp"
+  ],
+  "author": "AI Publishing International LLP",
+  "license": "PROPRIETARY",
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=10.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongodb": "^6.20.0",
+    "@google-cloud/secret-manager": "^5.6.0",
+    "@google-cloud/firestore": "^7.19.0",
+    "@google-cloud/pubsub": "^4.11.0",
+    "@google-cloud/monitoring": "^4.4.0",
+    "@google-cloud/logging": "^11.4.0",
+    "@google-cloud/run": "^1.6.0",
+    "winston": "^3.18.0",
+    "helmet": "^8.0.0",
+    "cors": "^2.8.5",
+    "compression": "^1.7.5",
+    "dotenv": "^16.4.7",
+    "joi": "^17.15.0",
+    "jsonwebtoken": "^9.0.2",
+    "axios": "^1.7.9",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "nodemon": "^3.1.9",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "@types/node": "^20.17.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI-Publishing-International-LLP-UK/integration-gateway.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AI-Publishing-International-LLP-UK/integration-gateway/issues"
+  },
+  "homepage": "https://mcp.asoos.2100.cool",
+  "config": {
+    "quantum_vms_count": 12000,
+    "dashboard_version": 34,
+    "supported_tiers": [
+      "individual",
+      "professional", 
+      "enterprise",
+      "onyx-sao",
+      "opal-sao",
+      "sapphire-sao"
+    ],
+    "regions": [
+      "us-west1",
+      "us-central1",
+      "eu-west1"
+    ]
+  },
+  "peerDependencies": {
+    "diamond-sao-cli": "*"
+  }
+}
