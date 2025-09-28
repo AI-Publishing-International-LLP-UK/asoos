@@ -48,11 +48,41 @@ jobs:
           name: newman-reports
           path: newman-report.html
 
+  # Secret Security Scan
+  secret-scan:
+    name: 🔐 Secret Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Install Secret Scanning Tools
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
+          
+      - name: Run Secret Scan
+        run: |
+          trufflehog filesystem . \
+            --exclude-paths node_modules/ \
+            --exclude-paths dist/ \
+            --exclude-paths .git/ \
+            --exclude-paths reports/gcp-secrets.json \
+            --json > secret-scan-results.json || true
+          
+          if [ -s secret-scan-results.json ] && [ "$(jq length secret-scan-results.json)" -gt 0 ]; then
+            echo "❌ SECURITY ALERT: Hardcoded secrets detected!"
+            cat secret-scan-results.json | jq -r '.[] | "\(.DetectorType): \(.Raw[:50])..."'
+            exit 1
+          else
+            echo "✅ No hardcoded secrets detected - scan passed!"
+          fi
+
   # Continuous Integration & Build
   build-and-test:
     name: Build & Security Scan
     runs-on: ubuntu-latest
-    needs: api-testing
+    needs: [api-testing, secret-scan]
     steps:
       - uses: actions/checkout@v4
       
@@ -104,7 +134,7 @@ jobs:
         with:
           project_id: ${{ env.PROJECT_ID }}
           
-      - name: Deploy to Cloud Run
+      - name: Deploy to Cloud Run with Secret Manager
         run: |
           gcloud run deploy ${{ matrix.service }} \
             --image ${{ env.DOCKER_IMAGE }}:${{ github.sha }} \
@@ -118,7 +148,8 @@ jobs:
             --max-instances 100 \
             --concurrency 80 \
             --timeout 300 \
-            --set-env-vars="NODE_ENV=production,CI_CD_VERSION=${{ github.sha }},SELF_HEALING=true,MONITORING=true" \
+            --set-env-vars="NODE_ENV=production,CI_CD_VERSION=${{ github.sha }},SELF_HEALING=true,MONITORING=true,USE_OAUTH2=true,OAUTH_MODE=true" \
+            --set-secrets="ELEVENLABS_API_KEY=ELEVENLABS_API_KEY:latest,OAUTH2_CLIENT_ID=OAUTH2_CLIENT_ID:latest,OAUTH2_CLIENT_SECRET=OAUTH2_CLIENT_SECRET:latest,JWT_SECRET=JWT_SECRET:latest,OPENAI_API_KEY=OPENAI_API_KEY:latest,ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest" \
             --no-traffic
             
       - name: Gradual Traffic Migration
