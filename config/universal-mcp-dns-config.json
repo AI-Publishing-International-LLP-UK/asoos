@@ -1,0 +1,42 @@
+{
+  "version": "2.0",
+  "timestamp": "2025-09-28T01:47:39.414Z",
+  "universalTemplate": "mcp.asoos.2100.cool",
+  "autoProvisioning": true,
+  "patterns": [
+    "mcp.asoos.2100.cool",
+    "mcp.aipub.2100.cool",
+    "mcp.{company}.2100.cool",
+    "mcp.{service}.asoos.2100.cool",
+    "api.mcp.asoos.2100.cool",
+    "ws.mcp.asoos.2100.cool"
+  ],
+  "instances": {
+    "core": [
+      "integration-gateway-js",
+      "integration-gateway-mcp",
+      "integration-gateway-production",
+      "wfa-production-swarm",
+      "integration-gateway-wfa-orchestration-production"
+    ],
+    "companies": [
+      "zaxon-construction",
+      "coaching2100",
+      "aixtiv-symphony",
+      "ai-publishing-international"
+    ],
+    "services": [
+      "voice-synthesis",
+      "agent-orchestration",
+      "oauth2-integration",
+      "testament-swarm",
+      "diamond-sao"
+    ]
+  },
+  "rules": {
+    "autoCreateDNS": true,
+    "multiDomainSupport": true,
+    "legacyCompatibility": true,
+    "propagationVerification": true
+  }
+}

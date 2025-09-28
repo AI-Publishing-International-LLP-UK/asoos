@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-09-28T01:47:44.467Z",
+  "universalTemplate": "mcp.asoos.2100.cool",
+  "instances": {
+    "core": 5,
+    "companies": 4,
+    "services": 5
+  },
+  "domains": 38,
+  "features": {
+    "autoProvisioning": true,
+    "universalTemplate": true,
+    "futureCompatibility": true,
+    "legacySupport": true
+  }
+}
