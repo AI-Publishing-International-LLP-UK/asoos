@@ -144,12 +144,12 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
-  # 🏗️  Build and Deploy Phase
-  build-and-deploy:
-    name: 🚀 Build & Deploy
-    runs-on: ubuntu-latest
-    needs: [testing, newman-testing]
-    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+  # 🏗️  Build and Deploy Phase - Temporarily disabled until GCP auth is configured
+  # build-and-deploy:
+  #   name: 🚀 Build & Deploy
+  #   runs-on: ubuntu-latest
+  #   needs: [testing, newman-testing]
+  #   if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     
     steps:
       - name: 📥 Checkout code
