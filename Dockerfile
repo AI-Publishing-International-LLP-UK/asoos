@@ -28,4 +28,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD node -e "require('http').get('http://localhost:8080/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"
 
 # Start application
-CMD ["node", "testament-retrospective-system.js"]
+CMD ["node", "server.js"]
