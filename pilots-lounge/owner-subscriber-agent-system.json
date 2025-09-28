@@ -1,0 +1,199 @@
+{
+  "owner_subscriber_agent_system": {
+    "version": "1.0.0",
+    "description": "Complete agent system for owner/subscriber interface: Base PCP + 14 Premium Pilots + Rix 1,331 Dynamic Solution Module",
+
+    "interface_landing_experience": {
+      "base_file": "light.html",
+      "description": "When owner/subscriber lands on their interface, they immediately have one PCP already engaged",
+      "initial_state": {
+        "pcp_status": "active_and_ready",
+        "customization_visibility": "available_within_limits",
+        "upgrade_options": "visible_but_not_intrusive",
+        "problem_solver_access": "rix_1331_module_available"
+      }
+    },
+
+    "tier_1_base_pcp": {
+      "description": "Every owner/subscriber gets one pre-configured PCP based on their Cultural Empathy score and profile",
+      "configuration": {
+        "auto_engaged": true,
+        "culturally_calibrated": true,
+        "crx_model": "assigned_based_on_sao_tier",
+        "customization_limits": {
+          "name_change": "allowed",
+          "gender_selection": "allowed",
+          "capability_tweaking": "limited_based_on_tier",
+          "major_reconfiguration": "restricted_we_know_them_better"
+        }
+      },
+      "calibration_confidence": {
+        "data_sources": [
+          "64M jobs database analysis",
+          "319K careers trajectory matching",
+          "DIDC archives pattern recognition",
+          "SER PEW framework assessment",
+          "Sector and function analysis",
+          "Background profiling"
+        ],
+        "philosophy": "We know more about them than they do - minimal customization needed",
+        "q4d_lens_analysis": "Professor Lee's 4-dimensional cultural empathy analysis ensures optimal match"
+      }
+    },
+
+    "tier_2_premium_pilots": {
+      "description": "14 specialized pilots available as upgrades for specific needs and enhanced capabilities",
+      "count": 14,
+      "pilots": [
+        {
+          "category": "specialist_doctors",
+          "count": 11,
+          "pilots": [
+            "dr-memoria",
+            "dr-lucy",
+            "dr-match",
+            "dr-cypriot",
+            "dr-claude",
+            "dr-sabina",
+            "dr-maria",
+            "dr-roark",
+            "dr-grant",
+            "dr-burby"
+          ]
+        },
+        {
+          "category": "academic_leadership",
+          "count": 1,
+          "pilots": ["professor-lee"]
+        },
+        {
+          "category": "elite_leadership",
+          "count": 3,
+          "pilots": ["elite11", "mastery33", "victory36"]
+        }
+      ],
+      "upgrade_strategy": {
+        "presentation": "Available but not pushy - focus on specific use cases",
+        "targeting": "Based on detected needs and usage patterns",
+        "specialization_matching": "Recommend pilots based on emerging problem patterns",
+        "collection_building": "Allow owners to build their personal pilot collection over time"
+      },
+      "use_cases": [
+        {
+          "scenario": "Complex project management needs",
+          "recommended_pilot": "dr-claude",
+          "upgrade_reason": "Orchestration and leadership capabilities beyond base PCP"
+        },
+        {
+          "scenario": "Financial and rewards optimization",
+          "recommended_pilot": "dr-cypriot",
+          "upgrade_reason": "Specialized rewards and incentive system expertise"
+        },
+        {
+          "scenario": "High-level strategic planning",
+          "recommended_pilot": "elite11",
+          "upgrade_reason": "Leadership wing capabilities for complex operations"
+        }
+      ]
+    },
+
+    "tier_3_rix_1331_solution_module": {
+      "description": "Dynamic agent creation system - input any problem, get optimal agent configuration from 1,331 possible configurations",
+      "total_configurations": 1331,
+      "approach": "Search across entire system to create best resolution agent for any specific problem",
+
+      "implementation_options": {
+        "public_marketing": {
+          "pros": [
+            "Impressive capability demonstration",
+            "Competitive differentiation",
+            "Clear value proposition"
+          ],
+          "cons": ["May overwhelm users", "Could devalue premium pilots", "Complexity exposure"],
+          "messaging": "1,331 ways to solve your problem - we'll find the perfect agent configuration"
+        },
+        "subtle_integration": {
+          "pros": [
+            "Seamless user experience",
+            "Focus on results not complexity",
+            "Maintains premium pilot value"
+          ],
+          "cons": ["Hidden capability", "Less impressive marketing", "Users might not discover it"],
+          "messaging": "Tell us your problem - we'll give you the right agent"
+        }
+      },
+
+      "problem_input_interface": {
+        "simple_approach": {
+          "interface": "Single text input: 'Describe your problem or challenge'",
+          "processing": "AI analysis of problem description against 1,331 configuration matrix",
+          "output": "Custom-configured agent optimized for the specific problem",
+          "user_experience": "Magic - problem goes in, perfect agent comes out"
+        },
+        "advanced_approach": {
+          "interface": "Guided problem categorization with optional detail expansion",
+          "processing": "Multi-stage analysis with user input refinement",
+          "output": "Explained agent configuration with reasoning",
+          "user_experience": "Collaborative - user understands why this agent configuration"
+        }
+      },
+
+      "configuration_matrix": {
+        "base_agents": "14 pilot personalities as foundation",
+        "capability_combinations": "Mix and match capabilities across pilots",
+        "specialization_depth": "Variable expertise levels per domain",
+        "interaction_styles": "Cultural empathy-informed communication approaches",
+        "problem_domain_optimization": "Industry, function, and context-specific calibrations",
+        "total_permutations": 1331
+      },
+
+      "integration_with_existing_system": {
+        "relationship_to_base_pcp": "Supplements but doesn't replace - base PCP remains primary",
+        "relationship_to_premium_pilots": "Can recommend premium pilot upgrades when Rix solution suggests it",
+        "cultural_empathy_integration": "All Rix configurations filtered through owner's Cultural Empathy score",
+        "learning_system": "Rix solutions improve base PCP and inform premium pilot recommendations"
+      }
+    },
+
+    "user_experience_flow": {
+      "step_1": {
+        "action": "Owner/subscriber lands on light.html interface",
+        "experience": "Base PCP immediately available and ready to assist",
+        "options": "Subtle customization controls, premium pilot previews, problem solver access"
+      },
+      "step_2": {
+        "action": "Base PCP interaction and assessment",
+        "experience": "PCP demonstrates understanding through Cultural Empathy calibration",
+        "learning": "System observes interaction patterns and emerging needs"
+      },
+      "step_3": {
+        "action": "Need-based recommendations",
+        "experience": "System suggests premium pilots or Rix solutions based on detected requirements",
+        "choice": "Owner can upgrade, customize, or use Rix problem solver"
+      },
+      "step_4": {
+        "action": "Problem-solving access",
+        "experience": "If specific challenge arises, Rix 1,331 module creates optimal agent configuration",
+        "result": "Perfect agent for the problem without overwhelming complexity"
+      }
+    },
+
+    "strategic_considerations": {
+      "rix_1331_positioning": {
+        "recommendation": "Subtle integration initially - focus on results over complexity",
+        "reasoning": "Maintains premium pilot value while providing ultimate problem-solving capability",
+        "future_evolution": "Can become more prominent as users discover and appreciate the capability"
+      },
+      "cultural_empathy_thread": {
+        "importance": "Every agent interaction filtered through owner's Cultural Empathy profile",
+        "consistency": "Base PCP, premium pilots, and Rix configurations all culturally aligned",
+        "evolution": "Cultural understanding deepens with every interaction across all agent types"
+      },
+      "monetization_strategy": {
+        "base_pcp": "Included with subscription - demonstrates value",
+        "premium_pilots": "Upgrade purchases - clear specialization value",
+        "rix_solutions": "Could be per-use, unlimited with higher tiers, or premium feature"
+      }
+    }
+  }
+}

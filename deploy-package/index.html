@@ -1108,12 +1108,6 @@
   <script src="enhanced-wfa-mcp-integration.js"></script>
   <!-- UFO Universal MCP Integration -->
   <script src="ufo-mcp-integration.js"></script>
-  <!-- Dream Commander Integration -->
-  <script src="dream-commander-integration.js"></script>
-  <!-- Enterprise Security Anti-Lock System -->
-  <script src="enterprise-security-anti-lock.js"></script>
-  <!-- Trinity Monitoring System -->
-  <script src="trinity-monitoring-system.js"></script>
 </head>
 <body>
   <div class="main-container">
@@ -2313,214 +2307,6 @@
     // Initialize Dr. Claude Quantum Orchestrator
     const drClaudeOrchestrator = new DrClaudeQuantumOrchestrator();
     
-    // Trinity Integration Master Initialization Function
-    async function initializeTrinityIntegrations() {
-      console.log('🔱 Initializing Trinity Integration Systems...');
-      
-      const trinityComponents = [];
-      
-      try {
-        // Initialize Dream Commander Integration
-        if (window.DreamCommanderIntegration) {
-          console.log('🌟 Initializing Dream Commander...');
-          window.dreamCommander = new window.DreamCommanderIntegration();
-          const dreamResult = await window.dreamCommander.initialize();
-          trinityComponents.push({ name: 'Dream Commander', status: dreamResult ? 'active' : 'fallback' });
-        } else {
-          console.warn('⚠️ Dream Commander Integration not found');
-          trinityComponents.push({ name: 'Dream Commander', status: 'missing' });
-        }
-        
-        // Initialize Enhanced WFA-MCP Integration
-        if (window.EnhancedWFAMCPIntegration) {
-          console.log('🔧 Initializing Enhanced WFA-MCP...');
-          window.enhancedWfaMcp = new window.EnhancedWFAMCPIntegration();
-          const wfaResult = await window.enhancedWfaMcp.initialize();
-          trinityComponents.push({ name: 'Enhanced WFA-MCP', status: wfaResult ? 'active' : 'fallback' });
-        } else {
-          console.warn('⚠️ Enhanced WFA-MCP Integration not found');
-          trinityComponents.push({ name: 'Enhanced WFA-MCP', status: 'missing' });
-        }
-        
-        // Initialize UFO Universal MCP Integration
-        if (window.UFOUniversalMCPIntegration) {
-          console.log('🛸 Initializing UFO Universal MCP...');
-          if (!window.ufoMcp) {
-            window.ufoMcp = new window.UFOUniversalMCPIntegration();
-          }
-          const ufoResult = await window.ufoMcp.initialize();
-          trinityComponents.push({ name: 'UFO Universal MCP', status: ufoResult ? 'active' : 'fallback' });
-        } else {
-          console.warn('⚠️ UFO Universal MCP Integration not found');
-          trinityComponents.push({ name: 'UFO Universal MCP', status: 'missing' });
-        }
-        
-        // Initialize Enterprise Security Anti-Lock System
-        if (window.EnterpriseSecurityAntiLock) {
-          console.log('🛡️ Initializing Enterprise Security Anti-Lock...');
-          window.enterpriseSecurity = new window.EnterpriseSecurityAntiLock();
-          trinityComponents.push({ name: 'Enterprise Security Anti-Lock', status: 'active' });
-        } else {
-          console.warn('⚠️ Enterprise Security Anti-Lock not found');
-          trinityComponents.push({ name: 'Enterprise Security Anti-Lock', status: 'missing' });
-        }
-        
-        // Initialize Trinity Monitoring System
-        if (window.TrinityMonitoringSystem) {
-          console.log('🔍 Initializing Trinity Monitoring System...');
-          window.trinityMonitoring = new window.TrinityMonitoringSystem();
-          trinityComponents.push({ name: 'Trinity Monitoring System', status: 'active' });
-        } else {
-          console.warn('⚠️ Trinity Monitoring System not found');
-          trinityComponents.push({ name: 'Trinity Monitoring System', status: 'missing' });
-        }
-        
-        // Create Trinity Coordinator for cross-component communication
-        window.trinityCoordinator = {
-          components: new Map(),
-          pulses: new Map(),
-          
-          registerComponent: function(name, instance) {
-            this.components.set(name, instance);
-            console.log(`🔗 Trinity component registered: ${name}`);
-          },
-          
-          receivePulse: function(component, pulse) {
-            this.pulses.set(component, pulse);
-            // Broadcast pulse to other components
-            for (const [name, instance] of this.components) {
-              if (name !== component && instance.receiveTrinityPulse) {
-                instance.receiveTrinityPulse(component, pulse);
-              }
-            }
-          },
-          
-          getStatus: function() {
-            const status = {};
-            for (const [name, instance] of this.components) {
-              if (instance.getStatus) {
-                status[name] = instance.getStatus();
-              }
-            }
-            return status;
-          }
-        };
-        
-        // Log Trinity initialization results
-        console.log('🔱 Trinity Integration Summary:');
-        trinityComponents.forEach(component => {
-          const statusIcon = component.status === 'active' ? '✅' : component.status === 'fallback' ? '⚠️' : '❌';
-          console.log(`  ${statusIcon} ${component.name}: ${component.status}`);
-        });
-        
-        // Enable Trinity Intelligence Feedback Loops
-        enableTrinityFeedbackLoops();
-        
-        // Show user notification
-        const activeCount = trinityComponents.filter(c => c.status === 'active').length;
-        const totalCount = trinityComponents.length;
-        
-        if (activeCount === totalCount) {
-          showNotification(`🔱 Trinity Intelligence: All ${totalCount} systems active with feedback loops enabled`, 'success');
-        } else if (activeCount > 0) {
-          showNotification(`🔱 Trinity Intelligence: ${activeCount}/${totalCount} systems active with feedback loops enabled`, 'success');
-        } else {
-          showNotification('🔱 Trinity Intelligence: Running in fallback mode', 'error');
-        }
-        
-        return trinityComponents;
-        
-      } catch (error) {
-        console.error('❌ Trinity Integration initialization failed:', error);
-        showNotification('❌ Trinity Integration initialization failed', 'error');
-        return trinityComponents;
-      }
-    }
-    
-    // Enable Trinity Intelligence Feedback Loops Function
-    function enableTrinityFeedbackLoops() {
-      console.log('🔄 Enabling Trinity Intelligence Feedback Loops...');
-      
-      try {
-        // Initialize PCP feedback communication channels
-        window.trinityFeedbackSystem = {
-          drLucy: {
-            name: 'Dr. Lucy',
-            type: 'QB RIX',
-            feedbackEnabled: true,
-            learningActive: true,
-            communicationChannel: 'active'
-          },
-          drClaude: {
-            name: 'Dr. Claude', 
-            type: 'SH RIX',
-            feedbackEnabled: true,
-            learningActive: true,
-            communicationChannel: 'active'
-          },
-          victory36: {
-            name: 'Victory36',
-            type: 'Q RIX',
-            feedbackEnabled: true,
-            learningActive: true,
-            communicationChannel: 'active'
-          }
-        };
-        
-        // Enable cross-PCP learning and communication (SAFE MODE)
-        window.trinityCoordinator.enableFeedbackLoops = function() {
-          // Enable real-time feedback between the three PCPs
-          console.log('✅ PCP cross-communication loops enabled (SAFE MODE)');
-          
-          // REMOVED: Periodic interval to prevent system freeze
-          // Feedback loops are now event-driven rather than time-based
-          
-          return true;
-        };
-        
-        // Broadcast pulse function for PCP coordination (ON-DEMAND ONLY)
-        window.trinityCoordinator.broadcastPCPPulse = function() {
-          const pulseData = {
-            timestamp: new Date().toISOString(),
-            activeUsers: 1,
-            systemLoad: 'optimal',
-            feedbackEnabled: true,
-            pcpStates: {
-              drLucy: window.trinityFeedbackSystem.drLucy,
-              drClaude: window.trinityFeedbackSystem.drClaude,
-              victory36: window.trinityFeedbackSystem.victory36
-            }
-          };
-          
-          // Safe PCP feedback - no recursive loops
-          console.log('📡 Trinity PCP feedback pulse (on-demand)');
-          return pulseData;
-        };
-        
-        // Enable the feedback loops immediately (SAFE MODE)
-        window.trinityCoordinator.enableFeedbackLoops();
-        
-        // Register feedback system with each PCP
-        ['drLucy', 'drClaude', 'victory36'].forEach(pcpName => {
-          const pcp = window.trinityFeedbackSystem[pcpName];
-          if (pcp) {
-            pcp.lastFeedbackUpdate = new Date().toISOString();
-            pcp.feedbackLoopActive = true;
-            console.log(`🔗 ${pcp.name} (${pcp.type}) feedback loops enabled`);
-          }
-        });
-        
-        console.log('🔱 Trinity Intelligence Feedback Loops fully enabled');
-        console.log('🧠 PCP learning and communication system active');
-        
-        return true;
-        
-      } catch (error) {
-        console.error('❌ Failed to enable Trinity feedback loops:', error);
-        return false;
-      }
-    }
-    
     // Quantum-protected fetch wrapper
     async function quantumFetch(url, options = {}) {
       // Route all critical requests through Dr. Claude orchestration
@@ -2566,9 +2352,6 @@
       
       // Initialize Dr. Claude Quantum Orchestration System
       initializeDrClaudeOrchestration();
-      
-      // Initialize Trinity Integration Systems
-      initializeTrinityIntegrations();
       
       // Initialize Dr. Lucy's voice system
       initializeDrLucyVoice();
@@ -4749,13 +4532,410 @@
       });
     }
     
-    // Initialize voice recognition when page loads
+// Initialize voice recognition when page loads
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize voice recognition (but don't start it yet)
       setTimeout(() => {
         initializeVoiceRecognition();
       }, 1000);
     });
+    
+    // WebSpeech API Voice System (Browser-Compatible)
+    class WebSpeechVoiceSystem {
+      constructor() {
+        this.synth = window.speechSynthesis;
+        this.voices = [];
+        this.availableVoices = false;
+        this.preferredVoices = {
+          female: ['Google US English Female', 'Microsoft Zira', 'Samantha', 'Victoria', 'Google UK English Female', 'Karen', 'Moira', 'Tessa'],
+          male: ['Google US English Male', 'Microsoft David', 'Daniel', 'Google UK English Male', 'Tom', 'Nathan']
+        };
+        this.defaultVoice = null;
+        this.femaleVoice = null;
+        this.maleVoice = null;
+        this.initialized = false;
+        this.initializeVoices();
+      }
+
+      initializeVoices() {
+        if (!this.synth) {
+          console.error('Speech synthesis not supported in this browser');
+          return false;
+        }
+        
+        // Function to load and set voices
+        const loadVoices = () => {
+          // Get all available voices
+          const availableVoices = this.synth.getVoices();
+          if (availableVoices.length === 0) {
+            return false;
+          }
+          
+          this.voices = availableVoices;
+          this.availableVoices = true;
+          console.log(`Loaded ${this.voices.length} voices`);
+          
+          // Set female voice (preferred for Dr. Lucy)
+          for (const preferred of this.preferredVoices.female) {
+            const match = this.voices.find(voice => voice.name.includes(preferred));
+            if (match) {
+              this.femaleVoice = match;
+              console.log(`Selected female voice: ${match.name}`);
+              break;
+            }
+          }
+          
+          // Set male voice (preferred for Dr. Burby)
+          for (const preferred of this.preferredVoices.male) {
+            const match = this.voices.find(voice => voice.name.includes(preferred));
+            if (match) {
+              this.maleVoice = match;
+              console.log(`Selected male voice: ${match.name}`);
+              break;
+            }
+          }
+          
+          // Fallback to any English voice if preferred voices not found
+          if (!this.femaleVoice) {
+            this.femaleVoice = this.voices.find(voice => 
+              voice.lang.startsWith('en') && 
+              (voice.name.includes('female') || voice.name.includes('Female')));
+          }
+          
+          if (!this.maleVoice) {
+            this.maleVoice = this.voices.find(voice => 
+              voice.lang.startsWith('en') && 
+              (voice.name.includes('male') || voice.name.includes('Male')));
+          }
+          
+          // Ultimate fallback - just use the first English voice
+          if (!this.femaleVoice) {
+            this.femaleVoice = this.voices.find(voice => voice.lang.startsWith('en')) || this.voices[0];
+          }
+          
+          // Set default voice to female (for Dr. Lucy)
+          this.defaultVoice = this.femaleVoice;
+          this.initialized = true;
+          
+          return true;
+        };
+        
+        // Handle voices that might load asynchronously
+        if (this.synth.onvoiceschanged !== undefined) {
+          this.synth.onvoiceschanged = loadVoices;
+        }
+        
+        // Try loading immediately as well (for browsers that load voices immediately)
+        if (!loadVoices()) {
+          // If voices aren't loaded yet, try again in a second
+          setTimeout(loadVoices, 1000);
+        }
+        
+        return true;
+      }
+      
+      async speak(text, options = {}) {
+        if (!this.initialized || !this.synth) {
+          console.error('Voice system not initialized');
+          return false;
+        }
+        
+        // Cancel any current speech
+        this.stop();
+        
+        // Resolve with a default voice if not initialized yet
+        if (!this.voices.length) {
+          this.voices = this.synth.getVoices();
+          if (!this.femaleVoice && this.voices.length) {
+            this.femaleVoice = this.voices.find(v => v.lang.startsWith('en')) || this.voices[0];
+            this.defaultVoice = this.femaleVoice;
+          }
+        }
+        
+        // Create utterance
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Set voice based on gender preference or use default
+        if (options.gender === 'male' && this.maleVoice) {
+          utterance.voice = this.maleVoice;
+        } else if (options.gender === 'female' && this.femaleVoice) {
+          utterance.voice = this.femaleVoice;
+        } else {
+          utterance.voice = this.defaultVoice;
+        }
+        
+        // Configure speech properties
+        utterance.rate = options.rate || 1.0;  // 0.1 to 10
+        utterance.pitch = options.pitch || 1.0; // 0 to 2
+        utterance.volume = options.volume || 1.0; // 0 to 1
+        utterance.lang = options.lang || 'en-US';
+        
+        // Create promise to handle speech events
+        return new Promise((resolve, reject) => {
+          utterance.onend = () => {
+            resolve(true);
+          };
+          
+          utterance.onerror = (event) => {
+            console.error('Speech synthesis error:', event);
+            reject(event);
+          };
+          
+          // Start speaking
+          this.synth.speak(utterance);
+          
+          // Chrome sometimes fails to speak if not focused
+          // This forces speech to happen consistently
+          if (this.synth.paused) {
+            this.synth.resume();
+          }
+          
+          // Fix for some browsers where speech doesn't start
+          setTimeout(() => {
+            if (this.synth.speaking && this.synth.paused) {
+              this.synth.resume();
+            }
+          }, 100);
+        });
+      }
+      
+      stop() {
+        if (this.synth) {
+          this.synth.cancel();
+        }
+      }
+      
+      pause() {
+        if (this.synth && this.synth.speaking) {
+          this.synth.pause();
+        }
+      }
+      
+      resume() {
+        if (this.synth && this.synth.paused) {
+          this.synth.resume();
+        }
+      }
+      
+      getVoices() {
+        return this.voices;
+      }
+      
+      getPreferredVoice(gender = 'female') {
+        return gender === 'male' ? this.maleVoice : this.femaleVoice;
+      }
+    }
+    
+    // Initialize the voice system as a global object
+    const voiceSystem = new WebSpeechVoiceSystem();
+    
+    // ElevenLabs Voice Configuration - California Educated African American Woman
+    const elevenLabsVoices = {
+      'QB': {
+        voice_id: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional African American female voice
+        name: 'Dr. Lucy',
+        profile: 'California educated African American woman, mid-30s',
+        settings: {
+          stability: 0.75,  // Slightly more natural variation
+          similarity_boost: 0.85, // Professional clarity
+          style: 0.90,      // Maximum confident, educated delivery (90%)
+          use_speaker_boost: true
+        }
+      },
+      'SH': {
+        voice_id: '21m00Tcm4TlvDq8ikWAM', // Rachel - Mature male, 55, Southeast English, medium but sophisticated
+        name: 'Dr. Claude', 
+        profile: 'Mature male, age 55, Southeast English accent, medium but sophisticated tone',
+        settings: {
+          stability: 0.75,  // Natural maturity and control
+          similarity_boost: 0.80, // Clear articulation
+          style: 0.45,      // Medium sophisticated delivery
+          use_speaker_boost: true
+        }
+      },
+      'Q': {
+        voice_id: '4RZ84U1b4WCqpu57LvIq', // French accent English speaker, age 45
+        name: 'Victory36',
+        profile: 'French accent English speaker, age 45, sophisticated international tone',
+        settings: {
+          stability: 0.80,  // Controlled French accent delivery
+          similarity_boost: 0.75, // Clear articulation with accent
+          style: 0.55,      // Sophisticated international style
+          use_speaker_boost: true
+        }
+      }
+    };
+    
+    // ElevenLabs API configuration
+    let elevenLabsApiKey = null;
+    
+    // Get ElevenLabs API key from user input or environment
+    function getElevenLabsApiKey() {
+      // First try to get from environment/localStorage
+      if (elevenLabsApiKey) {
+        return elevenLabsApiKey;
+      }
+      
+      // Try localStorage
+      const storedKey = localStorage.getItem('elevenlabs_api_key');
+      if (storedKey) {
+        elevenLabsApiKey = storedKey;
+        return elevenLabsApiKey;
+      }
+      
+      // Prompt user for API key if not available
+      const apiKey = prompt('Please enter your ElevenLabs API key for high-quality voice:\n\n(Get one free at https://elevenlabs.io)');
+      if (apiKey) {
+        elevenLabsApiKey = apiKey;
+        localStorage.setItem('elevenlabs_api_key', apiKey);
+        return apiKey;
+      }
+      
+      return null;
+    }
+    
+    // ElevenLabs TTS function
+    async function speakWithElevenLabs(text, rixType = 'QB') {
+      const apiKey = getElevenLabsApiKey();
+      
+      if (!apiKey) {
+        console.warn('No ElevenLabs API key available, falling back to browser voice');
+        return speakWithBrowserVoice(text, rixType);
+      }
+      
+      const voiceConfig = elevenLabsVoices[rixType] || elevenLabsVoices['QB'];
+      
+      try {
+        console.log(`🎙️ Speaking with ElevenLabs voice: ${voiceConfig.name}`);
+        showNotification(`🎙️ ${voiceConfig.name} speaking...`, 'success');
+        
+        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceConfig.voice_id}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'audio/mpeg',
+            'Content-Type': 'application/json',
+            'xi-api-key': apiKey
+          },
+          body: JSON.stringify({
+            text: text,
+            model_id: 'eleven_multilingual_v2',
+            voice_settings: voiceConfig.settings
+          })
+        });
+        
+        if (!response.ok) {
+          if (response.status === 401) {
+            // Invalid API key
+            localStorage.removeItem('elevenlabs_api_key');
+            elevenLabsApiKey = null;
+            showNotification('Invalid ElevenLabs API key. Please update it.', 'error');
+            return speakWithBrowserVoice(text, rixType);
+          }
+          throw new Error(`ElevenLabs API error: ${response.status}`);
+        }
+        
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        
+        return new Promise((resolve, reject) => {
+          audio.onloadstart = () => {
+            console.log(`🎙️ ${voiceConfig.name} voice loading...`);
+          };
+          
+          audio.onplay = () => {
+            console.log(`✅ ${voiceConfig.name} voice playing`);
+          };
+          
+          audio.onended = () => {
+            console.log(`✅ ${voiceConfig.name} voice finished`);
+            URL.revokeObjectURL(audioUrl);
+            resolve();
+            
+            // Continue conversation mode if active
+            if (conversationMode && recognition && !isListening) {
+              setTimeout(() => {
+                startVoiceInput();
+              }, 500);
+            }
+          };
+          
+          audio.onerror = (error) => {
+            console.error(`❌ ${voiceConfig.name} audio playback error:`, error);
+            URL.revokeObjectURL(audioUrl);
+            reject(error);
+          };
+          
+          audio.play();
+        });
+        
+      } catch (error) {
+        console.error('❌ ElevenLabs TTS error:', error);
+        showNotification('ElevenLabs error, using browser voice', 'error');
+        return speakWithBrowserVoice(text, rixType);
+      }
+    }
+    
+    // Browser voice fallback
+    function speakWithBrowserVoice(text, rixType) {
+      // Determine voice options based on active RIX
+      let voiceOptions = {
+        gender: 'female', // Default for Dr. Lucy
+        rate: 1.0,
+        pitch: 1.0
+      };
+      
+      // Configure voice based on active RIX
+      if (rixType === 'SH') { // Dr. Claude
+        voiceOptions = {
+          gender: 'male',
+          rate: 0.9,  // Slightly slower for Dr. Claude
+          pitch: 0.85 // Deeper voice for Dr. Claude
+        };
+      } else if (rixType === 'Q') { // Victory36
+        voiceOptions = {
+          gender: 'male',
+          rate: 1.1,  // Slightly faster for Victory36
+          pitch: 1.2  // Higher pitch for Victory36
+        };
+      }
+      
+      return voiceSystem.speak(text, voiceOptions);
+    }
+    
+    // Main speakMessage function - now uses ElevenLabs
+    function speakMessage(text) {
+      console.log('🗣️ Speaking message:', text);
+      
+      if (isSpeaking) {
+        console.log('⚠️ Already speaking, stopping current speech');
+        stopSpeaking();
+        setTimeout(() => speakMessage(text), 100);
+        return;
+      }
+      
+      isSpeaking = true;
+      
+      // Use ElevenLabs for high-quality speech
+      speakWithElevenLabs(text, activeRIX)
+        .then(() => {
+          console.log('✅ Speech completed');
+          isSpeaking = false;
+        })
+        .catch(error => {
+          console.error('❌ Speech synthesis error:', error);
+          isSpeaking = false;
+          showNotification('Speech error - please try again', 'error');
+        });
+    }
+    
+    // Updated stop speaking function to use the voice system
+    function stopSpeaking() {
+      if (voiceSystem) {
+        voiceSystem.stop();
+      }
+      isSpeaking = false;
+    }
     
     // Missing functions for proper functionality
     function loadUserPreferences() {

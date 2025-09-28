@@ -1,0 +1,139 @@
+{
+  "pilots_lounge_user_interface": {
+    "version": "1.0.0",
+    "description": "Clean, user-friendly interface specification for the Pilots Lounge - no technical jargon",
+
+    "landing_experience": {
+      "welcome_message": "Welcome to your Pilots Lounge",
+      "initial_state": {
+        "your_pcp": {
+          "status": "Ready to assist",
+          "name": "Zena",
+          "description": "Your personal co-pilot, configured specifically for you"
+        }
+      }
+    },
+
+    "three_simple_options": {
+      "option_1": {
+        "title": "Customize Your PCP",
+        "description": "Fine-tune your personal co-pilot's name, personality, and capabilities",
+        "user_sees": [
+          "Name your PCP",
+          "Choose gender and voice",
+          "Adjust capabilities within your tier",
+          "Preview changes before applying"
+        ],
+        "user_doesnt_see": [
+          "Cultural empathy calculations",
+          "Q4D lens analysis",
+          "SER PEW framework details",
+          "Complex calibration algorithms"
+        ]
+      },
+
+      "option_2": {
+        "title": "14 Specialist Pilots",
+        "subtitle": "Upgrade for specific needs - One month at a time",
+        "description": "Add specialized pilots to help you in your day-to-day work",
+        "user_sees": [
+          "Clear pilot specializations (e.g., 'Project Management Expert', 'Data Analysis Specialist')",
+          "What each pilot is best at solving",
+          "Effectiveness scores (e.g., '92% success rate for your type of projects')",
+          "Monthly pricing per pilot",
+          "Cancel anytime"
+        ],
+        "pilot_examples": [
+          {
+            "name": "Memory Expert",
+            "best_for": "Research, knowledge organization, finding information",
+            "effectiveness": "95% for research tasks",
+            "price": "$X/month"
+          },
+          {
+            "name": "ML Powerhouse",
+            "best_for": "Data analysis, predictions, optimization",
+            "effectiveness": "94% for data challenges",
+            "price": "$X/month"
+          },
+          {
+            "name": "Project Orchestrator",
+            "best_for": "Complex project coordination, team management",
+            "effectiveness": "91% for project challenges",
+            "price": "$X/month"
+          }
+        ]
+      },
+
+      "option_3": {
+        "title": "Need a Problem Solved?",
+        "subtitle": "Let us create an agent specifically for your problem",
+        "description": "Describe any challenge - we'll build the perfect agent to solve it",
+        "user_sees": [
+          "Simple text box: 'Describe your problem or challenge'",
+          "Instant analysis and agent recommendation",
+          "Success probability (e.g., '89% likely to solve this effectively')",
+          "Time estimate (e.g., '2-4 hours to complete')",
+          "Monthly access to this custom agent"
+        ],
+        "user_experience": [
+          "Enter problem → Get perfect agent",
+          "Clear success prediction",
+          "Simple pricing",
+          "One month access included",
+          "Subscribe monthly to keep it"
+        ],
+        "user_doesnt_see": [
+          "33 squadron structure",
+          "1,331 combinations",
+          "Dream Commander selection process",
+          "Mathematical optimization algorithms"
+        ]
+      }
+    },
+
+    "pricing_model": {
+      "base_pcp": "Included with your subscription",
+      "specialist_pilots": "$X per pilot per month",
+      "custom_agents": "$Y per agent per month",
+      "subscription_terms": {
+        "duration": "One month access included with purchase",
+        "renewal": "Month-to-month subscription available",
+        "cancellation": "Cancel anytime - keeps working until month ends"
+      }
+    },
+
+    "user_dashboard": {
+      "my_agents": {
+        "description": "Simple list of your active agents",
+        "shows": [
+          "Agent name and specialization",
+          "Days remaining in current month",
+          "Recent activity/results",
+          "Renew or cancel options"
+        ]
+      },
+      "agent_performance": {
+        "description": "How well your agents are performing",
+        "shows": [
+          "Problems solved this month",
+          "Average success rate",
+          "Time saved",
+          "Simple satisfaction ratings"
+        ]
+      }
+    },
+
+    "messaging_principles": {
+      "keep_simple": "Focus on what the agent does, not how it works",
+      "show_value": "Emphasize results and effectiveness, not technical complexity",
+      "clear_pricing": "Transparent monthly costs with no hidden complexity",
+      "easy_trial": "One month to try any agent with simple renewal",
+      "user_control": "Easy to add, customize, and cancel agents"
+    },
+
+    "behind_the_scenes": {
+      "note": "All the complex architecture (Dream Commander, 33 squadrons, 1331 combinations, cultural empathy scoring) operates invisibly to deliver the simple user experience above"
+    }
+  }
+}
