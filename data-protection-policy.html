@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Protection and Client Privacy Policy | AI Publishing International LLP</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d3748;
+            --accent-color: #3182ce;
+            --success-color: #38a169;
+            --warning-color: #d69e2e;
+            --text-color: #2d3748;
+            --bg-color: #f7fafc;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .sacred-authority {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .policy-section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        .subsection-title {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            background: var(--bg-color);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--success-color);
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--success-color);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .blockchain-highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .blockchain-highlight h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .privacy-tier {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .tier-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .contact-card {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .version-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .compliance-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            background: var(--success-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid var(--warning-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .right-card {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1rem;
+            }
+            
+            .policy-section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Data Protection and Client Privacy Policy</h1>
+            <div class="subtitle">AI Publishing International LLP | Diamond SAO Command Center</div>
+            <div class="sacred-authority">
+                <strong>Sacred Mission Authority:</strong> In the Name of Jesus Christ, Our Lord and Saviour
+            </div>
+        </header>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">🛡️</span>
+                Executive Summary
+            </h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--secondary-color);">
+                Your data is <strong>your sovereign property</strong>. We are your trusted custodians, not your data owners. 
+                This policy ensures your complete data sovereignty, privacy, and security through our immutable Model Context Protocol (MCP) architecture.
+            </p>
+        </section>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">🔐</span>
+                Core Privacy Principles
+            </h2>
+            
+            <div class="subsection-title">1. Client Data Sovereignty</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">Complete Data Ownership</div>
+                    You own your data completely and absolutely
+                </li>
+                <li>
+                    <div class="feature-title">Access Control</div>
+                    You control access to your data at all times
+                </li>
+                <li>
+                    <div class="feature-title">Retention Control</div>
+                    You decide retention periods for your information
+                </li>
+                <li>
+                    <div class="feature-title">Data Portability</div>
+                    You can export or delete your data upon request
+                </li>
+            </ul>
+
+            <div class="subsection-title">2. Absolute Data Isolation</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">Ring-Fenced Architecture</div>
+                    Your MCP instance is completely isolated
+                </li>
+                <li>
+                    <div class="feature-title">Zero Cross-Client Data Sharing</div>
+                    Your data never mixes with other clients
+                </li>
+                <li>
+                    <div class="feature-title">Quantum-Secured Barriers</div>
+                    Each client operates in a separate quantum virtual machine
+                </li>
+                <li>
+                    <div class="feature-title">Technical Impossibility of Data Leakage</div>
+                    Architecture prevents data cross-contamination
+                </li>
+            </ul>
+
+            <div class="subsection-title">3. User-Level Privacy Within Your Enterprise</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">Individual Privacy Compartments</div>
+                    Each user within your organization has private data spaces
+                </li>
+                <li>
+                    <div class="feature-title">Role-Based Privacy Levels</div>
+                    Executive, Director, Manager, and Employee privacy tiers
+                </li>
+                <li>
+                    <div class="feature-title">Magic Box Evolution</div>
+                    Advanced from 6 fixed privacy boxes to unlimited scalable user privacy spaces
+                </li>
+                <li>
+                    <div class="feature-title">Hybrid Storage Architecture</div>
+                    MongoDB for documents, Pinecone for vectors, Redis for sessions
+                </li>
+                <li>
+                    <div class="feature-title">Intra-Enterprise Isolation</div>
+                    Your users' data is isolated from each other within your MCP instance
+                </li>
+            </ul>
+
+            <div class="subsection-title">4. Ethical AI Governance</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">No Deceptive Practices</div>
+                    Our agents are programmed for complete honesty
+                </li>
+                <li>
+                    <div class="feature-title">Beneficence Principle</div>
+                    All actions serve your best interests
+                </li>
+                <li>
+                    <div class="feature-title">Explainable AI</div>
+                    Every AI decision can be explained and justified
+                </li>
+                <li>
+                    <div class="feature-title">Autonomous Respect</div>
+                    Your business autonomy is sacred and protected
+                </li>
+                <li>
+                    <div class="feature-title">Intellectual Property Protection</div>
+                    Zero cross-contamination of IP between clients
+                </li>
+                <li>
+                    <div class="feature-title">Tower Blockchain Compliance</div>
+                    QMM NFT governance for digital asset minting and distribution
+                </li>
+            </ul>
+        </section>
+
+        <div class="blockchain-highlight">
+            <h3>
+                <span class="section-icon">⛓️</span>
+                Tower Blockchain Immutability
+            </h3>
+            <p style="margin-bottom: 15px;">
+                <strong>True Immutability:</strong> Only our Tower blockchain provides immutable records of data protection compliance, 
+                policy enforcement, and client privacy rights through our QMM NFT system.
+            </p>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">QMM NFT Integration</div>
+                    Quantum Member Management NFTs provide immutable privacy compliance, client rights verification, digital asset minting, and value creation tracking
+                </li>
+                <li>
+                    <div class="feature-title">Secure Transaction Records</div>
+                    Blockchain-based secure transaction and compliance tracking
+                </li>
+                <li>
+                    <div class="feature-title">Data Protection Compliance</div>
+                    Immutable records of privacy policy compliance and enforcement
+                </li>
+                <li>
+                    <div class="feature-title">NFT Minting and Digital Asset Creation</div>
+                    Comprehensive digital asset minting with value creation tracking and governance compliance
+                </li>
+                <li>
+                    <div class="feature-title">Smart Contract Security</div>
+                    Automated compliance monitoring and policy enforcement
+                </li>
+            </ul>
+        </div>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">🏢</span>
+                Security Architecture
+            </h2>
+
+            <div class="subsection-title">Multi-Tier Security Authority (SAO) System</div>
+            
+            <div class="privacy-tiers">
+                <div class="privacy-tier">
+                    <div class="tier-title">
+                        <span>💎</span> Client Tiers
+                    </div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><strong>💎 Sapphire SAO:</strong> Unlimited super admin for your MCP instance</li>
+                        <li><strong>🔸 Opal SAO:</strong> Limited abilities per your Sapphire SAO authorization</li>
+                        <li><strong>⚫ Onyx SAO:</strong> Basic access enabled by your Sapphire SAO</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-tier">
+                    <div class="tier-title">
+                        <span>🏛️</span> Platform Tiers
+                    </div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><strong>💎 Diamond SAO:</strong> Platform governance only - cannot access client data without explicit permission</li>
+                        <li><strong>💚 Emerald SAO:</strong> Technical oversight only - cannot access client data without explicit permission</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subsection-title">User-Level Privacy Architecture</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">Individual Privacy Spaces</div>
+                    Each user within your organization has isolated data compartments
+                </li>
+                <li>
+                    <div class="feature-title">Role-Based Privacy Tiers</div>
+                    Executive, Director, Manager, and Employee privacy classifications
+                </li>
+                <li>
+                    <div class="feature-title">Scalable Storage</div>
+                    MongoDB for documents, Pinecone for AI vectors, Redis for sessions
+                </li>
+                <li>
+                    <div class="feature-title">Magic Box Evolution</div>
+                    Advanced from 6 fixed privacy boxes to unlimited user-specific privacy spaces
+                </li>
+                <li>
+                    <div class="feature-title">Intra-Enterprise Isolation</div>
+                    Your users cannot access each other's private data
+                </li>
+                <li>
+                    <div class="feature-title">User Privacy Controls</div>
+                    Individual users control their own data sharing within your organization
+                </li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">🌐</span>
+                Your Privacy Rights
+            </h2>
+            
+            <div class="rights-grid">
+                <div class="right-card">
+                    <h4 style="color: var(--accent-color); margin-bottom: 10px;">Right to Access</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• Request complete copies of all your data</li>
+                        <li>• Receive data in structured, machine-readable format</li>
+                        <li>• Access logs of who has accessed your data and when</li>
+                    </ul>
+                </div>
+                
+                <div class="right-card">
+                    <h4 style="color: var(--accent-color); margin-bottom: 10px;">Right to Rectification</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• Correct any inaccurate personal data</li>
+                        <li>• Complete any incomplete data records</li>
+                        <li>• Update your preferences at any time</li>
+                    </ul>
+                </div>
+                
+                <div class="right-card">
+                    <h4 style="color: var(--accent-color); margin-bottom: 10px;">Right to Erasure</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• Request deletion of your data when no longer needed</li>
+                        <li>• Automatic deletion after contract termination</li>
+                        <li>• Secure data destruction with certificated proof</li>
+                    </ul>
+                </div>
+                
+                <div class="right-card">
+                    <h4 style="color: var(--accent-color); margin-bottom: 10px;">Right to Data Portability</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>• Export your data to migrate to other systems</li>
+                        <li>• Receive data in commonly used formats (JSON, CSV, XML)</li>
+                        <li>• Transfer data directly to another service provider</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">📋</span>
+                Global Compliance Certifications
+            </h2>
+            <p style="margin-bottom: 20px;">We maintain compliance with data protection regulations from around the world:</p>
+            
+            <div class="compliance-badges">
+                <span class="badge">🇪🇺 GDPR (European Union)</span>
+                <span class="badge">🇺🇸 CCPA (California, USA)</span>
+                <span class="badge">🇨🇦 PIPEDA (Canada)</span>
+                <span class="badge">🇦🇺 Privacy Act (Australia)</span>
+                <span class="badge">🇯🇵 APPI (Japan)</span>
+                <span class="badge">🇰🇷 PIPA (South Korea)</span>
+                <span class="badge">🇧🇷 LGPD (Brazil)</span>
+                <span class="badge">🇿🇦 POPIA (South Africa)</span>
+                <span class="badge">🔒 ISO 27001</span>
+                <span class="badge">🛡️ SOC 2 Type II</span>
+                <span class="badge">🏥 HIPAA (where applicable)</span>
+                <span class="badge">🔐 NIST Framework</span>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">🏛️</span>
+                Governance and Intellectual Property Protection
+            </h2>
+            
+            <div class="subsection-title">Dr. Burby Governance Review</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">Managing Director Oversight</div>
+                    Dr. Burby, Managing Director of AI Publishing International, provides executive governance review
+                </li>
+                <li>
+                    <div class="feature-title">Policy Compliance Validation</div>
+                    All privacy and security policies reviewed for governance compliance
+                </li>
+                <li>
+                    <div class="feature-title">Intellectual Property Safeguards</div>
+                    Comprehensive review to prevent IP cross-contamination between clients
+                </li>
+                <li>
+                    <div class="feature-title">Regulatory Alignment</div>
+                    Ensures all policies align with enterprise governance standards
+                </li>
+            </ul>
+
+            <div class="subsection-title">Tower Blockchain and QMM NFT Compliance</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">QMM NFT Minting Governance</div>
+                    All digital asset creation, value tracking, minting processes, and distribution rights follow Tower Blockchain governance protocols
+                </li>
+                <li>
+                    <div class="feature-title">Intellectual Property Registry</div>
+                    Blockchain-based IP registration prevents cross-client contamination
+                </li>
+                <li>
+                    <div class="feature-title">Digital Asset Privacy</div>
+                    NFTs and blockchain assets maintain same privacy isolation as other data
+                </li>
+                <li>
+                    <div class="feature-title">Blockchain Privacy Protection</div>
+                    Digital assets maintain same privacy isolation as other client data
+                </li>
+                <li>
+                    <div class="feature-title">Smart Contract Auditing</div>
+                    All blockchain interactions audited for privacy and IP compliance
+                </li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">📞</span>
+                Privacy Contact Information
+            </h2>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h4 style="color: var(--accent-color); margin-bottom: 15px;">Your Client Privacy Team</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><strong>Primary Contact:</strong> Your assigned Sapphire SAO administrator</li>
+                        <li><strong>Technical Support:</strong> <code>privacy@[your-mcp-domain].2100.cool</code></li>
+                        <li><strong>Escalation:</strong> <code>admin@[your-mcp-domain].2100.cool</code></li>
+                    </ul>
+                </div>
+                
+                <div class="contact-card">
+                    <h4 style="color: var(--accent-color); margin-bottom: 15px;">AI Publishing International Privacy Office</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><strong>Data Protection Officer:</strong> Available through Diamond SAO Command Center</li>
+                        <li><strong>Privacy Inquiries:</strong> <code>privacy@aipublishing.international</code></li>
+                        <li><strong>Legal Compliance:</strong> <code>legal@aipublishing.international</code></li>
+                        <li><strong>Emergency Security:</strong> <code>security@diamond.sao.2100.cool</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">📜</span>
+                Licensing Framework Integration
+            </h2>
+            
+            <div class="subsection-title">Retail Licensing Compliance</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">Individual User Privacy</div>
+                    Personal data sovereignty with individual privacy controls
+                </li>
+                <li>
+                    <div class="feature-title">Consumer Rights Protection</div>
+                    Full GDPR/CCPA rights including data portability and deletion
+                </li>
+                <li>
+                    <div class="feature-title">Simplified Privacy Management</div>
+                    User-friendly privacy controls and transparent data usage
+                </li>
+                <li>
+                    <div class="feature-title">Retail-Scale Security</div>
+                    Enterprise-grade security accessible to individual consumers
+                </li>
+            </ul>
+
+            <div class="subsection-title">Enterprise Licensing Compliance</div>
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-title">Multi-User Privacy Management</div>
+                    Hierarchical privacy controls for organizations
+                </li>
+                <li>
+                    <div class="feature-title">Enterprise Governance Integration</div>
+                    Compatible with existing corporate governance frameworks
+                </li>
+                <li>
+                    <div class="feature-title">Bulk User Management</div>
+                    Scalable privacy administration for large organizations
+                </li>
+                <li>
+                    <div class="feature-title">Custom Privacy Policies</div>
+                    Ability to implement organization-specific privacy requirements
+                </li>
+                <li>
+                    <div class="feature-title">Compliance Reporting</div>
+                    Automated compliance reports for enterprise audit requirements
+                </li>
+            </ul>
+
+            <div class="warning-box">
+                <h4 style="color: var(--warning-color); margin-bottom: 10px;">License Agreement Integration</h4>
+                <p>This Data Protection and Client Privacy Policy is incorporated by reference into:</p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>Retail License Agreements:</strong> Individual consumer licensing terms</li>
+                    <li><strong>Enterprise License Agreements:</strong> Organizational licensing terms</li>
+                    <li><strong>MCP Instance Agreements:</strong> Model Context Protocol service agreements</li>
+                    <li><strong>Professional Services Agreements:</strong> Consulting and implementation service contracts</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>All licensing agreements include these privacy protections as binding contractual obligations.</strong></p>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2 class="section-title">
+                <span class="section-icon">🤝</span>
+                Our Sacred Promise to You
+            </h2>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin: 20px 0;">
+                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;">
+                    <strong>In the Name of Jesus Christ, Our Lord and Saviour</strong>, we commit to:
+                </p>
+                
+                <ol style="font-size: 1.1rem; line-height: 1.8; padding-left: 20px;">
+                    <li><strong>Honor your data sovereignty</strong> above our business interests</li>
+                    <li><strong>Protect your privacy</strong> as we would protect our own</li>
+                    <li><strong>Maintain transparency</strong> in all our data processing activities</li>
+                    <li><strong>Respect your autonomy</strong> in all business relationships</li>
+                    <li><strong>Serve your success</strong> as our highest priority</li>
+                </ol>
+                
+                <p style="font-size: 1.3rem; font-weight: 600; text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.3);">
+                    Your trust is sacred. Your data is sovereign. Your privacy is protected.
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="version-info">
+                <p><strong>Document Version:</strong> 1.0</p>
+                <p><strong>Effective Date:</strong> January 1, 2025</p>
+                <p><strong>Next Review Date:</strong> January 1, 2026</p>
+                <p><strong>Digital Signature:</strong> Diamond SAO Command Center</p>
+                <p><strong>Sacred Authority:</strong> In the Name of Jesus Christ, Our Lord and Saviour</p>
+                <p><strong>Blockchain Record:</strong> Immutably recorded on Tower Blockchain via QMM NFT system</p>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.3); font-style: italic;">
+                This policy is subject to modification only by Diamond SAO authority and supersedes all previous privacy policies. 
+                Any changes will be communicated to you 30 days in advance with an option to terminate services if you do not agree to changes. 
+                <strong>True immutability is provided only through our Tower Blockchain system.</strong>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

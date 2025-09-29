@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstein Wells - Quantum Energy Solutions</title>
+    <meta name="description" content="Einstein Wells - Clean Quantum Power Delivered Remotely. The energy technology of 2100, available today.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .cta-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #1e3c72;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .email-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .email-address {
+            font-size: 1.2rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer p {
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">⚡ Einstein Wells</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://mcp.einsteinwells.2100.cool">MCP Portal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Einstein Wells</h1>
+            <h2>Quantum Energy Solutions for the Future</h2>
+            <p>Clean quantum power delivered remotely via 9,000 global connectors. The energy technology of 2100, available today.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quantum Power</h3>
+                    <p>Beyond solar, beyond nuclear. Unified field technology from the year 2100.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Delivery</h3>
+                    <p>9,000 quantum connectors worldwide for instant power delivery anywhere.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>NFT Contracts</h3>
+                    <p>Blockchain-powered smart contracts with automated settlement.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💚</div>
+                    <h3>Zero Emissions</h3>
+                    <p>Cleaner than solar panels, no nuclear waste, 24/7 availability.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="cta-section" id="contact">
+        <h2>Connect to the Future of Energy</h2>
+        <p>Ready to revolutionize your power infrastructure?</p>
+        
+        <div class="email-info">
+            <p>For immediate assistance, contact our admin team:</p>
+            <div class="email-address">admin@einsteinwells.2100.cool</div>
+            <p><small>All inquiries are routed to both Einstein Wells and ASOOS administrative teams</small></p>
+        </div>
+        
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="company">Company/Organization Name *</label>
+                <input type="text" id="company" name="company" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact">Contact Name *</label>
+                <input type="text" id="contact" name="contact" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Location (City, State/Country) *</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="power-source">Current Power Source *</label>
+                <select id="power-source" name="power-source" required>
+                    <option value="">Select Current Power Source</option>
+                    <option value="diesel">Diesel Generators</option>
+                    <option value="coal">Coal Power</option>
+                    <option value="grid">National Grid</option>
+                    <option value="solar">Solar Power</option>
+                    <option value="wind">Wind Power</option>
+                    <option value="nuclear">Nuclear Power</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="capacity">Power Needed (MW) *</label>
+                <input type="number" id="capacity" name="capacity" min="0.1" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="urgency">Timeline *</label>
+                <select id="urgency" name="urgency" required>
+                    <option value="">Select Timeline</option>
+                    <option value="immediate">Need Power Today</option>
+                    <option value="this_week">Need Power This Week</option>
+                    <option value="this_month">Need Power This Month</option>
+                    <option value="planning">Planning for Future</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Additional Requirements</label>
+                <textarea id="message" name="message" placeholder="Tell us about your specific power requirements, current costs, or any special considerations..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                ⚡ Connect to Einstein Wells Energy Network
+            </button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Einstein Wells - A Division of AI Publishing International LLP</p>
+        <p>Quantum Energy Solutions | Powered by ASOOS Technology</p>
+        <p>All communications handled via ASOOS@aixtiv.com with complete privacy protection</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Add Einstein Wells specific metadata
+            data.company_type = 'Einstein Wells Energy Inquiry';
+            data.sao_level = 'Sapphire';
+            data.routing = 'einsteinwells-admin';
+            data.timestamp = new Date().toISOString();
+            
+            try {
+                // This would integrate with the ASOOS email routing system
+                const response = await fetch('/api/contact/einsteinwells', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    alert('✅ Your inquiry has been sent to the Einstein Wells admin team. You will receive a response within 24 hours.');
+                    this.reset();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                alert('⚠️ There was an issue submitting your inquiry. Please email admin@einsteinwells.2100.cool directly.');
+            }
+        });
+    </script>
+</body>
+</html>

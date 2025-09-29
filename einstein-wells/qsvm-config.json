@@ -1,0 +1,43 @@
+{
+  "qsvmId": "qsvm-einstein-wells",
+  "companyName": "Einstein Wells",
+  "mcpDomain": "mcp.einsteinwells.2100.cool",
+  "sector": "energy",
+  "specs": {
+    "cpu": 2000,
+    "memory": "2Gi",
+    "concurrency": 80,
+    "maxInstances": 10
+  },
+  "templateInheritance": {
+    "source": "mcp.asoos.2100.cool",
+    "inheritedFeatures": [
+      "natural_language_processing",
+      "voice_integration",
+      "document_management",
+      "workflow_automation",
+      "data_segmentation",
+      "oauth2_integration",
+      "ai_agent_management",
+      "real_time_collaboration",
+      "multi_modal_support",
+      "enterprise_security"
+    ]
+  },
+  "qsvmTemplateConnection": {
+    "universalTemplate": "mcp.asoos.2100.cool",
+    "qsvmIsolation": true,
+    "templateSyncEnabled": true,
+    "clientDataSegregation": true,
+    "sharedResources": false
+  },
+  "voiceConfig": {
+    "pcp": "Dr. Roark sRIX",
+    "clientFacingPcp": "Dr. Roark sRIX+CRX01",
+    "voiceProfile": "dr_roark_srix",
+    "humeConfig": "einsteinwells_energy"
+  },
+  "status": "active",
+  "created": "2025-09-29T18:50:31.351Z",
+  "lastUpdated": "2025-09-29T18:50:31.352Z"
+}
