@@ -13,10 +13,7 @@
     "deploy:production": "gcloud run deploy einstein-wells --image gcr.io/api-for-warp-drive/einstein-wells --region us-west1-a --platform managed",
     "energy:register": "node scripts/energy-market-registration.js",
     "mining:setup": "node scripts/crypto-mining-setup.js",
-    "pcp:activate": "node scripts/activate-zena-pcp.js",
-    "blitz": "node high-speed-orchestration.js",
-    "blitz-fast": "node high-speed-orchestration.js",
-    "high-speed-orchestration": "node high-speed-orchestration.js"
+    "pcp:activate": "node scripts/activate-zena-pcp.js"
   },
   "dependencies": {
     "@google-cloud/firestore": "^7.1.0",
