@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "dev": "nodemon index.js",
     "test": "jest",
     "build": "docker build -t gcr.io/api-for-warp-drive/einstein-wells .",
