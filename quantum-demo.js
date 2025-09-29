@@ -41,28 +41,28 @@ async function quantumDemo() {
 
   // 1. Quantum Thinking
   console.log('💭 Dr. Lucy thinking quantum thoughts...');
-  const lucyThought = await drLucy.think("How can we optimize quantum business operations?");
+  const lucyThought = await drLucy.think('How can we optimize quantum business operations?');
   console.log(`   Response: ${lucyThought.response}`);
   console.log(`   Quantum State: ${lucyThought.quantumState?.collapsedState?.state || 'superposition'}\n`);
 
   // 2. Agent Learning
   console.log('📚 Dr. Claude learning new patterns...');
   const claudeLearning = await drClaude.learn({ 
-    experience: "new quantum pattern detected in consciousness field",
-    type: "philosophical-insight",
-    impact: "high"
+    experience: 'new quantum pattern detected in consciousness field',
+    type: 'philosophical-insight',
+    impact: 'high'
   });
   console.log(`   Learning Result: Capability gain of ${claudeLearning.capabilityGain?.toFixed(2) || 'calculating...'}\n`);
 
   // 3. Voice Synthesis
   console.log('🎤 Victory36 speaking with quantum voice...');
-  const victory36Speech = await victory36.speak("Welcome to the quantum age of business intelligence");
+  const victory36Speech = await victory36.speak('Welcome to the quantum age of business intelligence');
   console.log(`   Voice: ${victory36Speech.voice}`);
   console.log(`   Audio URL: ${victory36Speech.audioUrl}\n`);
 
   // 4. Quantum Communication
   console.log('🔗 Creating quantum entanglement between Dr. Lucy and Dr. Claude...');
-  const quantumMessage = await drLucy.communicate(drClaude.id, "Shall we synchronize our quantum states?", true);
+  const quantumMessage = await drLucy.communicate(drClaude.id, 'Shall we synchronize our quantum states?', true);
   console.log(`   Quantum Message Sent: ${quantumMessage.originalMessage}`);
   console.log(`   Transmission Method: ${quantumMessage.method}`);
   console.log(`   Fidelity: ${quantumMessage.fidelity}\n`);

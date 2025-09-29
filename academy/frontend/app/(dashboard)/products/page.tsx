@@ -1,7 +1,7 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,32 +14,32 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
-import Link from '@/components/Link'
-import { nameElement, url } from './contstants'
-import { deleteProduct, getAllProducts } from '@/actions/product-action'
+import Link from '@/components/Link';
+import { nameElement, url } from './contstants';
+import { deleteProduct, getAllProducts } from '@/actions/product-action';
 
 export default function Page() {
-  const [element, setElement] = useState<any[]>([])
-  const router = useRouter()
+  const [element, setElement] = useState<any[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     getAllProducts().then(data => {
-      setElement(data)
-    })
-  }, [])
+      setElement(data);
+    });
+  }, []);
 
   //function to delete activity
   const deleteMethod = async (id: string) => {
     deleteProduct(id).then(() => {
-      const newElement = element.filter(el => el.id !== id)
+      const newElement = element.filter(el => el.id !== id);
 
-      setElement(newElement)
-    })
-  }
+      setElement(newElement);
+    });
+  };
 
   return (
     <Card>
@@ -103,5 +103,5 @@ export default function Page() {
         </TableContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

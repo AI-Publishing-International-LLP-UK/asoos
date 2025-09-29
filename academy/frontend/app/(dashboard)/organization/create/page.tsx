@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { url, nameElement } from '../contstants'
-import { createOrganization } from '@/actions/organization-action'
-import { getAllIndustries } from '@/actions/global-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { url, nameElement } from '../contstants';
+import { createOrganization } from '@/actions/organization-action';
+import { getAllIndustries } from '@/actions/global-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -24,7 +24,7 @@ const schema = object({
   name: pipe(string(), nonEmpty(), minLength(3)),
   description: pipe(string(), nonEmpty(), minLength(3)),
   industryId: pipe(string(), nonEmpty(), minLength(3))
-})
+});
 
 interface ISelects {
   id: string
@@ -33,8 +33,8 @@ interface ISelects {
 
 export default function Page() {
   //state
-  const router = useRouter()
-  const [industry, setIndustry] = useState<ISelects[]>([])
+  const router = useRouter();
+  const [industry, setIndustry] = useState<ISelects[]>([]);
 
   //hooks
   const {
@@ -49,15 +49,15 @@ export default function Page() {
       description: '',
       industryId: ''
     }
-  })
+  });
 
   useEffect(() => {
     getAllIndustries().then(data => {
       if (data) {
-        setIndustry(data)
+        setIndustry(data);
       }
-    })
-  }, [])
+    });
+  }, []);
 
   const onSubmit = async (value: any) => {
     try {
@@ -65,15 +65,15 @@ export default function Page() {
         name: value.name,
         description: value.description,
         industryId: value.industryId
-      })
+      });
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
@@ -160,5 +160,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

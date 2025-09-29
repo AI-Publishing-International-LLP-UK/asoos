@@ -1,28 +1,28 @@
-'use client'
+'use client';
 
 // React Imports
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 // Next Imports
-import Link from 'next/link'
+import Link from 'next/link';
 
 // MUI Imports
-import { styled, useColorScheme, useTheme } from '@mui/material/styles'
+import { styled, useColorScheme, useTheme } from '@mui/material/styles';
 
 // Type Imports
-import type { Mode, SystemMode } from '@core/types'
+import type { Mode, SystemMode } from '@core/types';
 
 // Component Imports
-import VerticalNav, { NavHeader, NavCollapseIcons } from '@menu/vertical-menu'
-import VerticalMenu from './VerticalMenu'
-import Logo from '@components/layout/shared/Logo'
+import VerticalNav, { NavHeader, NavCollapseIcons } from '@menu/vertical-menu';
+import VerticalMenu from './VerticalMenu';
+import Logo from '@components/layout/shared/Logo';
 
 // Hook Imports
-import useVerticalNav from '@menu/hooks/useVerticalNav'
-import { useSettings } from '@core/hooks/useSettings'
+import useVerticalNav from '@menu/hooks/useVerticalNav';
+import { useSettings } from '@core/hooks/useSettings';
 
 // Style Imports
-import navigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
+import navigationCustomStyles from '@core/styles/vertical/navigationCustomStyles';
 
 type Props = {
   mode: Mode
@@ -45,65 +45,65 @@ const StyledBoxForShadow = styled('div')(({ theme }) => ({
   '&.scrolled': {
     opacity: 1
   }
-}))
+}));
 
 const Navigation = (props: Props) => {
   // Props
-  const { mode, systemMode } = props
+  const { mode, systemMode } = props;
 
   // Hooks
-  const verticalNavOptions = useVerticalNav()
-  const { updateSettings, settings } = useSettings()
-  const { mode: muiMode, systemMode: muiSystemMode } = useColorScheme()
-  const theme = useTheme()
+  const verticalNavOptions = useVerticalNav();
+  const { updateSettings, settings } = useSettings();
+  const { mode: muiMode, systemMode: muiSystemMode } = useColorScheme();
+  const theme = useTheme();
 
   // Refs
-  const shadowRef = useRef(null)
+  const shadowRef = useRef(null);
 
   // Vars
-  const { isCollapsed, isHovered, collapseVerticalNav, isBreakpointReached } = verticalNavOptions
-  const isServer = typeof window === 'undefined'
-  const isSemiDark = settings.semiDark
-  let isDark
+  const { isCollapsed, isHovered, collapseVerticalNav, isBreakpointReached } = verticalNavOptions;
+  const isServer = typeof window === 'undefined';
+  const isSemiDark = settings.semiDark;
+  let isDark;
 
   if (isServer) {
-    isDark = mode === 'system' ? systemMode === 'dark' : mode === 'dark'
+    isDark = mode === 'system' ? systemMode === 'dark' : mode === 'dark';
   } else {
-    isDark = muiMode === 'system' ? muiSystemMode === 'dark' : muiMode === 'dark'
+    isDark = muiMode === 'system' ? muiSystemMode === 'dark' : muiMode === 'dark';
   }
 
   const scrollMenu = (container: any, isPerfectScrollbar: boolean) => {
-    container = isBreakpointReached || !isPerfectScrollbar ? container.target : container
+    container = isBreakpointReached || !isPerfectScrollbar ? container.target : container;
 
     if (shadowRef && container.scrollTop > 0) {
       // @ts-ignore
       if (!shadowRef.current.classList.contains('scrolled')) {
         // @ts-ignore
-        shadowRef.current.classList.add('scrolled')
+        shadowRef.current.classList.add('scrolled');
       }
     } else {
       // @ts-ignore
-      shadowRef.current.classList.remove('scrolled')
+      shadowRef.current.classList.remove('scrolled');
     }
-  }
+  };
 
   useEffect(() => {
     if (settings.layout === 'collapsed') {
-      collapseVerticalNav(true)
+      collapseVerticalNav(true);
     } else {
-      collapseVerticalNav(false)
+      collapseVerticalNav(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settings.layout])
+  }, [settings.layout]);
 
   return (
-    // eslint-disable-next-line lines-around-comment
+     
     // Sidebar Vertical Menu
     <VerticalNav
       customStyles={navigationCustomStyles(verticalNavOptions, theme)}
       collapsedWidth={71}
       backgroundColor='var(--mui-palette-background-paper)'
-      // eslint-disable-next-line lines-around-comment
+       
       // The following condition adds the data-mui-color-scheme='dark' attribute to the VerticalNav component
       // when semiDark is enabled and the mode or systemMode is light
       {...(isSemiDark &&
@@ -128,7 +128,7 @@ const Navigation = (props: Props) => {
       <StyledBoxForShadow ref={shadowRef} />
       <VerticalMenu scrollMenu={scrollMenu} />
     </VerticalNav>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;

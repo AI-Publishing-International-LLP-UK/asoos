@@ -1,4 +1,4 @@
-import type { IPortalConfig } from '../types/portal-config'
+import type { IPortalConfig } from '../types/portal-config';
 
 export const governanceEthicsPortalConfig: IPortalConfig = {
   // Core Portal Structure
@@ -105,4 +105,4 @@ export const governanceEthicsPortalConfig: IPortalConfig = {
       visualization: ['dashboards', 'reports', 'alerts']
     }
   }
-}
+};

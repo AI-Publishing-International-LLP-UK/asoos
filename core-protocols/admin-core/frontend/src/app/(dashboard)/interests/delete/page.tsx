@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import {
   Button,
@@ -11,12 +11,12 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import prisma from '../../../../prisma/prisma'
+import prisma from '../../../../prisma/prisma';
 
 export default async function Page() {
-  const users = await prisma.user.findMany()
+  const users = await prisma.user.findMany();
 
   return (
     <Card>
@@ -55,5 +55,5 @@ export default async function Page() {
         </TableContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

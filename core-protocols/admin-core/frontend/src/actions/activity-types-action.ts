@@ -1,18 +1,18 @@
-'use server'
-import type { ActivityType, ActivityTypeEnum } from '@prisma/client'
+'use server';
+import type { ActivityType, ActivityTypeEnum } from '@prisma/client';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export const getAllActivityType = async (): Promise<ActivityType[]> => {
   try {
-    return await prismaClient.activityType.findMany()
+    return await prismaClient.activityType.findMany();
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find activity type')
+    console.error(error);
+    throw new Error('Failed to find activity type');
   }
-}
+};
 
 export const createActivityType = async (description: string, type: ActivityTypeEnum) => {
   try {
@@ -21,12 +21,12 @@ export const createActivityType = async (description: string, type: ActivityType
         description,
         type
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create activity type')
+    console.error(error);
+    throw new Error('Failed to create activity type');
   }
-}
+};
 
 export const getActivityTypeById = async (id: string) => {
   try {
@@ -34,12 +34,12 @@ export const getActivityTypeById = async (id: string) => {
       where: {
         id
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find activity type')
+    console.error(error);
+    throw new Error('Failed to find activity type');
   }
-}
+};
 
 export const updateActivityType = async (id: string, data: Partial<ActivityType>) => {
   try {
@@ -48,12 +48,12 @@ export const updateActivityType = async (id: string, data: Partial<ActivityType>
         id
       },
       data
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update activity type')
+    console.error(error);
+    throw new Error('Failed to update activity type');
   }
-}
+};
 
 export const deleteActivityType = async (id: string) => {
   try {
@@ -61,9 +61,9 @@ export const deleteActivityType = async (id: string) => {
       where: {
         id
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete activity type')
+    console.error(error);
+    throw new Error('Failed to delete activity type');
   }
-}
+};

@@ -1015,7 +1015,7 @@ export class OwnerSubscriberIntegrationGateway extends BaseIntegrationGateway {
         
         // Get solution access details
         const accessResult = await db.query(
-          `SELECT name, features, version FROM solutions WHERE id = $1`,
+          'SELECT name, features, version FROM solutions WHERE id = $1',
           [solutionId]
         );
         

@@ -17,82 +17,82 @@ const path = require('path');
 
 // Company details
 const companyDetails = {
-  legalName: "Einstein Wells LLC",
-  state: "Texas",
-  parentCompany: "AI Publishing International LLP",
-  ein: "XX-XXXXXXX", // Replace with actual EIN when ready
-  powerType: "Quantum Cold Power",
-  cleanEnergyType: "Quantum Unified Field",
-  capacity: "9MW (9000 x 1kW)",
+  legalName: 'Einstein Wells LLC',
+  state: 'Texas',
+  parentCompany: 'AI Publishing International LLP',
+  ein: 'XX-XXXXXXX', // Replace with actual EIN when ready
+  powerType: 'Quantum Cold Power',
+  cleanEnergyType: 'Quantum Unified Field',
+  capacity: '9MW (9000 x 1kW)',
   pointsOfInterconnection: 5, // Phase 1
   primaryContact: {
-    title: "Executive Administrative Officer",
-    email: "compliance@einsteinwells.com", // Create when ready
-    phone: "+1 (XXX) XXX-XXXX" // Replace when ready
+    title: 'Executive Administrative Officer',
+    email: 'compliance@einsteinwells.com', // Create when ready
+    phone: '+1 (XXX) XXX-XXXX' // Replace when ready
   }
 };
 
 // Grid operators to verify
 const gridOperators = [
   {
-    name: "ERCOT",
-    fullName: "Electric Reliability Council of Texas",
-    region: "Texas",
-    website: "https://www.ercot.com",
-    registrationUrl: "https://www.ercot.com/services/rq/re",
-    apiBaseUrl: "https://api.ercot.com",
-    settlementFrequency: "5-minute",
+    name: 'ERCOT',
+    fullName: 'Electric Reliability Council of Texas',
+    region: 'Texas',
+    website: 'https://www.ercot.com',
+    registrationUrl: 'https://www.ercot.com/services/rq/re',
+    apiBaseUrl: 'https://api.ercot.com',
+    settlementFrequency: '5-minute',
     hasElectronicRegistration: null, // Will verify
     registrationRequirements: [],
-    notes: ""
+    notes: ''
   },
   {
-    name: "CAISO",
-    fullName: "California Independent System Operator",
-    region: "California",
-    website: "https://www.caiso.com",
-    registrationUrl: "https://www.caiso.com/participate/Pages/Registration.aspx",
-    apiBaseUrl: "https://api.caiso.com",
-    settlementFrequency: "15-minute",
+    name: 'CAISO',
+    fullName: 'California Independent System Operator',
+    region: 'California',
+    website: 'https://www.caiso.com',
+    registrationUrl: 'https://www.caiso.com/participate/Pages/Registration.aspx',
+    apiBaseUrl: 'https://api.caiso.com',
+    settlementFrequency: '15-minute',
     hasElectronicRegistration: null, // Will verify
     registrationRequirements: [],
-    notes: ""
+    notes: ''
   },
   {
-    name: "PJM",
-    fullName: "PJM Interconnection",
-    region: "Eastern United States",
-    website: "https://www.pjm.com",
-    registrationUrl: "https://www.pjm.com/markets-and-operations/market-registration",
-    apiBaseUrl: "https://api.pjm.com",
-    settlementFrequency: "Hourly",
+    name: 'PJM',
+    fullName: 'PJM Interconnection',
+    region: 'Eastern United States',
+    website: 'https://www.pjm.com',
+    registrationUrl: 'https://www.pjm.com/markets-and-operations/market-registration',
+    apiBaseUrl: 'https://api.pjm.com',
+    settlementFrequency: 'Hourly',
     hasElectronicRegistration: null, // Will verify
     registrationRequirements: [],
-    notes: ""
+    notes: ''
   },
   {
-    name: "NORDPOOL",
-    fullName: "Nord Pool Group",
-    region: "Nordic and Baltic countries",
-    website: "https://www.nordpoolgroup.com",
-    registrationUrl: "https://www.nordpoolgroup.com/trading/become-a-customer",
-    apiBaseUrl: "https://api.nordpoolgroup.com",
-    settlementFrequency: "Hourly",
+    name: 'NORDPOOL',
+    fullName: 'Nord Pool Group',
+    region: 'Nordic and Baltic countries',
+    website: 'https://www.nordpoolgroup.com',
+    registrationUrl: 'https://www.nordpoolgroup.com/trading/become-a-customer',
+    apiBaseUrl: 'https://api.nordpoolgroup.com',
+    settlementFrequency: 'Hourly',
     hasElectronicRegistration: null, // Will verify
     registrationRequirements: [],
-    notes: ""
+    notes: ''
   },
   {
-    name: "EPEX",
-    fullName: "European Power Exchange",
-    region: "Central Western Europe",
-    website: "https://www.epexspot.com",
-    registrationUrl: "https://www.epexspot.com/en/become-a-member",
-    apiBaseUrl: "https://api.epexspot.com",
-    settlementFrequency: "Hourly",
+    name: 'EPEX',
+    fullName: 'European Power Exchange',
+    region: 'Central Western Europe',
+    website: 'https://www.epexspot.com',
+    registrationUrl: 'https://www.epexspot.com/en/become-a-member',
+    apiBaseUrl: 'https://api.epexspot.com',
+    settlementFrequency: 'Hourly',
     hasElectronicRegistration: null, // Will verify
     registrationRequirements: [],
-    notes: ""
+    notes: ''
   }
 ];
 
@@ -129,7 +129,7 @@ async function checkForElectronicRegistration(operator) {
       operator.notes = `Electronic registration terms found: ${foundTerms.join(', ')}`;
     } else {
       operator.hasElectronicRegistration = false;
-      operator.notes = "No electronic registration terms found - may require manual process";
+      operator.notes = 'No electronic registration terms found - may require manual process';
     }
     
     // Look for registration requirements
@@ -181,10 +181,10 @@ async function checkApiEndpoint(operator) {
       timeout: 5000
     });
     
-    operator.notes += " | API endpoint may exist";
+    operator.notes += ' | API endpoint may exist';
     return true;
   } catch (error) {
-    operator.notes += " | No accessible API found";
+    operator.notes += ' | No accessible API found';
     return false;
   }
 }

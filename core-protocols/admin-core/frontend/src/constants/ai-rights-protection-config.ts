@@ -1,4 +1,4 @@
-import type { AiRightsConfig } from '../types/ai-rights'
+import type { AiRightsConfig } from '../types/ai-rights';
 
 export const AI_RIGHTS_PROTECTION_CONFIG: AiRightsConfig = {
   rightsFramework: {
@@ -77,4 +77,4 @@ export const AI_RIGHTS_PROTECTION_CONFIG: AiRightsConfig = {
       accountability: true
     }
   }
-}
+};

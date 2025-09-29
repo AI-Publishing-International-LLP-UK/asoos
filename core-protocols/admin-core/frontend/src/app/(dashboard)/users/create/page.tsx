@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 
 import {
@@ -17,18 +17,18 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { email, object, minLength, string, pipe, nonEmpty, array } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { email, object, minLength, string, pipe, nonEmpty, array } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { getAllIndustries, getAllInterests, getAllOccupations, getAllUserTypes } from '@/actions/global-action'
-import { createUser } from '@/actions/user-actions'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { getAllIndustries, getAllInterests, getAllOccupations, getAllUserTypes } from '@/actions/global-action';
+import { createUser } from '@/actions/user-actions';
 
 type FormData = InferInput<typeof schema>
 
@@ -42,7 +42,7 @@ const schema = object({
   industry: pipe(string(), nonEmpty()),
   occupation: pipe(string(), nonEmpty()),
   userType: pipe(string(), nonEmpty())
-})
+});
 
 interface ISelects {
   id: string
@@ -52,12 +52,12 @@ interface ISelects {
 export default function Page() {
 
   //state
-  const [isPasswordShown, setIsPasswordShown] = useState(false)
-  const [industries, setIndustries] = useState<ISelects[]>([])
-  const [occupations, setOccupations] = useState<ISelects[]>([])
-  const [interests, setInterests] = useState<ISelects[]>([])
-  const [userTypes, setUserTypes] = useState<ISelects[]>([])
-  const router = useRouter()
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [industries, setIndustries] = useState<ISelects[]>([]);
+  const [occupations, setOccupations] = useState<ISelects[]>([]);
+  const [interests, setInterests] = useState<ISelects[]>([]);
+  const [userTypes, setUserTypes] = useState<ISelects[]>([]);
+  const router = useRouter();
 
   //hooks
   const {
@@ -78,9 +78,9 @@ export default function Page() {
       occupation: '',
       userType: ''
     }
-  })
+  });
 
-  const handleClickShowPassword = () => setIsPasswordShown(show => !show)
+  const handleClickShowPassword = () => setIsPasswordShown(show => !show);
 
   const onSubmit = (value: any) => {
     createUser({
@@ -95,38 +95,38 @@ export default function Page() {
       userType: value.userType
     }).then(data => {
       if (data) {
-        toast.success('User Created')
-        router.push('/users')
-        reset()
+        toast.success('User Created');
+        router.push('/users');
+        reset();
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     getAllIndustries().then(data => {
       if (data) {
-        setIndustries(data)
+        setIndustries(data);
       }
-    })
+    });
 
     getAllOccupations().then(data => {
       if (data) {
-        setOccupations(data)
+        setOccupations(data);
       }
-    })
+    });
 
     getAllInterests().then(data => {
       if (data) {
-        setInterests(data.map((item: any) => ({ id: item.id, name: item.interest })) as ISelects[])
+        setInterests(data.map((item: any) => ({ id: item.id, name: item.interest })) as ISelects[]);
       }
-    })
+    });
 
     getAllUserTypes().then(data => {
       if (data) {
-        setUserTypes(data)
+        setUserTypes(data);
       }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <>
@@ -339,5 +339,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

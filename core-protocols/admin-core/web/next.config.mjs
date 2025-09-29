@@ -10,8 +10,8 @@ basePath: process.env.BASEPATH,
         permanent: true,
         locale: false
       }
-    ]
+    ];
   }
-}
+};
 
-export default nextConfig
+export default nextConfig;

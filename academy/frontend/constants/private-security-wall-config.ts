@@ -1,4 +1,4 @@
-import { SecurityLevel, AccessControl, EncryptionLayer } from '@/types/security'
+import { SecurityLevel, AccessControl, EncryptionLayer } from '@/types/security';
 
 export const PRIVATE_SECURITY_CONFIG = {
   chineseWall: {
@@ -82,7 +82,7 @@ export const PRIVATE_SECURITY_CONFIG = {
       alerts: 'INSTANT_NOTIFICATION'
     }
   }
-}
+};
 
 export const SECURITY_VALIDATION = {
   checkIntegrity: () => {
@@ -94,4 +94,4 @@ export const SECURITY_VALIDATION = {
   auditAccess: () => {
     // Implementation of access auditing
   }
-}
+};

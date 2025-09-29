@@ -1,8 +1,8 @@
-'use server'
+'use server';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateSessionDto {
   courseId: string
@@ -43,14 +43,14 @@ export const createSession = async (
         endDate: data.endDate,
         thumbnail: data.thumbnail
       }
-    })
+    });
 
-    return createdSession
+    return createdSession;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create session')
+    console.error(error);
+    throw new Error('Failed to create session');
   }
-}
+};
 
 export const findAllSessions = async (): Promise<
   {
@@ -66,21 +66,21 @@ export const findAllSessions = async (): Promise<
   }[]
 > => {
   try {
-    return await prismaClient.session.findMany()
+    return await prismaClient.session.findMany();
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find sessions')
+    console.error(error);
+    throw new Error('Failed to find sessions');
   }
-}
+};
 
 export const getSessionById = async (id: string) => {
   try {
-    return await prismaClient.session.findUnique({ where: { id } })
+    return await prismaClient.session.findUnique({ where: { id } });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find session')
+    console.error(error);
+    throw new Error('Failed to find session');
   }
-}
+};
 
 interface updateSession {
   id: string
@@ -115,21 +115,21 @@ export const updateSession = async (
         endDate: data.endDate,
         thumbnail: data.thumbnail
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update session')
+    console.error(error);
+    throw new Error('Failed to update session');
   }
-}
+};
 
 export const deleteSession = async (id: string): Promise<void> => {
   try {
-    await prismaClient.session.delete({ where: { id } })
+    await prismaClient.session.delete({ where: { id } });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete session')
+    console.error(error);
+    throw new Error('Failed to delete session');
   }
-}
+};
 
 export const assignActivityToSession = async (data: AssignSessionActivityDto) => {
   try {
@@ -144,24 +144,24 @@ export const assignActivityToSession = async (data: AssignSessionActivityDto) =>
           }
         }
       }
-    })
+    });
 
-    return true
+    return true;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to assign activity to session')
+    console.error(error);
+    throw new Error('Failed to assign activity to session');
   }
-}
+};
 
 export const removeActivityFromSession = async (sessionActivityId: string): Promise<boolean> => {
   try {
     await prismaClient.sessionActivity.delete({
       where: { id: sessionActivityId }
-    })
+    });
 
-    return true
+    return true;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to remove activity from session')
+    console.error(error);
+    throw new Error('Failed to remove activity from session');
   }
-}
+};

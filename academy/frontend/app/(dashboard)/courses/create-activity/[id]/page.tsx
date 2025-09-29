@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, MenuItem, Select, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty, optional } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, MenuItem, Select, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty, optional } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Define ActivityTypeEnum to match your Firestore schema
 enum ActivityTypeEnum {
@@ -19,13 +19,13 @@ LIVE_WEBINARS = 'LIVE_WEBINARS',
 CHAT_ROOMS = 'CHAT_ROOMS'
 }
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { url } from '../../contstants'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { CreateAndAssignActivityToSession, GetAllActivitiesTypes } from '@/actions/activities-action'
-import { getSessionById } from '@/actions/session-action'
-import { getAllConferences } from '@/actions/conference-action'
-import { getAllWebinar } from '@/actions/webinar-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { url } from '../../contstants';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { CreateAndAssignActivityToSession, GetAllActivitiesTypes } from '@/actions/activities-action';
+import { getSessionById } from '@/actions/session-action';
+import { getAllConferences } from '@/actions/conference-action';
+import { getAllWebinar } from '@/actions/webinar-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -39,7 +39,7 @@ const schema = object({
   endDate: pipe(string(), nonEmpty(), minLength(3)),
   webinarId: optional(pipe(string(), minLength(3))),
   conferenceId: optional(pipe(string(), minLength(3)))
-})
+});
 
 interface Props {
   params: {
@@ -60,18 +60,18 @@ interface ISelectConferenceWebinar {
 
 export default function Page({ params }: Props) {
   //state
-  const router = useRouter()
-  const [types, setTypes] = useState<ISelect[]>([])
-  const [loading, setLoading] = useState(false)
-  const [typeSelected, setTypeSelected] = useState<number>(0)
-  const [listOfConferences, setListOfConferences] = useState<ISelectConferenceWebinar[]>([])
-  const [listOfWebinars, setListOfWebinars] = useState<ISelectConferenceWebinar[]>([])
+  const router = useRouter();
+  const [types, setTypes] = useState<ISelect[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [typeSelected, setTypeSelected] = useState<number>(0);
+  const [listOfConferences, setListOfConferences] = useState<ISelectConferenceWebinar[]>([]);
+  const [listOfWebinars, setListOfWebinars] = useState<ISelectConferenceWebinar[]>([]);
 
   function changeLoading(loading: boolean) {
-    setLoading(loading)
+    setLoading(loading);
   }
 
-  const { id } = params
+  const { id } = params;
 
   //hooks
   const {
@@ -91,11 +91,11 @@ export default function Page({ params }: Props) {
       startDate: '',
       endDate: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      console.log(value)
+      console.log(value);
 
       const response = await CreateAndAssignActivityToSession({
         sessionId: id,
@@ -107,57 +107,57 @@ export default function Page({ params }: Props) {
         endDate: new Date(value.endDate),
         webinarId: value.webinarId,
         conferenceId: value.conferenceId
-      })
+      });
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   const showWebinarOrConferenceInput = (id: string) => {
-    const type = types.find(item => item.id === id)
+    const type = types.find(item => item.id === id);
 
     if (type) {
       if (type.type === ActivityTypeEnum.LIVE_WEBINARS) {
-        setTypeSelected(1)
+        setTypeSelected(1);
       } else if (type.type === ActivityTypeEnum.CHAT_ROOMS) {
-        setTypeSelected(2)
+        setTypeSelected(2);
       } else {
-        setTypeSelected(0)
+        setTypeSelected(0);
       }
     } else {
-      setTypeSelected(0)
+      setTypeSelected(0);
     }
-  }
+  };
 
   useEffect(() => {
     GetAllActivitiesTypes().then(res => {
-      setTypes(res.map(item => ({ id: item.id, type: item.type, description: item.description })))
-    })
+      setTypes(res.map(item => ({ id: item.id, type: item.type, description: item.description })));
+    });
 
     getAllConferences().then(res => {
-      setListOfConferences(res.map(item => ({ id: item.id, name: item.name })))
-    })
+      setListOfConferences(res.map(item => ({ id: item.id, name: item.name })));
+    });
 
     getAllWebinar().then(res => {
-      setListOfWebinars(res.map(item => ({ id: item.id, name: item.name })))
-    })
+      setListOfWebinars(res.map(item => ({ id: item.id, name: item.name })));
+    });
 
     getSessionById(id).then(resp => {
       if (resp) {
-        setValue('sessionId', resp.id)
+        setValue('sessionId', resp.id);
       } else {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
-    })
-  }, [id, router, setValue])
+    });
+  }, [id, router, setValue]);
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -165,7 +165,7 @@ export default function Page({ params }: Props) {
       <ToastContainer />
 
       <Card>
-        <CardHeader title={`Create Activity`} />
+        <CardHeader title={'Create Activity'} />
         <CardContent>
           <TableContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -246,8 +246,8 @@ export default function Page({ params }: Props) {
                         fullWidth
                         label='Type'
                         onChange={e => {
-                          field.onChange(e)
-                          showWebinarOrConferenceInput(e.target.value)
+                          field.onChange(e);
+                          showWebinarOrConferenceInput(e.target.value);
                         }}
                         {...(errors.typeId && { error: true, helperText: errors.typeId.message })}
                       >
@@ -390,5 +390,5 @@ export default function Page({ params }: Props) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

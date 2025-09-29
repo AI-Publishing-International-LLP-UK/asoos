@@ -198,4 +198,4 @@ export const AI_PILOTS: AIPilot[] = [
       tokenExpiry: '24 hours'
     }
   }
-]
+];

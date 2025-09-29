@@ -22,11 +22,11 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", 'data:', 'https:'],
-        connectSrc: ["'self'", 'https://api.mongodb.com', 'https://api.cloudflare.com'],
+        defaultSrc: ['\'self\''],
+        scriptSrc: ['\'self\'', '\'unsafe-inline\''],
+        styleSrc: ['\'self\'', '\'unsafe-inline\''],
+        imgSrc: ['\'self\'', 'data:', 'https:'],
+        connectSrc: ['\'self\'', 'https://api.mongodb.com', 'https://api.cloudflare.com'],
       },
     },
   })
@@ -353,7 +353,7 @@ app.get('/wfa/system-status', (req, res) => {
     timestamp: new Date().toISOString(),
     service: 'WFA Production Swarm - OAuth2 Integrated',
     commander: 'Phillip Roark',
-    executive_admin_officer: "Morgan O'Brien, Emerald EAO",
+    executive_admin_officer: 'Morgan O\'Brien, Emerald EAO',
     deployment_mode: 'oauth2_multiswarm_production',
     christ_centered: true,
     system_metrics: {

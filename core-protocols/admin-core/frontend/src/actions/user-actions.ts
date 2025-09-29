@@ -1,11 +1,11 @@
-'use server'
-import * as bcrypt from 'bcrypt'
+'use server';
+import * as bcrypt from 'bcrypt';
 
-import type { User } from '@prisma/client'
+import type { User } from '@prisma/client';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateUserDtO {
   email: string
@@ -25,7 +25,7 @@ export interface UpdateUserDtO extends CreateUserDtO {
 
 // CRUD básico con manejo de errores
 export const createUser = async (user: CreateUserDtO) => {
-  const hashedPassword = await bcrypt.hash(user.password, 10)
+  const hashedPassword = await bcrypt.hash(user.password, 10);
 
   try {
     return await prismaClient.user.create({
@@ -50,23 +50,23 @@ export const createUser = async (user: CreateUserDtO) => {
           connect: { id: user.occupation }
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create user')
+    console.error(error);
+    throw new Error('Failed to create user');
   }
-}
+};
 
 export const getAllUsers = async (): Promise<User[]> => {
   return prismaClient.user.findMany({
     orderBy: {
       updatedAt: 'desc'
     }
-  })
-}
+  });
+};
 
 export const getUserById = async (id: string, userRole: string) => {
-  const fields = userRole === 'ADMIN' ? {} : { select: { password: false } }
+  const fields = userRole === 'ADMIN' ? {} : { select: { password: false } };
 
   return prismaClient.user.findUnique({
     where: { id },
@@ -77,7 +77,7 @@ export const getUserById = async (id: string, userRole: string) => {
       occupation: true,
       userType: true
     }
-  })
+  });
 
   return prismaClient.user.findUnique({
     where: {
@@ -89,8 +89,8 @@ export const getUserById = async (id: string, userRole: string) => {
       occupation: true,
       userType: true
     }
-  })
-}
+  });
+};
 
 export const updateUser = async (user: Partial<UpdateUserDtO>) => {
   try {
@@ -119,12 +119,12 @@ export const updateUser = async (user: Partial<UpdateUserDtO>) => {
           connect: { id: user.occupation }
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update user')
+    console.error(error);
+    throw new Error('Failed to update user');
   }
-}
+};
 
 export const deleteUser = async (id: string) => {
   try {
@@ -132,12 +132,12 @@ export const deleteUser = async (id: string) => {
       where: {
         id: id
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete user')
+    console.error(error);
+    throw new Error('Failed to delete user');
   }
-}
+};
 
 export const getUserByType = async (type: string) => {
   return prismaClient.user.findMany({
@@ -146,8 +146,8 @@ export const getUserByType = async (type: string) => {
         name: type
       }
     }
-  })
-}
+  });
+};
 
 type ManageApproveUserType = {
   id: string
@@ -163,8 +163,8 @@ export const manageApproveUser = async (user: ManageApproveUserType) => {
       data: {
         verified: user.approved
       }
-    })
+    });
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};

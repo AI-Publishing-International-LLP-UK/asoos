@@ -14,10 +14,10 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-console.log(`🔍 SALLY PORT DEPENDENCY AUDIT`);
-console.log(`💎 Diamond Quantum Speed Operations - Dependency Security`);
-console.log(`🏛️  Authority: Diamond SAO Command Center Integration`);
-console.log(``);
+console.log('🔍 SALLY PORT DEPENDENCY AUDIT');
+console.log('💎 Diamond Quantum Speed Operations - Dependency Security');
+console.log('🏛️  Authority: Diamond SAO Command Center Integration');
+console.log('');
 
 class SallyPortAuditor {
     constructor() {
@@ -294,7 +294,7 @@ class SallyPortAuditor {
         
         // Find all MCP-related files
         try {
-            const mcpFilesList = execSync(`find . -name "*mcp*" -type f | grep -v node_modules`, 
+            const mcpFilesList = execSync('find . -name "*mcp*" -type f | grep -v node_modules', 
                 { encoding: 'utf8', cwd: __dirname });
             
             if (mcpFilesList.trim()) {
@@ -530,17 +530,17 @@ class SallyPortAuditor {
 
     // Display audit summary
     displayAuditSummary() {
-        console.log(`\\n💎 SALLY PORT DEPENDENCY AUDIT COMPLETE`);
-        console.log(`===============================================`);
+        console.log('\\n💎 SALLY PORT DEPENDENCY AUDIT COMPLETE');
+        console.log('===============================================');
         
-        console.log(`\\n📊 AUDIT SUMMARY:`);
+        console.log('\\n📊 AUDIT SUMMARY:');
         console.log(`   Sally Port Integrations: ${this.auditResults.sallyPortDependencies.totalReferences} references`);
         console.log(`   Personalization Components: ${this.auditResults.personalizationComponents.totalComponents} components`);
         console.log(`   Demo System Elements: ${this.auditResults.demoDependencies.totalDemoElements} elements`);
         console.log(`   MCP Integration Files: ${this.auditResults.mcpIntegrations.totalMCPFiles} files`);
         console.log(`   Cloudflare Dependencies: ${this.auditResults.cloudflareResources.totalReferences} references`);
         
-        console.log(`\\n🎯 CRITICAL PROTECTION RECOMMENDATIONS:`);
+        console.log('\\n🎯 CRITICAL PROTECTION RECOMMENDATIONS:');
         const highPriorityRecs = this.auditResults.recommendations.filter(rec => rec.priority === 'HIGH');
         
         if (highPriorityRecs.length > 0) {
@@ -549,16 +549,16 @@ class SallyPortAuditor {
                 console.log(`      Action: ${rec.action}`);
             });
         } else {
-            console.log(`   ✅ No high-priority protection issues found`);
+            console.log('   ✅ No high-priority protection issues found');
         }
         
-        console.log(`\\n🛡️  PROTECTION STATUS:`);
-        console.log(`   🔑 sallyport.2100.cool: MUST REMAIN PROTECTED`);
-        console.log(`   🎨 Personalization System: ACTIVE & CRITICAL`);
-        console.log(`   🎬 Automated Demos: OPERATIONAL`);
+        console.log('\\n🛡️  PROTECTION STATUS:');
+        console.log('   🔑 sallyport.2100.cool: MUST REMAIN PROTECTED');
+        console.log('   🎨 Personalization System: ACTIVE & CRITICAL');
+        console.log('   🎬 Automated Demos: OPERATIONAL');
         console.log(`   🚀 MCP Provisioning: ${this.auditResults.mcpIntegrations.totalMCPFiles > 0 ? 'READY' : 'NEEDS SETUP'}`);
         
-        console.log(`\\n✅ Audit complete - All dependencies identified and protected`);
+        console.log('\\n✅ Audit complete - All dependencies identified and protected');
     }
 }
 

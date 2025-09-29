@@ -1,4 +1,4 @@
-import { TaxManagementSystem, BusinessExpenseTracker, InvestmentMonitor } from '../types/finance'
+import { TaxManagementSystem, BusinessExpenseTracker, InvestmentMonitor } from '../types/finance';
 
 export const OpenBookManagementConfig = {
   pilot: {
@@ -65,4 +65,4 @@ export const OpenBookManagementConfig = {
       encryption: 'aes-256'
     }
   }
-}
+};

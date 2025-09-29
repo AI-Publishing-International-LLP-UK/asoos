@@ -1,10 +1,10 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { Card, CardContent } from '@mui/material'
+import { Card, CardContent } from '@mui/material';
 
-import DateComponent from '@/components/global/DateComponent'
-import { getBlacklistById } from '@/actions/blacklist-action'
+import DateComponent from '@/components/global/DateComponent';
+import { getBlacklistById } from '@/actions/blacklist-action';
 
 interface Props {
   params: {
@@ -19,17 +19,17 @@ interface Props {
 // updatedAt: Date;
 
 export default function Page({ params }: Props) {
-  const { id } = params
+  const { id } = params;
 
-  const [element, setElement] = useState<any | null>(null)
+  const [element, setElement] = useState<any | null>(null);
 
   useEffect(() => {
     if (id) {
       getBlacklistById(id).then(data => {
-        if (data) setElement(data)
-      })
+        if (data) setElement(data);
+      });
     }
-  }, [id])
+  }, [id]);
 
   return (
     <Card>
@@ -48,5 +48,5 @@ export default function Page({ params }: Props) {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

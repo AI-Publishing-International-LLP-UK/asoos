@@ -81,7 +81,7 @@ class AgentNativeEncryptedSearch {
       
       if (!hraiRecord) {
         await client.close();
-        console.log(`⚠️ Requestor not found in HRAI AI System - POTENTIAL INTRUDER`);
+        console.log('⚠️ Requestor not found in HRAI AI System - POTENTIAL INTRUDER');
         return false;
       }
       
@@ -108,7 +108,7 @@ class AgentNativeEncryptedSearch {
         });
         return true;
       } else {
-        console.log(`⚠️ HRAI record found but no active telemetry - agent may be dormant`);
+        console.log('⚠️ HRAI record found but no active telemetry - agent may be dormant');
         return false;
       }
       

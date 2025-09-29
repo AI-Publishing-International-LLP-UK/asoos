@@ -17,10 +17,10 @@ const path = require('path');
 const crypto = require('crypto');
 const { SecurityFramework } = require('./security-framework');
 
-console.log(`🚀 AUTOMATED MCP PROVISIONING SYSTEM`);
-console.log(`💎 Diamond Quantum Speed Operations - Company Scaling`);
-console.log(`🏛️  Authority: Diamond SAO Command Center Integration`);
-console.log(``);
+console.log('🚀 AUTOMATED MCP PROVISIONING SYSTEM');
+console.log('💎 Diamond Quantum Speed Operations - Company Scaling');
+console.log('🏛️  Authority: Diamond SAO Command Center Integration');
+console.log('');
 
 class MCPProvisioner {
     constructor() {
@@ -41,7 +41,7 @@ class MCPProvisioner {
                 return JSON.parse(fs.readFileSync(registryPath, 'utf8'));
             }
         } catch (error) {
-            console.log(`⚠️  No existing registry found, creating new one`);
+            console.log('⚠️  No existing registry found, creating new one');
         }
         
         return {
@@ -101,16 +101,16 @@ class MCPProvisioner {
             console.log(`🌐 Step 1: Configuring DNS for ${domainName}`);
             await this.configureDNS(domainName);
             
-            console.log(`🔧 Step 2: Provisioning Sally Port personalization`);
+            console.log('🔧 Step 2: Provisioning Sally Port personalization');
             const personalConfig = await this.createPersonalization(companyName, instanceId, options);
             
-            console.log(`🎯 Step 3: Setting up automated demos`);
+            console.log('🎯 Step 3: Setting up automated demos');
             const demoConfig = await this.setupAutomatedDemos(companyName, personalConfig);
             
-            console.log(`📋 Step 4: Creating MCP configuration`);
+            console.log('📋 Step 4: Creating MCP configuration');
             const mcpConfig = await this.createMCPConfiguration(companyName, domainName, instanceId, personalConfig, demoConfig);
             
-            console.log(`🚀 Step 5: Deploying MCP instance`);
+            console.log('🚀 Step 5: Deploying MCP instance');
             await this.deployMCPInstance(domainName, mcpConfig);
             
             // Update registry
@@ -364,12 +364,12 @@ class MCPProvisioner {
         };
         
         // Save individual MCP config file
-        const configPath = path.join(__dirname, `mcp-configs`, `${companyName.toLowerCase().replace(/[^a-z0-9]/g, '')}.json`);
+        const configPath = path.join(__dirname, 'mcp-configs', `${companyName.toLowerCase().replace(/[^a-z0-9]/g, '')}.json`);
         fs.mkdirSync(path.dirname(configPath), { recursive: true });
         fs.writeFileSync(configPath, JSON.stringify(mcpConfig, null, 2));
         
         // Save security configuration separately
-        const securityConfigPath = path.join(__dirname, `mcp-security`, `${companyName.toLowerCase().replace(/[^a-z0-9]/g, '')}-security.json`);
+        const securityConfigPath = path.join(__dirname, 'mcp-security', `${companyName.toLowerCase().replace(/[^a-z0-9]/g, '')}-security.json`);
         fs.mkdirSync(path.dirname(securityConfigPath), { recursive: true });
         fs.writeFileSync(securityConfigPath, JSON.stringify(mcpSecurityConfig, null, 2));
         
@@ -496,7 +496,7 @@ class MCPProvisioner {
             fs.unlinkSync(scriptPath);
             
             if (result.includes('deployment') && !result.includes('error')) {
-                console.log(`   ✅ MCP instance deployed successfully`);
+                console.log('   ✅ MCP instance deployed successfully');
                 return true;
             } else {
                 throw new Error(`Deployment failed: ${result}`);
@@ -667,8 +667,8 @@ class MCPProvisioner {
             welcome: `Welcome to ${personalConfig.companyName}'s AI-powered operations center`,
             overview: `This demo showcases how AI can transform your ${scenario} operations`,
             aiIntro: `Meet your AI copilots: ${personalConfig.aiCopilots.join(', ')}`,
-            features: `Explore dashboard, analytics, automation, and integration capabilities`,
-            conclusion: `Ready to get started with your personalized AI operations?`
+            features: 'Explore dashboard, analytics, automation, and integration capabilities',
+            conclusion: 'Ready to get started with your personalized AI operations?'
         };
     }
 
@@ -702,8 +702,8 @@ class MCPProvisioner {
             },
             aiInsights: [
                 `${companyName} shows 23% improvement in operational efficiency`,
-                `Recommended automation opportunities identified`,
-                `Customer satisfaction increased by 18% with AI integration`
+                'Recommended automation opportunities identified',
+                'Customer satisfaction increased by 18% with AI integration'
             ]
         };
     }
@@ -744,7 +744,7 @@ echo "✅ MCP deployment completed for ${domainName}"
     // List all provisioned MCPs
     listMCPs() {
         console.log(`\\n📋 MCP REGISTRY - ${this.mcpRegistry.totalMCPs} Companies Provisioned`);
-        console.log(`=================================================================`);
+        console.log('=================================================================');
         
         for (const [companyName, config] of Object.entries(this.mcpRegistry.companies)) {
             const status = config.status === 'active' ? '✅' : '⚠️';
@@ -756,10 +756,10 @@ echo "✅ MCP deployment completed for ${domainName}"
             console.log(`   📅 Created: ${config.createdAt}`);
             console.log(`   📈 Accessed: ${config.accessCount} times`);
             console.log(`   ⏱️  Provisioning: ${config.provisioningTime}ms`);
-            console.log(``);
+            console.log('');
         }
         
-        console.log(`📊 PROVISIONING STATS:`);
+        console.log('📊 PROVISIONING STATS:');
         console.log(`   Total Provisioned: ${this.mcpRegistry.provisioningStats.totalProvisioned}`);
         console.log(`   Currently Active: ${this.mcpRegistry.provisioningStats.totalActive}`);
         console.log(`   Last Updated: ${this.mcpRegistry.lastUpdated}`);
@@ -782,7 +782,7 @@ echo "✅ MCP deployment completed for ${domainName}"
             await new Promise(resolve => setTimeout(resolve, 1000));
         }
         
-        console.log(`\\n✅ BULK PROVISIONING COMPLETE`);
+        console.log('\\n✅ BULK PROVISIONING COMPLETE');
         const successful = results.filter(r => r.success).length;
         console.log(`   Successful: ${successful}/${companies.length}`);
         console.log(`   Failed: ${companies.length - successful}/${companies.length}`);
@@ -797,15 +797,15 @@ async function main() {
     const args = process.argv.slice(2);
     
     if (args.length === 0) {
-        console.log(`\\n🔧 USAGE:`);
-        console.log(`   node automated-mcp-provisioner.js create <company-name> [options]`);
-        console.log(`   node automated-mcp-provisioner.js list`);
-        console.log(`   node automated-mcp-provisioner.js bulk companies.json`);
-        console.log(`\\n📋 EXAMPLES:`);
-        console.log(`   node automated-mcp-provisioner.js create "TechCorp"`);
-        console.log(`   node automated-mcp-provisioner.js create "MedicalCenter" theme=emerald level=enterprise`);
-        console.log(`   node automated-mcp-provisioner.js list`);
-        console.log(`\\n✨ This system creates: mcp.{company}.2100.cool with full Sally Port integration`);
+        console.log('\\n🔧 USAGE:');
+        console.log('   node automated-mcp-provisioner.js create <company-name> [options]');
+        console.log('   node automated-mcp-provisioner.js list');
+        console.log('   node automated-mcp-provisioner.js bulk companies.json');
+        console.log('\\n📋 EXAMPLES:');
+        console.log('   node automated-mcp-provisioner.js create "TechCorp"');
+        console.log('   node automated-mcp-provisioner.js create "MedicalCenter" theme=emerald level=enterprise');
+        console.log('   node automated-mcp-provisioner.js list');
+        console.log('\\n✨ This system creates: mcp.{company}.2100.cool with full Sally Port integration');
         return;
     }
     
@@ -814,7 +814,7 @@ async function main() {
     switch (command) {
         case 'create':
             if (args.length < 2) {
-                console.error(`❌ Usage: create <company-name> [options]`);
+                console.error('❌ Usage: create <company-name> [options]');
                 return;
             }
             
@@ -843,7 +843,7 @@ async function main() {
             
         case 'bulk':
             if (args.length < 2) {
-                console.error(`❌ Usage: bulk <companies.json>`);
+                console.error('❌ Usage: bulk <companies.json>');
                 return;
             }
             
@@ -858,7 +858,7 @@ async function main() {
             
         default:
             console.error(`❌ Unknown command: ${command}`);
-            console.log(`   Available: create, list, bulk`);
+            console.log('   Available: create, list, bulk');
     }
 }
 

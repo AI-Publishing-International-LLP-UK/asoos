@@ -1,9 +1,9 @@
-'use server'
-import type { Conference } from '../prisma/prisma'
+'use server';
+import type { Conference } from '../prisma/prisma';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateConferenceDto {
   name: string
@@ -26,9 +26,9 @@ export interface UpdateConferenceDto {
 
 export const createConference = async (data: CreateConferenceDto): Promise<Conference> => {
   try {
-    const room = await createRoomDail()
+    const room = await createRoomDail();
 
-    console.log(room)
+    console.log(room);
 
     return await prismaClient.conference.create({
       data: {
@@ -43,58 +43,58 @@ export const createConference = async (data: CreateConferenceDto): Promise<Confe
           connect: { id: data.speakerId }
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create conference')
+    console.error(error);
+    throw new Error('Failed to create conference');
   }
-}
+};
 
 export const getAllConferences = async (): Promise<Conference[]> => {
   try {
     return await prismaClient.conference.findMany({
       include: { speaker: true, attendeesAsAttendee: true }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find conferences')
+    console.error(error);
+    throw new Error('Failed to find conferences');
   }
-}
+};
 
 export const getConferenceById = async (id: string): Promise<any> => {
   try {
     return await prismaClient.conference.findUnique({
       where: { id },
       include: { speaker: true, attendeesAsAttendee: true }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find conference')
+    console.error(error);
+    throw new Error('Failed to find conference');
   }
-}
+};
 
 export const updateConference = async (id: string, data: UpdateConferenceDto): Promise<Conference> => {
   try {
     return await prismaClient.conference.update({
       where: { id },
       data
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update conference')
+    console.error(error);
+    throw new Error('Failed to update conference');
   }
-}
+};
 
 export const deleteConference = async (id: string): Promise<void> => {
   try {
     await prismaClient.conference.delete({
       where: { id }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete conference')
+    console.error(error);
+    throw new Error('Failed to delete conference');
   }
-}
+};
 
 export const createRoomDail = async () => {
   const roomProperties = {
@@ -122,9 +122,9 @@ export const createRoomDail = async () => {
         allow_api_access: false
       }
     }
-  }
+  };
 
-  console.log('Room properties:', roomProperties)
+  console.log('Room properties:', roomProperties);
 
   const response = await fetch('https://api.daily.co/v1/rooms', {
     method: 'POST',
@@ -133,14 +133,14 @@ export const createRoomDail = async () => {
       authorization: `Bearer ${process.env.DAILY_API_KEY}`
     },
     body: JSON.stringify(roomProperties)
-  })
+  });
 
   if (!response.ok) {
-    console.log(response.text())
-    throw new Error(`Error creating Daily.co room: ${response.statusText}`)
+    console.log(response.text());
+    throw new Error(`Error creating Daily.co room: ${response.statusText}`);
   }
 
-  const room = await response.json()
+  const room = await response.json();
 
-  return room
-}
+  return room;
+};

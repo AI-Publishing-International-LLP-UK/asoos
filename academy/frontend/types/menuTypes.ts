@@ -1,20 +1,20 @@
 // React Imports
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 // MUI Imports
-import type { ChipProps } from '@mui/material/Chip'
+import type { ChipProps } from '@mui/material/Chip';
 
 // Type Imports
 import type {
   SubMenuProps as VerticalSubMenuProps,
   MenuItemProps as VerticalMenuItemProps,
   MenuSectionProps as VerticalMenuSectionProps
-} from '@menu/vertical-menu'
+} from '@menu/vertical-menu';
 import type {
   SubMenuProps as HorizontalSubMenuProps,
   MenuItemProps as HorizontalMenuItemProps
-} from '@menu/horizontal-menu'
-import type { MenuItemExactMatchUrlProps } from '@menu/types'
+} from '@menu/horizontal-menu';
+import type { MenuItemExactMatchUrlProps } from '@menu/types';
 
 // Vertical Menu Data
 export type VerticalMenuItemDataType = Omit<

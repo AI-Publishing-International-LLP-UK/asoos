@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import { getOrganizationById, updateOrganization } from '@/actions/organization-action'
-import { getAllIndustries } from '@/actions/global-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import { getOrganizationById, updateOrganization } from '@/actions/organization-action';
+import { getAllIndustries } from '@/actions/global-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -26,7 +26,7 @@ const schema = object({
   description: pipe(string(), nonEmpty(), minLength(3)),
   industryId: pipe(string(), nonEmpty(), minLength(3)),
   id: pipe(string(), nonEmpty(), minLength(3))
-})
+});
 
 interface ISelects {
   id: string
@@ -41,11 +41,11 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
-  const [industry, setIndustry] = useState<ISelects[]>([])
+  const [loading, setLoading] = useState(true);
+  const [industry, setIndustry] = useState<ISelects[]>([]);
 
   //hooks
   const {
@@ -61,37 +61,37 @@ export default function Page({ params }: PageProps) {
       description: '',
       id: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await updateOrganization(value.id, value)
+      const response = await updateOrganization(value.id, value);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getAllIndustries().then(data => {
       if (data) {
-        setIndustry(data)
+        setIndustry(data);
       }
-    })
+    });
 
     getOrganizationById(id).then(data => {
       if (data) {
-        setValue('name', data.name || '')
-        setValue('description', data.description || '')
-        setValue('id', data.id)
-        setValue('industryId', data.industryId || '')
-        setLoading(false)
+        setValue('name', data.name || '');
+        setValue('description', data.description || '');
+        setValue('id', data.id);
+        setValue('industryId', data.industryId || '');
+        setLoading(false);
       }
-    })
-  }, [id, setValue])
+    });
+  }, [id, setValue]);
 
   return (
     <>
@@ -180,5 +180,5 @@ export default function Page({ params }: PageProps) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

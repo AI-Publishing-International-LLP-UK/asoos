@@ -160,7 +160,7 @@ class WarpDiamondCLI {
     console.log('\n💎 DIAMOND SAO COMMAND CENTER STATUS');
     console.log('═══════════════════════════════════════');
     console.log(`Authority: ${this.diamondSAO.name} (${this.diamondSAO.id})`);
-    console.log(`Mission: Divine orchestration in the Name of Jesus Christ, Our Lord and Saviour`);
+    console.log('Mission: Divine orchestration in the Name of Jesus Christ, Our Lord and Saviour');
     console.log('');
     
     // Architecture Status
@@ -188,9 +188,9 @@ class WarpDiamondCLI {
     // System Health
     console.log('🩺 SYSTEM HEALTH');
     console.log('═══════════════════════════════════════');
-    console.log(`✅ Diamond CLI: Operational`);
+    console.log('✅ Diamond CLI: Operational');
     console.log(`${warpStatus.connected ? '✅' : '⚠️ '} Warp Network: ${warpStatus.connected ? 'Connected' : 'Disconnected'}`);
-    console.log(`✅ Hybrid Integration: Active`);
+    console.log('✅ Hybrid Integration: Active');
     console.log('');
     
     return {
@@ -237,8 +237,8 @@ class WarpDiamondCLI {
     console.log('═══════════════════════════════════════════════════════════════════════');
     console.log('');
     console.log(`Authority: ${this.diamondSAO.name} (${this.diamondSAO.id})`);
-    console.log(`Repository: AIXTIV-SYMPHONY.git`);
-    console.log(`Architecture: Hybrid GCP-Cloudflare-Warp`);
+    console.log('Repository: AIXTIV-SYMPHONY.git');
+    console.log('Architecture: Hybrid GCP-Cloudflare-Warp');
     console.log(`Version: ${this.version}`);
     console.log('');
     console.log('USAGE:');

@@ -45,7 +45,7 @@ console.log('💡 Suggested Tone: collaborative_technical');
 
 console.log('\n📝 Message:');
 console.log(
-  "Thank you for granting me research assistance capabilities! I can now provide enhanced analysis with academic voice synthesis. Based on our Diamond CLI integration work, I recommend we prioritize the OAuth2 natural language authorization system as it creates a conversational security layer that matches your CLI's natural interaction paradigm. The voice profile system with the 14 computational pilots provides excellent granularity for different intelligence types and use cases."
+  'Thank you for granting me research assistance capabilities! I can now provide enhanced analysis with academic voice synthesis. Based on our Diamond CLI integration work, I recommend we prioritize the OAuth2 natural language authorization system as it creates a conversational security layer that matches your CLI\'s natural interaction paradigm. The voice profile system with the 14 computational pilots provides excellent granularity for different intelligence types and use cases.'
 );
 
 console.log('\n🎯 Communication Optimizations:');

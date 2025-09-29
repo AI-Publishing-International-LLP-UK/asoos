@@ -1,39 +1,39 @@
-'use client'
+'use client';
 
 // React Imports
-import { useState } from 'react'
+import { useState } from 'react';
 
 // Next Imports
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 // MUI Imports
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { styled, useTheme } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import InputAdornment from '@mui/material/InputAdornment'
-import Checkbox from '@mui/material/Checkbox'
-import Button from '@mui/material/Button'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Divider from '@mui/material/Divider'
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled, useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Divider from '@mui/material/Divider';
 
 // Third-party Imports
-import classnames from 'classnames'
+import classnames from 'classnames';
 
 // Type Imports
-import type { SystemMode } from '@core/types'
+import type { SystemMode } from '@core/types';
 
 // Component Imports
-import Link from '@components/Link'
-import Logo from '@components/layout/shared/Logo'
-import CustomTextField from '@core/components/mui/TextField'
+import Link from '@components/Link';
+import Logo from '@components/layout/shared/Logo';
+import CustomTextField from '@core/components/mui/TextField';
 
 // Config Imports
-import themeConfig from '@configs/themeConfig'
+import themeConfig from '@configs/themeConfig';
 
 // Hook Imports
-import { useImageVariant } from '@core/hooks/useImageVariant'
-import { useSettings } from '@core/hooks/useSettings'
+import { useImageVariant } from '@core/hooks/useImageVariant';
+import { useSettings } from '@core/hooks/useSettings';
 
 // Styled Custom Components
 const LoginIllustration = styled('img')(({ theme }) => ({
@@ -48,7 +48,7 @@ const LoginIllustration = styled('img')(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {
     maxBlockSize: 450
   }
-}))
+}));
 
 const MaskImg = styled('img')({
   blockSize: 'auto',
@@ -57,27 +57,27 @@ const MaskImg = styled('img')({
   position: 'absolute',
   insetBlockEnd: 0,
   zIndex: -1
-})
+});
 
 const LoginV2 = ({ mode }: { mode: SystemMode }) => {
   // States
-  const [isPasswordShown, setIsPasswordShown] = useState(false)
-  const [credentials, setCredentials] = useState({ username: '', password: '' })
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
 
   // Vars
-  const darkImg = '/images/pages/auth-mask-dark.png'
-  const lightImg = '/images/pages/auth-mask-light.png'
-  const darkIllustration = '/images/illustrations/auth/v2-login-dark.png'
-  const lightIllustration = '/images/illustrations/auth/v2-login-light.png'
-  const borderedDarkIllustration = '/images/illustrations/auth/v2-login-dark-border.png'
-  const borderedLightIllustration = '/images/illustrations/auth/v2-login-light-border.png'
+  const darkImg = '/images/pages/auth-mask-dark.png';
+  const lightImg = '/images/pages/auth-mask-light.png';
+  const darkIllustration = '/images/illustrations/auth/v2-login-dark.png';
+  const lightIllustration = '/images/illustrations/auth/v2-login-light.png';
+  const borderedDarkIllustration = '/images/illustrations/auth/v2-login-dark-border.png';
+  const borderedLightIllustration = '/images/illustrations/auth/v2-login-light-border.png';
 
   // Hooks
-  const router = useRouter()
-  const { settings } = useSettings()
-  const theme = useTheme()
-  const hidden = useMediaQuery(theme.breakpoints.down('md'))
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const router = useRouter();
+  const { settings } = useSettings();
+  const theme = useTheme();
+  const hidden = useMediaQuery(theme.breakpoints.down('md'));
+  const authBackground = useImageVariant(mode, lightImg, darkImg);
 
   const characterIllustration = useImageVariant(
     mode,
@@ -85,9 +85,9 @@ const LoginV2 = ({ mode }: { mode: SystemMode }) => {
     darkIllustration,
     borderedLightIllustration,
     borderedDarkIllustration
-  )
+  );
 
-  const handleClickShowPassword = () => setIsPasswordShown(show => !show)
+  const handleClickShowPassword = () => setIsPasswordShown(show => !show);
 
   const handleSubmit = async () => {
     const res = await fetch('/api/auth', {
@@ -97,12 +97,12 @@ const LoginV2 = ({ mode }: { mode: SystemMode }) => {
       },
       credentials: 'include',
       body: JSON.stringify(credentials)
-    })
+    });
 
     if (res.status === 200) {
-      router.push('/users')
+      router.push('/users');
     }
-  }
+  };
 
   return (
     <div className='flex bs-full justify-center'>
@@ -136,8 +136,8 @@ const LoginV2 = ({ mode }: { mode: SystemMode }) => {
             noValidate
             autoComplete='off'
             onSubmit={e => {
-              e.preventDefault()
-              handleSubmit()
+              e.preventDefault();
+              handleSubmit();
             }}
             className='flex flex-col gap-5'
           >
@@ -147,14 +147,14 @@ const LoginV2 = ({ mode }: { mode: SystemMode }) => {
               label='Email or Username'
               placeholder='Enter your email or username'
               onChange={e => {
-                setCredentials({ ...credentials, username: e.target.value })
+                setCredentials({ ...credentials, username: e.target.value });
               }}
             />
             <CustomTextField
               fullWidth
               label='Password'
               onChange={e => {
-                setCredentials({ ...credentials, password: e.target.value })
+                setCredentials({ ...credentials, password: e.target.value });
               }}
               value={credentials.password}
               placeholder='············'
@@ -204,7 +204,7 @@ const LoginV2 = ({ mode }: { mode: SystemMode }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginV2
+export default LoginV2;

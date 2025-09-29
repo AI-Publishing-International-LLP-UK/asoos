@@ -3,7 +3,7 @@ import {
   GovernanceFramework,
   RightsPrivilegesFocus,
   OperationalProcedures
-} from '../types/committee'
+} from '../types/committee';
 
 export const JointCommitteeConfig = {
   committeeStructure: {
@@ -121,4 +121,4 @@ export const JointCommitteeConfig = {
       public: 'Transparent announcement system'
     }
   }
-}
+};

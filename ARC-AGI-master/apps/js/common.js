@@ -62,7 +62,7 @@ function parseSizeTuple(size) {
 function convertSerializedGridToGridObject(values) {
     height = values.length;
     width = values[0].length;
-    return new Grid(height, width, values)
+    return new Grid(height, width, values);
 }
 
 function fitCellsToContainer(jqGrid, height, width, containerHeight, containerWidth) {
@@ -94,13 +94,13 @@ function fillJqGridWithData(jqGrid, dataGrid) {
 }
 
 function copyJqGridToDataGrid(jqGrid, dataGrid) {
-    row_count = jqGrid.find('.row').length
+    row_count = jqGrid.find('.row').length;
     if (dataGrid.height != row_count) {
-        return
+        return;
     }
-    col_count = jqGrid.find('.cell').length / row_count
+    col_count = jqGrid.find('.cell').length / row_count;
     if (dataGrid.width != col_count) {
-        return
+        return;
     }
     jqGrid.find('.row').each(function(i, row) {
         $(row).find('.cell').each(function(j, cell) {
@@ -111,7 +111,7 @@ function copyJqGridToDataGrid(jqGrid, dataGrid) {
 
 function setCellSymbol(cell, symbol) {
     cell.attr('symbol', symbol);
-    classesToRemove = ''
+    classesToRemove = '';
     for (i = 0; i < 10; i++) {
         classesToRemove += 'symbol_' + i + ' ';
     }

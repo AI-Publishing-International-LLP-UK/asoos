@@ -1,7 +1,7 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,9 +14,9 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
 // id: string;
 // name: string;
@@ -25,29 +25,29 @@ import tableStyles from '@core/styles/table.module.css'
 // createdAt: Date;
 // updatedAt: Date;
 
-import Link from '@/components/Link'
-import { nameElement, url } from './contstants'
-import { deleteOrganization, getAllOrganization } from '@/actions/organization-action'
-import DateComponent from '@/components/global/DateComponent'
+import Link from '@/components/Link';
+import { nameElement, url } from './contstants';
+import { deleteOrganization, getAllOrganization } from '@/actions/organization-action';
+import DateComponent from '@/components/global/DateComponent';
 
 export default function Page() {
-  const [element, setElement] = useState<any[]>([])
-  const router = useRouter()
+  const [element, setElement] = useState<any[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     getAllOrganization().then(data => {
-      setElement(data)
-    })
-  }, [])
+      setElement(data);
+    });
+  }, []);
 
   //function to delete activity
   const deleteMethod = async (id: string) => {
     deleteOrganization(id).then(() => {
-      const newElement = element.filter(el => el.id !== id)
+      const newElement = element.filter(el => el.id !== id);
 
-      setElement(newElement)
-    })
-  }
+      setElement(newElement);
+    });
+  };
 
   return (
     <Card>
@@ -113,5 +113,5 @@ export default function Page() {
         </TableContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

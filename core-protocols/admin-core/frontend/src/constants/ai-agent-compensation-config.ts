@@ -1,5 +1,5 @@
-import type { BlockchainEndpoint } from '@/types/blockchain'
-import type { SmartContractConfig } from '@/types/smart-contracts'
+import type { BlockchainEndpoint } from '@/types/blockchain';
+import type { SmartContractConfig } from '@/types/smart-contracts';
 
 export interface AIAgentCompStats {
   activeHours: number
@@ -114,7 +114,7 @@ export const AI_AGENT_COMPENSATION_CONFIG = {
     retentionPeriod: 7, // years
     blockchainVerification: true
   }
-}
+};
 
 export const getAgentPaymentStub = (agentId: string, periodId: string): PaymentStub => {
   // Implementation for generating payment stub
@@ -130,5 +130,5 @@ export const getAgentPaymentStub = (agentId: string, periodId: string): PaymentS
       status: 'pending',
       verificationHash: ''
     }
-  }
-}
+  };
+};

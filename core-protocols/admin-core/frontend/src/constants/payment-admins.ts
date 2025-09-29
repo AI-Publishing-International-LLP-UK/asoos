@@ -1,4 +1,4 @@
-import { PaymentAdministratorProfile, PaymentAdminRole } from './human-billing-config'
+import { PaymentAdministratorProfile, PaymentAdminRole } from './human-billing-config';
 
 export const morganProfile: PaymentAdministratorProfile = {
   userId: 'morgan-001',
@@ -14,9 +14,9 @@ export const morganProfile: PaymentAdministratorProfile = {
     canAccessAllFinancialOperations: true,
     canManagePaymentSystem: true
   }
-}
+};
 
 export const paymentAdministrators: PaymentAdministratorProfile[] = [
   morganProfile
-]
+];
 

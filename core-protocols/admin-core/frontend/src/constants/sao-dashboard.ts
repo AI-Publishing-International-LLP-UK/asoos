@@ -1,5 +1,5 @@
-import type { DashboardConfig, SecurityConfig } from '../types/dashboard'
-import { FeatureFlags } from '../types/dashboard'
+import type { DashboardConfig, SecurityConfig } from '../types/dashboard';
+import { FeatureFlags } from '../types/dashboard';
 
 const baseSecurityConfig: SecurityConfig = {
   rolePermissions: ['VIEW', 'EDIT', 'DELETE', 'MANAGE'],
@@ -14,7 +14,7 @@ const baseSecurityConfig: SecurityConfig = {
     realTimeAlerts: true,
     auditTrail: true
   }
-}
+};
 
 const baseMonitoring = {
   systemHealth: {
@@ -39,7 +39,7 @@ const baseMonitoring = {
     historical: true,
     predictive: true
   }
-}
+};
 
 export const saoDashboard: DashboardConfig = {
   version: '1.0.0',
@@ -232,4 +232,4 @@ export const saoDashboard: DashboardConfig = {
       monitoring: { ...baseMonitoring }
     }
   }
-}
+};

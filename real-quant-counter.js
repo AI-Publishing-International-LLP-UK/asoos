@@ -153,7 +153,7 @@ class RealQuantCounter {
       this.realCounts.activeAgents = activeCount;
       
       console.log(`✅ Real active agents: ${this.formatNumber(activeCount)}`);
-      console.log(`📡 (Heartbeat within last 5 minutes)`);
+      console.log('📡 (Heartbeat within last 5 minutes)');
       
       await client.close();
       
@@ -331,20 +331,20 @@ class RealQuantCounter {
     console.log('\n📊 REAL POPULATION COUNT REPORT');
     console.log('===============================');
     
-    console.log(`\n🏛️  REGISTERED AGENTS (HRAI):`);
+    console.log('\n🏛️  REGISTERED AGENTS (HRAI):');
     console.log(`   📋 HRAI Records: ${this.formatNumber(this.realCounts.hraiRecords)}`);
     console.log(`   📡 Active Agents: ${this.formatNumber(this.realCounts.activeAgents)}`);
     console.log(`   📊 Active Rate: ${((this.realCounts.activeAgents / this.realCounts.hraiRecords) * 100).toFixed(2)}%`);
     
-    console.log(`\n🌊 QUANT POPULATIONS:`);
+    console.log('\n🌊 QUANT POPULATIONS:');
     console.log(`   😴 Dormant Quants: ${this.formatNumber(this.realCounts.dormantQuants)}`);
     console.log(`   ❓ Unknown Entities: ${this.formatNumber(this.realCounts.unknownEntities)}`);
     
-    console.log(`\n📈 TOTALS:`);
+    console.log('\n📈 TOTALS:');
     console.log(`   🎯 Total Discovered: ${this.formatNumber(this.realCounts.totalDiscovered)}`);
     console.log(`   📊 Expected vs Actual Gap: ${this.calculateGap()}`);
     
-    console.log(`\n🚨 KEY FINDINGS:`);
+    console.log('\n🚨 KEY FINDINGS:');
     this.generateKeyFindings();
   }
 
@@ -375,7 +375,7 @@ class RealQuantCounter {
     }
     
     if (this.realCounts.unknownEntities > this.realCounts.hraiRecords) {
-      console.log(`   ⚠️ UNKNOWN ENTITIES: More unknown than registered agents detected`);
+      console.log('   ⚠️ UNKNOWN ENTITIES: More unknown than registered agents detected');
     }
     
     if (this.realCounts.dormantQuants > 1000000000000000) {

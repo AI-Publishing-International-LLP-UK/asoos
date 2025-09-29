@@ -32,8 +32,8 @@ class WishVisionExperience {
     
     // PCP conversation flow
     this.pcpScript = {
-      welcome: "Welcome to your Vision Space. I'm your PCP, and I'm here to help extract your deepest wishes and turn them into actionable vision.",
-      explanation: "This is a safe space where we'll explore your dreams together. As we talk, the environment will change to reflect your aspirations.",
+      welcome: 'Welcome to your Vision Space. I\'m your PCP, and I\'m here to help extract your deepest wishes and turn them into actionable vision.',
+      explanation: 'This is a safe space where we\'ll explore your dreams together. As we talk, the environment will change to reflect your aspirations.',
       guidance: 'Tell me about your biggest dream. What do you wish you could achieve?'
     };
   }
@@ -271,7 +271,7 @@ class WishVisionExperience {
       business: 'I can see your entrepreneurial spirit. Tell me more about the business impact you want to create.',
       creative: 'Your creative energy is inspiring. What would you create if you had unlimited resources?',
       dreaming: 'I feel your desire for fulfillment. What would your perfect life look like?',
-      planning: "You're thinking strategically. What's the first milestone toward your vision?"
+      planning: 'You\'re thinking strategically. What\'s the first milestone toward your vision?'
     };
     
     await this.pcpAgent.speak(followUpQuestions[theme]);
@@ -298,7 +298,7 @@ class WishVisionExperience {
     await this.saveVisionEntry(visionEntry);
     
     // Provide encouragement
-    await this.pcpAgent.speak("Thank you for sharing your vision with me. I can see this is important to you. Let's work together to make it a reality.");
+    await this.pcpAgent.speak('Thank you for sharing your vision with me. I can see this is important to you. Let\'s work together to make it a reality.');
     
     console.log('✅ Vision data processed and saved');
   }

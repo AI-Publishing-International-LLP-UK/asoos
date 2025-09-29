@@ -14,7 +14,7 @@ const CLOUD_TTS_URL = 'https://mocoa-owner-interface-859242575175.us-central1.ru
 const CLOUD_AUTH_URL = 'https://mocoa-owner-interface-859242575175.us-central1.run.app/api/auth/service-account';
 
 // Enhanced ElevenLabs TTS function with header encoding fix and OAuth2
-async function fixedElevenLabsTTS(text, voiceId = "21m00Tcm4TlvDq8ikWAM", voiceName = "Rachel") {
+async function fixedElevenLabsTTS(text, voiceId = '21m00Tcm4TlvDq8ikWAM', voiceName = 'Rachel') {
   console.log(`🎤 Enhanced ElevenLabs TTS: "${text}" with voice ${voiceName}`);
   
   try {
@@ -148,7 +148,7 @@ async function testFixedTTS() {
   console.log('🧪 Testing fixed ElevenLabs TTS system...');
   
   try {
-    const result = await enhancedSpeakMessage("Testing the fixed ElevenLabs TTS system with OAuth2 authentication");
+    const result = await enhancedSpeakMessage('Testing the fixed ElevenLabs TTS system with OAuth2 authentication');
     if (result.success) {
       console.log(`✅ TTS test successful using ${result.source}`);
     } else {

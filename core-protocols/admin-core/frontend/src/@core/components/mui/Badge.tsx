@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 // MUI Imports
-import MuiBadge from '@mui/material/Badge'
-import type { BadgeProps } from '@mui/material/Badge'
-import { styled } from '@mui/material/styles'
+import MuiBadge from '@mui/material/Badge';
+import type { BadgeProps } from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 
 export type CustomBadgeProps = BadgeProps & {
   tonal?: 'true' | 'false'
@@ -17,9 +17,9 @@ const Badge = styled(MuiBadge)<CustomBadgeProps>(({ tonal, color }) => {
         backgroundColor: `var(--mui-palette-${color}-lightOpacity)`
       }
     })
-  }
-})
+  };
+});
 
-const CustomBadge = (props: CustomBadgeProps) => <Badge {...props} />
+const CustomBadge = (props: CustomBadgeProps) => <Badge {...props} />;
 
-export default CustomBadge
+export default CustomBadge;

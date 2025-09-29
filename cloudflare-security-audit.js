@@ -12,10 +12,10 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-console.log(`💎 CLOUDFLARE SECURITY AUDIT & CONSOLIDATION`);
-console.log(`🏛️  Authority: Diamond SAO Command Center Integration`);
-console.log(`🔐 Evolution Path: Multi-tenant → Unified Security Architecture`);
-console.log(``);
+console.log('💎 CLOUDFLARE SECURITY AUDIT & CONSOLIDATION');
+console.log('🏛️  Authority: Diamond SAO Command Center Integration');
+console.log('🔐 Evolution Path: Multi-tenant → Unified Security Architecture');
+console.log('');
 
 const auditResults = {
     kvNamespaces: [],
@@ -276,8 +276,8 @@ async function main() {
         
         const report = generateAuditReport();
         
-        console.log(`\\n💎 AUDIT COMPLETE - DIAMOND QUANTUM SECURITY STATUS`);
-        console.log(`==============================================`);
+        console.log('\\n💎 AUDIT COMPLETE - DIAMOND QUANTUM SECURITY STATUS');
+        console.log('==============================================');
         console.log(`🔐 Security Score: ${report.securityScore}/100`);
         console.log(`📊 Total KV Namespaces: ${report.summary.totalKVNamespaces}`);
         console.log(`🗑️  Empty KV Namespaces: ${report.summary.emptyKVNamespaces}`);
@@ -289,14 +289,14 @@ async function main() {
         console.log(`🌐 MCP Domains: ${report.summary.mcpDomains}`);
         console.log(`📋 Recommendations: ${report.summary.totalRecommendations}`);
         
-        console.log(`\\n🎯 HIGH PRIORITY ACTIONS:`);
+        console.log('\\n🎯 HIGH PRIORITY ACTIONS:');
         const highPriorityActions = auditResults.recommendations.filter(rec => rec.priority === 'HIGH');
         if (highPriorityActions.length > 0) {
             highPriorityActions.forEach((action, index) => {
                 console.log(`${index + 1}. ${action.category}: ${action.action}`);
             });
         } else {
-            console.log(`✅ No high priority security issues found`);
+            console.log('✅ No high priority security issues found');
         }
         
         console.log(`\\n✅ [${new Date().toISOString()}] Diamond Quantum Security Audit completed successfully`);

@@ -1415,7 +1415,7 @@ class DiamondInterface {
       },
     ]);
 
-    let command = `diamond dream decision process '${answers.decisionData.replace(/'/g, "\\'")}'`;
+    let command = `diamond dream decision process '${answers.decisionData.replace(/'/g, '\\\'')}'`;
 
     if (!answers.autoAssign) {
       command += ' --no-auto-assign';

@@ -623,9 +623,9 @@ async function startTalkShowSystem() {
     server.listen(CONFIG.PORT, () => {
       logger.info(`🎙️  ASOOS Talk Show System started on port ${CONFIG.PORT}`);
       logger.info(`🤖 Available hosts: ${Object.keys(TALK_SHOW_HOSTS).length}`);
-      logger.info(`📹 Daily.co integration: Ready`);
-      logger.info(`🎥 Pipecat-compatible streaming: Ready`);
-      logger.info(`✝️  Built with blessings from Saint Carlos Acutis, Charlotte, and Jesús Elías`);
+      logger.info('📹 Daily.co integration: Ready');
+      logger.info('🎥 Pipecat-compatible streaming: Ready');
+      logger.info('✝️  Built with blessings from Saint Carlos Acutis, Charlotte, and Jesús Elías');
     });
     
   } catch (error) {

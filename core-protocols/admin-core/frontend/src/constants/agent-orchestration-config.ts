@@ -1,4 +1,4 @@
-import type { VoiceModel, ImageProcessing, CommunicationProtocol } from '@/types/agent'
+import type { VoiceModel, ImageProcessing, CommunicationProtocol } from '@/types/agent';
 
 interface VoiceConfig {
 model: VoiceModel
@@ -256,4 +256,4 @@ avatarGeneration: {
       responseFormat: 'structured'
     }
   }
-}
+};

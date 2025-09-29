@@ -1,19 +1,19 @@
-'use server'
+'use server';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 //crud basic
 
 export const getAllBlacklist = async () => {
   try {
-    return await prismaClient.blackListEmail.findMany()
+    return await prismaClient.blackListEmail.findMany();
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find blacklist')
+    console.error(error);
+    throw new Error('Failed to find blacklist');
   }
-}
+};
 
 export const getBlacklistById = async (id: string) => {
   try {
@@ -21,12 +21,12 @@ export const getBlacklistById = async (id: string) => {
       where: {
         id
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find blacklist')
+    console.error(error);
+    throw new Error('Failed to find blacklist');
   }
-}
+};
 
 export const createBlacklist = async (domain: string) => {
   try {
@@ -34,12 +34,12 @@ export const createBlacklist = async (domain: string) => {
       data: {
         domain
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create blacklist')
+    console.error(error);
+    throw new Error('Failed to create blacklist');
   }
-}
+};
 
 export const deleteBlacklist = async (id: string) => {
   try {
@@ -47,12 +47,12 @@ export const deleteBlacklist = async (id: string) => {
       where: {
         id
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete blacklist')
+    console.error(error);
+    throw new Error('Failed to delete blacklist');
   }
-}
+};
 
 export const updateBlacklist = async (id: string, domain: string) => {
   try {
@@ -63,12 +63,12 @@ export const updateBlacklist = async (id: string, domain: string) => {
       data: {
         domain
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update blacklist')
+    console.error(error);
+    throw new Error('Failed to update blacklist');
   }
-}
+};
 
 export const findBlacklistByDomain = async (domain: string) => {
   try {
@@ -76,9 +76,9 @@ export const findBlacklistByDomain = async (domain: string) => {
       where: {
         domain
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find blacklist')
+    console.error(error);
+    throw new Error('Failed to find blacklist');
   }
-}
+};

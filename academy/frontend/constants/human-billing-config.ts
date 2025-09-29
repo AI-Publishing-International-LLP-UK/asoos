@@ -1,12 +1,12 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const BillingCycleSchema = z.enum(['MONTHLY', 'QUARTERLY', 'ANNUAL'])
+export const BillingCycleSchema = z.enum(['MONTHLY', 'QUARTERLY', 'ANNUAL']);
 export type BillingCycle = z.infer<typeof BillingCycleSchema>
 
-export const ServiceTypeSchema = z.enum(['COACHING', 'CONSULTING', 'SPEAKING', 'TRAINING', 'ADVISORY'])
+export const ServiceTypeSchema = z.enum(['COACHING', 'CONSULTING', 'SPEAKING', 'TRAINING', 'ADVISORY']);
 export type ServiceType = z.infer<typeof ServiceTypeSchema>
 
-export const PaymentStatusSchema = z.enum(['PENDING', 'APPROVED', 'PROCESSING', 'COMPLETED', 'REJECTED'])
+export const PaymentStatusSchema = z.enum(['PENDING', 'APPROVED', 'PROCESSING', 'COMPLETED', 'REJECTED']);
 export type PaymentStatus = z.infer<typeof PaymentStatusSchema>
 
 export const billingConfig = {
@@ -81,24 +81,24 @@ export const billingConfig = {
       thresholds: [24, 48, 72] // hours
     }
   }
-} as const
+} as const;
 
 export const timeTrackingRules = {
   validateServiceEntry: (entry: ServiceEntry): ValidationResult => {
-    const results: ValidationError[] = []
+    const results: ValidationError[] = [];
 
     if (!entry.timestamp) {
       results.push({
         code: 'MISSING_TIMESTAMP',
         message: 'Service entry must include system timestamp'
-      })
+      });
     }
 
     if (!entry.serviceType) {
       results.push({
         code: 'MISSING_SERVICE_TYPE',
         message: 'Service type must be specified'
-      })
+      });
     }
 
     // Additional validation logic
@@ -106,13 +106,13 @@ export const timeTrackingRules = {
     return {
       isValid: results.length === 0,
       errors: results
-    }
+    };
   },
 
   canProcessPayment: (records: ServiceRecord[]): boolean => {
-    return records.every(record => record.isValidated && record.isApproved && record.hoursTracked > 0)
+    return records.every(record => record.isValidated && record.isApproved && record.hoursTracked > 0);
   }
-}
+};
 
 export interface ValidationResult {
   isValid: boolean

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,18 +14,18 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { getActivityById, GetAllActivitiesTypes, updateActivity } from '@/actions/activities-action'
-import FileUploaderRestrictions from '@/components/UploadComponent'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { getActivityById, GetAllActivitiesTypes, updateActivity } from '@/actions/activities-action';
+import FileUploaderRestrictions from '@/components/UploadComponent';
 
 type FormData = InferInput<typeof schema>
 
@@ -35,7 +35,7 @@ const schema = object({
   typeId: pipe(string(), nonEmpty()),
   thumbnail: pipe(string(), nonEmpty()),
   id: pipe(string(), nonEmpty())
-})
+});
 
 interface ISelects {
   id: string
@@ -51,16 +51,16 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const [typesActivities, settypesActivities] = useState<ISelects[]>([])
-  const [loading, setLoading] = useState(false)
-  const [thumbnailUrl, setThumbnailUrl] = useState('')
+  const [typesActivities, settypesActivities] = useState<ISelects[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
 
   function changeLoading(loading: boolean) {
-    setLoading(loading)
+    setLoading(loading);
   }
 
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
   //hooks
   const {
@@ -77,43 +77,43 @@ export default function Page({ params }: PageProps) {
       typeId: '',
       thumbnail: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await updateActivity(value.id, value)
+      const response = await updateActivity(value.id, value);
 
       if (response) {
-        router.push('/activity')
+        router.push('/activity');
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     GetAllActivitiesTypes().then(data => {
-      settypesActivities(data)
-    })
+      settypesActivities(data);
+    });
 
     getActivityById(id).then(data => {
-      console.log(data)
+      console.log(data);
 
       if (data) {
-        setValue('name', data.name)
-        setValue('description', data.description)
-        setValue('typeId', data.typeId)
-        setValue('thumbnail', data.thumbnail)
-        setValue('id', data.id)
-        setThumbnailUrl(data.thumbnail)
+        setValue('name', data.name);
+        setValue('description', data.description);
+        setValue('typeId', data.typeId);
+        setValue('thumbnail', data.thumbnail);
+        setValue('id', data.id);
+        setThumbnailUrl(data.thumbnail);
       }
-    })
-  }, [id, setValue])
+    });
+  }, [id, setValue]);
 
   //function to assign the value of the thumbnail
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -224,5 +224,5 @@ export default function Page({ params }: PageProps) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

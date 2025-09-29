@@ -231,7 +231,7 @@ class EnhancedMCPProvisioner {
      */
     async setupCloudRunOptimized(companyName, config, region) {
         const serviceName = `mcp-${companyName}`;
-        const image = `gcr.io/api-for-warp-drive/mcp-template:latest`;
+        const image = 'gcr.io/api-for-warp-drive/mcp-template:latest';
         
         const deployCommand = `gcloud run deploy ${serviceName} \
             --image=${image} \
@@ -334,9 +334,9 @@ class EnhancedMCPProvisioner {
                 timeout: '5s',
                 retries: 3,
                 endpoints: [
-                    `/health`,
-                    `/api/v1/status`,
-                    `/security/auth/verify`
+                    '/health',
+                    '/api/v1/status',
+                    '/security/auth/verify'
                 ]
             },
             alerts: {

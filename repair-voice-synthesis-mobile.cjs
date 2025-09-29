@@ -247,8 +247,8 @@ class VoiceSynthesisMobileRepair {
     console.log(`🎯 Parameters: ${victory36Config.parameters}`);
     console.log(`✝️  Christ-like Values: ${victory36Config.christLikeValues}`);
     console.log(`🎭 Maestro Blend: ${victory36Config.maestroBlend}`);
-    console.log(`🧠 Dream Commander: Integrated`);
-    console.log(`🙏 Divine Blessing: Active`);
+    console.log('🧠 Dream Commander: Integrated');
+    console.log('🙏 Divine Blessing: Active');
     console.log('✅ Victory36 Advanced Model configured');
     
     fs.writeFileSync('./victory36-model-config.json', JSON.stringify(victory36Config, null, 2));

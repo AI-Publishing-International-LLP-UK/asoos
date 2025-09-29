@@ -1,5 +1,5 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
 import {
   Button,
@@ -12,42 +12,42 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import type { Order } from '@prisma/client'
+import type { Order } from '@prisma/client';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
-import { getAllOrders } from '@/actions/order-actions'
+import { getAllOrders } from '@/actions/order-actions';
 
-import Link from '@/components/Link'
-import CustomTextField from '@/@core/components/mui/TextField'
+import Link from '@/components/Link';
+import CustomTextField from '@/@core/components/mui/TextField';
 
 export default function Page() {
-  const [orders, setOrders] = useState<Order[]>([])
-  const [filteredOrders, setFilteredOrders] = useState<Order[]>([])
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
 
-  const [filter, setFilter] = useState<string>('')
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     getAllOrders().then(orders => {
-      setOrders(orders)
-      setFilteredOrders(orders)
-    })
-  }, [])
+      setOrders(orders);
+      setFilteredOrders(orders);
+    });
+  }, []);
 
   useEffect(() => {
-    if (filter === '') return setFilteredOrders(orders)
+    if (filter === '') return setFilteredOrders(orders);
 
     const newOrders = orders.filter(order => {
-      const orderIdMatches = order.orderId.toLowerCase().includes(filter.toLowerCase())
-      const userIdMatches = order.userId.toLowerCase().includes(filter.toLowerCase())
+      const orderIdMatches = order.orderId.toLowerCase().includes(filter.toLowerCase());
+      const userIdMatches = order.userId.toLowerCase().includes(filter.toLowerCase());
 
-      return orderIdMatches || userIdMatches
-    })
+      return orderIdMatches || userIdMatches;
+    });
 
-    setFilteredOrders(newOrders)
-  }, [filter, orders])
+    setFilteredOrders(newOrders);
+  }, [filter, orders]);
 
   //function to view user
 
@@ -101,5 +101,5 @@ export default function Page() {
         </TableContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

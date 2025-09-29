@@ -37,6 +37,6 @@ const primaryColorConfig: PrimaryColorConfig[] = [
     main: '#2092EC',
     dark: '#176BAC'
   }
-]
+];
 
-export default primaryColorConfig
+export default primaryColorConfig;

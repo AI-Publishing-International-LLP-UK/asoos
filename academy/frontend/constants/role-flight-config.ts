@@ -1,5 +1,5 @@
-import type { RoleType } from '../types'
-import { Pilot, MemorySystem } from '../types'
+import type { RoleType } from '../types';
+import { Pilot, MemorySystem } from '../types';
 
 export interface RoleFlightConfig {
   role: {
@@ -154,16 +154,16 @@ export const roleFlightConfigs: Record<string, RoleFlightConfig> = {
       }
     }
   }
-}
+};
 
 export const getActiveMode = (roleId: string): 'human' | 'ai' => {
-  return roleFlightConfigs[roleId]?.role.currentMode || 'human'
-}
+  return roleFlightConfigs[roleId]?.role.currentMode || 'human';
+};
 
 export const getPilotInfo = (roleId: string) => {
-  return roleFlightConfigs[roleId]?.pilotAssignment
-}
+  return roleFlightConfigs[roleId]?.pilotAssignment;
+};
 
 export const getMemorySystem = (roleId: string) => {
-  return roleFlightConfigs[roleId]?.memorySystem
-}
+  return roleFlightConfigs[roleId]?.memorySystem;
+};

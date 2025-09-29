@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,20 +14,20 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { url, nameElement } from '../contstants'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { createWebinar } from '@/actions/webinar-action'
-import { getUserByType } from '@/actions/user-actions'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { url, nameElement } from '../contstants';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { createWebinar } from '@/actions/webinar-action';
+import { getUserByType } from '@/actions/user-actions';
 
 type FormData = InferInput<typeof schema>
 
@@ -38,7 +38,7 @@ const schema = object({
   thumbnail: pipe(string(), nonEmpty(), minLength(3)),
   startDate: pipe(string(), nonEmpty(), minLength(3)),
   endDate: pipe(string(), nonEmpty(), minLength(3))
-})
+});
 
 interface ISelects {
   id: string
@@ -47,12 +47,12 @@ interface ISelects {
 
 export default function Page() {
   //state
-  const router = useRouter()
-  const [speaker, setSpeaker] = useState<ISelects[]>([])
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [speaker, setSpeaker] = useState<ISelects[]>([]);
+  const [loading, setLoading] = useState(false);
 
   function changeLoading(loading: boolean) {
-    setLoading(loading)
+    setLoading(loading);
   }
 
   //hooks
@@ -72,13 +72,13 @@ export default function Page() {
       startDate: '',
       endDate: ''
     }
-  })
+  });
 
   useEffect(() => {
     getUserByType('Speaker').then(response => {
-      setSpeaker(response.map(item => ({ id: item.id, name: `${item.firstName} ${item.lastName}` })))
-    })
-  }, [])
+      setSpeaker(response.map(item => ({ id: item.id, name: `${item.firstName} ${item.lastName}` })));
+    });
+  }, []);
 
   const onSubmit = async (value: any) => {
     try {
@@ -89,21 +89,21 @@ export default function Page() {
         endDate: new Date(value.endDate),
         thumbnail: value.thumbnail,
         speakerId: value.speakerId
-      })
+      });
 
-      console.log('response:', response)
+      console.log('response:', response);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -244,5 +244,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

@@ -1,41 +1,41 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty, custom } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty, custom } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { url, nameElement } from '../contstants'
-import { createBlacklist } from '@/actions/blacklist-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { url, nameElement } from '../contstants';
+import { createBlacklist } from '@/actions/blacklist-action';
 
 type FormData = InferInput<typeof schema>
 
 const isValidDomain = (input: unknown): input is string => {
   if (typeof input !== 'string') {
-    return false
+    return false;
   }
 
-  const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  return domainRegex.test(input)
-}
+  return domainRegex.test(input);
+};
 
 const schema = object({
   domain: pipe(string(), nonEmpty(), minLength(3), custom(isValidDomain, 'need to be a valid domain'))
-})
+});
 
 export default function Page() {
   //state
-  const router = useRouter()
+  const router = useRouter();
 
   //hooks
   const {
@@ -48,19 +48,19 @@ export default function Page() {
     defaultValues: {
       domain: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await createBlacklist(value.domain)
+      const response = await createBlacklist(value.domain);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
@@ -103,5 +103,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

@@ -88,19 +88,19 @@ export const DiamondSAOConfig = {
       backupMechanisms: true
     }
   }
-}
+};
 
 export const isValidSAORequest = (request: any): boolean => {
 // Basic validation to use the request parameter
 return request !== null && request !== undefined;
-}
+};
 
 export const generateRecoveryKeys = (): string[] => {
   // Recovery key generation logic
-  return [] // Implementation details hidden
-}
+  return []; // Implementation details hidden
+};
 
 export const validateHeirCredentials = (credentials: any): boolean => {
 // Basic validation to use the credentials parameter
 return credentials !== null && credentials !== undefined;
-}
+};

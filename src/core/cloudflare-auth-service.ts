@@ -174,7 +174,7 @@ export class CloudflareAuthService {
               }, 30000); 
           });
       }
-      throw new Error("Failed to initiate OAuth2 flow")
+      throw new Error('Failed to initiate OAuth2 flow');
       
     } catch (error) {
       console.error('OAuth2 flow failed:', error);

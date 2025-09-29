@@ -29,7 +29,7 @@ export default {
     
     // Handle robots.txt
     if (url.pathname === '/robots.txt') {
-      return new Response(`User-agent: *\nDisallow: /cdn-cgi/\nAllow: /\n\nSitemap: https://asoos.2100.cool/sitemap.xml`, {
+      return new Response('User-agent: *\nDisallow: /cdn-cgi/\nAllow: /\n\nSitemap: https://asoos.2100.cool/sitemap.xml', {
         headers: { 'Content-Type': 'text/plain' }
       });
     }

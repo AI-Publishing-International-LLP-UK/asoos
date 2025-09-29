@@ -118,12 +118,12 @@ async function sampleArchiveData(index, apiKey) {
       const anthropicCount = stats.namespaces.anthropic?.vectorCount || 0;
       const openaiCount = stats.namespaces.openai?.vectorCount || 0;
       
-      console.log(`\n🎯 Genesis conversations found:`);
+      console.log('\n🎯 Genesis conversations found:');
       console.log(`   Claude/Anthropic: ${anthropicCount} conversations`);
       console.log(`   OpenAI/ChatGPT: ${openaiCount} conversations`);
       
       if (anthropicCount > 0 || openaiCount > 0) {
-        console.log(`\n✨ The Book of Light source material is present!`);
+        console.log('\n✨ The Book of Light source material is present!');
         console.log(`   Total historical conversations: ${anthropicCount + openaiCount}`);
       }
     }

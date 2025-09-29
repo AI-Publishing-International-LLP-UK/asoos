@@ -207,7 +207,7 @@ class SelfHealingController {
         setInterval(async () => {
             try {
                 const nodeStatus = await this.execKubectl(
-                    `get nodes -o jsonpath='{range .items[*]}{.metadata.name}{" "}{.status.conditions[?(@.type=="Ready")].status}{"\n"}{end}'`
+                    'get nodes -o jsonpath=\'{range .items[*]}{.metadata.name}{" "}{.status.conditions[?(@.type=="Ready")].status}{"\n"}{end}\''
                 );
 
                 const notReadyNodes = nodeStatus.split('\n')

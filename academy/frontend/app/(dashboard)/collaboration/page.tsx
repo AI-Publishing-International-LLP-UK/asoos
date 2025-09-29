@@ -1,7 +1,7 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,34 +14,34 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
-import Link from '@/components/Link'
-import { nameElement, url } from './constants'
-import DateComponent from '@/components/global/DateComponent'
-import { deleteCollaboration, getAllCollaboration } from '@/actions/collaboration-action'
-import type { CollaborationDTO } from './collaboration.dto'
+import Link from '@/components/Link';
+import { nameElement, url } from './constants';
+import DateComponent from '@/components/global/DateComponent';
+import { deleteCollaboration, getAllCollaboration } from '@/actions/collaboration-action';
+import type { CollaborationDTO } from './collaboration.dto';
 
 export default function Page() {
-  const [element, setElement] = useState<CollaborationDTO[]>([])
-  const router = useRouter()
+  const [element, setElement] = useState<CollaborationDTO[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     getAllCollaboration().then(data => {
-      setElement(data)
-    })
-  }, [])
+      setElement(data);
+    });
+  }, []);
 
   //function to delete activity
   const deleteMethod = async (id: number) => {
     deleteCollaboration(id).then(() => {
-      const newElement = element.filter(el => el.id !== id)
+      const newElement = element.filter(el => el.id !== id);
 
-      setElement(newElement)
-    })
-  }
+      setElement(newElement);
+    });
+  };
 
   return (
     <Card>
@@ -92,5 +92,5 @@ export default function Page() {
         </TableContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

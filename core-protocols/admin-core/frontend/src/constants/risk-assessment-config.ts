@@ -200,4 +200,4 @@ export const riskAssessmentConfig = {
       'Accountability systems'
     ]
   }
-}
+};

@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const PoolTypes = {
   OPENAI: 'openai',
@@ -11,13 +11,13 @@ export const PoolTypes = {
   MAKE: 'make',
   CRAWL4YOU: 'crawl4you',
   CUSTOM: 'custom'
-} as const
+} as const;
 
 export const EnvironmentTypes = {
   DEVELOPMENT: 'development',
   STAGING: 'staging',
   PRODUCTION: 'production'
-} as const
+} as const;
 
 const basePoolConfig = {
   poolId: '',
@@ -41,7 +41,7 @@ const basePoolConfig = {
     auditLogRetention: '90d',
     encryption: 'AES-256'
   }
-}
+};
 
 export const authPools = {
   openai: {
@@ -195,7 +195,7 @@ export const authPools = {
       }
     }
   }
-}
+};
 
 export const poolSchema = z.object({
   poolId: z.string(),
@@ -266,6 +266,6 @@ export const poolSchema = z.object({
       errorThreshold: z.number().optional()
     })
     .optional()
-})
+});
 
 export type AuthPool = z.infer<typeof poolSchema>

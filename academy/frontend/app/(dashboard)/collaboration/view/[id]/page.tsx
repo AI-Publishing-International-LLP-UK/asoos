@@ -1,15 +1,15 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { Card, CardContent, ListItemText } from '@mui/material'
+import { Card, CardContent, ListItemText } from '@mui/material';
 
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
-import DateComponent from '@/components/global/DateComponent'
+import DateComponent from '@/components/global/DateComponent';
 
-import { getCollaborationById } from '@/actions/collaboration-action'
-import type { CollaborationDTO } from '../../collaboration.dto'
+import { getCollaborationById } from '@/actions/collaboration-action';
+import type { CollaborationDTO } from '../../collaboration.dto';
 
 interface Props {
   params: {
@@ -18,17 +18,17 @@ interface Props {
 }
 
 export default function Page({ params }: Props) {
-  const { id } = params
+  const { id } = params;
 
-  const [element, setElement] = useState<CollaborationDTO | null>(null)
+  const [element, setElement] = useState<CollaborationDTO | null>(null);
 
   useEffect(() => {
     if (id) {
       getCollaborationById(id).then(data => {
-        if (data) setElement(data)
-      })
+        if (data) setElement(data);
+      });
     }
-  }, [id])
+  }, [id]);
 
   return (
     <Card>
@@ -46,7 +46,7 @@ export default function Page({ params }: Props) {
                   <ListItem key={option}>
                     <ListItemText>{option}</ListItemText>
                   </ListItem>
-                )
+                );
               })}
             </List>
             <h4>Additional Feedback</h4>
@@ -59,5 +59,5 @@ export default function Page({ params }: Props) {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

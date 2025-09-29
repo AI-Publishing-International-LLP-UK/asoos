@@ -1,11 +1,11 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
-import { getOrderById } from '@/actions/order-actions'
+import { getOrderById } from '@/actions/order-actions';
 
 interface Props {
   params: {
@@ -14,17 +14,17 @@ interface Props {
 }
 
 export default function Page({ params }: Props) {
-  const { id } = params
+  const { id } = params;
 
-  const [order, setOrder] = useState<any | null>(null)
+  const [order, setOrder] = useState<any | null>(null);
 
   useEffect(() => {
     if (id) {
       getOrderById(id).then(order => {
-        if (order) setOrder(order)
-      })
+        if (order) setOrder(order);
+      });
     }
-  }, [id])
+  }, [id]);
 
   return (
     <Card>
@@ -68,5 +68,5 @@ export default function Page({ params }: Props) {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,0 +1,52 @@
+{
+  "name": "@asoos/einstein-wells",
+  "version": "1.0.0",
+  "description": "Einstein Wells Energy Trading & Crypto Mining Universal Module - ASOOS Capital Raising Division",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest",
+    "build": "docker build -t gcr.io/api-for-warp-drive/einstein-wells .",
+    "deploy:staging": "gcloud run deploy einstein-wells --image gcr.io/api-for-warp-drive/einstein-wells --region us-west1-b --platform managed",
+    "deploy:production": "gcloud run deploy einstein-wells --image gcr.io/api-for-warp-drive/einstein-wells --region us-west1-a --platform managed",
+    "energy:register": "node scripts/energy-market-registration.js",
+    "mining:setup": "node scripts/crypto-mining-setup.js",
+    "pcp:activate": "node scripts/activate-zena-pcp.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.0",
+    "winston": "^3.11.0",
+    "@google-cloud/secret-manager": "^5.0.1",
+    "@google-cloud/firestore": "^7.1.0",
+    "@google-cloud/pubsub": "^4.0.7",
+    "stripe": "^14.9.0",
+    "xero-node": "^4.34.0",
+    "mongodb": "^6.3.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "@types/node": "^20.10.4"
+  },
+  "keywords": [
+    "einstein-wells",
+    "energy-trading",
+    "crypto-mining",
+    "asoos",
+    "capital-raising",
+    "universal-module"
+  ],
+  "author": "AI Publishing International LLP",
+  "license": "PROPRIETARY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

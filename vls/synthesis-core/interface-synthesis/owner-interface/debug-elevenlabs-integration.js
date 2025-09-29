@@ -16,9 +16,9 @@ const V34_TTS_URL = 'https://mocoa-owner-interface-v34-859242575175.us-west1.run
 
 // Test voice and text
 const TEST_CONFIG = {
-  text: "Testing ElevenLabs integration with MOCOA system",
-  voice_id: "21m00Tcm4TlvDq8ikWAM", // Default Rachel voice
-  model_id: "eleven_monolingual_v1",
+  text: 'Testing ElevenLabs integration with MOCOA system',
+  voice_id: '21m00Tcm4TlvDq8ikWAM', // Default Rachel voice
+  model_id: 'eleven_monolingual_v1',
   voice_settings: {
     stability: 0.5,
     similarity_boost: 0.5
@@ -28,7 +28,7 @@ const TEST_CONFIG = {
 // Debug function to test TTS endpoint
 async function testTTSEndpoint(url, config) {
   console.log(`🎤 Testing TTS endpoint: ${url}`);
-  console.log(`📝 Request config:`, config);
+  console.log('📝 Request config:', config);
   
   try {
     const response = await fetch(url, {
@@ -42,11 +42,11 @@ async function testTTSEndpoint(url, config) {
     });
     
     console.log(`📊 Response status: ${response.status} ${response.statusText}`);
-    console.log(`📋 Response headers:`, Object.fromEntries(response.headers.entries()));
+    console.log('📋 Response headers:', Object.fromEntries(response.headers.entries()));
     
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`❌ TTS endpoint error:`, {
+      console.error('❌ TTS endpoint error:', {
         status: response.status,
         statusText: response.statusText,
         error: errorText
@@ -116,7 +116,7 @@ async function debugInterfaceVoiceSystem() {
 }
 
 // Enhanced voice synthesis function that uses the working cloud endpoint
-async function synthesizeVoiceWithCloudEndpoint(text, voiceId = "21m00Tcm4TlvDq8ikWAM") {
+async function synthesizeVoiceWithCloudEndpoint(text, voiceId = '21m00Tcm4TlvDq8ikWAM') {
   console.log(`🎤 Synthesizing voice with cloud endpoint: "${text}"`);
   
   try {
@@ -129,7 +129,7 @@ async function synthesizeVoiceWithCloudEndpoint(text, voiceId = "21m00Tcm4TlvDq8
       body: JSON.stringify({
         text: text,
         voice_id: voiceId,
-        model_id: "eleven_monolingual_v1",
+        model_id: 'eleven_monolingual_v1',
         voice_settings: {
           stability: 0.5,
           similarity_boost: 0.5
@@ -180,7 +180,7 @@ async function runElevenLabsDebug() {
     // Test 4: Test enhanced voice synthesis
     console.log('\n📝 Test 4: Enhanced Voice Synthesis');
     try {
-      await synthesizeVoiceWithCloudEndpoint("Testing enhanced voice synthesis with cloud endpoint");
+      await synthesizeVoiceWithCloudEndpoint('Testing enhanced voice synthesis with cloud endpoint');
       console.log('✅ Enhanced voice synthesis test passed');
     } catch (error) {
       console.error('❌ Enhanced voice synthesis test failed:', error);

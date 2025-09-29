@@ -1,10 +1,10 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { Card, CardContent } from '@mui/material'
+import { Card, CardContent } from '@mui/material';
 
-import { getSkillById } from '@/actions/skills-action'
-import DateComponent from '@/components/global/DateComponent'
+import { getSkillById } from '@/actions/skills-action';
+import DateComponent from '@/components/global/DateComponent';
 
 interface Props {
   params: {
@@ -21,17 +21,17 @@ interface ISkill {
 }
 
 export default function Page({ params }: Props) {
-  const { id } = params
+  const { id } = params;
 
-  const [element, setElement] = useState<ISkill | null>(null)
+  const [element, setElement] = useState<ISkill | null>(null);
 
   useEffect(() => {
     if (id) {
       getSkillById(id).then(data => {
-        if (data) setElement(data)
-      })
+        if (data) setElement(data);
+      });
     }
-  }, [id])
+  }, [id]);
 
   return (
     <Card>
@@ -52,5 +52,5 @@ export default function Page({ params }: Props) {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

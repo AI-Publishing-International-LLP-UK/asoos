@@ -14,7 +14,7 @@ const ComponentLoading = ({ children, loading }: Props) => {
         children
       )}
     </>
-  )
-}
+  );
+};
 
-export default ComponentLoading
+export default ComponentLoading;

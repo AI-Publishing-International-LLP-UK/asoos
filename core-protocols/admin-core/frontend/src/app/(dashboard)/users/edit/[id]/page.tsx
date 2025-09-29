@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 
 import {
@@ -15,18 +15,18 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { email, object, string, pipe, nonEmpty, array } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { email, object, string, pipe, nonEmpty, array } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { getAllIndustries, getAllInterests, getAllOccupations, getAllUserTypes } from '@/actions/global-action'
-import { getUserById, manageApproveUser, updateUser } from '@/actions/user-actions'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { getAllIndustries, getAllInterests, getAllOccupations, getAllUserTypes } from '@/actions/global-action';
+import { getUserById, manageApproveUser, updateUser } from '@/actions/user-actions';
 
 type FormData = InferInput<typeof schema>
 
@@ -39,7 +39,7 @@ const schema = object({
   industry: string(),
   occupation: string(),
   userType: pipe(string(), nonEmpty())
-})
+});
 
 interface ISelects {
   id: string
@@ -53,17 +53,17 @@ interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-  const [approved, setApprove] = useState(false)
+  const [approved, setApprove] = useState(false);
 
   //state
-  const [isLoading, setIsLoading] = useState(true)
-  const [industries, setIndustries] = useState<ISelects[]>([])
-  const [occupations, setOccupations] = useState<ISelects[]>([])
-  const [interests, setInterests] = useState<ISelects[]>([])
-  const [userTypes, setUserTypes] = useState<ISelects[]>([])
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true);
+  const [industries, setIndustries] = useState<ISelects[]>([]);
+  const [occupations, setOccupations] = useState<ISelects[]>([]);
+  const [interests, setInterests] = useState<ISelects[]>([]);
+  const [userTypes, setUserTypes] = useState<ISelects[]>([]);
+  const router = useRouter();
 
-  const { id } = params
+  const { id } = params;
 
   //hooks
   const {
@@ -83,7 +83,7 @@ export default function Page({ params }: PageProps) {
       occupation: '',
       userType: ''
     }
-  })
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,30 +93,30 @@ export default function Page({ params }: PageProps) {
           getAllOccupations(),
           getAllInterests(),
           getAllUserTypes()
-        ])
+        ]);
 
         if (industriesData) {
-          setIndustries(industriesData)
+          setIndustries(industriesData);
         }
 
         if (occupationsData) {
-          setOccupations(occupationsData)
+          setOccupations(occupationsData);
         }
 
         if (interestsData) {
-          setInterests(interestsData.map((item: any) => ({ id: item.id, name: item.interest })) as ISelects[])
+          setInterests(interestsData.map((item: any) => ({ id: item.id, name: item.interest })) as ISelects[]);
         }
 
         if (userTypesData) {
-          setUserTypes(userTypesData)
+          setUserTypes(userTypesData);
         }
 
-        const userData = await getUserById(id)
+        const userData = await getUserById(id);
 
         if (userData) {
-          const approve = userData.verified || false
+          const approve = userData.verified || false;
 
-          setApprove(approve)
+          setApprove(approve);
         }
 
         if (userData) {
@@ -129,16 +129,16 @@ export default function Page({ params }: PageProps) {
             industry: userData.industry?.id || '',
             occupation: userData.occupation?.id || '',
             userType: userData.userType?.id || ''
-          })
-          setIsLoading(false)
+          });
+          setIsLoading(false);
         }
       } catch (error) {
-        console.error('Error fetching data:', error)
+        console.error('Error fetching data:', error);
       }
-    }
+    };
 
-    fetchData()
-  }, [id, reset])
+    fetchData();
+  }, [id, reset]);
 
   const onSubmit = (value: any) => {
     updateUser({
@@ -153,12 +153,12 @@ export default function Page({ params }: PageProps) {
       id: id
     }).then(data => {
       if (data) {
-        toast.success('User Edited Successfully')
-        router.push('/users')
-        reset()
+        toast.success('User Edited Successfully');
+        router.push('/users');
+        reset();
       }
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -338,9 +338,9 @@ export default function Page({ params }: PageProps) {
                         variant='outlined'
                         type='button'
                         onClick={async e => {
-                          e.preventDefault()
-                          await manageApproveUser({ id, approved: !approved })
-                          setApprove(!approved)
+                          e.preventDefault();
+                          await manageApproveUser({ id, approved: !approved });
+                          setApprove(!approved);
                         }}
                       >
                         {approved ? 'Disapprove' : 'Approve'}
@@ -354,5 +354,5 @@ export default function Page({ params }: PageProps) {
         </>
       )}
     </>
-  )
+  );
 }

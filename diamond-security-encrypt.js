@@ -143,7 +143,7 @@ class DiamondSecurityEncryptor {
         throw new Error('Content integrity check failed - possible tampering detected');
       }
       
-      console.log(`✅ Decrypted successfully with integrity verified`);
+      console.log('✅ Decrypted successfully with integrity verified');
       return {
         content: decryptedContent,
         metadata: encryptedPackage.metadata,
@@ -151,7 +151,7 @@ class DiamondSecurityEncryptor {
       };
       
     } catch (error) {
-      console.error(`❌ Decryption failed:`, error.message);
+      console.error('❌ Decryption failed:', error.message);
       throw error;
     }
   }
@@ -241,7 +241,7 @@ diamond decrypt ${originalFilename}.diamond-encrypted
         }
       }
       
-      console.log(`✅ Directory encryption complete:`);
+      console.log('✅ Directory encryption complete:');
       console.log(`   📁 Encrypted: ${results.encrypted.length} files`);
       console.log(`   ⏭️ Skipped: ${results.skipped.length} files`);
       console.log(`   ❌ Errors: ${results.errors.length} files`);
@@ -249,7 +249,7 @@ diamond decrypt ${originalFilename}.diamond-encrypted
       return results;
       
     } catch (error) {
-      console.error(`❌ Directory encryption failed:`, error.message);
+      console.error('❌ Directory encryption failed:', error.message);
       throw error;
     }
   }
@@ -313,14 +313,14 @@ diamond decrypt ${originalFilename}.diamond-encrypted
         }
       }
       
-      console.log(`✅ Directory decryption complete:`);
+      console.log('✅ Directory decryption complete:');
       console.log(`   📂 Decrypted: ${results.decrypted.length} files`);
       console.log(`   ❌ Errors: ${results.errors.length} files`);
       
       return results;
       
     } catch (error) {
-      console.error(`❌ Directory decryption failed:`, error.message);
+      console.error('❌ Directory decryption failed:', error.message);
       throw error;
     }
   }

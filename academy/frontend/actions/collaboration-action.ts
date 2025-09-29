@@ -1,6 +1,6 @@
-'use server'
+'use server';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
 export const getAllCollaboration = async () => {
   try {
@@ -15,12 +15,12 @@ export const getAllCollaboration = async () => {
           }
         }
       }
-    })
+    });
   } catch (err) {
-    console.error(err)
-    throw new Error('Failed to fetch all collaboration')
+    console.error(err);
+    throw new Error('Failed to fetch all collaboration');
   }
-}
+};
 
 export const getCollaborationById = async (id: string) => {
   try {
@@ -36,18 +36,18 @@ export const getCollaborationById = async (id: string) => {
           }
         }
       }
-    })
+    });
   } catch (err) {
-    console.error(err)
-    throw new Error('Failed to fetch collaboration by ID')
+    console.error(err);
+    throw new Error('Failed to fetch collaboration by ID');
   }
-}
+};
 
 export const deleteCollaboration = async (id: number) => {
   try {
-    return await prisma.collaboration.delete({ where: { id } })
+    return await prisma.collaboration.delete({ where: { id } });
   } catch (err) {
-    console.error(err)
-    throw new Error('Failed to delete collaboration')
+    console.error(err);
+    throw new Error('Failed to delete collaboration');
   }
-}
+};

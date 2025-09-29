@@ -1,7 +1,7 @@
-'use server'
-import prisma from '@/prisma/prisma'
+'use server';
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateProductDto {
   name: string
@@ -39,30 +39,30 @@ export const createProduct = async (data: CreateProductDto) => {
           connect: data.categoryId.map(id => ({ id }))
         }
       }
-    })
+    });
 
-    return createdProduct
+    return createdProduct;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create product')
+    console.error(error);
+    throw new Error('Failed to create product');
   }
-}
+};
 
 export const getAllProducts = async () => {
   try {
-    const products = await prismaClient.products.findMany()
+    const products = await prismaClient.products.findMany();
 
     const productsWithStringDecimals = products.map(product => ({
       ...product,
       price: product.price.toString() // Convert Decimal to string
-    }))
+    }));
 
-    return productsWithStringDecimals
+    return productsWithStringDecimals;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find products')
+    console.error(error);
+    throw new Error('Failed to find products');
   }
-}
+};
 
 export const getProductById = async (id: string) => {
   try {
@@ -72,19 +72,19 @@ export const getProductById = async (id: string) => {
         vendor: true,
         category: true
       }
-    })
+    });
 
     const productWithStringDecimal = {
       ...product,
       price: product?.price.toString()
-    }
+    };
 
-    return productWithStringDecimal
+    return productWithStringDecimal;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find product')
+    console.error(error);
+    throw new Error('Failed to find product');
   }
-}
+};
 
 interface createProductDtO {
   name: string
@@ -110,13 +110,13 @@ export const updateProduct = async (data: createProductDtO) => {
         vendor: true,
         category: true
       }
-    })
+    });
 
     // compare list of vendor and category
 
-    const vendorDisconnect = products?.vendor.filter(vendor => !data.vendor.includes(vendor.id))
+    const vendorDisconnect = products?.vendor.filter(vendor => !data.vendor.includes(vendor.id));
 
-    const categoryDisconnect = products?.category.filter(category => !data.category.includes(category.id))
+    const categoryDisconnect = products?.category.filter(category => !data.category.includes(category.id));
 
     if (vendorDisconnect) {
       await prismaClient.products.update({
@@ -126,7 +126,7 @@ export const updateProduct = async (data: createProductDtO) => {
             disconnect: vendorDisconnect.map(vendor => ({ id: vendor.id }))
           }
         }
-      })
+      });
     }
 
     if (categoryDisconnect) {
@@ -137,7 +137,7 @@ export const updateProduct = async (data: createProductDtO) => {
             disconnect: categoryDisconnect.map(category => ({ id: category.id }))
           }
         }
-      })
+      });
     }
 
     return await prismaClient.products.update({
@@ -160,20 +160,20 @@ export const updateProduct = async (data: createProductDtO) => {
           connect: data.category.map(id => ({ id }))
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update product')
+    console.error(error);
+    throw new Error('Failed to update product');
   }
-}
+};
 
 export const deleteProduct = async (id: string): Promise<void> => {
   try {
     await prismaClient.products.delete({
       where: { id }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete product')
+    console.error(error);
+    throw new Error('Failed to delete product');
   }
-}
+};

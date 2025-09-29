@@ -1,7 +1,7 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,43 +14,43 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import type { User } from '@prisma/client'
+import type { User } from '@prisma/client';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
-import { getAllUsers } from '../../../actions/user-actions'
-import Link from '@/components/Link'
-import CustomTextField from '@/@core/components/mui/TextField'
+import { getAllUsers } from '../../../actions/user-actions';
+import Link from '@/components/Link';
+import CustomTextField from '@/@core/components/mui/TextField';
 
 export default function Page() {
-  const [users, setUsers] = useState<User[]>([])
-  const [filteredUsers, setFilteredUsers] = useState<User[]>([])
-  const router = useRouter()
+  const [users, setUsers] = useState<User[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+  const router = useRouter();
 
-  const [filter, setFilter] = useState<string>('')
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     getAllUsers().then(users => {
-      setUsers(users)
-      setFilteredUsers(users)
-    })
-  }, [])
+      setUsers(users);
+      setFilteredUsers(users);
+    });
+  }, []);
 
   useEffect(() => {
-    if (filter === '') return setFilteredUsers(users)
+    if (filter === '') return setFilteredUsers(users);
 
     const newUsers = users.filter(user => {
-      const firstNameMatches = user.firstName.toLowerCase().includes(filter.toLowerCase())
-      const lastNameMatches = user.lastName.toLowerCase().includes(filter.toLowerCase())
-      const emailMatches = user.email.toLowerCase().includes(filter.toLowerCase())
+      const firstNameMatches = user.firstName.toLowerCase().includes(filter.toLowerCase());
+      const lastNameMatches = user.lastName.toLowerCase().includes(filter.toLowerCase());
+      const emailMatches = user.email.toLowerCase().includes(filter.toLowerCase());
 
-      return firstNameMatches || emailMatches || lastNameMatches
-    })
+      return firstNameMatches || emailMatches || lastNameMatches;
+    });
 
-    setFilteredUsers(newUsers)
-  }, [filter, users])
+    setFilteredUsers(newUsers);
+  }, [filter, users]);
 
   //function to view user
 
@@ -119,5 +119,5 @@ export default function Page() {
         </TableContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

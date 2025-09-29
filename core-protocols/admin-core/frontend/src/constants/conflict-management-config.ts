@@ -1,4 +1,4 @@
-import { ProtectionLevel, ResponseType, SecurityZone } from '../types/security'
+import { ProtectionLevel, ResponseType, SecurityZone } from '../types/security';
 
 export const ConflictManagementConfig = {
   disruptionHandling: {
@@ -132,4 +132,4 @@ export const ConflictManagementConfig = {
       training: 'CONTINUOUS'
     }
   }
-}
+};

@@ -699,7 +699,7 @@ export class UniversalAIKeyManagerV2 {
     };
 
     // TODO: Implement actual Xero API call with OAuth2
-    console.log(`💰 Would create Xero invoice:`, JSON.stringify(invoice, null, 2));
+    console.log('💰 Would create Xero invoice:', JSON.stringify(invoice, null, 2));
   }
 
   private async getXeroContactId(tenantId: string): Promise<string> {

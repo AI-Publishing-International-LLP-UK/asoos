@@ -51,16 +51,16 @@ class S2DOComprehensiveSystem {
         // Performance categories (employee-facing, privacy-preserving)
         this.performanceCategories = {
             excellent: {
-                title: "Excellent - You should be helping others",
-                message: "Your exceptional performance positions you as a mentor and leader",
+                title: 'Excellent - You should be helping others',
+                message: 'Your exceptional performance positions you as a mentor and leader',
                 confidential_range: [85, 100],
-                development_focus: "leadership_and_mentoring"
+                development_focus: 'leadership_and_mentoring'
             },
             developing: {
-                title: "There's more that can be done to be successful", 
-                message: "You have significant potential and we're here to support your growth",
+                title: 'There\'s more that can be done to be successful', 
+                message: 'You have significant potential and we\'re here to support your growth',
                 confidential_range: [0, 84],
-                development_focus: "skill_building_and_support"
+                development_focus: 'skill_building_and_support'
             }
         };
 
@@ -79,19 +79,19 @@ class S2DOComprehensiveSystem {
         // Empathetic response templates for difficult situations
         this.empatheticResponseTemplates = {
             underperformance: {
-                gentle_redirect: "I understand this hasn't gone as planned. Let's explore what we can learn and how to move forward positively.",
-                support_offer: "You're not alone in this challenge. Many successful people have faced similar situations and overcome them.",
-                resource_provision: "I have some specific strategies and resources that could help turn this situation around."
+                gentle_redirect: 'I understand this hasn\'t gone as planned. Let\'s explore what we can learn and how to move forward positively.',
+                support_offer: 'You\'re not alone in this challenge. Many successful people have faced similar situations and overcome them.',
+                resource_provision: 'I have some specific strategies and resources that could help turn this situation around.'
             },
             personal_crisis: {
-                acknowledgment: "I recognize you're dealing with something difficult right now. Your wellbeing is the priority.",
-                flexibility: "Let's adjust our approach to work with your current circumstances, not against them.",
-                long_term_perspective: "This setback doesn't define your capabilities or your future success."
+                acknowledgment: 'I recognize you\'re dealing with something difficult right now. Your wellbeing is the priority.',
+                flexibility: 'Let\'s adjust our approach to work with your current circumstances, not against them.',
+                long_term_perspective: 'This setback doesn\'t define your capabilities or your future success.'
             },
             health_challenges: {
-                accommodation: "Your health comes first. Let's find ways to maintain progress while respecting your needs.",
-                alternative_approaches: "There are different paths to success that might work better with your current situation.",
-                celebration_of_effort: "The fact that you're here and trying despite your challenges shows tremendous strength."
+                accommodation: 'Your health comes first. Let\'s find ways to maintain progress while respecting your needs.',
+                alternative_approaches: 'There are different paths to success that might work better with your current situation.',
+                celebration_of_effort: 'The fact that you\'re here and trying despite your challenges shows tremendous strength.'
             }
         };
     }
@@ -154,13 +154,13 @@ class S2DOComprehensiveSystem {
         const templates = this.empatheticResponseTemplates[challengeType] || this.empatheticResponseTemplates.underperformance;
         
         const acknowledgments = [
-            `I see that things didn't go as expected with this project. That's completely understandable and more common than you might think.`,
+            'I see that things didn\'t go as expected with this project. That\'s completely understandable and more common than you might think.',
             
             `${templates.gentle_redirect} Every challenge is data that helps us improve our approach.`,
             
             `I want you to know that experiencing setbacks doesn't reflect your worth or potential. ${templates.support_offer}`,
             
-            `Let's take a moment to acknowledge that you tried something difficult. That courage itself is valuable, regardless of the immediate outcome.`
+            'Let\'s take a moment to acknowledge that you tried something difficult. That courage itself is valuable, regardless of the immediate outcome.'
         ];
 
         return {
@@ -179,8 +179,8 @@ class S2DOComprehensiveSystem {
             situationalFactors: this.identifySituationalFactors(actualResults),
             externalInfluences: this.identifyExternalInfluences(actualResults),
             learningValue: `This experience provides valuable insights for future ${s2doWorkflow.s2doWorkflow.scan.step1_careerCluster} projects`,
-            normalityAssurance: "Most successful professionals face similar challenges multiple times in their careers",
-            growthFramework: "This is not a failure - it's data for optimization"
+            normalityAssurance: 'Most successful professionals face similar challenges multiple times in their careers',
+            growthFramework: 'This is not a failure - it\'s data for optimization'
         };
     }
 
@@ -190,19 +190,19 @@ class S2DOComprehensiveSystem {
     extractLearningOpportunities(actualResults) {
         return {
             processLearnings: [
-                "Which parts of the S2DO workflow worked well?",
-                "What external factors weren't anticipated?", 
-                "How can the timeline be adjusted for similar projects?"
+                'Which parts of the S2DO workflow worked well?',
+                'What external factors weren\'t anticipated?', 
+                'How can the timeline be adjusted for similar projects?'
             ],
             skillDevelopment: [
-                "What skills would have most helped in this situation?",
-                "Which resources were missing that we can secure next time?",
-                "How can we build better support systems?"
+                'What skills would have most helped in this situation?',
+                'Which resources were missing that we can secure next time?',
+                'How can we build better support systems?'
             ],
             systemicImprovements: [
-                "What can be improved in our project setup process?",
-                "How can we better identify potential obstacles early?",
-                "What success patterns from others can be applied?"
+                'What can be improved in our project setup process?',
+                'How can we better identify potential obstacles early?',
+                'What success patterns from others can be applied?'
             ]
         };
     }
@@ -335,16 +335,16 @@ class S2DOComprehensiveSystem {
             approvalNeeded: true,
             missingPermissions: missingPermissions,
             approvalRequest: {
-                title: "Enhanced Performance Tracking Request",
-                description: `To provide you with more accurate feedback and celebration of your successes, we'd like to access additional data points that will help us better track your progress and achievements.`,
+                title: 'Enhanced Performance Tracking Request',
+                description: 'To provide you with more accurate feedback and celebration of your successes, we\'d like to access additional data points that will help us better track your progress and achievements.',
                 dataPoints: missingPermissions,
                 benefits: [
-                    "More accurate success celebrations",
-                    "Better progress tracking", 
-                    "Improved goal recommendations",
-                    "Enhanced performance insights"
+                    'More accurate success celebrations',
+                    'Better progress tracking', 
+                    'Improved goal recommendations',
+                    'Enhanced performance insights'
                 ],
-                privacy: "All data is encrypted, anonymized for organizational analytics, and never shared outside your organization."
+                privacy: 'All data is encrypted, anonymized for organizational analytics, and never shared outside your organization.'
             }
         };
     }
@@ -370,24 +370,24 @@ class S2DOComprehensiveSystem {
     handleCatastrophicNews(userName, catastropheType, supportLevel = 'full') {
         const catastrophicSupport = {
             immediate: {
-                acknowledgment: "I'm deeply sorry to hear about what you're going through. Your wellbeing is our absolute priority right now.",
-                suspension: "Let's pause all performance goals and focus entirely on supporting you through this difficult time.",
+                acknowledgment: 'I\'m deeply sorry to hear about what you\'re going through. Your wellbeing is our absolute priority right now.',
+                suspension: 'Let\'s pause all performance goals and focus entirely on supporting you through this difficult time.',
                 resources: this.getCrisisResources(catastropheType),
-                timeline: "Take all the time you need. Your position and progress will be here when you're ready."
+                timeline: 'Take all the time you need. Your position and progress will be here when you\'re ready.'
             },
             
             ongoing: {
-                checkins: "We'll check in with you weekly, but only if and when you're comfortable.",
-                flexibility: "All deadlines and expectations are suspended indefinitely.", 
-                support: "Your organization's support resources are available to you.",
-                privacy: "This situation is confidential and won't impact your performance evaluations."
+                checkins: 'We\'ll check in with you weekly, but only if and when you\'re comfortable.',
+                flexibility: 'All deadlines and expectations are suspended indefinitely.', 
+                support: 'Your organization\'s support resources are available to you.',
+                privacy: 'This situation is confidential and won\'t impact your performance evaluations.'
             },
             
             recovery: {
-                gentleReturn: "Welcome back. We're honored that you're here and ready to support your gradual re-engagement.",
-                adjustedExpectations: "We'll work at whatever pace feels right for you.",
-                acknowledgment: "Your strength in returning after such difficulty is remarkable.",
-                futureOptimism: "There's no pressure to be where you were before. We'll build forward from where you are now."
+                gentleReturn: 'Welcome back. We\'re honored that you\'re here and ready to support your gradual re-engagement.',
+                adjustedExpectations: 'We\'ll work at whatever pace feels right for you.',
+                acknowledgment: 'Your strength in returning after such difficulty is remarkable.',
+                futureOptimism: 'There\'s no pressure to be where you were before. We\'ll build forward from where you are now.'
             }
         };
 
@@ -665,7 +665,7 @@ class S2DOComprehensiveSystem {
     // ===== ENHANCED DEMONSTRATION =====
 
     async demonstrateEnhancedCelebrationSystem() {
-        const userName = "Paul";
+        const userName = 'Paul';
         
         // Sample achievements for demonstration
         const achievements = [
@@ -714,13 +714,13 @@ class S2DOComprehensiveSystem {
     // ===== EXAMPLE USAGE =====
 
     async demonstrateComprehensiveSystem() {
-        const userName = "María";
-        const preferredLanguage = "es";
+        const userName = 'María';
+        const preferredLanguage = 'es';
         
         // Example 1: Multilingual success celebration
         const successOutcomes = [{
-            project: "Iniciativa de Ventas Cruzadas",
-            result: "18% aumento en ventas interdepartamentales", 
+            project: 'Iniciativa de Ventas Cruzadas',
+            result: '18% aumento en ventas interdepartamentales', 
             impactPercentage: 18
         }];
 
@@ -734,12 +734,12 @@ class S2DOComprehensiveSystem {
         const challengeResults = {
             completionPercentage: 45,
             qualityScore: 60,
-            challenges: "External market conditions changed significantly"
+            challenges: 'External market conditions changed significantly'
         };
 
         const empathyResponse = this.handleChallengingOutcomes(
             userName, 
-            { s2doWorkflow: { scan: { step1_careerCluster: "Marketing" } } },
+            { s2doWorkflow: { scan: { step1_careerCluster: 'Marketing' } } },
             challengeResults
         );
 

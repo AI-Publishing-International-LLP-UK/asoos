@@ -1,11 +1,11 @@
 // React imports
-import { forwardRef } from 'react'
-import type { ElementType } from 'react'
+import { forwardRef } from 'react';
+import type { ElementType } from 'react';
 
 // MUI imports
-import Paper from '@mui/material/Paper'
-import Autocomplete from '@mui/material/Autocomplete'
-import type { AutocompleteProps } from '@mui/material/Autocomplete'
+import Paper from '@mui/material/Paper';
+import Autocomplete from '@mui/material/Autocomplete';
+import type { AutocompleteProps } from '@mui/material/Autocomplete';
 
 const CustomAutocomplete = forwardRef(
   <
@@ -19,10 +19,10 @@ const CustomAutocomplete = forwardRef(
     ref: any
   ) => {
     return (
-      // eslint-disable-next-line lines-around-comment
+       
       <Autocomplete {...props} ref={ref} PaperComponent={props => <Paper {...props} />} />
-    )
+    );
   }
-) as typeof Autocomplete
+) as typeof Autocomplete;
 
-export default CustomAutocomplete
+export default CustomAutocomplete;

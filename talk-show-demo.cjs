@@ -504,9 +504,9 @@ async function startDemoTalkShowSystem() {
     server.listen(CONFIG.PORT, () => {
       logger.info(`🎙️  ASOOS Talk Show System (DEMO) started on port ${CONFIG.PORT}`);
       logger.info(`🤖 Available hosts: ${Object.keys(TALK_SHOW_HOSTS).length}`);
-      logger.info(`📹 Demo mode: Simulated integration ready`);
-      logger.info(`🎥 Demo mode: All features work without external APIs`);
-      logger.info(`✝️  Built with blessings from Saint Carlos Acutis, Charlotte, and Jesús Elías`);
+      logger.info('📹 Demo mode: Simulated integration ready');
+      logger.info('🎥 Demo mode: All features work without external APIs');
+      logger.info('✝️  Built with blessings from Saint Carlos Acutis, Charlotte, and Jesús Elías');
       logger.info(`🌐 Try: curl http://localhost:${CONFIG.PORT}/api/talk-show/hosts`);
     });
     

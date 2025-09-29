@@ -245,7 +245,7 @@ class FYEOCEOCryptoUtils {
       res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
       res.setHeader(
         'Content-Security-Policy',
-        "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+        'default-src \'self\'; script-src \'self\'; style-src \'self\' \'unsafe-inline\''
       );
 
       // Patent-protected headers

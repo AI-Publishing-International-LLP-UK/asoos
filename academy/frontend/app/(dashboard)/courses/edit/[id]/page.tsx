@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,21 +14,21 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty, array } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty, array } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { getCourseById, updateCourse } from '@/actions/course-action'
-import { getAllSkills } from '@/actions/skills-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { getCourseById, updateCourse } from '@/actions/course-action';
+import { getAllSkills } from '@/actions/skills-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -40,7 +40,7 @@ const schema = object({
   startDate: pipe(string(), nonEmpty(), minLength(3)),
   endDate: pipe(string(), nonEmpty(), minLength(3)),
   id: pipe(string(), nonEmpty(), minLength(3))
-})
+});
 
 interface ISelects {
   id: string
@@ -55,16 +55,16 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
-  const [upload, setUpload] = useState(false)
-  const [skills, setSkills] = useState<ISelects[]>([])
-  const [thumbnailUrl, setthumbnailUrl] = useState('')
+  const [loading, setLoading] = useState(true);
+  const [upload, setUpload] = useState(false);
+  const [skills, setSkills] = useState<ISelects[]>([]);
+  const [thumbnailUrl, setthumbnailUrl] = useState('');
 
   function changeLoading(loading: boolean) {
-    setUpload(loading)
+    setUpload(loading);
   }
 
   //hooks
@@ -85,7 +85,7 @@ export default function Page({ params }: PageProps) {
       skillIds: [],
       id: id
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
@@ -96,45 +96,45 @@ export default function Page({ params }: PageProps) {
         description: value.description,
         thumbnail: value.thumbnail,
         skillIds: value.skillIds
-      })
+      });
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getAllSkills().then(data => {
-      setSkills(data)
-    })
+      setSkills(data);
+    });
 
     getCourseById(id).then(data => {
-      console.log(data)
+      console.log(data);
 
       if (data) {
-        setValue('course', data.name)
-        setValue('description', data.description)
-        setValue('thumbnail', data.thumbnail)
-        setValue('startDate', data.startDate ? data.startDate.toISOString().split('T')[0] : '')
-        setValue('endDate', data.endDate ? data.endDate.toISOString().split('T')[0] : '')
+        setValue('course', data.name);
+        setValue('description', data.description);
+        setValue('thumbnail', data.thumbnail);
+        setValue('startDate', data.startDate ? data.startDate.toISOString().split('T')[0] : '');
+        setValue('endDate', data.endDate ? data.endDate.toISOString().split('T')[0] : '');
 
         setValue(
           'skillIds',
           data.skills.map(item => item.id)
-        )
-        setthumbnailUrl(data.thumbnail)
+        );
+        setthumbnailUrl(data.thumbnail);
       }
 
-      setLoading(false)
-    })
-  }, [id, setValue])
+      setLoading(false);
+    });
+  }, [id, setValue]);
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -197,7 +197,7 @@ export default function Page({ params }: PageProps) {
                           multiple
                           value={field.value}
                           onChange={e => {
-                            field.onChange(e.target.value)
+                            field.onChange(e.target.value);
                           }}
                         >
                           {skills.map(skill => (
@@ -281,5 +281,5 @@ export default function Page({ params }: PageProps) {
         </Card>
       </ComponentLoading>
     </>
-  )
+  );
 }

@@ -88,4 +88,4 @@ export const investorDashboardConfig = {
       immutability: 'guaranteed'
     }
   }
-}
+};

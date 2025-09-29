@@ -1,8 +1,8 @@
 // Third-party Imports
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 // Type Imports
-import type { VerticalNavProps } from '../../components/vertical-menu/VerticalNav'
+import type { VerticalNavProps } from '../../components/vertical-menu/VerticalNav';
 
 type StyledVerticalNavBgColorContainerProps = Pick<VerticalNavProps, 'backgroundColor'>
 
@@ -15,6 +15,6 @@ const StyledVerticalNavBgColorContainer = styled.div<StyledVerticalNavBgColorCon
   overflow-y: auto;
   overflow-x: hidden;
   ${({ backgroundColor }) => backgroundColor && `background-color:${backgroundColor};`}
-`
+`;
 
-export default StyledVerticalNavBgColorContainer
+export default StyledVerticalNavBgColorContainer;

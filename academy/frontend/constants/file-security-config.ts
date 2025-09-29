@@ -1,6 +1,6 @@
-import { createHash } from 'crypto'
+import { createHash } from 'crypto';
 
-import { AES, enc } from 'crypto-js'
+import { AES, enc } from 'crypto-js';
 
 export interface SecurityKey {
   keyId: string
@@ -223,25 +223,25 @@ export const fileSecurityConfig: FileSecurityConfig = {
       unauthorizedAccess: 1
     }
   }
-}
+};
 
 // Export utility functions for encryption/decryption
 export const encryptFileName = (name: string, key: SecurityKey): string => {
-  return AES.encrypt(name, key.value).toString()
-}
+  return AES.encrypt(name, key.value).toString();
+};
 
 export const decryptFileName = (encrypted: string, key: SecurityKey): string => {
-  const bytes = AES.decrypt(encrypted, key.value)
+  const bytes = AES.decrypt(encrypted, key.value);
 
-  return bytes.toString(enc.Utf8)
-}
+  return bytes.toString(enc.Utf8);
+};
 
 export const encryptContent = (content: string, key: SecurityKey): string => {
-  return AES.encrypt(content, key.value).toString()
-}
+  return AES.encrypt(content, key.value).toString();
+};
 
 export const decryptContent = (encrypted: string, key: SecurityKey): string => {
-  const bytes = AES.decrypt(encrypted, key.value)
+  const bytes = AES.decrypt(encrypted, key.value);
 
-  return bytes.toString(enc.Utf8)
-}
+  return bytes.toString(enc.Utf8);
+};

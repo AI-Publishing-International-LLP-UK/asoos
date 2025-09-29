@@ -1,11 +1,11 @@
 // React Imports
-import type { ChangeEvent, ReactNode } from 'react'
+import type { ChangeEvent, ReactNode } from 'react';
 
 // MUI Imports
-import type { GridProps } from '@mui/material/Grid'
+import type { GridProps } from '@mui/material/Grid';
 
 // Type Imports
-import type { ThemeColor } from '@core/types'
+import type { ThemeColor } from '@core/types';
 
 // Types of Horizontal Custom Inputs
 export type CustomInputHorizontalData = {

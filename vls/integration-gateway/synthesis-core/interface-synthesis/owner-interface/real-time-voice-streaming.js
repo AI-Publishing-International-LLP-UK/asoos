@@ -179,7 +179,7 @@ class RealTimeVoiceStreamingSystem {
                     console.warn(`⚠️ Unknown message type: ${message.type}`);
             }
         } catch (error) {
-            console.error(`❌ Error handling WebSocket message:`, error);
+            console.error('❌ Error handling WebSocket message:', error);
             ws.send(JSON.stringify({
                 type: 'error',
                 error: 'Message processing failed',

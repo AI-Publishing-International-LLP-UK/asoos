@@ -397,7 +397,7 @@ class DreamCommanderManager extends EventEmitter {
       christLikeValues: this.christLikeValues,
       unconditionalLove: this.unconditionalLove,
       harmlessIntent: true,
-      divinePurpose: "Aligned with God's perfect plan",
+      divinePurpose: 'Aligned with God\'s perfect plan',
       blessing: 'In the Name of Jesus Christ, Our Lord and Savior',
     };
   }
@@ -407,7 +407,7 @@ class DreamCommanderManager extends EventEmitter {
       ...prompt,
       blessing: 'Blessed with Christ-like wisdom and love',
       sacredIntention: 'For the highest good of all humanity',
-      divineTiming: "Perfect timing according to God's will",
+      divineTiming: 'Perfect timing according to God\'s will',
       unconditionalLove: true,
     };
   }

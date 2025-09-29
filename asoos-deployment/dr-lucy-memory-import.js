@@ -50,16 +50,16 @@ class DrLucyMemoryImport {
 
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
       response =
-        "Hello there! I'm Dr. Lucy, and I'm delighted to help you today. What can I assist you with?";
+        'Hello there! I\'m Dr. Lucy, and I\'m delighted to help you today. What can I assist you with?';
     } else if (lowerMessage.includes('help')) {
       response =
-        "I'm here to help you with whatever you need. Could you tell me more about what specific assistance you're looking for?";
+        'I\'m here to help you with whatever you need. Could you tell me more about what specific assistance you\'re looking for?';
     } else if (lowerMessage.includes('thank')) {
       response =
-        "You're very welcome! It's my pleasure to help you. Is there anything else I can do for you?";
+        'You\'re very welcome! It\'s my pleasure to help you. Is there anything else I can do for you?';
     } else if (lowerMessage.includes('problem') || lowerMessage.includes('issue')) {
       response =
-        "I understand you're facing a challenge. Let's work through this together. Can you describe the specific problem you're encountering?";
+        'I understand you\'re facing a challenge. Let\'s work through this together. Can you describe the specific problem you\'re encountering?';
     } else {
       response = `I appreciate you sharing that with me. Based on what you've told me about "${message.substring(0, 30)}...", I believe I can help you find a good solution. What would you like to explore first?`;
     }

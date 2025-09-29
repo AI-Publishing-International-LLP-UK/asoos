@@ -1,39 +1,39 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty, custom } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty, custom } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import { getBlacklistById, updateBlacklist } from '@/actions/blacklist-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import { getBlacklistById, updateBlacklist } from '@/actions/blacklist-action';
 
 type FormData = InferInput<typeof schema>
 
 const isValidDomain = (input: unknown): input is string => {
   if (typeof input !== 'string') {
-    return false
+    return false;
   }
 
-  const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  return domainRegex.test(input)
-}
+  return domainRegex.test(input);
+};
 
 const schema = object({
   domain: pipe(string(), nonEmpty(), minLength(3), custom(isValidDomain, 'need to be a valid domain')),
   id: pipe(string(), nonEmpty())
-})
+});
 
 interface PageProps {
   params: {
@@ -43,10 +43,10 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   //hooks
   const {
@@ -61,30 +61,30 @@ export default function Page({ params }: PageProps) {
       domain: '',
       id: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await updateBlacklist(value.id, value.domain)
+      const response = await updateBlacklist(value.id, value.domain);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getBlacklistById(id).then(data => {
       if (data) {
-        setValue('domain', data.domain)
-        setValue('id', data.id)
+        setValue('domain', data.domain);
+        setValue('id', data.id);
 
-        setLoading(false)
+        setLoading(false);
       }
-    })
-  }, [id, setValue])
+    });
+  }, [id, setValue]);
 
   return (
     <>
@@ -129,5 +129,5 @@ export default function Page({ params }: PageProps) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

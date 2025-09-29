@@ -1,7 +1,7 @@
-'use server'
-import prisma from '@/prisma/prisma'
+'use server';
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateOrganizationDto {
   name: string
@@ -19,30 +19,30 @@ export const createOrganization = async (data: CreateOrganizationDto): Promise<a
           connect: { id: data.industryId }
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create organization')
+    console.error(error);
+    throw new Error('Failed to create organization');
   }
-}
+};
 
 export const getAllOrganization = async () => {
   try {
-    return await prismaClient.organization.findMany()
+    return await prismaClient.organization.findMany();
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find organizations')
+    console.error(error);
+    throw new Error('Failed to find organizations');
   }
-}
+};
 
 export const getOrganizationById = async (id: string) => {
   try {
-    return await prismaClient.organization.findUnique({ where: { id } })
+    return await prismaClient.organization.findUnique({ where: { id } });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find organization')
+    console.error(error);
+    throw new Error('Failed to find organization');
   }
-}
+};
 
 export const updateOrganization = async (
   id: string,
@@ -59,18 +59,18 @@ export const updateOrganization = async (
     return await prismaClient.organization.update({
       where: { id },
       data
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update organization')
+    console.error(error);
+    throw new Error('Failed to update organization');
   }
-}
+};
 
 export const deleteOrganization = async (id: string): Promise<void> => {
   try {
-    await prismaClient.organization.delete({ where: { id } })
+    await prismaClient.organization.delete({ where: { id } });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete organization')
+    console.error(error);
+    throw new Error('Failed to delete organization');
   }
-}
+};

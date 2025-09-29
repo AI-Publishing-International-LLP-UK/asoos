@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -15,21 +15,21 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty, array, number, minValue } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty, array, number, minValue } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { url, nameElement } from '../contstants'
-import { createProduct } from '@/actions/product-action'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { getAllProductVendor } from '@/actions/products-vendor-action'
-import { getAllProductCategory } from '@/actions/products-category-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { url, nameElement } from '../contstants';
+import { createProduct } from '@/actions/product-action';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { getAllProductVendor } from '@/actions/products-vendor-action';
+import { getAllProductCategory } from '@/actions/products-category-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -47,7 +47,7 @@ const schema = object({
   marketReputation: string(),
   customerServiceLevel: string(),
   file: pipe(string(), nonEmpty())
-})
+});
 
 interface ISelects {
   id: string
@@ -56,13 +56,13 @@ interface ISelects {
 
 export default function Page() {
   //state
-  const router = useRouter()
-  const [vendors, setVendors] = useState<ISelects[]>([])
-  const [categories, setCategories] = useState<ISelects[]>([])
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [vendors, setVendors] = useState<ISelects[]>([]);
+  const [categories, setCategories] = useState<ISelects[]>([]);
+  const [loading, setLoading] = useState(false);
 
   function changeLoading(loading: boolean) {
-    setLoading(loading)
+    setLoading(loading);
   }
 
   //hooks
@@ -82,16 +82,16 @@ export default function Page() {
       url: '',
       price: 10
     }
-  })
+  });
 
   useEffect(() => {
     getAllProductVendor().then(data => {
-      setVendors(data)
-    })
+      setVendors(data);
+    });
     getAllProductCategory().then(data => {
-      setCategories(data)
-    })
-  }, [])
+      setCategories(data);
+    });
+  }, []);
 
   const onSubmit = async (value: any) => {
     try {
@@ -108,24 +108,24 @@ export default function Page() {
         marketReputation: value.marketReputation,
         integrationAbility: value.integrationAbility,
         customerServiceLevel: value.customerServiceLevel
-      })
+      });
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   const handleFile = (url: string) => {
-    setValue('file', url)
-    setValue('url', url)
-  }
+    setValue('file', url);
+    setValue('url', url);
+  };
 
   return (
     <>
@@ -410,5 +410,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

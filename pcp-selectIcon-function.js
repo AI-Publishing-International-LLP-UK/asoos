@@ -231,9 +231,9 @@ function simulateQBResponse(userMessage) {
   const responses = [
     'I understand your question about business optimization. Let me analyze your current KPIs and suggest improvements.',
     'Based on your performance data, I recommend focusing on the top 3 priority areas for maximum impact.',
-    "Great question! I'll connect this to your daily S2DO goals and provide actionable insights.",
+    'Great question! I\'ll connect this to your daily S2DO goals and provide actionable insights.',
     'Let me review the feedback from other PCPs and provide you with relevant hot tips for this situation.',
-    "Excellent! This aligns perfectly with your career development objectives. Here's my recommendation..."
+    'Excellent! This aligns perfectly with your career development objectives. Here\'s my recommendation...'
   ];
   
   const randomResponse = responses[Math.floor(Math.random() * responses.length)];

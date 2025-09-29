@@ -293,7 +293,7 @@ class LucyIntegrationService {
 
       try {
         const result = await this.lucySpeech.lucySpeak(
-          "This is a test of Dr. Lucy's expressive speech capabilities.",
+          'This is a test of Dr. Lucy\'s expressive speech capabilities.',
           testContext,
           { skipTTS: true }
         );

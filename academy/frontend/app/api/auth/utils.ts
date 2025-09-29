@@ -1,12 +1,12 @@
 export async function validate(username: string) {
-return username == 'superadmin' || username == 'proark'
+return username == 'superadmin' || username == 'proark';
 }
 
 export async function isValidToken(token: string | undefined): Promise<boolean> {
   if (!token) {
-    console.log('not valid token')
+    console.log('not valid token');
 
-    return false
+    return false;
   }
 
   try {
@@ -16,14 +16,14 @@ export async function isValidToken(token: string | undefined): Promise<boolean> 
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ token })
-    })
+    });
 
-    const resData = await res.json()
+    const resData = await res.json();
 
-    return resData.email === 'superadmin@coaching2100.com' || resData.email === 'proark@bcs2100.mx'
+    return resData.email === 'superadmin@coaching2100.com' || resData.email === 'proark@bcs2100.mx';
   } catch (err) {
-    console.log(err)
+    console.log(err);
 
-    return false
+    return false;
   }
 }

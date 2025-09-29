@@ -1,1 +1,1 @@
-export const URL = '/advertisement'
+export const URL = '/advertisement';

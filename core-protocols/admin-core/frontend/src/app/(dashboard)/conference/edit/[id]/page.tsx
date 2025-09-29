@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,22 +14,22 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty, array } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty, array } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { getAllProductVendor } from '@/actions/products-vendor-action'
-import { getAllProductCategory } from '@/actions/products-category-action'
-import { getConferenceById, updateConference } from '@/actions/conference-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { getAllProductVendor } from '@/actions/products-vendor-action';
+import { getAllProductCategory } from '@/actions/products-category-action';
+import { getConferenceById, updateConference } from '@/actions/conference-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -40,7 +40,7 @@ const schema = object({
   categoryId: pipe(array(string()), nonEmpty()),
   url: pipe(string(), nonEmpty()),
   thumbnail: pipe(string(), nonEmpty())
-})
+});
 
 interface ISelects {
   id: string
@@ -55,13 +55,13 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
-  const [vendors, setVendors] = useState<ISelects[]>([])
-  const [categories, setCategories] = useState<ISelects[]>([])
-  const [thumbnailUrl, setThumbnailUrl] = useState('')
+  const [loading, setLoading] = useState(true);
+  const [vendors, setVendors] = useState<ISelects[]>([]);
+  const [categories, setCategories] = useState<ISelects[]>([]);
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
 
   //hooks
   const {
@@ -79,56 +79,56 @@ export default function Page({ params }: PageProps) {
       categoryId: [],
       url: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await updateConference(value.id, value)
+      const response = await updateConference(value.id, value);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   const changeLoading = (loading: boolean) => {
-    setLoading(loading)
-  }
+    setLoading(loading);
+  };
 
   useEffect(() => {
     getAllProductVendor().then(data => {
-      setVendors(data)
-    })
+      setVendors(data);
+    });
     getAllProductCategory().then(data => {
-      setCategories(data)
-    })
+      setCategories(data);
+    });
 
     getConferenceById(id).then(data => {
       if (data) {
-        setValue('name', data.name)
-        setValue('description', data.description)
-        setValue('url', data.url !== null ? data.url : '')
+        setValue('name', data.name);
+        setValue('description', data.description);
+        setValue('url', data.url !== null ? data.url : '');
         setValue(
           'vendorId',
           data.vendor.map((item: any) => item.id)
-        )
+        );
         setValue(
           'categoryId',
           data.category.map((item: any) => item.id)
-        )
-        setValue('thumbnail', data.thumbnail)
-        setThumbnailUrl(data.thumbnail)
+        );
+        setValue('thumbnail', data.thumbnail);
+        setThumbnailUrl(data.thumbnail);
       }
 
-      setLoading(false)
-    })
-  }, [id, setValue])
+      setLoading(false);
+    });
+  }, [id, setValue]);
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -281,5 +281,5 @@ export default function Page({ params }: PageProps) {
         </Card>
       </ComponentLoading>
     </>
-  )
+  );
 }

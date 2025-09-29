@@ -212,7 +212,7 @@ class MasterOrchestrator {
 
     async coordinateSubsystemRecovery(subsystemName, healthData) {
         this.masterLogger.warn({
-            message: `Coordinating recovery for unhealthy subsystem`,
+            message: 'Coordinating recovery for unhealthy subsystem',
             subsystem: subsystemName,
             healthData,
             timestamp: new Date()

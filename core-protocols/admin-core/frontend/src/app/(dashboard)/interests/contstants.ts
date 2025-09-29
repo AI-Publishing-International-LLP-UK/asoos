@@ -1,2 +1,2 @@
-export const nameElement = 'Interests'
-export const url = nameElement.toLowerCase()
+export const nameElement = 'Interests';
+export const url = nameElement.toLowerCase();

@@ -120,9 +120,9 @@ function loadJSONTask(train, test) {
     for (var i = 0; i < train.length; i++) {
         pair = train[i];
         values = pair['input'];
-        input_grid = convertSerializedGridToGridObject(values)
+        input_grid = convertSerializedGridToGridObject(values);
         values = pair['output'];
-        output_grid = convertSerializedGridToGridObject(values)
+        output_grid = convertSerializedGridToGridObject(values);
         fillPairPreview(i, input_grid, output_grid);
     }
     for (var i=0; i < test.length; i++) {
@@ -130,7 +130,7 @@ function loadJSONTask(train, test) {
         TEST_PAIRS.push(pair);
     }
     values = TEST_PAIRS[0]['input'];
-    CURRENT_INPUT_GRID = convertSerializedGridToGridObject(values)
+    CURRENT_INPUT_GRID = convertSerializedGridToGridObject(values);
     fillTestInput(CURRENT_INPUT_GRID);
     CURRENT_TEST_PAIR_INDEX = 0;
     $('#current_test_input_id_display').html('1');
@@ -167,18 +167,18 @@ function loadTaskFromFile(e) {
         }
         loadJSONTask(train, test);
 
-        $('#load_task_file_input')[0].value = "";
+        $('#load_task_file_input')[0].value = '';
         display_task_name(file.name, null, null);
     };
     reader.readAsText(file);
 }
 
 function randomTask() {
-    var subset = "training";
-    $.getJSON("https://api.github.com/repos/fchollet/ARC/contents/data/" + subset, function(tasks) {
-        var task_index = Math.floor(Math.random() * tasks.length)
+    var subset = 'training';
+    $.getJSON('https://api.github.com/repos/fchollet/ARC/contents/data/' + subset, function(tasks) {
+        var task_index = Math.floor(Math.random() * tasks.length);
         var task = tasks[task_index];
-        $.getJSON(task["download_url"], function(json) {
+        $.getJSON(task['download_url'], function(json) {
             try {
                 train = json['train'];
                 test = json['test'];
@@ -188,7 +188,7 @@ function randomTask() {
             }
             loadJSONTask(train, test);
             //$('#load_task_file_input')[0].value = "";
-            infoMsg("Loaded task training/" + task["name"]);
+            infoMsg('Loaded task training/' + task['name']);
             display_task_name(task['name'], task_index, tasks.length);
         })
         .error(function(){
@@ -202,12 +202,12 @@ function randomTask() {
 
 function nextTestInput() {
     if (TEST_PAIRS.length <= CURRENT_TEST_PAIR_INDEX + 1) {
-        errorMsg('No next test input. Pick another file?')
-        return
+        errorMsg('No next test input. Pick another file?');
+        return;
     }
     CURRENT_TEST_PAIR_INDEX += 1;
     values = TEST_PAIRS[CURRENT_TEST_PAIR_INDEX]['input'];
-    CURRENT_INPUT_GRID = convertSerializedGridToGridObject(values)
+    CURRENT_INPUT_GRID = convertSerializedGridToGridObject(values);
     fillTestInput(CURRENT_INPUT_GRID);
     $('#current_test_input_id_display').html(CURRENT_TEST_PAIR_INDEX + 1);
     $('#total_test_input_count_display').html(test.length);
@@ -219,14 +219,14 @@ function submitSolution() {
     submitted_output = CURRENT_OUTPUT_GRID.grid;
     if (reference_output.length != submitted_output.length) {
         errorMsg('Wrong solution.');
-        return
+        return;
     }
     for (var i = 0; i < reference_output.length; i++){
         ref_row = reference_output[i];
         for (var j = 0; j < ref_row.length; j++){
             if (ref_row[j] != submitted_output[i][j]) {
                 errorMsg('Wrong solution.');
-                return
+                return;
             }
         }
 
@@ -277,7 +277,7 @@ $(document).ready(function () {
         symbol_preview = $(event.target);
         $('#symbol_picker').find('.symbol_preview').each(function(i, preview) {
             $(preview).removeClass('selected-symbol-preview');
-        })
+        });
         symbol_preview.addClass('selected-symbol-preview');
 
         toolMode = $('input[name=tool_switching]:checked').val();
@@ -298,7 +298,7 @@ $(document).ready(function () {
     });
 
     $('.load_task').on('click', function(event) {
-      event.target.value = "";
+      event.target.value = '';
     });
 
     $('input[type=radio][name=tool_switching]').change(function() {

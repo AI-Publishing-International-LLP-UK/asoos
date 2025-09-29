@@ -1,25 +1,25 @@
 // MUI Imports
-import { useTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles';
 
 // Third-party Imports
-import PerfectScrollbar from 'react-perfect-scrollbar'
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // Type Imports
-import type { VerticalMenuContextProps } from '@menu/components/vertical-menu/Menu'
+import type { VerticalMenuContextProps } from '@menu/components/vertical-menu/Menu';
 
 // Component Imports
-import { Menu, MenuItem } from '@menu/vertical-menu'
+import { Menu, MenuItem } from '@menu/vertical-menu';
 
 // Hook Imports
-import useVerticalNav from '@menu/hooks/useVerticalNav'
+import useVerticalNav from '@menu/hooks/useVerticalNav';
 
 // Styled Component Imports
-import StyledVerticalNavExpandIcon from '@menu/styles/vertical/StyledVerticalNavExpandIcon'
+import StyledVerticalNavExpandIcon from '@menu/styles/vertical/StyledVerticalNavExpandIcon';
 
 // Style Imports
-import menuItemStyles from '@core/styles/vertical/menuItemStyles'
-import menuSectionStyles from '@core/styles/vertical/menuSectionStyles'
-import { menuItems } from '@/constants/menu'
+import menuItemStyles from '@core/styles/vertical/menuItemStyles';
+import menuSectionStyles from '@core/styles/vertical/menuSectionStyles';
+import { menuItems } from '@/constants/menu';
 
 type RenderExpandIconProps = {
   open?: boolean
@@ -34,21 +34,21 @@ const RenderExpandIcon = ({ open, transitionDuration }: RenderExpandIconProps) =
   <StyledVerticalNavExpandIcon open={open} transitionDuration={transitionDuration}>
     <i className='tabler-chevron-right' />
   </StyledVerticalNavExpandIcon>
-)
+);
 
 const VerticalMenu = ({ scrollMenu }: Props) => {
   // Hooks
-  const theme = useTheme()
-  const verticalNavOptions = useVerticalNav()
-  const { isBreakpointReached } = useVerticalNav()
+  const theme = useTheme();
+  const verticalNavOptions = useVerticalNav();
+  const { isBreakpointReached } = useVerticalNav();
 
   // Vars
-  const { transitionDuration } = verticalNavOptions
+  const { transitionDuration } = verticalNavOptions;
 
-  const ScrollWrapper = isBreakpointReached ? 'div' : PerfectScrollbar
+  const ScrollWrapper = isBreakpointReached ? 'div' : PerfectScrollbar;
 
   return (
-    // eslint-disable-next-line lines-around-comment
+     
     /* Custom scrollbar instead of browser scroll, remove if you want browser scroll only */
     <ScrollWrapper
       {...(isBreakpointReached
@@ -92,7 +92,7 @@ const VerticalMenu = ({ scrollMenu }: Props) => {
         <GenerateVerticalMenu menuData={menuData(dictionary)} />
       </Menu> */}
     </ScrollWrapper>
-  )
-}
+  );
+};
 
-export default VerticalMenu
+export default VerticalMenu;

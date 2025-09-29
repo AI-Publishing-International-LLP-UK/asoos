@@ -1,5 +1,5 @@
-import { AuthProviderType, OAuthConfig } from './integration'
-import { OrchestraEventType } from './orchestra'
+import { AuthProviderType, OAuthConfig } from './integration';
+import { OrchestraEventType } from './orchestra';
 
 // RSS Feed Configuration Types
 export interface RSSFeedConfig {
@@ -104,7 +104,7 @@ export const RSS_ORCHESTRA_EVENTS: OrchestraEventType[] = [
     description: 'Data lake has been synchronized',
     schema: { lake: '' as DataLakeType, status: '' }
 }
-]
+];
 
 // Integration Configuration
 export interface RSSIntegrationConfig extends OAuthConfig {

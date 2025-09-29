@@ -152,7 +152,7 @@ class CIGMonitoringSystem {
 
         try {
             // CPU usage
-            const cpuResult = await execAsync("top -l 1 | grep 'CPU usage'");
+            const cpuResult = await execAsync('top -l 1 | grep \'CPU usage\'');
             const cpuMatch = cpuResult.stdout.match(/(\d+\.\d+)%/);
             const cpuUsage = cpuMatch ? parseFloat(cpuMatch[1]) : 0;
 
@@ -210,7 +210,7 @@ class CIGMonitoringSystem {
     async collectKubernetesMetrics() {
         try {
             // Pod metrics
-            const podStatus = await this.execKubectl("get pods --all-namespaces -o json");
+            const podStatus = await this.execKubectl('get pods --all-namespaces -o json');
             const podData = JSON.parse(podStatus);
             
             const podMetrics = {
@@ -224,7 +224,7 @@ class CIGMonitoringSystem {
             };
 
             // Node metrics
-            const nodeStatus = await this.execKubectl("get nodes -o json");
+            const nodeStatus = await this.execKubectl('get nodes -o json');
             const nodeData = JSON.parse(nodeStatus);
             
             const nodeMetrics = {

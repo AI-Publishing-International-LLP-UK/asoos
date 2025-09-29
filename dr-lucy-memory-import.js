@@ -321,7 +321,7 @@ Or provide the directory path when prompted.
   generateContextualResponse(query, memories) {
     const responses = {
       coaching: 'Based on my comprehensive analysis of our previous coaching sessions, I see patterns in executive development that suggest focusing on strategic delegation and decision-making frameworks.',
-      strategy: "My quantum business intelligence analysis indicates optimal timing for strategic initiatives. I've processed market conditions and organizational readiness factors.",
+      strategy: 'My quantum business intelligence analysis indicates optimal timing for strategic initiatives. I\'ve processed market conditions and organizational readiness factors.',
       technical: 'From my systems integration expertise, I recommend implementing progressive deployment strategies with continuous monitoring and optimization protocols.',
       leadership: 'Analysis of leadership patterns from our conversation history shows strong analytical capabilities. I suggest developing collaborative decision-making approaches.'
     };

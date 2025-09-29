@@ -204,8 +204,8 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, HOST, () => {
   console.log(`🚀 Simple HTTP server running at http://${HOST}:${PORT}`);
-  console.log(`📄 Serving mocoa-current.html`);
-  console.log(`⚠️  This is a SIMPLE LOCAL SERVER - NO Promise issues, NO Cloudflare`);
-  console.log(`🎤 Mock voice endpoints available for testing`);
-  console.log(`\nPress Ctrl+C to stop`);
+  console.log('📄 Serving mocoa-current.html');
+  console.log('⚠️  This is a SIMPLE LOCAL SERVER - NO Promise issues, NO Cloudflare');
+  console.log('🎤 Mock voice endpoints available for testing');
+  console.log('\nPress Ctrl+C to stop');
 });

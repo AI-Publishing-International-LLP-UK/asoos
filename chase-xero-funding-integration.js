@@ -296,7 +296,7 @@ class ChaseXeroFundingIntegration {
       console.log(`• Chase accounts configured: ${Object.keys(this.chaseAccounts).length}`);
       console.log(`• October Fund 2024: $${this.fundingDetails.octoberFund2024.totalCommitment.toLocaleString()}`);
       console.log(`• January Fund 1: $${this.fundingDetails.januaryFund2025.totalReceived.toLocaleString()}`);
-      console.log(`• Current Series A valuation: $30B`);
+      console.log('• Current Series A valuation: $30B');
       
       console.log('\n🎯 NEXT STEPS:');
       console.log('1. Provide actual Chase account numbers and routing info');

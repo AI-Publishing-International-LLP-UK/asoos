@@ -359,13 +359,13 @@ class VisualConsoleCapture {
 
     // Add timestamp if requested
     if (enhancements.addTimestamp) {
-      filters.push("drawtext=text='%{localtime}':fontsize=24:fontcolor=white:x=10:y=10");
+      filters.push('drawtext=text=\'%{localtime}\':fontsize=24:fontcolor=white:x=10:y=10');
     }
 
     // Add title if requested
     if (enhancements.addTitle) {
       filters.push(
-        "drawtext=text='Diamond CLI Console':fontsize=36:fontcolor=white:x=(w-text_w)/2:y=50"
+        'drawtext=text=\'Diamond CLI Console\':fontsize=36:fontcolor=white:x=(w-text_w)/2:y=50'
       );
     }
 

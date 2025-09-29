@@ -1,18 +1,18 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const BillingCycleSchema = z.enum(['MONTHLY', 'QUARTERLY', 'ANNUAL'])
+export const BillingCycleSchema = z.enum(['MONTHLY', 'QUARTERLY', 'ANNUAL']);
 export type BillingCycle = z.infer<typeof BillingCycleSchema>
 
-export const ServiceTypeSchema = z.enum(['COACHING', 'CONSULTING', 'SPEAKING', 'TRAINING', 'ADVISORY'])
+export const ServiceTypeSchema = z.enum(['COACHING', 'CONSULTING', 'SPEAKING', 'TRAINING', 'ADVISORY']);
 export type ServiceType = z.infer<typeof ServiceTypeSchema>
 
-export const PaymentStatusSchema = z.enum(['PENDING', 'APPROVED', 'PROCESSING', 'COMPLETED', 'REJECTED'])
+export const PaymentStatusSchema = z.enum(['PENDING', 'APPROVED', 'PROCESSING', 'COMPLETED', 'REJECTED']);
 export type PaymentStatus = z.infer<typeof PaymentStatusSchema>
 
-export const PaymentAdminRoleSchema = z.enum(['PAYMENT_APPROVER', 'PAYMENT_VALIDATOR', 'PAYMENT_ADMINISTRATOR', 'PAYMENT_AUDITOR', 'OWNER', 'HEAD_OF_FINANCE'])
+export const PaymentAdminRoleSchema = z.enum(['PAYMENT_APPROVER', 'PAYMENT_VALIDATOR', 'PAYMENT_ADMINISTRATOR', 'PAYMENT_AUDITOR', 'OWNER', 'HEAD_OF_FINANCE']);
 export type PaymentAdminRole = z.infer<typeof PaymentAdminRoleSchema>
 
-export const PaymentOverrideTypeSchema = z.enum(['AMOUNT_ADJUSTMENT', 'DEADLINE_EXTENSION', 'APPROVAL_BYPASS', 'VALIDATION_OVERRIDE', 'EMERGENCY_PROCESSING'])
+export const PaymentOverrideTypeSchema = z.enum(['AMOUNT_ADJUSTMENT', 'DEADLINE_EXTENSION', 'APPROVAL_BYPASS', 'VALIDATION_OVERRIDE', 'EMERGENCY_PROCESSING']);
 export type PaymentOverrideType = z.infer<typeof PaymentOverrideTypeSchema>
 
 export const billingConfig = {
@@ -87,24 +87,24 @@ export const billingConfig = {
       thresholds: [24, 48, 72] // hours
     }
   }
-} as const
+} as const;
 
 export const timeTrackingRules = {
   validateServiceEntry: (entry: ServiceEntry): ValidationResult => {
-    const results: ValidationError[] = []
+    const results: ValidationError[] = [];
 
     if (!entry.timestamp) {
       results.push({
         code: 'MISSING_TIMESTAMP',
         message: 'Service entry must include system timestamp'
-      })
+      });
     }
 
     if (!entry.serviceType) {
       results.push({
         code: 'MISSING_SERVICE_TYPE',
         message: 'Service type must be specified'
-      })
+      });
     }
 
     // Additional validation logic
@@ -112,13 +112,13 @@ export const timeTrackingRules = {
     return {
       isValid: results.length === 0,
       errors: results
-    }
+    };
   },
 
   canProcessPayment: (records: ServiceRecord[]): boolean => {
-    return records.every(record => record.isValidated && record.isApproved && record.hoursTracked > 0)
+    return records.every(record => record.isValidated && record.isApproved && record.hoursTracked > 0);
   }
-}
+};
 
 export const paymentManagementWorkflows = {
   /**
@@ -127,10 +127,10 @@ export const paymentManagementWorkflows = {
   hasPaymentAccess: (userId: string, requiredRole: PaymentAdminRole): boolean => {
     // Morgan has full payment management access
     if (userId === 'morgan-001') {
-      return true
+      return true;
     }
     // Additional access logic for other administrators
-    return false
+    return false;
   },
 
   /**
@@ -138,45 +138,45 @@ export const paymentManagementWorkflows = {
    */
   approvePayment: async (recordId: string, administrator: PaymentAdministratorProfile): Promise<ServiceRecord | null> => {
     if (!administrator.roles.includes('PAYMENT_APPROVER' as PaymentAdminRole)) {
-      throw new Error('Administrator lacks payment approval permissions')
+      throw new Error('Administrator lacks payment approval permissions');
     }
     
     // Implementation would update the service record
     // This is a placeholder for the actual database update
-    return null
+    return null;
   },
 
   /**
    * Validate payment entries with proper workflow
    */
   validatePaymentEntry: (record: ServiceRecord, administrator: PaymentAdministratorProfile): ValidationResult => {
-    const results: ValidationError[] = []
+    const results: ValidationError[] = [];
 
     if (!administrator.roles.includes('PAYMENT_VALIDATOR' as PaymentAdminRole)) {
       results.push({
         code: 'INSUFFICIENT_PERMISSIONS',
         message: 'Administrator lacks payment validation permissions'
-      })
+      });
     }
 
     if (!record.entry.timestamp) {
       results.push({
         code: 'MISSING_TIMESTAMP',
         message: 'Payment entry must include system timestamp'
-      })
+      });
     }
 
     if (record.hoursTracked <= 0) {
       results.push({
         code: 'INVALID_HOURS',
         message: 'Payment entry must have valid hours tracked'
-      })
+      });
     }
 
     return {
       isValid: results.length === 0,
       errors: results
-    }
+    };
   },
 
   /**
@@ -190,7 +190,7 @@ export const paymentManagementWorkflows = {
     newValues: Partial<ServiceRecord>
   ): Promise<PaymentOverrideLog> => {
     if (!administrator.roles.includes('PAYMENT_ADMINISTRATOR' as PaymentAdminRole)) {
-      throw new Error('Administrator lacks payment override permissions')
+      throw new Error('Administrator lacks payment override permissions');
     }
 
     const overrideLog: PaymentOverrideLog = {
@@ -201,12 +201,12 @@ export const paymentManagementWorkflows = {
       reason,
       originalState: {}, // Would be populated with current record state
       newState: newValues
-    }
+    };
 
     // Log the override action
-    console.log('Payment override applied:', overrideLog)
+    console.log('Payment override applied:', overrideLog);
     
-    return overrideLog
+    return overrideLog;
   },
 
   /**
@@ -214,7 +214,7 @@ export const paymentManagementWorkflows = {
    */
   generateAuditReport: (administrator: PaymentAdministratorProfile, dateRange: { start: Date, end: Date }): object => {
     if (!administrator.roles.includes('PAYMENT_AUDITOR' as PaymentAdminRole)) {
-      throw new Error('Administrator lacks payment audit permissions')
+      throw new Error('Administrator lacks payment audit permissions');
     }
 
     return {
@@ -222,9 +222,9 @@ export const paymentManagementWorkflows = {
       dateRange,
       reportGenerated: new Date(),
       // Additional audit data would be populated here
-    }
+    };
   }
-}
+};
 
 export interface ValidationResult {
   isValid: boolean

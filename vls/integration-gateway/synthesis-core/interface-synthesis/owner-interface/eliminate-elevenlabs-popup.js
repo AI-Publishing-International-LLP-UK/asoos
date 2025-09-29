@@ -62,7 +62,7 @@ window.prompt = function(message, defaultValue) {
 // ========================================================================
 
 // Enhanced OAuth2-enabled TTS function
-async function enhancedOAuth2TTS(text, voiceId = "21m00Tcm4TlvDq8ikWAM", voiceName = "Rachel") {
+async function enhancedOAuth2TTS(text, voiceId = '21m00Tcm4TlvDq8ikWAM', voiceName = 'Rachel') {
   console.log(`🎤 Enhanced OAuth2 TTS: "${text}" with voice ${voiceName}`);
   
   try {
@@ -283,7 +283,7 @@ async function testEliminatedTTS() {
   console.log('🧪 Testing ElevenLabs popup elimination...');
   
   try {
-    const result = await enhancedOAuth2TTS("Testing the ElevenLabs popup elimination system. All API key requests should be blocked.");
+    const result = await enhancedOAuth2TTS('Testing the ElevenLabs popup elimination system. All API key requests should be blocked.');
     if (result.success) {
       console.log(`✅ TTS test successful using ${result.source}`);
       console.log('🛡️ No API key prompts should have appeared');

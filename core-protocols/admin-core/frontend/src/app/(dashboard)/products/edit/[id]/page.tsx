@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,22 +14,22 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty, array, number, minValue } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty, array, number, minValue } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { getAllProductVendor } from '@/actions/products-vendor-action'
-import { getAllProductCategory } from '@/actions/products-category-action'
-import { getProductById, updateProduct } from '@/actions/product-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { getAllProductVendor } from '@/actions/products-vendor-action';
+import { getAllProductCategory } from '@/actions/products-category-action';
+import { getProductById, updateProduct } from '@/actions/product-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -49,7 +49,7 @@ const schema = object({
   integrationAbility: string(),
   marketReputation: string(),
   customerServiceLevel: string()
-})
+});
 
 interface ISelects {
   id: string
@@ -64,18 +64,18 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
-  const [vendors, setVendors] = useState<ISelects[]>([])
-  const [categories, setCategories] = useState<ISelects[]>([])
-  const [uploading, setUploading] = useState(false)
-  const [thumbnailUrl, setThumbnailUrl] = useState('')
+  const [loading, setLoading] = useState(true);
+  const [vendors, setVendors] = useState<ISelects[]>([]);
+  const [categories, setCategories] = useState<ISelects[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
 
   const changeLoading = (loading: boolean) => {
-    setUploading(loading)
-  }
+    setUploading(loading);
+  };
 
   //hooks
   const {
@@ -99,7 +99,7 @@ export default function Page({ params }: PageProps) {
       solveProblem: '',
       solveHow: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
@@ -117,56 +117,56 @@ export default function Page({ params }: PageProps) {
         marketReputation: value.marketReputation,
         integrationAbility: value.integrationAbility,
         customerServiceLevel: value.customerServiceLevel
-      })
+      });
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getAllProductVendor().then(data => {
-      setVendors(data)
-    })
+      setVendors(data);
+    });
     getAllProductCategory().then(data => {
-      setCategories(data)
-    })
+      setCategories(data);
+    });
 
     getProductById(id).then(data => {
       if (data) {
-        setValue('name', data.name ? data.name : '')
-        setValue('description', data.description ? data.description : '')
-        setValue('price', Number(data.price))
-        setValue('url', data.url ? data.url : '')
-        setValue('vendorId', data.vendor ? data.vendor.map((item: any) => item.id) : [])
-        setValue('integrationAbility', data.integrationAbility ? data.integrationAbility : '')
-        setValue('customerServiceLevel', data.customerServiceLevel ? data.customerServiceLevel : '')
-        setValue('solveHow', data.solveHow ? data.solveHow : '')
-        setValue('solveProblem', data.solveProblem ? data.solveProblem : '')
-        setValue('marketReputation', data.marketReputation ? data.marketReputation : '')
-        setValue('categoryId', data.category ? data.category.map((item: any) => item.id) : [])
-        setValue('thumbnail', data.thumbnail ? data.thumbnail : '')
-        setValue('file', data.url ? data.url : '')
+        setValue('name', data.name ? data.name : '');
+        setValue('description', data.description ? data.description : '');
+        setValue('price', Number(data.price));
+        setValue('url', data.url ? data.url : '');
+        setValue('vendorId', data.vendor ? data.vendor.map((item: any) => item.id) : []);
+        setValue('integrationAbility', data.integrationAbility ? data.integrationAbility : '');
+        setValue('customerServiceLevel', data.customerServiceLevel ? data.customerServiceLevel : '');
+        setValue('solveHow', data.solveHow ? data.solveHow : '');
+        setValue('solveProblem', data.solveProblem ? data.solveProblem : '');
+        setValue('marketReputation', data.marketReputation ? data.marketReputation : '');
+        setValue('categoryId', data.category ? data.category.map((item: any) => item.id) : []);
+        setValue('thumbnail', data.thumbnail ? data.thumbnail : '');
+        setValue('file', data.url ? data.url : '');
 
         // setValue('id', data.id)
-        setThumbnailUrl(data.thumbnail ? data.thumbnail : '')
+        setThumbnailUrl(data.thumbnail ? data.thumbnail : '');
       }
-    })
-    setLoading(false)
-  }, [id, setValue])
+    });
+    setLoading(false);
+  }, [id, setValue]);
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   const handleFile = (url: string) => {
-    setValue('file', url)
-    setValue('url', url)
-  }
+    setValue('file', url);
+    setValue('url', url);
+  };
 
   return (
     <>
@@ -453,5 +453,5 @@ export default function Page({ params }: PageProps) {
         </Card>
       </ComponentLoading>
     </>
-  )
+  );
 }

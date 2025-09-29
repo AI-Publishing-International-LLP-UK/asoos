@@ -176,7 +176,7 @@ const INTELLIGENCE_AGENCY_POSITIONING = {
   ceo_pitch: {
     hook: 'What if you had your own private NSA, but for business intelligence?',
     value_prop: '20 million computational agents working as your personal intelligence team',
-    fear_appeal: "Your competitors are planning moves you can't see coming",
+    fear_appeal: 'Your competitors are planning moves you can\'t see coming',
     solution: 'Diamond SAO Command Center = Your situation room with real-time global intel',
   },
 
@@ -357,9 +357,9 @@ const CEO_INTELLIGENCE_PITCH = {
   opening: 'Mr. CEO, what if you had 20 million intelligence agents working for you 24/7?',
 
   pain_points: [
-    "Your competitors are making moves you can't see coming",
-    "You're getting briefed on yesterday's intelligence, not tomorrow's threats",
-    "Your strategy team can't process global intelligence at the speed of business",
+    'Your competitors are making moves you can\'t see coming',
+    'You\'re getting briefed on yesterday\'s intelligence, not tomorrow\'s threats',
+    'Your strategy team can\'t process global intelligence at the speed of business',
     'You need Mission Impossible-level capabilities, not PowerPoint presentations',
   ],
 
@@ -370,7 +370,7 @@ const CEO_INTELLIGENCE_PITCH = {
     'MCP integration = Intelligence flows directly to your decision systems',
   ],
 
-  close: "This isn't just AI. This is your own private NSA, but for business domination.",
+  close: 'This isn\'t just AI. This is your own private NSA, but for business domination.',
 };
 
 // Export the system

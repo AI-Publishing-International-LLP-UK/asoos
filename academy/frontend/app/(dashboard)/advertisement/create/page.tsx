@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { createAdvertisement } from '../../../../actions/advertisement-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { createAdvertisement } from '../../../../actions/advertisement-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -24,15 +24,15 @@ const schema = object({
   description: pipe(string(), nonEmpty(), minLength(3)),
   backgroundImg: pipe(string(), nonEmpty()),
   url: pipe(string(), nonEmpty())
-})
+});
 
 export default function Page() {
   //state
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   function changeLoading(loading: boolean) {
-    setLoading(loading)
+    setLoading(loading);
   }
 
   //hooks
@@ -50,24 +50,24 @@ export default function Page() {
       backgroundImg: '',
       url: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await createAdvertisement(value)
+      const response = await createAdvertisement(value);
 
       if (response) {
-        router.push('/advertisement')
+        router.push('/advertisement');
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   //function to assign the value of the thumbnail
   const handleThumbnail = (url: string) => {
-    setValue('backgroundImg', url)
-  }
+    setValue('backgroundImg', url);
+  };
 
   return (
     <>
@@ -166,5 +166,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

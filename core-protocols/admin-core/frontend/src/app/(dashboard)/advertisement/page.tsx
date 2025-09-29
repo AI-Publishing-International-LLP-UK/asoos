@@ -1,7 +1,7 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,35 +14,35 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
-import Link from '@/components/Link'
-import DateComponent from '@/components/global/DateComponent'
-import { deleteAdvertisement, getAllAdvertisememts } from '@/actions/advertisement-action'
-import { URL } from './constants'
+import Link from '@/components/Link';
+import DateComponent from '@/components/global/DateComponent';
+import { deleteAdvertisement, getAllAdvertisememts } from '@/actions/advertisement-action';
+import { URL } from './constants';
 
 export default function Page() {
-  const [element, setElement] = useState<any[]>([])
-  const router = useRouter()
+  const [element, setElement] = useState<any[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     getAllAdvertisememts().then(data => {
-      setElement(data)
-    })
-  }, [])
+      setElement(data);
+    });
+  }, []);
 
   //function to delete advertisement
   const deleteMethod = async (id: string) => {
-    const ID = parseInt(id, 10)
+    const ID = parseInt(id, 10);
 
     deleteAdvertisement(ID).then(() => {
-      const newElement = element.filter(el => el.id !== id)
+      const newElement = element.filter(el => el.id !== id);
 
-      setElement(newElement)
-    })
-  }
+      setElement(newElement);
+    });
+  };
 
   return (
     <Card>
@@ -104,5 +104,5 @@ export default function Page() {
         </TableContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

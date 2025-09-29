@@ -1,8 +1,8 @@
 // Third-party Imports
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 // Type Imports
-import type { SubMenuContentProps } from '../components/vertical-menu/SubMenuContent'
+import type { SubMenuContentProps } from '../components/vertical-menu/SubMenuContent';
 
 const StyledSubMenuContent = styled.div<SubMenuContentProps>`
   display: none;
@@ -37,10 +37,10 @@ const StyledSubMenuContent = styled.div<SubMenuContentProps>`
       transform: none !important;
       `}
 
-  ${({ browserScroll }) => browserScroll && `overflow-y: auto; max-block-size: calc((var(--vh, 1vh) * 100));`}
+  ${({ browserScroll }) => browserScroll && 'overflow-y: auto; max-block-size: calc((var(--vh, 1vh) * 100));'}
 
 
   ${({ rootStyles }) => rootStyles};
-`
+`;
 
-export default StyledSubMenuContent
+export default StyledSubMenuContent;

@@ -74,11 +74,11 @@ function generateDynamicMCPInterface(companyName, url) {
   const companyTitle = companyName.charAt(0).toUpperCase() + companyName.slice(1);
   
   return JSON.stringify({
-    protocol: "Model Context Protocol",
-    version: "1.0.0",
+    protocol: 'Model Context Protocol',
+    version: '1.0.0',
     server: {
       name: `${companyTitle} MCP Server`,
-      version: "1.0.0",
+      version: '1.0.0',
       description: `Dynamic MCP interface for ${companyTitle}`,
       company: companyName,
       domain: url.hostname,
@@ -90,7 +90,7 @@ function generateDynamicMCPInterface(companyName, url) {
       prompts: true,
       logging: true,
       ufoIntegration: true,
-      quantumProtection: "MAXIMUM"
+      quantumProtection: 'MAXIMUM'
     },
     info: {
       title: `${companyTitle} AI Assistant`,
@@ -103,18 +103,18 @@ function generateDynamicMCPInterface(companyName, url) {
         auth: `https://sallyport.2100.cool?company=${companyName}`
       },
       features: [
-        "Dynamic company-specific AI agents",
-        "UFO (Unified Frontend Operations)",
-        "Quantum-protected communications",
-        "Real-time collaboration",
-        "Enterprise security",
-        "Victory36 protection"
+        'Dynamic company-specific AI agents',
+        'UFO (Unified Frontend Operations)',
+        'Quantum-protected communications',
+        'Real-time collaboration',
+        'Enterprise security',
+        'Victory36 protection'
       ],
       integrations: {
         sallyPort: `https://sallyport.2100.cool?company=${companyName}`,
-        wfaSystem: "https://asoos.2100.cool/wfa/",
-        diamondCLI: "active",
-        ufoSystem: "enabled"
+        wfaSystem: 'https://asoos.2100.cool/wfa/',
+        diamondCLI: 'active',
+        ufoSystem: 'enabled'
       }
     },
     resources: [
@@ -122,19 +122,19 @@ function generateDynamicMCPInterface(companyName, url) {
         uri: `company://${companyName}/agents`,
         name: `${companyTitle} AI Agents`,
         description: `Company-specific AI agents for ${companyTitle}`,
-        mimeType: "application/json"
+        mimeType: 'application/json'
       },
       {
         uri: `company://${companyName}/tools`,
         name: `${companyTitle} Tools`,
         description: `Industry-specific tools for ${companyTitle}`,
-        mimeType: "application/json"
+        mimeType: 'application/json'
       },
       {
         uri: `company://${companyName}/data`,
         name: `${companyTitle} Knowledge Base`,
-        description: `Company-specific knowledge and procedures`,
-        mimeType: "application/json"
+        description: 'Company-specific knowledge and procedures',
+        mimeType: 'application/json'
       }
     ],
     tools: [
@@ -142,37 +142,37 @@ function generateDynamicMCPInterface(companyName, url) {
         name: `${companyName}_assistant`,
         description: `AI assistant specialized for ${companyTitle} operations`,
         inputSchema: {
-          type: "object",
+          type: 'object',
           properties: {
             query: {
-              type: "string",
-              description: "Question or task for the AI assistant"
+              type: 'string',
+              description: 'Question or task for the AI assistant'
             },
             context: {
-              type: "string",
-              description: "Additional context about the company or task"
+              type: 'string',
+              description: 'Additional context about the company or task'
             }
           },
-          required: ["query"]
+          required: ['query']
         }
       },
       {
         name: `${companyName}_search`,
         description: `Search ${companyTitle} knowledge base and resources`,
         inputSchema: {
-          type: "object",
+          type: 'object',
           properties: {
             query: {
-              type: "string",
-              description: "Search query"
+              type: 'string',
+              description: 'Search query'
             },
             type: {
-              type: "string",
-              enum: ["documents", "procedures", "contacts", "tools"],
-              description: "Type of resource to search"
+              type: 'string',
+              enum: ['documents', 'procedures', 'contacts', 'tools'],
+              description: 'Type of resource to search'
             }
           },
-          required: ["query"]
+          required: ['query']
         }
       }
     ],
@@ -182,8 +182,8 @@ function generateDynamicMCPInterface(companyName, url) {
         description: `Help new ${companyTitle} team members get started`,
         arguments: [
           {
-            name: "role",
-            description: "The person's role or department",
+            name: 'role',
+            description: 'The person\'s role or department',
             required: false
           }
         ]
@@ -193,8 +193,8 @@ function generateDynamicMCPInterface(companyName, url) {
         description: `Guide through ${companyTitle} standard workflows`,
         arguments: [
           {
-            name: "workflow_type",
-            description: "Type of workflow (project, approval, etc.)",
+            name: 'workflow_type',
+            description: 'Type of workflow (project, approval, etc.)',
             required: true
           }
         ]
@@ -205,8 +205,8 @@ function generateDynamicMCPInterface(companyName, url) {
       companyName: companyName,
       hostname: url.hostname,
       autoProvisioned: true,
-      mcpVersion: "1.0.0",
-      ufoIntegration: "2.4.7"
+      mcpVersion: '1.0.0',
+      ufoIntegration: '2.4.7'
     }
   }, null, 2);
 }

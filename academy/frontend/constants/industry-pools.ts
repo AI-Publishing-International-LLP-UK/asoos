@@ -1,5 +1,5 @@
-import type { IntegrationPool } from '../types/integration'
-import { OAuthConfig, SecurityConfig } from '../types/integration'
+import type { IntegrationPool } from '../types/integration';
+import { OAuthConfig, SecurityConfig } from '../types/integration';
 
 /**
  * Industry-specific integration pools configuration
@@ -301,4 +301,4 @@ export const industryPools: Record<string, IntegrationPool> = {
       }
     }
   }
-}
+};

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 // Next Imports
 // import Link from 'next/link'
@@ -16,7 +16,7 @@ const FooterContent = () => {
   // Hooks
   // const { isBreakpointReached } = useHorizontalNav()
 
-  return <></>
-}
+  return <></>;
+};
 
-export default FooterContent
+export default FooterContent;

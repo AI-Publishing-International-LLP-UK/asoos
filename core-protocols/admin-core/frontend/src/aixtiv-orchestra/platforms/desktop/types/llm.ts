@@ -1,4 +1,4 @@
-import type { OrchestraService } from '../lib/OrchestraService'
+import type { OrchestraService } from '../lib/OrchestraService';
 
 /**
 * Supported LLM providers

@@ -49,9 +49,9 @@ async function createGenesisArchive() {
       );
       
       console.log('✅ Index created successfully');
-      console.log(`   Name: conversation-history`);
-      console.log(`   Dimension: 1536 (OpenAI ada-002 compatible)`);
-      console.log(`   Region: us-central1 (GCP)`);
+      console.log('   Name: conversation-history');
+      console.log('   Dimension: 1536 (OpenAI ada-002 compatible)');
+      console.log('   Region: us-central1 (GCP)');
       
     } catch (createError) {
       if (createError.response?.status === 409) {
@@ -102,7 +102,7 @@ async function createGenesisArchive() {
       }
     });
     
-    console.log(`\n📊 Conversation export summary:`);
+    console.log('\n📊 Conversation export summary:');
     console.log(`   OpenAI exports: ${exportSources.openai.length}`);
     console.log(`   Claude exports: ${exportSources.claude.length}`);
     

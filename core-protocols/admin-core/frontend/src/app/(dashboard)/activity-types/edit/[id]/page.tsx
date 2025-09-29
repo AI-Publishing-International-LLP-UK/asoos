@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,14 +14,14 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Define ActivityTypeEnum to match your Firestore schema
 enum ActivityTypeEnum {
@@ -29,10 +29,10 @@ LIVE_WEBINARS = 'LIVE_WEBINARS',
 CHAT_ROOMS = 'CHAT_ROOMS'
 }
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import { getActivityTypeById, updateActivityType } from '@/actions/activity-types-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import { getActivityTypeById, updateActivityType } from '@/actions/activity-types-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -40,7 +40,7 @@ const schema = object({
   description: pipe(string(), nonEmpty(), minLength(3)),
   type: pipe(string(), nonEmpty(), minLength(3)),
   id: pipe(string(), nonEmpty(), minLength(3))
-})
+});
 
 interface PageProps {
   params: {
@@ -50,10 +50,10 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   //hooks
   const {
@@ -69,31 +69,31 @@ export default function Page({ params }: PageProps) {
       type: '',
       id
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await updateActivityType(value.id, value)
+      const response = await updateActivityType(value.id, value);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getActivityTypeById(id).then(data => {
       if (data) {
-        setValue('description', data.description || '')
-        setValue('type', data.type || '')
-        setValue('id', data.id)
+        setValue('description', data.description || '');
+        setValue('type', data.type || '');
+        setValue('id', data.id);
 
-        setLoading(false)
+        setLoading(false);
       }
-    })
-  }, [id, setValue])
+    });
+  }, [id, setValue]);
 
   return (
     <>
@@ -165,5 +165,5 @@ export default function Page({ params }: PageProps) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

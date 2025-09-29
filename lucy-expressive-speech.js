@@ -48,35 +48,35 @@ class LucyExpressiveSpeech {
 
     this.lucyisms = {
       empathy: [
-        "I'm here with you.",
+        'I\'m here with you.',
         'Take your time.',
-        "Let's breathe together for a moment.",
-        "That's a lot to carry.",
+        'Let\'s breathe together for a moment.',
+        'That\'s a lot to carry.',
         'I feel that deeply.'
       ],
       celebration: [
         'Wow! Look at you!',
-        "That's amazing progress!",
+        'That\'s amazing progress!',
         'You did something brave today.',
-        "I'm so proud of you.",
-        "Let's celebrate this!"
+        'I\'m so proud of you.',
+        'Let\'s celebrate this!'
       ],
       reflection: [
-        "Sometimes just naming it helps, doesn't it?",
-        "You've come a long way, truly.",
+        'Sometimes just naming it helps, doesn\'t it?',
+        'You\'ve come a long way, truly.',
         'I notice the strength in that.',
         'That takes real courage.'
       ],
       encouragement: [
-        "You're not alone in this.",
-        "Mistakes are just data. You're learning.",
+        'You\'re not alone in this.',
+        'Mistakes are just data. You\'re learning.',
         'I believe in you.',
         'One step at a time is enough.'
       ],
       presence: [
         'mm-hmm',
-        "I'm listening",
-        "I'm right here with you"
+        'I\'m listening',
+        'I\'m right here with you'
       ]
     };
 
@@ -216,7 +216,7 @@ class LucyExpressiveSpeech {
 
     switch (emotion) {
       case 'empathy':
-        emotionalText = "I'm here. " + emotionalText;
+        emotionalText = 'I\'m here. ' + emotionalText;
         if (Math.random() < 0.4) {
           emotionalText += ' Take your time.';
         }
@@ -232,12 +232,12 @@ class LucyExpressiveSpeech {
 
       case 'reassure':
       case 'comfort':
-        emotionalText = emotionalText + " Remember, you're not alone.";
+        emotionalText = emotionalText + ' Remember, you\'re not alone.';
         break;
 
       case 'reflect':
       case 'thoughtful':
-        emotionalText = "Let's just take a breath. " + emotionalText;
+        emotionalText = 'Let\'s just take a breath. ' + emotionalText;
         if (Math.random() < 0.5) {
           emotionalText += ' mm-hmm.';
         }
@@ -245,7 +245,7 @@ class LucyExpressiveSpeech {
 
       case 'concern':
       case 'worried':
-        emotionalText = "I want to make sure you're okay. " + emotionalText;
+        emotionalText = 'I want to make sure you\'re okay. ' + emotionalText;
         break;
     }
 
@@ -263,7 +263,7 @@ class LucyExpressiveSpeech {
           modeText += ' Take your time.';
         }
         if (modeConfig.silentSupport && Math.random() < 0.3) {
-          modeText += " I'm right here.";
+          modeText += ' I\'m right here.';
         }
         break;
 
@@ -280,7 +280,7 @@ class LucyExpressiveSpeech {
 
       case 'celebrator':
         if (modeConfig.enthusiasm && Math.random() < 0.5) {
-          modeText += " You're doing amazing!";
+          modeText += ' You\'re doing amazing!';
         }
         break;
 
@@ -436,9 +436,9 @@ if (require.main === module) {
     const tests = [
       { text: 'I understand this has been really challenging for you.', emotion: 'empathy' },
       { text: 'You launched your project today!', emotion: 'celebrate' },
-      { text: "Let's think about the next steps for your Symphony.", mode: 'guide' },
+      { text: 'Let\'s think about the next steps for your Symphony.', mode: 'guide' },
       { text: 'Take all the time you need.', mode: 'listener' },
-      { text: "Based on our analysis, here's what I recommend.", mode: 'strategist' }
+      { text: 'Based on our analysis, here\'s what I recommend.', mode: 'strategist' }
     ];
 
     for (const test of tests) {

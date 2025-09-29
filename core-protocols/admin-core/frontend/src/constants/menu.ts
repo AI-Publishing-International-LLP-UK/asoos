@@ -1,4 +1,4 @@
-import type { MenuItem } from '@/types/menu'
+import type { MenuItem } from '@/types/menu';
 
 export const adminMenuItems: MenuItem[] = [
   {
@@ -211,7 +211,7 @@ export const adminMenuItems: MenuItem[] = [
       }
     ]
   }
-]
+];
 
 export const menuItems = [
   {
@@ -412,4 +412,4 @@ export const menuItems = [
       }
     ]
   }
-]
+];

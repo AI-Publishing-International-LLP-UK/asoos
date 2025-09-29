@@ -102,6 +102,6 @@ export const CentralReportingConfig = {
       response: 'automated'
     }
   }
-} as const
+} as const;
 
 export type CentralReportingConfig = typeof CentralReportingConfig

@@ -1,24 +1,24 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer, FormControlLabel, Checkbox } from '@mui/material'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer, FormControlLabel, Checkbox } from '@mui/material';
 
-import { object, minLength, string, pipe, nonEmpty, boolean } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { object, minLength, string, pipe, nonEmpty, boolean } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { getAdvertisementById, updateAdvertisement } from '@/actions/advertisement-action'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { URL } from '../../constants'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { getAdvertisementById, updateAdvertisement } from '@/actions/advertisement-action';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { URL } from '../../constants';
 
 type FormData = InferInput<typeof schema>
 
@@ -31,7 +31,7 @@ const schema = object({
   isHeroSection: boolean(),
   isPrimary: boolean(),
   isSecondary: boolean()
-})
+});
 
 interface PageProps {
   params: {
@@ -40,15 +40,15 @@ interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-  const router = useRouter()
-  const { id } = params
-  const [loading, setLoading] = useState(true)
+  const router = useRouter();
+  const { id } = params;
+  const [loading, setLoading] = useState(true);
 
   // State management for checkbox values
-  const [isFooterBanner, setIsFooterBanner] = useState(false)
-  const [isHeroSection, setIsHeroSection] = useState(false)
-  const [isPrimary, setIsPrimary] = useState(false)
-  const [isSecondary, setIsSecondary] = useState(false)
+  const [isFooterBanner, setIsFooterBanner] = useState(false);
+  const [isHeroSection, setIsHeroSection] = useState(false);
+  const [isPrimary, setIsPrimary] = useState(false);
+  const [isSecondary, setIsSecondary] = useState(false);
 
   const {
     control,
@@ -68,11 +68,11 @@ export default function Page({ params }: PageProps) {
       isPrimary: false,
       isSecondary: false
     }
-  })
+  });
 
   const handleThumbnail = (url: string) => {
-    setValue('backgroundImg', url)
-  }
+    setValue('backgroundImg', url);
+  };
 
   const onSubmit = async (value: any) => {
     const updatedValue = {
@@ -81,41 +81,41 @@ export default function Page({ params }: PageProps) {
       isHeroSection,
       isPrimary,
       isSecondary
-    }
+    };
 
     try {
-      const response = await updateAdvertisement(parseInt(id), updatedValue)
+      const response = await updateAdvertisement(parseInt(id), updatedValue);
 
       if (response) {
-        router.push(`${URL}`)
+        router.push(`${URL}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getAdvertisementById(parseInt(id)).then(data => {
       if (data) {
-        setValue('title', data.title || '')
-        setValue('url', data.url || '')
-        setValue('backgroundImg', data.backgroundImg || '')
-        setValue('description', data.description || '')
-        setIsFooterBanner(data.isFooterBanner || false)
-        setIsHeroSection(data.isHeroSection || false)
-        setIsPrimary(data.isPrimary || false)
-        setIsSecondary(data.isSecondary || false)
+        setValue('title', data.title || '');
+        setValue('url', data.url || '');
+        setValue('backgroundImg', data.backgroundImg || '');
+        setValue('description', data.description || '');
+        setIsFooterBanner(data.isFooterBanner || false);
+        setIsHeroSection(data.isHeroSection || false);
+        setIsPrimary(data.isPrimary || false);
+        setIsSecondary(data.isSecondary || false);
 
-        setLoading(false)
+        setLoading(false);
       }
-    })
-  }, [id, setValue])
+    });
+  }, [id, setValue]);
 
   return (
     <>
       <ToastContainer />
       <Card>
-        <CardHeader title={`Edit Advertisement`} />
+        <CardHeader title={'Edit Advertisement'} />
         <CardContent>
           <TableContainer>
             <ComponentLoading loading={loading}>
@@ -225,5 +225,5 @@ export default function Page({ params }: PageProps) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

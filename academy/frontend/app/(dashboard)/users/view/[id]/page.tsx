@@ -1,11 +1,11 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
 
-import { Card, CardContent } from '@mui/material'
-import { JsonToTable } from 'react-json-to-table'
+import { Card, CardContent } from '@mui/material';
+import { JsonToTable } from 'react-json-to-table';
 
-import { getUserById } from '@/actions/user-actions'
+import { getUserById } from '@/actions/user-actions';
 
 interface Props {
   params: {
@@ -14,17 +14,17 @@ interface Props {
 }
 
 export default function Page({ params }: Props) {
-  const { id } = params
+  const { id } = params;
 
-  const [user, setUser] = useState<any | null>(null)
+  const [user, setUser] = useState<any | null>(null);
 
   useEffect(() => {
     if (id) {
       getUserById(id).then(user => {
-        if (user) setUser(user)
-      })
+        if (user) setUser(user);
+      });
     }
-  }, [id])
+  }, [id]);
 
   return (
     <Card>
@@ -61,5 +61,5 @@ export default function Page({ params }: Props) {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

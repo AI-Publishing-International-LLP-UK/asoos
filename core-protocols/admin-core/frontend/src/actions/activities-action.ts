@@ -1,9 +1,9 @@
-'use server'
-import type { Activity } from '@prisma/client'
+'use server';
+import type { Activity } from '@prisma/client';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateActivityDto {
   name: string
@@ -21,21 +21,21 @@ export const createActivity = async (data: CreateActivityDto) => {
         typeId: data.typeId,
         thumbnail: data.thumbnail
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create activity')
+    console.error(error);
+    throw new Error('Failed to create activity');
   }
-}
+};
 
 export const getAllActivity = async (): Promise<Activity[]> => {
   try {
-    return await prismaClient.activity.findMany()
+    return await prismaClient.activity.findMany();
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find activities')
+    console.error(error);
+    throw new Error('Failed to find activities');
   }
-}
+};
 
 export const getActivityById = async (id: string) => {
   try {
@@ -46,12 +46,12 @@ export const getActivityById = async (id: string) => {
       include: {
         activityType: true
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find activity')
+    console.error(error);
+    throw new Error('Failed to find activity');
   }
-}
+};
 
 export const updateActivity = async (id: string, data: Partial<CreateActivityDto>) => {
   try {
@@ -60,12 +60,12 @@ export const updateActivity = async (id: string, data: Partial<CreateActivityDto
         id
       },
       data
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update activity')
+    console.error(error);
+    throw new Error('Failed to update activity');
   }
-}
+};
 
 export const deleteActivity = async (id: string): Promise<void> => {
   try {
@@ -73,21 +73,21 @@ export const deleteActivity = async (id: string): Promise<void> => {
       where: {
         id
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete activity')
+    console.error(error);
+    throw new Error('Failed to delete activity');
   }
-}
+};
 
 export const GetAllActivitiesTypes = async () => {
   try {
-    return await prismaClient.activityType.findMany()
+    return await prismaClient.activityType.findMany();
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find activity types')
+    console.error(error);
+    throw new Error('Failed to find activity types');
   }
-}
+};
 
 interface testing {
   sessionId: string
@@ -119,14 +119,14 @@ export const CreateAndAssignActivityToSession = async (data: testing) => {
           endDate: new Date(data.endDate)
         }
       }
-    }
+    };
 
     if (data.webinarId) {
       activityData.webinars = {
         connect: {
           id: data.webinarId
         }
-      }
+      };
     }
 
     if (data.conferenceId) {
@@ -134,14 +134,14 @@ export const CreateAndAssignActivityToSession = async (data: testing) => {
         connect: {
           id: data.conferenceId
         }
-      }
+      };
     }
 
     return await prismaClient.activity.create({
       data: activityData
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to assign activity to session')
+    console.error(error);
+    throw new Error('Failed to assign activity to session');
   }
-}
+};

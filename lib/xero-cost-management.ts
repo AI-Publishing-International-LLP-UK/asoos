@@ -232,7 +232,7 @@ export class XeroCostManager {
     `;
 
     if (tenantId) {
-      query += ` AND tenant_id = @tenant_id`;
+      query += ' AND tenant_id = @tenant_id';
     }
 
     query += `

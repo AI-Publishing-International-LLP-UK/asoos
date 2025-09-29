@@ -1,9 +1,9 @@
-'use server'
-import type { ProductsVendor } from '@prisma/client'
+'use server';
+import type { ProductsVendor } from '@prisma/client';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateProductVendorDto {
   name: string
@@ -17,38 +17,38 @@ export const createProductVendor = async (data: CreateProductVendorDto): Promise
         name: data.name,
         description: data.description
       }
-    })
+    });
 
-    return createdProductVendor
+    return createdProductVendor;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create product vendor')
+    console.error(error);
+    throw new Error('Failed to create product vendor');
   }
-}
+};
 
 export const getAllProductVendor = async (): Promise<ProductsVendor[]> => {
   try {
-    const allProductVendors = await prismaClient.productsVendor.findMany()
+    const allProductVendors = await prismaClient.productsVendor.findMany();
 
-    return allProductVendors
+    return allProductVendors;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find product vendors')
+    console.error(error);
+    throw new Error('Failed to find product vendors');
   }
-}
+};
 
 export const getProductVendorById = async (id: string): Promise<ProductsVendor | null> => {
   try {
     const productVendor = await prismaClient.productsVendor.findUnique({
       where: { id }
-    })
+    });
 
-    return productVendor
+    return productVendor;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find product vendor')
+    console.error(error);
+    throw new Error('Failed to find product vendor');
   }
-}
+};
 
 export const updateProductVendor = async (
   id: string,
@@ -62,22 +62,22 @@ export const updateProductVendor = async (
         description: data.description,
         updatedAt: new Date()
       }
-    })
+    });
 
-    return updatedProductVendor
+    return updatedProductVendor;
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update product vendor')
+    console.error(error);
+    throw new Error('Failed to update product vendor');
   }
-}
+};
 
 export const deleteProductVendor = async (id: string): Promise<void> => {
   try {
     await prismaClient.productsVendor.delete({
       where: { id }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete product vendor')
+    console.error(error);
+    throw new Error('Failed to delete product vendor');
   }
-}
+};

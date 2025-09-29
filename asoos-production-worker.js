@@ -187,7 +187,7 @@ export default {
     
     // Handle robots.txt
     if (url.pathname === '/robots.txt') {
-      return new Response(`User-agent: *\nDisallow: /cdn-cgi/\nAllow: /\n\nSitemap: https://asoos.2100.cool/sitemap.xml`, {
+      return new Response('User-agent: *\nDisallow: /cdn-cgi/\nAllow: /\n\nSitemap: https://asoos.2100.cool/sitemap.xml', {
         headers: { 'Content-Type': 'text/plain' }
       });
     }
@@ -218,7 +218,7 @@ export default {
       if (githubResponse.ok) {
         const html = await githubResponse.text();
         // Replace /auth redirects with Sally Port redirects in fallback
-        const updatedHtml = html.replace(/window\.location\.href = '\/auth';/g, "window.location.href = 'https://sallyport.2100.cool/';");
+        const updatedHtml = html.replace(/window\.location\.href = '\/auth';/g, 'window.location.href = \'https://sallyport.2100.cool/\';');
         return new Response(updatedHtml, {
           headers: { 
             'Content-Type': 'text/html;charset=UTF-8',

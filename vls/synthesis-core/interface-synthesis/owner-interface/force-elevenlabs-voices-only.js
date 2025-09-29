@@ -143,13 +143,13 @@ ttsOverrides.forEach(funcName => {
 window.testAgentVoices = async function() {
     console.log('🧪 Testing agent voices (ElevenLabs only)...');
     
-    await window.enhancedAgentTTS("Dr. Lucy here - Quantum Business Computationalist ready for analysis", 'drLucy');
+    await window.enhancedAgentTTS('Dr. Lucy here - Quantum Business Computationalist ready for analysis', 'drLucy');
     await new Promise(resolve => setTimeout(resolve, 3000));
     
-    await window.enhancedAgentTTS("Dr. Claude speaking - Strategic intelligence active", 'drClaude');  
+    await window.enhancedAgentTTS('Dr. Claude speaking - Strategic intelligence active', 'drClaude');  
     await new Promise(resolve => setTimeout(resolve, 3000));
     
-    await window.enhancedAgentTTS("Victory36 online - Security protocols engaged", 'victory36');
+    await window.enhancedAgentTTS('Victory36 online - Security protocols engaged', 'victory36');
     
     console.log('✅ Agent voice test completed - no browser voices used');
 };

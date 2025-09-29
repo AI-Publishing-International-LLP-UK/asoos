@@ -1,6 +1,6 @@
-import { HumanBillingConfig } from './human-billing-config'
-import { RoleFlightConfig } from './role-flight-config'
-import { QuickBooksIntegration } from './accounting-integration'
+import { HumanBillingConfig } from './human-billing-config';
+import { RoleFlightConfig } from './role-flight-config';
+import { QuickBooksIntegration } from './accounting-integration';
 
 export interface TimeTrackingConfig {
   weeklyHourLimit: number
@@ -144,4 +144,4 @@ export const jobCoordinationConfig = {
       irregularPattern: '24h review'
     }
   }
-}
+};

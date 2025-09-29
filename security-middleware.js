@@ -12,12 +12,12 @@ const cors = require('cors');
 const helmetConfig = {
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-      fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-      imgSrc: ["'self'", 'data:', 'https:'],
-      scriptSrc: ["'self'"],
-      connectSrc: ["'self'", 'https://api.elevenlabs.io', 'https://*.googleapis.com'],
+      defaultSrc: ['\'self\''],
+      styleSrc: ['\'self\'', '\'unsafe-inline\'', 'https://fonts.googleapis.com'],
+      fontSrc: ['\'self\'', 'https://fonts.gstatic.com'],
+      imgSrc: ['\'self\'', 'data:', 'https:'],
+      scriptSrc: ['\'self\''],
+      connectSrc: ['\'self\'', 'https://api.elevenlabs.io', 'https://*.googleapis.com'],
     },
   },
   hsts: {

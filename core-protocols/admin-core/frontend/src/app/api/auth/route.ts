@@ -1,28 +1,28 @@
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 // import { cookies } from 'next/headers'
 
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
 
-import { validate } from './utils'
+import { validate } from './utils';
 
 type ResponseData = {
   message: string
 }
 
 export async function GET() {
-  const responseData: ResponseData = { message: 'hello' }
+  const responseData: ResponseData = { message: 'hello' };
 
-  return NextResponse.json(responseData)
+  return NextResponse.json(responseData);
 }
 
 export async function POST(req: NextRequest) {
-  const data = await req.json()
+  const data = await req.json();
 
   // mechanism to validate the userId and password
-  const checkCredentials = await validate(data.username)
-  let token
+  const checkCredentials = await validate(data.username);
+  let token;
 
   //Hit the api and get the token from backend
 
@@ -35,15 +35,15 @@ export async function POST(req: NextRequest) {
       email: data.username + '@coaching2100.com',
       password: data.password
     })
-  })
+  });
 
   if (response.ok) {
     // Checks if the response status is in the 200 range
-    const responseBody: { token: string } = await response.json() // Parse the JSON body
+    const responseBody: { token: string } = await response.json(); // Parse the JSON body
 
-    token = responseBody.token //Getting the token from the response
+    token = responseBody.token; //Getting the token from the response
   } else {
-    console.error('Failed to log in:', response.statusText)
+    console.error('Failed to log in:', response.statusText);
   }
 
   if (checkCredentials) {
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
           'Set-Cookie': `token=${token}; Path=/`
         }
       }
-    )
+    );
   }
 
   return NextResponse.json(
@@ -66,11 +66,11 @@ export async function POST(req: NextRequest) {
         'Set-Cookie': `session=${''}; Path=/`
       }
     }
-  )
+  );
 }
 
 export async function DELETE() {
-  cookies().delete('token')
+  cookies().delete('token');
 
-  return NextResponse.json({ message: 'logged out' }, { status: 200 })
+  return NextResponse.json({ message: 'logged out' }, { status: 200 });
 }

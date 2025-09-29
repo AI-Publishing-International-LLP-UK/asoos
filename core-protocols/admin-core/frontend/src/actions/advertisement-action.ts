@@ -1,8 +1,8 @@
-'use server'
+'use server';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 type createAdvertisementDTO = {
   url: string
@@ -13,36 +13,36 @@ type createAdvertisementDTO = {
 
 export const getAllAdvertisememts = async () => {
   try {
-    const advertisements = await prisma.advertisement.findMany()
+    const advertisements = await prisma.advertisement.findMany();
 
-    return advertisements
+    return advertisements;
   } catch (err) {
-    throw new Error('Failed  to get advertisements')
+    throw new Error('Failed  to get advertisements');
   }
-}
+};
 
 export const createAdvertisement = async (data: createAdvertisementDTO) => {
   try {
-    const newAdvertisement = await prisma.advertisement.create({ data })
+    const newAdvertisement = await prisma.advertisement.create({ data });
 
-    return newAdvertisement
+    return newAdvertisement;
   } catch (err) {
-    throw new Error('Failed to create advertisement')
+    throw new Error('Failed to create advertisement');
   }
-}
+};
 
 export const updateAdvertisement = async (id: number, data: Partial<typeof prisma.advertisement>) => {
   try {
     const updatedAdvertisement = await prisma.advertisement.update({
       where: { id },
       data
-    })
+    });
 
-    return updatedAdvertisement
+    return updatedAdvertisement;
   } catch (err) {
-    throw new Error('Failed to update advertisement')
+    throw new Error('Failed to update advertisement');
   }
-}
+};
 
 export const getAdvertisementById = async (id: number) => {
   try {
@@ -50,13 +50,13 @@ export const getAdvertisementById = async (id: number) => {
       where: {
         id
       }
-    })
+    });
 
-    return advertisement
+    return advertisement;
   } catch (err) {
-    throw new Error('Failed to get advertisement by id')
+    throw new Error('Failed to get advertisement by id');
   }
-}
+};
 
 export const deleteAdvertisement = async (id: number) => {
   try {
@@ -64,14 +64,14 @@ export const deleteAdvertisement = async (id: number) => {
       where: {
         id
       }
-    })
+    });
 
-    return advertisements
+    return advertisements;
   } catch (err) {
-    console.log('Error deletingadvertisement')
-    throw new Error('Failed to delete advertisement')
+    console.log('Error deletingadvertisement');
+    throw new Error('Failed to delete advertisement');
   }
-}
+};
 
 export const setAsHeader = async (id: number) => {
   await prisma.advertisement.updateMany({
@@ -81,7 +81,7 @@ export const setAsHeader = async (id: number) => {
     data: {
       isHeroSection: false
     }
-  })
+  });
 
   await prisma.advertisement.update({
     where: {
@@ -90,8 +90,8 @@ export const setAsHeader = async (id: number) => {
     data: {
       isHeroSection: true
     }
-  })
-}
+  });
+};
 
 export const unsetHeader = async (id: number) => {
   await prisma.advertisement.update({
@@ -101,8 +101,8 @@ export const unsetHeader = async (id: number) => {
     data: {
       isHeroSection: false
     }
-  })
-}
+  });
+};
 
 export const setAsFooter = async (id: number) => {
   await prisma.advertisement.updateMany({
@@ -112,7 +112,7 @@ export const setAsFooter = async (id: number) => {
     data: {
       isFooterBanner: false
     }
-  })
+  });
 
   await prisma.advertisement.update({
     where: {
@@ -121,8 +121,8 @@ export const setAsFooter = async (id: number) => {
     data: {
       isFooterBanner: true
     }
-  })
-}
+  });
+};
 
 export const unsetFooter = async (id: number) => {
   await prisma.advertisement.update({
@@ -132,5 +132,5 @@ export const unsetFooter = async (id: number) => {
     data: {
       isFooterBanner: false
     }
-  })
-}
+  });
+};

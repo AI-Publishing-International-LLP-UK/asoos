@@ -29,7 +29,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 function initPinecone() {
   // This is a simplified implementation that uses Axios for API calls
   // In a production environment, use the official Pinecone SDK
-  const pineconeBaseUrl = `https://api.pinecone.io`;
+  const pineconeBaseUrl = 'https://api.pinecone.io';
   
   return {
     createIndex: async (indexName, dimension = DIMENSION, metric = 'cosine') => {

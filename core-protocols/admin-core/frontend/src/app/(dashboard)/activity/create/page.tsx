@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,19 +14,19 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { createActivity, GetAllActivitiesTypes } from '@/actions/activities-action'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import type { ISelects } from '@/types/ISeLectTypes'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { createActivity, GetAllActivitiesTypes } from '@/actions/activities-action';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import type { ISelects } from '@/types/ISeLectTypes';
 
 type FormData = InferInput<typeof schema>
 
@@ -35,16 +35,16 @@ const schema = object({
   description: pipe(string(), nonEmpty(), minLength(3)),
   typeId: pipe(string(), nonEmpty()),
   thumbnail: pipe(string(), nonEmpty())
-})
+});
 
 export default function Page() {
   //state
-  const [typesActivities, settypesActivities] = useState<ISelects[]>([])
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const [typesActivities, settypesActivities] = useState<ISelects[]>([]);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   function changeLoading(loading: boolean) {
-    setLoading(loading)
+    setLoading(loading);
   }
 
   //hooks
@@ -62,30 +62,30 @@ export default function Page() {
       typeId: '',
       thumbnail: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await createActivity(value)
+      const response = await createActivity(value);
 
       if (response) {
-        router.push('/activity')
+        router.push('/activity');
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     GetAllActivitiesTypes().then(data => {
-      settypesActivities(data)
-    })
-  }, [])
+      settypesActivities(data);
+    });
+  }, []);
 
   //function to assign the value of the thumbnail
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -195,5 +195,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

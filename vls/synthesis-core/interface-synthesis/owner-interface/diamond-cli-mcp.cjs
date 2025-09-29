@@ -294,7 +294,7 @@ class DiamondCLI {
       // Build command arguments
       const args = ['create', companyName, ...options];
       
-      this.log(`🚀 Executing Diamond CLI MCP company provisioning...`, 'DIAMOND');
+      this.log('🚀 Executing Diamond CLI MCP company provisioning...', 'DIAMOND');
       
       const result = await this.runCommand('node', [provisionerScript, ...args], {
         env: {
@@ -331,7 +331,7 @@ class DiamondCLI {
   async mcpListCompanies() {
     await this.validateDiamondSAOAccess();
     
-    this.log(`📋 Diamond CLI: Listing all provisioned MCP companies`, 'DIAMOND');
+    this.log('📋 Diamond CLI: Listing all provisioned MCP companies', 'DIAMOND');
     
     try {
       // Use the automated MCP provisioner list command
@@ -344,7 +344,7 @@ class DiamondCLI {
         throw new Error('MCP provisioner not found. Please ensure automated-mcp-provisioner.js exists.');
       }
       
-      this.log(`📊 Retrieving Diamond CLI MCP company registry...`, 'DIAMOND');
+      this.log('📊 Retrieving Diamond CLI MCP company registry...', 'DIAMOND');
       
       const result = await this.runCommand('node', [provisionerScript, 'list'], {
         env: {
@@ -392,7 +392,7 @@ class DiamondCLI {
         throw new Error(`Companies file not found: ${companiesFile}`);
       }
       
-      this.log(`🚀 Executing Diamond CLI bulk MCP provisioning...`, 'DIAMOND');
+      this.log('🚀 Executing Diamond CLI bulk MCP provisioning...', 'DIAMOND');
       
       const result = await this.runCommand('node', [provisionerScript, 'bulk', companiesFile], {
         env: {
@@ -774,7 +774,7 @@ class DiamondCLI {
       console.log('🏢 MCP COMPANY DOMAINS:');
       const activeMCP = portfolioAudit.mcpCompanies.filter(mcp => mcp.status === 'active').length;
       console.log(`   • Active: ${activeMCP} MCP domains operational`);
-      console.log(`   • Format: mcp.{company}.2100.cool`);
+      console.log('   • Format: mcp.{company}.2100.cool');
       console.log('   • Protection: SallyPort authentication integrated');
       console.log('');
       

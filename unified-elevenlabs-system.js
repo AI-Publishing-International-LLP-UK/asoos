@@ -954,7 +954,7 @@ class UnifiedElevenLabsAgentSystem {
     };
 
     const agentResponses = responses[agent.id] || [
-      "I'm processing your request with advanced computational analysis.",
+      'I\'m processing your request with advanced computational analysis.',
     ];
     return agentResponses[Math.floor(Math.random() * agentResponses.length)];
   }

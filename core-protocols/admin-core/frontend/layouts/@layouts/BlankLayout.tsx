@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
 // Third-party Imports
-import classnames from 'classnames'
+import classnames from 'classnames';
 
 // Type Imports
-import type { ChildrenType, SystemMode } from '@core/types'
+import type { ChildrenType, SystemMode } from '@core/types';
 
 // Hook Imports
-import { useSettings } from '@core/hooks/useSettings'
-import useLayoutInit from '@core/hooks/useLayoutInit'
+import { useSettings } from '@core/hooks/useSettings';
+import useLayoutInit from '@core/hooks/useLayoutInit';
 
 // Util Imports
-import { blankLayoutClasses } from './utils/layoutClasses'
+import { blankLayoutClasses } from './utils/layoutClasses';
 
 type Props = ChildrenType & {
   systemMode: SystemMode
@@ -19,18 +19,18 @@ type Props = ChildrenType & {
 
 const BlankLayout = (props: Props) => {
   // Props
-  const { children, systemMode } = props
+  const { children, systemMode } = props;
 
   // Hooks
-  const { settings } = useSettings()
+  const { settings } = useSettings();
 
-  useLayoutInit(systemMode)
+  useLayoutInit(systemMode);
 
   return (
     <div className={classnames(blankLayoutClasses.root, 'is-full bs-full')} data-skin={settings.skin}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default BlankLayout
+export default BlankLayout;

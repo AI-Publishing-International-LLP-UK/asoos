@@ -7,5 +7,5 @@ interface Props {
 }
 
 export const FormCourse = ({}: Props) => {
-  return <h1>Hola</h1>
-}
+  return <h1>Hola</h1>;
+};

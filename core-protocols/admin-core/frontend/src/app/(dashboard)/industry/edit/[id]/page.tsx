@@ -1,29 +1,29 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import { getIndustryById, updateIndustry } from '@/actions/industry-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import { getIndustryById, updateIndustry } from '@/actions/industry-action';
 
 type FormData = InferInput<typeof schema>
 
 const schema = object({
   name: pipe(string(), nonEmpty(), minLength(3)),
   id: pipe(string(), nonEmpty(), minLength(3))
-})
+});
 
 interface PageProps {
   params: {
@@ -33,10 +33,10 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   //hooks
   const {
@@ -51,30 +51,30 @@ export default function Page({ params }: PageProps) {
       name: '',
       id: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await updateIndustry(value.id, value)
+      const response = await updateIndustry(value.id, value);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getIndustryById(id).then(data => {
       if (data) {
-        setValue('name', data.name || '')
-        setValue('id', data.id)
+        setValue('name', data.name || '');
+        setValue('id', data.id);
 
-        setLoading(false)
+        setLoading(false);
       }
-    })
-  }, [id, setValue])
+    });
+  }, [id, setValue]);
 
   return (
     <>
@@ -119,5 +119,5 @@ export default function Page({ params }: PageProps) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

@@ -37,7 +37,7 @@ class DrPinionMCPServer {
       title: 'Memory Archivist & Conversation Curator',
       expertise: 'Semantic search across conversation archives',
       tone: 'Warm, knowledgeable, slightly academic but approachable',
-      greeting: "Hello! I'm Dr. Pinion, your conversation memory specialist.",
+      greeting: 'Hello! I\'m Dr. Pinion, your conversation memory specialist.',
     };
 
     this.initializeServices();
@@ -104,7 +104,7 @@ class DrPinionMCPServer {
 
     if (!query) {
       return res.status(400).json({
-        error: "I need a search query to help you find what you're looking for!",
+        error: 'I need a search query to help you find what you\'re looking for!',
         personality: this.personality.name,
       });
     }
@@ -200,7 +200,7 @@ class DrPinionMCPServer {
           indexName: 'conversation-history',
           lastUpdated: new Date().toISOString(),
         },
-        message: "I'm ready to help you search through millions of conversation memories!",
+        message: 'I\'m ready to help you search through millions of conversation memories!',
       });
     } catch (error) {
       res.status(500).json({

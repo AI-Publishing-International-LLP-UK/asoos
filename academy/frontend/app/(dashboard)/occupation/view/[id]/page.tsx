@@ -1,11 +1,11 @@
-'use client'
-import { useEffect, useState } from 'react'
+'use client';
+import { useEffect, useState } from 'react';
 
-import { Card, CardContent } from '@mui/material'
+import { Card, CardContent } from '@mui/material';
 
-import DateComponent from '@/components/global/DateComponent'
+import DateComponent from '@/components/global/DateComponent';
 
-import { getOccupationById } from '@/actions/ocupation-action'
+import { getOccupationById } from '@/actions/ocupation-action';
 
 interface Props {
   params: {
@@ -14,17 +14,17 @@ interface Props {
 }
 
 export default function Page({ params }: Props) {
-  const { id } = params
+  const { id } = params;
 
-  const [element, setElement] = useState<any | null>(null)
+  const [element, setElement] = useState<any | null>(null);
 
   useEffect(() => {
     if (id) {
       getOccupationById(id).then(data => {
-        if (data) setElement(data)
-      })
+        if (data) setElement(data);
+      });
     }
-  }, [id])
+  }, [id]);
 
   return (
     <Card>
@@ -43,5 +43,5 @@ export default function Page({ params }: Props) {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

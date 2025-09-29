@@ -1,9 +1,9 @@
-'use server'
+'use server';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
 export async function getAllLiveEvents() {
-  return await prisma.liveEvent.findMany()
+  return await prisma.liveEvent.findMany();
 }
 
 export async function createLiveEvent({
@@ -26,12 +26,12 @@ export async function createLiveEvent({
     await prisma.liveEvent.updateMany({
       where: { isLive: true },
       data: { isLive: false }
-    })
+    });
   }
 
   return await prisma.liveEvent.create({
     data: { url, title, description, backgroundLink, isLive, contentType }
-  })
+  });
 }
 
 export async function updateLiveEvent({
@@ -56,7 +56,7 @@ export async function updateLiveEvent({
     await prisma.liveEvent.updateMany({
       where: { isLive: true },
       data: { isLive: false }
-    })
+    });
   }
 
   return await prisma.liveEvent.update({
@@ -69,17 +69,17 @@ export async function updateLiveEvent({
       isLive,
       contentType
     }
-  })
+  });
 }
 
 export async function getLiveEventById(id: number) {
   return await prisma.liveEvent.findUnique({
     where: { id }
-  })
+  });
 }
 
 export async function deleteLiveEvent(id: number) {
   return await prisma.liveEvent.delete({
     where: { id }
-  })
+  });
 }

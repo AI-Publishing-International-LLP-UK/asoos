@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+import { Button, Card, CardContent, CardHeader, Grid, TableContainer } from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { url } from '../../contstants'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { createSession } from '@/actions/session-action'
-import { getCourseById } from '@/actions/course-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { url } from '../../contstants';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { createSession } from '@/actions/session-action';
+import { getCourseById } from '@/actions/course-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -28,7 +28,7 @@ const schema = object({
   startDate: pipe(string(), nonEmpty(), minLength(3)),
   endDate: pipe(string(), nonEmpty(), minLength(3)),
   thumbnail: pipe(string(), nonEmpty())
-})
+});
 
 interface Props {
   params: {
@@ -38,14 +38,14 @@ interface Props {
 
 export default function Page({ params }: Props) {
   //state
-  const router = useRouter()
+  const router = useRouter();
 
-  const { id } = params
+  const { id } = params;
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   function changeLoading(loading: boolean) {
-    setLoading(loading)
+    setLoading(loading);
   }
 
   //hooks
@@ -65,7 +65,7 @@ export default function Page({ params }: Props) {
       endDate: '',
       thumbnail: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
@@ -76,29 +76,29 @@ export default function Page({ params }: Props) {
         startDate: new Date(value.startDate),
         endDate: new Date(value.endDate),
         thumbnail: value.thumbnail
-      })
+      });
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getCourseById(id).then(resp => {
       if (resp) {
-        setValue('courseId', resp.id)
+        setValue('courseId', resp.id);
       } else {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
-    })
-  }, [id, router, setValue])
+    });
+  }, [id, router, setValue]);
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -106,7 +106,7 @@ export default function Page({ params }: Props) {
       <ToastContainer />
 
       <Card>
-        <CardHeader title={`Create Session`} />
+        <CardHeader title={'Create Session'} />
         <CardContent>
           <TableContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -216,5 +216,5 @@ export default function Page({ params }: Props) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

@@ -17,7 +17,7 @@
  */
 
 // Type Imports
-import type { Mode, Skin, Layout, LayoutComponentPosition, LayoutComponentWidth } from '@core/types'
+import type { Mode, Skin, Layout, LayoutComponentPosition, LayoutComponentWidth } from '@core/types';
 
 type Navbar = {
   type: LayoutComponentPosition
@@ -73,6 +73,6 @@ const themeConfig: Config = {
     detached: true //! true, false (This will not work in the Horizontal Layout)
   },
   disableRipple: false // true, false
-}
+};
 
-export default themeConfig
+export default themeConfig;

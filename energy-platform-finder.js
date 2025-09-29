@@ -18,167 +18,167 @@ const fs = require('fs');
 const energyPlatforms = [
     // Major Energy Trading Platforms
     {
-        name: "ICE (Intercontinental Exchange)",
-        website: "https://www.theice.com",
-        registrationUrl: "https://www.theice.com/membership",
-        type: "Major Exchange",
-        markets: ["North America", "Europe", "Global"],
+        name: 'ICE (Intercontinental Exchange)',
+        website: 'https://www.theice.com',
+        registrationUrl: 'https://www.theice.com/membership',
+        type: 'Major Exchange',
+        markets: ['North America', 'Europe', 'Global'],
         electronicsLikely: true
     },
     {
-        name: "CME Group Energy",
-        website: "https://www.cmegroup.com",
-        registrationUrl: "https://www.cmegroup.com/company/membership.html",
-        type: "Major Exchange", 
-        markets: ["North America", "Global"],
+        name: 'CME Group Energy',
+        website: 'https://www.cmegroup.com',
+        registrationUrl: 'https://www.cmegroup.com/company/membership.html',
+        type: 'Major Exchange', 
+        markets: ['North America', 'Global'],
         electronicsLikely: true
     },
     {
-        name: "EPEX SPOT",
-        website: "https://www.epexspot.com",
-        registrationUrl: "https://www.epexspot.com/en/become-a-member",
-        type: "European Exchange",
-        markets: ["Central Western Europe"],
+        name: 'EPEX SPOT',
+        website: 'https://www.epexspot.com',
+        registrationUrl: 'https://www.epexspot.com/en/become-a-member',
+        type: 'European Exchange',
+        markets: ['Central Western Europe'],
         electronicsLikely: false
     },
     
     // Regional Energy Consortiums
     {
-        name: "PowerPlex (Energy Trading Platform)",
-        website: "https://www.powerplex.com",
-        registrationUrl: "https://www.powerplex.com/membership",
-        type: "Regional Platform",
-        markets: ["North America"],
+        name: 'PowerPlex (Energy Trading Platform)',
+        website: 'https://www.powerplex.com',
+        registrationUrl: 'https://www.powerplex.com/membership',
+        type: 'Regional Platform',
+        markets: ['North America'],
         electronicsLikely: true
     },
     {
-        name: "Energy Marketplace (Australia)",
-        website: "https://www.energymarketplace.com.au",
-        registrationUrl: "https://www.energymarketplace.com.au/suppliers/register",
-        type: "Regional Platform",
-        markets: ["Australia"],
+        name: 'Energy Marketplace (Australia)',
+        website: 'https://www.energymarketplace.com.au',
+        registrationUrl: 'https://www.energymarketplace.com.au/suppliers/register',
+        type: 'Regional Platform',
+        markets: ['Australia'],
         electronicsLikely: true
     },
     {
-        name: "Energy Trading Networks",
-        website: "https://www.energytradingnetworks.com",
-        registrationUrl: "https://www.energytradingnetworks.com/register",
-        type: "B2B Platform",
-        markets: ["Global"],
+        name: 'Energy Trading Networks',
+        website: 'https://www.energytradingnetworks.com',
+        registrationUrl: 'https://www.energytradingnetworks.com/register',
+        type: 'B2B Platform',
+        markets: ['Global'],
         electronicsLikely: true
     },
     
     // Municipal and Cooperative Consortiums
     {
-        name: "American Municipal Power",
-        website: "https://www.amppartners.org",
-        registrationUrl: "https://www.amppartners.org/suppliers",
-        type: "Municipal Consortium",
-        markets: ["US Midwest/East"],
+        name: 'American Municipal Power',
+        website: 'https://www.amppartners.org',
+        registrationUrl: 'https://www.amppartners.org/suppliers',
+        type: 'Municipal Consortium',
+        markets: ['US Midwest/East'],
         electronicsLikely: true
     },
     {
-        name: "Public Power Council",
-        website: "https://www.ppcpdx.org",
-        registrationUrl: "https://www.ppcpdx.org/suppliers",
-        type: "Public Power Consortium",
-        markets: ["US Pacific Northwest"],
+        name: 'Public Power Council',
+        website: 'https://www.ppcpdx.org',
+        registrationUrl: 'https://www.ppcpdx.org/suppliers',
+        type: 'Public Power Consortium',
+        markets: ['US Pacific Northwest'],
         electronicsLikely: true
     },
     {
-        name: "Rural Electric Cooperative Association",
-        website: "https://www.electric.coop",
-        registrationUrl: "https://www.electric.coop/suppliers",
-        type: "Cooperative Network",
-        markets: ["Rural US"],
+        name: 'Rural Electric Cooperative Association',
+        website: 'https://www.electric.coop',
+        registrationUrl: 'https://www.electric.coop/suppliers',
+        type: 'Cooperative Network',
+        markets: ['Rural US'],
         electronicsLikely: true
     },
     
     // International Platforms
     {
-        name: "Energy Exchange Austria",
-        website: "https://www.exaa.at",
-        registrationUrl: "https://www.exaa.at/en/market-access/admission",
-        type: "Regional Exchange",
-        markets: ["Central Europe"],
+        name: 'Energy Exchange Austria',
+        website: 'https://www.exaa.at',
+        registrationUrl: 'https://www.exaa.at/en/market-access/admission',
+        type: 'Regional Exchange',
+        markets: ['Central Europe'],
         electronicsLikely: false
     },
     {
-        name: "Mexican Energy Exchange",
-        website: "https://www.cenace.gob.mx",
-        registrationUrl: "https://www.cenace.gob.mx/Paginas/SIM/Mercado.aspx",
-        type: "National Exchange",
-        markets: ["Mexico"],
+        name: 'Mexican Energy Exchange',
+        website: 'https://www.cenace.gob.mx',
+        registrationUrl: 'https://www.cenace.gob.mx/Paginas/SIM/Mercado.aspx',
+        type: 'National Exchange',
+        markets: ['Mexico'],
         electronicsLikely: false
     },
     {
-        name: "Compañía Administradora del Mercado Mayorista Eléctrico (CAMMESA)",
-        website: "https://www.cammesa.com",
-        registrationUrl: "https://www.cammesa.com/agentes",
-        type: "National Market",
-        markets: ["Argentina"],
+        name: 'Compañía Administradora del Mercado Mayorista Eléctrico (CAMMESA)',
+        website: 'https://www.cammesa.com',
+        registrationUrl: 'https://www.cammesa.com/agentes',
+        type: 'National Market',
+        markets: ['Argentina'],
         electronicsLikely: false
     },
     
     // B2B Energy Platforms
     {
-        name: "EnergyBot",
-        website: "https://www.energybot.com",
-        registrationUrl: "https://www.energybot.com/suppliers/register",
-        type: "B2B Marketplace",
-        markets: ["North America"],
+        name: 'EnergyBot',
+        website: 'https://www.energybot.com',
+        registrationUrl: 'https://www.energybot.com/suppliers/register',
+        type: 'B2B Marketplace',
+        markets: ['North America'],
         electronicsLikely: true
     },
     {
-        name: "Choose Energy Business",
-        website: "https://business.chooseenergy.com",
-        registrationUrl: "https://business.chooseenergy.com/suppliers",
-        type: "B2B Marketplace", 
-        markets: ["US Deregulated States"],
+        name: 'Choose Energy Business',
+        website: 'https://business.chooseenergy.com',
+        registrationUrl: 'https://business.chooseenergy.com/suppliers',
+        type: 'B2B Marketplace', 
+        markets: ['US Deregulated States'],
         electronicsLikely: true
     },
     {
-        name: "Energy Marketplace (UK)",
-        website: "https://www.energymarketplace.co.uk",
-        registrationUrl: "https://www.energymarketplace.co.uk/suppliers/register",
-        type: "B2B Marketplace",
-        markets: ["United Kingdom"],
+        name: 'Energy Marketplace (UK)',
+        website: 'https://www.energymarketplace.co.uk',
+        registrationUrl: 'https://www.energymarketplace.co.uk/suppliers/register',
+        type: 'B2B Marketplace',
+        markets: ['United Kingdom'],
         electronicsLikely: true
     },
     
     // Renewable Energy Specific
     {
-        name: "Renewable Energy Marketplace",
-        website: "https://www.renewableenergymarketplace.com",
-        registrationUrl: "https://www.renewableenergymarketplace.com/register-supplier",
-        type: "Renewable Platform",
-        markets: ["North America"],
+        name: 'Renewable Energy Marketplace',
+        website: 'https://www.renewableenergymarketplace.com',
+        registrationUrl: 'https://www.renewableenergymarketplace.com/register-supplier',
+        type: 'Renewable Platform',
+        markets: ['North America'],
         electronicsLikely: true
     },
     {
-        name: "Green Energy Exchange",
-        website: "https://www.greenengyexchange.com",
-        registrationUrl: "https://www.greenengyexchange.com/supplier-registration",
-        type: "Renewable Platform",
-        markets: ["Global"],
+        name: 'Green Energy Exchange',
+        website: 'https://www.greenengyexchange.com',
+        registrationUrl: 'https://www.greenengyexchange.com/supplier-registration',
+        type: 'Renewable Platform',
+        markets: ['Global'],
         electronicsLikely: true
     },
     
     // Utility Procurement Platforms
     {
-        name: "UtilityDive Marketplace",
-        website: "https://marketplace.utilitydive.com",
-        registrationUrl: "https://marketplace.utilitydive.com/suppliers/register",
-        type: "Utility Marketplace",
-        markets: ["North America"],
+        name: 'UtilityDive Marketplace',
+        website: 'https://marketplace.utilitydive.com',
+        registrationUrl: 'https://marketplace.utilitydive.com/suppliers/register',
+        type: 'Utility Marketplace',
+        markets: ['North America'],
         electronicsLikely: true
     },
     {
-        name: "PowerSuite Energy Trading",
-        website: "https://www.powersuite.com",
-        registrationUrl: "https://www.powersuite.com/suppliers/join",
-        type: "Trading Platform",
-        markets: ["North America"],
+        name: 'PowerSuite Energy Trading',
+        website: 'https://www.powersuite.com',
+        registrationUrl: 'https://www.powersuite.com/suppliers/join',
+        type: 'Trading Platform',
+        markets: ['North America'],
         electronicsLikely: true
     }
 ];
@@ -216,8 +216,8 @@ async function checkPlatformRegistration(platform) {
         // Update platform data
         platform.hasElectronicRegistration = foundTerms.length > 0;
         platform.foundTerms = foundTerms;
-        platform.registrationStatus = foundTerms.length > 0 ? "Electronic Registration Available" : "Manual Process Likely";
-        platform.accessibilityCheck = "Accessible";
+        platform.registrationStatus = foundTerms.length > 0 ? 'Electronic Registration Available' : 'Manual Process Likely';
+        platform.accessibilityCheck = 'Accessible';
         
         return platform;
         
@@ -225,7 +225,7 @@ async function checkPlatformRegistration(platform) {
         platform.hasElectronicRegistration = false;
         platform.foundTerms = [];
         platform.registrationStatus = `Error: ${error.message}`;
-        platform.accessibilityCheck = "Not Accessible";
+        platform.accessibilityCheck = 'Not Accessible';
         
         return platform;
     }
@@ -251,8 +251,8 @@ async function findEnergyPlatforms() {
     
     // Categorize results
     const electronicPlatforms = results.filter(p => p.hasElectronicRegistration);
-    const manualPlatforms = results.filter(p => !p.hasElectronicRegistration && p.accessibilityCheck === "Accessible");
-    const inaccessiblePlatforms = results.filter(p => p.accessibilityCheck === "Not Accessible");
+    const manualPlatforms = results.filter(p => !p.hasElectronicRegistration && p.accessibilityCheck === 'Accessible');
+    const inaccessiblePlatforms = results.filter(p => p.accessibilityCheck === 'Not Accessible');
     
     // Display results
     console.log('✅ PLATFORMS WITH ELECTRONIC REGISTRATION:');
@@ -279,8 +279,8 @@ async function findEnergyPlatforms() {
     // Save detailed results
     const reportData = {
         search_date: new Date().toISOString(),
-        company: "Einstein Wells LLC",
-        search_purpose: "Find immediate electronic registration opportunities",
+        company: 'Einstein Wells LLC',
+        search_purpose: 'Find immediate electronic registration opportunities',
         total_platforms_checked: results.length,
         electronic_registration_available: electronicPlatforms.length,
         manual_process_required: manualPlatforms.length,
@@ -288,10 +288,10 @@ async function findEnergyPlatforms() {
         platforms: results,
         immediate_opportunities: immediateOpportunities,
         next_actions: [
-            "Visit electronic platform registration URLs",
-            "Complete online applications for B2B marketplaces",
-            "Focus on renewable energy and consortium platforms",
-            "Prepare standard supplier documentation package"
+            'Visit electronic platform registration URLs',
+            'Complete online applications for B2B marketplaces',
+            'Focus on renewable energy and consortium platforms',
+            'Prepare standard supplier documentation package'
         ]
     };
     

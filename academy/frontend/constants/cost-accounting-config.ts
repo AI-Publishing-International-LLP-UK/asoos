@@ -1,4 +1,4 @@
-import { BlockchainConfig } from '../types/blockchain'
+import { BlockchainConfig } from '../types/blockchain';
 
 export const costAccountingConfig = {
   hrCosts: {
@@ -89,4 +89,4 @@ export const costAccountingConfig = {
       verificationMethod: 'merkle_proof'
     }
   }
-}
+};

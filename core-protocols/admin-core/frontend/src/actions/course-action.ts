@@ -1,9 +1,9 @@
-'use server'
-import type { Course } from '@prisma/client'
+'use server';
+import type { Course } from '@prisma/client';
 
-import prisma from '@/prisma/prisma'
+import prisma from '@/prisma/prisma';
 
-const prismaClient = prisma
+const prismaClient = prisma;
 
 export interface CreateCourseDto {
   course: string
@@ -42,12 +42,12 @@ export const findStudentInCourse = async (id: string, studentId: string) => {
         courseId: id,
         userId: studentId
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find student in course')
+    console.error(error);
+    throw new Error('Failed to find student in course');
   }
-}
+};
 
 export const createCourse = async (data: CreateCourseDto): Promise<Course> => {
   try {
@@ -62,12 +62,12 @@ export const createCourse = async (data: CreateCourseDto): Promise<Course> => {
           connect: data.skillIds.map(skillId => ({ id: skillId }))
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create course')
+    console.error(error);
+    throw new Error('Failed to create course');
   }
-}
+};
 
 export const getAllCourses = async (): Promise<Course[]> => {
   try {
@@ -84,12 +84,12 @@ export const getAllCourses = async (): Promise<Course[]> => {
           }
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find courses')
+    console.error(error);
+    throw new Error('Failed to find courses');
   }
-}
+};
 
 export const getCourseById = async (id: string) => {
   try {
@@ -98,12 +98,12 @@ export const getCourseById = async (id: string) => {
       include: {
         skills: true
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to find course')
+    console.error(error);
+    throw new Error('Failed to find course');
   }
-}
+};
 
 export const updateCourse = async (id: string, data: CreateCourseDto): Promise<Course> => {
   try {
@@ -119,12 +119,12 @@ export const updateCourse = async (id: string, data: CreateCourseDto): Promise<C
           set: data.skillIds.map(skillId => ({ id: skillId }))
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to update course')
+    console.error(error);
+    throw new Error('Failed to update course');
   }
-}
+};
 
 export const deleteCourse = async (id: string): Promise<void> => {
   try {
@@ -133,10 +133,10 @@ export const deleteCourse = async (id: string): Promise<void> => {
       where: {
         courseId: id
       }
-    })
+    });
 
     // Obtener los IDs de todas las sesiones del curso
-    const sessionIds = sessions.map(session => session.id)
+    const sessionIds = sessions.map(session => session.id);
 
     // Eliminar todas las relaciones SessionActivity asociadas a las sesiones del curso
     await prismaClient.sessionActivity.deleteMany({
@@ -145,31 +145,31 @@ export const deleteCourse = async (id: string): Promise<void> => {
           in: sessionIds
         }
       }
-    })
+    });
 
     // Eliminar las sesiones del curso
     await prismaClient.session.deleteMany({
       where: {
         courseId: id
       }
-    })
+    });
 
     // Eliminar todas las relaciones UserCourse asociadas al curso
     await prismaClient.userCourse.deleteMany({
       where: {
         courseId: id
       }
-    })
+    });
 
     // Finalmente, eliminar el curso
     await prismaClient.course.delete({
       where: { id }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to delete course')
+    console.error(error);
+    throw new Error('Failed to delete course');
   }
-}
+};
 
 export const addStudentToCourse = async (id: string, studentId: string) => {
   try {
@@ -182,12 +182,12 @@ export const addStudentToCourse = async (id: string, studentId: string) => {
           }
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to add student to course')
+    console.error(error);
+    throw new Error('Failed to add student to course');
   }
-}
+};
 
 export const createCourseComplete = async (createCourseComplete: CreateCourseCompleteDto) => {
   try {
@@ -218,9 +218,9 @@ export const createCourseComplete = async (createCourseComplete: CreateCourseCom
           }))
         }
       }
-    })
+    });
   } catch (error) {
-    console.error(error)
-    throw new Error('Failed to create course complete')
+    console.error(error);
+    throw new Error('Failed to create course complete');
   }
-}
+};

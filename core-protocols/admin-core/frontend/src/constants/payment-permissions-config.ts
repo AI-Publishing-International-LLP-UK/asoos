@@ -1,5 +1,5 @@
-import { morganProfile } from './payment-admins'
-import { PaymentAdminRole, PaymentOverrideType, PaymentAdministratorProfile } from './human-billing-config'
+import { morganProfile } from './payment-admins';
+import { PaymentAdminRole, PaymentOverrideType, PaymentAdministratorProfile } from './human-billing-config';
 
 export interface PaymentPermissionMatrix {
   userId: string
@@ -65,79 +65,79 @@ export const paymentPermissionsConfig: Record<string, PaymentPermissionMatrix> =
       auditAccess: 1
     }
   }
-}
+};
 
 export const paymentAccessControl = {
   /**
    * Check if a user has specific payment permission
    */
   hasPermission: (userId: string, permission: keyof PaymentPermissionMatrix['permissions']): boolean => {
-    const userConfig = paymentPermissionsConfig[userId]
-    return userConfig?.permissions[permission] || false
+    const userConfig = paymentPermissionsConfig[userId];
+    return userConfig?.permissions[permission] || false;
   },
 
   /**
    * Check if user can perform specific override type
    */
   canPerformOverride: (userId: string, overrideType: PaymentOverrideType): boolean => {
-    const userConfig = paymentPermissionsConfig[userId]
-    return userConfig?.allowedOverrideTypes.includes(overrideType) || false
+    const userConfig = paymentPermissionsConfig[userId];
+    return userConfig?.allowedOverrideTypes.includes(overrideType) || false;
   },
 
   /**
    * Get maximum override amount for user
    */
   getMaxOverrideAmount: (userId: string): number => {
-    const userConfig = paymentPermissionsConfig[userId]
-    return userConfig?.permissions.maxOverrideAmount || 0
+    const userConfig = paymentPermissionsConfig[userId];
+    return userConfig?.permissions.maxOverrideAmount || 0;
   },
 
   /**
    * Check if user meets access level requirement
    */
   meetsAccessLevel: (userId: string, action: keyof PaymentPermissionMatrix['accessLevelRequiredFor']): boolean => {
-    const userConfig = paymentPermissionsConfig[userId]
-    if (!userConfig) return false
+    const userConfig = paymentPermissionsConfig[userId];
+    if (!userConfig) return false;
     
-    const requiredLevel = userConfig.accessLevelRequiredFor[action]
-    const userLevel = morganProfile.accessLevel // For Morgan specifically
+    const requiredLevel = userConfig.accessLevelRequiredFor[action];
+    const userLevel = morganProfile.accessLevel; // For Morgan specifically
     
-    return userLevel >= requiredLevel
+    return userLevel >= requiredLevel;
   },
 
   /**
    * Get daily approval limit for user
    */
   getDailyApprovalLimit: (userId: string): number => {
-    const userConfig = paymentPermissionsConfig[userId]
-    return userConfig?.permissions.approvalLimits.daily || 0
+    const userConfig = paymentPermissionsConfig[userId];
+    return userConfig?.permissions.approvalLimits.daily || 0;
   },
 
   /**
    * Get monthly approval limit for user
    */
   getMonthlyApprovalLimit: (userId: string): number => {
-    const userConfig = paymentPermissionsConfig[userId]
-    return userConfig?.permissions.approvalLimits.monthly || 0
+    const userConfig = paymentPermissionsConfig[userId];
+    return userConfig?.permissions.approvalLimits.monthly || 0;
   },
 
   /**
    * Validate if user can approve specific payment amount
    */
   canApproveAmount: (userId: string, amount: number): boolean => {
-    const userConfig = paymentPermissionsConfig[userId]
-    if (!userConfig) return false
+    const userConfig = paymentPermissionsConfig[userId];
+    if (!userConfig) return false;
     
     return userConfig.permissions.canApprovePayments && 
-           amount <= userConfig.permissions.maxOverrideAmount
+           amount <= userConfig.permissions.maxOverrideAmount;
   },
 
   /**
    * Log payment action for audit trail
    */
   logPaymentAction: (userId: string, action: string, details: object): void => {
-    const timestamp = new Date().toISOString()
-    const userConfig = paymentPermissionsConfig[userId]
+    const timestamp = new Date().toISOString();
+    const userConfig = paymentPermissionsConfig[userId];
     
     console.log(`[PAYMENT AUDIT] ${timestamp}`, {
       user: userConfig?.name || 'Unknown',
@@ -145,15 +145,15 @@ export const paymentAccessControl = {
       action,
       details,
       accessLevel: userConfig?.permissions || 'No permissions found'
-    })
+    });
   },
 
   /**
    * Get all users with specific payment role
    */
   getUsersWithRole: (role: PaymentAdminRole): PaymentAdministratorProfile[] => {
-    return [morganProfile].filter(admin => admin.roles.includes(role))
+    return [morganProfile].filter(admin => admin.roles.includes(role));
   }
-}
+};
 
-export default paymentAccessControl
+export default paymentAccessControl;

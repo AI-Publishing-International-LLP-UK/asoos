@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -16,18 +16,18 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { url } from '../../constatnts'
-import { getLiveEventById, updateLiveEvent } from '@/actions/live-event-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { url } from '../../constatnts';
+import { getLiveEventById, updateLiveEvent } from '@/actions/live-event-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -37,7 +37,7 @@ const schema = object({
   backgroundLink: pipe(string(), nonEmpty()),
   description: pipe(string(), nonEmpty(), minLength(3)),
   contentType: pipe(string(), nonEmpty())
-})
+});
 
 interface PageProps {
   params: {
@@ -47,10 +47,10 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   //hooks
   const {
@@ -68,7 +68,7 @@ export default function Page({ params }: PageProps) {
       url: '',
       contentType: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
@@ -79,34 +79,34 @@ export default function Page({ params }: PageProps) {
         url: value.url,
         description: value.description,
         contentType: value.contentType
-      })
+      });
 
       if (response) {
-        router.push(`${url}`)
+        router.push(`${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getLiveEventById(parseInt(id)).then(data => {
       if (data) {
-        setValue('backgroundLink', data.backgroundLink || '')
-        setValue('title', data.title || '')
-        setValue('url', data.url)
-        setValue('description', data.description)
-        setValue('contentType', data.contentType)
+        setValue('backgroundLink', data.backgroundLink || '');
+        setValue('title', data.title || '');
+        setValue('url', data.url);
+        setValue('description', data.description);
+        setValue('contentType', data.contentType);
 
-        setLoading(false)
+        setLoading(false);
       }
-    })
-  }, [id, setValue])
+    });
+  }, [id, setValue]);
 
   return (
     <>
       <Card>
-        <CardHeader title={`Edit Live Event`} />
+        <CardHeader title={'Edit Live Event'} />
         <CardContent>
           <TableContainer>
             <ComponentLoading loading={loading}>
@@ -214,5 +214,5 @@ export default function Page({ params }: PageProps) {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

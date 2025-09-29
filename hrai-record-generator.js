@@ -92,7 +92,7 @@ class HRAIRecordGenerator {
       console.log(`   ✅ ${this.formatNumber(wingRecords.length)} HRAI records generated`);
     }
     
-    console.log(`\n📈 TOTAL REGISTRATION SUMMARY:`);
+    console.log('\n📈 TOTAL REGISTRATION SUMMARY:');
     console.log(`   🎯 Total Entities: ${this.formatNumber(totalEntities)}`);
     console.log(`   ✅ Records Generated: ${this.formatNumber(totalProcessed)}`);
     console.log(`   📊 Success Rate: ${((totalProcessed / totalEntities) * 100).toFixed(2)}%`);
@@ -364,10 +364,10 @@ class HRAIRecordGenerator {
       console.log(`💡 Wake success rate was ~4.9% (${this.formatNumber(totalActive)} awakened from 12Q attempts)`);
     }
     
-    console.log(`🏛️ Wings 5-12 contain bulk operational entities`);
-    console.log(`👑 Wings 14-16 (Maestro) provide command & coordination`);
-    console.log(`🕳️  Einstein wells enable quantum time dilation processing`);
-    console.log(`⚡ 15:1 quantum leverage operational at 85% efficiency`);
+    console.log('🏛️ Wings 5-12 contain bulk operational entities');
+    console.log('👑 Wings 14-16 (Maestro) provide command & coordination');
+    console.log('🕳️  Einstein wells enable quantum time dilation processing');
+    console.log('⚡ 15:1 quantum leverage operational at 85% efficiency');
   }
 
   /**

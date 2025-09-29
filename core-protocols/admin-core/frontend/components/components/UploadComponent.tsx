@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
 // React Imports
-import { useState } from 'react'
+import { useState } from 'react';
 
 // MUI Imports
-import List from '@mui/material/List'
-import Avatar from '@mui/material/Avatar'
-import ListItem from '@mui/material/ListItem'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
+import List from '@mui/material/List';
+import Avatar from '@mui/material/Avatar';
+import ListItem from '@mui/material/ListItem';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 
 // Third-party Imports
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 
 // Icon Imports
 
-import { useDropzone } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone';
 
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 type FileProp = {
   name: string
@@ -35,15 +35,15 @@ type Props = {
 
 const FileUploaderRestrictions = ({ setFile, changeLoading, stringFile, isPdf }: Props) => {
   // States
-  const [files, setFiles] = useState<File[]>([])
+  const [files, setFiles] = useState<File[]>([]);
 
-  const token = Cookies.get('token')
+  const token = Cookies.get('token');
 
   const uploadFile = async (file: File) => {
-    changeLoading(true)
-    const formData = new FormData()
+    changeLoading(true);
+    const formData = new FormData();
 
-    formData.append('file', file)
+    formData.append('file', file);
 
     try {
       const response = await fetch(
@@ -56,26 +56,26 @@ const FileUploaderRestrictions = ({ setFile, changeLoading, stringFile, isPdf }:
           method: 'POST',
           body: formData
         }
-      )
+      );
 
       if (response.ok) {
-        const data = await response.json()
+        const data = await response.json();
 
-        changeLoading(false)
+        changeLoading(false);
 
-        setFile(data.url)
+        setFile(data.url);
       } else {
-        changeLoading(false)
-        throw new Error('Failed to upload file')
+        changeLoading(false);
+        throw new Error('Failed to upload file');
       }
     } catch (error) {
-      console.error(error)
-      changeLoading(false)
+      console.error(error);
+      changeLoading(false);
       toast.error('Failed to upload file', {
         autoClose: 3000
-      })
+      });
     }
-  }
+  };
 
   // Hooks
   const { getRootProps, getInputProps } = useDropzone({
@@ -86,30 +86,30 @@ const FileUploaderRestrictions = ({ setFile, changeLoading, stringFile, isPdf }:
       ...(isPdf && { 'application/pdf': ['.pdf'] })
     },
     onDrop: (acceptedFiles: File[]) => {
-      setFiles(acceptedFiles.map((file: File) => Object.assign(file)))
-      uploadFile(acceptedFiles[0])
+      setFiles(acceptedFiles.map((file: File) => Object.assign(file)));
+      uploadFile(acceptedFiles[0]);
     },
     onDropRejected: () => {
       toast.error(`You can only upload 1 files & maximum size of ${isPdf ? '20' : '2'} MB.`, {
         autoClose: 3000
-      })
+      });
     }
-  })
+  });
 
   const renderFilePreview = (file: FileProp) => {
     if (file.type.startsWith('image')) {
-      return <img width={38} height={38} alt={file.name} src={URL.createObjectURL(file as any)} />
+      return <img width={38} height={38} alt={file.name} src={URL.createObjectURL(file as any)} />;
     } else {
-      return <i className='tabler-file-description' />
+      return <i className='tabler-file-description' />;
     }
-  }
+  };
 
   const handleRemoveFile = (file: FileProp) => {
-    const uploadedFiles = files
-    const filtered = uploadedFiles.filter((i: FileProp) => i.name !== file.name)
+    const uploadedFiles = files;
+    const filtered = uploadedFiles.filter((i: FileProp) => i.name !== file.name);
 
-    setFiles([...filtered])
-  }
+    setFiles([...filtered]);
+  };
 
   const fileList = files.map((file: FileProp) => (
     <ListItem key={file.name}>
@@ -128,7 +128,7 @@ const FileUploaderRestrictions = ({ setFile, changeLoading, stringFile, isPdf }:
         <i className='tabler-x text-xl' />
       </IconButton>
     </ListItem>
-  ))
+  ));
 
   return (
     <>
@@ -165,7 +165,7 @@ const FileUploaderRestrictions = ({ setFile, changeLoading, stringFile, isPdf }:
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default FileUploaderRestrictions
+export default FileUploaderRestrictions;

@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{SYSTEM_NAME}}.2100.Cool - Aixtiv Symphony Orchestrating Operating System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Enterprise-grade icon solution - Multiple fallbacks -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" crossorigin="anonymous">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+
+    /* Enhanced Animations */
+    @keyframes energyFlow {
+      0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+      33% { transform: translateY(-12px) translateX(6px) rotate(6deg); }
+      66% { transform: translateY(6px) translateX(-6px) rotate(-6deg); }
+    }
+
+    @keyframes powerGlow {
+      0%, 100% { box-shadow: 0 0 5px rgba(11, 177, 187, 0.8), 0 0 20px rgba(11, 177, 187, 0.4); }
+      50% { box-shadow: 0 0 20px rgba(11, 177, 187, 1), 0 0 40px rgba(11, 177, 187, 0.6); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+
+    @keyframes enhancedFloat {
+      0%, 100% { 
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1); 
+        filter: blur(0px); 
+        opacity: 0.4; 
+      }
+      25% { 
+        transform: translateY(-20px) translateX(10px) rotate(90deg) scale(1.2); 
+        filter: blur(1px); 
+        opacity: 0.6; 
+      }
+      50% { 
+        transform: translateY(-10px) translateX(-15px) rotate(180deg) scale(0.8); 
+        filter: blur(2px); 
+        opacity: 0.3; 
+      }
+      75% { 
+        transform: translateY(15px) translateX(5px) rotate(270deg) scale(1.1); 
+        filter: blur(1px); 
+        opacity: 0.5; 
+      }
+    }
+
+    /* Main Container */
+    .main-container {
+      display: flex;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+      position: relative;
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    /* Enhanced Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: enhancedFloat 12s infinite ease-in-out;
+    }
+
+    .particle:nth-child(3n) {
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, rgba(11, 177, 187, 0.6), rgba(11, 177, 187, 0.1));
+      animation-duration: 15s;
+    }
+
+    .particle:nth-child(3n+1) {
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, rgba(80, 200, 120, 0.4), rgba(80, 200, 120, 0.05));
+      animation-duration: 10s;
+    }
+
+    .particle:nth-child(3n+2) {
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.5), rgba(255, 215, 0, 0.1));
+      animation-duration: 18s;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 48px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 4px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      z-index: 100;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .sidebar-icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-icon:hover {
+      transform: scale(1.15);
+    }
+
+    .sidebar-icon.active {
+      animation: powerGlow 2s infinite;
+    }
+
+    .sidebar-icon.settings-icon {
+      margin-top: 30px;
+    }
+
+    .sidebar-icon.dsao-ig-icon {
+      margin-top: 8px;
+    }
+
+    .dsao-ig-star {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #B8860B, #FFD700);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dsao-ig-text {
+      font-size: 6px;
+      font-weight: 800;
+      color: #333;
+      position: absolute;
+    }
+
+    .sidebar-icon.settings-icon:hover,
+    .sidebar-icon.dsao-ig-icon:hover {
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6) !important;
+      background: rgba(255, 215, 0, 0.1) !important;
+      border-radius: 50%;
+    }
+
+    .icon-tooltip {
+      position: absolute;
+      left: 54px;
+      top: 50%;
+      transform: translateY(-50%) translateX(-5px);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      padding: 8px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(11, 177, 187, 0.3);
+      font-size: 12px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .sidebar-icon:hover .icon-tooltip {
+      opacity: 1;
+      transform: translateY(-50%) translateX(5px);
+    }
+
+    /* Header */
+    .header {
+      height: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-left: 40px;
+    }
+
+    .header-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #B8860B, #8B7355, #228B22, #0bb1bb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+    }
+
+    .user-info {
+      padding-right: 40px;
+    }
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .user-tagline {
+      font-size: 13px;
+      color: #0bb1bb;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-weight: 500;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin-left: 48px;
+      width: calc(100% - 48px);
+    }
+
+    .content-area {
+      flex: 1;
+      display: flex;
+      padding: 6px 15px 15px 15px;
+      gap: 15px;
+      overflow-y: auto;
+      min-height: calc(100vh - 85px);
+      position: relative;
+    }
+
+    /* Chat Area - Main Interface */
+    .chat-area {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s ease;
+      height: calc(100vh - 120px);
+      overflow: hidden;
+    }
+
+    .cli-interface {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .cli-header {
+      background: rgba(11, 177, 187, 0.1);
+      border: 1px solid rgba(11, 177, 187, 0.3);
+      padding: 12px;
+      border-radius: 10px;
+      margin: 12px;
+    }
+
+    .cli-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #0bb1bb;
+      margin-bottom: 6px;
+    }
+
+    .cli-description {
+      color: #666;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .cli-content {
+      flex: 1;
+      padding: 12px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #333;
+      background: #f8f8f8;
+      overflow-y: auto;
+    }
+
+    .cli-input-area {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(11, 177, 187, 0.05);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cli-prompt {
+      color: #0bb1bb;
+      font-family: monospace;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .cli-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #333;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 11px;
+    }
+
+    .cli-execute-btn {
+      background: #0bb1bb;
+      border: none;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* CLI Ticker - Only at bottom of CLI */
+    .cli-ticker {
+      border-top: 1px solid rgba(11, 177, 187, 0.2);
+      background: rgba(11, 177, 187, 0.05);
+      height: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      border-radius: 0 0 15px 15px;
+    }
+
+    .ticker-content {
+      white-space: nowrap;
+      color: #0bb1bb;
+      font-size: 9px;
+      font-weight: 500;
+      animation: scroll-left 45s linear infinite;
+      padding-left: 100%;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 20px;
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .cli-ticker:hover .ticker-content {
+      animation-play-state: paused;
+    }
+
+    /* Right Panel - Single PCP (CRx01) */
+    .right-panel {
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      height: calc(100vh - 120px);
+      background: transparent;
+      padding: 0 12px 12px 0;
+      overflow-y: auto;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Single PCP Section */
+    .pcp-section {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 6px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .pcp-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #0bb1bb;
+      margin-bottom: 6px;
+    }
+
+    .pcp-hex-container {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 0;
+      width: 100%;
+    }
+
+    .pcp-hex-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .pcp-hex-item:hover {
+      transform: scale(1.1);
+      animation: pulse 1.5s infinite;
+    }
+
+    .pcp-hex-item.active .pcp-status {
+      opacity: 1;
+      animation: pulse 2s infinite;
+    }
+
+    .pcp-hex {
+      position: relative;
+    }
+
+    .pcp-name {
+      font-size: 10px;
+      color: #666;
+      margin-top: 4px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .pcp-name.active {
+      color: #0bb1bb;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(11, 177, 187, 0.3);
+    }
+
+    .pcp-status {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 10px;
+      height: 10px;
+      background: #0bb1bb;
+      border-radius: 50%;
+      border: 2px solid #fafafa;
+      opacity: 0;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px rgba(11, 177, 187, 0.8);
+    }
+
+    .active-pcp-display {
+      text-align: center;
+      font-size: 9px;
+      color: #666;
+      padding: 4px;
+      margin-top: 6px;
+    }
+
+    .pcp-badge {
+      padding: 4px 8px;
+      background: rgba(11, 177, 187, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(11, 177, 187, 0.2);
+      display: inline-block;
+    }
+
+    .pcp-badge span {
+      color: #0bb1bb;
+      font-weight: 600;
+    }
+
+    .scan-approve-btn {
+      margin-top: 6px;
+      padding: 6px;
+      background: linear-gradient(135deg, #0bb1bb, #50C878);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .scan-approve-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(11, 177, 187, 0.4);
+    }
+
+    .scan-approve-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    /* Panel Cards */
+    .panel-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      padding: 12px;
+      transition: all 0.3s;
+      margin-bottom: 8px;
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      border-top: 2px solid rgba(255, 255, 255, 0.8);
+      border-left: 2px solid rgba(255, 255, 255, 0.6);
+      border-right: 2px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .panel-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 8px 25px rgba(11, 177, 187, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      border-color: rgba(11, 177, 187, 0.3);
+      border-top: 2px solid rgba(255, 255, 255, 0.9);
+      border-left: 2px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: inherit;
+      width: 100%;
+      text-align: left;
+    }
+
+    .panel-header:hover .chevron-icon {
+      fill: #0bb1bb;
+    }
+
+    .panel-header.collapsed .chevron-icon {
+      transform: rotate(-90deg);
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #333;
+    }
+
+    .panel-content {
+      display: none;
+    }
+
+    .panel-content.active {
+      display: block;
+      animation: slideIn 0.3s ease;
+    }
+
+    /* S2DO Button */
+    .s2do-button {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 80px;
+      height: 60px;
+      background: linear-gradient(135deg, #0bb1bb, #50C878);
+      border-radius: 15px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(11, 177, 187, 0.4);
+      transition: all 0.3s;
+      z-index: 95;
+      position: relative;
+    }
+
+    .s2do-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(11, 177, 187, 0.6);
+    }
+
+    .s2do-button.scanning::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2), transparent);
+      animation: scan 2s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(-50%); opacity: 0.5; }
+      100% { transform: translateY(-100%); opacity: 0; }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .content-area {
+        flex-direction: column;
+        padding: 15px;
+        margin-right: 0;
+      }
+
+      .right-panel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        transform: none !important;
+        padding: 20px 15px;
+      }
+
+      .sidebar {
+        width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sidebar-icons {
+        justify-content: center;
+      }
+
+      .main-content {
+        margin-left: 44px;
+        width: calc(100% - 44px);
+      }
+
+      .s2do-button {
+        bottom: 120px;
+        right: 15px;
+        width: 70px;
+        height: 55px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar {
+        width: 40px;
+      }
+
+      .main-content {
+        margin-left: 40px;
+        width: calc(100% - 40px);
+      }
+
+      .header {
+        height: 35px;
+        padding: 0 10px;
+      }
+
+      .logo {
+        font-size: 14px;
+      }
+
+      .user-name {
+        font-size: 10px;
+      }
+
+      .user-tagline {
+        font-size: 8px;
+      }
+
+      .s2do-button {
+        bottom: 100px;
+        right: 10px;
+        width: 65px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Enhanced Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Enterprise Icon Library - SVG Definitions -->
+    <svg style="display: none;">
+      <defs>
+        <!-- Standard Icons -->
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </symbol>
+        
+        <symbol id="icon-fire" viewBox="0 0 24 24">
+          <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/>
+        </symbol>
+        
+        <symbol id="icon-lightbulb" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
+        </symbol>
+        
+        <symbol id="icon-tasks" viewBox="0 0 24 24">
+          <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+        </symbol>
+        
+        <symbol id="icon-chart-line" viewBox="0 0 24 24">
+          <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+        </symbol>
+        
+        <symbol id="icon-bullseye" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </symbol>
+        
+        <symbol id="icon-rocket" viewBox="0 0 24 24">
+          <path d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.44 5.58L2 10.69l4.05-4.05c.47-.47 1.15-.68 1.81-.55l1.33.28zm5.62 0c2.04 2.29 3.44 5.58 3.44 5.58L22 10.69l-4.05-4.05c-.47-.47-1.15-.68-1.81-.55l-1.33.28zM12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <!-- Main Page -->
+    <div id="mainPage" class="page active">
+      <!-- Sidebar with Global Navigation -->
+      <div class="sidebar">
+        <div class="sidebar-icons">
+          <div class="sidebar-icon active" onclick="selectIcon(this, 'Communication', '01')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" fill="none" />
+              <path d="M9 11l2 2 4-4" stroke="#333" stroke-width="1.5" fill="none"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Communication</strong><br>
+              <small>Click to preview feature</small>
+            </div>
+          </div>
+          
+          <div class="sidebar-icon" onclick="selectIcon(this, 'Growth', '01')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4ECDC4" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" fill="none" />
+              <path d="M12 8v4l3 3" stroke="#333" stroke-width="1.5"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Growth</strong><br>
+              <small>Growth Revenues</small>
+            </div>
+          </div>
+          
+          <div class="sidebar-icon" onclick="selectIcon(this, 'Services', '03')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#45B7D1" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" fill="none" />
+              <path d="M8 12h8M12 8v8" stroke="#333" stroke-width="1.5"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Services</strong><br>
+              <small>Client Services Innovation</small>
+            </div>
+          </div>
+          
+          <div class="sidebar-icon" onclick="selectIcon(this, 'Automation', '02')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#96CEB4" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" fill="none" />
+              <path d="M12 6v6l4 2" stroke="#333" stroke-width="1.5"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Automation</strong><br>
+              <small>Organizational Automation</small>
+            </div>
+          </div>
+          
+          <div class="sidebar-icon" onclick="selectIcon(this, 'ROI', '02')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FECA57" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" fill="none" />
+              <circle cx="12" cy="12" r="3" stroke="#333" fill="none" stroke-width="1.5"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>ROI</strong><br>
+              <small>ROI Dashboard</small>
+            </div>
+          </div>
+          
+          <div class="sidebar-icon" onclick="selectIcon(this, 'Wish', '04')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#DDA0DD" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" fill="none" />
+              <path d="M7 12h10M7 8h10M7 16h10" stroke="#333" stroke-width="1.5"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Wish</strong><br>
+              <small>Your Wish</small>
+            </div>
+          </div>
+          
+          <div class="sidebar-icon" onclick="toggleAcademy(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#turquoiseGradientLight)" stroke-width="1.8">
+              <defs>
+                <linearGradient id="turquoiseGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#008B8B" />
+                  <stop offset="33%" stop-color="#20B2AA" />
+                  <stop offset="66%" stop-color="#48D1CC" />
+                  <stop offset="100%" stop-color="#0891a0" />
+                </linearGradient>
+              </defs>
+              <path d="M12 2L22 20H2L12 2z" fill="url(#turquoiseGradientLight)" fill-opacity="0.15" />
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Academy</strong><br>
+              <small>Learning & Training</small>
+            </div>
+          </div>
+          
+          <!-- Gap before special features -->
+          <div style="height: 30px;"></div>
+          
+          <!-- Pilots Lounge -->
+          <div class="sidebar-icon" onclick="openPilotsLounge()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#pilotsGradientLight)" stroke-width="1.8">
+              <defs>
+                <linearGradient id="pilotsGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8B5CF6" />
+                  <stop offset="50%" stop-color="#EC4899" />
+                  <stop offset="100%" stop-color="#F59E0B" />
+                </linearGradient>
+              </defs>
+              <rect x="4" y="6" width="16" height="12" rx="3" fill="url(#pilotsGradientLight)" fill-opacity="0.15" stroke="url(#pilotsGradientLight)" stroke-width="2"/>
+              <path d="M8 10h8M8 14h6" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="18" cy="8" r="3" fill="url(#pilotsGradientLight)" stroke="#333" stroke-width="1"/>
+              <path d="M16.5 8l1 1 2-2" stroke="#333" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Pilots' Lounge</strong><br>
+              <small>Elite Features</small>
+            </div>
+          </div>
+          
+          <!-- Gift Shop -->
+          <div class="sidebar-icon" onclick="openGiftShop()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#giftGradientLight)" stroke-width="1.8">
+              <defs>
+                <linearGradient id="giftGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#B8860B" />
+                  <stop offset="50%" stop-color="#FF6B35" />
+                  <stop offset="100%" stop-color="#DC143C" />
+                </linearGradient>
+              </defs>
+              <path d="M6 6h12c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z" fill="url(#giftGradientLight)" fill-opacity="0.15" stroke="url(#giftGradientLight)" stroke-width="2"/>
+              <path d="M8 6V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2v2" stroke="#333" stroke-width="1.5" fill="none"/>
+              <path d="M9 12h6M9 15h4" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="18" cy="9" r="2" fill="url(#giftGradientLight)" stroke="#333" stroke-width="1"/>
+              <path d="M17 9l.5.5L19 8" stroke="#333" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Gift Shop</strong><br>
+              <small>Premium Features</small>
+            </div>
+          </div>
+          
+          <!-- Settings Star -->
+          <div class="sidebar-icon settings-icon" onclick="openSettings()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#settingsGradientLight)" stroke-width="1.8">
+              <defs>
+                <linearGradient id="settingsGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#B8860B" />
+                  <stop offset="25%" stop-color="#CD5C5C" />
+                  <stop offset="50%" stop-color="#4ECDC4" />
+                  <stop offset="75%" stop-color="#228B22" />
+                  <stop offset="100%" stop-color="#0bb1bb" />
+                </linearGradient>
+              </defs>
+              <path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="url(#settingsGradientLight)" fill-opacity="0.2" />
+            </svg>
+            <div class="icon-tooltip">
+              <strong>Settings & Configuration</strong><br>
+              <small>Diamond SAO</small>
+            </div>
+          </div>
+
+          <!-- DSAO.IG Star -->
+          <div class="sidebar-icon dsao-ig-icon" onclick="openDSAOIG()">
+            <div class="dsao-ig-star">
+              <div class="dsao-ig-text">IG</div>
+            </div>
+            <div class="icon-tooltip">
+              <strong>DSAO Integration Gateway</strong><br>
+              <small>Diamond SAO IG</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header with Template Variables -->
+        <div class="header">
+          <div class="header-left">
+            <div class="logo" id="systemLogo">{{SYSTEM_NAME}}</div>
+          </div>
+          <div class="user-info">
+            <div class="user-name" id="userName">Mr. Phillip Corey Roark, CEO</div>
+            <div class="user-tagline" id="userTagline">{{TAGLINE}}</div>
+          </div>
+        </div>
+        
+        <!-- Content Area -->
+        <div class="content-area" id="contentArea">
+          <!-- Main Interface (CLI) -->
+          <div class="chat-area" id="chatArea">
+            <div class="cli-interface">
+              <!-- Welcome Header -->
+              <div class="cli-header">
+                <div class="cli-title">Welcome to {{SYSTEM_NAME}}</div>
+                <div class="cli-description">
+                  Professional Co-Pilot CRx01 ready. Speak naturally with your AI copilots. They understand context, 
+                  can pull data from any squadron, and bring insights directly into this space. Just ask!
+                </div>
+              </div>
+              
+              <!-- CLI Content Area -->
+              <div class="cli-content" id="cliContent">
+                <div style="color: #0bb1bb; font-weight: 600; margin-bottom: 10px;">🎯 {{SYSTEM_NAME}} Command Center</div>
+                <div style="margin-bottom: 8px;">🔹 System Status: All operations nominal</div>
+                <div style="margin-bottom: 8px;">🔹 PCP: CRx01 Professional Co-Pilot Active</div>
+                <div style="margin-bottom: 8px;">🔹 Integration: Diamond SAO Command Center</div>
+                <div style="margin-bottom: 8px;">🔹 Authentication: SallyPort OAuth2 Verified</div>
+                <div style="margin-bottom: 8px;">🔹 Services: All systems operational</div>
+                <div style="margin-bottom: 12px;">🔹 MCP Instance: mcp.{{SYSTEM_NAME}}.2100.cool</div>
+                <div style="color: #50C878; font-weight: 600;">✅ Ready for your commands</div>
+              </div>
+              
+              <!-- CLI Input -->
+              <div class="cli-input-area">
+                <span class="cli-prompt">{{SYSTEM_NAME}}$</span>
+                <input type="text" class="cli-input" id="cliInput" placeholder="Enter command or ask your question..." onkeypress="handleKeyPress(event)">
+                <button class="cli-execute-btn" onclick="executeCommand()">EXECUTE</button>
+              </div>
+
+              <!-- CLI Ticker - Only at bottom of CLI -->
+              <div class="cli-ticker">
+                <div class="ticker-content" id="systemTicker">
+                  {{SYSTEM_NAME}} Operating System • CRx01 PCP Active • Diamond SAO Command Center • SallyPort Authentication Verified • MCP Integration Online • All Systems Operational • {{TAGLINE}} • Professional Co-Pilot Ready
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Panel - Single PCP (CRx01) -->
+          <div class="right-panel" id="rightPanel">
+            <!-- CRx01 Professional Co-Pilot Section -->
+            <div class="pcp-section">
+              <div class="pcp-title">PROFESSIONAL CO-PILOT</div>
+              <div class="pcp-hex-container" style="justify-content: center;">
+                <div class="pcp-hex-item active" onclick="activateCRx01()" id="crx01">
+                  <div class="pcp-hex">
+                    <svg viewBox="0 0 60 60" style="width: 65px; height: 65px;">
+                      <defs>
+                        <linearGradient id="crx01GradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color:#B8860B;stop-opacity:1" />
+                          <stop offset="50%" style="stop-color:#0bb1bb;stop-opacity:1" />
+                          <stop offset="100%" style="stop-color:#4ECDC4;stop-opacity:1" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M30 5 L50 20 L50 40 L30 55 L10 40 L10 20 Z" fill="url(#crx01GradientLight)" stroke="#B8860B" stroke-width="2" opacity="0.9" />
+                      <text x="30" y="22" text-anchor="middle" fill="white" font-size="8" font-weight="600">CR</text>
+                      <text x="30" y="32" text-anchor="middle" fill="white" font-size="11" font-weight="800">x01</text>
+                      <text x="30" y="42" text-anchor="middle" fill="white" font-size="7" font-weight="600">PCP</text>
+                    </svg>
+                    <div class="pcp-status" style="opacity: 1;"></div>
+                  </div>
+                  <div class="pcp-name active">Always Available</div>
+                </div>
+              </div>
+              <div class="active-pcp-display">
+                <div class="pcp-badge">
+                  <span id="activePCPDisplay">CRx01 PCP Active</span>
+                </div>
+                <div class="scan-approve-btn" onclick="toggleScanToApprove(this)">
+                  <div class="scan-approve-content">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M3 9V5a2 2 0 0 1 2-2h4M3 15v4a2 2 0 0 0 2 2h4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+                      <path d="M9 12h6M12 9v6"/>
+                    </svg>
+                    <span>SCAN TO APPROVE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Today's Hot Topics -->
+            <div class="panel-card">
+              <button class="panel-header" onclick="togglePanel(this)">
+                <div class="panel-title">
+                  <svg class="panel-icon" style="fill: #ff6b35;">
+                    <use href="#icon-fire"></use>
+                  </svg>
+                  Today's Hot Topics
+                </div>
+                <svg class="enterprise-icon chevron-icon" style="fill: rgba(0, 0, 0, 0.6); transition: all 0.3s ease;">
+                  <use href="#icon-chevron-down"></use>
+                </svg>
+              </button>
+              <div class="panel-content active" id="hotTopicsContent">
+                <div style="display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 6px; transition: all 0.3s; cursor: pointer; margin-bottom: 6px;">
+                  <div style="width: 6px; height: 6px; background: linear-gradient(135deg, #ff6b35, #f7931e); border-radius: 2px; flex-shrink: 0;"></div>
+                  <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px;">
+                      <span style="background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 1px 4px; border-radius: 6px; font-size: 7px; font-weight: 600;">🔥 Trending</span>
+                      <span style="font-size: 8px; color: #666;">2h ago</span>
+                    </div>
+                    <div style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 1px;">System Integration Complete</div>
+                    <div style="font-size: 9px; color: #666; line-height: 1.2;">All operational systems synchronized</div>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 6px; transition: all 0.3s; cursor: pointer;">
+                  <div style="width: 6px; height: 6px; background: linear-gradient(135deg, #228B22, #0bb1bb); border-radius: 2px; flex-shrink: 0;"></div>
+                  <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px;">
+                      <span style="background: linear-gradient(135deg, #228B22, #0bb1bb); color: white; padding: 1px 4px; border-radius: 6px; font-size: 7px; font-weight: 600;">📈 Growth</span>
+                      <span style="font-size: 8px; color: #666;">4h ago</span>
+                    </div>
+                    <div style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 1px;">Performance Metrics Up</div>
+                    <div style="font-size: 9px; color: #666; line-height: 1.2;">System efficiency improved 15%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Today's Proposals -->
+            <div class="panel-card">
+              <button class="panel-header" onclick="togglePanel(this)">
+                <div class="panel-title">
+                  <svg class="panel-icon" style="fill: #fbbf24;">
+                    <use href="#icon-lightbulb"></use>
+                  </svg>
+                  Today's Proposals
+                </div>
+                <svg class="enterprise-icon chevron-icon" style="fill: rgba(0, 0, 0, 0.6); transition: all 0.3s ease;">
+                  <use href="#icon-chevron-down"></use>
+                </svg>
+              </button>
+              <div class="panel-content active" id="proposalsContent">
+                <div style="padding: 6px; border-radius: 6px; margin-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #333;">System Enhancement</div>
+                    <span style="font-size: 8px; color: #fbbf24; background: rgba(251, 191, 36, 0.15); padding: 1px 4px; border-radius: 4px;">PENDING</span>
+                  </div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 3px;">Advanced capabilities integration</div>
+                  <div style="font-size: 8px; color: #888;">Est. Impact: Significant improvement</div>
+                </div>
+                <div style="padding: 6px; border-radius: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #333;">CRx01 Expansion</div>
+                    <span style="font-size: 8px; color: #228B22; background: rgba(34, 139, 34, 0.15); padding: 1px 4px; border-radius: 4px;">APPROVED</span>
+                  </div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 3px;">Enhanced PCP capabilities</div>
+                  <div style="font-size: 8px; color: #888;">Timeline: Q4 2025</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Projects in Progress -->
+            <div class="panel-card">
+              <button class="panel-header" onclick="togglePanel(this)">
+                <div class="panel-title">
+                  <svg class="panel-icon" style="fill: #10b981;">
+                    <use href="#icon-tasks"></use>
+                  </svg>
+                  Projects in Progress
+                </div>
+                <svg class="enterprise-icon chevron-icon" style="fill: rgba(0, 0, 0, 0.6); transition: all 0.3s ease;">
+                  <use href="#icon-chevron-down"></use>
+                </svg>
+              </button>
+              <div class="panel-content active" id="projectsContent">
+                <div style="padding: 6px; border-radius: 6px; margin-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #333;">Interface Deployment</div>
+                    <div style="font-size: 8px; color: #10b981;">87%</div>
+                  </div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 3px;">Template deployment across systems</div>
+                  <div style="width: 100%; height: 3px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden;">
+                    <div style="width: 87%; height: 100%; background: linear-gradient(90deg, #10b981, #0bb1bb);"></div>
+                  </div>
+                </div>
+                <div style="padding: 6px; border-radius: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #333;">Security Compliance</div>
+                    <div style="font-size: 8px; color: #fbbf24;">62%</div>
+                  </div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 3px;">Authentication system validation</div>
+                  <div style="width: 100%; height: 3px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden;">
+                    <div style="width: 62%; height: 100%; background: linear-gradient(90deg, #fbbf24, #f59e0b);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- How You're Growing -->
+            <div class="panel-card">
+              <button class="panel-header" onclick="togglePanel(this)">
+                <div class="panel-title">
+                  <svg class="panel-icon" style="fill: #8b5cf6;">
+                    <use href="#icon-chart-line"></use>
+                  </svg>
+                  How You're Growing
+                </div>
+                <svg class="enterprise-icon chevron-icon" style="fill: rgba(0, 0, 0, 0.6); transition: all 0.3s ease;">
+                  <use href="#icon-chevron-down"></use>
+                </svg>
+              </button>
+              <div class="panel-content active" id="growthContent">
+                <div style="padding: 6px; border-radius: 6px; margin-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #333;">User Engagement</div>
+                    <div style="font-size: 10px; color: #228B22; font-weight: 700;">+340%</div>
+                  </div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2;">System interactions increasing</div>
+                </div>
+                <div style="padding: 6px; border-radius: 6px; margin-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #333;">Performance</div>
+                    <div style="font-size: 10px; color: #0bb1bb; font-weight: 700;">+127%</div>
+                  </div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2;">System efficiency improvements</div>
+                </div>
+                <div style="padding: 6px; border-radius: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                    <div style="font-size: 11px; font-weight: 600; color: #333;">Reliability</div>
+                    <div style="font-size: 10px; color: #B8860B; font-weight: 700;">99.7%</div>
+                  </div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2;">System uptime maintained</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategic Alignment -->
+            <div class="panel-card">
+              <button class="panel-header" onclick="togglePanel(this)">
+                <div class="panel-title">
+                  <svg class="panel-icon" style="fill: #f59e0b;">
+                    <use href="#icon-bullseye"></use>
+                  </svg>
+                  Strategic Alignment
+                </div>
+                <svg class="enterprise-icon chevron-icon" style="fill: rgba(0, 0, 0, 0.6); transition: all 0.3s ease;">
+                  <use href="#icon-chevron-down"></use>
+                </svg>
+              </button>
+              <div class="panel-content active" id="alignmentContent">
+                <div style="padding: 6px; border-radius: 6px; margin-bottom: 6px;">
+                  <div style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 2px;">Q4 Strategic Priorities</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 3px;">• System scalability enhancement</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 3px;">• Multi-tenant architecture completion</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2;">• Security compliance validation</div>
+                </div>
+                <div style="padding: 6px; border-radius: 6px;">
+                  <div style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 2px;">Implementation Status</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 2px;">Development: On track</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2;">Integration: 85% complete</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Support & Development -->
+            <div class="panel-card">
+              <button class="panel-header" onclick="togglePanel(this)">
+                <div class="panel-title">
+                  <svg class="panel-icon" style="fill: #ec4899;">
+                    <use href="#icon-rocket"></use>
+                  </svg>
+                  Support & Development
+                </div>
+                <svg class="enterprise-icon chevron-icon" style="fill: rgba(0, 0, 0, 0.6); transition: all 0.3s ease;">
+                  <use href="#icon-chevron-down"></use>
+                </svg>
+              </button>
+              <div class="panel-content active" id="supportContent">
+                <div style="padding: 6px; border-radius: 6px; margin-bottom: 6px;">
+                  <div style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 2px;">System Enhancement</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 2px;">• Advanced feature development</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 2px;">• Performance optimization</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2;">• Security hardening</div>
+                </div>
+                <div style="padding: 6px; border-radius: 6px;">
+                  <div style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 2px;">Future Roadmap</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2; margin-bottom: 2px;">Next milestone: Q1 2026</div>
+                  <div style="font-size: 9px; color: #666; line-height: 1.2;">Target: Full deployment</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- S2DO Button -->
+      <button class="s2do-button" id="s2doButton" onclick="initiateScanToDo()">
+        <div class="s2do-content">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9V5a2 2 0 0 1 2-2h4M3 15v4a2 2 0 0 0 2 2h4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+          </svg>
+          <div class="s2do-label">S2DO</div>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Global Variables
+    let activePCP = 'CRx01';
+    let rightPanelState = 'normal';
+    let userRole = 'owner';
+    let userLevel = 'enterprise';
+    
+    // System Configuration - Uses Template Variables
+    let systemConfig = {
+      name: '{{SYSTEM_NAME}}',
+      tagline: '{{TAGLINE}}',
+      mcpInstance: 'mcp.{{SYSTEM_NAME}}.2100.cool'
+    };
+
+    // Initialize System
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeEnhancedParticles();
+      loadUserData();
+      activateCRx01();
+      updateSystemTicker();
+      
+      console.log('🎯 {{SYSTEM_NAME}} Interface Loaded');
+      console.log('🏛️ Authority: Diamond SAO Command Center');
+      console.log('💎 PCP: CRx01 Professional Co-Pilot Active');
+    });
+
+    // Initialize Enhanced Particles
+    function initializeEnhancedParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 40;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 12 + 's';
+        particle.style.animationDuration = (10 + Math.random() * 8) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Load User Data with Template Variables
+    function loadUserData() {
+      setTimeout(() => {
+        const userData = {
+          systemName: systemConfig.name,
+          userName: 'Mr. Phillip Corey Roark, CEO',
+          tagline: systemConfig.tagline,
+          authLevel: 5
+        };
+        
+        const userNameEl = document.getElementById('userName');
+        const userTaglineEl = document.getElementById('userTagline');
+        const systemLogoEl = document.getElementById('systemLogo');
+        
+        if (userNameEl) userNameEl.textContent = userData.userName;
+        if (userTaglineEl) userTaglineEl.textContent = userData.tagline;
+        if (systemLogoEl) systemLogoEl.textContent = userData.systemName;
+        
+        updateTickerMessage(`${userData.userName} authenticated • ${userData.systemName} Command Center operational`);
+      }, 500);
+    }
+
+    // Activate CRx01 PCP
+    function activateCRx01() {
+      const crx01Element = document.getElementById('crx01');
+      if (crx01Element) {
+        crx01Element.classList.add('active');
+        crx01Element.style.animation = 'pulse 0.6s ease-in-out';
+        setTimeout(() => {
+          crx01Element.style.animation = '';
+        }, 600);
+      }
+      
+      const activeDisplay = document.getElementById('activePCPDisplay');
+      if (activeDisplay) {
+        activeDisplay.textContent = 'CRx01 PCP - Universal Professional Co-Pilot';
+        activeDisplay.style.color = '#0bb1bb';
+      }
+      
+      initializeCRx01Core();
+      updateTickerMessage('CRx01 Professional Co-Pilot activated - All systems ready');
+    }
+
+    // Initialize CRx01 Core Systems
+    function initializeCRx01Core() {
+      const systems = [
+        'Universal Gateway OAuth',
+        'Diamond SAO Integration', 
+        'SallyPort Authentication',
+        'MCP Instance Management',
+        'System Orchestration',
+        'Professional Co-Pilot Services'
+      ];
+      
+      systems.forEach((system, index) => {
+        setTimeout(() => {
+          console.log(`💎 CRx01: ${system} - Online`);
+          if (index === systems.length - 1) {
+            updateTickerMessage('CRx01 fully operational - All systems synchronized');
+          }
+        }, (index + 1) * 200);
+      });
+    }
+
+    // Handle CLI Commands
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        executeCommand();
+      }
+    }
+
+    function executeCommand() {
+      const input = document.getElementById('cliInput');
+      if (!input || !input.value.trim()) return;
+      
+      const command = input.value.trim().toLowerCase();
+      const output = document.getElementById('cliContent');
+      
+      // Add command to output
+      const commandLine = document.createElement('div');
+      commandLine.style.cssText = 'margin: 8px 0; color: #0bb1bb; font-weight: 600;';
+      commandLine.textContent = `${systemConfig.name}$ ${input.value}`;
+      output.appendChild(commandLine);
+      
+      // Process commands
+      setTimeout(() => {
+        const response = document.createElement('div');
+        response.style.cssText = 'margin: 4px 0 12px 0; color: #333;';
+        
+        if (command.includes('help')) {
+          response.innerHTML = `${systemConfig.name} Commands:<br>• status - System status<br>• info - System information<br>• pcp - Professional Co-Pilot info<br>• services - Available services`;
+        } else if (command.includes('status')) {
+          response.innerHTML = '✅ System Status:<br>• CRx01 PCP: Active<br>• Diamond SAO: Connected<br>• All services: Operational<br>• Authentication: Verified';
+        } else if (command.includes('pcp')) {
+          response.innerHTML = '💎 CRx01 Professional Co-Pilot:<br>• Status: Active and ready<br>• Capabilities: Universal assistance<br>• Integration: Full system access<br>• Response: Always available';
+        } else if (command.includes('info')) {
+          response.innerHTML = `📊 ${systemConfig.name} Information:<br>• System: AIXTIV Symphony OS<br>• Tagline: ${systemConfig.tagline}<br>• MCP: ${systemConfig.mcpInstance}<br>• Authority: Diamond SAO Command Center`;
+        } else if (command.includes('services')) {
+          response.innerHTML = '🔧 Available Services:<br>• Professional Co-Pilot (CRx01)<br>• Diamond SAO Integration<br>• SallyPort Authentication<br>• Universal Gateway Access';
+        } else {
+          response.innerHTML = `Executing: ${input.value}<br>✅ Command completed - ${systemConfig.name} systems responding`;
+        }
+        
+        output.appendChild(response);
+        output.scrollTop = output.scrollHeight;
+        
+        updateTickerMessage(`Command executed: ${input.value} - ${systemConfig.name} systems responding`);
+      }, 500);
+      
+      input.value = '';
+    }
+
+    // Update System Ticker
+    function updateSystemTicker() {
+      const ticker = document.getElementById('systemTicker');
+      if (ticker) {
+        const messages = [
+          `${systemConfig.name} Operating System • CRx01 PCP Active • Diamond SAO Command Center`,
+          `SallyPort Authentication Verified • MCP Integration Online • All Systems Operational`,
+          `${systemConfig.tagline} • Professional Co-Pilot Ready • Universal Template System`,
+          `Diamond SAO Integration Gateway • Enterprise Security Verified • System Performance Optimal`
+        ];
+        
+        let currentIndex = 0;
+        setInterval(() => {
+          ticker.textContent = messages[currentIndex % messages.length];
+          currentIndex++;
+        }, 15000);
+      }
+    }
+
+    // Update ticker with custom message
+    function updateTickerMessage(message) {
+      const ticker = document.getElementById('systemTicker');
+      if (ticker) {
+        ticker.textContent = `${systemConfig.name} • ${message} • CRx01 PCP Active • Diamond SAO Connected`;
+      }
+    }
+
+    // Navigation Functions
+    function selectIcon(element, title, level) {
+      document.querySelectorAll('.sidebar-icon').forEach(icon => {
+        icon.classList.remove('active');
+      });
+      element.classList.add('active');
+      
+      updateTickerMessage(`${title} module selected - ${systemConfig.name} ${title.toLowerCase()} systems loading`);
+    }
+
+    function toggleAcademy(element) {
+      updateTickerMessage('Academy interface - Learning and training systems ready');
+    }
+
+    function openPilotsLounge() {
+      updateTickerMessage('Pilots\' Lounge - Elite features activated');
+    }
+
+    function openGiftShop() {
+      updateTickerMessage('Gift Shop - Premium features and services available');
+    }
+
+    function openSettings() {
+      updateTickerMessage('Diamond SAO Settings - System configuration panel');
+    }
+
+    function openDSAOIG() {
+      updateTickerMessage('DSAO Integration Gateway - Diamond SAO system integrations active');
+    }
+
+    // Panel Functions
+    function togglePanel(headerElement) {
+      if (!headerElement) return;
+      
+      const content = headerElement.parentElement.querySelector('.panel-content');
+      const chevron = headerElement.querySelector('.chevron-icon');
+      
+      if (content && chevron) {
+        const isCollapsed = headerElement.classList.contains('collapsed');
+        
+        if (isCollapsed) {
+          headerElement.classList.remove('collapsed');
+          content.classList.add('active');
+          content.style.display = 'block';
+        } else {
+          headerElement.classList.add('collapsed');
+          content.classList.remove('active');
+          content.style.display = 'none';
+        }
+      }
+    }
+
+    function toggleScanToApprove(element) {
+      element.classList.toggle('scanning');
+      
+      if (element.classList.contains('scanning')) {
+        element.style.animation = 'pulse 1s infinite';
+        updateTickerMessage(`S2DO: Scanning ${systemConfig.name} operations for approval items`);
+        
+        setTimeout(() => {
+          element.classList.remove('scanning');
+          element.style.animation = '';
+          updateTickerMessage('S2DO: System workflows ready for approval');
+        }, 3000);
+      }
+    }
+
+    // S2DO Functions
+    function initiateScanToDo() {
+      const button = document.getElementById('s2doButton');
+      button.classList.add('scanning');
+      
+      updateTickerMessage(`S2DO: Scanning ${systemConfig.name} operations for approval workflows`);
+      
+      setTimeout(() => {
+        button.classList.remove('scanning');
+        updateTickerMessage('S2DO: System workflows ready for approval');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

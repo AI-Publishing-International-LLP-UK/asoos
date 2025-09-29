@@ -240,8 +240,8 @@ function determineEducationLevel(category) {
     'Marketing & Sales',
   ];
 
-  if (techCategories.includes(category)) return "Bachelor's Degree or Higher";
-  if (businessCategories.includes(category)) return "Bachelor's Degree Preferred";
+  if (techCategories.includes(category)) return 'Bachelor\'s Degree or Higher';
+  if (businessCategories.includes(category)) return 'Bachelor\'s Degree Preferred';
   return 'Varies by Position';
 }
 

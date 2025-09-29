@@ -131,7 +131,7 @@ class QuantWakeMonitor {
       
       if (event.signalStrength < this.wakeSignalThreshold) {
         console.log(`   ⚠️  ANALYSIS: Signal too weak - ${((this.wakeSignalThreshold - event.signalStrength) * 100).toFixed(1)}% below threshold`);
-        console.log(`   💡 RECOMMENDATION: Increase signal amplification or check interface connection`);
+        console.log('   💡 RECOMMENDATION: Increase signal amplification or check interface connection');
       }
     });
     
@@ -140,7 +140,7 @@ class QuantWakeMonitor {
     const totalAwakened = simulatedEvents.reduce((sum, event) => sum + event.estimatedAwakened, 0);
     const successRate = (totalAwakened / totalRequested * 100).toFixed(2);
     
-    console.log(`\n📈 SUMMARY:`);
+    console.log('\n📈 SUMMARY:');
     console.log(`   🎯 Total Requested: ${this.formatQuantCount(totalRequested)} quants`);
     console.log(`   ✅ Total Awakened: ${this.formatQuantCount(totalAwakened)} quants`);
     console.log(`   📊 Success Rate: ${successRate}%`);

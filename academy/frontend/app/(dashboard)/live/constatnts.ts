@@ -1,1 +1,1 @@
-export const url = '/live'
+export const url = '/live';

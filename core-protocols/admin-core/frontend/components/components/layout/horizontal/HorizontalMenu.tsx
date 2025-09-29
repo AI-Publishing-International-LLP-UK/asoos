@@ -1,27 +1,27 @@
 // MUI Imports
-import { useTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles';
 
 // Type Imports
-import type { VerticalMenuContextProps } from '@menu/components/vertical-menu/Menu'
+import type { VerticalMenuContextProps } from '@menu/components/vertical-menu/Menu';
 
 // Component Imports
-import HorizontalNav, { Menu, MenuItem } from '@menu/horizontal-menu'
-import VerticalNavContent from './VerticalNavContent'
+import HorizontalNav, { Menu, MenuItem } from '@menu/horizontal-menu';
+import VerticalNavContent from './VerticalNavContent';
 
 // Hook Imports
-import useVerticalNav from '@menu/hooks/useVerticalNav'
-import { useSettings } from '@core/hooks/useSettings'
+import useVerticalNav from '@menu/hooks/useVerticalNav';
+import { useSettings } from '@core/hooks/useSettings';
 
 // Styled Component Imports
-import StyledHorizontalNavExpandIcon from '@menu/styles/horizontal/StyledHorizontalNavExpandIcon'
-import StyledVerticalNavExpandIcon from '@menu/styles/vertical/StyledVerticalNavExpandIcon'
+import StyledHorizontalNavExpandIcon from '@menu/styles/horizontal/StyledHorizontalNavExpandIcon';
+import StyledVerticalNavExpandIcon from '@menu/styles/vertical/StyledVerticalNavExpandIcon';
 
 // Style Imports
-import menuItemStyles from '@core/styles/horizontal/menuItemStyles'
-import menuRootStyles from '@core/styles/horizontal/menuRootStyles'
-import verticalNavigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
-import verticalMenuItemStyles from '@core/styles/vertical/menuItemStyles'
-import verticalMenuSectionStyles from '@core/styles/vertical/menuSectionStyles'
+import menuItemStyles from '@core/styles/horizontal/menuItemStyles';
+import menuRootStyles from '@core/styles/horizontal/menuRootStyles';
+import verticalNavigationCustomStyles from '@core/styles/vertical/navigationCustomStyles';
+import verticalMenuItemStyles from '@core/styles/vertical/menuItemStyles';
+import verticalMenuSectionStyles from '@core/styles/vertical/menuSectionStyles';
 
 type RenderExpandIconProps = {
   level?: number
@@ -36,23 +36,23 @@ const RenderExpandIcon = ({ level }: RenderExpandIconProps) => (
   <StyledHorizontalNavExpandIcon level={level}>
     <i className='tabler-chevron-right' />
   </StyledHorizontalNavExpandIcon>
-)
+);
 
 const RenderVerticalExpandIcon = ({ open, transitionDuration }: RenderVerticalExpandIconProps) => (
   <StyledVerticalNavExpandIcon open={open} transitionDuration={transitionDuration}>
     <i className='tabler-chevron-right' />
   </StyledVerticalNavExpandIcon>
-)
+);
 
 const HorizontalMenu = () => {
   // Hooks
-  const verticalNavOptions = useVerticalNav()
-  const theme = useTheme()
-  const { settings } = useSettings()
+  const verticalNavOptions = useVerticalNav();
+  const theme = useTheme();
+  const { settings } = useSettings();
 
   // Vars
-  const { skin } = settings
-  const { transitionDuration } = verticalNavOptions
+  const { skin } = settings;
+  const { transitionDuration } = verticalNavOptions;
 
   return (
     <HorizontalNav
@@ -110,7 +110,7 @@ const HorizontalMenu = () => {
         <GenerateHorizontalMenu menuData={menuData(dictionary)} />
       </Menu> */}
     </HorizontalNav>
-  )
-}
+  );
+};
 
-export default HorizontalMenu
+export default HorizontalMenu;

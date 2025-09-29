@@ -204,7 +204,7 @@ export const AutonomyCapabilityMap: Record<AIAutonomyLevel, SystemCapability[]> 
 [AIAutonomyLevel.RESTRICTED]: [
     SystemCapability.USER_INTERACTION
 ]
-}
+};
 
 /**
 * Configuration for capability-specific restrictions

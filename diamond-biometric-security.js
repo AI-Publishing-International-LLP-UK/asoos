@@ -427,7 +427,7 @@ diamond biometric-decrypt ${originalFilename}.diamond-biometric
         }
       }
       
-      console.log(`✅ Biometric directory encryption complete:`);
+      console.log('✅ Biometric directory encryption complete:');
       console.log(`   👤 Encrypted: ${results.encrypted.length} files`);
       console.log(`   ⏭️ Skipped: ${results.skipped.length} files`);
       console.log(`   ❌ Errors: ${results.errors.length} files`);
@@ -435,7 +435,7 @@ diamond biometric-decrypt ${originalFilename}.diamond-biometric
       return results;
       
     } catch (error) {
-      console.error(`❌ Biometric directory encryption failed:`, error.message);
+      console.error('❌ Biometric directory encryption failed:', error.message);
       throw error;
     }
   }

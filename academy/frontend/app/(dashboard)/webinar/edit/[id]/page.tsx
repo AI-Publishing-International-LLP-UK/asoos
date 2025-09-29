@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,21 +14,21 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import ComponentLoading from '@/components/global/LoadingComponent'
-import { nameElement, url } from '../../contstants'
-import FileUploaderRestrictions from '@/components/UploadComponent'
-import { getWebinarById, updateWebinar } from '@/actions/webinar-action'
-import { getUserByType } from '@/actions/user-actions'
+import CustomTextField from '@/@core/components/mui/TextField';
+import ComponentLoading from '@/components/global/LoadingComponent';
+import { nameElement, url } from '../../contstants';
+import FileUploaderRestrictions from '@/components/UploadComponent';
+import { getWebinarById, updateWebinar } from '@/actions/webinar-action';
+import { getUserByType } from '@/actions/user-actions';
 
 type FormData = InferInput<typeof schema>
 
@@ -39,7 +39,7 @@ const schema = object({
   thumbnail: pipe(string(), nonEmpty(), minLength(3)),
   startDate: pipe(string(), nonEmpty(), minLength(3)),
   endDate: pipe(string(), nonEmpty(), minLength(3))
-})
+});
 
 interface ISelects {
   id: string
@@ -54,13 +54,13 @@ interface PageProps {
 
 export default function Page({ params }: PageProps) {
   //state
-  const router = useRouter()
-  const { id } = params
+  const router = useRouter();
+  const { id } = params;
 
-  const [loading, setLoading] = useState(true)
-  const [speaker, setSpeaker] = useState<ISelects[]>([])
-  const [uploading, setUploading] = useState(false)
-  const [thumbnailUrl, setThumbnailUrl] = useState('')
+  const [loading, setLoading] = useState(true);
+  const [speaker, setSpeaker] = useState<ISelects[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
 
   //hooks
   const {
@@ -79,47 +79,47 @@ export default function Page({ params }: PageProps) {
       startDate: '',
       endDate: ''
     }
-  })
+  });
 
   const changeOnLoading = (loading: boolean) => {
-    setUploading(loading)
-  }
+    setUploading(loading);
+  };
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await updateWebinar(value.id, value)
+      const response = await updateWebinar(value.id, value);
 
       if (response) {
-        router.push(`/${url}`)
+        router.push(`/${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getUserByType('Speaker').then(response => {
-      setSpeaker(response.map(item => ({ id: item.id, name: `${item.firstName} ${item.lastName}` })))
-    })
+      setSpeaker(response.map(item => ({ id: item.id, name: `${item.firstName} ${item.lastName}` })));
+    });
 
     getWebinarById(id).then(data => {
       if (data) {
-        setValue('name', data.name)
-        setValue('description', data.description)
-        setValue('speakerId', data.speakerId)
-        setValue('thumbnail', data.thumbnail!)
-        setValue('startDate', new Date(data.startDate).toISOString().slice(0, 16))
-        setValue('endDate', new Date(data.endDate).toISOString().slice(0, 16))
-        setThumbnailUrl(data.thumbnail!)
+        setValue('name', data.name);
+        setValue('description', data.description);
+        setValue('speakerId', data.speakerId);
+        setValue('thumbnail', data.thumbnail!);
+        setValue('startDate', new Date(data.startDate).toISOString().slice(0, 16));
+        setValue('endDate', new Date(data.endDate).toISOString().slice(0, 16));
+        setThumbnailUrl(data.thumbnail!);
       }
 
-      setLoading(false)
-    })
-  }, [id, setValue])
+      setLoading(false);
+    });
+  }, [id, setValue]);
 
   const handleThumbnail = (url: string) => {
-    setValue('thumbnail', url)
-  }
+    setValue('thumbnail', url);
+  };
 
   return (
     <>
@@ -263,5 +263,5 @@ export default function Page({ params }: PageProps) {
         </Card>
       </ComponentLoading>
     </>
-  )
+  );
 }

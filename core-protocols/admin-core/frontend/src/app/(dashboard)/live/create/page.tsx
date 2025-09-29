@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -16,15 +16,15 @@ import {
   MenuItem,
   Select,
   TableContainer
-} from '@mui/material'
-import { object, minLength, string, pipe, nonEmpty } from 'valibot'
-import type { InferInput } from 'valibot'
-import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Controller, useForm } from 'react-hook-form'
+} from '@mui/material';
+import { object, minLength, string, pipe, nonEmpty } from 'valibot';
+import type { InferInput } from 'valibot';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { Controller, useForm } from 'react-hook-form';
 
-import CustomTextField from '@/@core/components/mui/TextField'
-import { url } from '../constatnts'
-import { createLiveEvent } from '@/actions/live-event-action'
+import CustomTextField from '@/@core/components/mui/TextField';
+import { url } from '../constatnts';
+import { createLiveEvent } from '@/actions/live-event-action';
 
 type FormData = InferInput<typeof schema>
 
@@ -34,11 +34,11 @@ const schema = object({
   backgroundLink: pipe(string(), nonEmpty()),
   description: pipe(string(), nonEmpty(), minLength(3)),
   contentType: pipe(string(), nonEmpty())
-})
+});
 
 export default function Page() {
   //state
-  const router = useRouter()
+  const router = useRouter();
 
   //hooks
   const {
@@ -55,24 +55,24 @@ export default function Page() {
       url: '',
       contentType: ''
     }
-  })
+  });
 
   const onSubmit = async (value: any) => {
     try {
-      const response = await createLiveEvent(value)
+      const response = await createLiveEvent(value);
 
       if (response) {
-        router.push(`${url}`)
+        router.push(`${url}`);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
       <Card>
-        <CardHeader title={`Create Live Event`} />
+        <CardHeader title={'Create Live Event'} />
         <CardContent>
           <TableContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -178,5 +178,5 @@ export default function Page() {
         </CardContent>
       </Card>
     </>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -15,15 +15,15 @@ import {
   TableContainer,
   TableHead,
   TableRow
-} from '@mui/material'
+} from '@mui/material';
 
-import { deleteLiveEvent, getAllLiveEvents, updateLiveEvent } from '@/actions/live-event-action'
+import { deleteLiveEvent, getAllLiveEvents, updateLiveEvent } from '@/actions/live-event-action';
 
-import tableStyles from '@core/styles/table.module.css'
+import tableStyles from '@core/styles/table.module.css';
 
-import Link from '@/components/Link'
+import Link from '@/components/Link';
 
-import { url } from './constatnts'
+import { url } from './constatnts';
 
 type LiveEvent = {
   id: number
@@ -37,19 +37,19 @@ type LiveEvent = {
 }
 
 const ComponentName = () => {
-  const [data, setData] = useState<LiveEvent[]>()
-  const router = useRouter()
+  const [data, setData] = useState<LiveEvent[]>();
+  const router = useRouter();
 
   // Fetch data from API
   useEffect(() => {
-    getAllLiveEvents().then(res => setData(res))
-  }, [])
+    getAllLiveEvents().then(res => setData(res));
+  }, []);
 
   const filter = (id: number) => {
-    const newData = data?.filter(element => element.id !== id)
+    const newData = data?.filter(element => element.id !== id);
 
-    setData(newData)
-  }
+    setData(newData);
+  };
 
   return (
     <Card>
@@ -58,7 +58,7 @@ const ComponentName = () => {
         {/* button to create user */}
         <div style={{ textAlign: 'right' }} className='mb-3'>
           <Button variant='contained' onClick={() => router.push(`${url}/create`)}>
-            Create {`Live Event`}
+            Create {'Live Event'}
           </Button>
         </div>
 
@@ -90,8 +90,8 @@ const ComponentName = () => {
                     </Link>
                     <Button
                       onClick={() => {
-                        deleteLiveEvent(el.id)
-                        filter(el.id)
+                        deleteLiveEvent(el.id);
+                        filter(el.id);
                       }}
                       variant='contained'
                       color='error'
@@ -113,22 +113,22 @@ const ComponentName = () => {
         </TableContainer>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
-export default ComponentName
+export default ComponentName;
 
 const MakeLiveButton = ({ id, isLive }: { id: number; isLive: boolean }) => {
-  const [state, setState] = useState(isLive)
+  const [state, setState] = useState(isLive);
 
   const handleClick = async () => {
-    setState(prev => !prev)
-    await updateLiveEvent({ id, isLive: !state })
-  }
+    setState(prev => !prev);
+    await updateLiveEvent({ id, isLive: !state });
+  };
 
   return (
     <Button variant='contained' color='info' style={{ marginLeft: '10px' }} onClick={handleClick}>
       {`${state ? 'Remove' : 'Make'} Live`}
     </Button>
-  )
-}
+  );
+};
