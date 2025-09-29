@@ -1,0 +1,34 @@
+{
+  "prometheusExporter": {
+    "enabled": true,
+    "port": 9100,
+    "metrics": [
+      "gpu_temp",
+      "hash_rate",
+      "power_draw",
+      "fan_speed"
+    ],
+    "scrapeInterval": "30s"
+  },
+  "cloudLogging": {
+    "enabled": true,
+    "project": "api-for-warp-drive",
+    "resourceType": "gce_instance",
+    "labels": {
+      "rig": "einstein-wells-quantswar",
+      "division": "einstein-wells",
+      "environment": "production",
+      "location": "us-west1"
+    }
+  },
+  "grafanaDashboard": {
+    "version": "v34",
+    "panels": [
+      "hash_rate_timeline",
+      "temperature_monitoring",
+      "power_consumption",
+      "earnings_tracking",
+      "algorithm_distribution"
+    ]
+  }
+}

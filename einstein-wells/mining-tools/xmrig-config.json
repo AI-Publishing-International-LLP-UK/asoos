@@ -1,0 +1,16 @@
+{
+  "pools": [
+    {
+      "algo": "rx/0",
+      "coin": "XMR",
+      "url": "stratum+tcp://randomxmonero.auto.nicehash.com:9200",
+      "user": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5",
+      "pass": "x",
+      "keepalive": true
+    }
+  ],
+  "threads": "auto",
+  "huge-pages": true,
+  "cpu-priority": 5,
+  "log-level": 1
+}

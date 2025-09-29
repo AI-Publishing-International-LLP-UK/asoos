@@ -1,0 +1,21 @@
+{
+  "rigName": "einstein-wells-quantswar",
+  "rigId": "EW-QS-001",
+  "type": "nicehash",
+  "status": "production",
+  "tags": [
+    "nicehash",
+    "quantum",
+    "production",
+    "einstein-wells"
+  ],
+  "owner": "Diamond SAO Command Center",
+  "location": "us-west1",
+  "bitcoinAddress": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj",
+  "registrationDate": "2025-09-29T16:49:29.461Z",
+  "integration": {
+    "integrationGateway": "https://integration-gateway-js-859242575175.us-west1.run.app",
+    "diamondSAO": "https://diamond.sao.2100.cool",
+    "orchestrator": "https://orchestrator.einsteinwells.2100.cool/api/v1"
+  }
+}

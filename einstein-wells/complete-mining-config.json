@@ -1,0 +1,90 @@
+{
+  "xmrigConfig": {
+    "pools": [
+      {
+        "algo": "rx/0",
+        "coin": "XMR",
+        "url": "stratum+tcp://randomxmonero.auto.nicehash.com:9200",
+        "user": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5",
+        "pass": "x",
+        "keepalive": true
+      }
+    ],
+    "threads": "auto",
+    "huge-pages": true,
+    "cpu-priority": 5,
+    "log-level": 1
+  },
+  "bitcoinCoreConfig": {
+    "rpcuser": "einsteinwells",
+    "rpcpassword": "quantum_mining_2025",
+    "server": 1,
+    "txindex": 1,
+    "rest": 1,
+    "rpcbind": "127.0.0.1",
+    "rpcallowip": "127.0.0.1"
+  },
+  "stratumProxyConfig": {
+    "DAEMON_HOST": "127.0.0.1",
+    "DAEMON_PORT": 8332,
+    "LISTEN_HOST": "0.0.0.0",
+    "LISTEN_PORT": 8008,
+    "PROTOCOL": "stratum",
+    "ALGORITHM": "sha256"
+  },
+  "niceHashConfig": {
+    "algorithms": [
+      {
+        "name": "SHA-256",
+        "url": "stratum+tcp://sha256.auto.nicehash.com:9200"
+      },
+      {
+        "name": "RandomX",
+        "url": "stratum+tcp://randomxmonero.auto.nicehash.com:9200"
+      },
+      {
+        "name": "ETCHash",
+        "url": "stratum+tcp://etchash.auto.nicehash.com:9200"
+      },
+      {
+        "name": "DaggerHashimoto",
+        "url": "stratum+tcp://daggerhashimoto.auto.nicehash.com:9200"
+      },
+      {
+        "name": "ZHash",
+        "url": "stratum+tcp://zhash.auto.nicehash.com:9200"
+      },
+      {
+        "name": "KawPow",
+        "url": "stratum+tcp://kawpow.auto.nicehash.com:9200"
+      },
+      {
+        "name": "Octopus",
+        "url": "stratum+tcp://octopus.auto.nicehash.com:9200"
+      },
+      {
+        "name": "Autolykos",
+        "url": "stratum+tcp://autolykos.auto.nicehash.com:9200"
+      },
+      {
+        "name": "kHeavyHash",
+        "url": "stratum+tcp://kheavyhash.auto.nicehash.com:9200"
+      },
+      {
+        "name": "zkSNARK",
+        "url": "stratum+tcp://zksnark.auto.nicehash.com:9200"
+      }
+    ],
+    "username": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5",
+    "worker": "einstein-wells-quantum"
+  },
+  "monitoringConfig": {
+    "dashboardPort": 3001,
+    "updateInterval": 5000,
+    "alerts": {
+      "hashRateDropThreshold": 0.1,
+      "temperatureThreshold": 85,
+      "powerUsageThreshold": 1000000
+    }
+  }
+}

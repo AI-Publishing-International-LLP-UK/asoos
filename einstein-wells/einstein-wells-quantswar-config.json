@@ -1,0 +1,100 @@
+{
+  "rigProfile": {
+    "rigName": "einstein-wells-quantswar",
+    "rigId": "EW-QS-001",
+    "type": "nicehash",
+    "status": "production",
+    "tags": ["nicehash", "quantum", "production", "einstein-wells"],
+    "owner": "Diamond SAO Command Center",
+    "location": "us-west1",
+    "registrationDate": "2025-09-29T16:43:00Z"
+  },
+  "miningConfiguration": {
+    "bitcoinPayoutAddress": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj",
+    "niceHashAccount": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5",
+    "workerName": "einstein-wells-quantswar",
+    "rigDisplayName": "Einstein Wells Quantum Operations",
+    "algorithms": {
+      "primary": ["sha256", "daggerhashimoto", "kheavyhash"],
+      "secondary": ["randomx", "etchash", "kawpow", "octopus"],
+      "fallback": ["zhash", "cuckoocycle", "beamv3"]
+    }
+  },
+  "einsteinWellsIntegration": {
+    "powerDistribution": {
+      "maxWattage": 3500,
+      "voltageRange": {
+        "min": 220,
+        "max": 240
+      },
+      "quantumEfficiency": 0.97,
+      "wellAllocation": {
+        "well1": 0.33,
+        "well2": 0.33,
+        "well3": 0.34
+      }
+    },
+    "orchestrator": {
+      "endpoint": "https://orchestrator.einsteinwells.2100.cool/api/v1",
+      "nodeProfile": "power-nodes/einstein-wells-quantswar.yaml",
+      "maintenanceWindow": "03:00-04:00 UTC",
+      "autoScaling": true
+    }
+  },
+  "monitoring": {
+    "prometheusExporter": {
+      "enabled": true,
+      "port": 9100,
+      "metrics": ["gpu_temp", "hash_rate", "power_draw", "fan_speed"]
+    },
+    "logging": {
+      "cloudLogging": true,
+      "resourceType": "gce_instance",
+      "labels": {
+        "rig": "einstein-wells-quantswar",
+        "division": "einstein-wells",
+        "environment": "production"
+      }
+    },
+    "dashboard": {
+      "grafanaIntegration": true,
+      "version": "v34",
+      "panels": ["hash_rate", "temperature", "power", "earnings"]
+    }
+  },
+  "services": {
+    "integrationGateway": {
+      "url": "https://integration-gateway-js-859242575175.us-west1.run.app",
+      "healthCheck": "/health",
+      "authentication": "sallyport"
+    },
+    "diamondSAO": {
+      "commandCenter": "https://diamond.sao.2100.cool",
+      "monitoringLevel": "critical",
+      "alertThresholds": {
+        "temperature": 85,
+        "powerDraw": 4000,
+        "hashRateDrop": 0.15
+      }
+    }
+  },
+  "security": {
+    "sallyPortVerification": true,
+    "encryptedConfig": true,
+    "secretManager": {
+      "project": "api-for-warp-drive",
+      "secrets": [
+        "btc-address",
+        "nicehash-api-key",
+        "einstein-wells-cert"
+      ]
+    }
+  },
+  "deployment": {
+    "lastUpdated": "2025-09-29T16:43:00Z",
+    "configVersion": "2.1.0",
+    "deploymentMethod": "automated",
+    "rollbackEnabled": true,
+    "backupLocation": "/backups/miners/2025-09-29"
+  }
+}

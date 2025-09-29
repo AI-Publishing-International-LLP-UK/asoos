@@ -1,0 +1,36 @@
+# Einstein Wells Power Distribution Profile\n{
+  "apiVersion": "einsteinwells.io/v1",
+  "kind": "PowerNode",
+  "metadata": {
+    "name": "einstein-wells-quantswar",
+    "namespace": "quantum-mining",
+    "labels": {
+      "rig-type": "nicehash",
+      "division": "einstein-wells",
+      "environment": "production"
+    }
+  },
+  "spec": {
+    "rigId": "EW-QS-001",
+    "powerLimits": {
+      "maxWattage": 3500,
+      "voltageRange": {
+        "min": 220,
+        "max": 240
+      },
+      "quantumEfficiency": 0.97
+    },
+    "wellAllocation": {
+      "well1": 0.33,
+      "well2": 0.33,
+      "well3": 0.34
+    },
+    "maintenanceWindow": "03:00-04:00 UTC",
+    "autoScaling": true,
+    "alertThresholds": {
+      "temperature": 85,
+      "powerDraw": 4000,
+      "hashRateDrop": 0.15
+    }
+  }
+}
