@@ -1,0 +1,4 @@
+# Block Claude Desktop from accessing Einstein Wells mining
+/Users/as/asoos/integration-gateway/einstein-wells/
+mining-tools/
+*.log

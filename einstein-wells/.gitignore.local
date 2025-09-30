@@ -1,0 +1,4 @@
+# Prevent Claude/VS Code from creating tracking files
+.claude-changes.txt
+.vscode/
+*.code-workspace

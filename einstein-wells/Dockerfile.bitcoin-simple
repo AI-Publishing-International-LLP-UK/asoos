@@ -1,0 +1,64 @@
+FROM ubuntu:22.04
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    build-essential \
+    libuv1-dev \
+    libssl-dev \
+    libhwloc-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create working directory
+WORKDIR /app
+
+# Download and install XMRig for SHA-256
+RUN wget -O xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.20.0/xmrig-6.20.0-linux-x64.tar.gz && \
+    tar -xzf xmrig.tar.gz && \
+    mv xmrig-6.20.0/* . && \
+    rm -rf xmrig.tar.gz xmrig-6.20.0
+
+# Create Bitcoin mining configuration
+RUN echo '{ \
+  "algo": "sha256d", \
+  "url": "stratum+tcp://stratum.slushpool.com:4444", \
+  "user": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj.einstein-wells", \
+  "pass": "x", \
+  "donate-level": 0, \
+  "print-time": 15, \
+  "retries": 10, \
+  "retry-pause": 5, \
+  "keepalive": true, \
+  "threads": null, \
+  "huge-pages": false, \
+  "cpu-priority": 5, \
+  "background": false, \
+  "colors": false, \
+  "log-level": 2 \
+}' > /app/config.json
+
+# Create startup script
+RUN echo '#!/bin/bash\n\
+echo "🚀 Einstein Wells Bitcoin Mining Starting..."\n\
+echo "💰 Address: 3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj"\n\
+echo "🏊 Pool: stratum.slushpool.com:4444"\n\
+echo "⛏️ Algorithm: SHA-256d"\n\
+echo ""\n\
+./xmrig --config=config.json\n' > /app/start-mining.sh && \
+    chmod +x /app/start-mining.sh
+
+# Health check endpoint (simple HTTP server)
+RUN echo '#!/bin/bash\n\
+while true; do\n\
+  echo -e "HTTP/1.1 200 OK\\n\\nEinstein Wells Mining: ACTIVE" | nc -l -p 8080\n\
+done\n' > /app/health-server.sh && \
+    chmod +x /app/health-server.sh
+
+# Install netcat for health check
+RUN apt-get update && apt-get install -y netcat && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 8080
+
+# Start both mining and health server
+CMD /app/health-server.sh & /app/start-mining.sh

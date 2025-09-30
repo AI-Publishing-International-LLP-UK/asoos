@@ -16,7 +16,9 @@
     "pcp:activate": "node scripts/activate-zena-pcp.js",
     "blitz": "node high-speed-orchestration.js",
     "blitz-fast": "node high-speed-orchestration.js",
-    "high-speed-orchestration": "node high-speed-orchestration.js"
+    "high-speed-orchestration": "node high-speed-orchestration.js",
+    "protected-session-6h": "node run-6hour-protected-session.js",
+    "cleanup-faults": "./cleanup-translation-faults.sh"
   },
   "dependencies": {
     "@google-cloud/firestore": "^7.1.0",

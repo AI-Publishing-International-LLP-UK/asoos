@@ -1,0 +1,24 @@
+{
+  "pools": [
+    {
+      "algo": "sha256d",
+      "coin": "BTC", 
+      "url": "stratum+tcp://stratum.slushpool.com:4444",
+      "user": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj.einstein-wells-production",
+      "pass": "x",
+      "keepalive": true,
+      "nicehash": false,
+      "enabled": true
+    }
+  ],
+  "donate-level": 0,
+  "print-time": 30,
+  "retries": 5,
+  "retry-pause": 5,
+  "threads": null,
+  "huge-pages": true,
+  "cpu-priority": 5,
+  "log-level": 2,
+  "background": false,
+  "colors": false
+}

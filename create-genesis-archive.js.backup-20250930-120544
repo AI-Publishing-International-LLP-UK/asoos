@@ -229,6 +229,7 @@ to document the Genesis of Modern AI in America.
   console.log(`   ✅ Instructions written to: ${instructionsPath}`);
 }
 
+async function importConversationsToIndex(exportSources, pineconeApiKey, openaiApiKey) {
   console.log('🚀 Import process would begin here...');
   console.log('📊 Files to import:');
   console.log(`   OpenAI: ${exportSources.openai.length} files`);
