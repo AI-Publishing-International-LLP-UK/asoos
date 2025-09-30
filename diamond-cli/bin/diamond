@@ -5,7 +5,7 @@
  * 
  * Sacred Mission: Diamond SAO Command Center CLI
  * Authority: Mr. Phillip Corey Roark (0000001) - Diamond SAO Exclusive
- * Repository: https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git
+ * Repository: https://github.com/AI-Publishing-International-LLP-UK/ASOOS.git
  * 
  * @classification DIAMOND_SAO_COMMAND_CENTER
  * @date 2025-09-07
@@ -15,7 +15,8 @@
 // Node.js v24+ compatibility fixes
 try {
   const fs = require('fs');
-  if (fs.F_OK && !fs.constants) {
+  // Ensure fs.constants is available for compatibility
+  if (!fs.constants && fs.F_OK !== undefined) {
     fs.constants = { F_OK: fs.F_OK, R_OK: fs.R_OK, W_OK: fs.W_OK, X_OK: fs.X_OK };
   }
   global.Buffer = global.Buffer || require('buffer').Buffer;
@@ -113,8 +114,13 @@ class DiamondCLI {
         });
       });
       
+<<<<<<< Updated upstream
       if (!gitUrl.includes('AIXTIV-SYMPHONY')) {
         throw new Error('Diamond CLI must be run from AIXTIV-SYMPHONY repository');
+=======
+      if (!gitUrl.toLowerCase().includes('asoos')) {
+        throw new Error('Diamond CLI must be run from ASOOS repository');
+>>>>>>> Stashed changes
       }
       
       this.log(`✅ Repository validated: ${gitUrl.trim()}`, 'SUCCESS');
@@ -351,7 +357,7 @@ class DiamondCLI {
     console.log('═══════════════════════════════════════════════');
     console.log(`🏛️  Authority: ${this.diamondSAO.name} (${this.diamondSAO.id})`);
     console.log(`⚡ Version: ${this.version}`);
-    console.log(`📦 Repository: AIXTIV-SYMPHONY.git`);
+    console.log(`📦 Repository: ASOOS.git`);
     console.log(`🔗 Integration: ${this.authority}`);
     console.log('');
     
@@ -369,8 +375,8 @@ class DiamondCLI {
     console.log('   diamond status                           - Show this status');
     console.log('');
     
-    console.log('🚀 AIXTIV SYMPHONY INTEGRATION:');
-    console.log('   Current:   Diamond CLI → AIXTIV-SYMPHONY → GCP');
+    console.log('🚀 ASOOS ECOSYSTEM INTEGRATION:');
+    console.log('   Current:   Diamond CLI → ASOOS → GCP');
     console.log('   Authority: Diamond SAO Command Center');
     console.log('   Project:   api-for-warp-drive');
     console.log('');
@@ -501,11 +507,11 @@ class DiamondCLI {
 
   showHelp() {
     console.log(`
-💎 DIAMOND CLI - AIXTIV SYMPHONY INTEGRATION
+💎 DIAMOND CLI - ASOOS ECOSYSTEM INTEGRATION
 ═══════════════════════════════════════════════════════════════════════
 
 Authority: ${this.diamondSAO.name} (${this.diamondSAO.id})
-Repository: AIXTIV-SYMPHONY.git
+Repository: ASOOS.git
 Command Center: Diamond SAO Operational Center
 Version: ${this.version}
 
@@ -547,7 +553,7 @@ EXAMPLES:
   diamond status
 
 INTEGRATION:
-  Repository:     AIXTIV-SYMPHONY.git
+  Repository:     ASOOS.git
   GCP Project:    api-for-warp-drive
   Authority:      Diamond SAO Command Center
 

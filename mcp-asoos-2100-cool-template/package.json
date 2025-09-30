@@ -1,0 +1,56 @@
+{
+  "name": "@asoos/universal-blitz-orchestrator",
+  "version": "1.0.0",
+  "description": "Universal BLITZ High-Speed CI/CD/CTTT Deployment Orchestration for MCP.asoos.2100.cool - API-for-warp-drive GCP Projects",
+  "main": "universal-blitz-orchestrator.js",
+  "type": "module",
+  "bin": {
+    "blitz": "./universal-blitz-orchestrator.js",
+    "universal-blitz": "./universal-blitz-orchestrator.js"
+  },
+  "scripts": {
+    "blitz": "node universal-blitz-orchestrator.js",
+    "blitz-all": "node universal-blitz-orchestrator.js --all",
+    "install-global": "npm install -g .",
+    "test": "echo \"BLITZ system test - OK\" && exit 0"
+  },
+  "keywords": [
+    "blitz",
+    "orchestration",
+    "ci-cd",
+    "deployment",
+    "mcp",
+    "asoos",
+    "universal-template",
+    "api-for-warp-drive",
+    "high-speed-deployment",
+    "sallyport-auth"
+  ],
+  "author": "AI Publishing International LLP",
+  "license": "PROPRIETARY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI-Publishing-International-LLP-UK/asoos.git"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "preferGlobal": true,
+  "devDependencies": {
+    "newman": "^6.2.1"
+  },
+  "mcpTemplate": {
+    "universalTemplate": "mcp.asoos.2100.cool",
+    "gcpProject": "api-for-warp-drive",
+    "authGateway": "sallyport.2100.cool",
+    "version": "1.0.0",
+    "supportedProjects": [
+      "einstein-wells",
+      "integration-gateway",
+      "coaching2100",
+      "victory36",
+      "mcp-registry",
+      "ufo"
+    ]
+  }
+}

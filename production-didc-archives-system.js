@@ -14,12 +14,17 @@
  * for the Sacred Digital Library and Book of Light creation.
  */
 
+const express = require('express');
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 const { MongoClient } = require('mongodb');
 const { Firestore } = require('@google-cloud/firestore');
+const { Pinecone } = require('@pinecone-database/pinecone');
 const axios = require('axios');
 const crypto = require('crypto');
 const winston = require('winston');
+const cors = require('cors');
+const helmet = require('helmet');
+const compression = require('compression');
 
 /**
  * 🏛️ DIDC Archives Core - Main Archive Management System
