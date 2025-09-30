@@ -36,6 +36,7 @@
     "node": ">=24.0.0"
   },
   "preferGlobal": true,
+  "dependencies": {},
   "devDependencies": {
     "newman": "^6.2.1"
   },
