@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Decision System Integration Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #000, #1a1a2e);
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .test-interface {
+            display: grid;
+            grid-template-columns: 80px 1fr 300px;
+            height: 100vh;
+        }
+        
+        .left-sidebar {
+            background: rgba(0, 0, 0, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            gap: 15px;
+        }
+        
+        .sidebar-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 20px;
+        }
+        
+        .sidebar-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .sidebar-icon.active {
+            background: linear-gradient(135deg, #0bb1bb, #4ECDC4);
+            box-shadow: 0 5px 15px rgba(11, 177, 187, 0.4);
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content-area {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .test-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .test-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .test-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        .test-btn.primary {
+            background: linear-gradient(135deg, #0bb1bb, #4ECDC4);
+        }
+        
+        .right-panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .copilot-section {
+            margin-bottom: 20px;
+        }
+        
+        .copilot-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #aaa;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .active-copilot-display {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .copilot-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            text-align: center;
+        }
+        
+        /* S2D Button - Matches the existing implementation */
+        .scan-approve-btn {
+            background: rgba(11, 177, 187, 0.2);
+            border: 1px solid rgba(11, 177, 187, 0.4);
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #0bb1bb;
+            position: relative;
+        }
+        
+        .scan-approve-btn:hover {
+            background: rgba(11, 177, 187, 0.3);
+            border-color: rgba(11, 177, 187, 0.6);
+        }
+        
+        .scan-approve-content {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .panel-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .panel-header {
+            background: none;
+            border: none;
+            width: 100%;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .panel-content {
+            padding: 15px;
+            font-size: 11px;
+            color: #aaa;
+            line-height: 1.4;
+        }
+        
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 11px;
+            z-index: 1000;
+        }
+        
+        .log-area {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 120px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 10px;
+            overflow-y: auto;
+            z-index: 999;
+        }
+        
+        .log-entry {
+            margin-bottom: 2px;
+            opacity: 0.8;
+        }
+        
+        .log-entry.success { color: #50C878; }
+        .log-entry.error { color: #ff6b6b; }
+        .log-entry.warning { color: #fbbf24; }
+        .log-entry.info { color: #4ECDC4; }
+    </style>
+</head>
+<body>
+    <div class="test-interface">
+        <!-- Left Sidebar with 7 Icons -->
+        <div class="left-sidebar">
+            <div class="sidebar-icon active" onclick="selectIcon(this, 'Growth', 1)" title="Growth - BidSuite">
+                📈
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon(this, 'Vision', 2)" title="Vision - WishVision">
+                👁️
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon(this, 'Voice', 3)" title="Voice - ElevenLabs">
+                🗣️
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon(this, 'Video', 4)" title="Video - Studio">
+                🎥
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon(this, 'Patent', 5)" title="Patent - Automation">
+                ⚖️
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon(this, 'Governance', 6)" title="Governance - Dr. Burby">
+                🔐
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon(this, 'Support', 7)" title="Support - Dr. Maria">
+                🎯
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="header">
+                <h2 style="margin-bottom: 10px;">Dynamic Decision System Test</h2>
+                <p style="color: #aaa; font-size: 12px;">
+                    This interface tests the Dynamic Decision System integration with the existing S2D button.
+                    Click the test buttons to simulate decision triggers from various tools.
+                </p>
+            </div>
+            
+            <div class="content-area">
+                <h3 style="color: #0bb1bb; margin-bottom: 15px;">Test Decision Scenarios</h3>
+                
+                <div class="test-controls">
+                    <button class="test-btn primary" onclick="triggerGrowthDecision()">
+                        📈 Growth Decision
+                    </button>
+                    <button class="test-btn primary" onclick="triggerVisionDecision()">
+                        👁️ Vision Decision  
+                    </button>
+                    <button class="test-btn primary" onclick="triggerVoiceDecision()">
+                        🗣️ Voice Decision
+                    </button>
+                    <button class="test-btn primary" onclick="triggerGovernanceDecision()">
+                        🔐 Governance Decision
+                    </button>
+                    <button class="test-btn primary" onclick="triggerPatentDecision()">
+                        ⚖️ Patent Decision
+                    </button>
+                    <button class="test-btn" onclick="triggerUrgentDecision()">
+                        🚨 Urgent Decision
+                    </button>
+                    <button class="test-btn" onclick="clearAllDecisions()">
+                        🧹 Clear All
+                    </button>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; max-width: 500px;">
+                    <h4 style="color: #FFD700; margin-bottom: 10px;">Instructions:</h4>
+                    <ol style="color: #aaa; font-size: 11px; line-height: 1.6;">
+                        <li>Click any test button to trigger a decision</li>
+                        <li>Watch the S2D button in the right panel for changes</li>
+                        <li>Click the S2D button when it shows pending decisions</li>
+                        <li>Use the decision panel to approve/reject/defer</li>
+                        <li>Check the log area below for system activity</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel with S2D Button -->
+        <div class="right-panel">
+            <div class="copilot-section">
+                <div class="copilot-title">AI COPILOTS</div>
+                <div class="active-copilot-display">
+                    <div class="copilot-badge">
+                        <span id="activeRixDisplay">Dr. Lucy sRIX Active</span>
+                    </div>
+                    <div class="scan-approve-btn" onclick="handleS2DClick()">
+                        <div class="scan-approve-content">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9V5a2 2 0 0 1 2-2h4M3 15v4a2 2 0 0 0 2 2h4M15 3h4a2 2 0 0 1 2 2v4M15 21h4a2 2 0 0 0 2-2v-4"/>
+                                <path d="M9 12h6M12 9v6"/>
+                            </svg>
+                            <span>SCAN TO APPROVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel-card">
+                <button class="panel-header">
+                    <div class="panel-title">
+                        🔥 Decision Status
+                    </div>
+                </button>
+                <div class="panel-content">
+                    <div id="decisionStatus">No pending decisions</div>
+                </div>
+            </div>
+            
+            <div class="panel-card">
+                <button class="panel-header">
+                    <div class="panel-title">
+                        📊 System Status
+                    </div>
+                </button>
+                <div class="panel-content">
+                    Dynamic Decision System: <span id="systemStatus" style="color: #50C878;">Active</span><br>
+                    Magic Box System: <span style="color: #50C878;">Ready</span><br>
+                    S2D Integration: <span style="color: #50C878;">Connected</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Status Indicator -->
+    <div class="status-indicator" id="statusIndicator">
+        System Ready
+    </div>
+    
+    <!-- Log Area -->
+    <div class="log-area" id="logArea">
+        <div class="log-entry info">[SYSTEM] Dynamic Decision System initialized</div>
+        <div class="log-entry info">[S2D] Scan-to-Approve button connected</div>
+        <div class="log-entry success">[READY] System ready for decision testing</div>
+    </div>
+
+    <!-- Include the Dynamic Decision System -->
+    <script src="dynamic-decision-system.js"></script>
+    
+    <script>
+        // Test Interface Functions
+        let logCount = 0;
+        
+        function selectIcon(element, category, id) {
+            // Remove active class from all icons
+            document.querySelectorAll('.sidebar-icon').forEach(icon => {
+                icon.classList.remove('active');
+            });
+            
+            // Add active class to selected icon
+            element.classList.add('active');
+            
+            log(`[ICON] Selected ${category} tool (Icon ${id})`, 'info');
+            updateStatus(`${category} Tool Active`);
+        }
+        
+        function triggerGrowthDecision() {
+            document.dispatchEvent(new CustomEvent('toolDecisionRequired', {
+                detail: {
+                    tool: 'Growth - BidSuite',
+                    action: 'bid_submission',
+                    message: 'New enterprise bid opportunity identified',
+                    details: `
+                        <strong>Client:</strong> Fortune 500 Tech Company<br>
+                        <strong>Project Value:</strong> $2.3M<br>
+                        <strong>Confidence Score:</strong> 87%<br>
+                        <strong>Deadline:</strong> January 15, 2025<br>
+                        <strong>Approval Required:</strong> Budget allocation and proposal submission
+                    `,
+                    data: { 
+                        amount: 2300000, 
+                        client: 'TechCorp Industries', 
+                        deadline: '2025-01-15',
+                        confidence: 87
+                    },
+                    urgent: false
+                }
+            }));
+            log('[GROWTH] Triggered bid submission decision', 'warning');
+        }
+        
+        function triggerVisionDecision() {
+            document.dispatchEvent(new CustomEvent('toolDecisionRequired', {
+                detail: {
+                    tool: 'Vision - WishVision',
+                    action: 'vision_implementation',
+                    message: 'Strategic vision synthesis completed',
+                    details: `
+                        <strong>Vision:</strong> Q2 2025 Digital Transformation<br>
+                        <strong>Impact Level:</strong> High<br>
+                        <strong>Stakeholders:</strong> 12 departments affected<br>
+                        <strong>Timeline:</strong> 6-month implementation<br>
+                        <strong>Required:</strong> Executive approval for rollout
+                    `,
+                    data: { 
+                        vision: 'Digital Transformation Initiative', 
+                        impact: 'High',
+                        departments: 12,
+                        timeline: '6 months'
+                    },
+                    urgent: false
+                }
+            }));
+            log('[VISION] Triggered vision implementation decision', 'warning');
+        }
+        
+        function triggerVoiceDecision() {
+            document.dispatchEvent(new CustomEvent('toolDecisionRequired', {
+                detail: {
+                    tool: 'Voice - ElevenLabs',
+                    action: 'voice_deployment',
+                    message: 'Custom voice model training completed',
+                    details: `
+                        <strong>Model:</strong> Executive-Voice-v3<br>
+                        <strong>Quality Score:</strong> 95%<br>
+                        <strong>Training Data:</strong> 4.2 hours processed<br>
+                        <strong>Status:</strong> Ready for production deployment<br>
+                        <strong>Action:</strong> Deploy to live voice synthesis system
+                    `,
+                    data: { 
+                        model: 'Executive-Voice-v3', 
+                        quality: '95%',
+                        trainingHours: 4.2,
+                        status: 'ready'
+                    },
+                    urgent: false
+                }
+            }));
+            log('[VOICE] Triggered voice deployment decision', 'warning');
+        }
+        
+        function triggerGovernanceDecision() {
+            document.dispatchEvent(new CustomEvent('pcpDecisionTrigger', {
+                detail: {
+                    type: 'scan-to-approve',
+                    title: 'Governance Policy Update Required',
+                    description: 'New compliance regulations require immediate policy updates',
+                    details: `
+                        <strong>Regulation:</strong> SOC2 Type II Compliance<br>
+                        <strong>Deadline:</strong> 30 days<br>
+                        <strong>Affected Systems:</strong> All customer data processing<br>
+                        <strong>Risk Level:</strong> High if not implemented<br>
+                        <strong>Action:</strong> Approve policy updates and implementation plan
+                    `,
+                    toolSource: 'Governance - Dr. Burby',
+                    data: {
+                        regulation: 'SOC2 Type II',
+                        deadline: '30 days',
+                        riskLevel: 'High',
+                        systems: 'All customer data'
+                    },
+                    immediate: false
+                }
+            }));
+            log('[GOVERNANCE] Triggered S2D governance decision', 'warning');
+        }
+        
+        function triggerPatentDecision() {
+            document.dispatchEvent(new CustomEvent('pcpDecisionTrigger', {
+                detail: {
+                    type: 'blockchain-approve',
+                    title: 'Patent Filing Blockchain Approval',
+                    description: 'AI invention ready for patent filing with blockchain verification',
+                    details: `
+                        <strong>Invention:</strong> Dynamic Decision Orchestration System<br>
+                        <strong>Patent Type:</strong> Software/AI Method Patent<br>
+                        <strong>Filing Jurisdiction:</strong> US, EU, Japan<br>
+                        <strong>Blockchain Record:</strong> Permanent immutable filing record<br>
+                        <strong>Action:</strong> Authorize patent filing with blockchain verification
+                    `,
+                    toolSource: 'Patent - Automation',
+                    data: {
+                        invention: 'Dynamic Decision Orchestration System',
+                        type: 'Software/AI Method',
+                        jurisdictions: ['US', 'EU', 'Japan'],
+                        blockchain: true
+                    },
+                    immediate: false
+                }
+            }));
+            log('[PATENT] Triggered blockchain patent decision', 'warning');
+        }
+        
+        function triggerUrgentDecision() {
+            document.dispatchEvent(new CustomEvent('pcpDecisionTrigger', {
+                detail: {
+                    type: 'quick-approve',
+                    title: 'URGENT: Security Alert Response',
+                    description: 'Potential security threat detected - immediate action required',
+                    details: `
+                        <strong>Threat Level:</strong> Medium<br>
+                        <strong>Affected System:</strong> External API Gateway<br>
+                        <strong>Detection Time:</strong> 2 minutes ago<br>
+                        <strong>Recommended Action:</strong> Temporary API rate limiting<br>
+                        <strong>Impact:</strong> Minimal service degradation expected
+                    `,
+                    toolSource: 'Security - Monitoring',
+                    data: {
+                        threatLevel: 'Medium',
+                        system: 'External API Gateway',
+                        detectedAt: new Date().toISOString(),
+                        action: 'Rate limiting'
+                    },
+                    immediate: true,
+                    urgent: true
+                }
+            }));
+            log('[SECURITY] Triggered urgent security decision', 'error');
+        }
+        
+        function clearAllDecisions() {
+            if (window.DecisionSystem) {
+                window.DecisionSystem.activeDecisions.clear();
+                window.DecisionSystem.decisionQueue = [];
+                window.DecisionSystem.updateS2DButtonState();
+                window.DecisionSystem.hideDecisionPanel();
+                log('[SYSTEM] Cleared all pending decisions', 'info');
+                updateDecisionStatus('No pending decisions');
+                updateStatus('System Ready');
+            }
+        }
+        
+        function handleS2DClick() {
+            if (window.DecisionSystem) {
+                window.DecisionSystem.handleS2DClick();
+                log('[S2D] Scan-to-Approve button clicked', 'info');
+            }
+        }
+        
+        function log(message, type = 'info') {
+            const logArea = document.getElementById('logArea');
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `${timestamp} ${message}`;
+            
+            logArea.appendChild(entry);
+            logArea.scrollTop = logArea.scrollHeight;
+            
+            // Keep only last 50 entries
+            const entries = logArea.querySelectorAll('.log-entry');
+            if (entries.length > 50) {
+                entries[0].remove();
+            }
+        }
+        
+        function updateStatus(status) {
+            document.getElementById('statusIndicator').textContent = status;
+        }
+        
+        function updateDecisionStatus(status) {
+            document.getElementById('decisionStatus').textContent = status;
+        }
+        
+        // Listen for decision system events
+        document.addEventListener('decisionOutcome', (event) => {
+            const { toolSource, status, data } = event.detail;
+            log(`[OUTCOME] ${toolSource}: ${status}`, status === 'approved' ? 'success' : 'error');
+            updateDecisionStatus(`Last: ${toolSource} - ${status}`);
+        });
+        
+        // Monitor decision queue changes
+        setInterval(() => {
+            if (window.DecisionSystem) {
+                const queueLength = window.DecisionSystem.decisionQueue.length;
+                if (queueLength > 0) {
+                    updateDecisionStatus(`${queueLength} decision${queueLength > 1 ? 's' : ''} pending`);
+                } else {
+                    updateDecisionStatus('No pending decisions');
+                }
+            }
+        }, 1000);
+        
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            log('[INIT] Test interface loaded', 'success');
+            updateStatus('System Ready');
+        });
+    </script>
+</body>
+</html>

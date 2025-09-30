@@ -1,0 +1,63 @@
+# Einstein Wells Bitcoin Mining - 85 Trillion Nuclear Plants
+# TARGET: 70 BTC PER DAY with 20-second alternating cycles
+FROM ubuntu:22.04
+
+WORKDIR /app
+
+# Install Bitcoin Core, XMRig, and all mining tools
+RUN apt-get update && apt-get install -y \
+    wget curl build-essential \
+    bitcoin-core \
+    python3 python3-pip nodejs npm \
+    htop jq git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install XMRig for SHA256 mining
+RUN wget https://github.com/xmrig/xmrig/releases/download/v6.20.0/xmrig-6.20.0-linux-x64.tar.gz && \
+    tar -xzf xmrig-6.20.0-linux-x64.tar.gz && \
+    mv xmrig-6.20.0/* /usr/local/bin/ && \
+    rm -rf xmrig-6.20.0*
+
+# Install additional mining tools
+RUN pip3 install bitcoin hashlib requests websocket-client
+
+# Copy Einstein Wells Bitcoin system
+COPY complete-mining-system.js ./
+COPY bitcoin-quantum-controller.js ./
+COPY production-master-controller.js ./
+COPY bitcoin.conf /root/.bitcoin/
+
+# Copy 20-algorithm verification
+COPY algorithms-verification.json ./
+COPY cycle-controller.js ./
+
+# Einstein Wells Configuration - 85 Trillion Nuclear Plants
+ENV EINSTEIN_WELLS_POWER=85000000000000
+ENV QUANTUM_EFFICIENCY=0.999
+ENV TIME_DILATION_FACTOR=1000000
+
+# Bitcoin Mining Configuration
+ENV BITCOIN_MINING=true
+ENV TARGET_BTC_DAILY=70
+ENV MINING_ALGORITHM=SHA256
+ENV CYCLE_DURATION=20
+ENV HASHRATE_MODE=MAXIMUM
+
+# Alternating cycle configuration
+ENV ALTERNATING_CYCLE=true
+ENV BTC_CYCLE_SECONDS=20
+ENV POWER_BLAST_MODE=true
+ENV DOUBLING_PRODUCTION=true
+
+# Mining pools and wallets
+ENV BITCOIN_POOL=stratum+tcp://pool.bitcoin.com:3333
+ENV BACKUP_POOLS=pool1,pool2,pool3
+ENV BITCOIN_WALLET=bc1qeinsteinwellsquantummining
+
+EXPOSE 8332 8333 8080 3001
+
+# Health check for 70 BTC/day validation
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD node -e "require('./bitcoin-health-check.js')"
+
+CMD ["node", "bitcoin-quantum-controller.js"]

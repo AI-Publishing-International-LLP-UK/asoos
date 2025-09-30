@@ -7,12 +7,21 @@
  */
 
 const readline = require('readline');
-const chalk = require('chalk');
 const inquirer = require('inquirer');
+const figlet = require('figlet');
+const gradient = require('gradient-string');
 const boxen = require('boxen');
 const ora = require('ora');
-const gradient = require('gradient-string');
-const figlet = require('figlet');
+const chalk = require('chalk');
+
+// Import Diamond Solutions Menu and VisionSpeak integration
+const DiamondSolutionsMenu = require('./diamondSolutionsMenu.js');
+let VisionSpeakPromiseHandler;
+try {
+  VisionSpeakPromiseHandler = require('./visionSpeakPromiseHandler.mjs');
+} catch (e) {
+  console.warn('VisionSpeak not available:', e.message);
+}
 
 class DiamondInterface {
   constructor(cli) {
@@ -80,6 +89,16 @@ class DiamondInterface {
       output: process.stdout,
       completer: this.autoComplete.bind(this),
     });
+
+    // Initialize VisionSpeak if available
+    if (VisionSpeakPromiseHandler) {
+      this.visionSpeak = new VisionSpeakPromiseHandler();
+      console.log(this.styles.success('🎯 VisionSpeak voice command system initialized'));
+    }
+
+    // Initialize Diamond Solutions Menu
+    this.solutionsMenu = DiamondSolutionsMenu;
+    console.log(this.styles.success(`💎 Diamond Solutions Menu loaded - ${this.solutionsMenu.totalSolutions} solutions available`));
   }
 
   // Enhanced header display with ASCII art
@@ -116,50 +135,31 @@ class DiamondInterface {
     );
   }
 
-  // Interactive command builder
+  // Interactive command builder with comprehensive solutions menu
   async buildCommandInteractively() {
-    console.log(this.styles.header('\n🎯 Diamond CLI Interactive Command Builder\n'));
+    console.log(this.styles.header('\n💎 Diamond CLI Solutions Menu - 138 Automated Solutions\n'));
 
-    const commandChoices = [
+    // Display solutions menu options
+    const menuChoices = [
       {
-        name: '🚀 Publishing Pipeline - Launch high-speed publishing system',
-        value: 'publish',
-        description: 'Enhanced Ultra-High-Speed Publisher with six engines',
+        name: '🎯 Browse Solutions by Category - View all 16 solution categories',
+        value: 'browse-categories',
+        description: `Browse ${this.solutionsMenu.categories.length} solution categories with ${this.solutionsMenu.totalSolutions} total solutions`,
       },
       {
-        name: '🌐 Deploy WFA Swarm - Deploy quantum execution swarm',
-        value: 'deploy-swarm',
-        description: 'Deploy WFA swarm with commander and authority',
+        name: '🎤 Voice Command Search - Natural language solution finder',
+        value: 'voice-search',
+        description: 'Use natural language or voice commands to find solutions',
       },
       {
-        name: '🛡️ Victory36 Integration - Execute Victory36 Diamond SAO',
-        value: 'victory36',
-        description: 'Victory36 security and intelligence integration',
+        name: '🔍 Search Solutions - Find solutions by keyword or tag',
+        value: 'search-solutions',
+        description: 'Search through all solutions using keywords, tags, or descriptions',
       },
       {
-        name: '🧪 Newman Testing - Run comprehensive API tests',
-        value: 'newman',
-        description: 'Newman testing for all system components',
-      },
-      {
-        name: '🔧 System Maintenance - Repair and healing operations',
-        value: 'maintenance',
-        description: 'Self-healing, repair, and monitoring functions',
-      },
-      {
-        name: '📊 System Monitoring - Start monitoring dashboard',
-        value: 'monitor',
-        description: 'Real-time system monitoring and metrics',
-      },
-      {
-        name: '🧠 Hume AI Voice - Empathic voice intelligence system',
-        value: 'hume',
-        description: 'Professional Co-Pilot (PCP) voice synthesis & empathic AI',
-      },
-      {
-        name: '🌟 Dream Commander - AI-powered decision management system',
-        value: 'dream',
-        description: 'Wings 1-13 formation management | 11M decisions/day | Time-based predictions',
+        name: '🚀 Quick Launch - Popular Diamond CLI commands',
+        value: 'quick-launch',
+        description: 'Quick access to most popular and frequently used solutions',
       },
     ];
 
@@ -167,15 +167,251 @@ class DiamondInterface {
       {
         type: 'list',
         name: 'command',
-        message: 'What would you like to do?',
-        choices: commandChoices,
+        message: 'How would you like to find your solution?',
+        choices: menuChoices,
         pageSize: 10,
       },
     ]);
 
-    return await this.buildSpecificCommand(answers.command);
+    return await this.handleMenuChoice(answers.command);
   }
 
+  async handleMenuChoice(choice) {
+    switch (choice) {
+      case 'browse-categories':
+        return await this.browseSolutionCategories();
+      case 'voice-search':
+        return await this.voiceCommandSearch();
+      case 'search-solutions':
+        return await this.searchSolutions();
+      case 'quick-launch':
+        return await this.quickLaunchMenu();
+      default:
+        return 'diamond help';
+    }
+  }
+
+  // Browse solutions by category
+  async browseSolutionCategories() {
+    console.log(this.styles.subheader('\n📚 Diamond CLI Solution Categories\n'));
+
+    const categoryChoices = this.solutionsMenu.categories.map(category => ({
+      name: `${category.icon} ${category.name} (${category.solutions.length} solutions)`,
+      value: category.id,
+      description: category.description,
+    }));
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'category',
+        message: 'Select a solution category:',
+        choices: categoryChoices,
+        pageSize: 16,
+      },
+    ]);
+
+    return await this.browseCategorySolutions(answers.category);
+  }
+
+  // Browse solutions within a category
+  async browseCategorySolutions(categoryId) {
+    const category = this.solutionsMenu.categories.find(cat => cat.id === categoryId);
+    if (!category) {
+      return 'diamond help';
+    }
+
+    console.log(this.styles.subheader(`\n${category.icon} ${category.name} Solutions\n`));
+    console.log(this.styles.secondary(category.description + '\n'));
+
+    const solutionChoices = category.solutions.map(solution => ({
+      name: `${solution.name}`,
+      value: solution.id,
+      description: solution.description,
+    }));
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'solution',
+        message: 'Select a solution to execute:',
+        choices: solutionChoices,
+        pageSize: 15,
+      },
+    ]);
+
+    const solution = this.solutionsMenu.getSolutionById(answers.solution);
+    if (solution) {
+      console.log(this.styles.success(`\n💎 Executing: ${solution.name}`));
+      console.log(this.styles.info(`📝 Description: ${solution.description}`));
+      console.log(this.styles.command(`🔧 Command: ${solution.command}\n`));
+      return solution.command;
+    }
+
+    return 'diamond help';
+  }
+
+  // Voice command search using VisionSpeak
+  async voiceCommandSearch() {
+    if (!this.visionSpeak) {
+      console.log(this.styles.warning('🎤 VisionSpeak not available. Using text search instead.\n'));
+      return await this.searchSolutions();
+    }
+
+    console.log(this.styles.subheader('\n🎤 VisionSpeak Voice Command Search\n'));
+    console.log(this.styles.info('Speak naturally about what you want to accomplish...'));
+    console.log(this.styles.example('Examples: "deploy a web application", "set up monitoring", "create a database"\n'));
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'voiceInput',
+        message: 'Describe what you want to do (or type your request):',
+        validate: (input) => input.length > 0 || 'Please provide a description',
+      },
+    ]);
+
+    try {
+      // Process with VisionSpeak
+      const visionSpeakResult = await this.visionSpeak.processVisionSpeakRequest(answers.voiceInput);
+      
+      // Also search solutions menu
+      const matchingSolutions = await this.solutionsMenu.processVoiceCommand(answers.voiceInput);
+
+      if (matchingSolutions.length === 0) {
+        console.log(this.styles.warning('\n❌ No matching solutions found. Try different keywords.\n'));
+        return 'diamond help';
+      }
+
+      console.log(this.styles.success(`\n🎯 Found ${matchingSolutions.length} matching solutions:\n`));
+
+      const solutionChoices = matchingSolutions.map((solution, index) => ({
+        name: `${solution.categoryIcon} ${solution.name} (${solution.category})`,
+        value: solution.id,
+        description: `${solution.description} | Match: ${solution.matchType}`,
+      }));
+
+      const solutionAnswers = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'solution',
+          message: 'Select the solution that best matches your request:',
+          choices: solutionChoices,
+          pageSize: 8,
+        },
+      ]);
+
+      const selectedSolution = this.solutionsMenu.getSolutionById(solutionAnswers.solution);
+      if (selectedSolution) {
+        console.log(this.styles.success(`\n💎 Executing: ${selectedSolution.name}`));
+        console.log(this.styles.command(`🔧 Command: ${selectedSolution.command}\n`));
+        return selectedSolution.command;
+      }
+
+    } catch (error) {
+      console.log(this.styles.error(`\n❌ Voice processing error: ${error.message}\n`));
+      return 'diamond help';
+    }
+
+    return 'diamond help';
+  }
+
+  // Search solutions by keyword
+  async searchSolutions() {
+    console.log(this.styles.subheader('\n🔍 Search Diamond CLI Solutions\n'));
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'searchTerm',
+        message: 'Enter search keywords (tags, names, or descriptions):',
+        validate: (input) => input.length > 0 || 'Please provide a search term',
+      },
+    ]);
+
+    const matchingSolutions = await this.solutionsMenu.processVoiceCommand(answers.searchTerm);
+
+    if (matchingSolutions.length === 0) {
+      console.log(this.styles.warning('\n❌ No matching solutions found. Try different keywords.\n'));
+      return 'diamond help';
+    }
+
+    console.log(this.styles.success(`\n🎯 Found ${matchingSolutions.length} matching solutions:\n`));
+
+    const solutionChoices = matchingSolutions.map((solution) => ({
+      name: `${solution.categoryIcon} ${solution.name}`,
+      value: solution.id,
+      description: `${solution.description} | Category: ${solution.category}`,
+    }));
+
+    const solutionAnswers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'solution',
+        message: 'Select a solution:',
+        choices: solutionChoices,
+        pageSize: 8,
+      },
+    ]);
+
+    const selectedSolution = this.solutionsMenu.getSolutionById(solutionAnswers.solution);
+    if (selectedSolution) {
+      console.log(this.styles.success(`\n💎 Executing: ${selectedSolution.name}`));
+      console.log(this.styles.command(`🔧 Command: ${selectedSolution.command}\n`));
+      return selectedSolution.command;
+    }
+
+    return 'diamond help';
+  }
+
+  // Quick launch popular solutions
+  async quickLaunchMenu() {
+    console.log(this.styles.subheader('\n🚀 Quick Launch - Popular Solutions\n'));
+
+    const popularSolutions = [
+      'ultra-speed-publisher',
+      'wfa-swarm-deployment', 
+      'integration-gateway',
+      'dream-commander',
+      'victory36-integration',
+      'mongodb-automation',
+      'voice-synthesis',
+      'real-time-analytics'
+    ];
+
+    const quickChoices = popularSolutions.map(solutionId => {
+      const solution = this.solutionsMenu.getSolutionById(solutionId);
+      if (solution) {
+        return {
+          name: `${solution.categoryIcon} ${solution.name}`,
+          value: solution.id,
+          description: solution.description,
+        };
+      }
+      return null;
+    }).filter(Boolean);
+
+    const answers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'solution',
+        message: 'Select a popular solution:',
+        choices: quickChoices,
+        pageSize: 10,
+      },
+    ]);
+
+    const selectedSolution = this.solutionsMenu.getSolutionById(answers.solution);
+    if (selectedSolution) {
+      console.log(this.styles.success(`\n💎 Executing: ${selectedSolution.name}`));
+      console.log(this.styles.command(`🔧 Command: ${selectedSolution.command}\n`));
+      return selectedSolution.command;
+    }
+
+    return 'diamond help';
+  }
+
+  // Legacy command support
   async buildSpecificCommand(commandType) {
     switch (commandType) {
       case 'publish':
@@ -710,11 +946,24 @@ class DiamondInterface {
     });
   }
 
-  // Enhanced help display with better formatting
+  // Enhanced help display with comprehensive solutions menu
   displayEnhancedHelp() {
     this.displayEnhancedHeader();
 
-    console.log(this.styles.header('💎 DIAMOND CLI - Enhanced Command Reference\n'));
+    console.log(this.styles.header('💎 DIAMOND CLI - Comprehensive Solutions Menu\n'));
+    
+    // Display solutions statistics
+    const stats = this.solutionsMenu.getStatistics();
+    console.log(this.styles.success(`📊 Total Solutions: ${stats.totalSolutions}`));
+    console.log(this.styles.success(`📚 Categories: ${stats.totalCategories}`));
+    console.log(this.styles.success(`🎤 VisionSpeak: ${this.visionSpeak ? 'Available' : 'Not Available'}\n`));
+
+    // Display category overview
+    console.log(this.styles.subheader('🗂️ Solution Categories:\n'));
+    stats.categoriesBreakdown.forEach(category => {
+      console.log(this.styles.info(`  ${category.icon} ${category.name} (${category.solutionCount} solutions)`));
+    });
+    console.log();
 
     const sections = [
       {

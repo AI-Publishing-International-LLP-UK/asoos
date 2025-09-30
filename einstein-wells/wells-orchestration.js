@@ -566,10 +566,10 @@ class EinsteinWellsOrchestrator {
 }
 
 // Export for use in other modules
-module.exports = { EinsteinWellsOrchestrator };
+export { EinsteinWellsOrchestrator };
 
 // Run directly if called
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   console.log('🚀 INITIALIZING EINSTEIN WELLS ORCHESTRATION');
   
   const orchestrator = new EinsteinWellsOrchestrator();

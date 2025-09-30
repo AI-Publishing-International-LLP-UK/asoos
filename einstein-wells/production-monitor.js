@@ -154,6 +154,37 @@ class ProductionMonitor {
   }
 
   /**
+   * Start critical alerts monitoring
+   */
+  startCriticalAlerts() {
+    setInterval(() => {
+      const status = this.getSystemStatus();
+      
+      // Check for critical power levels
+      if (status.totalEnergy > this.monitoring.criticalThresholds.maxPowerLevel) {
+        this.sendCriticalAlert({
+          ...status,
+          alertType: 'CRITICAL_POWER_LEVEL',
+          message: 'Power levels exceed safe limits'
+        });
+      }
+      
+      // Check well pressure
+      status.wellStates.forEach(well => {
+        const pressureRatio = well.energy / this.monitoring.criticalThresholds.maxPowerLevel;
+        if (pressureRatio > this.monitoring.criticalThresholds.maxWellPressure) {
+          this.sendCriticalAlert({
+            ...status,
+            alertType: 'WELL_PRESSURE_CRITICAL',
+            message: `Well ${well.id} pressure critical: ${(pressureRatio * 100).toFixed(1)}%`
+          });
+        }
+      });
+      
+    }, 60000); // Check every minute for critical alerts
+  }
+
+  /**
    * Track daily well emptying requirement
    */
   startDailyEmptyingTracker() {
