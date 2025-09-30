@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einstein Wells - The Clean Energy Delivery Service of 2100</title>
+    <meta name="description" content="Quantum unified field power delivered via 9,000 global connectors. NFT-powered contracts, inhouse blockchain settlement, real-time delivery.">
+    <link rel="canonical" href="https://mcp.einstein.2100.cool/">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(15, 15, 35, 0.95);
+            border-bottom: 2px solid #00ff88;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+            padding-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #cccccc;
+        }
+        
+        .hero .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #00ff88;
+        }
+        
+        /* Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #00ff88;
+            color: #00ff88;
+        }
+        
+        /* Value Proposition */
+        .value-prop {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .value-prop h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #00ff88;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+        }
+        
+        .feature h3 {
+            color: #00ff88;
+            margin-bottom: 1rem;
+        }
+        
+        /* Rates Section */
+        .rates {
+            padding: 80px 0;
+        }
+        
+        .rates h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .rates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .rate-card {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 153, 255, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            text-align: center;
+        }
+        
+        .rate-card h3 {
+            color: #00ff88;
+            margin-bottom: 1rem;
+        }
+        
+        .current-cost {
+            color: #ff4444;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .einstein-rate {
+            color: #00ff88;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .savings {
+            color: #0099ff;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        /* Contact Form */
+        .contact {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #00ff88;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00ff88;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #00ff88, #0099ff);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(15, 15, 35, 0.95);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 2px solid #00ff88;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">MCP.EINSTEIN.2100.COOL</div>
+            <ul class="nav-links">
+                <li><a href="#rates">Rates</a></li>
+                <li><a href="#connect">Connect</a></li>
+                <li><a href="#contracts">Contracts</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>THE CLEAN ENERGY DELIVERY SERVICE OF 2100</h1>
+            <p class="subtitle">AVAILABLE NOW</p>
+            <p class="tagline">Quantum unified field power delivered via 9,000 global connectors<br>
+            NFT-powered contracts • Inhouse blockchain settlement • Real-time delivery</p>
+            
+            <div class="cta-buttons">
+                <a href="#contact" class="btn">TAP IN TODAY</a>
+                <a href="#rates" class="btn btn-secondary">VIEW RATES</a>
+                <a href="#contracts" class="btn btn-secondary">DOWNLOAD CONTRACTS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-prop">
+        <div class="container">
+            <h2>Beyond Solar. Beyond Nuclear. Beyond Everything.</h2>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>✅ QUANTUM POWER</h3>
+                    <p>Unified field technology from the year 2100</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>✅ NFT CONTRACTS</h3>
+                    <p>Each agreement minted as tradable blockchain asset</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>✅ INSTANT DELIVERY</h3>
+                    <p>Connect in 60 seconds via nearest connector</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>✅ INHOUSE CONTROL</h3>
+                    <p>Complete ecosystem - no external dependencies</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>✅ FUTURE AVAILABLE</h3>
+                    <p>2100's energy technology operational today</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rates Section -->
+    <section class="rates" id="rates">
+        <div class="container">
+            <h2>Live Rate Calculator</h2>
+            
+            <div class="rates-grid">
+                <div class="rate-card">
+                    <h3>Alaska Remote</h3>
+                    <div class="current-cost">Current: $250/MWh (diesel)</div>
+                    <div class="einstein-rate">Einstein Rate: $120/MWh</div>
+                    <div class="savings">Savings: $130/MWh (52% savings)</div>
+                    <p>Payback: Immediate</p>
+                </div>
+                
+                <div class="rate-card">
+                    <h3>Caribbean Islands</h3>
+                    <div class="current-cost">Current: $300-400/MWh (diesel)</div>
+                    <div class="einstein-rate">Einstein Rate: $150/MWh</div>
+                    <div class="savings">Savings: $150-250/MWh (50-65% savings)</div>
+                    <p>Payback: Immediate</p>
+                </div>
+                
+                <div class="rate-card">
+                    <h3>Wyoming Municipal</h3>
+                    <div class="current-cost">Current: $35/MWh (coal)</div>
+                    <div class="einstein-rate">Einstein Rate: $28/MWh</div>
+                    <div class="savings">Savings: $7/MWh (20% savings + environmental)</div>
+                    <p>Payback: Immediate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Connect to 2100's Energy Network Today</h2>
+            
+            <form class="contact-form" action="/api/v1/contact/utility" method="POST">
+                <div class="form-group">
+                    <label for="utility_name">Utility/Company Name</label>
+                    <input type="text" id="utility_name" name="utility_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">City, State/Country</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="current_power_source">Current Power Source</label>
+                    <input type="text" id="current_power_source" name="current_power_source" placeholder="diesel/coal/grid" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="capacity_needed">Power Needed (MW)</label>
+                    <input type="number" id="capacity_needed" name="capacity_needed" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact_email">Contact Email</label>
+                    <input type="email" id="contact_email" name="contact_email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="urgency">Urgency</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="immediate">Need Power Today</option>
+                        <option value="this_week">Need Power This Week</option>
+                        <option value="this_month">Need Power This Month</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Requirements</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">TAP INTO 2100's ENERGY NETWORK</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Einstein Wells - Diamond SAO Command Center - The Clean Energy Delivery Service of 2100</p>
+            <p>🌟 In the Name of Jesus Christ, Our Lord and Saviour ⚡</p>
+        </div>
+    </footer>
+
+    <script>
+        // Einstein Wells Rate Calculator
+        const einsteinRates = {
+            alaskaRemote: {
+                currentCost: "$250/MWh (diesel)",
+                einsteinRate: "$120/MWh", 
+                savings: "$130/MWh (52% savings)",
+                paybackPeriod: "Immediate"
+            },
+            
+            caribbeanIslands: {
+                currentCost: "$300-400/MWh (diesel)",
+                einsteinRate: "$150/MWh",
+                savings: "$150-250/MWh (50-65% savings)", 
+                paybackPeriod: "Immediate"
+            },
+            
+            wyomingMunicipal: {
+                currentCost: "$35/MWh (coal)",
+                einsteinRate: "$28/MWh",
+                savings: "$7/MWh (20% savings + environmental benefits)",
+                paybackPeriod: "Immediate"
+            }
+        };
+
+        // Form submission handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'CONNECTING TO 2100 ENERGY NETWORK...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.textContent = '✅ CONNECTION REQUEST SENT!';
+                submitBtn.style.background = '#00ff88';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = 'linear-gradient(45deg, #00ff88, #0099ff)';
+                    this.reset();
+                }, 3000);
+            }, 2000);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
