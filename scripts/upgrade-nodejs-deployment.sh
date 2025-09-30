@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 🔄 NODE.JS UPGRADE DEPLOYMENT SCRIPT
-# Ensures all Cloud Run services are updated with Node.js 22+
+# Ensures all Cloud Run services are updated with Node.js 24+
 # Implements automated rollback on failure
 
 set -euo pipefail
@@ -11,7 +11,7 @@ PROJECT_ID="api-for-warp-drive"
 GCP_REGION="us-west1"
 STAGING_ZONE="us-west1-b"
 PRODUCTION_ZONE="us-west1-a"
-NODE_VERSION="22"
+NODE_VERSION="24"
 
 # Colors for output
 RED='\033[0;31m'

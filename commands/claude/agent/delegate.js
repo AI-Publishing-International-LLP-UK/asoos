@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const fetch = require('node-fetch');
 const https = require('https');
 const { parseOptions, withSpinner, displayResult } = require('../../../lib/utils');
+const { ensureAnthropicKey } = require('../../../lib/secrets');
 const { firestore } = require('../../../lib/firestore');
 const { logAgentAction } = require('../../../lib/agent-tracking');
 
@@ -9,7 +10,7 @@ const { logAgentAction } = require('../../../lib/agent-tracking');
 const CLAUDE_API_ENDPOINT =
   process.env.CLAUDE_API_ENDPOINT ||
   process.env.DR_CLAUDE_API ||
-  'https://us-west1-aixtiv-symphony.cloudfunctions.net';
+  'https://api.anthropic.com/v1/messages';
 const PROJECT_DELEGATE_ENDPOINT = `${CLAUDE_API_ENDPOINT}/dr-claude/projects/delegate`;
 
 /**
@@ -72,7 +73,7 @@ module.exports = async function delegateProjectToAgent(options) {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'anthropic-api-key': process.env.ANTHROPIC_API_KEY || process.env.DR_CLAUDE_API || '',
+'anthropic-api-key': await ensureAnthropicKey(),
               'anthropic-version': '2023-06-01',
               'x-agent-id': 'dr-claude-orchestrator',
             },

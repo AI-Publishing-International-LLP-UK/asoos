@@ -5,7 +5,7 @@
 
 steps:
   # Step 1: Generate package-lock.json for npm ci
-  - name: 'node:22-alpine'
+  - name: 'node:24-alpine'
     entrypoint: 'sh'
     args:
       - '-c'

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const { parseOptions, withSpinner, displayResult } = require('../../../lib/utils');
+const { ensureAnthropicKey } = require('../../../lib/secrets');
 const { logAgentAction, getCurrentAgentId } = require('../../../lib/agent-tracking');
 const fallbackGenerator = require('./fallback-generator');
 
@@ -74,8 +75,16 @@ module.exports = async function generateCode(options) {
       `Claude Code is generating ${chalk.cyan(language || 'javascript')} code for your task`,
       async () => {
         try {
+          // Choose model with runtime guard against Vertex-style identifiers
+          let chosenModel = process.env.CLAUDE_MODEL || 'claude-3-7-sonnet-latest';
+          const suspicious = /publishers\/anthropic|aiplatform|locations\//i.test(chosenModel) || chosenModel.includes('@');
+          if (suspicious) {
+            console.warn('\n[Guard] Detected Vertex-style model identifier. Switching to direct Anthropic model: claude-3-7-sonnet-latest');
+            chosenModel = 'claude-3-7-sonnet-latest';
+          }
+
           const payload = {
-            model: 'claude-3-sonnet-20240229', // Use a valid model name
+            model: chosenModel,
             max_tokens: 4000,
             messages: [
               {
@@ -116,8 +125,7 @@ module.exports = async function generateCode(options) {
               method: 'POST', // Explicitly set HTTP method to POST
               headers: {
                 'Content-Type': 'application/json',
-                'anthropic-api-key':
-                  process.env.ANTHROPIC_API_KEY || process.env.DR_CLAUDE_API || '',
+'anthropic-api-key': await ensureAnthropicKey(),
                 'anthropic-version': '2023-06-01',
                 'X-Agent-ID': getCurrentAgentId(), // Add agent ID in headers for tracking
               },
