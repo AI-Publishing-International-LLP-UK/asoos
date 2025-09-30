@@ -114,13 +114,8 @@ class DiamondCLI {
         });
       });
       
-<<<<<<< Updated upstream
-      if (!gitUrl.includes('AIXTIV-SYMPHONY')) {
-        throw new Error('Diamond CLI must be run from AIXTIV-SYMPHONY repository');
-=======
-      if (!gitUrl.toLowerCase().includes('asoos')) {
-        throw new Error('Diamond CLI must be run from ASOOS repository');
->>>>>>> Stashed changes
+      if (!gitUrl.toLowerCase().includes('asoos') && !gitUrl.includes('AIXTIV-SYMPHONY')) {
+        throw new Error('Diamond CLI must be run from ASOOS or AIXTIV-SYMPHONY repository');
       }
       
       this.log(`✅ Repository validated: ${gitUrl.trim()}`, 'SUCCESS');
