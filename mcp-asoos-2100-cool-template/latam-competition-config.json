@@ -1,0 +1,254 @@
+{
+  "competition": {
+    "name": "LATAM AI Revolution First Cohort",
+    "launch_date": "2025-09-30T00:00:00Z",
+    "region": "LATAM",
+    "languages": ["en", "es", "pt"],
+    "default_language": "es",
+    "timezone": "America/Mexico_City",
+    "registration_window": {
+      "opens": "2025-09-30T00:00:00Z",
+      "closes": "2025-10-15T23:59:59Z",
+      "early_bird_deadline": "2025-10-07T23:59:59Z"
+    }
+  },
+  "participants": {
+    "total_slots": 1000,
+    "sectors": {
+      "healthcare": {
+        "name": {
+          "en": "Healthcare & Life Sciences",
+          "es": "Salud y Ciencias de la Vida",
+          "pt": "Saúde e Ciências da Vida"
+        },
+        "slots": 100,
+        "priority": 1
+      },
+      "financial": {
+        "name": {
+          "en": "Financial Services",
+          "es": "Servicios Financieros",
+          "pt": "Serviços Financeiros"
+        },
+        "slots": 100,
+        "priority": 1
+      },
+      "manufacturing": {
+        "name": {
+          "en": "Manufacturing & Industry",
+          "es": "Manufactura e Industria",
+          "pt": "Manufatura e Indústria"
+        },
+        "slots": 100,
+        "priority": 2
+      },
+      "technology": {
+        "name": {
+          "en": "Technology & Software",
+          "es": "Tecnología y Software",
+          "pt": "Tecnologia e Software"
+        },
+        "slots": 100,
+        "priority": 1
+      },
+      "retail": {
+        "name": {
+          "en": "Retail & E-commerce",
+          "es": "Retail y Comercio Electrónico",
+          "pt": "Varejo e E-commerce"
+        },
+        "slots": 100,
+        "priority": 2
+      },
+      "education": {
+        "name": {
+          "en": "Education & Training",
+          "es": "Educación y Capacitación",
+          "pt": "Educação e Treinamento"
+        },
+        "slots": 100,
+        "priority": 2
+      },
+      "energy": {
+        "name": {
+          "en": "Energy & Natural Resources",
+          "es": "Energía y Recursos Naturales",
+          "pt": "Energia e Recursos Naturais"
+        },
+        "slots": 100,
+        "priority": 2
+      },
+      "utilities": {
+        "name": {
+          "en": "Utilities & Infrastructure",
+          "es": "Servicios Públicos e Infraestructura",
+          "pt": "Serviços Públicos e Infraestrutura"
+        },
+        "slots": 100,
+        "priority": 3
+      },
+      "consulting": {
+        "name": {
+          "en": "Consulting & Professional Services",
+          "es": "Consultoría y Servicios Profesionales",
+          "pt": "Consultoria e Serviços Profissionais"
+        },
+        "slots": 100,
+        "priority": 3
+      },
+      "other": {
+        "name": {
+          "en": "Other Industries",
+          "es": "Otras Industrias",
+          "pt": "Outras Indústrias"
+        },
+        "slots": 100,
+        "priority": 3
+      }
+    },
+    "regions": {
+      "mexico": {
+        "name": {
+          "en": "Mexico & Central America",
+          "es": "México y Centroamérica",
+          "pt": "México e América Central"
+        },
+        "slots": 30,
+        "countries": ["MX", "GT", "BZ", "SV", "HN", "NI", "CR", "PA"]
+      },
+      "south_america_north": {
+        "name": {
+          "en": "Northern South America",
+          "es": "Sudamérica del Norte",
+          "pt": "América do Sul do Norte"
+        },
+        "slots": 25,
+        "countries": ["VE", "CO", "GY", "SR", "GF", "EC"]
+      },
+      "brazil": {
+        "name": {
+          "en": "Brazil",
+          "es": "Brasil",
+          "pt": "Brasil"
+        },
+        "slots": 25,
+        "countries": ["BR"]
+      },
+      "south_america_south": {
+        "name": {
+          "en": "Southern South America",
+          "es": "Sudamérica del Sur",
+          "pt": "América do Sul do Sul"
+        },
+        "slots": 20,
+        "countries": ["AR", "CL", "UY", "PY", "BO", "PE"]
+      }
+    }
+  },
+  "pricing": {
+    "base_prices": {
+      "cohort_member": {
+        "usd": 2997,
+        "display": {
+          "en": "$2,997",
+          "es": "$2,997 USD",
+          "pt": "$2,997 USD"
+        }
+      },
+      "individual": {
+        "usd": 9997,
+        "display": {
+          "en": "$9,997",
+          "es": "$9,997 USD",
+          "pt": "$9,997 USD"
+        }
+      }
+    },
+    "latam_discount": {
+      "percentage": 90,
+      "cohort_member": {
+        "usd": 299.7,
+        "display": {
+          "en": "$299.70 (90% OFF)",
+          "es": "$299.70 USD (90% DESCUENTO)",
+          "pt": "$299.70 USD (90% DESCONTO)"
+        }
+      },
+      "individual": {
+        "usd": 999.7,
+        "display": {
+          "en": "$999.70 (90% OFF)",
+          "es": "$999.70 USD (90% DESCUENTO)",
+          "pt": "$999.70 USD (90% DESCONTO)"
+        }
+      }
+    }
+  },
+  "early_implementation_program": {
+    "name": {
+      "en": "LATAM Early Implementation Head Start Program",
+      "es": "Programa de Ventaja Inicial de Implementación Temprana LATAM",
+      "pt": "Programa de Vantagem Inicial de Implementação Antecipada LATAM"
+    },
+    "description": {
+      "en": "Exclusive program for LATAM companies to get 6 months ahead with AI implementation",
+      "es": "Programa exclusivo para empresas LATAM para obtener 6 meses de ventaja con implementación de IA",
+      "pt": "Programa exclusivo para empresas LATAM obterem 6 meses de vantagem com implementação de IA"
+    },
+    "phases": {
+      "1_discovery": {
+        "name": {
+          "en": "Discovery & Assessment",
+          "es": "Descubrimiento y Evaluación",
+          "pt": "Descoberta e Avaliação"
+        },
+        "duration_days": 7,
+        "workshops": 3
+      },
+      "2_design": {
+        "name": {
+          "en": "Custom AI Strategy Design",
+          "es": "Diseño de Estrategia de IA Personalizada",
+          "pt": "Design de Estratégia de IA Personalizada"
+        },
+        "duration_days": 10,
+        "workshops": 4
+      },
+      "3_implementation": {
+        "name": {
+          "en": "Rapid Implementation",
+          "es": "Implementación Rápida",
+          "pt": "Implementação Rápida"
+        },
+        "duration_days": 14,
+        "workshops": 6
+      },
+      "4_optimization": {
+        "name": {
+          "en": "Performance Optimization",
+          "es": "Optimización de Rendimiento",
+          "pt": "Otimização de Desempenho"
+        },
+        "duration_days": 14,
+        "workshops": 4
+      }
+    }
+  },
+  "mcp_provisioning": {
+    "template_server": "mcp.asoos.2100.cool",
+    "latam_subdomain_pattern": "mcp.{company_slug}.latam.2100.cool",
+    "deployment_regions": ["us-west1", "us-central1"],
+    "auto_scaling": {
+      "min_instances": 1,
+      "max_instances": 10,
+      "target_cpu": 70
+    },
+    "features": {
+      "spanish_language_support": true,
+      "portuguese_language_support": true,
+      "latam_timezone_support": true,
+      "regional_data_compliance": true,
+      "local_currency_support": true
+    }
+  }
+}

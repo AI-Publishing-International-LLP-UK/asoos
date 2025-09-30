@@ -1,0 +1,139 @@
+{
+  "targeting_strategy": {
+    "name": "LATAM High-Impact First Adopters",
+    "philosophy": "Target companies that will truly benefit and can quickly implement, not just the biggest names",
+    "focus": "Growth-ready, agile, forward-thinking companies across LATAM"
+  },
+  "ideal_company_profiles": {
+    "growth_stage": {
+      "description": {
+        "en": "Companies ready to scale rapidly with AI",
+        "es": "Empresas listas para escalar rápidamente con IA",
+        "pt": "Empresas prontas para escalar rapidamente com IA"
+      },
+      "characteristics": [
+        "50-2000 employees",
+        "Annual revenue $5M-$200M",
+        "Experiencing growth challenges",
+        "Open to innovation",
+        "Leadership understands AI potential"
+      ],
+      "sectors_priority": ["technology", "financial", "healthcare", "retail"]
+    },
+    "transformation_ready": {
+      "description": {
+        "en": "Mid-market companies facing competitive pressure",
+        "es": "Empresas de mercado medio enfrentando presión competitiva",
+        "pt": "Empresas de mercado médio enfrentando pressão competitiva"
+      },
+      "characteristics": [
+        "Facing digital transformation needs",
+        "Competitive market pressure",
+        "Operations that can benefit from automation",
+        "Leadership willing to innovate",
+        "Budget for AI implementation"
+      ],
+      "sectors_priority": ["manufacturing", "consulting", "education", "energy"]
+    },
+    "innovation_leaders": {
+      "description": {
+        "en": "Forward-thinking companies that understand AI's impact",
+        "es": "Empresas visionarias que entienden el impacto de la IA",
+        "pt": "Empresas visionárias que entendem o impacto da IA"
+      },
+      "characteristics": [
+        "Early adopters of technology",
+        "Strong leadership vision",
+        "Agile decision-making processes",
+        "Investment in employee development",
+        "Customer-centric focus"
+      ],
+      "sectors_priority": ["retail", "utilities", "other"]
+    }
+  },
+  "qualification_criteria": {
+    "must_have": [
+      "Executive sponsor who understands AI",
+      "Budget for AI transformation",
+      "Willingness to implement within 45 days",
+      "Team available for workshops",
+      "Operations that benefit from automation"
+    ],
+    "nice_to_have": [
+      "Previous technology implementations",
+      "Innovation culture",
+      "Growth trajectory",
+      "Partnership mindset",
+      "Reference potential"
+    ],
+    "disqualifiers": [
+      "No budget for implementation",
+      "Risk-averse culture only",
+      "No executive engagement",
+      "Expecting instant ROI without effort",
+      "Not willing to commit to program timeline"
+    ]
+  },
+  "messaging_framework": {
+    "value_propositions": {
+      "competitive_advantage": {
+        "en": "Get 6 months ahead of your competition with AI implementation",
+        "es": "Obtén 6 meses de ventaja sobre tu competencia con implementación de IA",
+        "pt": "Obtenha 6 meses de vantagem sobre sua concorrência com implementação de IA"
+      },
+      "rapid_implementation": {
+        "en": "Go from AI strategy to full operation in just 45 days",
+        "es": "Pasa de estrategia de IA a operación completa en solo 45 días",
+        "pt": "Vá de estratégia de IA para operação completa em apenas 45 dias"
+      },
+      "proven_system": {
+        "en": "Skip years of development with our battle-tested ASOOS platform",
+        "es": "Omite años de desarrollo con nuestra plataforma ASOOS probada en batalla",
+        "pt": "Pule anos de desenvolvimento com nossa plataforma ASOOS testada em batalha"
+      },
+      "latam_advantage": {
+        "en": "Exclusive 90% discount for LATAM companies in first cohort",
+        "es": "Descuento exclusivo del 90% para empresas LATAM en la primera cohorte",
+        "pt": "Desconto exclusivo de 90% para empresas LATAM na primeira coorte"
+      }
+    },
+    "pain_points_addressed": [
+      "Manual processes slowing growth",
+      "Competitors gaining AI advantages",
+      "High cost of custom AI development",
+      "Lack of AI expertise in-house",
+      "Uncertainty about AI implementation",
+      "Time-to-market pressure",
+      "Operational inefficiencies"
+    ]
+  },
+  "regional_distribution": {
+    "mexico_central_america": {
+      "target_companies": 300,
+      "focus_sectors": ["manufacturing", "retail", "financial", "technology"],
+      "key_cities": ["Mexico City", "Monterrey", "Guadalajara", "Guatemala City", "San José"]
+    },
+    "colombia_venezuela_ecuador": {
+      "target_companies": 250,
+      "focus_sectors": ["energy", "financial", "healthcare", "consulting"],
+      "key_cities": ["Bogotá", "Medellín", "Caracas", "Quito", "Barranquilla"]
+    },
+    "brazil": {
+      "target_companies": 300,
+      "focus_sectors": ["technology", "manufacturing", "retail", "healthcare"],
+      "key_cities": ["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Porto Alegre", "Brasília"]
+    },
+    "argentina_chile_uruguay": {
+      "target_companies": 150,
+      "focus_sectors": ["financial", "consulting", "education", "utilities"],
+      "key_cities": ["Buenos Aires", "Santiago", "Montevideo", "Córdoba", "Valparaíso"]
+    }
+  },
+  "success_metrics": {
+    "implementation_speed": "Average 45 days from signup to full operation",
+    "roi_timeline": "Positive ROI within 90 days of implementation",
+    "satisfaction_target": "90%+ satisfaction with program experience",
+    "reference_potential": "80%+ willing to be case studies/references",
+    "expansion_rate": "70%+ expand usage within 6 months"
+  }
+}
