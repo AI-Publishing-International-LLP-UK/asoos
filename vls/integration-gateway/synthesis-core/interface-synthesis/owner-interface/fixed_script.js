@@ -1,3 +1,6 @@
+
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
     // Global Variables
     let activeRIX = 'QB';
     let activeMode = 'terminal';
@@ -100,6 +103,17 @@
     // Dr. Claude Quantum Orchestration Client
     class DrClaudeQuantumOrchestrator {
       constructor() {
+    // Initialize voice configuration
+    this.initializeVoice();
+  }
+  
+  async initializeVoice() {
+    try {
+      this.voiceConfig = await claudeVoiceConfig.getClaudeAgentConfig('DrClaudeQuantumOrchestrator');
+    } catch (error) {
+      console.error('Failed to initialize voice config:', error);
+      this.voiceConfig = { voice_id: 'Vee', backup_voice_id: 'Adam' };
+    }
         this.orchestrationId = null;
         this.quantumState = 'INITIALIZING';
         this.protectionLevel = 'MAXIMUM';
@@ -2166,7 +2180,7 @@ Your automation is now active!`;
       project_number: '859242575175',
       service_token: 'use_gcp_application_default_credentials',
       elevenlabs_api_key: 'projects/api-for-warp-drive/secrets/elevenlabs-api-key/versions/latest',
-      voice_id: '4RZ84U1b4WCqpu57LvIq',
+      voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
       provider: 'elevenlabs',
       full_authentication: true,
       q_rix_enabled: true,
@@ -2196,7 +2210,7 @@ Your automation is now active!`;
       elevenlabs_api_key: 'projects/api-for-warp-drive/secrets/elevenlabs-api-key/versions/latest',
       anthropic_api_key: 'projects/api-for-warp-drive/secrets/anthropic-api-key/versions/latest',
       claude_ai_history: 'projects/api-for-warp-drive/secrets/claude-ai-conversation-history/versions/latest',
-      voice_id: '21m00Tcm4TlvDq8ikWAM',
+      voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
       provider: 'elevenlabs',
       full_authentication: true,
       sh_rix_enabled: true,
@@ -3623,6 +3637,17 @@ ${planItems.join('\n')}
     // WebSpeech API Voice System (Browser-Compatible)
     class WebSpeechVoiceSystem {
       constructor() {
+    // Initialize voice configuration
+    this.initializeVoice();
+  }
+  
+  async initializeVoice() {
+    try {
+      this.voiceConfig = await claudeVoiceConfig.getClaudeAgentConfig('DrClaudeQuantumOrchestrator');
+    } catch (error) {
+      console.error('Failed to initialize voice config:', error);
+      this.voiceConfig = { voice_id: 'Vee', backup_voice_id: 'Adam' };
+    }
         this.synth = window.speechSynthesis;
         this.voices = [];
         this.availableVoices = false;
@@ -3812,7 +3837,7 @@ ${planItems.join('\n')}
     // ElevenLabs Voice Configuration - California Educated African American Woman
     const elevenLabsVoices = {
       'QB': {
-        voice_id: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional African American female voice
+        voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Professional African American female voice
         name: 'Dr. Lucy',
         profile: 'California educated African American woman, mid-30s',
         settings: {
@@ -3823,7 +3848,7 @@ ${planItems.join('\n')}
         }
       },
       'SH': {
-        voice_id: '21m00Tcm4TlvDq8ikWAM', // Rachel - Mature male, 55, Southeast English, medium but sophisticated
+        voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Rachel - Mature male, 55, Southeast English, medium but sophisticated
         name: 'Dr. Claude', 
         profile: 'Mature male, age 55, Southeast English accent, medium but sophisticated tone',
         settings: {
@@ -3834,7 +3859,7 @@ ${planItems.join('\n')}
         }
       },
       'Q': {
-        voice_id: '4RZ84U1b4WCqpu57LvIq', // French accent English speaker, age 45
+        voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // French accent English speaker, age 45
         name: 'Victory36',
         profile: 'French accent English speaker, age 45, sophisticated international tone',
         settings: {

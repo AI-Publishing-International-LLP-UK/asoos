@@ -1,3 +1,6 @@
+
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
 /**
  * AIXTIV SYMPHONY - Modular PCP Architecture
  * Individual agent packages for drag-and-drop functionality
@@ -72,7 +75,7 @@ class QBLucyAgent extends BasePCPAgent {
       role: 'Quarterback',
       category: 'triad',
       voice: {
-        voice_id: '4RZ84U1b4WCqpu57LvIq', // Your authorized Dr. Lucy voice
+        voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Your authorized Dr. Lucy voice
         name: 'Dr. Lucy QB Voice',
         personality: 'Strategic, decisive, leadership-focused',
       },
@@ -111,7 +114,7 @@ class SarhandAgent extends BasePCPAgent {
       role: 'Strategic Handler',
       category: 'triad',
       voice: {
-        voice_id: '{{SARHAND_VOICE_ID}}', // To be configured
+        voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // To be configured
         name: 'Dr. Claude Sarhand Voice',
         personality: 'Analytical, precise, methodical',
       },
@@ -152,7 +155,7 @@ class V36DAgent extends BasePCPAgent {
       role: 'Victory36 Dream Commander',
       category: 'triad',
       voice: {
-        voice_id: '{{V36D_VOICE_ID}}', // To be configured
+        voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // To be configured
         name: 'Victory36 Dream Commander Voice',
         personality: 'Visionary, innovative, breakthrough-focused',
       },
@@ -197,7 +200,7 @@ class DrLucyExecutiveCoachAgent extends BasePCPAgent {
       role: 'Executive Coach',
       category: 'executive_coaching',
       voice: {
-        voice_id: '4RZ84U1b4WCqpu57LvIq', // Same voice as QB Lucy but different role
+        voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Same voice as QB Lucy but different role
         name: 'Dr. Lucy Executive Coach Voice',
         personality: 'Nurturing, developmental, empowering',
       },

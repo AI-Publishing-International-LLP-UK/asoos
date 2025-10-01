@@ -13,7 +13,7 @@
             "specialty": "Memory & Knowledge Management",
             "vls_solution": "dr-memoria-anthology-launch",
             "icon": "memoria-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-lucy",
@@ -21,8 +21,12 @@
             "specialty": "ML Powerhouse & Flight Memory - CRx01",
             "vls_solution": "dr-lucy-flight-memory",
             "icon": "lucy-icon.svg",
-            "voice_profile": "computational_advanced",
-            "special_access": ["all_competencies", "archives", "capabilities"]
+            "voice_profile": "Vee",
+            "special_access": [
+              "all_competencies",
+              "archives",
+              "capabilities"
+            ]
           },
           {
             "id": "dr-match",
@@ -30,7 +34,7 @@
             "specialty": "Bid Suite & Matching",
             "vls_solution": "dr-match-bid-suite",
             "icon": "match-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-cypriot",
@@ -38,7 +42,7 @@
             "specialty": "Rewards & Incentives",
             "vls_solution": "dr-cypriot-rewards",
             "icon": "cypriot-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-claude",
@@ -46,7 +50,7 @@
             "specialty": "Orchestration & Leadership",
             "vls_solution": "dr-claude-orchestrator",
             "icon": "claude-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-sabina",
@@ -54,7 +58,7 @@
             "specialty": "Dream Commander",
             "vls_solution": "dr-sabina-dream-commander",
             "icon": "sabina-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-maria",
@@ -62,7 +66,7 @@
             "specialty": "Support Systems",
             "vls_solution": "dr-maria-support",
             "icon": "maria-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-roark",
@@ -70,7 +74,7 @@
             "specialty": "Wish Vision",
             "vls_solution": "dr-roark-wish-vision",
             "icon": "roark-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-grant",
@@ -78,7 +82,7 @@
             "specialty": "Cybersecurity",
             "vls_solution": "dr-grant-cybersecurity",
             "icon": "grant-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           },
           {
             "id": "dr-burby",
@@ -86,7 +90,7 @@
             "specialty": "S2DO Governance",
             "vls_solution": "dr-burby-s2do-governance",
             "icon": "burby-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           }
         ]
       },
@@ -99,7 +103,7 @@
             "specialty": "Q4D Lenz & Research",
             "vls_solution": "professor-lee-q4d-lenz",
             "icon": "lee-icon.svg",
-            "voice_profile": "computational_advanced"
+            "voice_profile": "Vee"
           }
         ]
       },
@@ -113,7 +117,7 @@
             "specialty": "Wing 14 Leadership",
             "manages": "elite_tier_agents",
             "icon": "elite11-icon.svg",
-            "voice_profile": "computational_advanced",
+            "voice_profile": "Vee",
             "leadership_tier": "elite"
           },
           {
@@ -122,7 +126,7 @@
             "specialty": "Wing 15 Leadership",
             "manages": "mastery_tier_agents",
             "icon": "mastery33-icon.svg",
-            "voice_profile": "computational_advanced",
+            "voice_profile": "Vee",
             "leadership_tier": "mastery"
           },
           {
@@ -131,7 +135,7 @@
             "specialty": "Wing 16 Leadership",
             "manages": "victory_tier_agents",
             "icon": "victory36-icon.svg",
-            "voice_profile": "computational_advanced",
+            "voice_profile": "Vee",
             "leadership_tier": "victory"
           }
         ]
@@ -153,5 +157,11 @@
       "voice_synthesis": "ElevenLabs + Hume",
       "deployment_target": "Google Cloud Run"
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

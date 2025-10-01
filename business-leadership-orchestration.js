@@ -18,6 +18,9 @@
  */
 
 const express = require('express');
+
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -26,7 +29,7 @@ const LEADERSHIP_TEAM = {
   drMemoria: {
     name: 'Dr. Memoria',
     role: 'Strategic Memory Management & Guidance',
-    voiceId: '4RZ84U1b4WCqpu57LvIq',
+    voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialization: 'Institutional memory, strategic guidance, organizational wisdom',
     businessLine: 'Strategic Advisory Services',
     endpoints: ['/memoria/guidance', '/memoria/memory-analysis', '/memoria/strategic-insights'],
@@ -37,7 +40,7 @@ const LEADERSHIP_TEAM = {
   drSabina: {
     name: 'Dr. Sabina',
     role: 'Dream Commander - Workflow Orchestration',
-    voiceId: 'EXAVITQu4vr4xnSDxMaL',
+    voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialization: 'Workflow orchestration, dream analysis, psychological insights',
     businessLine: 'Workflow Automation & Psychology Advisory',
     endpoints: ['/sabina/dream-commander', '/sabina/workflow-orchestration', '/sabina/psychological-analysis'],
@@ -48,7 +51,7 @@ const LEADERSHIP_TEAM = {
   professorLi: {
     name: 'Professor Li',
     role: 'Intelligence Investigation Curator',
-    voiceId: '21m00Tcm4TlvDq8ikWAM',
+    voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialization: 'Intelligence investigation, logical analysis, research curation',
     businessLine: 'Intelligence Investigation Services',
     endpoints: ['/professor-li/investigation', '/professor-li/intelligence-analysis', '/professor-li/research-curation'],
@@ -60,7 +63,7 @@ const LEADERSHIP_TEAM = {
   drGrant: {
     name: 'Dr. Grant',
     role: '7 Security Patents Advisory System',
-    voiceId: 'VR6AewLTigWG4xSOukaG',
+    voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialization: 'Security patents, orchestration capabilities, enterprise advisory',
     businessLine: 'Security Patents & Orchestration Advisory',
     patents: 7,
@@ -73,7 +76,7 @@ const LEADERSHIP_TEAM = {
   victoria36: {
     name: 'Victoria 36',
     role: 'Victory36 Prediction Engine & Security Analytics',
-    voiceId: 'pNInz6obpgDQGcFmaJgB',
+    voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialization: 'Predictive analytics, security intelligence, strategic forecasting',
     businessLine: 'Predictive Security Analytics',
     endpoints: ['/victoria36/predictions', '/victoria36/security-analytics', '/victoria36/strategic-forecasting'],
@@ -84,7 +87,7 @@ const LEADERSHIP_TEAM = {
   drLucy: {
     name: 'Dr. Lucy CRX',
     role: 'Quantum Business Computationalist',
-    voiceId: '4RZ84U1b4WCqpu57LvIq',
+    voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialization: 'Quantum business intelligence, ML deep mind, ChatGPT integration',
     businessLine: 'Quantum Business Intelligence',
     endpoints: ['/dr-lucy/quantum-analysis', '/dr-lucy/business-intelligence', '/dr-lucy/ml-insights'],
@@ -95,7 +98,7 @@ const LEADERSHIP_TEAM = {
   drClaude: {
     name: 'Dr. Claude',
     role: 'Strategic Hybrid Reasoning',
-    voiceId: '21m00Tcm4TlvDq8ikWAM',
+    voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialization: 'Strategic reasoning, Anthropic CLI integration, Diamond SAO',
     businessLine: 'Strategic Reasoning & Analysis',
     endpoints: ['/dr-claude/strategic-analysis', '/dr-claude/hybrid-reasoning', '/dr-claude/diamond-sao'],

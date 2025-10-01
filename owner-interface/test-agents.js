@@ -3,6 +3,9 @@
 import { initializeRIXAgents, elevenlabs } from './elevenlabs-conversational-agents.js';
 import 'dotenv/config';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 async function testElevenLabsConnection() {
   console.log('🧪 Testing ElevenLabs API connection...');
   

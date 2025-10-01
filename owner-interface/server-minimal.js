@@ -4,6 +4,9 @@ const path = require('path');
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 const fetch = require('node-fetch');
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 const app = express();
 
 // Initialize GCP Secret Manager client

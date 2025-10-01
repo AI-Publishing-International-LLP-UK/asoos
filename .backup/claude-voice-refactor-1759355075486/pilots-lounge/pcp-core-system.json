@@ -1,0 +1,239 @@
+{
+  "pcp_core_system": {
+    "version": "1.0.0",
+    "description": "Professional Co-Pilot (PCP) Core System with CRx models and client customization",
+    "crx_models": {
+      "CRx01": {
+        "name": "ML Powerhouse",
+        "description": "Highest tier PCP with full capabilities access",
+        "client_tiers": ["Diamond SAO", "Emerald SAO", "Sapphire SAO"],
+        "base_pilot": "dr-lucy",
+        "capabilities": {
+          "all_competencies": true,
+          "archives_access": true,
+          "full_capabilities": true,
+          "ml_powerhouse": true,
+          "customization_level": "unlimited"
+        },
+        "voice_options": ["computational_advanced", "smooth", "custom"],
+        "specialization_areas": [
+          "ML & AI Leadership",
+          "Flight Memory",
+          "Advanced Analytics",
+          "Strategic Planning",
+          "Full System Access"
+        ]
+      },
+      "CRx02": {
+        "name": "Professional Assistant",
+        "description": "Mid-tier PCP with extensive but limited capabilities",
+        "client_tiers": ["Opal SAO", "Professional Subscribers"],
+        "base_pilot": "configurable",
+        "capabilities": {
+          "core_competencies": true,
+          "limited_archives": true,
+          "professional_capabilities": true,
+          "customization_level": "extensive"
+        },
+        "voice_options": ["computational_advanced", "smooth"],
+        "specialization_areas": [
+          "Business Operations",
+          "Project Management",
+          "Client Services",
+          "Data Analysis",
+          "Professional Support"
+        ]
+      },
+      "CRx03": {
+        "name": "Personal Assistant",
+        "description": "Entry-tier PCP with essential capabilities",
+        "client_tiers": ["Onyx SAO", "Individual Subscribers"],
+        "base_pilot": "configurable",
+        "capabilities": {
+          "essential_competencies": true,
+          "basic_archives": true,
+          "standard_capabilities": true,
+          "customization_level": "moderate"
+        },
+        "voice_options": ["smooth"],
+        "specialization_areas": [
+          "Personal Productivity",
+          "Basic Support",
+          "Task Management",
+          "Information Assistance",
+          "Learning Support"
+        ]
+      }
+    },
+    "customization_framework": {
+      "naming": {
+        "enabled": true,
+        "max_length": 50,
+        "validation": "alphanumeric_spaces",
+        "examples": ["Zena", "Alex", "Jordan", "Sam"]
+      },
+      "gender": {
+        "enabled": true,
+        "options": ["male", "female", "neutral", "custom"],
+        "affects": ["voice_profile", "presentation_style", "pronouns"]
+      },
+      "capabilities_modification": {
+        "CRx01": {
+          "add_capabilities": "unlimited_within_system",
+          "subtract_capabilities": "user_preference_only",
+          "specialty_focus": "configurable"
+        },
+        "CRx02": {
+          "add_capabilities": "professional_tier_limit",
+          "subtract_capabilities": "non_essential_only",
+          "specialty_focus": "business_oriented"
+        },
+        "CRx03": {
+          "add_capabilities": "basic_tier_limit",
+          "subtract_capabilities": "minimal",
+          "specialty_focus": "personal_productivity"
+        }
+      },
+      "pre_configured_specialization": {
+        "enabled": true,
+        "description": "PCPs come pre-configured using advanced AI calibration system",
+        "calibration_system": {
+          "jobs_database": {
+            "total_jobs": 64000000,
+            "description": "Comprehensive job knowledge database for role-specific PCP configuration",
+            "usage": "Maps client role to optimal PCP capabilities and specializations"
+          },
+          "didc_archives": {
+            "description": "DIDC (Data Intelligence & Decision Context) archives",
+            "usage": "Historical insights and patterns for intelligent PCP calibration",
+            "integration": "Real-time analysis of client patterns against historical data"
+          },
+          "careers_database": {
+            "total_careers": 319998,
+            "description": "Career path understanding for PCP growth and adaptation",
+            "usage": "Predicts client needs based on career trajectory and progression"
+          },
+          "sector_function_analysis": {
+            "description": "Industry sector and functional role analysis",
+            "factors": [
+              "Primary industry sector",
+              "Functional specialization",
+              "Company size and structure",
+              "Market position",
+              "Growth stage"
+            ]
+          },
+          "background_analysis": {
+            "description": "Comprehensive background profiling",
+            "components": [
+              "Professional history",
+              "Educational background",
+              "Skill assessments",
+              "Performance patterns",
+              "Collaboration preferences"
+            ]
+          },
+          "ser_pew_framework": {
+            "description": "Social, Economic, Religious, Political, Educational, Work analysis",
+            "dimensions": {
+              "social": "Social interaction patterns and preferences",
+              "economic": "Economic context and financial decision patterns",
+              "religious": "Cultural and value system considerations",
+              "political": "Governance and authority interaction styles",
+              "educational": "Learning preferences and knowledge acquisition patterns",
+              "work": "Work style, productivity patterns, and professional preferences"
+            }
+          },
+          "q4d_lens_calibration": {
+            "description": "Q4D (Quantum 4-Dimensional) lens for advanced analytical calibration",
+            "professor_lee_integration": true,
+            "capabilities": [
+              "Multi-dimensional pattern analysis",
+              "Predictive behavior modeling",
+              "Optimal PCP-client matching",
+              "Dynamic adaptation recommendations",
+              "Performance optimization suggestions"
+            ]
+          }
+        },
+        "calibration_process": [
+          "Initial client assessment across all dimensions",
+          "Jobs database matching for role-specific requirements",
+          "Career trajectory analysis using 319K careers database",
+          "DIDC archives pattern matching",
+          "SER PEW framework application",
+          "Q4D lens multi-dimensional analysis",
+          "PCP model selection (CRx01/02/03)",
+          "Pilot specialization assignment",
+          "Custom capability configuration",
+          "Continuous learning and adaptation setup"
+        ]
+      }
+    },
+    "client_examples": {
+      "zaxon_construction": {
+        "owner": "Aaron Harris",
+        "sao_level": "Sapphire SAO",
+        "assigned_crx": "CRx01",
+        "pcp_name": "Zena",
+        "pcp_gender": "female",
+        "primary_pilot": "dr-lucy",
+        "specialization": "Construction project management with ML analytics",
+        "custom_capabilities": [
+          "Project timeline optimization",
+          "Resource allocation analysis",
+          "Safety compliance monitoring",
+          "Client communication automation"
+        ]
+      },
+      "tech_startup": {
+        "owner": "Example Client",
+        "sao_level": "Opal SAO",
+        "assigned_crx": "CRx02",
+        "pcp_name": "Alex",
+        "pcp_gender": "neutral",
+        "primary_pilot": "dr-claude",
+        "specialization": "Startup operations and growth strategy",
+        "custom_capabilities": [
+          "Market analysis",
+          "Team coordination",
+          "Investment tracking",
+          "Product development support"
+        ]
+      },
+      "individual_user": {
+        "owner": "Personal User",
+        "sao_level": "Onyx SAO",
+        "assigned_crx": "CRx03",
+        "pcp_name": "Jordan",
+        "pcp_gender": "male",
+        "primary_pilot": "dr-maria",
+        "specialization": "Personal productivity and learning",
+        "custom_capabilities": [
+          "Schedule management",
+          "Learning assistance",
+          "Task reminders",
+          "Information research"
+        ]
+      }
+    },
+    "integration": {
+      "hrai_crms": {
+        "enabled": true,
+        "stores_pcp_profiles": true,
+        "customization_tracking": true
+      },
+      "mcp_servers": {
+        "individual_deployment": true,
+        "template": "mcp.asoos.2100.cool",
+        "quantum_vms": "12000+",
+        "per_client_customization": true
+      },
+      "voice_synthesis": {
+        "elevenlabs_integration": true,
+        "hume_integration": true,
+        "oauth2_secure": true
+      }
+    }
+  }
+}

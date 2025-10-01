@@ -24,6 +24,9 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 // Import existing codebase components
 try {
     // Integration Gateway Classes (from integration-gateway)

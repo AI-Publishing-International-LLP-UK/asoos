@@ -1,0 +1,392 @@
+{
+  "timestamp": "2025-10-01T21:44:35.690Z",
+  "summary": {
+    "files_refactored": 74,
+    "errors": 1,
+    "success": false
+  },
+  "refactored_files": [
+    {
+      "file": "/Users/as/asoos/integration-gateway/modular-pcp-architecture.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/agent-synthesis/srix-agent-orchestrator.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/test-enhanced-voice-integration.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/vls-computationalist-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/test-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/clean_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server-minimal.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/temp_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/elevenlabs-conversational-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/fixed_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/integration-gateway/synthesis-core/voice-synthesis/unified-elevenlabs-system.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/vls-complete-system-integration.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/agent-synthesis/srix-agent-orchestrator.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/server.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/test-enhanced-voice-integration.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/vls-computationalist-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/test-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/clean_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/server-minimal.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/temp_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/elevenlabs-conversational-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/interface-synthesis/owner-interface/fixed_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/vls/synthesis-core/voice-synthesis/unified-elevenlabs-system.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/pilots-lounge/pcp-pilot-registry.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/pilots-lounge/pcp-core-system.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/agent-configs/wing1-crx-custom-personalities.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/reports/deployment.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/reports/multi-domain-setup.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/reports/orchestrator.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/reports/ai-video-web-specialists.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/reports/VOICE_ASSIGNMENT_DISPATCH.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/reports/dana-profile.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/.workspace/staging-extras/r2-migration-staging/reports/q-rix-profile.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/config/mcp_voice_assignments.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/diamond-cli/lib/claude-voice-code-helper.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/diamond-cli/lib/voice-speaker-activation.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/diamond-cli/lib/quantum-voice-super-boost.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/complete-14-agent-marketplace.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/voice-service.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/elevenlabs-package.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/business-leadership-orchestration.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/asoos-deployment/config/complete-ai-pilot-voice-profiles.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/asoos-deployment/config/voice-profiles-complete.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/asoos-deployment/config/dr-claude-supreme-orchestrator.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/configs/voice-integration/conversational-voice-profiles.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/configs/voice-integration/dr-lucy-profile.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/configs/warp/voice-integration.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/configs/super-claude-1/deployment.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/configs/domain/multi-domain-setup.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/nl-processing-server.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/lib/claude-voice-config.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/force-elevenlabs-voices-only.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/server.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/node_modules/elevenlabs/.mock/openapi.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/test-enhanced-voice-integration.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/vls-computationalist-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/test-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/clean_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/server-minimal.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/temp_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/elevenlabs-conversational-agents.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/owner-interface/fixed_script.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/mcp-sector-alignment-system.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/routes/voice-api.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/unified-elevenlabs-system.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/services/voice-synthesis/unified-elevenlabs-voice-system.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/services/unified-elevenlabs-agent-system.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/deploy-clean/routes/voice-api.js",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    },
+    {
+      "file": "/Users/as/asoos/integration-gateway/hume-ei-config.json",
+      "type": "refactored",
+      "message": "Updated voice configuration"
+    }
+  ],
+  "errors": [
+    {
+      "file": "typescript",
+      "error": "Command failed: /opt/homebrew/bin/tsc --noEmit --project .\n"
+    }
+  ],
+  "next_steps": [
+    "Review refactored files for correctness",
+    "Test voice functionality in staging environment",
+    "Deploy to production with monitoring",
+    "Update documentation"
+  ]
+}

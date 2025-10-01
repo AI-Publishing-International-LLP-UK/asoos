@@ -1,3 +1,6 @@
+
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
 // ========================================================================
 // FORCE ELEVENLABS VOICES ONLY - BLOCK BROWSER VOICE FALLBACKS
 // ========================================================================

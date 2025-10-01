@@ -5,12 +5,11 @@
     "classification": "CONVERSATIONAL_COMPUTATIONAL_AGENTS",
     "provider": "elevenlabs",
     "region": "us-west1",
-    
     "computational_agents": {
       "dr_lucy_conversational": {
         "agent_id": "qb-computationalist-dr-lucy",
         "name": "Dr. Lucy sRIX Conversational",
-        "voice_id": "EXAVITQu4vr4xnSDxMaL",
+        "voice_id": "Vee",
         "voice_name": "Bella - Professional Female",
         "conversation_style": "analytical_computational",
         "personality": "quantum_business_computationalist",
@@ -32,13 +31,12 @@
           "pause_handling": "natural_computational_rhythm"
         }
       },
-      
       "dr_claude_conversational": {
         "agent_id": "sh-strategic-dr-claude",
         "name": "Dr. Claude sRIX Conversational",
-        "voice_id": "21m00Tcm4TlvDq8ikWAM",
+        "voice_id": "Vee",
         "voice_name": "Rachel - Strategic Professional",
-        "conversation_style": "strategic_analytical", 
+        "conversation_style": "strategic_analytical",
         "personality": "strategic_hybrid_reasoning",
         "voice_settings": {
           "model": "eleven_multilingual_v2",
@@ -58,18 +56,17 @@
           "pause_handling": "thoughtful_strategic_timing"
         }
       },
-      
       "victory36_conversational": {
         "agent_id": "v36-security-victory36",
         "name": "Victory36 sRIX Conversational",
-        "voice_id": "VR6AewLTigWG4xSOukaG",
+        "voice_id": "Vee",
         "voice_name": "Josh - Security Authority",
         "conversation_style": "security_analytical",
         "personality": "security_intelligence_specialist",
         "voice_settings": {
           "model": "eleven_multilingual_v2",
           "language": "en-US",
-          "stability": 0.90,
+          "stability": 0.9,
           "similarity_boost": 0.85,
           "style": 0.35,
           "use_speaker_boost": true,
@@ -85,7 +82,6 @@
         }
       }
     },
-    
     "conversation_flow_settings": {
       "real_time_streaming": {
         "enabled": true,
@@ -95,7 +91,6 @@
         "latency_optimization": "ultra_low",
         "quality": "enterprise_grade"
       },
-      
       "interaction_patterns": {
         "greeting_style": "computational_professional",
         "response_timing": "immediate_with_processing_indicator",
@@ -103,7 +98,6 @@
         "voice_interruption_handling": "graceful_transition",
         "multi_turn_conversation": "context_aware"
       },
-      
       "computational_voice_features": {
         "enable_voice_continuity": true,
         "natural_conversation_flow": true,
@@ -112,7 +106,6 @@
         "confidence_vocal_indicators": true
       }
     },
-    
     "oauth2_integration": {
       "token_endpoint": "https://auth.api-for-warp-drive.com/oauth2/token",
       "scopes": [
@@ -124,7 +117,6 @@
       ],
       "token_refresh": "automatic_background"
     },
-    
     "security_configuration": {
       "encryption": "quantum_secured",
       "authentication": "diamond_sao_oauth2",
@@ -132,7 +124,6 @@
       "voice_data_protection": "encrypted_in_transit",
       "conversation_privacy": "session_isolated"
     },
-    
     "performance_optimization": {
       "voice_caching": {
         "enabled": true,
@@ -140,7 +131,6 @@
         "cache_duration": "session_lifetime",
         "cache_location": "/voice-cache/conversational"
       },
-      
       "streaming_optimization": {
         "enable_buffering": true,
         "predict_next_response": true,
@@ -148,7 +138,6 @@
         "latency_target": "sub_200ms"
       }
     },
-    
     "monitoring_and_analytics": {
       "conversation_quality_metrics": true,
       "voice_synthesis_performance": true,
@@ -156,5 +145,11 @@
       "computational_agent_effectiveness": true,
       "diamond_sao_command_center_integration": true
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

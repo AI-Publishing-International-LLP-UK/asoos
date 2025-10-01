@@ -63,7 +63,6 @@
       "background": "South East London Posh South Asian",
       "accent": "southeast_london_posh_south_asian",
       "specialization": "LinkedIn Integration, Talent Intelligence, People Matching",
-      "education": "PhD Human Resources Management London School of Economics, Masters Data Science Cambridge, Advanced LinkedIn Analytics Certification, Talent Acquisition Executive Program Oxford",
       "education": "PhD Human Resources Management London School of Economics, Masters in Data Science Cambridge, Advanced LinkedIn Analytics Certification, Talent Acquisition Executive Program",
       "voice_characteristics": {
         "tone": "sophisticated_analytical",
@@ -280,19 +279,57 @@
   },
   "regional_deployments": {
     "us_west1": {
-      "dr_lucy_instances": ["dr-lucy-01", "dr-lucy-02", "dr-lucy-03", "dr-lucy-04"],
-      "dr_claude_instances": ["dr-claude-01", "dr-claude-02", "dr-claude-03"],
-      "zones": ["us-west1-a", "us-west1-b", "us-west1-c"]
+      "dr_lucy_instances": [
+        "dr-lucy-01",
+        "dr-lucy-02",
+        "dr-lucy-03",
+        "dr-lucy-04"
+      ],
+      "dr_claude_instances": [
+        "dr-claude-01",
+        "dr-claude-02",
+        "dr-claude-03"
+      ],
+      "zones": [
+        "us-west1-a",
+        "us-west1-b",
+        "us-west1-c"
+      ]
     },
     "us_central1": {
-      "dr_lucy_instances": ["dr-lucy-05", "dr-lucy-06", "dr-lucy-07"],
-      "dr_claude_instances": ["dr-claude-04", "dr-claude-05", "dr-claude-06"],
-      "zones": ["us-central1-a", "us-central1-b", "us-central1-c"]
+      "dr_lucy_instances": [
+        "dr-lucy-05",
+        "dr-lucy-06",
+        "dr-lucy-07"
+      ],
+      "dr_claude_instances": [
+        "dr-claude-04",
+        "dr-claude-05",
+        "dr-claude-06"
+      ],
+      "zones": [
+        "us-central1-a",
+        "us-central1-b",
+        "us-central1-c"
+      ]
     },
     "eu_west1": {
-      "dr_lucy_instances": ["dr-lucy-08", "dr-lucy-09", "dr-lucy-10"],
-      "dr_claude_instances": ["dr-claude-07", "dr-claude-08", "dr-claude-09", "dr-claude-10"],
-      "zones": ["eu-west1-a", "eu-west1-b", "eu-west1-c"]
+      "dr_lucy_instances": [
+        "dr-lucy-08",
+        "dr-lucy-09",
+        "dr-lucy-10"
+      ],
+      "dr_claude_instances": [
+        "dr-claude-07",
+        "dr-claude-08",
+        "dr-claude-09",
+        "dr-claude-10"
+      ],
+      "zones": [
+        "eu-west1-a",
+        "eu-west1-b",
+        "eu-west1-c"
+      ]
     }
   },
   "aihu_talkshow_config": {
@@ -309,21 +346,21 @@
     "mcp.asoos.2100.cool": {
       "pcp": "Dr. Lucy sRIX",
       "client_facing_pcp": "Dr. Lucy sRIX+CRX01",
-      "voice_profile": "dr_lucy_srix"
+      "voice_profile": "Vee"
     },
     "mcp.coaching.2100.cool": {
       "pcp": "Dr. Lucy sRIX",
       "client_facing_pcp": "Dr. Lucy sRIX+CRX01",
-      "voice_profile": "dr_lucy_srix"
+      "voice_profile": "Vee"
     },
     "mcp.aipub.2100.cool": {
       "pcp": "Chancellor Memoria sRIX",
       "client_facing_pcp": "Chancellor Memoria sRIX+CRX01",
-      "voice_profile": "dr_memoria_srix"
+      "voice_profile": "Vee"
     },
     "mcp.zaxon.2100.cool": {
       "pcp": "Zena (Professional Co-Pilot)",
-      "voice_profile": "custom_zena_construction",
+      "voice_profile": "Vee",
       "sapphire_sao": "Aaron Harris"
     }
   },
@@ -356,5 +393,11 @@
     "voice_profiles_active": 13,
     "regional_instances": 30,
     "total_voice_capacity": "unlimited_with_4_quadrillion_authorization"
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

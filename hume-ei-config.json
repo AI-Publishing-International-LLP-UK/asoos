@@ -15,5 +15,11 @@
     "elevenLabs": "voice_synthesis_pipeline",
     "pinecone": "emotional_context_storage",
     "dreamCommander": "empathic_decision_making"
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

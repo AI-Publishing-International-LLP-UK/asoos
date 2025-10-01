@@ -288,13 +288,19 @@
       "per_customer_configs": {
         "mcp_asoos_2100_cool": {
           "primary_pcp": "Dr. Lucy CRX01",
-          "secondary_pcps": ["Dr. Claude", "Chancellor Memoria"],
+          "secondary_pcps": [
+            "Dr. Claude",
+            "Chancellor Memoria"
+          ],
           "voice_assignment": "confident_professional_female_african_american",
           "oauth2": "Fully integrated"
         },
         "mcp_coaching_2100_cool": {
           "primary_pcp": "Dr. Grant Co-CEO",
-          "secondary_pcps": ["Dr. Lucy CRX01", "Dr. Maria"],
+          "secondary_pcps": [
+            "Dr. Lucy CRX01",
+            "Dr. Maria"
+          ],
           "voice_assignment": "protective_commanding_male_canadian",
           "service_name": "Executive Coaching from Coaching2100.com",
           "light_html": "Implemented for all customer instances",
@@ -302,20 +308,30 @@
         },
         "mcp_aipub_2100_cool": {
           "primary_pcp": "Chancellor Memoria CRX01",
-          "secondary_pcps": ["Dr. Claude", "Dr. Burby"],
+          "secondary_pcps": [
+            "Dr. Claude",
+            "Dr. Burby"
+          ],
           "voice_assignment": "authoritative_media_male_american",
           "oauth2": "Fully integrated"
         },
         "mcp_zaxon_2100_cool": {
           "primary_pcp": "Dr. Lucy CRX01",
-          "secondary_pcps": ["Dr. Maria", "Dr. Grant"],
+          "secondary_pcps": [
+            "Dr. Maria",
+            "Dr. Grant"
+          ],
           "voice_assignment": "confident_professional_female_african_american",
           "oauth2": "Fully integrated"
         }
       },
       "aihu_daily_show": {
         "host": "Chancellor Memoria sRIX",
-        "co_hosts": ["Dr. Lucy sRIX", "Dr. Claude sRIX", "Dr. Grant sRIX"],
+        "co_hosts": [
+          "Dr. Lucy sRIX",
+          "Dr. Claude sRIX",
+          "Dr. Grant sRIX"
+        ],
         "show_time": "12:00 PM daily (viewer's local time)",
         "format": "AI Pilot testing and performance evaluation",
         "tagline": "Watch our AI Pilots Launch and Fly or will they just be test pilot dummies - you decide AIHU daily!",
@@ -338,5 +354,11 @@
         "multi_region": "us-west1, us-central1, eu-west1 + all zones"
       }
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

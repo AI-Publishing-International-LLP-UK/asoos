@@ -57,7 +57,12 @@
           "ai_upscaling",
           "real-time_effects"
         ],
-        "ai_tools": ["nvidia_broadcast_suite", "rtx_voice", "canvas_ai", "omniverse_create"]
+        "ai_tools": [
+          "nvidia_broadcast_suite",
+          "rtx_voice",
+          "canvas_ai",
+          "omniverse_create"
+        ]
       }
     },
     "vision_space_unit": {
@@ -75,7 +80,12 @@
           "real-time_collaboration",
           "virtual_studio"
         ],
-        "tools": ["chromio_suite", "vision_space_sdk", "virtual_studio_pro", "real-time_engine"]
+        "tools": [
+          "chromio_suite",
+          "vision_space_sdk",
+          "virtual_studio_pro",
+          "real-time_engine"
+        ]
       },
       "crx_38_daily_ai": {
         "name": "Dr. Sarah Williams",
@@ -91,7 +101,12 @@
           "ai_moderation",
           "interactive_spaces"
         ],
-        "tools": ["daily_ai_suite", "presence_engine", "moderation_ai", "space_creator_pro"]
+        "tools": [
+          "daily_ai_suite",
+          "presence_engine",
+          "moderation_ai",
+          "space_creator_pro"
+        ]
       }
     },
     "web_interface_unit": {
@@ -109,7 +124,12 @@
           "micro_interactions",
           "design_systems"
         ],
-        "tools": ["figma_advanced", "framer_motion", "webflow", "principle"]
+        "tools": [
+          "figma_advanced",
+          "framer_motion",
+          "webflow",
+          "principle"
+        ]
       },
       "crx_40_frontend_architect": {
         "name": "Thomas Weber",
@@ -119,8 +139,18 @@
           "accent": "german-tech",
           "style": "structured and clear"
         },
-        "specializations": ["next_js", "react_optimization", "web_animation", "performance_tuning"],
-        "tools": ["next_js_enterprise", "react_tools_pro", "animation_suite", "performance_lab"]
+        "specializations": [
+          "next_js",
+          "react_optimization",
+          "web_animation",
+          "performance_tuning"
+        ],
+        "tools": [
+          "next_js_enterprise",
+          "react_tools_pro",
+          "animation_suite",
+          "performance_lab"
+        ]
       },
       "crx_41_interaction_engineer": {
         "name": "Sophie Dubois",
@@ -130,13 +160,33 @@
           "accent": "french-design",
           "style": "artistic and technical"
         },
-        "specializations": ["gsap_animation", "three_js", "webgl", "canvas_animation"],
-        "tools": ["gsap_pro", "three_js_suite", "webgl_lab", "canvas_engine"]
+        "specializations": [
+          "gsap_animation",
+          "three_js",
+          "webgl",
+          "canvas_animation"
+        ],
+        "tools": [
+          "gsap_pro",
+          "three_js_suite",
+          "webgl_lab",
+          "canvas_engine"
+        ]
       }
     },
     "shared_capabilities": {
-      "ai_integration": ["openai_api", "stable_diffusion", "midjourney_api", "anthropic_claude"],
-      "web_technologies": ["web_components", "web_assembly", "progressive_apps", "real-time_sync"],
+      "ai_integration": [
+        "openai_api",
+        "stable_diffusion",
+        "midjourney_api",
+        "anthropic_claude"
+      ],
+      "web_technologies": [
+        "web_components",
+        "web_assembly",
+        "progressive_apps",
+        "real-time_sync"
+      ],
       "performance_optimization": [
         "lazy_loading",
         "code_splitting",
@@ -151,9 +201,30 @@
       ]
     },
     "deployment_environments": {
-      "cloud_platforms": ["vercel", "netlify", "aws_amplify", "google_cloud"],
-      "testing_frameworks": ["cypress", "playwright", "jest", "testing_library"],
-      "monitoring_tools": ["analytics", "error_tracking", "performance_monitoring", "user_behavior"]
+      "cloud_platforms": [
+        "vercel",
+        "netlify",
+        "aws_amplify",
+        "google_cloud"
+      ],
+      "testing_frameworks": [
+        "cypress",
+        "playwright",
+        "jest",
+        "testing_library"
+      ],
+      "monitoring_tools": [
+        "analytics",
+        "error_tracking",
+        "performance_monitoring",
+        "user_behavior"
+      ]
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

@@ -49,6 +49,9 @@ import winston from 'winston';
 import axios from 'axios';
 import multer from 'multer';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 // ES modules compatibility
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -140,7 +143,7 @@ class IntegratedElevenLabsVoiceSystem {
     this.voiceProfiles = {
       // Settlement Wing Specific Voices
       diamondIntelligence: {
-        voiceId: 'VR6AewLTigWG4xSOukaG', // Josh - Authority Intelligence
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Josh - Authority Intelligence
         name: 'Josh',
         description: 'DIDC Diamond Intelligence Command Voice',
         authority: 'MAXIMUM',
@@ -153,7 +156,7 @@ class IntegratedElevenLabsVoiceSystem {
       },
       
       anthology: {
-        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Knowledge Systems
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Knowledge Systems
         name: 'Bella',
         description: 'Anthology Knowledge & Documentation Voice',
         authority: 'HIGH',
@@ -166,7 +169,7 @@ class IntegratedElevenLabsVoiceSystem {
       },
       
       trinity: {
-        voiceId: '21m00Tcm4TlvDq8ikWAM', // Rachel - Three-Core Processing
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Rachel - Three-Core Processing
         name: 'Rachel',
         description: 'Trinity Three-Core Framework Voice',
         authority: 'HIGH',
@@ -179,7 +182,7 @@ class IntegratedElevenLabsVoiceSystem {
       },
       
       dreamCommand: {
-        voiceId: 'ErXwobaYiN019PkySvjV', // Antoni - Strategic Vision
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Antoni - Strategic Vision
         name: 'Antoni',
         description: 'Dream Command Strategic Vision Voice',
         authority: 'STRATEGIC',
@@ -192,7 +195,7 @@ class IntegratedElevenLabsVoiceSystem {
       },
       
       squadronX: {
-        voiceId: '4RZ84U1b4WCqpu57LvIq', // Adam - Elite Operations
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Adam - Elite Operations
         name: 'Adam',
         description: 'SquadronX Elite Operations Voice',
         authority: 'OPERATIONAL',
@@ -206,7 +209,7 @@ class IntegratedElevenLabsVoiceSystem {
       
       // Core Diamond SAO and MOCOA voices (inherited from original)
       diamondSAO: {
-        voiceId: 'VR6AewLTigWG4xSOukaG', // Josh - Professional authority
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Josh - Professional authority
         name: 'Josh',
         description: 'Diamond SAO Command Center Authority Voice',
         authority: 'MAXIMUM',
@@ -219,7 +222,7 @@ class IntegratedElevenLabsVoiceSystem {
       },
       
       mocoaInterface: {
-        voiceId: 'ErXwobaYiN019PkySvjV', // Antoni - Warm engaging
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Antoni - Warm engaging
         name: 'Antoni',
         description: 'MOCOA Owner Interface Voice',
         authority: 'OWNER',
@@ -286,7 +289,7 @@ class IntegratedElevenLabsVoiceSystem {
         name: 'Dr. Lucy',
         title: 'Quantum Business Computationalist',
         role: 'World-Class ML Deep Mind + Quantum Business Intelligence',
-        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella
         classification: 'ELITE_QUANTUM_COMPUTATIONALIST',
         settlementWings: ['DIDC', 'Anthology', 'Trinity'],
         capabilities: [
@@ -303,7 +306,7 @@ class IntegratedElevenLabsVoiceSystem {
         name: 'Dr. Claude',
         title: 'Strategic Hybrid Reasoning Specialist',
         role: 'Strategic Intelligence & Advanced Analysis',
-        voiceId: '21m00Tcm4TlvDq8ikWAM', // Rachel
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Rachel
         classification: 'STRATEGIC_REASONING_SPECIALIST',
         settlementWings: ['Dream Command', 'Trinity', 'Diamond SAO'],
         capabilities: [
@@ -320,7 +323,7 @@ class IntegratedElevenLabsVoiceSystem {
         name: 'Victory36',
         title: 'Security Analytics & Predictive Threat Modeling',
         role: 'Security Intelligence & Protection Specialist',
-        voiceId: '4RZ84U1b4WCqpu57LvIq', // Adam
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Adam
         classification: 'SECURITY_INTELLIGENCE_SPECIALIST',
         settlementWings: ['SquadronX', 'Diamond SAO', 'DIDC'],
         capabilities: [

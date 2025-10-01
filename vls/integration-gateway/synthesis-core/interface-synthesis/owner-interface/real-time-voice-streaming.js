@@ -46,19 +46,19 @@ class RealTimeVoiceStreamingSystem {
         this.agents = {
             'dr-lucy': {
                 name: 'Dr. Lucy',
-                voiceId: 'EXAVITQu4vr4xnSDxMaL',
+                voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
                 personality: 'quantum_business_computationalist',
                 streamingOptimized: true
             },
             'dr-claude': {
                 name: 'Dr. Claude', 
-                voiceId: '21m00Tcm4TlvDq8ikWAM',
+                voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
                 personality: 'strategic_hybrid_reasoning',
                 streamingOptimized: true
             },
             'victory36': {
                 name: 'Victory36',
-                voiceId: 'VR6AewLTigWG4xSOukaG',
+                voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
                 personality: 'security_intelligence_specialist',
                 streamingOptimized: true
             }
@@ -104,6 +104,9 @@ class RealTimeVoiceStreamingSystem {
 
     setupWebSocketServer() {
         const WebSocket = require('ws');
+
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
         
         this.wsServer = new WebSocket.Server({ 
             port: process.env.VOICE_STREAM_PORT || 8081,

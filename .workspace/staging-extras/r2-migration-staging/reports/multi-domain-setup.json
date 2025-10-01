@@ -13,7 +13,7 @@
           "region": "us-west1",
           "endpoint_type": "primary"
         },
-        "voice_profile": "dana"
+        "voice_profile": "Vee"
       }
     },
     "subdomains": {
@@ -22,7 +22,9 @@
         "purpose": "coaching_services",
         "security": {
           "inheritance": "main_domain",
-          "additional_layers": ["coaching-specific-protocols"]
+          "additional_layers": [
+            "coaching-specific-protocols"
+          ]
         },
         "features": {
           "coaching_dashboard": true,
@@ -35,7 +37,9 @@
         "purpose": "construction_enterprise",
         "security": {
           "inheritance": "main_domain",
-          "additional_layers": ["enterprise-specific-protocols"]
+          "additional_layers": [
+            "enterprise-specific-protocols"
+          ]
         },
         "features": {
           "executive_dashboard": true,
@@ -45,5 +49,11 @@
         }
       }
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

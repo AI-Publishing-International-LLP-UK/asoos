@@ -1,6 +1,9 @@
 import { ElevenLabsClient } from "elevenlabs";
 import "dotenv/config";
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 // Initialize ElevenLabs client with API key from environment
 const client = new ElevenLabsClient({
   apiKey: process.env.ELEVENLAB_API_KEY || process.env.ELEVENLABS_API_KEY
@@ -34,7 +37,7 @@ const createSHRixAgent = async () => {
       description: "Strategic Intelligence & Advanced Reasoning Specialist",
 
       specialization: "Complex problem-solving, strategic analysis, technical architecture",
-      voiceId: "21m00Tcm4TlvDq8ikWAM",
+      voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
       capabilities: [
         "Advanced strategic analysis and planning",
         "Complex problem-solving and reasoning",
@@ -61,7 +64,7 @@ const createV36RixAgent = async () => {
       description: "Security Intelligence & Protection Specialist",
 
       specialization: "Security analysis, threat assessment, system protection",
-      voiceId: "ErXwobaYiN019PkySvjV",
+      voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
       capabilities: [
         "Advanced security intelligence and threat analysis",
         "System protection and defensive strategies",

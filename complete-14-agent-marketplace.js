@@ -1,3 +1,6 @@
+
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
 /**
  * AIXTIV SYMPHONY - Complete 14-Agent PCP Marketplace
  * Individual specialized agents for drag-and-drop customization
@@ -16,7 +19,7 @@ class QBLucyAgent extends BasePCPAgent {
       role: 'Strategic Quarterback',
       category: 'leadership',
       specializations: ['Strategic Planning', 'Team Coordination', 'Decision Making'],
-      voice: { voice_id: '4RZ84U1b4WCqpu57LvIq' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         strategic_planning: 95,
         team_coordination: 90,
@@ -39,7 +42,7 @@ class SarhandAgent extends BasePCPAgent {
       role: 'Strategic Handler (Dr. Claude)',
       category: 'analytics',
       specializations: ['Deep Analysis', 'Research', 'Problem Solving'],
-      voice: { voice_id: '{{SARHAND_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         strategic_analysis: 97,
         problem_solving: 94,
@@ -62,7 +65,7 @@ class V36DAgent extends BasePCPAgent {
       role: 'Victory36 Dream Commander',
       category: 'innovation',
       specializations: ['Vision Casting', 'Innovation', 'Breakthrough Thinking'],
-      voice: { voice_id: '{{V36D_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         vision_casting: 98,
         innovation: 95,
@@ -84,7 +87,7 @@ class DrLucyExecutiveCoachAgent extends BasePCPAgent {
       role: 'Executive Development Coach',
       category: 'coaching',
       specializations: ['Executive Coaching', 'Leadership Development', 'Performance Optimization'],
-      voice: { voice_id: '4RZ84U1b4WCqpu57LvIq' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         executive_coaching: 98,
         leadership_development: 96,
@@ -110,7 +113,7 @@ class DrMemoriaAgent extends BasePCPAgent {
       role: 'Memory & Knowledge Systems Specialist',
       category: 'knowledge',
       specializations: ['Knowledge Management', 'Information Retrieval', 'Memory Systems'],
-      voice: { voice_id: '{{DR_MEMORIA_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         knowledge_management: 97,
         information_retrieval: 95,
@@ -132,7 +135,7 @@ class DrMatchAgent extends BasePCPAgent {
       role: 'Pattern Matching & Optimization Specialist',
       category: 'optimization',
       specializations: ['Pattern Matching', 'Optimization', 'Resource Allocation'],
-      voice: { voice_id: '{{DR_MATCH_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         pattern_matching: 96,
         optimization: 94,
@@ -154,7 +157,7 @@ class DrCypriotAgent extends BasePCPAgent {
       role: 'International Business & Diplomacy Specialist',
       category: 'international',
       specializations: ['International Business', 'Diplomacy', 'Cross-Cultural Communication'],
-      voice: { voice_id: '{{DR_CYPRIOT_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         international_business: 95,
         diplomacy: 93,
@@ -176,7 +179,7 @@ class ProfessorLeeAgent extends BasePCPAgent {
       role: 'Academic Research & Education Specialist',
       category: 'education',
       specializations: ['Academic Research', 'Education', 'Scientific Method'],
-      voice: { voice_id: '{{PROFESSOR_LEE_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         academic_research: 98,
         education: 95,
@@ -198,7 +201,7 @@ class DrSabinaAgent extends BasePCPAgent {
       role: 'Psychology & Human Behavior Specialist',
       category: 'psychology',
       specializations: ['Psychology', 'Human Behavior', 'Mental Health'],
-      voice: { voice_id: '{{DR_SABINA_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         psychology: 96,
         human_behavior: 94,
@@ -220,7 +223,7 @@ class DrMariaAgent extends BasePCPAgent {
       role: 'Healthcare & Medical Specialist',
       category: 'healthcare',
       specializations: ['Healthcare', 'Medical Diagnosis', 'Patient Care'],
-      voice: { voice_id: '{{DR_MARIA_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         healthcare: 97,
         medical_diagnosis: 95,
@@ -242,7 +245,7 @@ class DrRoarkAgent extends BasePCPAgent {
       role: 'Legal & Compliance Specialist',
       category: 'legal',
       specializations: ['Legal Analysis', 'Compliance', 'Risk Management'],
-      voice: { voice_id: '{{DR_ROARK_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         legal_analysis: 96,
         compliance: 94,
@@ -264,7 +267,7 @@ class DrGrantAgent extends BasePCPAgent {
       role: 'Financial & Investment Specialist',
       category: 'finance',
       specializations: ['Financial Analysis', 'Investment Strategy', 'Economic Modeling'],
-      voice: { voice_id: '{{DR_GRANT_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         financial_analysis: 97,
         investment_strategy: 95,
@@ -286,7 +289,7 @@ class DrBurbyAgent extends BasePCPAgent {
       role: 'Technology & Engineering Specialist',
       category: 'technology',
       specializations: ['Technology', 'Engineering', 'System Architecture'],
-      voice: { voice_id: '{{DR_BURBY_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         technology: 98,
         engineering: 96,
@@ -312,7 +315,7 @@ class Elite11Agent extends BasePCPAgent {
       role: 'Elite Performance Specialist',
       category: 'elite',
       specializations: ['Elite Performance', 'Peak Optimization', 'Excellence Systems'],
-      voice: { voice_id: '{{ELITE11_VOICE_ID}}' },
+      voice: { voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id },
       skills: {
         elite_performance: 99,
         peak_optimization: 97,

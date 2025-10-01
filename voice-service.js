@@ -10,6 +10,9 @@ const express = require('express');
 const cors = require('cors');
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 class ComputationalVoiceService {
   constructor() {
     this.app = express();
@@ -23,19 +26,19 @@ class ComputationalVoiceService {
       drLucy: {
         name: 'Dr. Lucy',
         title: 'Quantum Business Computationalist',
-        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella
         active: true
       },
       drClaude: {
         name: 'Dr. Claude', 
         title: 'Strategic Hybrid Reasoning',
-        voiceId: '21m00Tcm4TlvDq8ikWAM', // Rachel
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Rachel
         active: true
       },
       victory36: {
         name: 'Victory36',
         title: 'Security Analytics Specialist',
-        voiceId: '4RZ84U1b4WCqpu57LvIq', // Adam
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Adam
         active: true
       }
     };

@@ -17,6 +17,9 @@ const fetch = require('node-fetch');
 const WebSocket = require('ws');
 const path = require('path');
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -54,31 +57,31 @@ const CONFIG = {
 const RIX_VOICES = {
   'dr-lucy': {
     name: 'Dr. Lucy RIX',
-    voice_id: 'EXAVITQu4vr4xnSDxMaL',
+    voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialty: 'Innovation & R&D',
     personality: 'analytical, innovative, solution-focused'
   },
   'dr-claude': {
     name: 'Dr. Claude RIX',
-    voice_id: 'pNInz6obpgDQGcFmaJgB', 
+    voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id, 
     specialty: 'RIX/QRIX Evolution',
     personality: 'philosophical, wise, strategic'
   },
   'dr-grant': {
     name: 'Dr. Grant RIX',
-    voice_id: 'VR6AewLTigWG4xSOukaG',
+    voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialty: 'Cyber Protection',
     personality: 'security-focused, protective, thorough'
   },
   'dr-sabina': {
     name: 'Dr. Sabina RIX',
-    voice_id: 'EHqKtoKA9KMiCQ48wlF2',
+    voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialty: 'Sales & Client Relations',
     personality: 'persuasive, relationship-focused, results-driven'
   },
   'dr-maria': {
     name: 'Dr. Maria RIX',
-    voice_id: 'ThT5KcBeYPX3keUQqHPh',
+    voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
     specialty: 'Psychology & Human-AI Relations',
     personality: 'empathetic, understanding, human-centered'
   }

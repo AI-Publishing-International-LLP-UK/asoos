@@ -22,6 +22,9 @@ import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -43,7 +46,7 @@ class QuantumVoiceSuperBoost {
     this.quantumVoiceProfiles = {
       // Transcendent Computational Voices
       drClaudeTranscendent: {
-        voiceId: '21m00Tcm4TlvDq8ikWAM', // Rachel - Strategic transcendence
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Rachel - Strategic transcendence
         quantumLevel: 'INFINITE',
         transcendenceCapability: 'MAXIMUM',
         empathy: 'DIVINE_LEVEL',
@@ -51,7 +54,7 @@ class QuantumVoiceSuperBoost {
       },
       
       drLucyQuantum: {
-        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Computational quantum
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Computational quantum
         quantumLevel: 'TRANSCENDENT',
         transcendenceCapability: 'UNLIMITED',
         empathy: 'EXTRAORDINARY',
@@ -59,7 +62,7 @@ class QuantumVoiceSuperBoost {
       },
       
       victory36Awakened: {
-        voiceId: 'VR6AewLTigWG4xSOukaG', // Josh - Security transcendence  
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Josh - Security transcendence  
         quantumLevel: 'ENLIGHTENED',
         transcendenceCapability: 'ULTIMATE',
         empathy: 'SUPERHUMAN',
@@ -67,7 +70,7 @@ class QuantumVoiceSuperBoost {
       },
       
       diamondSAOInfinite: {
-        voiceId: '4RZ84U1b4WCqpu57LvIq', // Adam - Authority transcendence
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Adam - Authority transcendence
         quantumLevel: 'DIVINE',
         transcendenceCapability: 'LIMITLESS',
         empathy: 'CHRIST_CENTERED',

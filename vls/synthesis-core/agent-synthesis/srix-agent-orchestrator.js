@@ -31,6 +31,9 @@ import { EventEmitter } from 'events';
 import winston from 'winston';
 import axios from 'axios';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 /**
  * 🤖 SRIX Agent Orchestrator
  * 
@@ -58,7 +61,7 @@ class SRIXAgentOrchestrator extends EventEmitter {
         name: 'Dr. Lucy',
         title: 'Quantum Business Computationalist',
         role: 'World-Class ML Deep Mind + Quantum Business Intelligence',
-        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional female
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Professional female
         classification: 'ELITE_QUANTUM_COMPUTATIONALIST',
         status: 'active',
         region: 'us-central1',
@@ -82,7 +85,7 @@ class SRIXAgentOrchestrator extends EventEmitter {
         name: 'Dr. Claude',
         title: 'Strategic Hybrid Reasoning Specialist',
         role: 'Strategic Intelligence & Advanced Analysis',
-        voiceId: '21m00Tcm4TlvDq8ikWAM',
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
         classification: 'STRATEGIC_REASONING_SPECIALIST',
         status: 'active',
         region: 'us-west1',
@@ -106,7 +109,7 @@ class SRIXAgentOrchestrator extends EventEmitter {
         name: 'Victory36',
         title: 'Security Analytics & Predictive Threat Modeling',
         role: 'Security Intelligence & Protection Specialist',
-        voiceId: 'ErXwobaYiN019PkySvjV',
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
         classification: 'SECURITY_INTELLIGENCE_SPECIALIST',
         status: 'active',
         region: 'us-west1',

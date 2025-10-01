@@ -14,6 +14,9 @@
 import { ElevenLabsClient } from 'elevenlabs';
 import 'dotenv/config';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 // Initialize ElevenLabs client with enhanced configuration
 const client = new ElevenLabsClient({
   apiKey: process.env.ELEVENLAB_API_KEY || process.env.ELEVENLABS_API_KEY
@@ -154,7 +157,7 @@ const createQuantumBusinessComputationalist = async () => {
       vls_integration: {
         voice_synthesis: {
           primary_voice: 'Dr. Lucy sRIX',
-          voice_id: '4RZ84U1b4WCqpu57LvIq',
+          voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
           synthesis_model: 'eleven_multilingual_v2',
           settings: {
             stability: 0.85,
@@ -307,7 +310,7 @@ const createStrategicHybridComputationalist = async () => {
       vls_integration: {
         voice_synthesis: {
           primary_voice: 'Dr. Claude sRIX',
-          voice_id: '1nQX17jSn2RXlK251b8y',
+          voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
           synthesis_model: 'eleven_turbo_v2_5', 
           settings: {
             stability: 0.9,
@@ -454,7 +457,7 @@ const createSecurityAnalyticsComputationalist = async () => {
       vls_integration: {
         voice_synthesis: {
           primary_voice: 'Victory36',
-          voice_id: 'RILOU7YmBhvwJGDGjNmP',
+          voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
           synthesis_model: 'eleven_turbo_v2_5',
           settings: {
             stability: 0.85,

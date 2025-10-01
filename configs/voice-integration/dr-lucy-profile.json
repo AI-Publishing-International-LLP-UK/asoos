@@ -1,7 +1,7 @@
 {
   "voice_profile": {
     "name": "Dr. Lucy sRIX",
-    "voice_id": "4RZ84U1b4WCqpu57LvIq",
+    "voice_id": "Vee",
     "provider": "elevenlabs",
     "region": "us-west1",
     "integration_points": {
@@ -27,5 +27,11 @@
       "authentication": "triple-factor",
       "communication": "quantum-secured"
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

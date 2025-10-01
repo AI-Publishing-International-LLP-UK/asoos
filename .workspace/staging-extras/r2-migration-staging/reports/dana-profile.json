@@ -26,5 +26,11 @@
       "authentication": "triple-factor",
       "communication": "quantum-secured"
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

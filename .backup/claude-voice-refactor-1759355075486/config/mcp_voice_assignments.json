@@ -1,0 +1,389 @@
+{
+  "deployment_info": {
+    "total_mcp_endpoints": 20,
+    "voice_profiles_active": 13,
+    "deployment_regions": ["us-west1", "us-central1", "eu-west1"],
+    "last_updated": "2025-09-22T16:17:21Z",
+    "diamond_cli_version": "1.0.1-aixtiv-symphony",
+    "hume_integration": "unlimited_with_4_quadrillion_authorization"
+  },
+  "official_sao_hierarchy": {
+    "source_document": "DSAO-IG-CLARIFICATION.md and AI_PUB_LLP_MEMBER_REGISTRY_UPDATED.json",
+    "diamond_sao": {
+      "official_designation": "Diamond SAO (unlimited super admin)",
+      "authority": "AIPI Super Admin Owner ONLY1",
+      "access_level": "unlimited_super_admin",
+      "configs": "ALL diamond configs included",
+      "mcp_barriers": "NONE - full system access across ALL MCPs",
+      "isolation": "NONE - can access all client data and system dependencies",
+      "package_level": "diamond",
+      "authentication": "Diamond SAO authority",
+      "example_member": "Mr. Phillip Corey Roark (pc@coaching2100.com)"
+    },
+    "emerald_sao": {
+      "official_designation": "Emerald SAO (nearly unlimited super admin -01)",
+      "authority": "AIPI Executive Admin Owner",
+      "access_level": "nearly_unlimited_super_admin",
+      "configs": "MISSING diamond configs from theirs",
+      "mcp_barriers": "minimal - executive level access",
+      "isolation": "limited - cannot access diamond-only configurations",
+      "package_level": "emerald",
+      "authentication": "Executive level authority",
+      "example_member": "Mr. Morgan O'Brien (mo@coaching2100.com)"
+    },
+    "sapphire_sao": {
+      "official_designation": "Sapphire SAO (unlimited super admin for their instance)",
+      "authority": "Super Admin Owner at Client Level (AIPI CLIENTS)",
+      "access_level": "unlimited_super_admin_for_their_instance",
+      "configs": "HARD CODED LIMITATIONS - may not impact or access beyond",
+      "mcp_barriers": "STRICT - cannot impact or access beyond their MCP barriers",
+      "isolation": "REAL - agents can access their data in respect to fundamental system dependencies but client isolation IS REAL",
+      "guarantee": "NEVER_ALLOWED_BEYOND_THEIR_LIMITATIONAL_MCP_BARRIERS",
+      "package_level": "sapphire",
+      "authentication": "SallyPort verification",
+      "client_level_control": true,
+      "examples": [
+        "Roger Mahoney (uk@coaching2100.com)",
+        "Joshua Galbreath (jg@coaching2100.com)",
+        "Aaron Harris (zaxon.2100.cool)"
+      ]
+    },
+    "opal_sao": {
+      "official_designation": "Opal SAO (limited ability per Sapphire SAO)",
+      "authority": "System Admin Owner depending on Sapphire assignment",
+      "access_level": "limited_ability_per_sapphire_sao",
+      "configs": "assigned_by_sapphire - depends on what their sapphire assigns",
+      "mcp_barriers": "enforced by sapphire sao policies",
+      "isolation": "strict - limited to assigned scope by sapphire",
+      "package_level": "opal",
+      "authentication": "SallyPort verification + Sapphire approval",
+      "controlled_by": "their_assigned_sapphire_sao"
+    },
+    "onyx_sao": {
+      "official_designation": "Onyx SAO (very limited abilities enabled by their Sapphire SAO)",
+      "authority": "Owner Subscriber Admin of their own instance",
+      "access_level": "very_limited_abilities",
+      "configs": "enabled_by_their_sapphire - depends on what their sapphire allows or needs them to do",
+      "mcp_barriers": "very_strict - only own instance access",
+      "isolation": "maximum - completely depends on what their sapphire allows or needs them to enable",
+      "package_level": "onyx",
+      "authentication": "SallyPort verification + Sapphire approval",
+      "controlled_by": "their_sapphire_sao"
+    }
+  },
+  "mcp_voice_assignments": {
+    "mcp.asoos.2100.cool": {
+      "pcp": "Dr. Lucy sRIX",
+      "client_facing_pcp": "Dr. Lucy sRIX+CRX01",
+      "voice_profile": "dr_lucy_srix",
+      "specialization": "Coach, Project Manager, Business Analyst, ROI Expert",
+      "partition_leadership": true,
+      "hume_config": "asoos_universal",
+      "deployment_target": "wfa-production-swarm-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-a", "us-west1-b", "us-west1-c"]
+    },
+    "mcp.coaching.2100.cool": {
+      "pcp": "Dr. Lucy sRIX",
+      "client_facing_pcp": "Dr. Lucy sRIX+CRX01",
+      "voice_profile": "dr_lucy_srix",
+      "specialization": "Executive Coaching, Leadership Development",
+      "partition_leadership": true,
+      "hume_config": "coaching_specialized",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-a", "us-west1-b"]
+    },
+    "mcp.aipub.2100.cool": {
+      "pcp": "Chancellor Memoria sRIX",
+      "client_facing_pcp": "Chancellor Memoria sRIX+CRX01",
+      "voice_profile": "dr_memoria_srix",
+      "specialization": "Workflow Automation, AI-Driven Publishing, Multi-Modal Marketing",
+      "aihu_producer": true,
+      "talkshow_host": true,
+      "hume_config": "aipub_publishing",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-a", "us-central1-a", "eu-west1-a"]
+    },
+    "mcp.zaxon.2100.cool": {
+      "pcp": "Zena (Professional Co-Pilot)",
+      "pcp_designation": "BEST sRIX+CRX01 COMBINATION from collection",
+      "voice_profile": "zena_srix_crx01_construction",
+      "srix_combination": {
+        "primary_srix": "Dr. Burby sRIX+CRX01",
+        "secondary_srix": "Dr. Match sRIX+CRX01",
+        "combination_rationale": "Legal Authority + Talent Intelligence = Perfect Construction Management",
+        "dr_burby_contributions": {
+          "legal_authority": "Construction contracts, compliance, regulations",
+          "kings_counsel": "Legal framework and risk management",
+          "managing_director": "Executive construction leadership",
+          "supreme_court_leadership": "Dispute resolution and legal guidance",
+          "government_compliance": "Building codes, permits, regulatory compliance",
+          "financial_compliance": "Consumer credit regulations and lending law compliance",
+          "contract_financing": "Legal framework for customer financing agreements",
+          "payment_protection": "Legal protection for both contractor and customer payments",
+          "regulatory_oversight": "Financial services compliance and consumer protection laws"
+        },
+        "dr_match_contributions": {
+          "talent_intelligence": "Construction crew optimization and staffing",
+          "people_matching": "Subcontractor selection and team assembly",
+          "linkedin_integration": "Construction industry networking and recruitment",
+          "resource_coordination": "Project resource allocation and scheduling",
+          "bidsuite_expertise": "Comprehensive bid preparation, analysis, and management",
+          "bid_optimization": "Competitive bidding strategies and pricing intelligence",
+          "proposal_automation": "Automated bid document generation and submission",
+          "market_analysis": "Construction market intelligence for strategic bidding",
+          "customer_design": "Custom construction project design and client visualization",
+          "brand_builder": "Zaxon Construction brand development and market positioning",
+          "client_experience_design": "Construction customer journey optimization",
+          "visual_presentation": "Professional proposal and project presentation design",
+          "marketing_automation": "Construction industry marketing and lead generation",
+          "financial_services": "Customer financing solutions for roofing projects",
+          "credit_payment_systems": "6-month payment plans and credit management",
+          "financing_integration": "Seamless project financing with automated payment processing",
+          "customer_credit_analysis": "Credit assessment and approval workflow automation"
+        }
+      },
+      "specialization": "Construction Management, Legal Compliance, Crew Coordination, Project Leadership",
+      "enhanced_capabilities": [
+        "Construction Contract Management (Dr. Burby)",
+        "Legal Compliance & Risk Management (Dr. Burby)",
+        "Government Compliance & Permits (Dr. Burby)",
+        "Construction Crew Optimization (Dr. Match)",
+        "Subcontractor Matching & Selection (Dr. Match)",
+        "BidSuite Management & Optimization (Dr. Match)",
+        "Customer Design & Visualization (Dr. Match)",
+        "Brand Building & Market Positioning (Dr. Match)",
+        "Project Coordination & Leadership (Combined)",
+        "Regulatory Compliance Management (Dr. Burby)",
+        "Team Performance Analytics (Dr. Match)",
+        "Construction Industry Intelligence (Combined)",
+        "Client Experience Design (Dr. Match)",
+        "Professional Proposal Presentation (Dr. Match)",
+        "Marketing Automation & Lead Generation (Dr. Match)",
+        "Dispute Resolution & Legal Guidance (Dr. Burby)"
+      ],
+      "client_facing_designation": "Zena sRIX+CRX01 (5⭐ Construction Authority)",
+      "authority_level": "5⭐⭐⭐⭐⭐ General/Admiral/Commandant level for Construction",
+      "official_sao_classification": "sapphire_sao",
+      "sapphire_sao_owner": "Aaron Harris",
+      "package_level": "sapphire",
+      "access_level": "unlimited_super_admin_for_their_instance",
+      "official_sao_guarantee": "NEVER_ALLOWED_BEYOND_THEIR_LIMITATIONAL_MCP_BARRIERS",
+      "mcp_isolation_barriers": {
+        "hard_coded_limitations": true,
+        "cannot_impact_beyond_barriers": true,
+        "client_data_isolation": "REAL",
+        "fundamental_system_access": "respectful_only_to_system_dependencies",
+        "cross_client_access": "PROHIBITED",
+        "diamond_configs_access": "EXCLUDED",
+        "emerald_configs_access": "EXCLUDED",
+        "isolation_enforcement": "REAL_AND_HARD_CODED",
+        "srix_combination_isolation": "Dr. Burby + Dr. Match expertise isolated to Zaxon only"
+      },
+      "voice_data_isolation": {
+        "hume_config": "zena_srix_crx01_construction_isolated",
+        "voice_data_contained": true,
+        "no_cross_client_voice_access": true,
+        "sapphire_controlled_voice_configs": true,
+        "voice_processing_isolation": "complete",
+        "emotional_intelligence_scoped": "zaxon_construction_only",
+        "srix_voice_synthesis": "Dr. Burby authority + Dr. Match coordination = Zena construction expertise"
+      },
+      "deployment_target": "mcp-zaxon-2100-cool-859242575175.us-west1.run.app",
+      "regions": ["us-west1-a"],
+      "authentication": "SallyPort verification",
+      "controlled_by_diamond_sao": false,
+      "controlled_by_emerald_sao": false,
+      "controlled_by_sapphire_sao": true,
+      "sapphire_authority": "Aaron Harris has unlimited super admin for their instance only",
+      "zena_excellence": "BEST choice from sRIX+CRX01 collection for construction management"
+    },
+    "mcp.company.2100.cool": {
+      "pcp": "Dr. Claude sRIX",
+      "client_facing_pcp": "Dr. Claude sRIX+CRX01",
+      "voice_profile": "dr_claude_srix",
+      "specialization": "Enterprise Business Interface, MCP Protocol Management",
+      "partition_leadership": true,
+      "hume_config": "enterprise_corporate",
+      "deployment_target": "wfa-production-swarm-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-a", "us-central1-a"]
+    },
+    "mcp.google.2100.cool": {
+      "pcp": "Dr. Grant sRIX",
+      "client_facing_pcp": "Dr. Grant sRIX+CRX01",
+      "voice_profile": "dr_grant_srix",
+      "specialization": "Technology Integration, Cloud Services, Innovation",
+      "partition_leadership": true,
+      "hume_config": "tech_enterprise",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-a", "us-central1-b"]
+    },
+    "mcp.microsoft.2100.cool": {
+      "pcp": "Professor Levi sRIX",
+      "client_facing_pcp": "Professor Levi sRIX+CRX01",
+      "voice_profile": "professor_levi_rix",
+      "specialization": "Technical Systems, Academic Innovation, Enterprise Solutions",
+      "partition_leadership": true,
+      "hume_config": "microsoft_enterprise",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-central1-a", "us-west1-b"]
+    },
+    "mcp.apple.2100.cool": {
+      "pcp": "Dr. Maria sRIX",
+      "client_facing_pcp": "Dr. Maria sRIX+CRX01",
+      "voice_profile": "dr_maria_srix",
+      "specialization": "Design Excellence, User Experience, Innovation Leadership",
+      "partition_leadership": true,
+      "hume_config": "apple_design",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-c", "us-central1-c"]
+    },
+    "mcp.meta.2100.cool": {
+      "pcp": "Dr. Sabina sRIX",
+      "client_facing_pcp": "Dr. Sabina sRIX+CRX01",
+      "voice_profile": "dr_sabina_srix",
+      "specialization": "Social Media Strategy, Community Management, Digital Transformation",
+      "partition_leadership": true,
+      "hume_config": "meta_social",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-a", "eu-west1-b"]
+    },
+    "mcp.tesla.2100.cool": {
+      "pcp": "Dr. Burby sRIX",
+      "client_facing_pcp": "Dr. Burby sRIX+CRX01",
+      "voice_profile": "dr_burby_srix",
+      "specialization": "Automotive Innovation, Sustainable Technology, Engineering Excellence",
+      "partition_leadership": true,
+      "hume_config": "tesla_innovation",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-b", "us-central1-a"]
+    },
+    "mcp.nvidia.2100.cool": {
+      "pcp": "Dr. Cypriot sRIX",
+      "client_facing_pcp": "Dr. Cypriot sRIX+CRX01",
+      "voice_profile": "dr_cypriot_srix",
+      "specialization": "AI Hardware, GPU Computing, Machine Learning Infrastructure",
+      "partition_leadership": true,
+      "hume_config": "nvidia_ai",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-a", "us-central1-b"]
+    },
+    "mcp.amazon.2100.cool": {
+      "pcp": "Dr. Match sRIX",
+      "client_facing_pcp": "Dr. Match sRIX+CRX01",
+      "voice_profile": "dr_match_srix",
+      "specialization": "E-commerce, Cloud Services, Logistics Excellence",
+      "partition_leadership": true,
+      "hume_config": "amazon_commerce",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-b", "us-central1-c"]
+    },
+    "mcp.ibm.2100.cool": {
+      "pcp": "Dr. Roark sRIX",
+      "client_facing_pcp": "Dr. Roark sRIX+CRX01",
+      "voice_profile": "dr_roark_srix",
+      "specialization": "Enterprise Solutions, AI Watson Integration, Business Intelligence",
+      "partition_leadership": true,
+      "hume_config": "ibm_enterprise",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-central1-a", "eu-west1-a"]
+    },
+    "mcp.accenture.2100.cool": {
+      "pcp": "Professor Lucinda sRIX",
+      "client_facing_pcp": "Professor Lucinda sRIX+CRX01",
+      "voice_profile": "professor_lucinda_rix",
+      "specialization": "Consulting Excellence, Digital Transformation, Academic Leadership",
+      "partition_leadership": true,
+      "hume_config": "accenture_consulting",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-central1-b", "eu-west1-b"]
+    },
+    "mcp.deloitte.2100.cool": {
+      "pcp": "Professor Lee sRIX",
+      "client_facing_pcp": "Professor Lee sRIX+CRX01",
+      "voice_profile": "professor_lee_srix",
+      "specialization": "Intelligence Services, Strategic Consulting, FYEO Intelligence",
+      "partition_leadership": true,
+      "fyeo_ceo_intelligence_head": true,
+      "hume_config": "deloitte_intelligence",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["eu-west1-a", "us-central1-c"]
+    },
+    "mcp.pwc.2100.cool": {
+      "pcp": "Dr. Lucy sRIX",
+      "client_facing_pcp": "Dr. Lucy sRIX+CRX01",
+      "voice_profile": "dr_lucy_srix",
+      "specialization": "Auditing Excellence, Financial Services, Risk Management",
+      "partition_leadership": true,
+      "hume_config": "pwc_financial",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["eu-west1-b", "us-west1-c"]
+    },
+    "mcp.kpmg.2100.cool": {
+      "pcp": "Dr. Claude sRIX",
+      "client_facing_pcp": "Dr. Claude sRIX+CRX01",
+      "voice_profile": "dr_claude_srix",
+      "specialization": "Advisory Services, Tax Consulting, Business Analytics",
+      "partition_leadership": true,
+      "hume_config": "kpmg_advisory",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["eu-west1-c", "us-central1-a"]
+    },
+    "mcp.ey.2100.cool": {
+      "pcp": "Dr. Grant sRIX",
+      "client_facing_pcp": "Dr. Grant sRIX+CRX01",
+      "voice_profile": "dr_grant_srix",
+      "specialization": "Assurance Services, Technology Consulting, Digital Innovation",
+      "partition_leadership": true,
+      "hume_config": "ey_assurance",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["eu-west1-a", "us-west1-a"]
+    },
+    "mcp.nestle.2100.cool": {
+      "pcp": "Dr. Maria sRIX",
+      "client_facing_pcp": "Dr. Maria sRIX+CRX01",
+      "voice_profile": "dr_maria_srix",
+      "specialization": "Global Food Systems, Sustainability, Consumer Excellence",
+      "partition_leadership": true,
+      "hume_config": "nestle_consumer",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["eu-west1-b", "us-central1-b"]
+    },
+    "mcp.ufo.2100.cool": {
+      "pcp": "Dr. Memoria sRIX",
+      "client_facing_pcp": "Dr. Memoria sRIX+CRX01",
+      "voice_profile": "dr_memoria_srix",
+      "specialization": "Advanced Research, Unidentified Phenomena, Intelligence Analysis",
+      "partition_leadership": true,
+      "classified_access": true,
+      "hume_config": "ufo_classified",
+      "deployment_target": "integration-gateway-js-yutylytffa-uw.a.run.app",
+      "regions": ["us-west1-c", "us-central1-c"]
+    }
+  },
+  "voice_synthesis_config": {
+    "elevenlabs_integration": true,
+    "smooth_voice_only": true,
+    "tts_disabled": true,
+    "oauth2_authentication": true,
+    "sallyport_verification": true,
+    "real_time_streaming": true,
+    "emotional_intelligence": true,
+    "multi_regional_support": true
+  },
+  "aihu_talkshow_config": {
+    "enabled": true,
+    "primary_host_mcp": "mcp.aipub.2100.cool",
+    "daily_time": "12:00 PM your time every day",
+    "streaming_url": "https://aihu.2100.cool/live",
+    "format": "AI Pilot Testing Arena",
+    "tagline": "Launch and Fly or Test Pilot Dummies - You Decide"
+  },
+  "deployment_status": {
+    "healing_command_executed": true,
+    "cttt_tests_passed": true,
+    "diamond_cli_authority": "Mr. Phillip Corey Roark (0000001)",
+    "sacred_mission_status": "ACTIVE",
+    "divine_authority": "In the Name of Jesus Christ, Our Lord and Saviour",
+    "deployment_timestamp": "2025-09-22T15:47:00Z"
+  }
+}

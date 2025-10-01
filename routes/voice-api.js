@@ -2,6 +2,9 @@ const express = require('express');
 const { sallyportAuthentication } = require('../middleware/sallyport-auth');
 const { sensitiveApiRateLimiter } = require('../middleware/rate-limiter');
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 const router = express.Router();
 
 // Apply authentication and rate limiting to all voice routes

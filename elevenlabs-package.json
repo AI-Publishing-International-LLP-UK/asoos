@@ -73,7 +73,7 @@
     "oauth2_scopes": [
       "elevenlabs:tts",
       "elevenlabs:voice_changer",
-      "elevenlabs:sound_effects", 
+      "elevenlabs:sound_effects",
       "elevenlabs:speech_to_text",
       "elevenlabs:studio",
       "elevenlabs:music",
@@ -86,8 +86,23 @@
   },
   "capabilities": {
     "voice_synthesis": {
-      "models": ["eleven_multilingual_v2", "eleven_multilingual_v1"],
-      "languages": ["en", "es", "pt", "fr", "de", "it", "ja", "ko", "zh", "hi", "ar"],
+      "models": [
+        "eleven_multilingual_v2",
+        "eleven_multilingual_v1"
+      ],
+      "languages": [
+        "en",
+        "es",
+        "pt",
+        "fr",
+        "de",
+        "it",
+        "ja",
+        "ko",
+        "zh",
+        "hi",
+        "ar"
+      ],
       "voice_profiles": 5,
       "real_time_streaming": true
     },
@@ -114,29 +129,32 @@
   },
   "voice_profiles": {
     "diamondSAO": {
-      "voiceId": "VR6AewLTigWG4xSOukaG",
+      "voiceId": "Vee",
       "name": "Josh",
       "description": "Diamond SAO Command Center Authority Voice"
     },
     "ownerInterface": {
-      "voiceId": "4RZ84U1b4WCqpu57LvIq", 
+      "voiceId": "Vee",
       "name": "Adam",
       "description": "Owner Interface Professional Voice"
     },
     "mocaInterface": {
-      "voiceId": "ErXwobaYiN019PkySvjV",
-      "name": "Antoni", 
+      "voiceId": "Vee",
+      "name": "Antoni",
       "description": "MOCOA Warm and Engaging Voice"
     },
     "default": {
-      "voiceId": "EXAVITQu4vr4xnSDxMaL",
+      "voiceId": "Vee",
       "name": "Bella",
       "description": "Default Professional Voice"
     }
   },
   "security": {
     "oauth2": {
-      "required_scopes": ["elevenlabs:tts", "mocoa:voice_interface"],
+      "required_scopes": [
+        "elevenlabs:tts",
+        "mocoa:voice_interface"
+      ],
       "token_expiry": "24h",
       "refresh_token_rotation": true
     },
@@ -152,13 +170,27 @@
     }
   },
   "deployment": {
-    "platforms": ["Google Cloud Run", "Docker", "Kubernetes"],
-    "regions": ["us-west1", "us-central1", "eu-west1"],
+    "platforms": [
+      "Google Cloud Run",
+      "Docker",
+      "Kubernetes"
+    ],
+    "regions": [
+      "us-west1",
+      "us-central1",
+      "eu-west1"
+    ],
     "scaling": {
       "min_instances": 1,
       "max_instances": 10,
       "cpu": "2",
       "memory": "4Gi"
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

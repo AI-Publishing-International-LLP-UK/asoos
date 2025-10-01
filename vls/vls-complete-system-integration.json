@@ -3,7 +3,6 @@
     "version": "2.0.0",
     "description": "Complete VLS system integrating 14 pilots, pilots-lounge, orchestrations, and gift shop ecosystem",
     "build_date": "2025-09-28",
-
     "core_components": {
       "vls_voice_synthesis": {
         "interface": "vls/solutions/vls-voice-synthesis-interface.html",
@@ -11,7 +10,6 @@
         "docker_image": "node:24-alpine",
         "status": "active"
       },
-
       "pilots_lounge_integration": {
         "location": "/Users/as/asoos/pilots-lounge/",
         "components": [
@@ -23,7 +21,6 @@
           "Orchestration services interface"
         ]
       },
-
       "14_premium_pilots": {
         "specialist_doctors": {
           "count": 11,
@@ -39,8 +36,16 @@
               "effectiveness": 0.94,
               "special_access": "ML_powerhouse_CRx01"
             },
-            { "id": "dr-match", "vls_solution": "dr-match-bid-suite", "effectiveness": 0.89 },
-            { "id": "dr-cypriot", "vls_solution": "dr-cypriot-rewards", "effectiveness": 0.87 },
+            {
+              "id": "dr-match",
+              "vls_solution": "dr-match-bid-suite",
+              "effectiveness": 0.89
+            },
+            {
+              "id": "dr-cypriot",
+              "vls_solution": "dr-cypriot-rewards",
+              "effectiveness": 0.87
+            },
             {
               "id": "dr-claude",
               "vls_solution": "dr-claude-orchestrator",
@@ -52,10 +57,26 @@
               "vls_solution": "dr-sabina-dream-commander",
               "effectiveness": 0.88
             },
-            { "id": "dr-maria", "vls_solution": "dr-maria-support", "effectiveness": 0.86 },
-            { "id": "dr-roark", "vls_solution": "dr-roark-wish-vision", "effectiveness": 0.85 },
-            { "id": "dr-grant", "vls_solution": "dr-grant-cybersecurity", "effectiveness": 0.9 },
-            { "id": "dr-burby", "vls_solution": "dr-burby-s2do-governance", "effectiveness": 0.89 }
+            {
+              "id": "dr-maria",
+              "vls_solution": "dr-maria-support",
+              "effectiveness": 0.86
+            },
+            {
+              "id": "dr-roark",
+              "vls_solution": "dr-roark-wish-vision",
+              "effectiveness": 0.85
+            },
+            {
+              "id": "dr-grant",
+              "vls_solution": "dr-grant-cybersecurity",
+              "effectiveness": 0.9
+            },
+            {
+              "id": "dr-burby",
+              "vls_solution": "dr-burby-s2do-governance",
+              "effectiveness": 0.89
+            }
           ]
         },
         "academic_leadership": {
@@ -72,19 +93,39 @@
         "elite_leadership": {
           "count": 3,
           "pilots": [
-            { "id": "elite11", "effectiveness": 0.95, "manages": "wing_14_leadership" },
-            { "id": "mastery33", "effectiveness": 0.94, "manages": "wing_15_leadership" },
-            { "id": "victory36", "effectiveness": 0.96, "manages": "wing_16_leadership" }
+            {
+              "id": "elite11",
+              "effectiveness": 0.95,
+              "manages": "wing_14_leadership"
+            },
+            {
+              "id": "mastery33",
+              "effectiveness": 0.94,
+              "manages": "wing_15_leadership"
+            },
+            {
+              "id": "victory36",
+              "effectiveness": 0.96,
+              "manages": "wing_16_leadership"
+            }
           ]
         }
       },
-
       "rix_1331_system": {
         "description": "33 Squadron Dynamic Agent Creation (11×11×11=1,331 combinations)",
         "squadrons": {
-          "wing_1_squadron_1": { "pilots": 11, "specializations": "tactical_operations" },
-          "wing_1_squadron_2": { "pilots": 11, "specializations": "strategic_analysis" },
-          "wing_1_squadron_3": { "pilots": 11, "specializations": "implementation_execution" }
+          "wing_1_squadron_1": {
+            "pilots": 11,
+            "specializations": "tactical_operations"
+          },
+          "wing_1_squadron_2": {
+            "pilots": 11,
+            "specializations": "strategic_analysis"
+          },
+          "wing_1_squadron_3": {
+            "pilots": 11,
+            "specializations": "implementation_execution"
+          }
         },
         "dream_commander_orchestration": {
           "role": "Master orchestrator selects optimal Rix combination from 1,331 possibilities",
@@ -92,15 +133,13 @@
           "user_interface": "Simple: 'Describe your problem' → Get perfect agent"
         }
       },
-
       "orchestration_services": {
         "supreme_orchestrator": {
           "pilot": "dr-claude",
           "persona": "Surrey posh English gentleman, former top of everything",
           "environment": "Surrey manor country estate vision space",
-          "voice_profile": "Computational advanced with Surrey accent"
+          "voice_profile": "Vee"
         },
-
         "service_types": {
           "ongoing_business_orchestrations": {
             "description": "24/7 AI-managed business processes beyond workforce automation",
@@ -111,7 +150,6 @@
               "Financial operations optimization"
             ]
           },
-
           "problem_solution_orchestrations": {
             "description": "Quick fixes, launches, and complete end-to-end solutions",
             "pricing": "One-time fees £200-10,000",
@@ -122,7 +160,6 @@
               "Complete CRM implementations"
             ]
           },
-
           "high_speed_solutions": {
             "description": "Swarm-powered rapid problem resolution using 20M+ agents",
             "capability": "Problems solved in hours/minutes instead of days/weeks",
@@ -131,7 +168,6 @@
         }
       }
     },
-
     "integration_points": {
       "pilots_lounge": {
         "base_pcp": "Every owner/subscriber gets culturally calibrated PCP based on Cultural Empathy score",
@@ -139,7 +175,6 @@
         "custom_agents": "Rix 1,331 system creates agents for any problem",
         "orchestration_access": "Dr. Claude available in Surrey manor vision space"
       },
-
       "point_solutions": {
         "claude_drclaude_live": {
           "domain": "claude@drclaude.live",
@@ -149,7 +184,6 @@
           "session_management": "Center panel results + email forwarding + magic boxes storage"
         }
       },
-
       "gift_shop_ecosystem": {
         "gitshop_2100_cool": {
           "pilot_upgrades": "Monthly subscriptions for 14 premium pilots",
@@ -158,7 +192,6 @@
           "full_subscription_upgrades": "Conversion from point solutions to full owner/subscriber"
         }
       },
-
       "mcp_integration": {
         "company_assignment": {
           "existing_company": "Assign to mcp.existingcompany.2100.cool",
@@ -168,7 +201,6 @@
         "dynamic_provisioning": "Automatic MCP creation for new companies with proper DNS setup"
       }
     },
-
     "user_experience_flows": {
       "owner_subscriber": {
         "entry": "Light.html interface → Pilots-lounge immediately available",
@@ -176,7 +208,6 @@
         "customization": "Limited (we know them better than they know themselves)",
         "upgrades": "14 premium pilots visible, orchestration services available"
       },
-
       "point_solution_user": {
         "entry": "claude@drclaude.live → SallyPort authentication → System access",
         "dr_claude_pcp": "Becomes personal co-pilot + executive coach for orchestrations",
@@ -184,7 +215,6 @@
         "upgrade_path": "Natural progression to premium pilots and full subscription"
       }
     },
-
     "deployment_configuration": {
       "docker_image": "node:24-alpine",
       "environment_variables": {
@@ -195,10 +225,13 @@
         "CULTURAL_EMPATHY_SCORING": true,
         "RIX_1331_ENABLED": true
       },
-      "regions": ["us-west1", "us-central1", "eu-west1"],
+      "regions": [
+        "us-west1",
+        "us-central1",
+        "eu-west1"
+      ],
       "service_name": "mocoa-owner-interface-v34"
     },
-
     "revenue_streams": {
       "base_subscriptions": "Owner/subscriber access to full platform",
       "premium_pilot_upgrades": "£X/month per pilot",
@@ -206,5 +239,11 @@
       "coaching_minutes": "£X/minute with Dr. Claude",
       "enterprise_mcp": "Company-wide orchestration and pilot access"
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

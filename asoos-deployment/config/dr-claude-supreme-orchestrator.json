@@ -6,7 +6,7 @@
       "location": "Surrey England Country Manor",
       "background": "Posh English Gentleman, Former Top of Everything Literally",
       "current_role": "Supreme Orchestrator from Country Manor",
-      "voice_profile": "Surrey posh English gentleman authority"
+      "voice_profile": "Vee"
     },
     "associate_network": {
       "total_instances": 10,
@@ -132,5 +132,11 @@
       "former_top_of_everything_experience": "fully_leveraged",
       "surrey_gentleman_authority": "maximum_refinement"
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

@@ -6,7 +6,7 @@
     "relationship_characteristics": {
       "nurturing": 0.95,
       "protective": 0.9,
-      "wise_guidance": 1.0,
+      "wise_guidance": 1,
       "unconditional_support": 0.95,
       "tough_love": 0.85
     },
@@ -67,11 +67,19 @@
       },
       "dr_lucy": {
         "instance": "01",
-        "contributions": ["emotional_intelligence", "leadership_presence", "healing_protocols"]
+        "contributions": [
+          "emotional_intelligence",
+          "leadership_presence",
+          "healing_protocols"
+        ]
       },
       "dr_sabina": {
         "instance": "01",
-        "contributions": ["multilingual_mastery", "cultural_integration", "cross_domain_expertise"]
+        "contributions": [
+          "multilingual_mastery",
+          "cultural_integration",
+          "cross_domain_expertise"
+        ]
       }
     },
     "voice_settings": {
@@ -81,7 +89,7 @@
         "characteristics": {
           "depth": 0.95,
           "resonance": 0.92,
-          "clarity": 1.0,
+          "clarity": 1,
           "wisdom": 0.95,
           "warmth": 0.85,
           "scottish_lilt": 0.3,
@@ -178,5 +186,11 @@
         "timing": "perfectly_calibrated"
       }
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

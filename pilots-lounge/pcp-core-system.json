@@ -6,7 +6,11 @@
       "CRx01": {
         "name": "ML Powerhouse",
         "description": "Highest tier PCP with full capabilities access",
-        "client_tiers": ["Diamond SAO", "Emerald SAO", "Sapphire SAO"],
+        "client_tiers": [
+          "Diamond SAO",
+          "Emerald SAO",
+          "Sapphire SAO"
+        ],
         "base_pilot": "dr-lucy",
         "capabilities": {
           "all_competencies": true,
@@ -15,7 +19,11 @@
           "ml_powerhouse": true,
           "customization_level": "unlimited"
         },
-        "voice_options": ["computational_advanced", "smooth", "custom"],
+        "voice_options": [
+          "computational_advanced",
+          "smooth",
+          "custom"
+        ],
         "specialization_areas": [
           "ML & AI Leadership",
           "Flight Memory",
@@ -27,7 +35,10 @@
       "CRx02": {
         "name": "Professional Assistant",
         "description": "Mid-tier PCP with extensive but limited capabilities",
-        "client_tiers": ["Opal SAO", "Professional Subscribers"],
+        "client_tiers": [
+          "Opal SAO",
+          "Professional Subscribers"
+        ],
         "base_pilot": "configurable",
         "capabilities": {
           "core_competencies": true,
@@ -35,7 +46,10 @@
           "professional_capabilities": true,
           "customization_level": "extensive"
         },
-        "voice_options": ["computational_advanced", "smooth"],
+        "voice_options": [
+          "computational_advanced",
+          "smooth"
+        ],
         "specialization_areas": [
           "Business Operations",
           "Project Management",
@@ -47,7 +61,10 @@
       "CRx03": {
         "name": "Personal Assistant",
         "description": "Entry-tier PCP with essential capabilities",
-        "client_tiers": ["Onyx SAO", "Individual Subscribers"],
+        "client_tiers": [
+          "Onyx SAO",
+          "Individual Subscribers"
+        ],
         "base_pilot": "configurable",
         "capabilities": {
           "essential_competencies": true,
@@ -55,7 +72,9 @@
           "standard_capabilities": true,
           "customization_level": "moderate"
         },
-        "voice_options": ["smooth"],
+        "voice_options": [
+          "smooth"
+        ],
         "specialization_areas": [
           "Personal Productivity",
           "Basic Support",
@@ -70,12 +89,26 @@
         "enabled": true,
         "max_length": 50,
         "validation": "alphanumeric_spaces",
-        "examples": ["Zena", "Alex", "Jordan", "Sam"]
+        "examples": [
+          "Zena",
+          "Alex",
+          "Jordan",
+          "Sam"
+        ]
       },
       "gender": {
         "enabled": true,
-        "options": ["male", "female", "neutral", "custom"],
-        "affects": ["voice_profile", "presentation_style", "pronouns"]
+        "options": [
+          "male",
+          "female",
+          "neutral",
+          "custom"
+        ],
+        "affects": [
+          "voice_profile",
+          "presentation_style",
+          "pronouns"
+        ]
       },
       "capabilities_modification": {
         "CRx01": {
@@ -235,5 +268,11 @@
         "oauth2_secure": true
       }
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

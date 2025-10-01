@@ -1,0 +1,157 @@
+{
+  "pcp_pilot_registry": {
+    "version": "1.0.0",
+    "description": "Registry of 14 selectable pilots with icons for Professional Co-Pilot (PCP) creation",
+    "total_pilots": 14,
+    "pilot_categories": {
+      "specialist_doctors": {
+        "count": 11,
+        "pilots": [
+          {
+            "id": "dr-memoria",
+            "name": "Dr. Memoria sRIX",
+            "specialty": "Memory & Knowledge Management",
+            "vls_solution": "dr-memoria-anthology-launch",
+            "icon": "memoria-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-lucy",
+            "name": "Dr. Lucy sRIX",
+            "specialty": "ML Powerhouse & Flight Memory - CRx01",
+            "vls_solution": "dr-lucy-flight-memory",
+            "icon": "lucy-icon.svg",
+            "voice_profile": "computational_advanced",
+            "special_access": ["all_competencies", "archives", "capabilities"]
+          },
+          {
+            "id": "dr-match",
+            "name": "Dr. Match sRIX",
+            "specialty": "Bid Suite & Matching",
+            "vls_solution": "dr-match-bid-suite",
+            "icon": "match-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-cypriot",
+            "name": "Dr. Cypriot sRIX",
+            "specialty": "Rewards & Incentives",
+            "vls_solution": "dr-cypriot-rewards",
+            "icon": "cypriot-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-claude",
+            "name": "Dr. Claude sRIX",
+            "specialty": "Orchestration & Leadership",
+            "vls_solution": "dr-claude-orchestrator",
+            "icon": "claude-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-sabina",
+            "name": "Dr. Sabina sRIX",
+            "specialty": "Dream Commander",
+            "vls_solution": "dr-sabina-dream-commander",
+            "icon": "sabina-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-maria",
+            "name": "Dr. Maria sRIX",
+            "specialty": "Support Systems",
+            "vls_solution": "dr-maria-support",
+            "icon": "maria-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-roark",
+            "name": "Dr. Roark sRIX",
+            "specialty": "Wish Vision",
+            "vls_solution": "dr-roark-wish-vision",
+            "icon": "roark-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-grant",
+            "name": "Dr. Grant sRIX",
+            "specialty": "Cybersecurity",
+            "vls_solution": "dr-grant-cybersecurity",
+            "icon": "grant-icon.svg",
+            "voice_profile": "computational_advanced"
+          },
+          {
+            "id": "dr-burby",
+            "name": "Dr. Burby sRIX",
+            "specialty": "S2DO Governance",
+            "vls_solution": "dr-burby-s2do-governance",
+            "icon": "burby-icon.svg",
+            "voice_profile": "computational_advanced"
+          }
+        ]
+      },
+      "academic_leadership": {
+        "count": 1,
+        "pilots": [
+          {
+            "id": "professor-lee",
+            "name": "Professor Lee sRIX",
+            "specialty": "Q4D Lenz & Research",
+            "vls_solution": "professor-lee-q4d-lenz",
+            "icon": "lee-icon.svg",
+            "voice_profile": "computational_advanced"
+          }
+        ]
+      },
+      "elite_leadership": {
+        "count": 2,
+        "description": "Leadership wings managing approximately 556 million agents",
+        "pilots": [
+          {
+            "id": "elite11",
+            "name": "Elite11",
+            "specialty": "Wing 14 Leadership",
+            "manages": "elite_tier_agents",
+            "icon": "elite11-icon.svg",
+            "voice_profile": "computational_advanced",
+            "leadership_tier": "elite"
+          },
+          {
+            "id": "mastery33",
+            "name": "Mastery33",
+            "specialty": "Wing 15 Leadership",
+            "manages": "mastery_tier_agents",
+            "icon": "mastery33-icon.svg",
+            "voice_profile": "computational_advanced",
+            "leadership_tier": "mastery"
+          },
+          {
+            "id": "victory36",
+            "name": "Victory36",
+            "specialty": "Wing 16 Leadership",
+            "manages": "victory_tier_agents",
+            "icon": "victory36-icon.svg",
+            "voice_profile": "computational_advanced",
+            "leadership_tier": "victory"
+          }
+        ]
+      }
+    },
+    "pcp_assignment_examples": {
+      "zaxon_construction": {
+        "owner": "Aaron Harris",
+        "sao_level": "Sapphire SAO",
+        "classification": ".hr4",
+        "assigned_pcp": "Zena",
+        "primary_pilot": "dr-lucy",
+        "model": "CRx01 - Dr. Lucy ML powerhouse"
+      }
+    },
+    "integration": {
+      "oauth2_enabled": true,
+      "secret_manager": "GCP Secret Manager",
+      "voice_synthesis": "ElevenLabs + Hume",
+      "deployment_target": "Google Cloud Run"
+    }
+  }
+}

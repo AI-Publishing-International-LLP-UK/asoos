@@ -55,6 +55,9 @@ import winston from 'winston';
 import axios from 'axios';
 import multer from 'multer';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 // ES modules compatibility
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -94,7 +97,7 @@ class UnifiedElevenLabsAgentSystem {
     this.voiceProfiles = {
       // Diamond SAO Authority Voices
       diamondSAO: {
-        voiceId: 'VR6AewLTigWG4xSOukaG', // Josh - Professional authority
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Josh - Professional authority
         name: 'Josh',
         description: 'Diamond SAO Command Center Authority Voice',
         settings: {
@@ -107,7 +110,7 @@ class UnifiedElevenLabsAgentSystem {
       
       // Owner Interface Voices
       ownerInterface: {
-        voiceId: '4RZ84U1b4WCqpu57LvIq', // Adam - Authoritative
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Adam - Authoritative
         name: 'Adam',
         description: 'Owner Interface Professional Voice',
         settings: {
@@ -120,7 +123,7 @@ class UnifiedElevenLabsAgentSystem {
       
       // MOCOA Interface Voices
       mocaInterface: {
-        voiceId: 'ErXwobaYiN019PkySvjV', // Antoni - Warm engaging
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Antoni - Warm engaging
         name: 'Antoni',
         description: 'MOCOA Warm and Engaging Voice',
         settings: {
@@ -133,7 +136,7 @@ class UnifiedElevenLabsAgentSystem {
       
       // Default Professional Voice
       default: {
-        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional female
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Professional female
         name: 'Bella',
         description: 'Default Professional Voice',
         settings: {
@@ -168,7 +171,7 @@ class UnifiedElevenLabsAgentSystem {
         name: 'Dr. Lucy',
         title: 'Quantum Business Computationalist',
         role: 'World-Class ML Deep Mind + Quantum Business Intelligence',
-        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional female (valid ElevenLabs voice)
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Professional female (valid ElevenLabs voice)
         classification: 'ELITE_QUANTUM_COMPUTATIONALIST',
         capabilities: [
           'Quantum-enhanced machine learning algorithms',
@@ -185,7 +188,7 @@ class UnifiedElevenLabsAgentSystem {
         name: 'Dr. Claude',
         title: 'Strategic Hybrid Reasoning Specialist',
         role: 'Strategic Intelligence & Advanced Analysis',
-        voiceId: '21m00Tcm4TlvDq8ikWAM',
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
         classification: 'STRATEGIC_REASONING_SPECIALIST',
         capabilities: [
           'Advanced strategic analysis and planning',
@@ -202,7 +205,7 @@ class UnifiedElevenLabsAgentSystem {
         name: 'Victory36',
         title: 'Security Analytics & Predictive Threat Modeling',
         role: 'Security Intelligence & Protection Specialist',
-        voiceId: 'ErXwobaYiN019PkySvjV',
+        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
         classification: 'SECURITY_INTELLIGENCE_SPECIALIST',
         capabilities: [
           'Advanced security intelligence and threat analysis',

@@ -19,11 +19,25 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { Hume, HumeClient } from 'hume';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 class ClaudeVoiceCodeHelper {
-  constructor(options = {}) {
+  constructor(options = {
+    // Initialize voice configuration
+    this.initializeVoice();
+  }
+  
+  async initializeVoice() {
+    try {
+      this.voiceConfig = await claudeVoiceConfig.getClaudeAgentConfig('ClaudeVoiceCodeHelper');
+    } catch (error) {
+      console.error('Failed to initialize voice config:', error);
+      this.voiceConfig = { voice_id: 'Vee', backup_voice_id: 'Adam' };
+    }}) {
     this.version = '1.0.0-diamond-sao';
     this.authority = 'Diamond SAO Command Center';
     this.diamondSAO = {

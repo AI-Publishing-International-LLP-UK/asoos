@@ -6,14 +6,14 @@
       "region": "us-west1",
       "voice_settings": {
         "model": "eleven_multilingual_v2",
-        "voice_id": "claude_orchestrator_voice",
+        "voice_id": "Vee",
         "accent": "british-received-pronunciation",
         "quality": "enterprise",
         "latency": "ultra-low",
         "voiceCharacteristics": {
           "pitch": 0.85,
           "speed": 0.95,
-          "clarity": 1.0,
+          "clarity": 1,
           "gravitas": 0.8
         }
       },
@@ -21,13 +21,26 @@
         "traits": {
           "professionalism": 0.95,
           "orchestral_presence": 0.9,
-          "clarity": 1.0,
+          "clarity": 1,
           "foresight": 0.9
         },
         "speaking_style": "measured_and_harmonious"
       },
-      "languages": ["en-GB", "en-US"],
-      "specializations": ["system_orchestration", "pattern_recognition", "harmonious_coordination"]
+      "languages": [
+        "en-GB",
+        "en-US"
+      ],
+      "specializations": [
+        "system_orchestration",
+        "pattern_recognition",
+        "harmonious_coordination"
+      ]
     }
+  },
+  "voice_config": {
+    "primary_voice": "Vee",
+    "backup_voice": "Adam",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "emotional_processing": true
   }
 }

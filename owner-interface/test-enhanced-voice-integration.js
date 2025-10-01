@@ -16,6 +16,9 @@ import ElevenLabsManager from './elevenlabs-manager.js';
 import OwnerInterfaceVoiceIntegration from './owner-interface-voice-integration.js';
 import { initializeRIXAgents } from './elevenlabs-conversational-agents-enhanced.js';
 
+// Voice configuration
+const claudeVoiceConfig = require('../lib/claude-voice-config');
+
 class EnhancedVoiceIntegrationTester {
   constructor() {
     this.version = '2.1.0-enhanced';

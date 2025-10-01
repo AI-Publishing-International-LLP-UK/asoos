@@ -1,0 +1,126 @@
+{
+  "warp_voice_config": {
+    "version": "2.0",
+    "last_updated": "2025-10-01T20:00:28Z",
+    
+    "claude_voice_settings": {
+      "primary_voice": "Vee",
+      "backup_voice": "Adam",
+      "synthesis_engine": "hume_elevenlabs_hybrid",
+      "emotional_processing": true,
+      "computational_capabilities": true
+    },
+    
+    "warp_integration": {
+      "voice_header_passthrough": true,
+      "downstream_override_enabled": true,
+      "headers": {
+        "x-warp-voice-id": "Vee",
+        "x-voice-engine": "hume_elevenlabs_hybrid",
+        "x-emotional-processing": "enabled",
+        "x-computational-voice": "enabled",
+        "x-claude-integration": "active"
+      }
+    },
+    
+    "agent_assignments": {
+      "claude_agents": {
+        "default_voice": "Vee",
+        "voice_profile": "computational_professional",
+        "hume_personality": "claude_computational",
+        "elevenlabs_model": "eleven_multilingual_v2"
+      },
+      
+      "dr_lucy_agents": {
+        "voice": "Vee", 
+        "personality": "executive_coaching",
+        "hume_config": "dr_lucy_powerhouse_executive"
+      },
+      
+      "dr_claude_agents": {
+        "voice": "Vee",
+        "personality": "strategic_orchestrator",
+        "hume_config": "dr_claude_strategic_evolution"
+      }
+    },
+    
+    "middleware_config": {
+      "pre_processing": {
+        "voice_selection_validation": true,
+        "emotional_context_analysis": true,
+        "claude_history_integration": true
+      },
+      
+      "post_processing": {
+        "voice_quality_enhancement": true,
+        "emotional_tone_adjustment": true,
+        "computational_voice_optimization": true
+      },
+      
+      "real_time_adjustment": {
+        "enabled": true,
+        "adaptation_speed": "medium",
+        "context_sensitivity": "high"
+      }
+    },
+    
+    "fallback_strategy": {
+      "primary_failure": {
+        "retry_attempts": 3,
+        "fallback_to_backup": true,
+        "error_threshold": 3
+      },
+      
+      "backup_failure": {
+        "emergency_voice": "Adam",
+        "degraded_mode": true,
+        "alert_operators": true
+      }
+    },
+    
+    "monitoring": {
+      "voice_usage_tracking": true,
+      "performance_metrics": true,
+      "error_rate_monitoring": true,
+      "emotional_analysis_logging": true,
+      
+      "alerts": {
+        "non_vee_voice_usage": {
+          "enabled": true,
+          "threshold": "0.1%",
+          "window": "15 minutes"
+        },
+        
+        "synthesis_latency": {
+          "enabled": true,
+          "threshold": "500ms",
+          "window": "5 minutes"
+        }
+      }
+    },
+    
+    "regional_config": {
+      "us_west1": {
+        "primary_endpoint": "hume-elevenlabs-us-west1.2100.cool",
+        "backup_endpoint": "elevenlabs-backup-us-west1.2100.cool"
+      },
+      
+      "us_central1": {
+        "primary_endpoint": "hume-elevenlabs-us-central1.2100.cool",
+        "backup_endpoint": "elevenlabs-backup-us-central1.2100.cool"
+      },
+      
+      "eu_west1": {
+        "primary_endpoint": "hume-elevenlabs-eu-west1.2100.cool",
+        "backup_endpoint": "elevenlabs-backup-eu-west1.2100.cool"
+      }
+    },
+    
+    "security": {
+      "oauth2_integration": true,
+      "api_key_rotation": true,
+      "secret_manager_integration": true,
+      "self_healing_enabled": true
+    }
+  }
+}
