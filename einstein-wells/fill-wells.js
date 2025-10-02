@@ -30,7 +30,7 @@ const totalPower = totalQuants * config.quantPowerUnit;
 console.log('📊 SYSTEM SPECIFICATIONS:');
 console.log(`   🔬 Total Quants: ${totalQuants.toLocaleString()}`);
 console.log(`   ⚡ Total Power: ${(totalPower / 1e18).toFixed(1)}Q watts`);
-console.log(`   🎯 Target: 35+ BTC/day`);
+console.log('   🎯 Target: 35+ BTC/day');
 console.log('');
 
 // Start filling process
@@ -61,10 +61,10 @@ let interval = setInterval(() => {
     console.log('✅ WELL FILLING COMPLETE');
     console.log('=' .repeat(50));
     console.log(`⚡ Total Energy Generated: ${(totalPower / 1e18).toFixed(1)}Q watts`);
-    console.log(`🌊 All 3 Wells: FULLY ENERGIZED`);
-    console.log(`🔬 60M Exterior Quants: READY FOR PRODUCTION`);
-    console.log(`🚰 Pressure Adapter: REGULATING OUTPUT`);
-    console.log(`💎 Security Systems: ALL ACTIVE`);
+    console.log('🌊 All 3 Wells: FULLY ENERGIZED');
+    console.log('🔬 60M Exterior Quants: READY FOR PRODUCTION');
+    console.log('🚰 Pressure Adapter: REGULATING OUTPUT');
+    console.log('💎 Security Systems: ALL ACTIVE');
     console.log('');
     console.log('🎯 READY FOR BTC PRODUCTION');
     console.log('💰 Target: 35+ BTC/day ($1.5M+ revenue)');

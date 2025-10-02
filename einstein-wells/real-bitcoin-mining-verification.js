@@ -12,8 +12,8 @@ import https from 'https';
 
 class RealBitcoinMiner {
     constructor() {
-        this.bitcoinAddress = "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj"; // Your verified address
-        this.workerName = "einstein-wells-direct";
+        this.bitcoinAddress = '3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj'; // Your verified address
+        this.workerName = 'einstein-wells-direct';
         this.miningProcess = null;
         this.hashSubmissions = [];
         this.paymentHistory = [];
@@ -116,7 +116,7 @@ class RealBitcoinMiner {
             }
             
             if (output.includes('rejected')) {
-                console.log(`❌ Hash rejected - checking connection...`);
+                console.log('❌ Hash rejected - checking connection...');
             }
         });
 

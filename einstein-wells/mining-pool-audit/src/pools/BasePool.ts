@@ -136,7 +136,7 @@ export abstract class BasePool {
           '-X', method,
           '-H', `Authorization: Bearer ${token}`,
           '-H', 'Content-Type: application/json',
-          '-H', `User-Agent: EinsteinWells-InternalAudit/1.0`,
+          '-H', 'User-Agent: EinsteinWells-InternalAudit/1.0',
         ];
 
         // Add additional headers

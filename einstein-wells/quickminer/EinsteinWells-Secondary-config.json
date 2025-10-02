@@ -1,0 +1,22 @@
+{
+  "name": "EinsteinWells-Secondary",
+  "wallet": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5",
+  "worker": "EinsteinWells-Secondary-1759398338146",
+  "algorithm": "kawpow",
+  "server": "daggerhashimoto.usa.nicehash.com",
+  "port": 3353,
+  "location": "usa",
+  "managed": true,
+  "autostart": true,
+  "watchdog": true,
+  "intensity": "high",
+  "threads": "auto",
+  "telemetry": true,
+  "rigStatusUpdate": 60,
+  "einsteinWells": {
+    "division": "quantum-mining",
+    "qsvmIntegration": true,
+    "targetBTC": "115-per-24h",
+    "powerUnit": "0.1-btc-unit"
+  }
+}

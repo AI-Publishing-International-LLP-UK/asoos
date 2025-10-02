@@ -105,7 +105,7 @@ var __disposeResources =
               if (r.async)
                 return (
                   (s |= 2),
-                  Promise.resolve(result).then(next, function (e) {
+                  Promise.resolve(result).then(next, (e) => {
                     fail(e);
                     return next();
                   })
@@ -123,7 +123,7 @@ var __disposeResources =
   })(
     typeof SuppressedError === 'function'
       ? SuppressedError
-      : function (error, suppressed, message) {
+      : (error, suppressed, message) => {
         var e = new Error(message);
         return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
       }

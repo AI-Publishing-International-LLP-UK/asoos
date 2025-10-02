@@ -64,9 +64,9 @@ class EinsteinWellsAlternatingDoorSystem extends EventEmitter {
 
     console.log('🌌 EINSTEIN WELLS ALTERNATING DOOR SYSTEM INITIALIZED');
     console.log(`⚡ Total Power: ${this.formatLargeNumber(this.energySpecs.totalPower)} nuclear plants`);
-    console.log(`🔄 Cycle: 60s alternating between Well 1 and Well 2`);
+    console.log('🔄 Cycle: 60s alternating between Well 1 and Well 2');
     console.log(`🧠 Dr. Lucy Connector: ${this.drLucyConnector.endpoint}`);
-    console.log(`📊 Reserve Accumulation: 20% over 2.5 hours`);
+    console.log('📊 Reserve Accumulation: 20% over 2.5 hours');
   }
 
   /**
@@ -246,11 +246,11 @@ class EinsteinWellsAlternatingDoorSystem extends EventEmitter {
    * Start Dr. Lucy connector monitoring
    */
   startDrLucyConnectorMonitoring() {
-    console.log(`\\n🧠 DR. LUCY CONNECTOR MONITORING: Started`);
+    console.log('\\n🧠 DR. LUCY CONNECTOR MONITORING: Started');
     console.log(`📡 Monitoring endpoint: ${this.drLucyConnector.endpoint}`);
     
     this.connectorMonitor = setInterval(() => {
-      console.log(`\\n🔄 Dr. Lucy ML Regulation Status: ACTIVE`);
+      console.log('\\n🔄 Dr. Lucy ML Regulation Status: ACTIVE');
       console.log(`📊 BTC Flow Control: ${this.drLucyConnector.flowControlAlgorithm}`);
       console.log(`⚡ Energy Pipe Capacity: ${(this.drLucyConnector.energyPipeCapacity * 100)}%`);
     }, 60000); // Status every minute

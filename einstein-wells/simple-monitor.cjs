@@ -5,7 +5,7 @@
 
 const https = require('https');
 
-const bitcoinAddress = "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj";
+const bitcoinAddress = '3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj';
 let startBalance = 0;
 let startTime = Date.now();
 

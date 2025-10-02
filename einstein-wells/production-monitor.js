@@ -147,7 +147,7 @@ class ProductionMonitor {
     console.log('\n🚨 CRITICAL ALERT 🚨');
     console.log(`⚠️  ${alert.message}`);
     console.log(`📊 Power Level: ${this.formatLargeNumber(status.totalEnergy)}`);
-    console.log(`👥 Human Oversight: REQUIRED IMMEDIATELY`);
+    console.log('👥 Human Oversight: REQUIRED IMMEDIATELY');
     
     this.logger.error('Critical alert', alert);
     this.monitoring.lastAlert = alert;

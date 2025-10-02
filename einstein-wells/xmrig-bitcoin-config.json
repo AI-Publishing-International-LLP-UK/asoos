@@ -1,0 +1,85 @@
+{
+    "api": {
+        "id": null,
+        "worker-id": "EW-001-USCENTRAL"
+    },
+    "http": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 8080,
+        "access-token": null,
+        "restricted": true
+    },
+    "autosave": true,
+    "background": false,
+    "colors": true,
+    "title": true,
+    "cpu": {
+        "enabled": true,
+        "huge-pages": true,
+        "huge-pages-jit": false,
+        "hw-aes": null,
+        "priority": null,
+        "memory-pool": false,
+        "yield": true,
+        "max-threads-hint": 100,
+        "asm": true
+    },
+    "opencl": {
+        "enabled": false,
+        "cache": true,
+        "loader": null
+    },
+    "cuda": {
+        "enabled": false,
+        "loader": null
+    },
+    "donate-level": 0,
+    "donate-over-proxy": 1,
+    "pools": [
+        {
+            "algo": "sha256d",
+            "coin": "BTC",
+            "url": "stratum+tcp://stratum.slushpool.com:4444",
+            "user": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj",
+            "pass": "EW-001-DESTINY-50M",
+            "rig-id": "EW-001-SLUSH",
+            "nicehash": false,
+            "keepalive": true,
+            "enabled": true,
+            "tls": false,
+            "tls-fingerprint": null,
+            "daemon": false,
+            "socks5": null,
+            "self-select": null,
+            "submit-to-origin": false
+        },
+        {
+            "algo": "sha256d",
+            "coin": "BTC", 
+            "url": "stratum+tcp://btc.f2pool.com:3333",
+            "user": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5",
+            "pass": "EW-001-DESTINY-50M",
+            "rig-id": "EW-001-NICEHASH",
+            "nicehash": true,
+            "keepalive": true,
+            "enabled": true,
+            "tls": false,
+            "tls-fingerprint": null,
+            "daemon": false,
+            "socks5": null,
+            "self-select": null,
+            "submit-to-origin": false
+        }
+    ],
+    "retries": 5,
+    "retry-pause": 5,
+    "print-time": 60,
+    "dmi": true,
+    "syslog": false,
+    "user-agent": "XMRig/EinsteinWells-EW001",
+    "verbose": 0,
+    "watch": true,
+    "pause-on-battery": false,
+    "pause-on-active": false
+}

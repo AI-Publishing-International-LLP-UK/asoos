@@ -115,7 +115,7 @@ async function continuousMonitor() {
   // Self-sustain rule: if health + rig active for 6 consecutive intervals (30 minutes), mark sustained
   let sustainStreak = 0;
 
-  // eslint-disable-next-line no-constant-condition
+   
   while (true) {
     const ok = await healthProbe('periodic');
     const rig = await rigProbe('periodic');

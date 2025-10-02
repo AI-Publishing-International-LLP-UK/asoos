@@ -1,0 +1,28 @@
+{
+  "diamond_sao_integration": {
+    "command_center_version": "v34",
+    "monitoring_endpoints": {
+      "16_agent_status": "/api/diamond-sao/16-agent-status",
+      "vls_coordination": "/api/diamond-sao/vls-wings-status",
+      "load_balancing": "/api/diamond-sao/load-balancer-metrics",
+      "quantum_capacity": "/api/diamond-sao/quantum-agent-metrics"
+    },
+    "real_time_metrics": [
+      "agent_personality_switches",
+      "quantum_capacity_utilization",
+      "vls_wing_coordination_active",
+      "multi_region_response_times",
+      "load_balancing_efficiency"
+    ],
+    "alert_channels": [
+      "diamond_sao_command_center",
+      "owner_interface_notifications",
+      "wing_leadership_alerts"
+    ],
+    "dashboard_integration": {
+      "mocoa_owner_interface": "embedded",
+      "wing_commander_view": "enabled",
+      "agent_personality_drill_down": "active"
+    }
+  }
+}

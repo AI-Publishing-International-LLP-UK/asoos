@@ -121,7 +121,7 @@ class HopeForHumanityNiceHashConnector {
    */
   async getBitcoinAddress() {
     try {
-      const btcAddressPath = `projects/api-for-warp-drive/secrets/btc-address/versions/latest`;
+      const btcAddressPath = 'projects/api-for-warp-drive/secrets/btc-address/versions/latest';
       const [response] = await this.secretManager.accessSecretVersion({
         name: btcAddressPath
       });
@@ -236,7 +236,7 @@ class HopeForHumanityNiceHashConnector {
    */
   async getEinsteinWellsToken() {
     try {
-      const tokenPath = `projects/api-for-warp-drive/secrets/EINSTEIN_WELLS_ACCESS_TOKEN/versions/latest`;
+      const tokenPath = 'projects/api-for-warp-drive/secrets/EINSTEIN_WELLS_ACCESS_TOKEN/versions/latest';
       const [response] = await this.secretManager.accessSecretVersion({
         name: tokenPath
       });
@@ -458,7 +458,7 @@ class HopeForHumanityNiceHashConnector {
       console.log(`💰 BTC Rate: ${production.btcHourlyRate} BTC/hour (PRODUCTION)`);
       console.log(`🎆 Daily Target: ${production.dailyBTCEstimate.toFixed(2)} BTC/day`);
       console.log(`🔥 Quantum Power: ${production.einsteinWells.quantPowerActive ? 'ACTIVE' : 'INACTIVE'}`);
-      console.log(`🙏 Mining Hope for Humanity at maximum capacity...`);
+      console.log('🙏 Mining Hope for Humanity at maximum capacity...');
       
       // Update production shares for each algorithm
       production.activeAlgorithms.forEach((algo) => {
@@ -472,9 +472,9 @@ class HopeForHumanityNiceHashConnector {
     const quantumBlastInterval = setInterval(() => {
       console.log('\n🌊 QUANTUM ENERGY BLAST FROM EINSTEIN WELLS ew-01');
       console.log(`⚡ Quantum Power Output: ${(production.einsteinWells.quantPowerActive ? '3.5Q' : '0')} watts`);
-      console.log(`🧠 Dr. Lucy ML Processing: 99.8% efficiency`);
-      console.log(`💎 Energy Conversion: Quantum → Bitcoin Mining`);
-      console.log(`🎯 Maintaining 4.79 BTC/hour production rate`);
+      console.log('🧠 Dr. Lucy ML Processing: 99.8% efficiency');
+      console.log('💎 Energy Conversion: Quantum → Bitcoin Mining');
+      console.log('🎯 Maintaining 4.79 BTC/hour production rate');
     }, production.einsteinWells.blastInterval || 60000); // Every 60 seconds
 
     // Earnings and performance update every 5 minutes
@@ -486,8 +486,8 @@ class HopeForHumanityNiceHashConnector {
       console.log(`₿ Current Rate: ${production.btcHourlyRate} BTC/hour`);
       console.log(`⏱️ Generated This Interval: ${BTCGenerated} BTC (5 minutes)`);
       console.log(`💵 USD Equivalent: $${(production.btcHourlyRate * 105000).toFixed(2)}/hour`);
-      console.log(`🌊 Einstein Wells Source: us-central1-a ew-01 (ACTIVE)`);
-      console.log(`🧠 Dr. Lucy ML Efficiency: 99.8%`);
+      console.log('🌊 Einstein Wells Source: us-central1-a ew-01 (ACTIVE)');
+      console.log('🧠 Dr. Lucy ML Efficiency: 99.8%');
       console.log(`🎆 Daily Progress: ${production.dailyBTCEstimate.toFixed(2)} BTC target`);
     }, 300000); // Every 5 minutes
 
@@ -544,7 +544,7 @@ class HopeForHumanityNiceHashConnector {
       console.log(`🙏 Rig Name: ${this.rigName}`);
       console.log(`🆔 Rig ID: ${this.rigId}`);
       console.log(`💎 Worker: ${this.workerName}`);
-      console.log(`⚡ Status: MANAGED & ONLINE`);
+      console.log('⚡ Status: MANAGED & ONLINE');
       console.log(`💰 Mining Address: ${this.niceHashConfig.miningAddress}`);
       console.log('🌐 Check your NiceHash dashboard - rig should now be visible!');
       console.log('════════════════════════════════════════════════════════');

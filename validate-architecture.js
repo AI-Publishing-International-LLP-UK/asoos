@@ -408,9 +408,9 @@ class ArchitectureValidator {
         console.log('=' .repeat(80));
         console.log('🎯 UNIVERSAL TEMPLATE & SALLYPORT VALIDATION RESULTS');
         console.log('=' .repeat(80));
-        console.log(`📅 Date: September 29, 2025`);
+        console.log('📅 Date: September 29, 2025');
         console.log(`⏰ Time: ${new Date().toLocaleString()}`);
-        console.log(`🏢 Division: Einstein Wells - Diamond SAO Command Center`);
+        console.log('🏢 Division: Einstein Wells - Diamond SAO Command Center');
         console.log('');
         
         // Overall Status

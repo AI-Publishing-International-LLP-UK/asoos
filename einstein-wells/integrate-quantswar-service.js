@@ -281,9 +281,9 @@ echo "🚀 Deployment complete - ${this.rigName} ready for quantum operations"
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log(`🆔 Rig ID: ${this.rigId}`);
       console.log(`₿ Bitcoin: ${bitcoinAddress}`);
-      console.log(`📊 Monitoring: Enabled`);
-      console.log(`⚡ Power Profile: Generated`);
-      console.log(`🚀 Deployment: Ready`);
+      console.log('📊 Monitoring: Enabled');
+      console.log('⚡ Power Profile: Generated');
+      console.log('🚀 Deployment: Ready');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
       return {

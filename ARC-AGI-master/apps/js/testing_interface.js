@@ -41,7 +41,7 @@ function getSelectedSymbol() {
 }
 
 function setUpEditionGridListeners(jqGrid) {
-    jqGrid.find('.cell').click(function(event) {
+    jqGrid.find('.cell').click((event) => {
         cell = $(event.target);
         symbol = getSelectedSymbol();
 
@@ -175,10 +175,10 @@ function loadTaskFromFile(e) {
 
 function randomTask() {
     var subset = 'training';
-    $.getJSON('https://api.github.com/repos/fchollet/ARC/contents/data/' + subset, function(tasks) {
+    $.getJSON('https://api.github.com/repos/fchollet/ARC/contents/data/' + subset, (tasks) => {
         var task_index = Math.floor(Math.random() * tasks.length);
         var task = tasks[task_index];
-        $.getJSON(task['download_url'], function(json) {
+        $.getJSON(task['download_url'], (json) => {
             try {
                 train = json['train'];
                 test = json['test'];
@@ -191,11 +191,11 @@ function randomTask() {
             infoMsg('Loaded task training/' + task['name']);
             display_task_name(task['name'], task_index, tasks.length);
         })
-        .error(function(){
+        .error(() =>{
           errorMsg('Error loading task');
         });
     })
-    .error(function(){
+    .error(() =>{
       errorMsg('Error loading task list');
     });
 }
@@ -261,7 +261,7 @@ function initializeSelectable() {
                 autoRefresh: false,
                 filter: '> .row > .cell',
                 start: function(event, ui) {
-                    $('.ui-selected').each(function(i, e) {
+                    $('.ui-selected').each((i, e) => {
                         $(e).removeClass('ui-selected');
                     });
                 }
@@ -272,46 +272,46 @@ function initializeSelectable() {
 
 // Initial event binding.
 
-$(document).ready(function () {
-    $('#symbol_picker').find('.symbol_preview').click(function(event) {
+$(document).ready(() => {
+    $('#symbol_picker').find('.symbol_preview').click((event) => {
         symbol_preview = $(event.target);
-        $('#symbol_picker').find('.symbol_preview').each(function(i, preview) {
+        $('#symbol_picker').find('.symbol_preview').each((i, preview) => {
             $(preview).removeClass('selected-symbol-preview');
         });
         symbol_preview.addClass('selected-symbol-preview');
 
         toolMode = $('input[name=tool_switching]:checked').val();
         if (toolMode == 'select') {
-            $('.edition_grid').find('.ui-selected').each(function(i, cell) {
+            $('.edition_grid').find('.ui-selected').each((i, cell) => {
                 symbol = getSelectedSymbol();
                 setCellSymbol($(cell), symbol);
             });
         }
     });
 
-    $('.edition_grid').each(function(i, jqGrid) {
+    $('.edition_grid').each((i, jqGrid) => {
         setUpEditionGridListeners($(jqGrid));
     });
 
-    $('.load_task').on('change', function(event) {
+    $('.load_task').on('change', (event) => {
         loadTaskFromFile(event);
     });
 
-    $('.load_task').on('click', function(event) {
+    $('.load_task').on('click', (event) => {
       event.target.value = '';
     });
 
-    $('input[type=radio][name=tool_switching]').change(function() {
+    $('input[type=radio][name=tool_switching]').change(() => {
         initializeSelectable();
     });
     
-    $('input[type=text][name=size]').on('keydown', function(event) {
+    $('input[type=text][name=size]').on('keydown', (event) => {
         if (event.keyCode == 13) {
             resizeOutputGrid();
         }
     });
 
-    $('body').keydown(function(event) {
+    $('body').keydown((event) => {
         // Copy and paste functionality.
         if (event.which == 67) {
             // Press C

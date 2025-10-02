@@ -1,0 +1,22 @@
+{
+  "name": "EinsteinWells-Bitcoin-Secondary",
+  "wallet": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj",
+  "worker": "EinsteinWells-Bitcoin-Secondary-1759403465709",
+  "algorithm": "sha256",
+  "server": "stratum.slushpool.com",
+  "port": 3333,
+  "location": "usa",
+  "managed": true,
+  "autostart": true,
+  "watchdog": true,
+  "intensity": "maximum",
+  "threads": "auto",
+  "telemetry": true,
+  "rigStatusUpdate": 60,
+  "einsteinWells": {
+    "division": "quantum-mining",
+    "qsvmIntegration": true,
+    "targetBTC": "115-per-24h",
+    "powerUnit": "0.1-btc-unit"
+  }
+}

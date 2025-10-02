@@ -980,7 +980,7 @@ class VisionSpaceSystem {
     this.pcpConnected = true;
     
     // Welcome message from PCP
-    await this.pcpSpeak("Welcome to your Vision Space. This is where your dreams take shape. What vision would you like to explore today?");
+    await this.pcpSpeak('Welcome to your Vision Space. This is where your dreams take shape. What vision would you like to explore today?');
   }
 
   async enableWishCrystallization() {
@@ -1070,7 +1070,7 @@ class VisionSpaceSystem {
     const cloudElement = document.querySelector(`[data-wish-id="${wish.id}"]`);
     if (cloudElement) {
       cloudElement.classList.add('crystallized');
-      cloudElement.innerHTML += `<div class="crystallization-badge">💫 Crystallized</div>`;
+      cloudElement.innerHTML += '<div class="crystallization-badge">💫 Crystallized</div>';
     }
   }
 

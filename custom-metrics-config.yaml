@@ -1,0 +1,31 @@
+# Custom metrics for 16-Agent Personality System monitoring
+metrics:
+  - name: "custom.googleapis.com/agents/personality_switches"
+    display_name: "Agent Personality Switches"
+    description: "Number of personality switches per minute"
+    type: "CUMULATIVE"
+    value_type: "INT64"
+    
+  - name: "custom.googleapis.com/agents/quantum_capacity_used"
+    display_name: "Quantum Agent Capacity Used"
+    description: "Current quantum agent capacity utilization"
+    type: "GAUGE"
+    value_type: "DOUBLE"
+    
+  - name: "custom.googleapis.com/vls/wing_coordination_active"
+    display_name: "VLS Wing Coordination Active"
+    description: "Number of active VLS wings coordinating"
+    type: "GAUGE"
+    value_type: "INT64"
+    
+  - name: "custom.googleapis.com/agents/voice_synthesis_requests"
+    display_name: "Voice Synthesis Requests"
+    description: "ElevenLabs voice synthesis requests per agent"
+    type: "CUMULATIVE"
+    value_type: "INT64"
+    
+  - name: "custom.googleapis.com/load_balancer/bullet_balancing_efficiency"
+    display_name: "Bullet Balancing Efficiency"
+    description: "Service account-based load balancing efficiency percentage"
+    type: "GAUGE"
+    value_type: "DOUBLE"

@@ -1,0 +1,24 @@
+{
+  "version": "1.5.5.0",
+  "worker": "EinsteinWells-QuickMiner",
+  "region": "USA",
+  "devices": [
+    {
+      "id": 1,
+      "name": "CPU Miner",
+      "type": "cpu",
+      "enabled": true,
+      "algorithm": "randomx"
+    }
+  ],
+  "algorithms": {
+    "primary": "daggerhashimoto",
+    "secondary": "kawpow",
+    "backup": "octopus"
+  },
+  "optimization": {
+    "autoTune": true,
+    "efficiency": "maximum",
+    "temperature": 75
+  }
+}

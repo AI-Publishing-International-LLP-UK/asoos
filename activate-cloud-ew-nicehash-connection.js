@@ -84,7 +84,7 @@ class CloudEinsteinWellsNiceHashActivator {
     this.logger.info('🌌 CLOUD EINSTEIN WELLS → NICEHASH ACTIVATOR INITIALIZED');
     this.logger.info(`⚡ Power Source: ${this.einsteinWellsCloud.region} ${this.einsteinWellsCloud.wellId}`);
     this.logger.info(`💰 Current Output: ${this.einsteinWellsCloud.currentOutput} BTC/hour`);
-    this.logger.info(`🔗 Dr. Lucy ML Connector: Ready for energy conversion`);
+    this.logger.info('🔗 Dr. Lucy ML Connector: Ready for energy conversion');
   }
 
   /**
@@ -106,7 +106,7 @@ class CloudEinsteinWellsNiceHashActivator {
     
     try {
       // Retrieve access credentials from Secret Manager
-      const ewCredentialsPath = `projects/api-for-warp-drive/secrets/EINSTEIN_WELLS_ACCESS_TOKEN/versions/latest`;
+      const ewCredentialsPath = 'projects/api-for-warp-drive/secrets/EINSTEIN_WELLS_ACCESS_TOKEN/versions/latest';
       const [credentialsResponse] = await this.secretManager.accessSecretVersion({
         name: ewCredentialsPath
       });
@@ -617,11 +617,11 @@ async connectToMLConnector(config) {
       this.logger.info('🎉 CLOUD EINSTEIN WELLS → NICEHASH ACTIVATION COMPLETE');
       this.logger.info('═══════════════════════════════════════════════════════════');
       this.logger.info(`⚡ Power Source: ${this.einsteinWellsCloud.region} ${this.einsteinWellsCloud.wellId}`);
-      this.logger.info(`🧠 Dr. Lucy ML Connector: ACTIVE`);
+      this.logger.info('🧠 Dr. Lucy ML Connector: ACTIVE');
       this.logger.info(`💥 Well Blasts: Every ${this.wellBlastConfig.wellOne.blastDuration} seconds`);
       this.logger.info(`💰 Expected Output: ${this.einsteinWellsCloud.currentOutput} BTC/hour`);
       this.logger.info(`🔄 NiceHash Worker: ${this.niceHashConfig.worker}`);
-      this.logger.info(`💻 Local Compute Required: NO`);
+      this.logger.info('💻 Local Compute Required: NO');
       this.logger.info('═══════════════════════════════════════════════════════════');
 
       return {
@@ -649,12 +649,12 @@ async function activateCloudEWToNiceHash() {
     
     console.log('\n🎉 CLOUD EINSTEIN WELLS → NICEHASH SUCCESSFULLY ACTIVATED!');
     console.log('\n📊 SYSTEM STATUS:');
-    console.log(`⚡ Power Source: us-central1-a ew-01`);
-    console.log(`🧠 Dr. Lucy ML Connector: OPERATIONAL`);
-    console.log(`💥 Well Blasts: 60-second intervals from well one`);
-    console.log(`🔄 Energy Transfer: Direct cloud-to-cloud (no local compute)`);
-    console.log(`💰 Current Output: 4.79 BTC/hour`);
-    console.log(`🎯 NiceHash Worker: einstein-wells-quantswar`);
+    console.log('⚡ Power Source: us-central1-a ew-01');
+    console.log('🧠 Dr. Lucy ML Connector: OPERATIONAL');
+    console.log('💥 Well Blasts: 60-second intervals from well one');
+    console.log('🔄 Energy Transfer: Direct cloud-to-cloud (no local compute)');
+    console.log('💰 Current Output: 4.79 BTC/hour');
+    console.log('🎯 NiceHash Worker: einstein-wells-quantswar');
     console.log('\n✅ System is now generating Bitcoin through energy transfer!');
     
     return result;

@@ -240,7 +240,7 @@ class ClaudeVoiceRefactor {
 
     // Add import for voice config if not present
     if (!newContent.includes('claude-voice-config')) {
-      const importLine = "const claudeVoiceConfig = require('../lib/claude-voice-config');\n";
+      const importLine = 'const claudeVoiceConfig = require(\'../lib/claude-voice-config\');\n';
       
       // Find where to insert import
       const lines = newContent.split('\n');
@@ -262,9 +262,9 @@ class ClaudeVoiceRefactor {
 
     // Replace hardcoded voice IDs
     const voiceReplacements = [
-      { pattern: /voiceId:\s*['"`]([^'"`]+)['"`]/g, replacement: "voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id" },
-      { pattern: /voice_id:\s*['"`]([^'"`]+)['"`]/g, replacement: "voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id" },
-      { pattern: /ttsVoice:\s*['"`]([^'"`]+)['"`]/g, replacement: "ttsVoice: (await claudeVoiceConfig.getVoiceConfig()).voice_id" },
+      { pattern: /voiceId:\s*['"`]([^'"`]+)['"`]/g, replacement: 'voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id' },
+      { pattern: /voice_id:\s*['"`]([^'"`]+)['"`]/g, replacement: 'voice_id: (await claudeVoiceConfig.getVoiceConfig()).voice_id' },
+      { pattern: /ttsVoice:\s*['"`]([^'"`]+)['"`]/g, replacement: 'ttsVoice: (await claudeVoiceConfig.getVoiceConfig()).voice_id' },
       { pattern: /['"`]voice['"`]:\s*['"`]([^'"`]+)['"`]/g, replacement: '"voice": (await claudeVoiceConfig.getVoiceConfig()).voice_id' },
       { pattern: /ELEVENLABS_VOICE\s*=\s*['"`]([^'"`]+)['"`]/g, replacement: 'ELEVENLABS_VOICE = (await claudeVoiceConfig.getVoiceConfig()).voice_id' }
     ];
@@ -283,7 +283,7 @@ class ClaudeVoiceRefactor {
       
       while ((match = agentInitPattern.exec(newContent)) !== null) {
         const className = match[1];
-        const constructorPattern = new RegExp(`constructor\\s*\\([^{]*\\{`, 'g');
+        const constructorPattern = new RegExp('constructor\\s*\\([^{]*\\{', 'g');
         
         if (constructorPattern.test(newContent)) {
           const voiceInitCode = `

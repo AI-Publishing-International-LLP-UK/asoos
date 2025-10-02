@@ -1,0 +1,56 @@
+# EINSTEIN WELLS UNIVERSAL PRODUCTION IMAGE
+# ONE IMAGE FOR ALL 12 WELLS AND RIGS
+# Self-healing, self-monitoring, bulletproof
+
+FROM node:22-alpine
+
+# Set production environment
+ENV NODE_ENV=production
+ENV EINSTEIN_WELLS_MODE=production
+
+# Create app directory
+WORKDIR /app
+
+# Install system dependencies for mining
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cmake \
+    libuv-dev \
+    openssl-dev \
+    hwloc-dev
+
+# Copy package files
+COPY package*.json ./
+
+# Install production dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy Einstein Wells source code
+COPY server.js ./
+COPY wells-orchestration.js ./
+COPY well-door-alternating-system.js ./
+COPY pressure-adapter.js ./
+COPY emergency-seal.js ./
+
+# Copy corrected mining configurations
+COPY mining-tools-HIDDEN/xmrig-config.json ./config/
+COPY complete-mining-config.json ./config/
+
+# Create logs and data directories
+RUN mkdir -p /app/logs /app/data /app/monitoring
+
+# Health check endpoint
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-8080}/health || exit 1
+
+# Expose port
+EXPOSE 8080
+
+# Production startup script with self-healing
+COPY docker-entrypoint.sh ./
+RUN chmod +x docker-entrypoint.sh
+
+# Start Einstein Wells with orchestration
+CMD ["./docker-entrypoint.sh"]

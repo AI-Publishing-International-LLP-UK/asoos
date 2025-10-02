@@ -71,7 +71,7 @@ async function probeRevenue() {
 async function main() {
   logJSON('revenue_monitor_start', { interval_seconds: 10 });
 
-  // eslint-disable-next-line no-constant-condition
+   
   while (true) {
     try {
       const mode = await probeRevenue();

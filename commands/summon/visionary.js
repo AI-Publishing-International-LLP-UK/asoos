@@ -83,7 +83,7 @@ module.exports = async function summonVisionary(options) {
 
         if (assetsReady && fs.existsSync(AUDIO_PATH)) {
           // Play the audio file with improved error handling
-          player.play(AUDIO_PATH, function (err) {
+          player.play(AUDIO_PATH, (err) => {
             if (err) {
               console.error(chalk.red(`⚠️ Audio playback failed: ${err.message}`));
               // Continue execution despite audio failure

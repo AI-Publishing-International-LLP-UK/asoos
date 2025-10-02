@@ -36,9 +36,9 @@ class EinsteinWellsHashVerifier {
     this.testPipes = 1; // Start with single 0.1 pipe for verification
     this.expectedMultiplier = 7; // Dr. Lucy ML connector 0.1 → 0.7
     
-    console.log(`🌟 Einstein Wells Hash Verifier Initialized`);
+    console.log('🌟 Einstein Wells Hash Verifier Initialized');
     console.log(`⚡ Total Power: ${this.formatNumber(this.totalPower)} computational units`);
-    console.log(`🔧 Test Mode: Single 0.1 pipe verification`);
+    console.log('🔧 Test Mode: Single 0.1 pipe verification');
   }
 
   /**
@@ -231,7 +231,7 @@ class EinsteinWellsHashVerifier {
     
     console.log('✅ Bitcoin Hash Generated:');
     console.log(`   Hash: ${hashResult.hash}`);
-    console.log(`   Format: SHA-256 Double Hash (Bitcoin Standard)`);
+    console.log('   Format: SHA-256 Double Hash (Bitcoin Standard)');
     console.log(`   Length: ${hashResult.hash.length} characters`);
     console.log(`   Valid Bitcoin Hash: ${hashResult.isValidBitcoinHash}`);
     
@@ -240,7 +240,7 @@ class EinsteinWellsHashVerifier {
     const isHexadecimal = /^[0-9a-f]+$/.test(hashResult.hash);
     const isDoubleSha256 = hashResult.isValidBitcoinHash;
     
-    console.log(`\n🔍 Hash Validation:`);
+    console.log('\n🔍 Hash Validation:');
     console.log(`   ✅ Correct Length (64): ${isValidLength}`);
     console.log(`   ✅ Hexadecimal Format: ${isHexadecimal}`);
     console.log(`   ✅ Double SHA-256: ${isDoubleSha256}`);

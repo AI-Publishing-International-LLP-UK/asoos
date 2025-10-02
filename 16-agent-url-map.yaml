@@ -1,0 +1,28 @@
+name: integration-gateway-16-agent-url-map
+defaultService: projects/api-for-warp-drive/global/backendServices/integration-gateway-16-agent-global
+description: Intelligent routing for 16-Agent Personality System with VLS coordination
+hostRules:
+  - hosts:
+      - "agents.2100.cool"
+      - "personality.2100.cool" 
+      - "vls.2100.cool"
+    pathMatcher: agent-personality-paths
+pathMatchers:
+  - name: agent-personality-paths
+    defaultService: projects/api-for-warp-drive/global/backendServices/integration-gateway-16-agent-global
+    pathRules:
+      - paths:
+          - "/api/16-agent/*"
+          - "/api/personality/*"
+          - "/api/vls/*"
+        service: projects/api-for-warp-drive/global/backendServices/integration-gateway-16-agent-global
+        routeAction:
+          weightedBackendServices:
+            - backendService: projects/api-for-warp-drive/global/backendServices/integration-gateway-16-agent-global
+              weight: 100
+              headerAction:
+                requestHeadersToAdd:
+                  - headerName: "X-Agent-Load-Balance"
+                    headerValue: "bullet-balancing-active"
+                  - headerName: "X-VLS-Coordination"
+                    headerValue: "enabled"

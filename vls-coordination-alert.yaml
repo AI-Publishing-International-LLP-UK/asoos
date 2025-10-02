@@ -1,0 +1,14 @@
+displayName: "VLS Coordination Failure Alert"
+documentation:
+  content: "Alert when VLS wing coordination drops below operational threshold"
+conditions:
+  - displayName: "VLS Wing Coordination Active"
+    conditionThreshold:
+      filter: 'metric.type="custom.googleapis.com/vls/wing_coordination_active"'
+      comparison: COMPARISON_LESS_THAN
+      thresholdValue: 4
+      duration: 180s
+      aggregations:
+        - alignmentPeriod: 60s
+          perSeriesAligner: ALIGN_MEAN
+notificationChannels: []

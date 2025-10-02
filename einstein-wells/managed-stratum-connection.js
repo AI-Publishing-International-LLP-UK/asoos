@@ -53,7 +53,7 @@ class ManagedStratumConnection extends EventEmitter {
     console.log(`🆔 Your Rig ID: ${this.config.rigId}`);
     console.log(`🏷️  NiceHash Shows: ${this.config.niceHashRigName}`);
     console.log(`🤖 ML Connector: ${this.config.mlConnector}`);
-    console.log(`🏗️  Status: PRODUCER`);
+    console.log('🏗️  Status: PRODUCER');
     console.log(`📡 Pool: ${this.config.poolHost}:${this.config.poolPort}`);
     console.log(`👤 Worker: ${this.config.username}.${this.config.workerName}`);
     console.log(`⚙️  Algorithm: ${this.config.algorithm}`);
@@ -63,7 +63,7 @@ class ManagedStratumConnection extends EventEmitter {
    * Connect to stratum pool with proper management
    */
   connect() {
-    console.log(`\n🔌 CONNECTING TO MANAGED STRATUM POOL...`);
+    console.log('\n🔌 CONNECTING TO MANAGED STRATUM POOL...');
     
     this.connection = net.createConnection({
       host: this.config.poolHost,
@@ -249,7 +249,7 @@ class ManagedStratumConnection extends EventEmitter {
       cleanJobs: params[8]
     };
 
-    console.log(`\n💼 NEW MINING JOB RECEIVED`);
+    console.log('\n💼 NEW MINING JOB RECEIVED');
     console.log(`🆔 Job ID: ${this.currentJob.jobId}`);
     console.log(`🔗 Previous Hash: ${this.currentJob.prevHash.substring(0, 16)}...`);
     console.log(`⏰ Network Time: ${this.currentJob.ntime}`);
@@ -306,7 +306,7 @@ class ManagedStratumConnection extends EventEmitter {
       
       // Check if hash meets difficulty target
       if (this.checkDifficulty(hash2, this.config.difficulty)) {
-        console.log(`\n🎉 VALID HASH FOUND!`);
+        console.log('\n🎉 VALID HASH FOUND!');
         console.log(`📊 Hashes calculated: ${hashCount}`);
         console.log(`🔢 Nonce: ${nonce.toString(16)}`);
         console.log(`📈 Extra Nonce 2: ${extraNonce2}`);
@@ -377,12 +377,16 @@ class ManagedStratumConnection extends EventEmitter {
    * Check if hash meets difficulty target
    */
   checkDifficulty(hash, difficulty) {
-    const target = Buffer.alloc(32, 0xff);
-    const difficultyBuffer = Buffer.alloc(8);
-    difficultyBuffer.writeDoubleLE(difficulty, 0);
+    // Use NiceHash pool difficulty (much more permissive than Bitcoin network)
+    // Pool difficulty is typically much lower to allow regular submissions
+    if (!difficulty) difficulty = 65536; // Default pool difficulty
     
-    // Simplified difficulty check for demonstration
-    return hash[31] === 0 && hash[30] === 0;
+    // Convert hash to big integer for comparison
+    const hashInt = BigInt('0x' + hash.reverse().toString('hex'));
+    const maxTarget = BigInt('0x00000000FFFF0000000000000000000000000000000000000000000000000000');
+    const target = maxTarget / BigInt(Math.floor(difficulty));
+    
+    return hashInt <= target;
   }
 
   /**

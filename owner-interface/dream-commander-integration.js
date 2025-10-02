@@ -757,7 +757,7 @@ class DreamCommanderIntegration {
 }
 
 // Initialize Dream Commander integration when DOM is loaded
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async () => {
   console.log('🌟 Starting Dream Commander integration...');
   
   // Create global Dream Commander instance

@@ -105,7 +105,7 @@ PRODUCTION_CONFIG.pools.forEach((pool, index) => {
     console.log('');
     console.log(`🎉 ${pool.name} - LIVE PRODUCTION AUTHORIZED!`);
     console.log(`✅ Active connections: ${activeConnections}/${PRODUCTION_CONFIG.pools.length}`);
-    console.log(`✅ Status: UNMANAGED → MANAGED (9250 error fixed)`);
+    console.log('✅ Status: UNMANAGED → MANAGED (9250 error fixed)');
     console.log(`✅ Worker: ${PRODUCTION_CONFIG.rigId}-${pool.algorithm}`);
     console.log('');
     

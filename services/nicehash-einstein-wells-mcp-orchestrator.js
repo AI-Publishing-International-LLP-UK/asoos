@@ -131,7 +131,7 @@ class NiceHashEinsteinWellsMCPOrchestrator extends EventEmitter {
     this.logger.info('🌌 NICEHASH-EINSTEIN WELLS MCP ORCHESTRATOR INITIALIZED');
     this.logger.info(`🏭 Managing ${this.mcpArchitecture.totalCompanies} MCP Companies`);
     this.logger.info(`⚡ Total Mini Wells: ${this.mcpArchitecture.totalCompanies}`);
-    this.logger.info(`🔐 OAuth2/OIDC Security: ENABLED`);
+    this.logger.info('🔐 OAuth2/OIDC Security: ENABLED');
   }
 
   /**
@@ -142,7 +142,7 @@ class NiceHashEinsteinWellsMCPOrchestrator extends EventEmitter {
     
     try {
       // Retrieve OAuth secrets from Google Secret Manager
-      const clientSecretPath = `projects/api-for-warp-drive/secrets/GOOGLE_OAUTH_CLIENT_SECRET/versions/latest`;
+      const clientSecretPath = 'projects/api-for-warp-drive/secrets/GOOGLE_OAUTH_CLIENT_SECRET/versions/latest';
       const [clientSecretResponse] = await this.secretManager.accessSecretVersion({
         name: clientSecretPath
       });
@@ -280,7 +280,7 @@ class NiceHashEinsteinWellsMCPOrchestrator extends EventEmitter {
         }
       }
 
-      this.logger.info(`✅ MCP Company initialization complete:`);
+      this.logger.info('✅ MCP Company initialization complete:');
       this.logger.info(`   ✅ Successful: ${initializationResults.successful}`);
       this.logger.info(`   ❌ Failed: ${initializationResults.failed}`);
       this.logger.info(`   🎯 Success Rate: ${((initializationResults.successful / this.mcpArchitecture.totalCompanies) * 100).toFixed(1)}%`);
@@ -868,9 +868,9 @@ class NiceHashEinsteinWellsMCPOrchestrator extends EventEmitter {
       this.logger.info('🎯 NICEHASH-EINSTEIN WELLS MCP ORCHESTRATOR FULLY OPERATIONAL');
       this.logger.info(`🏭 Managing ${companyResults.successful} active MCP companies`);
       this.logger.info(`⚡ Total mini Einstein Wells: ${companyResults.successful}`);
-      this.logger.info(`🔐 OAuth2/OIDC security: ACTIVE`);
-      this.logger.info(`📊 Real-time monitoring: ACTIVE`);
-      this.logger.info(`🌐 API server: RUNNING`);
+      this.logger.info('🔐 OAuth2/OIDC security: ACTIVE');
+      this.logger.info('📊 Real-time monitoring: ACTIVE');
+      this.logger.info('🌐 API server: RUNNING');
 
       return {
         status: 'operational',
@@ -911,9 +911,9 @@ async function startNiceHashEinsteinWellsMCPOrchestrator() {
     console.log('═══════════════════════════════════════════════════════════════');
     console.log(`🏭 Companies Operational: ${result.companiesInitialized}/${result.totalCompanies}`);
     console.log(`⚡ Mini Einstein Wells: ${result.companiesInitialized} active`);
-    console.log(`🔐 OAuth2/OIDC Security: Enterprise-grade`);
-    console.log(`📊 Real-time Monitoring: All systems monitored`);
-    console.log(`🌐 API Endpoints: Ready for Diamond SAO Command Center`);
+    console.log('🔐 OAuth2/OIDC Security: Enterprise-grade');
+    console.log('📊 Real-time Monitoring: All systems monitored');
+    console.log('🌐 API Endpoints: Ready for Diamond SAO Command Center');
     console.log('═══════════════════════════════════════════════════════════════');
     
     return orchestrator;

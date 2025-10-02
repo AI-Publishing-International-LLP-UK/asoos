@@ -11,10 +11,10 @@ import https from 'https';
 
 class BitcoinMiningMonitor {
     constructor() {
-        this.bitcoinAddress = "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj";
-        this.serviceUrl = "https://einstein-wells-production-859242575175.us-central1.run.app";
-        this.poolAddress = "stratum.slushpool.com:4444";
-        this.workerName = "einstein-wells-production";
+        this.bitcoinAddress = '3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj';
+        this.serviceUrl = 'https://einstein-wells-production-859242575175.us-central1.run.app';
+        this.poolAddress = 'stratum.slushpool.com:4444';
+        this.workerName = 'einstein-wells-production';
         
         this.startTime = Date.now();
         this.initialBalance = 0;
@@ -186,16 +186,16 @@ class BitcoinMiningMonitor {
         
         console.log('⛏️  MINING OPERATION STATUS:');
         console.log(`   Address: ${this.bitcoinAddress}`);
-        console.log(`   Pool: Slush Pool (Direct Bitcoin)`);
+        console.log('   Pool: Slush Pool (Direct Bitcoin)');
         console.log(`   Worker: ${this.workerName}`);
-        console.log(`   Algorithm: SHA-256d`);
+        console.log('   Algorithm: SHA-256d');
         console.log('');
         
         console.log('🌐 CLOUD RUN SERVICE STATUS:');
         console.log(`   Service: ${cloudRunStatus.status}`);
         console.log(`   URL: ${this.serviceUrl}`);
-        console.log(`   Instances: 10-2500 auto-scaling`);
-        console.log(`   Resources: 8GB RAM, 4 CPU per instance`);
+        console.log('   Instances: 10-2500 auto-scaling');
+        console.log('   Resources: 8GB RAM, 4 CPU per instance');
         console.log('');
         
         console.log('📊 MINING PERFORMANCE:');

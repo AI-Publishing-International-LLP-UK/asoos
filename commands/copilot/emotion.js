@@ -26,7 +26,7 @@ command.description('Manage copilot emotional tone preferences');
 command
   .command('preferences')
   .description('View your emotional tone preferences')
-  .action(async function() {
+  .action(async () => {
     try {
       const userId = await auth.getUserId();
       const spinner = ora('Loading emotional tone preferences...').start();
@@ -65,7 +65,7 @@ command
 command
   .command('set')
   .description('Set your emotional tone preferences')
-  .action(async function() {
+  .action(async () => {
     try {
       const userId = await auth.getUserId();
       const spinner = ora('Loading available tones...').start();
@@ -134,7 +134,7 @@ command
 command
   .command('preview')
   .description('Preview how tone adjustment affects a message')
-  .action(async function() {
+  .action(async () => {
     try {
       const userId = await auth.getUserId();
       
@@ -233,7 +233,7 @@ command
 command
   .command('suggest')
   .description('Get a tone suggestion based on a message')
-  .action(async function() {
+  .action(async () => {
     try {
       const userId = await auth.getUserId();
       
@@ -306,7 +306,7 @@ command
 command
   .command('custom')
   .description('Create a custom emotional tone')
-  .action(async function() {
+  .action(async () => {
     try {
       const userId = await auth.getUserId();
       
@@ -376,7 +376,7 @@ command
 command
   .command('domain')
   .description('Set tone preferences for specific domains/topics')
-  .action(async function() {
+  .action(async () => {
     try {
       const userId = await auth.getUserId();
       const spinner = ora('Loading available tones...').start();

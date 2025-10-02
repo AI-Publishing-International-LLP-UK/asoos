@@ -10,14 +10,14 @@ import https from 'https';
 
 class DualPipelineMonitor {
     constructor() {
-        this.bitcoinAddress = "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj";
+        this.bitcoinAddress = '3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj';
         this.wells = {
-            well1: "https://einstein-wells-production-859242575175.us-central1.run.app",
-            well2: "https://einstein-wells-2-859242575175.us-central1.run.app"
+            well1: 'https://einstein-wells-production-859242575175.us-central1.run.app',
+            well2: 'https://einstein-wells-2-859242575175.us-central1.run.app'
         };
         this.connectors = {
-            drLucy: "https://dr-lucy-ml-deepmind-central-859242575175.us-central1.run.app",
-            drMemoria: "https://chancellor-memoria-central-859242575175.us-central1.run.app"
+            drLucy: 'https://dr-lucy-ml-deepmind-central-859242575175.us-central1.run.app',
+            drMemoria: 'https://chancellor-memoria-central-859242575175.us-central1.run.app'
         };
         
         this.startTime = Date.now();
