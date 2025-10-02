@@ -11,7 +11,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const { Pinecone } = require('@pinecone-database/pinecone');
-const { OpenAI } = require('openai');
+const OpenAI = require('openai');
 const winston = require('winston');
 
 // Initialize logging

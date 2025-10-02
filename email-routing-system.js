@@ -249,7 +249,7 @@ class ASOOSEmailRouter {
       // For now, we'll simulate the broadcast
       console.log(`   🌐 Grand Hyperloop Endpoint: ${this.agentCommunicationSystem.grandHyperloopEndpoint}`);
       console.log(`   🤖 Broadcasting to ${this.agentCommunicationSystem.totalAgents.toLocaleString()} agents`);
-      console.log(`   ✅ Agent broadcast initiated`);
+      console.log('   ✅ Agent broadcast initiated');
       
       return {
         status: 'success',
@@ -285,7 +285,7 @@ class ASOOSEmailRouter {
       console.log(`   📋 Archive Category: ${archiveEntry.category}`);
       console.log(`   🔑 Access Level: ${archiveEntry.accessLevel}`);
       console.log(`   🌐 Human Access: ${archiveEntry.humanAccessUrl}`);
-      console.log(`   ✅ DIDC Archive entry created`);
+      console.log('   ✅ DIDC Archive entry created');
       
       return {
         status: 'stored',

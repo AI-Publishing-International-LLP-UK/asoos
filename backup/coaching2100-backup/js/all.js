@@ -5,13 +5,13 @@
      Scripts initialization
      --------------------------------------------- */
 
-  $(window).on('load', function(){
+  $(window).on('load', () =>{
     $(window).trigger('scroll');
     $(window).trigger('resize');
     init_parallax_scroll();
   });
 
-  $(document).ready(function(){
+  $(document).ready(() =>{
     $(window).trigger('resize');
     init_parallax();
     init_text_outline();
@@ -36,7 +36,7 @@
     init_loader();
   });
 
-  $(window).resize(function(){
+  $(window).resize(() =>{
     init_classic_menu_resize();
     init_split_section();
   });
@@ -136,7 +136,7 @@
       $('.main-nav').addClass('js-no-transparent-white');
     }
 
-    $(window).scroll(function(){
+    $(window).scroll(() =>{
 
       if ($(window).scrollTop() > 0) {
         $('.js-transparent').removeClass('transparent');
@@ -175,7 +175,7 @@
 
     });
 
-    $(document).on('click', function(event){
+    $(document).on('click', (event) =>{
       if ($(window).width() <= 1024) {
         var $trigger = $('.main-nav');
         if ($trigger !== event.target && !$trigger.has(event.target).length) {
@@ -205,7 +205,7 @@
       }
     });
 
-    desktop_nav.find('a:not(.mn-has-sub)').click(function(){
+    desktop_nav.find('a:not(.mn-has-sub)').click(() =>{
       if (mobile_nav.hasClass('active')) {
         desktop_nav.slideUp('slow', 'easeOutExpo').removeClass('js-opened');
         mobile_nav.removeClass('active');
@@ -231,7 +231,7 @@
         mnThisLi = $(this).parent('li:first');
         if (mnThisLi.hasClass('js-opened')) {
           $(this).attr('aria-expanded', 'false');
-          mnThisLi.find('.mn-sub:first').slideUp(function(){
+          mnThisLi.find('.mn-sub:first').slideUp(() =>{
             mnThisLi.removeClass('js-opened');
           });
         }
@@ -276,7 +276,7 @@
           mnThisLi = $(this).parent('li:first');
           if (mnThisLi.hasClass('js-opened')) {
             $(this).attr('aria-expanded', 'false');
-            mnThisLi.find('.mn-sub:first').slideUp(function(){
+            mnThisLi.find('.mn-sub:first').slideUp(() =>{
               mnThisLi.removeClass('js-opened');
             });
           }
@@ -323,7 +323,7 @@
       }
     });
 
-    $(document).keydown(function(e){
+    $(document).keydown((e) =>{
       if (!($('.main-nav').hasClass('mobile-on'))) {
         if (e.keyCode == 27) {
           if (mnHasSub.parent('li').find('.mn-sub:first li .mn-sub').is(':visible')){
@@ -392,7 +392,7 @@
     var sections = $('.home-section:not(.scroll-nav-invisible), .page-section:not(.scroll-nav-invisible)');
     var menu_links = $('.scroll-nav li a');
 
-    $(window).scroll(function(){
+    $(window).scroll(() =>{
 
       sections.filter(':in-viewport:first').each(function(){
         var active_section = $(this);
@@ -568,7 +568,7 @@
           var h = $(window).height();
           var offsetX = 0.5 - (e.pageX - $(this).offset().left) / w;
           var offsetY = 0.5 - (e.pageY - $(this).offset().top) / h;
-          $(this).find('.parallax-mousemove').each(function(i, el){
+          $(this).find('.parallax-mousemove').each((i, el) =>{
             var offset = parseInt($(el).data('offset'));
             var translate = 'translate3d(' + Math.round(offsetX * offset) + 'px,' + Math.round(offsetY * offset) + 'px, 0px)';
             $(el).css({
@@ -579,20 +579,20 @@
         $('.parallax-mousemove-scene').on('mousemove', function(e){
           var offsetX = e.pageX - $(this).offset().left;
           var offsetY = e.pageY - $(this).offset().top;
-          $(this).find('.parallax-mousemove-follow').each(function(i, el){
+          $(this).find('.parallax-mousemove-follow').each((i, el) =>{
             $(el).css({
               'left': offsetX,
               'top': offsetY
             });
           });
-          $('.parallax-mousemove-follow').each(function(i, el){
+          $('.parallax-mousemove-follow').each((i, el) =>{
             $(el).css({
               'left': offsetX
             });
           });
         });
         $('.parallax-mousemove-scene').on('mouseenter', function(e){
-          $(this).find('.parallax-mousemove-follow').each(function(i, el){
+          $(this).find('.parallax-mousemove-follow').each((i, el) =>{
             setTimeout(() => {
               $(el).css({
                 'transition': 'all .27s var(--ease-out-short)',
@@ -602,7 +602,7 @@
           });
         });
         $('.parallax-mousemove-scene').on('mouseout', function(e){
-          $(this).find('.parallax-mousemove-follow').each(function(i, el){
+          $(this).find('.parallax-mousemove-follow').each((i, el) =>{
             $(el).css({
               'transition': 'none'
             });
@@ -631,7 +631,7 @@
             horizontal: false
           });
 
-          $(window).scroll(function(){
+          $(window).scroll(() =>{
             $('[data-rellax-y]').filter(':in-viewport').each(function(){
               if (!($(this).hasClass('js-in-viewport'))) {
                 $(this).addClass('js-in-viewport');
@@ -655,7 +655,7 @@
             horizontal: true
           });
 
-          $(window).scroll(function(){
+          $(window).scroll(() =>{
             $('[data-rellax-x]').filter(':in-viewport').each(function(){
               if (!($(this).hasClass('js-in-viewport'))) {
                 $(this).addClass('js-in-viewport');
@@ -704,7 +704,7 @@
 
   function init_tooltips(){
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl){
+    var tooltipList = tooltipTriggerList.map((tooltipTriggerEl) =>{
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
   }
@@ -925,13 +925,13 @@ function init_page_sliders(){
         });
       }
       el.prepend(el.find('.owl-controls'));
-      el.on('click', '.owl-page, .owl-prev, .owl-next', function(e){
+      el.on('click', '.owl-page, .owl-prev, .owl-next', (e) =>{
         el.find('.owl-pause-button').addClass('owl-pause-button-paused');
         el.find('.owl-pause-button').html('Start Sliding');
         var this_owl = el.data('owlCarousel');
         this_owl.stop();
       });
-      el.on('keydown', '.owl-page, .owl-prev, .owl-next', function(e){
+      el.on('keydown', '.owl-page, .owl-prev, .owl-next', (e) =>{
         if (e.keyCode == 13 || e.keyCode == 32) {
           el.find('.owl-pause-button').addClass('owl-pause-button-paused');
           el.find('.owl-pause-button').html('Start Sliding');
@@ -939,14 +939,14 @@ function init_page_sliders(){
           this_owl.stop();
         }
       });
-      el.on('keydown', '.owl-prev', function(e){
+      el.on('keydown', '.owl-prev', (e) =>{
         if (e.keyCode == 13 || e.keyCode == 32) {
           var this_owl = el.data('owlCarousel');
           this_owl.prev();
           return false;
         }
       });
-      el.on('keydown', '.owl-next', function(e){
+      el.on('keydown', '.owl-next', (e) =>{
         if (e.keyCode == 13 || e.keyCode == 32) {
           var this_owl = el.data('owlCarousel');
           this_owl.next();
@@ -1220,7 +1220,7 @@ function init_work_filter(){
       if (($('body').hasClass('appear-animate')) && (!($('html').hasClass('mobile')) && (work_grid.find('.wow-p').length))) {
         transition_duration = 0;
       }
-      work_grid.imagesLoaded(function(){
+      work_grid.imagesLoaded(() =>{
         work_grid.isotope({
           itemSelector: '.mix',
           layoutMode: isotope_mode,
@@ -1236,7 +1236,7 @@ function init_work_filter(){
         mobile: false,
         live: true,
         callback: function(box){
-          setInterval(function(){
+          setInterval(() =>{
             $(box).removeClass('no-animate');
           }, 1500);
           $(box).removeClass('animated');
@@ -1264,7 +1264,7 @@ function init_work_filter(){
       });
     }
 
-    work_grid.imagesLoaded(function(){
+    work_grid.imagesLoaded(() =>{
       work_grid.isotope({
         itemSelector: '.mix',
         layoutMode: isotope_mode,
@@ -1274,11 +1274,11 @@ function init_work_filter(){
 
     // Lazy loading plus isotope filter
 
-    $('.img-lazy-work').on('load', function(){
+    $('.img-lazy-work').on('load', () =>{
       masonry_update();
     });
     function masonry_update(){
-      work_grid.imagesLoaded(function(){
+      work_grid.imagesLoaded(() =>{
         work_grid.isotope({
           itemSelector: '.mix',
           layoutMode: isotope_mode,
@@ -1286,13 +1286,13 @@ function init_work_filter(){
         });
       });
     }
-    work_grid.on('arrangeComplete', function(){
+    work_grid.on('arrangeComplete', () =>{
       $(window).trigger('scroll');
     });
 
     // Window resize when filter enabled fix
 
-    $(window).resize(function(){
+    $(window).resize(() =>{
       setTimeout(() => {
         masonry_update();
       }, '700');
@@ -1401,7 +1401,7 @@ function init_wow(){
         mobile: false,
         live: true,
         callback: function(box){
-          setInterval(function(){ $(box).removeClass('no-animate'); }, 1500);
+          setInterval(() =>{ $(box).removeClass('no-animate'); }, 1500);
         }
       });
 
@@ -1423,7 +1423,7 @@ function init_wow(){
         mobile: false,
         live: true,
         callback: function(box){
-          setInterval(function(){ $(box).removeClass('no-animate'); }, 1500);
+          setInterval(() =>{ $(box).removeClass('no-animate'); }, 1500);
         }
       });
 
@@ -1437,7 +1437,7 @@ function init_wow(){
 
       if (($('body').hasClass('appear-animate')) && ($(window).width() >= 1024) && ($('html').hasClass('no-mobile'))){
         $('.wow-menubar').addClass('no-animate').addClass('fadeInDown').addClass('animated');
-        setInterval(function(){ $('.wow-menubar').removeClass('no-animate'); }, 1500);
+        setInterval(() =>{ $('.wow-menubar').removeClass('no-animate'); }, 1500);
       } else{
         $('.wow-menubar').css('opacity', '1');
       }
@@ -1511,7 +1511,7 @@ function init_btn_animation(){
 function init_masonry(){
   (function($){
 
-    $('.masonry').imagesLoaded(function(){
+    $('.masonry').imagesLoaded(() =>{
       $('.masonry').masonry();
     });
 
@@ -1681,7 +1681,7 @@ function init() {
       // regular focus change.
       hadFocusVisibleRecently = true;
       window.clearTimeout(hadFocusVisibleRecentlyTimeout);
-      hadFocusVisibleRecentlyTimeout = window.setTimeout(function() {
+      hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
         hadFocusVisibleRecently = false;
         window.clearTimeout(hadFocusVisibleRecentlyTimeout);
       }, 100);
@@ -1803,10 +1803,10 @@ if (typeof document !== 'undefined') {
  Adding aria-hidden to icons
  --------------------------------------------- */
 
-$(window).on('load', function(){
+$(window).on('load', () =>{
   (function(){
     let getIcons = document.querySelectorAll('i[class^="mi-"], i[class^="icon-"], i[class^="fa-"]');
-    getIcons.forEach(function(iconEach)
+    getIcons.forEach((iconEach) =>
     {
       let getIconAttr = iconEach.getAttribute('aria-hidden');
       if (!getIconAttr)
@@ -1822,13 +1822,13 @@ $(window).on('load', function(){
  Cookies banner
  --------------------------------------------- */
 
-$(document).ready(function(){
+$(document).ready(() =>{
   (function(){
     $('#cookie-banner').css('display', 'none');
     if (window.localStorage.getItem('accept_cookies') === null) {
       $('#cookie-banner').css('display', 'block');
     }
-    $('#cookie-ok-button').click(function(){
+    $('#cookie-ok-button').click(() =>{
       $('#cookie-banner').hide();
       window.localStorage.setItem('accept_cookies', true);
     });

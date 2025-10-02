@@ -274,7 +274,7 @@ class EinsteinWellsProductionMaster {
       systems: [
         {
           name: 'NiceHash Multi-Algorithm Monitor',
-          endpoint: `https://api2.nicehash.com`,
+          endpoint: 'https://api2.nicehash.com',
           healthCheck: this.niceHashHealthCheck.bind(this),
           currentStatus: 'ACTIVE',
           lastCheck: new Date().toISOString(),

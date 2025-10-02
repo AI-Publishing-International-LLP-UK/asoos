@@ -215,7 +215,7 @@ class AgentSecurityGuard {
       targetInformation
     } = agentRequest;
     
-    console.log(`🔐 Authorizing information sharing request`);
+    console.log('🔐 Authorizing information sharing request');
     console.log(`   👤 Requesting Contact: ${requestingContact}`);
     console.log(`   📋 Information Type: ${informationType}`);
     console.log(`   🏢 Source Context: ${sourceContext}`);

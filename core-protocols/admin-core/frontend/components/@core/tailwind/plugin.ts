@@ -1,6 +1,6 @@
 import plugin from 'tailwindcss/plugin';
 
-module.exports = plugin(function () {}, {
+module.exports = plugin(() => {}, {
   theme: {
     borderColor: ({ theme }) => ({
       ...theme('colors'),

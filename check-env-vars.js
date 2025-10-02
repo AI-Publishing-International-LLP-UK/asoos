@@ -35,5 +35,4 @@ if (process.env.DR_CLAUDE_API) {
   const anthropicApiKeyHeader = `anthropic-api-key: ${process.env.DR_CLAUDE_API}`;
   console.log(`anthropic-api-key header format: ${anthropicApiKeyHeader.substring(0, 24)}...`);
 
-  console.log('\nNOTE: Anthropic V2 API requires "x-api-key" header, not "anthropic-api-key"');
 }

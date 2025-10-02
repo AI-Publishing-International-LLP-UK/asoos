@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { Pinecone } = require('@pinecone-database/pinecone');
-const { OpenAI } = require('openai');
+const OpenAI = require('openai');
 require('dotenv').config();
 
 class BulkIngestion {

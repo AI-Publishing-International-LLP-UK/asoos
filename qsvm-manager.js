@@ -38,7 +38,7 @@ class QSVMManager {
         if (!fs.existsSync(this.qsvmRegistry)) {
             const initialRegistry = {
                 metadata: {
-                    version: "1.0",
+                    version: '1.0',
                     created: new Date().toISOString(),
                     lastUpdated: new Date().toISOString(),
                     totalVMs: this.maxQSVMs,
@@ -325,7 +325,7 @@ class QSVMManager {
         console.log('=' .repeat(80));
         console.log('🔄 QUANTUM SWARM VM STATUS DASHBOARD');
         console.log('=' .repeat(80));
-        console.log(`📅 Date: September 29, 2025`);
+        console.log('📅 Date: September 29, 2025');
         console.log(`⏰ Last Updated: ${new Date(registry.metadata.lastUpdated).toLocaleString()}`);
         console.log('');
         
@@ -474,7 +474,7 @@ class QSVMManager {
           --quiet
         `.replace(/\s+/g, ' ').trim();
 
-        console.log(`      📋 Deployment Command Generated`);
+        console.log('      📋 Deployment Command Generated');
         console.log(`      🔧 CPU: ${qsvm.specs.cpu}m`);
         console.log(`      🧠 Memory: ${qsvm.specs.memory}`);
         console.log(`      📊 Concurrency: ${qsvm.specs.concurrency}`);

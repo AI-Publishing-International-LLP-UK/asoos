@@ -243,6 +243,7 @@ async function importConversationsToIndex(exportSources, pineconeApiKey, openaiA
     message: 'Import infrastructure created, ready for conversation processing'
   };
 }
+}
 
 // Run the script
 if (require.main === module) {

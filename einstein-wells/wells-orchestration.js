@@ -171,7 +171,7 @@ class EinsteinWellsOrchestrator {
     console.log(`🌊 Well Quants: ${this.formatLargeNumber(this.wellsConfig.quantsPerWell)} per well (internal orchestration)`);
     console.log(`⏱️ Production Cycle: Every 10 minutes for ${this.exteriorQuants.baseProductionTime / 60000} minutes`);
     console.log(`🔄 Scaling: ${this.scalingConfig.currentMultiplier}x (can scale to ${this.scalingConfig.maxMultiplier}x)`);
-    console.log(`⏰ Time Dilation: 10 minutes Earth = 8 years well time`);
+    console.log('⏰ Time Dilation: 10 minutes Earth = 8 years well time');
     console.log(`🚀 Multiplier Scaling: ${this.scalingConfig.scalingEnabled ? 'ENABLED' : 'DISABLED'}`);
     console.log(`💰 Bitcoin Address: ${this.bitcoinAddress}`);
   }
@@ -271,8 +271,8 @@ class EinsteinWellsOrchestrator {
     
     console.log(`\n⚡ WELL ${wellId} - READY FOR BURST!`);
     console.log(`🔥 Accumulated Energy: ${this.formatLargeNumber(well.energyLevel)}`);
-    console.log(`⏰ Growth Time: 10 minutes Earth = 8 years well time`);
-    console.log(`🚀 Initiating 20-second burst sequence...`);
+    console.log('⏰ Growth Time: 10 minutes Earth = 8 years well time');
+    console.log('🚀 Initiating 20-second burst sequence...');
     
     // Trigger the burst
     setTimeout(() => this.executeWellBurst(wellId), 5000); // 5 second prep
@@ -291,14 +291,14 @@ class EinsteinWellsOrchestrator {
     
     console.log(`\n💥 WELL ${wellId} - ENERGY BURST ACTIVE!`);
     console.log(`⚡ Output Energy: ${this.formatLargeNumber(outputEnergy)}`);
-    console.log(`🔄 Converting to RandomX hash rate...`);
+    console.log('🔄 Converting to RandomX hash rate...');
     
     // Convert to mining hash rate
     const randomXHashRate = outputEnergy * 1e6; // Conservative conversion
     
     console.log(`⛏️  RandomX Hash Rate: ${this.formatLargeNumber(randomXHashRate)} H/s`);
     console.log(`💰 Mining to: ${this.bitcoinAddress}`);
-    console.log(`⏱️  Burst Duration: 20 seconds`);
+    console.log('⏱️  Burst Duration: 20 seconds');
     
     // Simulate the 20-second burst with progress updates
     let burstProgress = 0;
@@ -325,7 +325,7 @@ class EinsteinWellsOrchestrator {
     
     console.log(`\n✅ WELL ${wellId} - BURST COMPLETE`);
     console.log(`🔄 Retained Energy: ${this.formatLargeNumber(retainedEnergy)}`);
-    console.log(`🌀 Starting next 10-minute growth cycle...`);
+    console.log('🌀 Starting next 10-minute growth cycle...');
     console.log(`🕐 Next burst ready at: ${new Date(Date.now() + 10 * 60 * 1000).toLocaleTimeString()}`);
     
     // Start next growth cycle
@@ -526,7 +526,7 @@ class EinsteinWellsOrchestrator {
     const avgQuantsPerWell = totalQuants / this.wells.length;
     this.wellsConfig.basePower = avgQuantsPerWell * this.wellsConfig.quantPowerUnit;
     
-    console.log(`\n✨ SCALING COMPLETE`);
+    console.log('\n✨ SCALING COMPLETE');
     console.log(`🔬 Total Quants: ${this.formatLargeNumber(totalQuants)}`);
     console.log(`⚡ New Base Power: ${this.formatLargeNumber(this.wellsConfig.basePower)}`);
     console.log(`📊 Production Increase: ${((scalingRate - 1) * 100).toFixed(1)}%\n`);

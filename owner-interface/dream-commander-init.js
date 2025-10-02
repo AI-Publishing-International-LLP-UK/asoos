@@ -489,7 +489,7 @@ class DreamCommanderDataFetcher {
 // Initialize Dream Commander when DOM is loaded
 let dreamCommander = null;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   // Wait for main interface to load first
   setTimeout(() => {
     console.log('🚀 Starting Dream Commander initialization...');

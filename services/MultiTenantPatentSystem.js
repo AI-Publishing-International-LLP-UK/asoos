@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Pinecone } = require('@pinecone-database/pinecone');
-const OpenAI = require('openai');
 const crypto = require('crypto');
 
 class MultiTenantPatentSystem {

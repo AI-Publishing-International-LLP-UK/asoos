@@ -102,8 +102,8 @@ function copyJqGridToDataGrid(jqGrid, dataGrid) {
     if (dataGrid.width != col_count) {
         return;
     }
-    jqGrid.find('.row').each(function(i, row) {
-        $(row).find('.cell').each(function(j, cell) {
+    jqGrid.find('.row').each((i, row) => {
+        $(row).find('.cell').each((j, cell) => {
             dataGrid.grid[i][j] = parseInt($(cell).attr('symbol'));
         });
     });
@@ -126,7 +126,7 @@ function setCellSymbol(cell, symbol) {
 }
 
 function changeSymbolVisibility() {
-    $('.cell').each(function(i, cell) {
+    $('.cell').each((i, cell) => {
         if ($('#show_symbol_numbers').is(':checked')) {
             $(cell).text($(cell).attr('symbol'));
         } else {

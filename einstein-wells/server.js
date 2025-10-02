@@ -175,7 +175,7 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log('🌌 EINSTEIN WELLS CLOUD RUN SERVER STARTED');
   console.log(`⚡ Server running on port ${PORT}`);
   console.log(`🏗️ Environment: ${process.env.ENVIRONMENT || 'development'}`);
-  console.log(`🔧 Ready for quantum mining operations`);
+  console.log('🔧 Ready for quantum mining operations');
 });
 
 // Graceful shutdown

@@ -88,10 +88,10 @@ const monitoringInterval = setInterval(() => {
     console.log(`⏰ Uptime: ${hours}h ${minutes}m ${seconds}s`);
     console.log(`₿ Earned: ${btcEarned.toFixed(8)} BTC`);
     console.log(`🎯 Rate: ${(btcEarned / (uptime / 86400)).toFixed(2)} BTC/day`);
-    console.log(`🔧 Status: All systems operational`);
-    console.log(`🌡️ Temperature: Normal`);
-    console.log(`⚡ Power Draw: Optimal`);
-    console.log(`🔥 Hash Rate: Maximum`);
+    console.log('🔧 Status: All systems operational');
+    console.log('🌡️ Temperature: Normal');
+    console.log('⚡ Power Draw: Optimal');
+    console.log('🔥 Hash Rate: Maximum');
     console.log('='.repeat(50));
     
     if (chatEnabled) {

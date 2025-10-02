@@ -1,0 +1,40 @@
+{
+  "name": "dr-pinion-mcp-server",
+  "version": "1.0.0",
+  "description": "Dr. Pinion - Conversational Pinecone Vector Search MCP Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo \"Dr. Pinion is ready to search!\" && exit 0",
+    "docker:build": "docker build -t mcp-pinecone-dr-pinion .",
+    "docker:run": "docker run -p 3002:3002 --env-file .env mcp-pinecone-dr-pinion"
+  },
+  "author": "AI Publishing International LLP",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@pinecone-database/pinecone": "^3.0.3",
+    "@google-cloud/secret-manager": "^5.5.0",
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "openai": "^4.67.3",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "pinecone",
+    "vector-search",
+    "dr-pinion",
+    "conversational-ai",
+    "memory-search"
+  ]
+}

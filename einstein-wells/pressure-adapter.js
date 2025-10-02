@@ -193,7 +193,7 @@ class RegulatedPressureAdapter {
       regulationAction = 'PRESSURE_REDUCED';
       
       const excessEnergy = energyLevel - maxSafePressure;
-      console.log(`⚠️  PRESSURE REGULATION ACTIVE`);
+      console.log('⚠️  PRESSURE REGULATION ACTIVE');
       console.log(`🔽 Reducing pressure from ${this.formatLargeNumber(energyLevel)} to ${this.formatLargeNumber(outputPressure)}`);
       console.log(`💨 Venting excess: ${this.formatLargeNumber(excessEnergy)} watts safely`);
       
@@ -204,7 +204,7 @@ class RegulatedPressureAdapter {
         safetyMargin: 'MAINTAINED'
       });
     } else {
-      console.log(`✅ Pressure within safe limits - allowing full blast`);
+      console.log('✅ Pressure within safe limits - allowing full blast');
     }
 
     // Emergency check
@@ -234,8 +234,8 @@ class RegulatedPressureAdapter {
 
     console.log(`\n🚨 EMERGENCY PRESSURE RELIEF ACTIVATED - Well ${wellId}`);
     console.log(`⚠️  CRITICAL: Pressure ${this.formatLargeNumber(dangerousPressure)} exceeds maximum ${this.formatLargeNumber(maxAllowed)}`);
-    console.log(`💨 EMERGENCY VENTING: Releasing excess pressure safely`);
-    console.log(`🛡️  PIPE PROTECTION: Maintained at all costs`);
+    console.log('💨 EMERGENCY VENTING: Releasing excess pressure safely');
+    console.log('🛡️  PIPE PROTECTION: Maintained at all costs');
 
     // In production, this would trigger physical emergency venting
     return {

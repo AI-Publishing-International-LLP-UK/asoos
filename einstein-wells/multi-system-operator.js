@@ -526,7 +526,7 @@ async function startEinsteinWellsMultiSystemOperator() {
     console.log('\n🎯 MULTI-SYSTEM OPERATOR STATUS:');
     console.log(`✅ Systems Operational: ${result.systems} mining + ${result.services} additional`);
     console.log(`💰 Total Revenue: $${operator.formatLargeNumber(result.totalRevenue)}/day`);
-    console.log(`⚡ Operating at 1% capacity with room for massive scaling`);
+    console.log('⚡ Operating at 1% capacity with room for massive scaling');
     
     // Display status report every 30 seconds
     setInterval(() => {

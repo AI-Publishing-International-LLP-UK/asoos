@@ -277,11 +277,11 @@ var Puppeteer = (function (
     function adopt(value) {
       return value instanceof P
         ? value
-        : new P(function (resolve) {
+        : new P((resolve) => {
           resolve(value);
         });
     }
-    return new (P || (P = Promise))(function (resolve, reject) {
+    return new (P || (P = Promise))((resolve, reject) => {
       function fulfilled(value) {
         try {
           step(generator.next(value));
@@ -483,7 +483,7 @@ var Puppeteer = (function (
     function verb(n, f) {
       if (g[n]) {
         i[n] = function (v) {
-          return new Promise(function (a, b) {
+          return new Promise((a, b) => {
             q.push([n, v, a, b]) > 1 || resume(n, v);
           });
         };
@@ -531,13 +531,13 @@ var Puppeteer = (function (
       i[n] =
         o[n] &&
         function (v) {
-          return new Promise(function (resolve, reject) {
+          return new Promise((resolve, reject) => {
             (v = o[n](v)), settle(resolve, reject, v.done, v.value);
           });
         };
     }
     function settle(resolve, reject, d, v) {
-      Promise.resolve(v).then(function (v2) {
+      Promise.resolve(v).then((v2) => {
         resolve({
           value: v2,
           done: d,
@@ -564,14 +564,14 @@ var Puppeteer = (function (
   }
 
   // ../../node_modules/rxjs/dist/esm5/internal/util/UnsubscriptionError.js
-  var UnsubscriptionError = createErrorClass(function (_super) {
+  var UnsubscriptionError = createErrorClass((_super) => {
     return function UnsubscriptionErrorImpl(errors) {
       _super(this);
       this.message = errors
         ? errors.length +
           ' errors occurred during unsubscription:\n' +
           errors
-            .map(function (err, i) {
+            .map((err, i) => {
               return i + 1 + ') ' + err.toString();
             })
             .join('\n  ')
@@ -771,7 +771,7 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/util/reportUnhandledError.js
   function reportUnhandledError(err) {
-    timeoutProvider.setTimeout(function () {
+    timeoutProvider.setTimeout(() => {
       {
         throw err;
       }
@@ -951,7 +951,7 @@ var Puppeteer = (function (
       return fns[0];
     }
     return function piped(input) {
-      return fns.reduce(function (prev, fn) {
+      return fns.reduce((prev, fn) => {
         return fn(prev);
       }, input);
     };
@@ -975,7 +975,7 @@ var Puppeteer = (function (
       var subscriber = isSubscriber(observerOrNext)
         ? observerOrNext
         : new SafeSubscriber(observerOrNext, error, complete);
-      errorContext(function () {
+      errorContext(() => {
         var _a = _this,
           operator = _a.operator,
           source = _a.source;
@@ -999,7 +999,7 @@ var Puppeteer = (function (
     Observable2.prototype.forEach = function (next, promiseCtor) {
       var _this = this;
       promiseCtor = getPromiseCtor(promiseCtor);
-      return new promiseCtor(function (resolve, reject) {
+      return new promiseCtor((resolve, reject) => {
         var subscriber = new SafeSubscriber({
           next: function (value) {
             try {
@@ -1032,16 +1032,16 @@ var Puppeteer = (function (
     Observable2.prototype.toPromise = function (promiseCtor) {
       var _this = this;
       promiseCtor = getPromiseCtor(promiseCtor);
-      return new promiseCtor(function (resolve, reject) {
+      return new promiseCtor((resolve, reject) => {
         var value;
         _this.subscribe(
-          function (x) {
+          (x) => {
             return (value = x);
           },
-          function (err) {
+          (err) => {
             return reject(err);
           },
-          function () {
+          () => {
             return resolve(value);
           }
         );
@@ -1147,7 +1147,7 @@ var Puppeteer = (function (
   })(Subscriber);
 
   // ../../node_modules/rxjs/dist/esm5/internal/util/ObjectUnsubscribedError.js
-  var ObjectUnsubscribedError = createErrorClass(function (_super) {
+  var ObjectUnsubscribedError = createErrorClass((_super) => {
     return function ObjectUnsubscribedErrorImpl() {
       _super(this);
       this.name = 'ObjectUnsubscribedError';
@@ -1180,7 +1180,7 @@ var Puppeteer = (function (
     };
     Subject2.prototype.next = function (value) {
       var _this = this;
-      errorContext(function () {
+      errorContext(() => {
         var e_1, _a;
         _this._throwIfClosed();
         if (!_this.isStopped) {
@@ -1212,7 +1212,7 @@ var Puppeteer = (function (
     };
     Subject2.prototype.error = function (err) {
       var _this = this;
-      errorContext(function () {
+      errorContext(() => {
         _this._throwIfClosed();
         if (!_this.isStopped) {
           _this.hasError = _this.isStopped = true;
@@ -1226,7 +1226,7 @@ var Puppeteer = (function (
     };
     Subject2.prototype.complete = function () {
       var _this = this;
-      errorContext(function () {
+      errorContext(() => {
         _this._throwIfClosed();
         if (!_this.isStopped) {
           _this.isStopped = true;
@@ -1269,7 +1269,7 @@ var Puppeteer = (function (
       }
       this.currentObservers = null;
       observers.push(subscriber);
-      return new Subscription(function () {
+      return new Subscription(() => {
         _this.currentObservers = null;
         arrRemove(observers, subscriber);
       });
@@ -1599,7 +1599,7 @@ var Puppeteer = (function (
   var async = asyncScheduler;
 
   // ../../node_modules/rxjs/dist/esm5/internal/observable/empty.js
-  var EMPTY = new Observable(function (subscriber) {
+  var EMPTY = new Observable((subscriber) => {
     return subscriber.complete();
   });
 
@@ -1669,7 +1669,7 @@ var Puppeteer = (function (
   function readableStreamLikeToAsyncGenerator(readableStream) {
     return __asyncGenerator(this, arguments, function readableStreamLikeToAsyncGenerator_1() {
       var reader, _a, value, done;
-      return __generator(this, function (_b) {
+      return __generator(this, (_b) => {
         switch (_b.label) {
         case 0:
           reader = readableStream.getReader();
@@ -1735,7 +1735,7 @@ var Puppeteer = (function (
     throw createInvalidObservableTypeError(input);
   }
   function fromInteropObservable(obj) {
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       var obs = obj[observable]();
       if (isFunction(obs.subscribe)) {
         return obs.subscribe(subscriber);
@@ -1744,7 +1744,7 @@ var Puppeteer = (function (
     });
   }
   function fromArrayLike(array) {
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       for (var i = 0; i < array.length && !subscriber.closed; i++) {
         subscriber.next(array[i]);
       }
@@ -1752,16 +1752,16 @@ var Puppeteer = (function (
     });
   }
   function fromPromise(promise) {
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       promise
         .then(
-          function (value) {
+          (value) => {
             if (!subscriber.closed) {
               subscriber.next(value);
               subscriber.complete();
             }
           },
-          function (err) {
+          (err) => {
             return subscriber.error(err);
           }
         )
@@ -1769,7 +1769,7 @@ var Puppeteer = (function (
     });
   }
   function fromIterable(iterable) {
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       var e_1, _a;
       try {
         for (
@@ -1798,8 +1798,8 @@ var Puppeteer = (function (
     });
   }
   function fromAsyncIterable(asyncIterable) {
-    return new Observable(function (subscriber) {
-      process$1(asyncIterable, subscriber).catch(function (err) {
+    return new Observable((subscriber) => {
+      process$1(asyncIterable, subscriber).catch((err) => {
         return subscriber.error(err);
       });
     });
@@ -1812,7 +1812,7 @@ var Puppeteer = (function (
     var e_2, _a;
     return __awaiter(this, void 0, void 0, function () {
       var value, e_2_1;
-      return __generator(this, function (_b) {
+      return __generator(this, (_b) => {
         switch (_b.label) {
         case 0:
           _b.trys.push([0, 5, 6, 11]);
@@ -1888,35 +1888,35 @@ var Puppeteer = (function (
     if (delay2 === void 0) {
       delay2 = 0;
     }
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       source.subscribe(
         createOperatorSubscriber(
           subscriber,
-          function (value) {
+          (value) => {
             return executeSchedule(
               subscriber,
               scheduler,
-              function () {
+              () => {
                 return subscriber.next(value);
               },
               delay2
             );
           },
-          function () {
+          () => {
             return executeSchedule(
               subscriber,
               scheduler,
-              function () {
+              () => {
                 return subscriber.complete();
               },
               delay2
             );
           },
-          function (err) {
+          (err) => {
             return executeSchedule(
               subscriber,
               scheduler,
-              function () {
+              () => {
                 return subscriber.error(err);
               },
               delay2
@@ -1932,9 +1932,9 @@ var Puppeteer = (function (
     if (delay2 === void 0) {
       delay2 = 0;
     }
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       subscriber.add(
-        scheduler.schedule(function () {
+        scheduler.schedule(() => {
           return source.subscribe(subscriber);
         }, delay2)
       );
@@ -1953,7 +1953,7 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/scheduled/scheduleArray.js
   function scheduleArray(input, scheduler) {
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       var i = 0;
       return scheduler.schedule(function () {
         if (i === input.length) {
@@ -1970,14 +1970,14 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/scheduled/scheduleIterable.js
   function scheduleIterable(input, scheduler) {
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       var iterator2;
-      executeSchedule(subscriber, scheduler, function () {
+      executeSchedule(subscriber, scheduler, () => {
         iterator2 = input[iterator]();
         executeSchedule(
           subscriber,
           scheduler,
-          function () {
+          () => {
             var _a;
             var value;
             var done;
@@ -2011,14 +2011,14 @@ var Puppeteer = (function (
     if (!input) {
       throw new Error('Iterable cannot be null');
     }
-    return new Observable(function (subscriber) {
-      executeSchedule(subscriber, scheduler, function () {
+    return new Observable((subscriber) => {
+      executeSchedule(subscriber, scheduler, () => {
         var iterator2 = input[Symbol.asyncIterator]();
         executeSchedule(
           subscriber,
           scheduler,
-          function () {
-            iterator2.next().then(function (result) {
+          () => {
+            iterator2.next().then((result) => {
               if (result.done) {
                 subscriber.complete();
               } else {
@@ -2079,7 +2079,7 @@ var Puppeteer = (function (
   }
 
   // ../../node_modules/rxjs/dist/esm5/internal/util/EmptyError.js
-  var EmptyError = createErrorClass(function (_super) {
+  var EmptyError = createErrorClass((_super) => {
     return function EmptyErrorImpl() {
       _super(this);
       this.name = 'EmptyError';
@@ -2089,7 +2089,7 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/firstValueFrom.js
   function firstValueFrom(source, config2) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       var subscriber = new SafeSubscriber({
         next: function (value) {
           resolve(value);
@@ -2113,10 +2113,10 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/operators/map.js
   function map(project, thisArg) {
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       var index = 0;
       source.subscribe(
-        createOperatorSubscriber(subscriber, function (value) {
+        createOperatorSubscriber(subscriber, (value) => {
           subscriber.next(project.call(thisArg, value, index++));
         })
       );
@@ -2129,7 +2129,7 @@ var Puppeteer = (function (
     return isArray(args) ? fn.apply(void 0, __spreadArray([], __read(args))) : fn(args);
   }
   function mapOneOrManyArgs(fn) {
-    return map(function (args) {
+    return map((args) => {
       return callOrApply(fn, args);
     });
   }
@@ -2164,7 +2164,7 @@ var Puppeteer = (function (
       innerFrom(project(value, index++)).subscribe(
         createOperatorSubscriber(
           subscriber,
-          function (innerValue) {
+          (innerValue) => {
             onBeforeNext === null || onBeforeNext === void 0 ? void 0 : onBeforeNext(innerValue);
             if (expand) {
               outerNext(innerValue);
@@ -2172,11 +2172,11 @@ var Puppeteer = (function (
               subscriber.next(innerValue);
             }
           },
-          function () {
+          () => {
             innerComplete = true;
           },
           void 0,
-          function () {
+          () => {
             if (innerComplete) {
               try {
                 active--;
@@ -2200,7 +2200,7 @@ var Puppeteer = (function (
       );
     };
     source.subscribe(
-      createOperatorSubscriber(subscriber, outerNext, function () {
+      createOperatorSubscriber(subscriber, outerNext, () => {
         isComplete = true;
         checkComplete();
       })
@@ -2218,15 +2218,15 @@ var Puppeteer = (function (
       concurrent = Infinity;
     }
     if (isFunction(resultSelector)) {
-      return mergeMap(function (a, i) {
-        return map(function (b, ii) {
+      return mergeMap((a, i) => {
+        return map((b, ii) => {
           return resultSelector(a, b, i, ii);
         })(innerFrom(project(a, i)));
       }, concurrent);
     } else if (typeof resultSelector === 'number') {
       concurrent = resultSelector;
     }
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       return mergeInternals(source, subscriber, project, concurrent);
     });
   }
@@ -2255,7 +2255,7 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/observable/defer.js
   function defer(observableFactory) {
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       innerFrom(observableFactory()).subscribe(subscriber);
     });
   }
@@ -2274,7 +2274,7 @@ var Puppeteer = (function (
     }
     var _a = __read(
         isEventTarget(target)
-          ? eventTargetMethods.map(function (methodName) {
+          ? eventTargetMethods.map((methodName) => {
             return function (handler) {
               return target[methodName](eventName, handler, options);
             };
@@ -2290,7 +2290,7 @@ var Puppeteer = (function (
       remove = _a[1];
     if (!add) {
       if (isArrayLike(target)) {
-        return mergeMap(function (subTarget) {
+        return mergeMap((subTarget) => {
           return fromEvent(subTarget, eventName, options);
         })(innerFrom(target));
       }
@@ -2298,7 +2298,7 @@ var Puppeteer = (function (
     if (!add) {
       throw new TypeError('Invalid event target');
     }
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       var handler = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -2337,13 +2337,13 @@ var Puppeteer = (function (
     if (scheduler === void 0) {
       scheduler = async;
     }
-    return new Observable(function (subscriber) {
+    return new Observable((subscriber) => {
       var due = isValidDate(dueTime) ? +dueTime - scheduler.now() : dueTime;
       if (due < 0) {
         due = 0;
       }
       var n = 0;
-      return scheduler.schedule(function () {
+      return scheduler.schedule(() => {
         if (!subscriber.closed) {
           subscriber.next(n++);
           {
@@ -2381,10 +2381,10 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/operators/filter.js
   function filter(predicate, thisArg) {
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       var index = 0;
       source.subscribe(
-        createOperatorSubscriber(subscriber, function (value) {
+        createOperatorSubscriber(subscriber, (value) => {
           return predicate.call(thisArg, value, index++) && subscriber.next(value);
         })
       );
@@ -2406,7 +2406,7 @@ var Puppeteer = (function (
       var _loop_1 = function (i2) {
         subscriptions.push(
           innerFrom(sources[i2]).subscribe(
-            createOperatorSubscriber(subscriber, function (value) {
+            createOperatorSubscriber(subscriber, (value) => {
               if (subscriptions) {
                 for (var s = 0; s < subscriptions.length; s++) {
                   s !== i2 && subscriptions[s].unsubscribe();
@@ -2426,12 +2426,12 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/operators/catchError.js
   function catchError(selector) {
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       var innerSub = null;
       var syncUnsub = false;
       var handledResult;
       innerSub = source.subscribe(
-        createOperatorSubscriber(subscriber, void 0, void 0, function (err) {
+        createOperatorSubscriber(subscriber, void 0, void 0, (err) => {
           handledResult = innerFrom(selector(err, catchError(selector)(source)));
           if (innerSub) {
             innerSub.unsubscribe();
@@ -2452,16 +2452,16 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/operators/defaultIfEmpty.js
   function defaultIfEmpty(defaultValue) {
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       var hasValue = false;
       source.subscribe(
         createOperatorSubscriber(
           subscriber,
-          function (value) {
+          (value) => {
             hasValue = true;
             subscriber.next(value);
           },
-          function () {
+          () => {
             if (!hasValue) {
               subscriber.next(defaultValue);
             }
@@ -2478,10 +2478,10 @@ var Puppeteer = (function (
       ? function () {
         return EMPTY;
       }
-      : operate(function (source, subscriber) {
+      : operate((source, subscriber) => {
         var seen = 0;
         source.subscribe(
-          createOperatorSubscriber(subscriber, function (value) {
+          createOperatorSubscriber(subscriber, (value) => {
             if (++seen <= count) {
               subscriber.next(value);
               if (count <= seen) {
@@ -2495,7 +2495,7 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/operators/ignoreElements.js
   function ignoreElements() {
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       source.subscribe(createOperatorSubscriber(subscriber, noop));
     });
   }
@@ -2505,16 +2505,16 @@ var Puppeteer = (function (
     if (errorFactory === void 0) {
       errorFactory = defaultErrorFactory;
     }
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       var hasValue = false;
       source.subscribe(
         createOperatorSubscriber(
           subscriber,
-          function (value) {
+          (value) => {
             hasValue = true;
             subscriber.next(value);
           },
-          function () {
+          () => {
             return hasValue ? subscriber.complete() : subscriber.error(errorFactory());
           }
         )
@@ -2531,14 +2531,14 @@ var Puppeteer = (function (
     return function (source) {
       return source.pipe(
         predicate
-          ? filter(function (v, i) {
+          ? filter((v, i) => {
             return predicate(v, i, source);
           })
           : identity,
         take(1),
         hasDefaultValue
           ? defaultIfEmpty(defaultValue)
-          : throwIfEmpty(function () {
+          : throwIfEmpty(() => {
             return new EmptyError();
           })
       );
@@ -2550,21 +2550,21 @@ var Puppeteer = (function (
     if (concurrent === void 0) {
       concurrent = Infinity;
     }
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       var state = seed;
       return mergeInternals(
         source,
         subscriber,
-        function (value, index) {
+        (value, index) => {
           return accumulator(state, value, index);
         },
         concurrent,
-        function (value) {
+        (value) => {
           state = value;
         },
         false,
         void 0,
-        function () {
+        () => {
           return (state = null);
         }
       );
@@ -2579,7 +2579,7 @@ var Puppeteer = (function (
     }
     return !otherSources.length
       ? identity
-      : operate(function (source, subscriber) {
+      : operate((source, subscriber) => {
         raceInit(__spreadArray([source], __read(otherSources)))(subscriber);
       });
   }
@@ -2604,7 +2604,7 @@ var Puppeteer = (function (
       resetOnSuccess = _b === void 0 ? false : _b;
     return count <= 0
       ? identity
-      : operate(function (source, subscriber) {
+      : operate((source, subscriber) => {
         var soFar = 0;
         var innerSub;
         var subscribeForRetry = function () {
@@ -2612,14 +2612,14 @@ var Puppeteer = (function (
           innerSub = source.subscribe(
             createOperatorSubscriber(
               subscriber,
-              function (value) {
+              (value) => {
                 if (resetOnSuccess) {
                   soFar = 0;
                 }
                 subscriber.next(value);
               },
               void 0,
-              function (err) {
+              (err) => {
                 if (soFar++ < count) {
                   var resub_1 = function () {
                     if (innerSub) {
@@ -2635,11 +2635,11 @@ var Puppeteer = (function (
                         typeof delay2 === 'number' ? timer(delay2) : innerFrom(delay2(err, soFar));
                     var notifierSubscriber_1 = createOperatorSubscriber(
                       subscriber,
-                      function () {
+                      () => {
                         notifierSubscriber_1.unsubscribe();
                         resub_1();
                       },
-                      function () {
+                      () => {
                         subscriber.complete();
                       }
                     );
@@ -2670,7 +2670,7 @@ var Puppeteer = (function (
       values[_i] = arguments[_i];
     }
     var scheduler = popScheduler(values);
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       (scheduler ? concat(values, source, scheduler) : concat(values, source)).subscribe(
         subscriber
       );
@@ -2679,7 +2679,7 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/operators/switchMap.js
   function switchMap(project, resultSelector) {
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       var innerSubscriber = null;
       var index = 0;
       var isComplete = false;
@@ -2689,7 +2689,7 @@ var Puppeteer = (function (
       source.subscribe(
         createOperatorSubscriber(
           subscriber,
-          function (value) {
+          (value) => {
             innerSubscriber === null || innerSubscriber === void 0
               ? void 0
               : innerSubscriber.unsubscribe();
@@ -2698,21 +2698,21 @@ var Puppeteer = (function (
             innerFrom(project(value, outerIndex)).subscribe(
               (innerSubscriber = createOperatorSubscriber(
                 subscriber,
-                function (innerValue) {
+                (innerValue) => {
                   return subscriber.next(
                     resultSelector
                       ? resultSelector(value, innerValue, outerIndex, innerIndex++)
                       : innerValue
                   );
                 },
-                function () {
+                () => {
                   innerSubscriber = null;
                   checkComplete();
                 }
               ))
             );
           },
-          function () {
+          () => {
             isComplete = true;
             checkComplete();
           }
@@ -2723,11 +2723,11 @@ var Puppeteer = (function (
 
   // ../../node_modules/rxjs/dist/esm5/internal/operators/takeUntil.js
   function takeUntil(notifier) {
-    return operate(function (source, subscriber) {
+    return operate((source, subscriber) => {
       innerFrom(notifier).subscribe(
         createOperatorSubscriber(
           subscriber,
-          function () {
+          () => {
             return subscriber.complete();
           },
           noop
@@ -2748,21 +2748,21 @@ var Puppeteer = (function (
         }
         : observerOrNext;
     return tapObserver
-      ? operate(function (source, subscriber) {
+      ? operate((source, subscriber) => {
         var _a;
         (_a = tapObserver.subscribe) === null || _a === void 0 ? void 0 : _a.call(tapObserver);
         var isUnsub = true;
         source.subscribe(
           createOperatorSubscriber(
             subscriber,
-            function (value) {
+            (value) => {
               var _a2;
               (_a2 = tapObserver.next) === null || _a2 === void 0
                 ? void 0
                 : _a2.call(tapObserver, value);
               subscriber.next(value);
             },
-            function () {
+            () => {
               var _a2;
               isUnsub = false;
               (_a2 = tapObserver.complete) === null || _a2 === void 0
@@ -2770,7 +2770,7 @@ var Puppeteer = (function (
                 : _a2.call(tapObserver);
               subscriber.complete();
             },
-            function (err) {
+            (err) => {
               var _a2;
               isUnsub = false;
               (_a2 = tapObserver.error) === null || _a2 === void 0
@@ -2778,7 +2778,7 @@ var Puppeteer = (function (
                 : _a2.call(tapObserver, err);
               subscriber.error(err);
             },
-            function () {
+            () => {
               var _a2, _b;
               if (isUnsub) {
                 (_a2 = tapObserver.unsubscribe) === null || _a2 === void 0
@@ -2829,11 +2829,11 @@ var Puppeteer = (function (
       emit: function (t, e) {
         var i = n.get(t);
         i &&
-          i.slice().map(function (n2) {
+          i.slice().map((n2) => {
             n2(e);
           }),
         (i = n.get('*')) &&
-            i.slice().map(function (n2) {
+            i.slice().map((n2) => {
               n2(t, e);
             });
       },
@@ -4880,7 +4880,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -4898,7 +4898,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -5090,7 +5090,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -5108,7 +5108,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -6143,7 +6143,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -6161,7 +6161,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -6399,7 +6399,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -6417,7 +6417,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -6734,7 +6734,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -6752,7 +6752,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -8727,7 +8727,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -8745,7 +8745,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -9773,7 +9773,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -9791,7 +9791,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -11909,7 +11909,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -11927,7 +11927,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -13999,7 +13999,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -14017,7 +14017,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -14565,7 +14565,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -14583,7 +14583,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -16380,7 +16380,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_applyViewport_descriptor = {
-            value: __setFunctionName(async function (client, viewportState) {
+            value: __setFunctionName(async (client, viewportState) => {
               if (!viewportState.viewport) {
                 await Promise.all([
                   client.send('Emulation.clearDeviceMetricsOverride'),
@@ -16445,7 +16445,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_emulateIdleState_descriptor = {
-            value: __setFunctionName(async function (client, idleStateState) {
+            value: __setFunctionName(async (client, idleStateState) => {
               if (!idleStateState.active) {
                 return;
               }
@@ -16478,7 +16478,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_emulateTimezone_descriptor = {
-            value: __setFunctionName(async function (client, timezoneState) {
+            value: __setFunctionName(async (client, timezoneState) => {
               if (!timezoneState.active) {
                 return;
               }
@@ -16512,7 +16512,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_emulateVisionDeficiency_descriptor = {
-            value: __setFunctionName(async function (client, visionDeficiency) {
+            value: __setFunctionName(async (client, visionDeficiency) => {
               if (!visionDeficiency.active) {
                 return;
               }
@@ -16540,7 +16540,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_emulateCpuThrottling_descriptor = {
-            value: __setFunctionName(async function (client, state) {
+            value: __setFunctionName(async (client, state) => {
               if (!state.active) {
                 return;
               }
@@ -16568,7 +16568,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_emulateMediaFeatures_descriptor = {
-            value: __setFunctionName(async function (client, state) {
+            value: __setFunctionName(async (client, state) => {
               if (!state.active) {
                 return;
               }
@@ -16596,7 +16596,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_emulateMediaType_descriptor = {
-            value: __setFunctionName(async function (client, state) {
+            value: __setFunctionName(async (client, state) => {
               if (!state.active) {
                 return;
               }
@@ -16624,7 +16624,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_setGeolocation_descriptor = {
-            value: __setFunctionName(async function (client, state) {
+            value: __setFunctionName(async (client, state) => {
               if (!state.active) {
                 return;
               }
@@ -16658,7 +16658,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_setDefaultBackgroundColor_descriptor = {
-            value: __setFunctionName(async function (client, state) {
+            value: __setFunctionName(async (client, state) => {
               if (!state.active) {
                 return;
               }
@@ -16686,7 +16686,7 @@ var Puppeteer = (function (
         __esDecorate$2(
           _EmulationManager,
           (_private_setJavaScriptEnabled_descriptor = {
-            value: __setFunctionName(async function (client, state) {
+            value: __setFunctionName(async (client, state) => {
               if (!state.active) {
                 return;
               }
@@ -17753,7 +17753,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -17771,7 +17771,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -23398,7 +23398,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -23416,7 +23416,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -24564,7 +24564,7 @@ var Puppeteer = (function (
                 if (r.async)
                   return (
                     (s |= 2),
-                    Promise.resolve(result).then(next, function (e) {
+                    Promise.resolve(result).then(next, (e) => {
                       fail(e);
                       return next();
                     })
@@ -24582,7 +24582,7 @@ var Puppeteer = (function (
     })(
       typeof SuppressedError === 'function'
         ? SuppressedError
-        : function (error, suppressed, message) {
+        : (error, suppressed, message) => {
           var e = new Error(message);
           return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
         }
@@ -28014,7 +28014,7 @@ var Puppeteer = (function (
         )
       ).NodeWebSocketTransport
       : (
-        await Promise.resolve().then(function () {
+        await Promise.resolve().then(() => {
           return BrowserWebSocketTransport$1;
         })
       ).BrowserWebSocketTransport;

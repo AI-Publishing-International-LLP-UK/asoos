@@ -1,0 +1,59 @@
+# Cloud Build configuration for Dr. Pinion MCP Server
+# Builds and deploys to Cloud Run at mcp.pinecone.2100.cool
+
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', 
+      '-t', 'gcr.io/api-for-warp-drive/dr-pinion-mcp:$COMMIT_SHA',
+      '-t', 'gcr.io/api-for-warp-drive/dr-pinion-mcp:latest',
+      '.'
+    ]
+
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '--all-tags', 'gcr.io/api-for-warp-drive/dr-pinion-mcp']
+
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'dr-pinion-mcp'
+      - '--image=gcr.io/api-for-warp-drive/dr-pinion-mcp:$COMMIT_SHA'
+      - '--region=us-west1'
+      - '--platform=managed'
+      - '--allow-unauthenticated=false'
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=100'
+      - '--max-instances=10'
+      - '--port=3002'
+      - '--set-env-vars=NODE_ENV=production,MCP_SERVER_NAME=dr-pinion'
+      - '--set-secrets=PINECONE_API_KEY=pinecone-api-key:latest'
+      - '--set-secrets=OPENAI_API_KEY=openai-api-key:latest'
+
+  # Map custom domain (mcp.pinecone.2100.cool)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'domain-mappings'
+      - 'create'
+      - '--domain=mcp.pinecone.2100.cool'
+      - '--service=dr-pinion-mcp'
+      - '--region=us-west1'
+      - '--platform=managed'
+    env:
+      - 'CLOUDSDK_RUN_REGION=us-west1'
+
+# Automatically trigger on push to main branch
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'
+
+substitutions:
+  _SERVICE_NAME: dr-pinion-mcp
+  _REGION: us-west1

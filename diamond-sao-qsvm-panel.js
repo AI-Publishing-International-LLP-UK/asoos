@@ -26,11 +26,11 @@ class DiamondSAOQSVMPanel {
         
         // Diamond SAO Authority
         this.diamondSAO = {
-            name: "Mr. Phillip Corey Roark",
-            email: "pr@coaching2100.com",
-            level: "DIAMOND",
-            authority: "Unlimited Super Admin",
-            classification: ".hr1"
+            name: 'Mr. Phillip Corey Roark',
+            email: 'pr@coaching2100.com',
+            level: 'DIAMOND',
+            authority: 'Unlimited Super Admin',
+            classification: '.hr1'
         };
         
         console.log('💎 DIAMOND SAO COMMAND CENTER - QS VM MONITORING PANEL');

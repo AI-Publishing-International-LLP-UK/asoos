@@ -1,5 +1,6 @@
-﻿import js from '@eslint/js';
+import js from '@eslint/js';
 import globals from 'globals';
+import tsParser from '@typescript-eslint/parser';
 
 export default [
   {
@@ -18,13 +19,30 @@ export default [
       'no-console': 'off', // Allow console.log for development
       semi: ['error', 'always'],
       quotes: ['error', 'single'],
+      // Prefer arrow functions
+      'prefer-arrow-callback': 'error',
+      // Disallow use of eval()
+      'no-eval': 'error',
+      // Disallow use of undefined when initializing variables
+      'no-undef-init': 'error',
+      // Max line length
+      'max-len': [
+        'error',
+        {
+          code: 100,
+          ignoreComments: true,
+          ignoreUrls: true,
+          ignoreStrings: true,
+          ignoreTemplateLiterals: true,
+        },
+      ],
     },
   },
   {
     // Configuration for TypeScript files if needed
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: '@typescript-eslint/parser',
+      parser: tsParser,
       parserOptions: {
         ecmaVersion: 2024,
         sourceType: 'module',
@@ -43,7 +61,13 @@ export default [
       '**/dr.*/**',
       '**/*dr.*/**',
       'aixtiv-backup-*/**',
-      '**/solutions/**'
+      '**/solutions/**',
+      '*.log',
+      '.git/**',
+      'opus/**',
+      'coverage/**',
+      'tmp/**',
+      '.DS_Store'
     ],
   },
 ];

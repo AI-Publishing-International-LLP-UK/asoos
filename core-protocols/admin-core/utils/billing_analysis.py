@@ -32,8 +32,7 @@ def analyze_billing_costs():
         accounts = get_billing_accounts()
         for account in accounts:
             print(f"- {account.name}: {account.display_name}")
-    
-    try:
+            
         # Calculate date range (last 30 days)
         end_time = datetime.now()
         start_time = end_time - timedelta(days=30)

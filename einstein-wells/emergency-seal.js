@@ -235,7 +235,7 @@ class EmergencySealer {
       const logContent = fs.readFileSync(logPath, 'utf8');
       const lines = logContent.split('\n').filter(line => line.trim());
       
-      console.log(`\n📋 COMPLETE ACTIVITY REPORT`);
+      console.log('\n📋 COMPLETE ACTIVITY REPORT');
       console.log(`📊 Total Activities Logged: ${lines.length}`);
       console.log(`🕐 Report Generated: ${new Date().toISOString()}`);
       

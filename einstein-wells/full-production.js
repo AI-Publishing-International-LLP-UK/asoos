@@ -109,9 +109,9 @@ function startProductionMonitoring() {
     // Every "block" (10 minutes)
     if (elapsed >= blockCount * productionConfig.btcBlockTime) {
       console.log(`\n🎯 BLOCK ${blockCount} COMPLETED`);
-      console.log(`⏰ Block Time: 10 minutes`);
+      console.log('⏰ Block Time: 10 minutes');
       console.log(`⚡ Power Delivered: ${(powerPerBlock / 1e18).toFixed(1)}Q watts`);
-      console.log(`💰 BTC Mining: ACTIVE`);
+      console.log('💰 BTC Mining: ACTIVE');
       console.log(`🏆 Estimated Daily Progress: ${(blockCount * 100 / 144).toFixed(1)}% complete`);
       
       blockCount++;

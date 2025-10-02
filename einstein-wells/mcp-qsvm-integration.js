@@ -151,7 +151,7 @@ class MCPQSVMIntegration {
     
     // In real deployment, this would execute Cloud Run deployment
     // Simulating for now
-    console.log(`   📋 Deployment would execute with following parameters:`);
+    console.log('   📋 Deployment would execute with following parameters:');
     console.log(`      🌐 MCP Domain: ${this.mcpDomain}`);
     console.log(`      🏢 Company: ${this.companyName}`);
     console.log(`      🔧 CPU: ${this.qsvmSpecs.cpu}m`);

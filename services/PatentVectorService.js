@@ -1,5 +1,4 @@
 const { Pinecone } = require('@pinecone-database/pinecone');
-const OpenAI = require('openai');
 const Patent = require('../models/PatentModel');
 
 class PatentVectorService {

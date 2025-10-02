@@ -15,7 +15,7 @@ const authenticationFailures = new Counter('authentication_failures');
 const responseTime = new Trend('custom_response_time');
 
 // Test data generators
-const pilots = new SharedArray('pilots', function () {
+const pilots = new SharedArray('pilots', (() => {
   const pilotData = [];
   for (let i = 1; i <= 100000; i++) { // Sample of 100k pilots for testing
     pilotData.push({
@@ -26,7 +26,7 @@ const pilots = new SharedArray('pilots', function () {
     });
   }
   return pilotData;
-});
+}));
 
 const voiceProfiles = ['4RZ84U1b4WCqpu57LvIq', '1nQX17jSn2RXlK251b8y', 'RILOU7YmBhvwJGDGjNmP'];
 const testTexts = [
