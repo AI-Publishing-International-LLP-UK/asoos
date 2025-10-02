@@ -1,0 +1,63 @@
+{
+  "rigId": "d9d27099-430e-4a4b-87b0-a128b3860756",
+  "location": "us-central1-a", 
+  "status": "producer",
+  "mlConnector": "dr-lucy-ml-connector-001",
+  "pools": [
+    {
+      "name": "NiceHash SHA-256",
+      "algo": "sha256",
+      "coin": "BTC",
+      "url": "stratum+tcp://sha256.auto.nicehash.com:9200",
+      "user": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5.d9d27099-430e-4a4b-87b0-a128b3860756",
+      "pass": "x",
+      "keepalive": true,
+      "managed": true,
+      "producer": true,
+      "enabled": true
+    },
+    {
+      "name": "NiceHash RandomX",
+      "algo": "randomx",
+      "coin": "XMR", 
+      "url": "stratum+tcp://randomxmonero.auto.nicehash.com:9200",
+      "user": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5.d9d27099-430e-4a4b-87b0-a128b3860756",
+      "pass": "x",
+      "keepalive": true,
+      "managed": true,
+      "producer": true,
+      "enabled": true
+    },
+    {
+      "name": "NiceHash kHeavyHash", 
+      "algo": "kheavyhash",
+      "coin": "KAS",
+      "url": "stratum+tcp://kheavyhash.auto.nicehash.com:9200",
+      "user": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5.d9d27099-430e-4a4b-87b0-a128b3860756",
+      "pass": "x",
+      "keepalive": true,
+      "managed": true,
+      "producer": true,
+      "enabled": true
+    }
+  ],
+  "hardware": {
+    "cpuThreads": "auto",
+    "hugePages": true,
+    "cpuPriority": 5,
+    "donate": 0
+  },
+  "drLucyML": {
+    "connector": "001",
+    "multiplier": 7,
+    "pipes": "0.1-base",
+    "enhancement": "quantum-wells",
+    "location": "us-central1-a"
+  },
+  "monitoring": {
+    "healthCheck": true,
+    "hashRateTracking": true,
+    "paymentTracking": true,
+    "errorHandling": true
+  }
+}

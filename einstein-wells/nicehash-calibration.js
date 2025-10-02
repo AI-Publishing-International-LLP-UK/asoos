@@ -237,11 +237,12 @@ async function calibrateEinsteinWellsNiceHash() {
   };
 }
 
-module.exports = {
+export {
   EinsteinWellsNiceHashIntegration,
   calibrateEinsteinWellsNiceHash
 };
 
-if (require.main === module) {
-  calibrateEinsteinWellsNiceHash();
+// Execute if called directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  calibrateEinsteinWellsNiceHash().catch(console.error);
 }

@@ -1,0 +1,221 @@
+{
+  "masterVoiceConfig": {
+    "version": "1.0.0",
+    "organization": "AI Publishing International LLP",
+    "division": "Einstein Wells",
+    "totalPilots": 16,
+    "configType": "OAuth2-OIDC-Enterprise",
+    "region": "us-west1",
+    "project": "api-for-warp-drive"
+  },
+  "voicePilots": [
+    {
+      "id": 1,
+      "name": "Dr. Memoria sRIX",
+      "voiceId": "dr-memoria-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Memory Processing & Data Retention",
+      "secretManagerKey": "claude-voice-dr-memoria-srix",
+      "status": "configured"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Lucy sRIX",
+      "voiceId": "dr-lucy-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Advanced Analytics & ML Powerhouse",
+      "secretManagerKey": "claude-voice-dr-lucy-srix",
+      "status": "configured"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Match sRIX",
+      "voiceId": "dr-match-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Pattern Recognition & Matching",
+      "secretManagerKey": "claude-voice-dr-match-srix",
+      "status": "configured"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Cypriot sRIX",
+      "voiceId": "dr-cypriot-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Cryptography & Security",
+      "secretManagerKey": "claude-voice-dr-cypriot-srix",
+      "status": "configured"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Claude sRIX",
+      "voiceId": "dr-claude-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Core AI Reasoning & Logic",
+      "secretManagerKey": "claude-voice-dr-claude-srix",
+      "status": "configured"
+    },
+    {
+      "id": 6,
+      "name": "Professor Lee sRIX",
+      "voiceId": "professor-lee-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Academic Research & Education",
+      "secretManagerKey": "claude-voice-professor-lee-srix",
+      "status": "configured"
+    },
+    {
+      "id": 7,
+      "name": "Dr. Sabina sRIX",
+      "voiceId": "dr-sabina-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Medical & Biological Systems",
+      "secretManagerKey": "claude-voice-dr-sabina-srix",
+      "status": "configured"
+    },
+    {
+      "id": 8,
+      "name": "Dr. Maria sRIX",
+      "voiceId": "dr-maria-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Language Processing & Communication",
+      "secretManagerKey": "claude-voice-dr-maria-srix",
+      "status": "configured"
+    },
+    {
+      "id": 9,
+      "name": "Dr. Roark sRIX",
+      "voiceId": "dr-roark-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Strategic Planning & Leadership",
+      "secretManagerKey": "claude-voice-dr-roark-srix",
+      "status": "configured"
+    },
+    {
+      "id": 10,
+      "name": "Dr. Grant sRIX",
+      "voiceId": "dr-grant-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Resource Management & Funding",
+      "secretManagerKey": "claude-voice-dr-grant-srix",
+      "status": "configured"
+    },
+    {
+      "id": 11,
+      "name": "Dr. Burby sRIX",
+      "voiceId": "dr-burby-srix",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Systems Integration & Architecture",
+      "secretManagerKey": "claude-voice-dr-burby-srix",
+      "status": "configured"
+    },
+    {
+      "id": 12,
+      "name": "Elite11",
+      "voiceId": "elite11",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Elite Operations Management",
+      "secretManagerKey": "claude-voice-elite11",
+      "status": "configured",
+      "wingLeadership": {
+        "wing": 14,
+        "manages": "556M agents approximately"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Mastery33",
+      "voiceId": "mastery33",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Mastery & Excellence Systems",
+      "secretManagerKey": "claude-voice-mastery33",
+      "status": "configured",
+      "wingLeadership": {
+        "wing": 15,
+        "manages": "556M agents approximately"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Victory36",
+      "voiceId": "victory36",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Achievement & Success Optimization",
+      "secretManagerKey": "claude-voice-victory36",
+      "status": "configured",
+      "wingLeadership": {
+        "wing": 16,
+        "manages": "556M agents approximately"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Mining Pool Audit System",
+      "voiceId": "mining-audit-system",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Bitcoin Mining & Financial Audit",
+      "secretManagerKey": "claude-voice-mining-audit",
+      "status": "active",
+      "division": "Einstein Wells"
+    },
+    {
+      "id": 16,
+      "name": "Base PCP (Professional Co-Pilot)",
+      "voiceId": "base-pcp",
+      "elevenlabsVoice": "Vee",
+      "humeEnabled": true,
+      "specialty": "Universal Professional Assistant",
+      "secretManagerKey": "claude-voice-base-pcp",
+      "status": "pending"
+    }
+  ],
+  "globalConfig": {
+    "elevenlabs": {
+      "primaryVoice": "Vee",
+      "fallbackVoice": "Adam",
+      "apiVersion": "v1",
+      "streaming": true,
+      "stability": 0.5,
+      "similarityBoost": 0.5
+    },
+    "hume": {
+      "enabled": true,
+      "emotionalProcessing": true,
+      "sentimentAnalysis": true
+    },
+    "oauth2": {
+      "provider": "Google Cloud Identity",
+      "scope": ["https://www.googleapis.com/auth/cloud-platform"],
+      "tokenEndpoint": "https://oauth2.googleapis.com/token"
+    },
+    "secretManager": {
+      "project": "api-for-warp-drive",
+      "region": "us-west1",
+      "keyPrefix": "claude-voice-"
+    },
+    "monitoring": {
+      "healthChecks": true,
+      "selfHealing": true,
+      "logLevel": "info",
+      "alerting": {
+        "voiceFailures": true,
+        "tokenExpiry": true,
+        "apiQuotaLimits": true
+      }
+    }
+  }
+}

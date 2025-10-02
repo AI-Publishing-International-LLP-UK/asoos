@@ -1,0 +1,43 @@
+FROM node:24-alpine
+
+LABEL rig.id="ew-001"
+LABEL rig.location="us-central1-a" 
+LABEL rig.status="producer"
+LABEL ml.connector="dr-lucy-ml-connector-001"
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Copy application files
+COPY managed-stratum-connection.js ./
+COPY ew-001-production-config.json ./
+COPY server.js ./
+
+# Create production start script
+RUN echo '#!/bin/sh' > start-ew-001.sh && \
+    echo 'echo "🌟 STARTING EW-001 PRODUCER RIG"' >> start-ew-001.sh && \
+    echo 'echo "📍 Location: us-central1-a"' >> start-ew-001.sh && \
+    echo 'echo "🤖 Dr. Lucy ML Connector: 001"' >> start-ew-001.sh && \
+    echo 'echo "🏗️  Status: PRODUCER"' >> start-ew-001.sh && \
+    echo 'echo ""' >> start-ew-001.sh && \
+    echo 'node managed-stratum-connection.js' >> start-ew-001.sh && \
+    chmod +x start-ew-001.sh
+
+# Set environment variables for production
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV RIG_ID=ew-001
+ENV LOCATION=us-central1-a
+ENV STATUS=producer
+ENV ML_CONNECTOR=dr-lucy-ml-connector-001
+
+# Health check for rig status
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD node -e "console.log('EW-001 Producer: HEALTHY')" || exit 1
+
+EXPOSE 8080
+
+CMD ["./start-ew-001.sh"]

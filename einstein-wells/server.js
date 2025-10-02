@@ -9,6 +9,7 @@ import express from 'express';
 import cors from 'cors';
 import { EinsteinWellsMultiSystemOperator } from './multi-system-operator.js';
 import { EinsteinWellsQuantWarServiceIntegration } from './integrate-quantswar-service.js';
+import { ManagedStratumConnection } from './managed-stratum-connection.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -56,7 +57,7 @@ app.get('/status', async (req, res) => {
       environment: process.env.ENVIRONMENT || 'development',
       bitcoin_address: process.env.BITCOIN_ADDRESS_SECRET ? 'configured' : 'missing',
       rig_name: 'einstein-wells-quantswar',
-      rig_id: 'EW-QS-001',
+      rig_id: process.env.RIG_UUID || 'EW-QS-001',
       multi_system_operator: multiSystemOperator ? 'initialized' : 'not_initialized',
       service_integration: serviceIntegration ? 'initialized' : 'not_initialized'
     };
@@ -171,11 +172,21 @@ app.use((error, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', async () => {
   console.log('🌌 EINSTEIN WELLS CLOUD RUN SERVER STARTED');
   console.log(`⚡ Server running on port ${PORT}`);
   console.log(`🏗️ Environment: ${process.env.ENVIRONMENT || 'development'}`);
   console.log(`🔧 Ready for quantum mining operations`);
+  
+  // Initialize and start the managed stratum connection worker
+  try {
+    console.log('🔗 Starting managed stratum connection worker...');
+    const stratumWorker = new ManagedStratumConnection();
+    await stratumWorker.connect();
+    console.log('✅ Managed stratum connection worker started successfully');
+  } catch (error) {
+    console.error('❌ Failed to start managed stratum connection worker:', error);
+  }
 });
 
 // Graceful shutdown

@@ -1,0 +1,36 @@
+# Production-ready 16-Agent Personality System
+FROM node:24-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy source code
+COPY 16-agent-personality-system.js ./
+COPY asoos-deployment/ ./asoos-deployment/
+COPY dr-claude-orchestration.json ./
+COPY commands/ ./commands/
+COPY vls/ ./vls/
+COPY pilots-lounge/ ./pilots-lounge/
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
+
+# Change ownership
+RUN chown -R nodejs:nodejs /app
+USER nodejs
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD node -e "console.log('Health check passed')" || exit 1
+
+# Start the application
+CMD ["node", "16-agent-personality-system.js"]

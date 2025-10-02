@@ -1,0 +1,32 @@
+{
+  "voice_synthesis_16_agent": {
+    "status": "production_integrated",
+    "synthesis_engine": "hume_elevenlabs_hybrid",
+    "agent_voice_profiles": {
+      "dr-memoria": "IanFleming",
+      "dr-lucy": "Rachel", 
+      "dr-match": "Matilda",
+      "dr-cypriot": "Daniel",
+      "dr-claude": "Vee",
+      "dr-sabina": "Charlotte",
+      "dr-maria": "Bella",
+      "dr-roark": "Clyde",
+      "dr-grant": "Paul",
+      "dr-burby": "Antoni",
+      "professor-lee": "Charlie",
+      "professor-lucinda": "Nicole",
+      "professor-levi": "Josh", 
+      "professor-einstein": "Antoni",
+      "elite11": "George",
+      "mastery33": "Charlotte",
+      "victory36": "Sarah",
+      "the-conductor": "Adam"
+    },
+    "emotional_processing": true,
+    "regional_deployment": {
+      "us_west1": "active",
+      "us_central1": "active",
+      "eu_west1": "active"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "rigProfile": {
-    "rigName": "einstein-wells-quantswar",
+    "rigName": "Hope for Humanity",
     "rigId": "EW-QS-001",
     "type": "nicehash",
     "status": "production",
@@ -12,8 +12,8 @@
   "miningConfiguration": {
     "bitcoinPayoutAddress": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj",
     "niceHashAccount": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5",
-    "workerName": "einstein-wells-quantswar",
-    "rigDisplayName": "Einstein Wells Quantum Operations",
+    "workerName": "Hope-for-Humanity",
+    "rigDisplayName": "Hope for Humanity - Einstein Wells Quantum Operations",
     "algorithms": {
       "primary": ["sha256", "daggerhashimoto", "kheavyhash"],
       "secondary": ["randomx", "etchash", "kawpow", "octopus"],
