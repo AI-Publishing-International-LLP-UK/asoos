@@ -1,0 +1,197 @@
+# Advanced Session Affinity & Connection Draining Configuration
+# For NEXT PHASE ACHIEVEMENTS: Advanced Load Balancing
+
+apiVersion: cloud.google.com/v1
+kind: BackendService
+metadata:
+  name: mcp-backend-global-enhanced
+  namespace: integration-gateway
+  labels:
+    tier: production
+    load-balancing: advanced
+    session-management: enhanced
+spec:
+  # Global external managed load balancer
+  loadBalancingScheme: EXTERNAL_MANAGED
+  protocol: HTTPS
+  
+  # Advanced Session Affinity Configuration
+  sessionAffinity: CLIENT_IP
+  affinityCookieTtlSec: 1800  # 30 minutes
+  
+  # Connection Draining for Graceful Failover
+  connectionDraining:
+    drainingTimeoutSec: 60    # Wait 60s for existing connections to finish
+  
+  # Timeout and Performance Settings
+  timeoutSec: 30
+  enableCDN: true
+  
+  # Advanced Failover Policy
+  failoverPolicy:
+    disableConnectionDrainOnFailover: false  # Keep draining during failover
+    dropTrafficIfUnhealthy: true            # Don't route to unhealthy backends
+    failoverRatio: 0.1                      # 10% traffic can failover
+  
+  # Backend Configuration for Multi-Region Setup
+  backends:
+    # US West 1 - Primary Region (MOCOA Zones A & B)
+    - group: "projects/api-for-warp-drive/zones/us-west1-a/instanceGroups/mcp-group-us-west1-a"
+      balancingMode: UTILIZATION
+      maxUtilization: 0.85
+      capacityScaler: 1.0
+      
+    - group: "projects/api-for-warp-drive/zones/us-west1-b/instanceGroups/mcp-group-us-west1-b"
+      balancingMode: UTILIZATION
+      maxUtilization: 0.85
+      capacityScaler: 1.0
+      
+    - group: "projects/api-for-warp-drive/zones/us-west1-c/instanceGroups/mcp-group-us-west1-c"
+      balancingMode: UTILIZATION
+      maxUtilization: 0.80
+      capacityScaler: 1.0
+    
+    # US Central 1 - Secondary Region (MOCORIX2 Master Orchestration)
+    - group: "projects/api-for-warp-drive/zones/us-central1-a/instanceGroups/mcp-central-group"
+      balancingMode: UTILIZATION
+      maxUtilization: 0.75
+      capacityScaler: 0.8  # Lower priority for failover
+      
+    # EU West 1 - International Region (MOCOA EU)
+    - group: "projects/api-for-warp-drive/zones/europe-west1-b/instanceGroups/mcp-mig-europe-west1-b"
+      balancingMode: UTILIZATION
+      maxUtilization: 0.80
+      capacityScaler: 0.7  # Lowest priority
+  
+  # Advanced Health Checks
+  healthChecks:
+    - name: mcp-personality-health-check
+      config:
+        type: HTTPS
+        port: 443
+        requestPath: "/health?source=lb&check=personality"
+        checkIntervalSec: 5
+        timeoutSec: 5
+        unhealthyThreshold: 2
+        healthyThreshold: 2
+        
+  # Custom Request Headers for Personality Routing
+  customRequestHeaders:
+    - "X-LB-Region: ${region}"
+    - "X-Session-Affinity: CLIENT_IP"
+    - "X-Failover-Policy: graceful"
+    
+  # Security Headers
+  customResponseHeaders:
+    - "X-Content-Type-Options: nosniff"
+    - "X-Frame-Options: DENY"
+    - "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+
+---
+# URL Map for Personality-Aware Routing
+apiVersion: cloud.google.com/v1
+kind: UrlMap
+metadata:
+  name: mcp-personality-routing-map
+spec:
+  defaultService: "projects/api-for-warp-drive/global/backendServices/mcp-backend-global-enhanced"
+  
+  # Path-based routing for different personalities/agents
+  pathMatchers:
+    - name: personality-matcher
+      defaultService: "projects/api-for-warp-drive/global/backendServices/mcp-backend-global-enhanced"
+      
+      pathRules:
+        # VLS Agent Routing (18 agents)
+        - paths: ["/vls/*", "/api/vls/*"]
+          service: "projects/api-for-warp-drive/global/backendServices/vls-backend-service"
+          
+        # Doctor Voice Profiles (14 pilots)
+        - paths: ["/voice/*", "/api/voice/*", "/elevenlabs/*"]
+          service: "projects/api-for-warp-drive/global/backendServices/voice-synthesis-backend"
+          
+        # Diamond SAO Command Center
+        - paths: ["/diamond/*", "/dsao/*"]
+          service: "projects/api-for-warp-drive/global/backendServices/diamond-sao-backend"
+          
+        # MCP Company-specific routing (10,000 companies)
+        - paths: ["/mcp/*", "/company/*"]
+          service: "projects/api-for-warp-drive/global/backendServices/mcp-backend-global-enhanced"
+          
+  # Header-based routing for personality detection
+  headerMatchers:
+    - name: personality-header-matcher
+      headers:
+        - name: "X-Personality"
+          exactMatch: "dr-lucy"
+        - name: "X-Voice-Profile" 
+          regexMatch: "dr-.*"
+          
+  # Route rules based on headers
+  routeRules:
+    - priority: 10
+      matchRules:
+        - headerMatches:
+            - name: "X-Personality"
+              regexMatch: "dr-(lucy|claude|memoria|match|cypriot|sabina|maria|roark|grant|burby)"
+      service: "projects/api-for-warp-drive/global/backendServices/voice-synthesis-backend"
+      
+    - priority: 20
+      matchRules:
+        - headerMatches:
+            - name: "X-Agent-Type"
+              exactMatch: "vls"
+      service: "projects/api-for-warp-drive/global/backendServices/vls-backend-service"
+
+---
+# Advanced Health Check Configuration
+apiVersion: cloud.google.com/v1
+kind: HealthCheck
+metadata:
+  name: mcp-personality-health-check
+spec:
+  type: HTTPS
+  httpsHealthCheck:
+    port: 443
+    requestPath: "/health?persona=system&lb=true"
+    host: ""
+    response: ""
+    
+  # Aggressive health checking for fast failover
+  checkIntervalSec: 5
+  timeoutSec: 5
+  unhealthyThreshold: 2
+  healthyThreshold: 2
+  
+  # Logging for debugging
+  logConfig:
+    enable: true
+
+---
+# Regional Backend Services for Enhanced Distribution
+apiVersion: cloud.google.com/v1
+kind: BackendService  
+metadata:
+  name: mcp-backend-us-west1-enhanced
+spec:
+  loadBalancingScheme: EXTERNAL_MANAGED
+  protocol: HTTPS
+  region: us-west1
+  
+  # Region-specific session affinity
+  sessionAffinity: CLIENT_IP_PORT_PROTO
+  affinityCookieTtlSec: 3600  # 1 hour for regional consistency
+  
+  connectionDraining:
+    drainingTimeoutSec: 90    # Longer timeout for regional services
+    
+  backends:
+    - group: "projects/api-for-warp-drive/zones/us-west1-a/instanceGroups/mcp-group-us-west1-a"
+      balancingMode: UTILIZATION
+      maxUtilization: 0.85
+    - group: "projects/api-for-warp-drive/zones/us-west1-b/instanceGroups/mcp-group-us-west1-b" 
+      balancingMode: UTILIZATION
+      maxUtilization: 0.85
+    - group: "projects/api-for-warp-drive/zones/us-west1-c/instanceGroups/mcp-group-us-west1-c"
+      balancingMode: UTILIZATION  
+      maxUtilization: 0.80

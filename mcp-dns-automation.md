@@ -4,12 +4,9 @@
 Automated DNS management for Model Context Protocol (MCP) endpoints, enabling seamless company onboarding with zero manual DNS configuration.
 
 ## Production Specifications
-- **20M Agents** deployed across **200 sectors**
-- **64M Job Clusters** operational
-- **319,998 Career Clusters** with hierarchical management
-  - 33 original sectors with 9696 career clusters each
-  - 4 hierarchical levels with 9th degree breakdown
-  - 35,555 pilots with 9 mentees each
+- **Automated DNS provisioning** for MCP endpoints
+- **Zero-configuration onboarding** for new companies
+- **Multi-provider DNS support** (Cloudflare, Route53, Google DNS)
 - **Victory36 Protection** at maximum level
 - **100% Cloud-to-Cloud Operations**
 
@@ -116,37 +113,21 @@ curl -X POST https://asoos.2100.cool/wfa/mcp/dns \
   -d '{"companyName": "testcompany", "action": "create"}'
 ```
 
-## Career Cluster Management
+## DNS Health Monitoring
 
-### Structure
-- **Original Sectors**: 33
-- **200 Clusters**  
-- **Sub-clusters**: 9,696
-- **Total Career Clusters**: 319,998
-- **Hierarchical Levels**: 4
-- **Pilot Assignments**: 35,555 pilots
-- **Mentee Ratio**: 1:9 (each pilot mentors 9 mentees)
+### Health Checks
+- **DNS Resolution Tests**: Automated every 30 seconds
+- **Endpoint Availability**: HTTP/HTTPS connectivity tests
+- **Certificate Validation**: SSL/TLS certificate monitoring
+- **Propagation Tracking**: Global DNS propagation status
 
-### Cluster ID Format
-```
-CLUSTER_{sector:02d}_{cluster:06d}_{sub_cluster:05d}
-```
-Example: `CLUSTER_01_000001_00001`
-
-### API Access
+### Monitoring API
 ```bash
-# Get cluster information
-curl https://asoos.2100.cool/wfa/clusters
+# Check DNS health for company
+curl https://asoos.2100.cool/mcp/dns/health/{companyname}
 
-# Deploy career cluster system
-curl -X POST https://asoos.2100.cool/wfa/deploy \
-  -H "Content-Type: application/json" \
-  -d '{
-    "deployment_mode": "production",
-    "agents": 20000000,
-    "sectors": 200,
-    "career_clusters": 319998
-  }'
+# Get DNS propagation status
+curl https://asoos.2100.cool/mcp/dns/propagation/{companyname}
 ```
 
 ## Cloud Infrastructure
