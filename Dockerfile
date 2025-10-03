@@ -1,7 +1,9 @@
-# 🚀 AIXTIV Symphony - Production Docker Image
-# Multi-stage build with Node.js 22, Diamond CLI, and comprehensive security
+# 🎭 AIXTIV Symphony - Enterprise Voice Synthesis Docker Image
+# Multi-stage build with Node.js 24, Diamond CLI, and enterprise voice capabilities
+# Authority: Diamond SAO Command Center - Mr. Phillip Corey Roark
+# Mission: World-class 18-agent voice synthesis system
 
-FROM node:24.7.0-alpine AS base
+FROM node:24.11.0-alpine AS base
 
 # Set working directory
 WORKDIR /app
@@ -29,18 +31,15 @@ FROM base AS development
 
 # Copy package files
 COPY package*.json ./
-COPY diamond-cli/package*.json ./diamond-cli/
 
 # Install all dependencies (including dev)
 RUN npm ci --include=dev
-RUN cd diamond-cli && npm ci --include=dev
 
 # Copy source code
 COPY . .
 
-# Make Diamond CLI executable
-RUN chmod +x diamond-cli/bin/diamond
-RUN ln -s /app/diamond-cli/bin/diamond /usr/local/bin/diamond
+# Make Diamond CLI executable if it exists
+RUN if [ -f "diamond-cli/bin/diamond" ]; then chmod +x diamond-cli/bin/diamond && ln -s /app/diamond-cli/bin/diamond /usr/local/bin/diamond; fi
 
 # Production build stage
 FROM base AS builder
@@ -59,10 +58,8 @@ COPY . .
 # Build the application (if build script exists)
 RUN if [ -f "package.json" ] && grep -q '"build"' package.json; then npm run build; fi
 
-# Make Diamond CLI executable
-RUN chmod +x diamond-cli/bin/diamond
-RUN chmod +x victory36-monitor.sh
-RUN chmod +x deploy-daily-update-scheduler.sh
+# Make Diamond CLI executable if it exists
+RUN if [ -f "diamond-cli/bin/diamond" ]; then chmod +x diamond-cli/bin/diamond; fi
 
 # Production stage
 FROM node:24.7.0-alpine AS production
@@ -91,8 +88,8 @@ RUN npm install -g newman newman-reporter-htmlextra
 # Copy built application from builder stage
 COPY --from=builder --chown=aixtiv:aixtiv /app .
 
-# Create symlink for Diamond CLI global access
-RUN ln -s /app/diamond-cli/bin/diamond /usr/local/bin/diamond
+# Create symlink for Diamond CLI global access if it exists
+RUN if [ -f "/app/diamond-cli/bin/diamond" ]; then ln -s /app/diamond-cli/bin/diamond /usr/local/bin/diamond; fi
 
 # Create necessary directories
 RUN mkdir -p /app/logs /app/tmp && \
@@ -105,11 +102,18 @@ ENV NODE_ENV=production \
     CLOUD_ML_REGION=us-west1 \
     INTEGRATION_MCP=enabled \
     MOCOA_ORCHESTRATION=enabled \
-    DIAMOND_CLI_VERSION=latest
+    DIAMOND_CLI_VERSION=latest \
+    VOICE_SYSTEM_ENABLED=true \
+    ENTERPRISE_MODE=true \
+    MAX_VOICE_CONCURRENT=100 \
+    VOICE_CACHE_TTL=3600 \
+    AGENT_COUNT=18
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:8080/health || diamond version || exit 1
+# Enterprise Health check with voice system verification
+HEALTHCHECK --interval=30s --timeout=15s --start-period=90s --retries=5 \
+    CMD curl -f http://localhost:8080/health && \
+        curl -f http://localhost:8080/api/agents/voices && \
+        curl -f http://localhost:8080/api/system/status || exit 1
 
 # Security: Switch to non-root user
 USER aixtiv
@@ -120,10 +124,10 @@ EXPOSE 8080
 # Use tini as PID 1 for proper signal handling
 ENTRYPOINT ["tini", "--"]
 
-# Default command - can be overridden
-CMD ["node", "server.js"]
+# Enterprise voice synthesis server
+CMD ["node", "server-enterprise.js"]
 
-# Alternative commands for different services:
-# CMD ["diamond", "monitor"]
-# CMD ["node", "diamond-sao-ai-autonomous-orchestrator.js"]
-# CMD ["node", "dream-commander-optimized-daily-updates.js"]
+# Alternative enterprise commands:
+# CMD ["node", "server.js"]  # Basic server
+# CMD ["diamond", "monitor"]   # Diamond CLI monitoring
+# CMD ["node", "server-enterprise.js"] # Full enterprise voice system (default)

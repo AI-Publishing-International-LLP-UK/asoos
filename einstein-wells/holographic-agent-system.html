@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holographic Agent System - Vision Space</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #0a0a0a;
+      color: white;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Main Layout - Left DO / Right SEE */
+    .main-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Left Panel - DO Area (Agent Icons) */
+    .left-panel {
+      width: 300px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-right: 2px solid rgba(184, 134, 11, 0.3);
+      padding: 20px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 40%, rgba(184, 134, 11, 0.1) 50%, transparent 60%);
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.1);
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #B8860B;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(184, 134, 11, 0.5);
+    }
+
+    /* Agent Icons Grid */
+    .agent-icons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .agent-icon {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 auto;
+    }
+
+    .agent-icon:hover {
+      transform: scale(1.05);
+    }
+
+    /* Use your existing hexagon styles */
+    .hexagon-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .hexagon-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3);
+    }
+
+    .hexagon-face.front { transform: translateZ(10px); }
+    .hexagon-face.back { transform: translateZ(-10px) rotateY(180deg); }
+
+    .hexagon-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .agent-name {
+      font-size: 8px;
+      font-weight: 800;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .agent-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .agent-subtitle {
+      font-size: 6px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Right Panel - SEE Area (Vision Space) */
+    .right-panel {
+      flex: 1;
+      position: relative;
+      background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+      overflow: hidden;
+    }
+
+    /* Concrete Vision Space */
+    .vision-space {
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(100, 100, 100, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(80, 80, 80, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #3a3a3a 0%, #2c2c2c 25%, #1e1e1e 50%, #2a2a2a 100%);
+      position: relative;
+      perspective: 1500px;
+    }
+
+    /* Concrete texture overlay */
+    .vision-space::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.02) 2px,
+          rgba(255, 255, 255, 0.02) 4px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px
+        );
+      pointer-events: none;
+    }
+
+    /* Hologram Platforms */
+    .hologram-platforms {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 80px;
+    }
+
+    .hologram-platform {
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(11, 177, 187, 0.3) 0%, rgba(11, 177, 187, 0.1) 70%, transparent 100%);
+      border: 2px solid rgba(11, 177, 187, 0.5);
+      border-radius: 50%;
+      position: relative;
+      animation: platformPulse 3s ease-in-out infinite;
+      box-shadow: 
+        0 0 20px rgba(11, 177, 187, 0.4),
+        inset 0 0 20px rgba(11, 177, 187, 0.2);
+    }
+
+    .hologram-platform.occupied {
+      background: radial-gradient(circle, rgba(184, 134, 11, 0.4) 0%, rgba(184, 134, 11, 0.2) 70%, transparent 100%);
+      border-color: rgba(184, 134, 11, 0.7);
+      box-shadow: 
+        0 0 30px rgba(184, 134, 11, 0.6),
+        inset 0 0 30px rgba(184, 134, 11, 0.3);
+    }
+
+    .hologram-platform::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      height: 90%;
+      border: 1px solid rgba(11, 177, 187, 0.3);
+      border-radius: 50%;
+      animation: innerRing 4s linear infinite reverse;
+    }
+
+    .hologram-platform::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 60%;
+      border: 1px solid rgba(11, 177, 187, 0.4);
+      border-radius: 50%;
+      animation: innerRing 3s linear infinite;
+    }
+
+    /* Spawned Agents in Vision Space */
+    .spawned-agent {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      cursor: grab;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .spawned-agent:active {
+      cursor: grabbing;
+      transform: scale(1.1);
+    }
+
+    .spawned-agent.speaking {
+      animation: agentSpeaking 1s ease-in-out infinite alternate;
+    }
+
+    /* Holographic effect for spawned agents */
+    .spawned-agent .hexagon-3d {
+      animation: holoFloat 3s ease-in-out infinite, holoShimmer 2s linear infinite;
+    }
+
+    .spawned-agent .hexagon-face {
+      background: linear-gradient(135deg, 
+        rgba(184, 134, 11, 0.8) 0%, 
+        rgba(218, 165, 32, 0.8) 25%, 
+        rgba(11, 177, 187, 0.8) 50%, 
+        rgba(78, 205, 196, 0.8) 75%, 
+        rgba(80, 200, 120, 0.8) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 
+        0 0 20px rgba(184, 134, 11, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Bottom Ticker Notifications */
+    .notification-ticker {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.7);
+      border-top: 1px solid rgba(184, 134, 11, 0.3);
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .ticker-content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: tickerScroll 20s linear infinite;
+      color: #888;
+      font-size: 12px;
+    }
+
+    /* Agent Color Schemes */
+    .agent-dr-lucy .hexagon-face.front {
+      background: linear-gradient(135deg, #B8860B 0%, #DAA520 25%, #0bb1bb 50%, #4ECDC4 75%, #50C878 100%);
+    }
+
+    .agent-dr-memoria .hexagon-face.front {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 25%, #F59E0B 50%, #10B981 75%, #3B82F6 100%);
+    }
+
+    .agent-dr-match .hexagon-face.front {
+      background: linear-gradient(135deg, #DC2626 0%, #EA580C 25%, #D97706 50%, #059669 75%, #0284C7 100%);
+    }
+
+    .agent-professor-lee .hexagon-face.front {
+      background: linear-gradient(135deg, #7C3AED 0%, #DB2777 25%, #F59E0B 50%, #059669 75%, #2563EB 100%);
+    }
+
+    /* Animations */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotateY(0deg); }
+      25% { transform: translateY(-5px) rotateY(90deg); }
+      50% { transform: translateY(-3px) rotateY(180deg); }
+      75% { transform: translateY(-5px) rotateY(270deg); }
+    }
+
+    @keyframes platformPulse {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    @keyframes innerRing {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes holoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes holoShimmer {
+      0%, 100% { filter: brightness(1) contrast(1); }
+      50% { filter: brightness(1.2) contrast(1.1); }
+    }
+
+    @keyframes agentSpeaking {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(184, 134, 11, 0.8)); }
+    }
+
+    @keyframes tickerScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Control Panel */
+    .control-panel {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(184, 134, 11, 0.5);
+      z-index: 200;
+    }
+
+    .control-btn {
+      background: linear-gradient(135deg, #B8860B, #0bb1bb);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      margin: 5px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-container { flex-direction: column; }
+      .left-panel { width: 100%; height: 200px; }
+      .agent-icons { grid-template-columns: repeat(4, 1fr); }
+      .agent-icon { width: 80px; height: 80px; }
+      .hologram-platforms { gap: 40px; }
+      .hologram-platform { width: 80px; height: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Left Panel - DO Area -->
+    <div class="left-panel">
+      <div class="panel-title">AI AGENTS</div>
+      <div class="agent-icons">
+        
+        <!-- Dr. Lucy -->
+        <div class="agent-icon" data-agent="dr-lucy" onclick="spawnAgent('dr-lucy')">
+          <div class="hexagon-3d">
+            <div class="hexagon-face front"></div>
+            <div class="hexagon-face back"></div>
+            <div class="hexagon-content">
+              <div class="agent-name">DR</div>
+              <div class="agent-title">LUCY</div>
+              <div class="agent-subtitle">CRx01</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dr. Memoria -->
+        <div class="agent-icon" data-agent="dr-memoria" onclick="spawnAgent('dr-memoria')">
+          <div class="hexagon-3d">
+            <div class="hexagon-face front"></div>
+            <div class="hexagon-face back"></div>
+            <div class="hexagon-content">
+              <div class="agent-name">DR</div>
+              <div class="agent-title">MEMORIA</div>
+              <div class="agent-subtitle">sRIX</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dr. Match -->
+        <div class="agent-icon" data-agent="dr-match" onclick="spawnAgent('dr-match')">
+          <div class="hexagon-3d">
+            <div class="hexagon-face front"></div>
+            <div class="hexagon-face back"></div>
+            <div class="hexagon-content">
+              <div class="agent-name">DR</div>
+              <div class="agent-title">MATCH</div>
+              <div class="agent-subtitle">sRIX</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professor Lee -->
+        <div class="agent-icon" data-agent="professor-lee" onclick="spawnAgent('professor-lee')">
+          <div class="hexagon-3d">
+            <div class="hexagon-face front"></div>
+            <div class="hexagon-face back"></div>
+            <div class="hexagon-content">
+              <div class="agent-name">PROF</div>
+              <div class="agent-title">LEE</div>
+              <div class="agent-subtitle">sRIX</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Panel - SEE Area (Vision Space) -->
+    <div class="right-panel">
+      <div class="vision-space" id="visionSpace">
+        
+        <!-- Hologram Platforms -->
+        <div class="hologram-platforms">
+          <div class="hologram-platform" id="platform-1"></div>
+          <div class="hologram-platform" id="platform-2"></div>
+          <div class="hologram-platform" id="platform-3"></div>
+          <div class="hologram-platform" id="platform-4"></div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+          <div style="font-size: 12px; color: #B8860B; margin-bottom: 10px;">VISION CONTROLS</div>
+          <button class="control-btn" onclick="clearAllAgents()">Clear All</button>
+          <button class="control-btn" onclick="activateAllAgents()">Activate All</button>
+          <button class="control-btn" onclick="toggleVoiceMode()">Voice Mode</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Ticker -->
+  <div class="notification-ticker">
+    <div class="ticker-content" id="tickerContent">
+      System initialized • Holographic agent platforms online • Dr. Lucy CRx01 ML Powerhouse ready • Voice synthesis connected • OAuth2 security active • Click agent icons to spawn holograms • Drag agents to move around vision space • Einstein Wells energy systems operational
+    </div>
+  </div>
+
+  <script>
+    class HolographicAgentSystem {
+      constructor() {
+        this.spawnedAgents = new Map();
+        this.platforms = [];
+        this.isDragging = false;
+        this.dragAgent = null;
+        this.voiceMode = false;
+        
+        this.init();
+      }
+
+      init() {
+        // Initialize platforms
+        for (let i = 1; i <= 4; i++) {
+          this.platforms.push({
+            id: `platform-${i}`,
+            element: document.getElementById(`platform-${i}`),
+            occupied: false,
+            agent: null
+          });
+        }
+
+        this.setupEventListeners();
+        this.addTickerMessage("Holographic Agent System initialized");
+      }
+
+      setupEventListeners() {
+        const visionSpace = document.getElementById('visionSpace');
+        
+        visionSpace.addEventListener('mousedown', this.handleMouseDown.bind(this));
+        visionSpace.addEventListener('mousemove', this.handleMouseMove.bind(this));
+        visionSpace.addEventListener('mouseup', this.handleMouseUp.bind(this));
+        
+        // Touch events for mobile
+        visionSpace.addEventListener('touchstart', this.handleTouchStart.bind(this));
+        visionSpace.addEventListener('touchmove', this.handleTouchMove.bind(this));
+        visionSpace.addEventListener('touchend', this.handleTouchEnd.bind(this));
+      }
+
+      spawnAgent(agentType) {
+        // Find available platform
+        const availablePlatform = this.platforms.find(p => !p.occupied);
+        if (!availablePlatform) {
+          this.addTickerMessage("No available platforms for agent spawning");
+          return;
+        }
+
+        // Create agent element
+        const agent = this.createAgentElement(agentType);
+        const visionSpace = document.getElementById('visionSpace');
+        visionSpace.appendChild(agent);
+
+        // Position on platform
+        this.positionAgentOnPlatform(agent, availablePlatform);
+        
+        // Update platform status
+        availablePlatform.occupied = true;
+        availablePlatform.agent = agent;
+        availablePlatform.element.classList.add('occupied');
+
+        // Store spawned agent
+        this.spawnedAgents.set(agent.id, {
+          element: agent,
+          type: agentType,
+          platform: availablePlatform,
+          speaking: false
+        });
+
+        // Spawn animation
+        setTimeout(() => {
+          agent.style.opacity = '1';
+          agent.style.transform = 'translateY(0)';
+        }, 100);
+
+        this.addTickerMessage(`${this.getAgentDisplayName(agentType)} spawned on platform ${availablePlatform.id}`);
+      }
+
+      createAgentElement(agentType) {
+        const agent = document.createElement('div');
+        agent.className = `spawned-agent agent-${agentType}`;
+        agent.id = `spawned-${agentType}-${Date.now()}`;
+        agent.style.opacity = '0';
+        agent.style.transform = 'translateY(-50px)';
+        agent.style.transition = 'all 0.5s ease';
+
+        const agentData = this.getAgentData(agentType);
+        
+        agent.innerHTML = `
+          <div class="hexagon-3d">
+            <div class="hexagon-face front"></div>
+            <div class="hexagon-face back"></div>
+            <div class="hexagon-content">
+              <div class="agent-name">${agentData.name}</div>
+              <div class="agent-title">${agentData.title}</div>
+              <div class="agent-subtitle">${agentData.subtitle}</div>
+            </div>
+          </div>
+        `;
+
+        // Click to speak
+        agent.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.toggleAgentSpeaking(agent.id);
+        });
+
+        return agent;
+      }
+
+      getAgentData(agentType) {
+        const agents = {
+          'dr-lucy': { name: 'DR', title: 'LUCY', subtitle: 'CRx01' },
+          'dr-memoria': { name: 'DR', title: 'MEMORIA', subtitle: 'sRIX' },
+          'dr-match': { name: 'DR', title: 'MATCH', subtitle: 'sRIX' },
+          'professor-lee': { name: 'PROF', title: 'LEE', subtitle: 'sRIX' }
+        };
+        return agents[agentType] || { name: 'AI', title: 'AGENT', subtitle: 'UNKNOWN' };
+      }
+
+      getAgentDisplayName(agentType) {
+        const names = {
+          'dr-lucy': 'Dr. Lucy',
+          'dr-memoria': 'Dr. Memoria',
+          'dr-match': 'Dr. Match',
+          'professor-lee': 'Professor Lee'
+        };
+        return names[agentType] || 'Unknown Agent';
+      }
+
+      positionAgentOnPlatform(agent, platform) {
+        const platformRect = platform.element.getBoundingClientRect();
+        const visionSpaceRect = document.getElementById('visionSpace').getBoundingClientRect();
+        
+        const x = platformRect.left - visionSpaceRect.left + platformRect.width/2 - 50;
+        const y = platformRect.top - visionSpaceRect.top + platformRect.height/2 - 50;
+        
+        agent.style.left = x + 'px';
+        agent.style.top = y + 'px';
+      }
+
+      // Drag and Drop Implementation
+      handleMouseDown(e) {
+        const agent = e.target.closest('.spawned-agent');
+        if (!agent) return;
+        
+        this.startDragging(agent, e.clientX, e.clientY);
+      }
+
+      handleTouchStart(e) {
+        const agent = e.target.closest('.spawned-agent');
+        if (!agent) return;
+        
+        const touch = e.touches[0];
+        this.startDragging(agent, touch.clientX, touch.clientY);
+      }
+
+      startDragging(agent, x, y) {
+        this.isDragging = true;
+        this.dragAgent = agent;
+        
+        const rect = agent.getBoundingClientRect();
+        this.dragOffset = {
+          x: x - rect.left,
+          y: y - rect.top
+        };
+        
+        agent.style.zIndex = '1000';
+        agent.classList.add('dragging');
+      }
+
+      handleMouseMove(e) {
+        if (!this.isDragging || !this.dragAgent) return;
+        this.updateDragPosition(e.clientX, e.clientY);
+      }
+
+      handleTouchMove(e) {
+        if (!this.isDragging || !this.dragAgent) return;
+        e.preventDefault();
+        const touch = e.touches[0];
+        this.updateDragPosition(touch.clientX, touch.clientY);
+      }
+
+      updateDragPosition(clientX, clientY) {
+        const visionSpaceRect = document.getElementById('visionSpace').getBoundingClientRect();
+        
+        const x = clientX - visionSpaceRect.left - this.dragOffset.x;
+        const y = clientY - visionSpaceRect.top - this.dragOffset.y;
+        
+        this.dragAgent.style.left = Math.max(0, Math.min(x, visionSpaceRect.width - 100)) + 'px';
+        this.dragAgent.style.top = Math.max(0, Math.min(y, visionSpaceRect.height - 100)) + 'px';
+      }
+
+      handleMouseUp() {
+        this.stopDragging();
+      }
+
+      handleTouchEnd() {
+        this.stopDragging();
+      }
+
+      stopDragging() {
+        if (!this.isDragging) return;
+        
+        this.isDragging = false;
+        if (this.dragAgent) {
+          this.dragAgent.style.zIndex = '100';
+          this.dragAgent.classList.remove('dragging');
+          this.dragAgent = null;
+        }
+      }
+
+      toggleAgentSpeaking(agentId) {
+        const agentData = this.spawnedAgents.get(agentId);
+        if (!agentData) return;
+
+        agentData.speaking = !agentData.speaking;
+        
+        if (agentData.speaking) {
+          agentData.element.classList.add('speaking');
+          this.addTickerMessage(`${this.getAgentDisplayName(agentData.type)} is speaking`);
+          
+          // Simulate speech duration
+          setTimeout(() => {
+            if (this.spawnedAgents.has(agentId)) {
+              agentData.speaking = false;
+              agentData.element.classList.remove('speaking');
+            }
+          }, 3000);
+        } else {
+          agentData.element.classList.remove('speaking');
+        }
+      }
+
+      clearAllAgents() {
+        this.spawnedAgents.forEach((agentData, agentId) => {
+          agentData.element.remove();
+          if (agentData.platform) {
+            agentData.platform.occupied = false;
+            agentData.platform.agent = null;
+            agentData.platform.element.classList.remove('occupied');
+          }
+        });
+        
+        this.spawnedAgents.clear();
+        this.addTickerMessage("All agents cleared from vision space");
+      }
+
+      activateAllAgents() {
+        this.spawnedAgents.forEach((agentData) => {
+          if (!agentData.speaking) {
+            this.toggleAgentSpeaking(agentData.element.id);
+          }
+        });
+        this.addTickerMessage("All agents activated");
+      }
+
+      toggleVoiceMode() {
+        this.voiceMode = !this.voiceMode;
+        this.addTickerMessage(`Voice mode ${this.voiceMode ? 'enabled' : 'disabled'}`);
+      }
+
+      addTickerMessage(message) {
+        const ticker = document.getElementById('tickerContent');
+        const currentText = ticker.textContent;
+        ticker.textContent = currentText + ` • ${message}`;
+      }
+    }
+
+    // Global functions for onclick handlers
+    let holographicSystem;
+
+    function spawnAgent(agentType) {
+      holographicSystem.spawnAgent(agentType);
+    }
+
+    function clearAllAgents() {
+      holographicSystem.clearAllAgents();
+    }
+
+    function activateAllAgents() {
+      holographicSystem.activateAllAgents();
+    }
+
+    function toggleVoiceMode() {
+      holographicSystem.toggleVoiceMode();
+    }
+
+    // Initialize system when page loads
+    window.addEventListener('load', () => {
+      holographicSystem = new HolographicAgentSystem();
+    });
+  </script>
+</body>
+</html>
