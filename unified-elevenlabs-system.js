@@ -56,7 +56,7 @@ import axios from 'axios';
 import multer from 'multer';
 
 // Voice configuration
-const claudeVoiceConfig = require('../lib/claude-voice-config');
+const { getInstance: getClaudeVoiceConfig } = require('./lib/claude-voice-config.cjs');
 
 // ES modules compatibility
 const __filename = fileURLToPath(import.meta.url);
@@ -93,11 +93,11 @@ class UnifiedElevenLabsAgentSystem {
     this.apiKey = null;
     this.projectId = process.env.GCP_PROJECT_ID || 'api-for-warp-drive';
 
-    // Voice Configuration - Comprehensive mapping from all integrations
+    // Voice Configuration - Will be initialized asynchronously
     this.voiceProfiles = {
       // Diamond SAO Authority Voices
       diamondSAO: {
-        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Josh - Professional authority
+        voiceId: 'VR6AewLTigWG4xSOukaG', // Josh - Professional authority (fallback)
         name: 'Josh',
         description: 'Diamond SAO Command Center Authority Voice',
         settings: {
@@ -110,7 +110,7 @@ class UnifiedElevenLabsAgentSystem {
 
       // Owner Interface Voices
       ownerInterface: {
-        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Adam - Authoritative
+        voiceId: 'pNInz6obpgDQGcFmaJgB', // Adam - Authoritative (fallback)
         name: 'Adam',
         description: 'Owner Interface Professional Voice',
         settings: {
@@ -123,7 +123,7 @@ class UnifiedElevenLabsAgentSystem {
 
       // MOCOA Interface Voices
       mocaInterface: {
-        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Antoni - Warm engaging
+        voiceId: 'ErXwobaYiN019PkySvjV', // Antoni - Warm engaging (fallback)
         name: 'Antoni',
         description: 'MOCOA Warm and Engaging Voice',
         settings: {
@@ -136,7 +136,7 @@ class UnifiedElevenLabsAgentSystem {
 
       // Default Professional Voice
       default: {
-        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Professional female
+        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional female (fallback)
         name: 'Bella',
         description: 'Default Professional Voice',
         settings: {
@@ -164,14 +164,14 @@ class UnifiedElevenLabsAgentSystem {
       },
     };
 
-    // World-Class Computationalist Agents
+    // World-Class Computationalist Agents - Will be initialized asynchronously
     this.computationalistAgents = {
       drLucy: {
         id: 'qb-computationalist-dr-lucy',
         name: 'Dr. Lucy',
         title: 'Quantum Business Computationalist',
         role: 'World-Class ML Deep Mind + Quantum Business Intelligence',
-        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id, // Bella - Professional female (valid ElevenLabs voice)
+        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional female (fallback)
         classification: 'ELITE_QUANTUM_COMPUTATIONALIST',
         capabilities: [
           'Quantum-enhanced machine learning algorithms',
@@ -188,7 +188,7 @@ class UnifiedElevenLabsAgentSystem {
         name: 'Dr. Claude',
         title: 'Strategic Hybrid Reasoning Specialist',
         role: 'Strategic Intelligence & Advanced Analysis',
-        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
+        voiceId: 'EXAVITQu4vr4xnSDxMaL', // Bella - Professional female (fallback)
         classification: 'STRATEGIC_REASONING_SPECIALIST',
         capabilities: [
           'Advanced strategic analysis and planning',
@@ -205,7 +205,7 @@ class UnifiedElevenLabsAgentSystem {
         name: 'Victory36',
         title: 'Security Analytics & Predictive Threat Modeling',
         role: 'Security Intelligence & Protection Specialist',
-        voiceId: (await claudeVoiceConfig.getVoiceConfig()).voice_id,
+        voiceId: 'VR6AewLTigWG4xSOukaG', // Josh - Professional authority (fallback)
         classification: 'SECURITY_INTELLIGENCE_SPECIALIST',
         capabilities: [
           'Advanced security intelligence and threat analysis',
@@ -297,6 +297,9 @@ class UnifiedElevenLabsAgentSystem {
 
       // Initialize ElevenLabs primary client
       await this.initializeElevenLabsClient();
+
+      // Initialize voice configurations from Claude Voice Config
+      await this.initializeVoiceConfigurations();
 
       // Setup Express middleware and routes
       this.setupMiddleware();
@@ -438,6 +441,37 @@ class UnifiedElevenLabsAgentSystem {
       }
     } catch (error) {
       this.logger.error('❌ Self-healing OAuth2 initialization failed:', error);
+    }
+  }
+
+  /**
+   * Initialize voice configurations from Claude Voice Config
+   */
+  async initializeVoiceConfigurations() {
+    try {
+      this.logger.info('🎤 Initializing voice configurations...');
+
+      const claudeVoiceConfig = getClaudeVoiceConfig();
+      const voiceConfig = await claudeVoiceConfig.getVoiceConfig();
+
+      if (voiceConfig && voiceConfig.voice_id) {
+        // Update voice profiles with actual voice IDs from config
+        this.voiceProfiles.diamondSAO.voiceId = voiceConfig.voice_id;
+        this.voiceProfiles.ownerInterface.voiceId = voiceConfig.voice_id;
+        this.voiceProfiles.mocaInterface.voiceId = voiceConfig.voice_id;
+        this.voiceProfiles.default.voiceId = voiceConfig.voice_id;
+
+        // Update computationalist agents
+        this.computationalistAgents.drLucy.voiceId = voiceConfig.voice_id;
+        this.computationalistAgents.drClaude.voiceId = voiceConfig.voice_id;
+        this.computationalistAgents.victory36.voiceId = voiceConfig.voice_id;
+
+        this.logger.info(`✅ Voice configurations updated with voice ID: ${voiceConfig.voice_id}`);
+      } else {
+        this.logger.warn('⚠️ No voice configuration found, using fallback voice IDs');
+      }
+    } catch (error) {
+      this.logger.warn('⚠️ Failed to load voice configurations, using fallbacks:', error.message);
     }
   }
 
@@ -607,6 +641,7 @@ class UnifiedElevenLabsAgentSystem {
     this.app.get('/auth/login', this.initiateOAuth2.bind(this));
     this.app.get('/auth/callback', this.handleOAuth2Callback.bind(this));
     this.app.post('/auth/refresh', this.refreshToken.bind(this));
+    this.app.post('/auth/oauth2/token', this.getOAuth2TokenEndpoint.bind(this)); // For base-template.html integration
 
     // Voice synthesis endpoints
     this.app.post('/api/voice/synthesize', this.synthesizeVoice.bind(this));
@@ -957,7 +992,7 @@ class UnifiedElevenLabsAgentSystem {
     };
 
     const agentResponses = responses[agent.id] || [
-      'I\'m processing your request with advanced computational analysis.',
+      "I'm processing your request with advanced computational analysis.",
     ];
     return agentResponses[Math.floor(Math.random() * agentResponses.length)];
   }
