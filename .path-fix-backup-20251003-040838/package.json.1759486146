@@ -51,7 +51,7 @@
   "license": "PROPRIETARY",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AI-Publishing-International-LLP-UK/asoos.git"
+    "url": "https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git"
   },
   "engines": {
     "node": ">=24.0.0"

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{SYSTEM_NAME}}.2100.Cool - AIXTIV Symphony Operating System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+
+    /* Enhanced Collaborative Interface */
+    .collaborative-workspace {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-left: 2px solid rgba(11, 177, 187, 0.3);
+      z-index: 1500;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .collaborative-workspace.active {
+      transform: translateX(0);
+    }
+
+    .collaboration-header {
+      padding: 20px;
+      background: linear-gradient(135deg, #0bb1bb, #4ECDC4);
+      color: white;
+      font-weight: 600;
+    }
+
+    .coach-selector-panel {
+      padding: 20px;
+    }
+
+    /* Flexible Executive Coach System */
+    .executive-coach-selector {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(11, 177, 187, 0.3);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .coach-categories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .coach-category {
+      padding: 12px;
+      background: rgba(11, 177, 187, 0.1);
+      border: 1px solid rgba(11, 177, 187, 0.2);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .coach-category:hover {
+      background: rgba(11, 177, 187, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .coach-category.active {
+      background: linear-gradient(135deg, #0bb1bb, #4ECDC4);
+      color: white;
+      box-shadow: 0 4px 12px rgba(11, 177, 187, 0.3);
+    }
+
+    .coach-profiles {
+      display: grid;
+      gap: 15px;
+    }
+
+    .coach-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .coach-profile:hover {
+      border-color: rgba(11, 177, 187, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(11, 177, 187, 0.2);
+    }
+
+    .coach-profile.selected {
+      border-color: #0bb1bb;
+      background: rgba(11, 177, 187, 0.1);
+    }
+
+    .coach-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #B8860B, #0bb1bb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .coach-info {
+      flex: 1;
+    }
+
+    .coach-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .coach-specialty {
+      font-size: 10px;
+      color: #0bb1bb;
+      font-weight: 500;
+    }
+
+    .coach-status {
+      width: 8px;
+      height: 8px;
+      background: #0bb1bb;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(11, 177, 187, 0.6);
+    }
+
+    /* Enhanced Main Interface */
+    .main-container {
+      display: flex;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+      position: relative;
+      transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .main-container.collaborative {
+      margin-right: 400px;
+    }
+
+    /* Enhanced Sidebar with 7 VLS Icons */
+    .sidebar {
+      width: 48px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 4px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      z-index: 100;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .sidebar-icon {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .sidebar-icon:hover {
+      transform: scale(1.2);
+      box-shadow: 0 4px 15px rgba(11, 177, 187, 0.3);
+    }
+
+    .sidebar-icon.active {
+      animation: glow 2s infinite;
+      background: rgba(11, 177, 187, 0.1);
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 5px rgba(11, 177, 187, 0.8), 0 0 20px rgba(11, 177, 187, 0.4); }
+      50% { box-shadow: 0 0 20px rgba(11, 177, 187, 1), 0 0 40px rgba(11, 177, 187, 0.6); }
+    }
+
+    /* Collaboration Toggle Button */
+    .collaboration-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #0bb1bb, #4ECDC4);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      z-index: 1600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: 0 4px 15px rgba(11, 177, 187, 0.4);
+    }
+
+    .collaboration-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(11, 177, 187, 0.6);
+    }
+
+    /* Rest of the existing styles... */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin-left: 48px;
+      width: calc(100% - 48px);
+    }
+
+    .header {
+      height: 50px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #B8860B, #8B7355, #228B22, #0bb1bb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+    }
+
+    .user-info {
+      text-align: right;
+    }
+
+    .user-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .user-tagline {
+      font-size: 14px;
+      color: #0bb1bb;
+      font-weight: 500;
+    }
+
+    /* Enhanced Content Area */
+    .content-area {
+      flex: 1;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      overflow-y: auto;
+      min-height: calc(100vh - 100px);
+      position: relative;
+    }
+
+    .chat-area {
+      flex: 1;
+      min-width: 400px;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .right-panel {
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Enhanced Executive Coach Panel */
+    .executive-coach-panel {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(11, 177, 187, 0.3);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 
+        0 8px 25px rgba(11, 177, 187, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .current-coach-display {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .current-coach-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #B8860B, #0bb1bb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .current-coach-info h3 {
+      color: #0bb1bb;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .current-coach-info p {
+      color: #666;
+      font-size: 12px;
+    }
+
+    .change-coach-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #0bb1bb, #4ECDC4);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+
+    .change-coach-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(11, 177, 187, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- Collaboration Toggle Button -->
+  <button class="collaboration-toggle" onclick="toggleCollaboration()">
+    COACH<br>SELECT
+  </button>
+
+  <!-- Collaborative Workspace Panel -->
+  <div class="collaborative-workspace" id="collaborativeWorkspace">
+    <div class="collaboration-header">
+      <h2>Executive Coach Selection</h2>
+      <p>Choose your perfect sector-specific match</p>
+    </div>
+    
+    <div class="coach-selector-panel">
+      <div class="executive-coach-selector">
+        <h3 style="margin-bottom: 15px; color: #0bb1bb;">Sector Specialties</h3>
+        <div class="coach-categories">
+          <div class="coach-category active" onclick="filterCoaches('banking')">Banking & Finance</div>
+          <div class="coach-category" onclick="filterCoaches('tech')">Technology</div>
+          <div class="coach-category" onclick="filterCoaches('healthcare')">Healthcare</div>
+          <div class="coach-category" onclick="filterCoaches('manufacturing')">Manufacturing</div>
+          <div class="coach-category" onclick="filterCoaches('consulting')">Consulting</div>
+          <div class="coach-category" onclick="filterCoaches('retail')">Retail & E-comm</div>
+        </div>
+
+        <h3 style="margin-bottom: 15px; color: #0bb1bb;">Available Coaches</h3>
+        <div class="coach-profiles" id="coachProfiles">
+          <!-- Banking Coaches -->
+          <div class="coach-profile selected" data-sector="banking" onclick="selectCoach(this, 'Dr. Lucy Chen', 'Banking & Investment Strategy')">
+            <div class="coach-avatar">LC</div>
+            <div class="coach-info">
+              <div class="coach-name">Dr. Lucy Chen</div>
+              <div class="coach-specialty">Banking & Investment Strategy</div>
+            </div>
+            <div class="coach-status"></div>
+          </div>
+
+          <div class="coach-profile" data-sector="banking" onclick="selectCoach(this, 'Marcus Williams', 'Corporate Banking Leadership')">
+            <div class="coach-avatar">MW</div>
+            <div class="coach-info">
+              <div class="coach-name">Marcus Williams</div>
+              <div class="coach-specialty">Corporate Banking Leadership</div>
+            </div>
+            <div class="coach-status"></div>
+          </div>
+
+          <div class="coach-profile" data-sector="banking" onclick="selectCoach(this, 'Sarah Goldman', 'Financial Risk Management')">
+            <div class="coach-avatar">SG</div>
+            <div class="coach-info">
+              <div class="coach-name">Sarah Goldman</div>
+              <div class="coach-specialty">Financial Risk Management</div>
+            </div>
+            <div class="coach-status"></div>
+          </div>
+
+          <!-- Tech Coaches -->
+          <div class="coach-profile" data-sector="tech" onclick="selectCoach(this, 'Dr. Alex Rivera', 'Tech Innovation & Scaling')" style="display: none;">
+            <div class="coach-avatar">AR</div>
+            <div class="coach-info">
+              <div class="coach-name">Dr. Alex Rivera</div>
+              <div class="coach-specialty">Tech Innovation & Scaling</div>
+            </div>
+            <div class="coach-status"></div>
+          </div>
+
+          <div class="coach-profile" data-sector="tech" onclick="selectCoach(this, 'Jennifer Park', 'Product Leadership')" style="display: none;">
+            <div class="coach-avatar">JP</div>
+            <div class="coach-info">
+              <div class="coach-name">Jennifer Park</div>
+              <div class="coach-specialty">Product Leadership</div>
+            </div>
+            <div class="coach-status"></div>
+          </div>
+
+          <!-- Healthcare Coaches -->
+          <div class="coach-profile" data-sector="healthcare" onclick="selectCoach(this, 'Dr. Michael Torres', 'Healthcare Operations')" style="display: none;">
+            <div class="coach-avatar">MT</div>
+            <div class="coach-info">
+              <div class="coach-name">Dr. Michael Torres</div>
+              <div class="coach-specialty">Healthcare Operations</div>
+            </div>
+            <div class="coach-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container" id="mainContainer">
+    <!-- Sidebar with 7 VLS Icons -->
+    <div class="sidebar">
+      <div class="sidebar-icons">
+        <div class="sidebar-icon active" title="Communication">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2">
+            <circle cx="12" cy="12" r="10" fill="none" />
+            <path d="M9 11l2 2 4-4" stroke="#333" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        
+        <div class="sidebar-icon" title="Growth">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4ECDC4" stroke-width="2">
+            <circle cx="12" cy="12" r="10" fill="none" />
+            <path d="M12 8v4l3 3" stroke="#333" stroke-width="1.5"/>
+          </svg>
+        </div>
+        
+        <div class="sidebar-icon" title="Services">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#45B7D1" stroke-width="2">
+            <circle cx="12" cy="12" r="10" fill="none" />
+            <path d="M8 12h8M12 8v8" stroke="#333" stroke-width="1.5"/>
+          </svg>
+        </div>
+        
+        <div class="sidebar-icon" title="Automation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#96CEB4" stroke-width="2">
+            <circle cx="12" cy="12" r="10" fill="none" />
+            <path d="M12 6v6l4 2" stroke="#333" stroke-width="1.5"/>
+          </svg>
+        </div>
+        
+        <div class="sidebar-icon" title="ROI">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FECA57" stroke-width="2">
+            <circle cx="12" cy="12" r="10" fill="none" />
+            <circle cx="12" cy="12" r="3" stroke="#333" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+        
+        <div class="sidebar-icon" title="Wish">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#DDA0DD" stroke-width="2">
+            <circle cx="12" cy="12" r="10" fill="none" />
+            <path d="M7 12h10M7 8h10M7 16h10" stroke="#333" stroke-width="1.5"/>
+          </svg>
+        </div>
+        
+        <div class="sidebar-icon" title="Academy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0bb1bb" stroke-width="2">
+            <path d="M12 2L22 20H2L12 2z" fill="#0bb1bb" fill-opacity="0.15" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Header -->
+      <div class="header">
+        <div class="logo">{{SYSTEM_NAME}}</div>
+        <div class="user-info">
+          <div class="user-name">Mr. Phillip Corey Roark, CEO</div>
+          <div class="user-tagline">{{TAGLINE}}</div>
+        </div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        <!-- Chat Area -->
+        <div class="chat-area">
+          <div style="background: rgba(11, 177, 187, 0.1); border: 1px solid rgba(11, 177, 187, 0.3); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+            <h3 style="color: #0bb1bb; margin-bottom: 10px;">Welcome to AIXTIV Symphony</h3>
+            <p style="color: #666; font-size: 14px; line-height: 1.5;">
+              Your AI executive coach is ready to collaborate. Switch between coaches using the "COACH SELECT" button to find your perfect sector-specific match. Banking executives work with banking coaches, tech leaders with tech specialists.
+            </p>
+          </div>
+          
+          <div style="flex: 1; display: flex; flex-direction: column;">
+            <div style="flex: 1; padding: 20px; background: #f8f8f8; border-radius: 10px; margin-bottom: 20px;">
+              <p style="color: #888; text-align: center; margin-top: 50px;">Your conversation with your selected coach will appear here...</p>
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+              <input type="text" placeholder="Ask your executive coach anything..." style="flex: 1; padding: 15px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 14px;">
+              <button style="padding: 15px 25px; background: linear-gradient(135deg, #0bb1bb, #4ECDC4); border: none; border-radius: 25px; color: white; font-weight: 600; cursor: pointer;">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+          <!-- Enhanced Executive Coach Panel -->
+          <div class="executive-coach-panel">
+            <div class="current-coach-display">
+              <div class="current-coach-avatar" id="currentCoachAvatar">LC</div>
+              <div class="current-coach-info">
+                <h3 id="currentCoachName">Dr. Lucy Chen</h3>
+                <p id="currentCoachSpecialty">Banking & Investment Strategy</p>
+              </div>
+            </div>
+            <button class="change-coach-btn" onclick="toggleCollaboration()">
+              Change Executive Coach
+            </button>
+          </div>
+
+          <!-- Additional panels would go here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let isCollaborating = false;
+
+    function toggleCollaboration() {
+      const workspace = document.getElementById('collaborativeWorkspace');
+      const container = document.getElementById('mainContainer');
+      
+      isCollaborating = !isCollaborating;
+      
+      if (isCollaborating) {
+        workspace.classList.add('active');
+        container.classList.add('collaborative');
+      } else {
+        workspace.classList.remove('active');
+        container.classList.remove('collaborative');
+      }
+    }
+
+    function filterCoaches(sector) {
+      const categories = document.querySelectorAll('.coach-category');
+      const profiles = document.querySelectorAll('.coach-profile');
+      
+      // Update active category
+      categories.forEach(cat => cat.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // Show/hide profiles based on sector
+      profiles.forEach(profile => {
+        if (profile.dataset.sector === sector) {
+          profile.style.display = 'flex';
+        } else {
+          profile.style.display = 'none';
+        }
+      });
+    }
+
+    function selectCoach(element, name, specialty) {
+      // Remove previous selection
+      document.querySelectorAll('.coach-profile').forEach(p => p.classList.remove('selected'));
+      
+      // Select new coach
+      element.classList.add('selected');
+      
+      // Update main interface
+      const avatar = element.querySelector('.coach-avatar').textContent;
+      document.getElementById('currentCoachAvatar').textContent = avatar;
+      document.getElementById('currentCoachName').textContent = name;
+      document.getElementById('currentCoachSpecialty').textContent = specialty;
+      
+      // Show notification
+      showNotification(`Switched to ${name} - ${specialty}`, 'success');
+    }
+
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: ${type === 'success' ? 'rgba(16, 185, 129, 0.95)' : 'rgba(11, 177, 187, 0.95)'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        z-index: 2000;
+        animation: slideIn 0.3s ease;
+      `;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

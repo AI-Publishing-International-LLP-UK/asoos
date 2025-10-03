@@ -53,17 +53,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AI-Publishing-International-LLP-UK/asoos.git"
+    "url": "git+https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git"
   },
   "homepage": "https://mocoa-us-west1-b-yutylytffa-uw.a.run.app",
   "config": {
     "promiseInfrastructure": {
       "baseUrl": "https://mocoa-us-west1-b-yutylytffa-uw.a.run.app",
-      "regions": [
-        "us-west1",
-        "us-central1",
-        "eu-west1"
-      ],
+      "regions": ["us-west1", "us-central1", "eu-west1"],
       "scale": {
         "customers": 10000,
         "agents": 20000000
@@ -71,7 +67,7 @@
     },
     "synthesisDomains": {
       "voice": "voice-synthesis",
-      "agent": "agent-synthesis",
+      "agent": "agent-synthesis", 
       "interface": "interface-synthesis",
       "integration": "integration-synthesis",
       "promise": "promise-synthesis"

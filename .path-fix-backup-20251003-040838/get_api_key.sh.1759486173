@@ -272,7 +272,7 @@ update_mcp_registry() {
     local service="$2"
     local secret_name="$3"
     
-    local registry_file="/Users/as/asoos/integration-gateway/asoos/mcp-company-registry.json"
+    local registry_file="/Users/as/asoos/integration-gateway/Aixtiv-Symphony/mcp-company-registry.json"
     
     if [[ -f "$registry_file" ]] && command -v jq &> /dev/null; then
         local temp_file

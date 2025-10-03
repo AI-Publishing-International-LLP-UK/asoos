@@ -11,13 +11,13 @@ check_k8s_running() {
 }
 
 # Create logs directory if it doesn't exist
-mkdir -p /Users/as/asoos/logs
+mkdir -p /Users/as/AIXTIV-SYMPHONY/logs
 
 # Main guardian loop
 while true; do
     if check_k8s_running; then
         echo "✅ $(date): Kubernetes active - preventing sleep..."
-        echo "✅ $(date): Kubernetes active - preventing sleep..." >> /Users/as/asoos/logs/k8s-guardian.log
+        echo "✅ $(date): Kubernetes active - preventing sleep..." >> /Users/as/AIXTIV-SYMPHONY/logs/k8s-guardian.log
         
         # Prevent sleep for 5 minutes
         caffeinate -d -t 300 &
@@ -30,7 +30,7 @@ while true; do
         kill $CAFFEINATE_PID 2>/dev/null
     else
         echo "⚠️  $(date): Kubernetes not responding - allowing normal sleep"
-        echo "⚠️  $(date): Kubernetes not responding - allowing normal sleep" >> /Users/as/asoos/logs/k8s-guardian.log
+        echo "⚠️  $(date): Kubernetes not responding - allowing normal sleep" >> /Users/as/AIXTIV-SYMPHONY/logs/k8s-guardian.log
         sleep 60
     fi
 done
