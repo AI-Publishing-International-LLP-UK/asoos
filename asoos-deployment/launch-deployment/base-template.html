@@ -2782,12 +2782,81 @@
       }
     }
     
-    function startVoiceInput() {
+    // Global microphone permission state
+    let microphonePermission = null;
+    let microphoneStream = null;
+    
+    async function startVoiceInput() {
       console.log('🎙️ Voice input activated');
-      showNotificationTicker('Voice input ready - speak to Dr. Lucy');
       
-      // Initialize ElevenLabs Agent Platform conversation
-      initializeElevenLabsAgent();
+      // Check if we already have permission cached
+      if (microphonePermission === 'granted' && microphoneStream) {
+        showNotificationTicker('🎙️ Voice ready - using cached permission', 'success');
+        initializeElevenLabsAgent();
+        return;
+      }
+      
+      try {
+        // Request permission only once and cache it
+        if (!microphoneStream) {
+          console.log('📋 Requesting microphone permission...');
+          microphoneStream = await navigator.mediaDevices.getUserMedia({ 
+            audio: {
+              sampleRate: 16000,
+              channelCount: 1,
+              echoCancellation: true,
+              noiseSuppression: true
+            } 
+          });
+          microphonePermission = 'granted';
+          console.log('✅ Microphone permission granted and cached');
+        }
+        
+        showNotificationTicker('🎙️ Voice input ready - speak to Dr. Lucy', 'success');
+        initializeElevenLabsAgent();
+        
+      } catch (error) {
+        console.error('❌ Microphone access denied:', error);
+        microphonePermission = 'denied';
+        showNotificationTicker('Microphone access denied - using text only', 'error');
+        
+        // Fallback to simple browser speech recognition
+        fallbackToWebSpeech();
+      }
+    }
+    
+    function fallbackToWebSpeech() {
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        
+        recognition.onstart = () => {
+          showNotificationTicker('🎤 Listening... (browser speech)', 'success');
+        };
+        
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          const input = document.getElementById('copilotInput');
+          if (input) {
+            input.value = transcript;
+            showNotificationTicker(`Heard: "${transcript}"`, 'success');
+            // Auto-send the message
+            setTimeout(() => sendCopilotMessage(), 500);
+          }
+        };
+        
+        recognition.onerror = (event) => {
+          showNotificationTicker('Speech recognition error', 'error');
+        };
+        
+        recognition.start();
+      } else {
+        showNotificationTicker('Voice input not supported in this browser', 'error');
+      }
     }
     
     // ELEVENLABS AGENTS PLATFORM INTEGRATION

@@ -214,7 +214,7 @@ export default {
       });
     } else {
       // Fallback to GitHub if our deployment is not accessible
-      const githubResponse = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/Aixtiv-Symphony-Opus1.0.1/production/cloudflare-pages-deployment/index.html');
+      const githubResponse = await fetch('https://raw.githubusercontent.com/AI-Publishing-International-LLP-UK/asoos-Opus1.0.1/production/cloudflare-pages-deployment/index.html');
       if (githubResponse.ok) {
         const html = await githubResponse.text();
         // Replace /auth redirects with Sally Port redirects in fallback

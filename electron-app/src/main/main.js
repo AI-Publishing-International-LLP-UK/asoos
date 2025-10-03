@@ -542,7 +542,7 @@ class AIXTIVSymphonyApp {
             label: 'Documentation',
             click: () =>
               shell.openExternal(
-                'https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY/wiki'
+                'https://github.com/AI-Publishing-International-LLP-UK/asoos/wiki'
               ),
           },
           {

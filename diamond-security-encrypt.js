@@ -348,7 +348,7 @@ EXAMPLES:
   # Encrypt entire directory
   node diamond-security-encrypt.js encrypt /path/to/docs "DiamondSAO2025!"
   
-  # Encrypt all AIXTIV-SYMPHONY documents
+  # Encrypt all asoos documents
   node diamond-security-encrypt.js encrypt-all "DiamondSAO2025!"
   
   # Decrypt document
@@ -400,7 +400,7 @@ SECURITY NOTICE:
         break;
 
       case 'encrypt-all':
-        // Encrypt entire AIXTIV-SYMPHONY directory
+        // Encrypt entire asoos directory
         const symphonyPath = process.cwd();
         await encryptor.encryptDirectory(symphonyPath, passphrase);
         break;

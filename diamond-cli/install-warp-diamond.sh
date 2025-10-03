@@ -15,7 +15,7 @@ echo ""
 
 # Check if we're in the right directory
 if [[ ! -f "diamond-cli/bin/warp-diamond.mjs" ]]; then
-    echo "❌ Error: Must be run from AIXTIV-SYMPHONY root directory"
+    echo "❌ Error: Must be run from asoos root directory"
     echo "   Current directory: $(pwd)"
     echo "   Expected file: diamond-cli/bin/warp-diamond.mjs"
     exit 1

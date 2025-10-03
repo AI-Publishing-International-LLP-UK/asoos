@@ -69,7 +69,7 @@ class IntelligenceElevationManager {
       format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
       transports: [
         new winston.transports.File({
-          filename: '/Users/as/asoos/Aixtiv-Symphony/diamond-cli/intelligence-elevation.log',
+          filename: '/Users/as/asoos/asoos/diamond-cli/intelligence-elevation.log',
           level: 'info',
         }),
         new winston.transports.Console({

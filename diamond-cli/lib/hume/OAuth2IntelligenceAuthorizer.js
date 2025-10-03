@@ -105,7 +105,7 @@ class OAuth2IntelligenceAuthorizer {
       format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
       transports: [
         new winston.transports.File({
-          filename: '/Users/as/asoos/Aixtiv-Symphony/diamond-cli/oauth2-intelligence-auth.log',
+          filename: '/Users/as/asoos/asoos/diamond-cli/oauth2-intelligence-auth.log',
           level: 'info',
         }),
         new winston.transports.Console({

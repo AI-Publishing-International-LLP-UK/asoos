@@ -168,7 +168,7 @@ class MCPUniversalTemplate {
   }
 
   /**
-   * Create new customer MCP from universal template
+   * Create new customer MCP from universal template with Conductor Memory Wells
    */
   async createCustomerMCP(customerConfig) {
     try {
@@ -182,7 +182,7 @@ class MCPUniversalTemplate {
         throw new Error(`Customer MCP already exists: ${customerDomain}`);
       }
 
-      // Prepare customer MCP configuration
+      // Prepare customer MCP configuration with Conductor Memory Wells
       const mcpConfig = {
         ...customerConfig,
         domain: customerDomain,
@@ -190,12 +190,28 @@ class MCPUniversalTemplate {
         created_at: new Date().toISOString(),
         tier: customerConfig.tier || 'professional',
         region: customerConfig.region || 'us-west1',
-        features: { ...this.coreFeatures },
+        features: { 
+          ...this.coreFeatures,
+          conductor_memory_wells: true,
+          cultural_empathy_scoring: true,
+          crx_blending_system: true,
+          pilots_lounge_integration: true
+        },
         limits: this.customerTiers[customerConfig.tier || 'professional'],
         status: 'initializing',
+        // Conductor Memory Wells Configuration
+        conductor_config: {
+          employee_count: customerConfig.employee_count || 1,
+          memory_wells_needed: customerConfig.employee_count || 1,
+          base_conductor: 'Adam', // CRx01, 02, 03
+          crx_levels: ['CRx01', 'CRx02', 'CRx03'],
+          cultural_empathy_enabled: true,
+          sector_blending_enabled: true,
+          pilots_lounge_url: `https://pilots-lounge.${customerDomain}`
+        }
       };
 
-      // Deploy customer MCP
+      // Deploy customer MCP with Conductor Memory Wells
       const deployment = await this.deployCustomerMCP(mcpConfig);
 
       // Register in customer registry

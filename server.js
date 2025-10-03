@@ -124,7 +124,7 @@ app.get('/diamond/status', (req, res) => {
   res.json({
     diamond_cli: '💎 DIAMOND CLI - AIXTIV SYMPHONY INTEGRATION',
     authority: 'Diamond SAO Command Center',
-    repository: 'https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git',
+    repository: 'https://github.com/AI-Publishing-International-LLP-UK/asoos.git',
     status: '✅ OPERATIONAL',
     self_healing: '🔄 ACTIVE',
     timestamp: new Date().toISOString(),
@@ -262,7 +262,7 @@ function startServer() {
 💎 DIAMOND CLI - AIXTIV SYMPHONY INTEGRATION - 15X SCALE
 ═══════════════════════════════════════════════════════════════════════
 🏦  Authority: Mr. Phillip Corey Roark (Diamond SAO Command Center)
-📦 Repository: https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git
+📦 Repository: https://github.com/AI-Publishing-International-LLP-UK/asoos.git
 ⚡ Evolution Path: Traditional CLI → Diamond SAO CLI
 🚀 Server: http://0.0.0.0:${DIAMOND_CONFIG.port}
 🔄 Self-Healing: ACTIVE (15x Scale)

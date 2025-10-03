@@ -19,8 +19,8 @@ REGION="us-west1"
 SERVICE_NAME="mocoa-owner-interface-v34"
 
 # Check if we're in the right directory
-if [ ! -f "Aixtiv-Symphony/unified-elevenlabs-system.js" ]; then
-    echo "❌ Error: unified-elevenlabs-system.js not found in Aixtiv-Symphony directory"
+if [ ! -f "asoos/unified-elevenlabs-system.js" ]; then
+    echo "❌ Error: unified-elevenlabs-system.js not found in asoos directory"
     echo "Please run this script from the integration-gateway root directory"
     exit 1
 fi
@@ -63,11 +63,11 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-COPY Aixtiv-Symphony/package*.json ./Aixtiv-Symphony/
+COPY asoos/package*.json ./asoos/
 
 # Install dependencies
 RUN npm ci --only=production
-RUN cd Aixtiv-Symphony && npm ci --only=production
+RUN cd asoos && npm ci --only=production
 
 # Copy application code
 COPY . .
@@ -84,7 +84,7 @@ echo "🚀 Starting OAuth2-enabled ElevenLabs system..."\n\
 echo "🔐 API key authentication: DISABLED"\n\
 echo "🔑 OAuth2 authentication: ENABLED"\n\
 echo "🛡️ Self-healing OAuth2: ACTIVE"\n\
-node Aixtiv-Symphony/unified-elevenlabs-system.js\n' > start.sh && chmod +x start.sh
+node asoos/unified-elevenlabs-system.js\n' > start.sh && chmod +x start.sh
 
 # Expose port
 EXPOSE 8080
