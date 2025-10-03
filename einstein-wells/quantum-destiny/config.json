@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "name": "Quantum Destiny Mining Telemetry",
+  "target": "gcr.io/api-for-warp-drive/quantum-destiny-mining:latest",
+  "wallets": {
+    "bitcoin": "3CiHCuaRUyrik4WXijmnheTybm2Y2bCcAj",
+    "nicehash": "NHbPnJF5FZkdeFDcC53cAhG6tvAD2h5sKua5"
+  },
+  "monitoring": {
+    "enabled": true,
+    "interval": 30000,
+    "logLevel": "detailed",
+    "captureMetrics": [
+      "hashRate",
+      "shares",
+      "earnings",
+      "temperature",
+      "power"
+    ]
+  },
+  "cloudService": {
+    "project": "api-for-warp-drive",
+    "region": "us-central1",
+    "service": "quantum-destiny-mining"
+  }
+}
