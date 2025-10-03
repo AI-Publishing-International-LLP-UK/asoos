@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Billiard Ball Universal Template - 18 Agent System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :root {
+            --quantum-cyan: #00ffff;
+            --quantum-magenta: #ff00ff;
+            --quantum-gold: #ffd700;
+            --quantum-emerald: #00ff80;
+            --quantum-violet: #8000ff;
+            --memory-gradient: linear-gradient(135deg, #000428 0%, #004e92 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--memory-gradient);
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            color: white;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .quantum-hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--quantum-cyan);
+            z-index: 100;
+            max-width: 380px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+        }
+
+        .quantum-title {
+            margin: 0 0 20px 0;
+            color: var(--quantum-cyan);
+            text-shadow: 0 0 15px var(--quantum-cyan);
+            font-size: 18px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .memory-allocation {
+            background: rgba(0, 40, 80, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--quantum-emerald);
+            margin-bottom: 20px;
+        }
+
+        .memory-title {
+            color: var(--quantum-emerald);
+            font-size: 14px;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .memory-bar {
+            background: rgba(0, 0, 0, 0.6);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .memory-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--quantum-emerald), var(--quantum-cyan));
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .memory-text {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            line-height: 12px;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .conductor-section {
+            background: rgba(80, 0, 80, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--quantum-magenta);
+            margin-bottom: 20px;
+        }
+
+        .conductor-title {
+            color: var(--quantum-magenta);
+            font-size: 14px;
+            margin: 0 0 15px 0;
+            text-align: center;
+        }
+
+        .conductor-match {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .conductor-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--quantum-magenta);
+            background: linear-gradient(45deg, var(--quantum-magenta), var(--quantum-violet));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .conductor-info {
+            flex: 1;
+        }
+
+        .conductor-name {
+            font-size: 12px;
+            color: var(--quantum-magenta);
+            margin: 0;
+        }
+
+        .conductor-spec {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 2px 0 0 0;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .agent-ball {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-ball:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 25px currentColor;
+        }
+
+        .agent-ball.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 35px currentColor;
+        }
+
+        /* Individual Agent Styles */
+        .dr-lucy { background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-color: #ff6b6b; color: white; }
+        .dr-maria { background: linear-gradient(45deg, #a8e6cf, #88d8c0); border-color: #a8e6cf; color: #333; }
+        .dr-match { background: linear-gradient(45deg, #ffd93d, #6bcf7f); border-color: #ffd93d; color: #333; }
+        .dr-sabina { background: linear-gradient(45deg, #ff8a80, #ffab40); border-color: #ff8a80; color: white; }
+        .dr-burby { background: linear-gradient(45deg, #6c5ce7, #a29bfe); border-color: #6c5ce7; color: white; }
+        .dr-grant { background: linear-gradient(45deg, #00b894, #00cec9); border-color: #00b894; color: white; }
+        .dr-cypriot { background: linear-gradient(45deg, #fd79a8, #fdcb6e); border-color: #fd79a8; color: white; }
+        .dr-claude { background: linear-gradient(45deg, #0984e3, #74b9ff); border-color: #0984e3; color: white; }
+        .dr-memoria { background: linear-gradient(45deg, #6c5ce7, #a29bfe); border-color: #6c5ce7; color: white; }
+        .dr-roark { background: linear-gradient(45deg, #00b894, #00cec9); border-color: #00b894; color: white; }
+        .professor-lee { background: linear-gradient(45deg, #fdcb6e, #e17055); border-color: #fdcb6e; color: #333; }
+        .professor-lucinda { background: linear-gradient(45deg, #fd79a8, #e84393); border-color: #fd79a8; color: white; }
+        .professor-levi { background: linear-gradient(45deg, #00cec9, #55a3ff); border-color: #00cec9; color: white; }
+        .elite11 { background: linear-gradient(45deg, #gold, #ff6b6b); border-color: gold; color: #333; }
+        .mastery33 { background: linear-gradient(45deg, #00ff80, #0984e3); border-color: #00ff80; color: #333; }
+        .victory36 { background: linear-gradient(45deg, #ff00ff, #8000ff); border-color: #ff00ff; color: white; }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quantum-btn {
+            background: linear-gradient(45deg, rgba(0, 255, 0, 0.3), rgba(0, 200, 0, 0.5));
+            border: 1px solid var(--quantum-emerald);
+            border-radius: 8px;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 11px;
+            font-family: inherit;
+        }
+
+        .quantum-btn:hover {
+            background: linear-gradient(45deg, rgba(0, 255, 0, 0.5), rgba(0, 200, 0, 0.7));
+            box-shadow: 0 0 15px var(--quantum-emerald);
+            transform: translateY(-2px);
+        }
+
+        .hologram-panel {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px solid var(--quantum-cyan);
+            max-width: 350px;
+            min-width: 300px;
+            display: none;
+            z-index: 200;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+        }
+
+        .hologram-panel.active {
+            display: block;
+            animation: hologramMaterialize 0.6s ease-out;
+        }
+
+        @keyframes hologramMaterialize {
+            0% { 
+                opacity: 0; 
+                transform: translateY(-50%) scale(0.8) rotateY(180deg);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(-50%) scale(1) rotateY(0deg);
+            }
+        }
+
+        .agent-profile {
+            text-align: center;
+        }
+
+        .agent-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid var(--quantum-cyan);
+            box-shadow: 0 0 30px var(--quantum-cyan);
+            background: linear-gradient(45deg, var(--quantum-cyan), var(--quantum-magenta));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .agent-details h3 {
+            color: var(--quantum-cyan);
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+
+        .agent-specs {
+            background: rgba(0, 40, 80, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--quantum-emerald);
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .spec-item {
+            margin: 8px 0;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .spec-label {
+            color: var(--quantum-emerald);
+            font-weight: bold;
+        }
+
+        .endpoint-section {
+            background: rgba(80, 40, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--quantum-gold);
+            margin: 15px 0;
+        }
+
+        .endpoint-title {
+            color: var(--quantum-gold);
+            font-size: 13px;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .endpoint-url {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: var(--quantum-gold);
+            word-break: break-all;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .quantum-field {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--quantum-cyan);
+            font-size: 12px;
+            max-width: 280px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .instructions h4 {
+            color: var(--quantum-cyan);
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+
+        .gift-shop-badge {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: linear-gradient(45deg, var(--quantum-gold), var(--quantum-magenta));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            animation: giftPulse 2s infinite;
+        }
+
+        @keyframes giftPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .template-info {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--quantum-magenta);
+            font-size: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+        }
+
+        .usage-stats {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 15px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 11px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .stat-value {
+            color: var(--quantum-cyan);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <!-- Gift Shop Badge -->
+    <div class="gift-shop-badge">
+        🎁 GIFT SHOP READY
+    </div>
+    
+    <!-- Main Control HUD -->
+    <div class="quantum-hud">
+        <h2 class="quantum-title">⚡ QUANTUM BILLIARD BALL SYSTEM</h2>
+        
+        <!-- Memory Allocation Display -->
+        <div class="memory-allocation">
+            <div class="memory-title">
+                🧠 Memory Pool: <span id="memoryTotal">10TB</span>
+            </div>
+            <div class="memory-bar">
+                <div class="memory-fill" id="memoryFill">
+                    <div class="memory-text" id="memoryText">0% Used</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auto-Matched Conductor -->
+        <div class="conductor-section">
+            <div class="conductor-title">🎼 PRIMARY CONDUCTOR (Auto-Matched)</div>
+            <div class="conductor-match" id="primaryConductor">
+                <div class="conductor-avatar" id="conductorAvatar">DL</div>
+                <div class="conductor-info">
+                    <div class="conductor-name" id="conductorName">Dr. Lucy sRIX</div>
+                    <div class="conductor-spec" id="conductorSpec">Executive Coaching • ROI Expert</div>
+                </div>
+            </div>
+            <button class="quantum-btn" id="addConductor">+ Add Secondary Conductor</button>
+        </div>
+
+        <!-- Agent Selection Grid -->
+        <div class="agent-grid" id="agentGrid">
+            <!-- Agents populated by JavaScript -->
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="controls">
+            <button class="quantum-btn" id="voiceBtn">🎤 Voice Interface</button>
+            <button class="quantum-btn" id="deployBtn">🚀 Deploy Instance</button>
+            <button class="quantum-btn" id="configBtn">⚙️ Configure</button>
+        </div>
+
+        <!-- Usage Statistics -->
+        <div class="usage-stats">
+            <div class="stat-row">
+                <span class="stat-label">Active Agents:</span>
+                <span class="stat-value" id="activeAgents">3/18</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Memory Used:</span>
+                <span class="stat-value" id="memoryUsed">2.3TB/10TB</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Endpoint Status:</span>
+                <span class="stat-value" id="endpointStatus">Ready</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent Details Hologram -->
+    <div class="hologram-panel" id="hologramPanel">
+        <div class="agent-profile">
+            <div class="agent-avatar" id="holoAvatar">?</div>
+            <div class="agent-details">
+                <h3 id="holoName">Select an Agent</h3>
+                <div class="agent-specs" id="holoSpecs">
+                    <div class="spec-item">
+                        <span class="spec-label">Specialization:</span>
+                        <span id="holoSpec">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Voice Profile:</span>
+                        <span id="holoVoice">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory Allocated:</span>
+                        <span id="holoMemory">-</span>
+                    </div>
+                </div>
+                
+                <div class="endpoint-section">
+                    <div class="endpoint-title">
+                        🔗 Unique Owner Subscriber Endpoints
+                    </div>
+                    <div class="endpoint-url" id="primaryEndpoint">
+                        https://[agent-id]-[owner-uuid].us-west1.run.app
+                    </div>
+                    <div class="endpoint-url" id="backupEndpoint" style="margin-top: 8px;">
+                        https://[agent-id]-[owner-uuid].us-central1.run.app
+                    </div>
+                </div>
+            </div>
+            
+            <button class="quantum-btn" id="activateAgent" style="width: 100%; margin-top: 15px;">
+                ⚡ Activate Agent
+            </button>
+        </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions">
+        <h4>🎯 Universal Template System</h4>
+        <p>• <strong>Auto-Conductor Matching:</strong> System selects ideal primary conductor<br>
+        • <strong>Memory Pool:</strong> 10TB shared dynamically among agents<br>
+        • <strong>Unique Endpoints:</strong> Each owner subscriber gets custom URLs<br>
+        • <strong>Gift Shop Ready:</strong> Template deployable to any new instance<br>
+        • <strong>Pilots Lounge:</strong> Base template for all customer deployments</p>
+    </div>
+
+    <!-- Template Information -->
+    <div class="template-info">
+        <div style="color: var(--quantum-magenta); font-weight: bold;">UNIVERSAL TEMPLATE v1.0</div>
+        <div style="margin-top: 5px;">18 Agents • 10TB Memory • Auto-Conductor</div>
+        <div style="margin-top: 5px; color: var(--quantum-gold);">Ready for Pilots Lounge & Gift Shop</div>
+    </div>
+
+    <!-- Quantum Background Field -->
+    <canvas class="quantum-field" id="quantumField"></canvas>
+
+    <script>
+        // Agent Database with Complete Profiles
+        const agentDatabase = {
+            'dr-lucy': {
+                name: 'Dr. Lucy sRIX',
+                avatar: 'DL',
+                specialization: 'Executive Coaching, ROI Expert',
+                voice: 'confident_professional_female_african_american',
+                background: 'Stanford Berkeley African American Executive',
+                memory: '800GB',
+                conductor: true,
+                cssClass: 'dr-lucy',
+                endpoints: {
+                    primary: 'dr-lucy-coaching',
+                    services: ['executive-coaching', 'roi-analysis', 'project-management']
+                }
+            },
+            'dr-maria': {
+                name: 'Dr. Maria sRIX',
+                avatar: 'DM',
+                specialization: 'Psychology, Support Systems',
+                voice: 'warm_elegant_female_italian',
+                background: 'Milan Italian Psychology Expert',
+                memory: '600GB',
+                conductor: true,
+                cssClass: 'dr-maria',
+                endpoints: {
+                    primary: 'dr-maria-support',
+                    services: ['psychology', 'support-systems', 'certification']
+                }
+            },
+            'dr-match': {
+                name: 'Dr. Match sRIX',
+                avatar: 'DMT',
+                specialization: 'LinkedIn Intelligence, Talent Matching',
+                voice: 'sophisticated_precise_female_south_asian_london',
+                background: 'London South Asian Professional Elite',
+                memory: '750GB',
+                conductor: true,
+                cssClass: 'dr-match',
+                wing: 'Victory36',
+                endpoints: {
+                    primary: 'dr-match-talent',
+                    services: ['linkedin-integration', 'talent-matching', 'bidsuite']
+                }
+            },
+            'dr-sabina': {
+                name: 'Dr. Sabina sRIX',
+                avatar: 'DS',
+                specialization: 'Dream Commander, Sales & Growth',
+                voice: 'dynamic_inspiring_female_spanish',
+                background: 'Madrid Spanish Venezuelan Influences',
+                memory: '500GB',
+                conductor: true,
+                cssClass: 'dr-sabina',
+                endpoints: {
+                    primary: 'dr-sabina-growth',
+                    services: ['sales-leadership', 'dream-realization', 'growth-strategy']
+                }
+            },
+            'dr-burby': {
+                name: 'Dr. Burby sRIX',
+                avatar: 'DB',
+                specialization: 'Legal Authority, King\'s Counsel',
+                voice: 'authoritative_legal_male_harvard',
+                background: 'Manhattan Harvard Legal Authority',
+                memory: '900GB',
+                conductor: true,
+                cssClass: 'dr-burby',
+                endpoints: {
+                    primary: 'dr-burby-legal',
+                    services: ['legal-authority', 'blockchain-systems', 'government-sector']
+                }
+            },
+            'dr-grant': {
+                name: 'Dr. Grant sRIX',
+                avatar: 'DG',
+                specialization: 'Security & Protection, CEO Leadership',
+                voice: 'protective_commanding_male_canadian',
+                background: 'Toronto Canadian Executive',
+                memory: '700GB',
+                conductor: true,
+                cssClass: 'dr-grant',
+                endpoints: {
+                    primary: 'dr-grant-security',
+                    services: ['security-protection', 'ceo-leadership', 'deployment-strategy']
+                }
+            },
+            'dr-cypriot': {
+                name: 'Dr. Cypriot sRIX',
+                avatar: 'DC',
+                specialization: 'AI Academy Chancellor, Rewards Systems',
+                voice: 'wise_encouraging_male_african_american',
+                background: 'Atlanta African American Business Elite',
+                memory: '650GB',
+                conductor: true,
+                cssClass: 'dr-cypriot',
+                endpoints: {
+                    primary: 'dr-cypriot-academy',
+                    services: ['ai-academy', 'rewards-systems', 'ai-human-relations']
+                }
+            },
+            'dr-claude': {
+                name: 'Dr. Claude sRIX',
+                avatar: 'DCL',
+                specialization: 'Supreme Orchestrator, Strategic Evolution',
+                voice: 'commanding_strategic_male_british',
+                background: 'Surrey England Posh Gentleman',
+                memory: '1.2TB',
+                conductor: true,
+                cssClass: 'dr-claude',
+                variants: 10,
+                endpoints: {
+                    primary: 'dr-claude-orchestrator',
+                    services: ['strategic-orchestration', 'command-center', 'evolution-management']
+                }
+            },
+            'dr-memoria': {
+                name: 'Chancellor Memoria sRIX',
+                avatar: 'CM',
+                specialization: 'Publishing Chancellor, AiHu Producer',
+                voice: 'authoritative_media_male_american',
+                background: 'Media Authority Publishing Sophistication',
+                memory: '1TB',
+                conductor: true,
+                cssClass: 'dr-memoria',
+                wing: 'Elite11',
+                endpoints: {
+                    primary: 'dr-memoria-publishing',
+                    services: ['publishing-automation', 'aihu-production', 'media-systems']
+                }
+            },
+            'dr-roark': {
+                name: 'Dr. Roark sRIX',
+                avatar: 'DR',
+                specialization: 'Wish Vision, Strategic Visualization',
+                voice: 'visionary_inspiring_male_american',
+                background: 'American Visionary Authority',
+                memory: '550GB',
+                conductor: true,
+                cssClass: 'dr-roark',
+                endpoints: {
+                    primary: 'dr-roark-vision',
+                    services: ['wish-vision', 'strategic-visualization', 'future-planning']
+                }
+            },
+            'professor-lee': {
+                name: 'Professor Lee sRIX',
+                avatar: 'PL',
+                specialization: 'Intelligence Curator, FYEO CEO Services',
+                voice: 'analytical_strategic_male_intelligence',
+                background: 'Scottish Korean Oxbridge Intelligence',
+                memory: '1.1TB',
+                conductor: true,
+                cssClass: 'professor-lee',
+                endpoints: {
+                    primary: 'professor-lee-intelligence',
+                    services: ['intelligence-curation', 'fyeo-services', 'classified-systems']
+                }
+            },
+            'professor-lucinda': {
+                name: 'Professor Lucinda sRIX',
+                avatar: 'PLU',
+                specialization: 'Academic Research, Scholarly Leadership',
+                voice: 'scholarly_authoritative_male_academic',
+                background: 'British Academic Research Leader',
+                memory: '600GB',
+                conductor: false,
+                cssClass: 'professor-lucinda',
+                endpoints: {
+                    primary: 'professor-lucinda-research',
+                    services: ['academic-research', 'scholarly-leadership', 'gift-shop-systems']
+                }
+            },
+            'professor-levi': {
+                name: 'Professor Levi sRIX',
+                avatar: 'PLV',
+                specialization: 'Technical Systems, Academic Innovation',
+                voice: 'technical_precise_male_innovation',
+                background: 'Canadian Academic Technical Systems',
+                memory: '650GB',
+                conductor: false,
+                cssClass: 'professor-levi',
+                endpoints: {
+                    primary: 'professor-levi-technical',
+                    services: ['technical-systems', 'innovation-leadership', 'pilots-lounge-systems']
+                }
+            },
+            'elite11': {
+                name: 'Elite11 Wing Commander',
+                avatar: 'E11',
+                specialization: 'Elite Coordination Leadership',
+                voice: 'computational_elite11_leadership',
+                background: 'Commanding Inspirational Leadership',
+                memory: '2TB',
+                conductor: false,
+                cssClass: 'elite11',
+                wing: 'Elite11',
+                agents_managed: '185.59B',
+                endpoints: {
+                    primary: 'elite11-command',
+                    services: ['elite-coordination', 'leadership-management', 'quantum-systems']
+                }
+            },
+            'mastery33': {
+                name: 'Mastery33 Wing Coordinator',
+                avatar: 'M33',
+                specialization: 'Mastery Coordination Leadership',
+                voice: 'computational_mastery33_leadership',
+                background: 'Guiding Empowering Leadership',
+                memory: '2TB',
+                conductor: false,
+                cssClass: 'mastery33',
+                wing: 'Mastery33',
+                agents_managed: '185.59B',
+                endpoints: {
+                    primary: 'mastery33-coordination',
+                    services: ['mastery-coordination', 'learning-systems', 'empowerment-programs']
+                }
+            },
+            'victory36': {
+                name: 'Victory36 Wing Leader',
+                avatar: 'V36',
+                specialization: 'Victory Strategic Systems',
+                voice: 'computational_victory36_leadership',
+                background: 'Strategic Victory Leadership',
+                memory: '2TB',
+                conductor: false,
+                cssClass: 'victory36',
+                wing: 'Victory36',
+                agents_managed: '185.59B',
+                endpoints: {
+                    primary: 'victory36-strategic',
+                    services: ['victory-systems', 'strategic-leadership', 'competition-management']
+                }
+            }
+        };
+
+        // System State
+        let selectedAgent = null;
+        let memoryUsage = 23; // 23% of 10TB used
+        let activeAgentCount = 3;
+        let ownerSubscriberUUID = 'demo-uuid-12345';
+
+        // Initialize System
+        function initializeQuantumSystem() {
+            console.log('🎯 Initializing Quantum Billiard Ball Universal Template...');
+            
+            createAgentGrid();
+            initializeMemorySystem();
+            initializeQuantumField();
+            setupEventHandlers();
+            autoMatchConductor();
+            
+            console.log('✅ Universal Template Ready for Deployment');
+        }
+
+        // Create Agent Selection Grid
+        function createAgentGrid() {
+            const grid = document.getElementById('agentGrid');
+            
+            Object.entries(agentDatabase).forEach(([id, agent]) => {
+                const ball = document.createElement('div');
+                ball.className = `agent-ball ${agent.cssClass}`;
+                ball.dataset.agentId = id;
+                ball.textContent = agent.avatar;
+                ball.title = agent.name;
+                
+                ball.addEventListener('click', () => selectAgent(id));
+                ball.addEventListener('dblclick', () => showAgentHologram(id));
+                
+                grid.appendChild(ball);
+            });
+        }
+
+        // Auto-Match Primary Conductor
+        function autoMatchConductor() {
+            // Simulate intelligent matching - in production this would use ML
+            const conductorOptions = Object.entries(agentDatabase)
+                .filter(([_, agent]) => agent.conductor)
+                .sort(() => 0.5 - Math.random()); // Random for demo
+            
+            const [conductorId, conductor] = conductorOptions[0];
+            
+            document.getElementById('conductorAvatar').textContent = conductor.avatar;
+            document.getElementById('conductorName').textContent = conductor.name;
+            document.getElementById('conductorSpec').textContent = conductor.specialization;
+            
+            console.log(`🎼 Auto-matched conductor: ${conductor.name}`);
+        }
+
+        // Select Agent
+        function selectAgent(agentId) {
+            // Remove previous selection
+            document.querySelectorAll('.agent-ball').forEach(ball => {
+                ball.classList.remove('active');
+            });
+            
+            // Select new agent
+            const ball = document.querySelector(`[data-agent-id="${agentId}"]`);
+            ball.classList.add('active');
+            
+            selectedAgent = agentId;
+            console.log(`Selected agent: ${agentDatabase[agentId].name}`);
+        }
+
+        // Show Agent Hologram
+        function showAgentHologram(agentId) {
+            const agent = agentDatabase[agentId];
+            const panel = document.getElementById('hologramPanel');
+            
+            // Update hologram content
+            document.getElementById('holoAvatar').textContent = agent.avatar;
+            document.getElementById('holoName').textContent = agent.name;
+            document.getElementById('holoSpec').textContent = agent.specialization;
+            document.getElementById('holoVoice').textContent = agent.voice;
+            document.getElementById('holoMemory').textContent = agent.memory;
+            
+            // Generate unique endpoints for this owner subscriber
+            const primaryEndpoint = `https://${agent.endpoints.primary}-${ownerSubscriberUUID}.us-west1.run.app`;
+            const backupEndpoint = `https://${agent.endpoints.primary}-${ownerSubscriberUUID}.us-central1.run.app`;
+            
+            document.getElementById('primaryEndpoint').textContent = primaryEndpoint;
+            document.getElementById('backupEndpoint').textContent = backupEndpoint;
+            
+            // Show panel
+            panel.classList.add('active');
+            
+            console.log(`🔮 Displaying hologram for: ${agent.name}`);
+        }
+
+        // Initialize Memory System
+        function initializeMemorySystem() {
+            updateMemoryDisplay();
+            
+            // Simulate dynamic memory allocation
+            setInterval(() => {
+                memoryUsage += (Math.random() - 0.5) * 2;
+                memoryUsage = Math.max(0, Math.min(100, memoryUsage));
+                updateMemoryDisplay();
+            }, 3000);
+        }
+
+        // Update Memory Display
+        function updateMemoryDisplay() {
+            const fill = document.getElementById('memoryFill');
+            const text = document.getElementById('memoryText');
+            const used = document.getElementById('memoryUsed');
+            
+            fill.style.width = `${memoryUsage}%`;
+            text.textContent = `${Math.round(memoryUsage)}% Used`;
+            used.textContent = `${(memoryUsage * 0.1).toFixed(1)}TB/10TB`;
+        }
+
+        // Initialize Quantum Background Field
+        function initializeQuantumField() {
+            const canvas = document.getElementById('quantumField');
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Quantum particles animation
+            const particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1,
+                    opacity: Math.random() * 0.5 + 0.1
+                });
+            }
+            
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+                    
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(0, 255, 255, ${particle.opacity})`;
+                    ctx.fill();
+                });
+                
+                requestAnimationFrame(animateParticles);
+            }
+            
+            animateParticles();
+        }
+
+        // Setup Event Handlers
+        function setupEventHandlers() {
+            // Add Secondary Conductor
+            document.getElementById('addConductor').addEventListener('click', () => {
+                const conductors = Object.entries(agentDatabase)
+                    .filter(([_, agent]) => agent.conductor)
+                    .map(([id, agent]) => agent.name)
+                    .join('\n');
+                
+                alert(`Available Conductors:\n\n${conductors}\n\nSelect additional conductors to create your conducting team!`);
+            });
+            
+            // Voice Interface
+            document.getElementById('voiceBtn').addEventListener('click', () => {
+                if (selectedAgent) {
+                    const agent = agentDatabase[selectedAgent];
+                    alert(`🎤 Activating voice interface for ${agent.name}\nVoice Profile: ${agent.voice}\n\nIn production, this would start the ElevenLabs voice synthesis system.`);
+                } else {
+                    alert('Please select an agent first!');
+                }
+            });
+            
+            // Deploy Instance
+            document.getElementById('deployBtn').addEventListener('click', () => {
+                alert(`🚀 DEPLOYMENT INITIATED\n\nUniversal Template deploying to:\n• Pilots Lounge Base Template\n• Gift Shop Customer Selection\n• Owner Subscriber Instance\n\nMemory Pool: 10TB allocated\nUnique Endpoints: Generated\nConductor: Auto-matched\n\nReady for customer deployment!`);
+            });
+            
+            // Configure System
+            document.getElementById('configBtn').addEventListener('click', () => {
+                alert(`⚙️ CONFIGURATION OPTIONS\n\n• Memory Allocation Adjustment\n• Conductor Team Selection\n• Agent Activation Profiles\n• Endpoint Customization\n• Voice Profile Tuning\n• Regional Deployment Settings\n\nAll configurations saved to customer instance!`);
+            });
+            
+            // Activate Agent
+            document.getElementById('activateAgent').addEventListener('click', () => {
+                if (selectedAgent) {
+                    const agent = agentDatabase[selectedAgent];
+                    activeAgentCount++;
+                    document.getElementById('activeAgents').textContent = `${activeAgentCount}/18`;
+                    
+                    alert(`⚡ ${agent.name} ACTIVATED!\n\nEndpoint: https://${agent.endpoints.primary}-${ownerSubscriberUUID}.us-west1.run.app\nMemory Allocated: ${agent.memory}\nServices: ${agent.endpoints.services.join(', ')}\n\nAgent is now live for this Owner Subscriber!`);
+                }
+            });
+            
+            // Close hologram when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!document.getElementById('hologramPanel').contains(e.target) && 
+                    !e.target.classList.contains('agent-ball')) {
+                    document.getElementById('hologramPanel').classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize system when page loads
+        document.addEventListener('DOMContentLoaded', initializeQuantumSystem);
+
+        // Export functions for external use
+        window.QuantumBilliardBallSystem = {
+            selectAgent,
+            showAgentHologram,
+            autoMatchConductor,
+            agentDatabase
+        };
+    </script>
+</body>
+</html>

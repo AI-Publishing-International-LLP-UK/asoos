@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-10-03T12:57:18.304Z",
+  "pilots": {
+    "dr-grant": {
+      "name": "Dr. Grant sRIX",
+      "description": "Security & Protection, CEO Leadership",
+      "alt_text": "Professional headshot of Dr. Grant, a mature business executive with dark hair in a modern office setting with AI/tech visualizations in the background",
+      "specialization": "cybersecurity",
+      "voice_profile": "protective_commanding_male_canadian",
+      "photos": {
+        "original": "./assets/pilots/dr-grant/original/original.jpeg",
+        "web": {
+          "thumbnail": {
+            "jpg": "./assets/pilots/dr-grant/web/thumbnail.jpg",
+            "webp": "./assets/pilots/dr-grant/web/thumbnail.webp"
+          },
+          "small": {
+            "jpg": "./assets/pilots/dr-grant/web/small.jpg",
+            "webp": "./assets/pilots/dr-grant/web/small.webp"
+          },
+          "medium": {
+            "jpg": "./assets/pilots/dr-grant/web/medium.jpg",
+            "webp": "./assets/pilots/dr-grant/web/medium.webp"
+          },
+          "large": {
+            "jpg": "./assets/pilots/dr-grant/web/large.jpg",
+            "webp": "./assets/pilots/dr-grant/web/large.webp"
+          },
+          "xl": {
+            "jpg": "./assets/pilots/dr-grant/web/xl.jpg",
+            "webp": "./assets/pilots/dr-grant/web/xl.webp"
+          }
+        }
+      }
+    },
+    "professor-levi": {
+      "name": "Professor Levi sRIX",
+      "description": "Technical Systems, Academic Innovation",
+      "alt_text": "Young professional headshot of Professor Levi in business attire with tech/AI interface elements visible in the background",
+      "specialization": "technical_systems",
+      "voice_profile": "technical_precise_male_innovation",
+      "photos": {
+        "original": "./assets/pilots/professor-levi/original/original.jpeg",
+        "web": {
+          "thumbnail": {
+            "jpg": "./assets/pilots/professor-levi/web/thumbnail.jpg",
+            "webp": "./assets/pilots/professor-levi/web/thumbnail.webp"
+          },
+          "small": {
+            "jpg": "./assets/pilots/professor-levi/web/small.jpg",
+            "webp": "./assets/pilots/professor-levi/web/small.webp"
+          },
+          "medium": {
+            "jpg": "./assets/pilots/professor-levi/web/medium.jpg",
+            "webp": "./assets/pilots/professor-levi/web/medium.webp"
+          },
+          "large": {
+            "jpg": "./assets/pilots/professor-levi/web/large.jpg",
+            "webp": "./assets/pilots/professor-levi/web/large.webp"
+          },
+          "xl": {
+            "jpg": "./assets/pilots/professor-levi/web/xl.jpg",
+            "webp": "./assets/pilots/professor-levi/web/xl.webp"
+          }
+        }
+      }
+    }
+  }
+}

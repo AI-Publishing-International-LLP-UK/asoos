@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Billiard Ball Agent - Dr. Lucy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            perspective: 1000px;
+        }
+
+        .quantum-ball {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: quantumFloat 6s ease-in-out infinite;
+        }
+
+        .quantum-ball:hover {
+            transform: scale(1.1) rotateY(180deg);
+        }
+
+        @keyframes quantumFloat {
+            0%, 100% { transform: translateY(0px) rotateX(0deg) rotateZ(0deg); }
+            25% { transform: translateY(-10px) rotateX(5deg) rotateZ(2deg); }
+            50% { transform: translateY(-5px) rotateX(-2deg) rotateZ(-1deg); }
+            75% { transform: translateY(-8px) rotateX(3deg) rotateZ(1deg); }
+        }
+
+        .ball-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.3),
+                inset 0 0 30px rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+        }
+
+        .front-face {
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(0, 255, 255, 0.3) 50%, rgba(0, 100, 255, 0.6));
+            transform: rotateY(0deg) translateZ(1px);
+        }
+
+        .back-face {
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 0, 255, 0.3) 50%, rgba(100, 0, 255, 0.6));
+            transform: rotateY(180deg) translateZ(1px);
+            flex-direction: column;
+        }
+
+        .agent-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        }
+
+        .agent-name {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .agent-title {
+            font-size: 14px;
+            text-align: center;
+            opacity: 0.9;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        }
+
+        .quantum-particles {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translate(0, 0) scale(0.5);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 1;
+            }
+            90% { 
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(var(--dx), var(--dy)) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .instructions {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            max-width: 300px;
+        }
+
+        .instructions h3 {
+            margin: 0 0 10px 0;
+            color: #00ffff;
+        }
+
+        .agent-grid {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .mini-agent {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(0, 255, 255, 0.2));
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            text-align: center;
+            color: white;
+            animation: miniFloat 4s ease-in-out infinite;
+        }
+
+        .mini-agent:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        @keyframes miniFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h3>Quantum Agent Billiard Ball</h3>
+        <p><strong>Click or Hover:</strong> Rotate to see name/photo</p>
+        <p><strong>Natural Float:</strong> Gentle quantum motion</p>
+        <p><strong>Unique Design:</strong> Each agent has distinct quantum signature</p>
+        <p><strong>Interactive:</strong> Explore both sides of the sphere</p>
+    </div>
+
+    <div class="agent-grid">
+        <div class="mini-agent" data-agent="Dr. Lucy">Dr. Lucy</div>
+        <div class="mini-agent" data-agent="Dr. Maria">Dr. Maria</div>
+        <div class="mini-agent" data-agent="Dr. Match">Dr. Match</div>
+        <div class="mini-agent" data-agent="Prof. Lee">Prof. Lee</div>
+        <div class="mini-agent" data-agent="Dr. Burby">Dr. Burby</div>
+        <div class="mini-agent" data-agent="Dr. Memoria">Dr. Memoria</div>
+        <div class="mini-agent" data-agent="Dr. Roark">Dr. Roark</div>
+        <div class="mini-agent" data-agent="Dr. Sabina">Dr. Sabina</div>
+        <div class="mini-agent" data-agent="Dr. Grant">Dr. Grant</div>
+    </div>
+
+    <div class="container">
+        <div class="quantum-ball" id="quantumBall">
+            <div class="quantum-particles" id="particles"></div>
+            
+            <!-- Front Face - Agent Photo -->
+            <div class="ball-face front-face">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Ccircle cx='80' cy='80' r='70' fill='%23333' stroke='%2300ffff' stroke-width='2'/%3E%3Ccircle cx='60' cy='60' r='15' fill='%2300ffff' opacity='0.7'/%3E%3Ccircle cx='100' cy='70' r='10' fill='%23ff00ff' opacity='0.5'/%3E%3Ctext x='80' y='90' text-anchor='middle' fill='white' font-size='16' font-family='Arial'%3EDr. Lucy%3C/text%3E%3C/svg%3E" 
+                     alt="Dr. Lucy" class="agent-photo" id="agentPhoto">
+            </div>
+            
+            <!-- Back Face - Agent Name -->
+            <div class="ball-face back-face">
+                <div class="agent-name" id="agentName">Dr. Lucy</div>
+                <div class="agent-title" id="agentTitle">Quantum AI Specialist</div>
+                <div style="margin-top: 20px; font-size: 12px; opacity: 0.7;">
+                    Neural Network Architecture<br>
+                    Deep Learning Systems<br>
+                    Computational Intelligence
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create quantum particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const angle = (i / 20) * 2 * Math.PI;
+                const radius = 100 + Math.random() * 50;
+                const dx = Math.cos(angle) * radius;
+                const dy = Math.sin(angle) * radius;
+                
+                particle.style.setProperty('--dx', dx + 'px');
+                particle.style.setProperty('--dy', dy + 'px');
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Agent data
+        const agents = {
+            'Dr. Lucy': {
+                title: 'Quantum AI Specialist',
+                specialties: ['Neural Network Architecture', 'Deep Learning Systems', 'Computational Intelligence'],
+                color: 'rgba(0, 255, 255, 0.3)'
+            },
+            'Dr. Maria': {
+                title: 'Quantum Psychology Expert',
+                specialties: ['Behavioral Analysis', 'Cognitive Modeling', 'Human-AI Interaction'],
+                color: 'rgba(255, 0, 255, 0.3)'
+            },
+            'Dr. Match': {
+                title: 'Pattern Recognition Specialist',
+                specialties: ['Data Mining', 'Statistical Analysis', 'Predictive Modeling'],
+                color: 'rgba(0, 255, 0, 0.3)'
+            }
+            // Add more agents as needed
+        };
+
+        // Handle mini-agent clicks
+        document.querySelectorAll('.mini-agent').forEach(agent => {
+            agent.addEventListener('click', function() {
+                const agentName = this.dataset.agent;
+                switchToAgent(agentName);
+            });
+        });
+
+        function switchToAgent(agentName) {
+            const agentData = agents[agentName] || agents['Dr. Lucy'];
+            
+            // Update the main ball
+            document.getElementById('agentName').textContent = agentName;
+            document.getElementById('agentTitle').textContent = agentData.title;
+            
+            // Create new SVG for the agent
+            const svg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Ccircle cx='80' cy='80' r='70' fill='%23333' stroke='%2300ffff' stroke-width='2'/%3E%3Ccircle cx='60' cy='60' r='15' fill='%2300ffff' opacity='0.7'/%3E%3Ccircle cx='100' cy='70' r='10' fill='%23ff00ff' opacity='0.5'/%3E%3Ctext x='80' y='90' text-anchor='middle' fill='white' font-size='14' font-family='Arial'%3E${agentName}%3C/text%3E%3C/svg%3E`;
+            
+            document.getElementById('agentPhoto').src = svg;
+            
+            // Regenerate particles for new agent
+            createParticles();
+        }
+
+        // Handle ball rotation
+        let isRotated = false;
+        const ball = document.getElementById('quantumBall');
+        
+        ball.addEventListener('click', function() {
+            isRotated = !isRotated;
+            this.style.transform = isRotated ? 
+                'rotateY(180deg) scale(1.1)' : 
+                'rotateY(0deg) scale(1)';
+        });
+
+        // Make ball draggable for positioning
+        let isDragging = false;
+        let currentX = 0;
+        let currentY = 0;
+        let initialX = 0;
+        let initialY = 0;
+
+        ball.addEventListener('mousedown', function(e) {
+            if (e.detail === 1) { // Single click
+                isDragging = true;
+                initialX = e.clientX - currentX;
+                initialY = e.clientY - currentY;
+            }
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                
+                ball.style.transform = `translate(${currentX}px, ${currentY}px) rotateY(${isRotated ? 180 : 0}deg)`;
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+
+        // Initialize particles
+        createParticles();
+        
+        // Regenerate particles periodically
+        setInterval(createParticles, 8000);
+    </script>
+</body>
+</html>

@@ -30,6 +30,7 @@
     "googleapis": "^159.0.0",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
+    "miniflare": "^4.20251001.0",
     "multer": "^2.0.2",
     "node-fetch": "^3.3.2",
     "uuid": "^9.0.1",

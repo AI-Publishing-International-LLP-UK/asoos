@@ -12,9 +12,6 @@ const { MCPFeedbackLoopIntegration, integrateMCPFeedbackWithSallyPort } = requir
 const { DivinityHavenEmpathyLoop } = require('./divinity-haven-empathy-loop');
 const { MajorSystemCommands } = require('./major-system-commands');
 
-// Voice configuration
-const claudeVoiceConfig = require('../lib/claude-voice-config');
-
 const app = express();
 
 // Initialize GCP Secret Manager client

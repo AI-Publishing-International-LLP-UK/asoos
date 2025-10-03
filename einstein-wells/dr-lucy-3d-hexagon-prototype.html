@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Lucy 3D Hexagon Voice Interface - Prototype</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Arial', sans-serif;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hexagon-container {
+      position: relative;
+      margin: 40px auto;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .hexagon-3d {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .hexagon-3d:hover {
+      transform: rotateX(15deg) rotateY(15deg) scale(1.1);
+    }
+
+    .hexagon-3d.speaking {
+      animation: speakingPulse 0.8s ease-in-out infinite alternate, gentleFloat 4s ease-in-out infinite;
+      transform: scale(1.15);
+    }
+
+    .hexagon-face {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, 
+        #B8860B 0%, 
+        #DAA520 25%, 
+        #0bb1bb 50%, 
+        #4ECDC4 75%, 
+        #50C878 100%);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        0 10px 30px rgba(184, 134, 11, 0.4),
+        inset 0 4px 8px rgba(255, 255, 255, 0.2),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    /* Multiple faces for true 3D effect */
+    .hexagon-face.front {
+      transform: translateZ(15px);
+    }
+
+    .hexagon-face.back {
+      transform: translateZ(-15px) rotateY(180deg);
+      background: linear-gradient(135deg, 
+        #8B7355 0%, 
+        #B8860B 25%, 
+        #0891b2 50%, 
+        #228B22 75%, 
+        #2F4F4F 100%);
+    }
+
+    .hexagon-face.top {
+      transform: rotateX(90deg) translateZ(15px);
+      background: linear-gradient(135deg, 
+        #FFD700 0%, 
+        #B8860B 50%, 
+        #DAA520 100%);
+      height: 30px;
+      top: -15px;
+    }
+
+    .hexagon-face.bottom {
+      transform: rotateX(-90deg) translateZ(15px);
+      background: linear-gradient(135deg, 
+        #2F4F4F 0%, 
+        #0bb1bb 50%, 
+        #4ECDC4 100%);
+      height: 30px;
+      top: 105px;
+    }
+
+    /* Side faces for true hexagon 3D */
+    .hexagon-face.side-1 {
+      transform: rotateY(60deg) translateZ(15px);
+      background: linear-gradient(135deg, #B8860B 0%, #0bb1bb 100%);
+      width: 30px;
+      left: 75px;
+    }
+
+    .hexagon-face.side-2 {
+      transform: rotateY(-60deg) translateZ(15px);
+      background: linear-gradient(135deg, #4ECDC4 0%, #50C878 100%);
+      width: 30px;
+      left: 15px;
+    }
+
+    /* Text content inside hexagon */
+    .hexagon-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .agent-name {
+      font-size: 10px;
+      font-weight: 800;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 2px;
+      letter-spacing: 1px;
+    }
+
+    .agent-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .agent-subtitle {
+      font-size: 8px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      letter-spacing: 0.5px;
+    }
+
+    /* Speaking animation effects */
+    @keyframes speakingPulse {
+      0% {
+        box-shadow: 
+          0 10px 30px rgba(184, 134, 11, 0.4),
+          0 0 20px rgba(184, 134, 11, 0.6),
+          inset 0 4px 8px rgba(255, 255, 255, 0.2);
+      }
+      100% {
+        box-shadow: 
+          0 15px 40px rgba(184, 134, 11, 0.7),
+          0 0 40px rgba(11, 177, 187, 0.8),
+          0 0 60px rgba(80, 200, 120, 0.6),
+          inset 0 4px 8px rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0px) rotateY(0deg);
+      }
+      25% {
+        transform: translateY(-8px) rotateY(90deg);
+      }
+      50% {
+        transform: translateY(-4px) rotateY(180deg);
+      }
+      75% {
+        transform: translateY(-8px) rotateY(270deg);
+      }
+    }
+
+    /* Enhanced speaking state */
+    .hexagon-3d.speaking .hexagon-face.front {
+      background: linear-gradient(135deg, 
+        #FFD700 0%, 
+        #FFA500 25%, 
+        #00CED1 50%, 
+        #00FF7F 75%, 
+        #32CD32 100%);
+      animation: colorShift 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes colorShift {
+      0% {
+        background: linear-gradient(135deg, 
+          #B8860B 0%, 
+          #DAA520 25%, 
+          #0bb1bb 50%, 
+          #4ECDC4 75%, 
+          #50C878 100%);
+      }
+      100% {
+        background: linear-gradient(135deg, 
+          #FFD700 0%, 
+          #FF6347 25%, 
+          #00FFFF 50%, 
+          #7FFF00 75%, 
+          #32CD32 100%);
+      }
+    }
+
+    /* Controls */
+    .controls {
+      margin-top: 40px;
+    }
+
+    .control-btn {
+      background: linear-gradient(135deg, #B8860B, #0bb1bb);
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      margin: 0 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184, 134, 11, 0.5);
+    }
+
+    .status {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #4ECDC4;
+    }
+
+    /* Voice indicator */
+    .voice-indicator {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #50C878, #228B22);
+      border-radius: 50%;
+      border: 2px solid white;
+      opacity: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(80, 200, 120, 0.8);
+    }
+
+    .voice-indicator.active {
+      opacity: 1;
+      animation: voicePulse 1s ease-in-out infinite;
+    }
+
+    @keyframes voicePulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(80, 200, 120, 0.8);
+      }
+      50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 25px rgba(80, 200, 120, 1);
+      }
+    }
+
+    .prototype-info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(184, 134, 11, 0.5);
+    }
+
+    .prototype-info h3 {
+      color: #B8860B;
+      margin: 0 0 10px 0;
+    }
+
+    .prototype-info p {
+      margin: 5px 0;
+      font-size: 12px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="prototype-info">
+    <h3>Dr. Lucy 3D Hexagon Prototype</h3>
+    <p>• True 3D hexagon with depth</p>
+    <p>• Dynamic color changes when speaking</p>
+    <p>• Floating animation with rotation</p>
+    <p>• Voice indicator with pulse effect</p>
+    <p>• Click to test speaking mode</p>
+  </div>
+
+  <div class="container">
+    <h1>Dr. Lucy - CRx01 ML Powerhouse</h1>
+    <p>3D Hexagon Voice Interface Prototype</p>
+
+    <div class="hexagon-container" onclick="toggleSpeaking()">
+      <div class="hexagon-3d" id="drLucyHexagon">
+        <!-- Multiple faces for true 3D effect -->
+        <div class="hexagon-face front"></div>
+        <div class="hexagon-face back"></div>
+        <div class="hexagon-face top"></div>
+        <div class="hexagon-face bottom"></div>
+        <div class="hexagon-face side-1"></div>
+        <div class="hexagon-face side-2"></div>
+        
+        <!-- Content inside hexagon -->
+        <div class="hexagon-content">
+          <div class="agent-name">DR</div>
+          <div class="agent-title">LUCY</div>
+          <div class="agent-subtitle">CRx01</div>
+        </div>
+      </div>
+      
+      <!-- Voice indicator -->
+      <div class="voice-indicator" id="voiceIndicator"></div>
+    </div>
+
+    <div class="status" id="status">Ready - Click hexagon to activate</div>
+
+    <div class="controls">
+      <button class="control-btn" onclick="toggleSpeaking()">Toggle Speaking</button>
+      <button class="control-btn" onclick="resetHexagon()">Reset</button>
+      <button class="control-btn" onclick="changeColorScheme()">Next Color</button>
+    </div>
+  </div>
+
+  <script>
+    let isSpeaking = false;
+    let currentColorScheme = 0;
+    
+    const colorSchemes = [
+      // Dr. Lucy - Golden/Teal scheme
+      {
+        primary: 'linear-gradient(135deg, #B8860B 0%, #DAA520 25%, #0bb1bb 50%, #4ECDC4 75%, #50C878 100%)',
+        speaking: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #00CED1 50%, #00FF7F 75%, #32CD32 100%)'
+      },
+      // Future agent color schemes
+      {
+        primary: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 25%, #F59E0B 50%, #10B981 75%, #3B82F6 100%)',
+        speaking: 'linear-gradient(135deg, #A855F7 0%, #F472B6 25%, #FBBF24 50%, #34D399 75%, #60A5FA 100%)'
+      },
+      {
+        primary: 'linear-gradient(135deg, #DC2626 0%, #EA580C 25%, #D97706 50%, #059669 75%, #0284C7 100%)',
+        speaking: 'linear-gradient(135deg, #EF4444 0%, #F97316 25%, #F59E0B 50%, #10B981 75%, #3B82F6 100%)'
+      }
+    ];
+
+    function toggleSpeaking() {
+      const hexagon = document.getElementById('drLucyHexagon');
+      const status = document.getElementById('status');
+      const voiceIndicator = document.getElementById('voiceIndicator');
+      
+      isSpeaking = !isSpeaking;
+      
+      if (isSpeaking) {
+        hexagon.classList.add('speaking');
+        voiceIndicator.classList.add('active');
+        status.textContent = 'Dr. Lucy is speaking...';
+        status.style.color = '#50C878';
+        
+        // Simulate speech duration
+        setTimeout(() => {
+          if (isSpeaking) {
+            toggleSpeaking();
+          }
+        }, 3000);
+      } else {
+        hexagon.classList.remove('speaking');
+        voiceIndicator.classList.remove('active');
+        status.textContent = 'Ready - Click hexagon to activate';
+        status.style.color = '#4ECDC4';
+      }
+    }
+
+    function resetHexagon() {
+      const hexagon = document.getElementById('drLucyHexagon');
+      const voiceIndicator = document.getElementById('voiceIndicator');
+      const status = document.getElementById('status');
+      
+      hexagon.classList.remove('speaking');
+      voiceIndicator.classList.remove('active');
+      isSpeaking = false;
+      status.textContent = 'Reset complete - Ready for activation';
+      status.style.color = '#4ECDC4';
+    }
+
+    function changeColorScheme() {
+      currentColorScheme = (currentColorScheme + 1) % colorSchemes.length;
+      const scheme = colorSchemes[currentColorScheme];
+      
+      const frontFace = document.querySelector('.hexagon-face.front');
+      frontFace.style.background = scheme.primary;
+      
+      // Update speaking animation colors
+      const style = document.createElement('style');
+      style.textContent = `
+        .hexagon-3d.speaking .hexagon-face.front {
+          background: ${scheme.speaking} !important;
+        }
+      `;
+      document.head.appendChild(style);
+      
+      const status = document.getElementById('status');
+      status.textContent = `Color scheme ${currentColorScheme + 1} applied`;
+      status.style.color = '#FFD700';
+      
+      setTimeout(() => {
+        status.textContent = 'Ready - Click hexagon to activate';
+        status.style.color = '#4ECDC4';
+      }, 2000);
+    }
+
+    // Initialize with floating animation
+    window.addEventListener('load', () => {
+      const status = document.getElementById('status');
+      status.textContent = 'Dr. Lucy 3D Hexagon loaded - Ready for voice interaction';
+    });
+  </script>
+</body>
+</html>

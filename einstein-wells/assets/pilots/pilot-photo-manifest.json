@@ -1,0 +1,133 @@
+{
+  "manifest_version": "1.0.0",
+  "created_date": "2025-10-03",
+  "description": "Pilot photo mapping for Quantum Billiard Ball Videography Project - 250 Billion Agent Population",
+  "total_pilots": 34,
+  "pilots": {
+    "dr-grant": {
+      "name": "Dr. Grant sRIX",
+      "description": "Security & Protection, CEO Leadership",
+      "age_appearance": "mature_professional",
+      "voice_profile": "protective_commanding_male_canadian",
+      "background": "Toronto Canadian Executive",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/4/49761662-B881-466D-944A-E8383DEC1719_4_5005_c.jpeg",
+      "alt_text": "Professional headshot of Dr. Grant, a mature business executive with dark hair in a modern office setting with AI/tech visualizations in the background",
+      "pilot_index": 1,
+      "specialization": "cybersecurity",
+      "wing": "Independent"
+    },
+    "professor-levi": {
+      "name": "Professor Levi sRIX", 
+      "description": "Technical Systems, Academic Innovation",
+      "age_appearance": "young_professional",
+      "voice_profile": "technical_precise_male_innovation",
+      "background": "Canadian Academic Technical Systems",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/B/B7ABA5A1-4229-4C8B-99E5-BA58B1B45269_4_5005_c.jpeg",
+      "alt_text": "Young professional headshot of Professor Levi in business attire with tech/AI interface elements visible in the background",
+      "pilot_index": 2,
+      "specialization": "technical_systems",
+      "wing": "Academic",
+      "confirmed": true
+    },
+    "dr-maria": {
+      "name": "Dr. Maria sRIX",
+      "description": "Psychology, Support Systems, Warm Italian Expert",
+      "age_appearance": "mature_professional_61",
+      "voice_profile": "warm_elegant_female_italian",
+      "background": "Milan Italian Psychology Expert",
+      "source_photo": "/Users/as/Documents/desk top 02 08 2025/Pictures/Dr Maria 61 DALL·E 2024-12-05 15.28.19 - A professional and approachable portrait of a 61-year-old woman in a modern office setting, surrounded by soft natural lighting. The woman has a warm .webp",
+      "alt_text": "Professional and approachable portrait of Dr. Maria, a 61-year-old woman in a modern office setting with warm, soft natural lighting",
+      "pilot_index": 3,
+      "specialization": "psychology_support",
+      "wing": "Independent",
+      "confirmed": true
+    },
+    "pilot-03": {
+      "name": "TBD Pilot 03",
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/0/0A6FDFB3-A0CF-44F8-8FC7-6B04FAF7C6D4_4_5005_c.jpeg",
+      "pilot_index": 3,
+      "status": "pending_identification"
+    },
+    "pilot-04": {
+      "name": "TBD Pilot 04",
+      "description": "Unknown - To Be Identified", 
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/8/8AB1E46F-C6D2-4BCC-93C7-524E560F3B9A_1_105_c.jpeg",
+      "pilot_index": 4,
+      "status": "pending_identification"
+    },
+    "pilot-05": {
+      "name": "TBD Pilot 05",
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/A/A493F396-D9D4-402B-A3E9-E01A8893A2FF_4_5005_c.jpeg",
+      "pilot_index": 5,
+      "status": "pending_identification"
+    },
+    "pilot-06": {
+      "name": "TBD Pilot 06", 
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/D/D2376AB0-1386-4126-9941-C385BD40A8C0_4_5005_c.jpeg",
+      "pilot_index": 6,
+      "status": "pending_identification"
+    },
+    "pilot-07": {
+      "name": "TBD Pilot 07",
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/7/7870B949-C53D-4E1D-B979-663E672E61C6_4_5005_c.jpeg", 
+      "pilot_index": 7,
+      "status": "pending_identification"
+    },
+    "pilot-08": {
+      "name": "TBD Pilot 08",
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/9/99D49A9A-8EAF-4DE9-8471-9F2289FC79C9_4_5005_c.jpeg",
+      "pilot_index": 8, 
+      "status": "pending_identification"
+    },
+    "pilot-09": {
+      "name": "TBD Pilot 09",
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/C/C06E21F1-0E63-4692-B7F7-C528C24F408A_4_5005_c.jpeg",
+      "pilot_index": 9,
+      "status": "pending_identification"
+    },
+    "pilot-10": {
+      "name": "TBD Pilot 10", 
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/D/D6407A9C-F964-4976-8D4D-6E252F273E8D_1_105_c.jpeg",
+      "pilot_index": 10,
+      "status": "pending_identification"
+    },
+    "pilot-11": {
+      "name": "TBD Pilot 11",
+      "description": "Unknown - To Be Identified",
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/A/AF3873C4-8F47-444D-966B-A5BEAD2B8004_1_105_c.jpeg",
+      "pilot_index": 11,
+      "status": "pending_identification"
+    },
+    "pilot-12": {
+      "name": "TBD Pilot 12",
+      "description": "Unknown - To Be Identified", 
+      "source_photo": "/Users/as/Pictures/Photos Library.photoslibrary/resources/derivatives/masters/9/9F4968C1-1180-4EC4-ACDB-EA63811C6CEC_4_5005_c.jpeg",
+      "pilot_index": 12,
+      "status": "pending_identification"
+    }
+  },
+  "notes": {
+    "identified_pilots": ["dr-grant", "professor-levi"],
+    "pending_identification": 10,
+    "target_pilots_from_pcp_system": [
+      "Dr. Lucy sRIX", "Dr. Maria sRIX", "Dr. Match sRIX", "Dr. Sabina sRIX", 
+      "Dr. Burby sRIX", "Dr. Memoria sRIX", "Dr. Roark sRIX", "Dr. Cypriot sRIX", 
+      "Dr. Claude sRIX", "Professor Lee sRIX", "Elite11", "Mastery33", "Victory36"
+    ],
+    "next_steps": [
+      "Identify remaining 10 pilots from photos",
+      "Create photo extraction script", 
+      "Generate web-optimized versions",
+      "Integrate into Quantum Billiard Ball system",
+      "Build Mexico City visualization center",
+      "Add video recording capability"
+    ]
+  }
+}
