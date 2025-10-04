@@ -261,6 +261,363 @@
     }
 
     /* Responsive */
+    /* Gift Shop Styles */
+    .gift-shop-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+      z-index: 10000;
+      overflow-y: auto;
+    }
+    
+    .gift-shop-header {
+      background: rgba(11, 177, 187, 0.1);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(11, 177, 187, 0.3);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .shop-nav {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .nav-btn:hover {
+      background: rgba(11, 177, 187, 0.2);
+      border-color: #0bb1bb;
+    }
+    
+    .nav-btn.active {
+      background: linear-gradient(135deg, #0bb1bb, #50C878);
+      border-color: #0bb1bb;
+      color: black;
+      font-weight: 600;
+    }
+    
+    .shop-cart {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .cart-btn {
+      background: linear-gradient(135deg, #FFD700, #FF6B35);
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .cart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+    
+    .close-shop-btn {
+      background: rgba(255, 68, 68, 0.8);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .close-shop-btn:hover {
+      background: rgba(255, 68, 68, 1);
+      transform: translateY(-2px);
+    }
+    
+    .shop-content {
+      padding: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .shop-section {
+      display: none;
+    }
+    
+    .shop-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      color: #0bb1bb;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      backdrop-filter: blur(10px);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #0bb1bb;
+      box-shadow: 0 20px 40px rgba(11, 177, 187, 0.2);
+    }
+    
+    .product-card.featured {
+      border: 2px solid #FFD700;
+      background: rgba(255, 215, 0, 0.05);
+    }
+    
+    .product-card.enterprise {
+      border: 2px solid #8B5CF6;
+      background: rgba(139, 92, 246, 0.05);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      background: linear-gradient(135deg, #FF6B35, #FFD700);
+      color: black;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    
+    .product-image {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .product-title {
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    
+    .product-price {
+      font-size: 2rem;
+      color: #0bb1bb;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    
+    .product-price.original-price {
+      font-size: 1.2rem;
+      color: #999;
+      text-decoration: line-through;
+      margin-bottom: 5px;
+    }
+    
+    .product-description {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+    
+    .add-to-cart-btn {
+      background: linear-gradient(135deg, #0bb1bb, #50C878);
+      border: none;
+      color: black;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-size: 16px;
+    }
+    
+    .add-to-cart-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(11, 177, 187, 0.4);
+    }
+    
+    /* Shopping Cart Modal */
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 20000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .cart-content {
+      background: rgba(26, 26, 26, 0.95);
+      border: 2px solid #0bb1bb;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80%;
+      overflow-y: auto;
+      backdrop-filter: blur(20px);
+    }
+    
+    .cart-header {
+      background: rgba(11, 177, 187, 0.1);
+      padding: 20px;
+      border-bottom: 1px solid rgba(11, 177, 187, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .cart-header h2 {
+      color: #0bb1bb;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    
+    .close-cart-btn {
+      background: rgba(255, 68, 68, 0.8);
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .close-cart-btn:hover {
+      background: rgba(255, 68, 68, 1);
+    }
+    
+    .cart-items {
+      padding: 20px;
+      min-height: 200px;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 40px;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    
+    .cart-item-info {
+      flex: 1;
+    }
+    
+    .cart-item-name {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .cart-item-price {
+      color: #0bb1bb;
+      font-weight: 600;
+    }
+    
+    .remove-item-btn {
+      background: rgba(255, 68, 68, 0.8);
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .remove-item-btn:hover {
+      background: rgba(255, 68, 68, 1);
+    }
+    
+    .cart-footer {
+      background: rgba(11, 177, 187, 0.1);
+      padding: 20px;
+      border-top: 1px solid rgba(11, 177, 187, 0.3);
+    }
+    
+    .cart-total {
+      color: #0bb1bb;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .checkout-btn {
+      background: linear-gradient(135deg, #0bb1bb, #50C878);
+      border: none;
+      color: black;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .checkout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(11, 177, 187, 0.4);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
       .auth-container {
         padding: 30px 25px;
@@ -273,6 +630,34 @@
       
       .auth-title {
         font-size: 24px;
+      }
+      
+      .shop-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .nav-btn {
+        font-size: 12px;
+        padding: 8px 15px;
+      }
+      
+      .shop-cart {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .shop-content {
+        padding: 20px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
       }
     }
   </style>
@@ -370,6 +755,269 @@
       <button class="continue-btn" onclick="authenticateWithEmail()" id="emailBtn">
         Continue with Email
       </button>
+    </div>
+  </div>
+
+  <!-- Gift Shop Interface (Hidden Initially) -->
+  <div class="gift-shop-container" id="giftShopContainer" style="display: none;">
+    <div class="gift-shop-header">
+      <div class="shop-nav">
+        <button class="nav-btn active" onclick="showShopSection('featured')">🌟 Featured</button>
+        <button class="nav-btn" onclick="showShopSection('voices')">🎤 AI Voices</button>
+        <button class="nav-btn" onclick="showShopSection('environments')">🌍 Environments</button>
+        <button class="nav-btn" onclick="showShopSection('tools')">🛠️ Tools</button>
+        <button class="nav-btn" onclick="showShopSection('enterprise')">🏢 Enterprise</button>
+      </div>
+      <div class="shop-cart">
+        <button class="cart-btn" onclick="toggleCart()">
+          🛒 Cart (<span id="cartCount">0</span>)
+        </button>
+        <button class="close-shop-btn" onclick="closeGiftShop()">✕ Close</button>
+      </div>
+    </div>
+    
+    <!-- Gift Shop Sections -->
+    <div class="shop-content">
+      <!-- Featured Section -->
+      <div id="shop-featured" class="shop-section active">
+        <h2 class="section-title">🌟 Featured Premium Experiences</h2>
+        <div class="products-grid">
+          <div class="product-card featured">
+            <div class="product-badge">BESTSELLER</div>
+            <div class="product-image">🎯</div>
+            <h3 class="product-title">Victory36 AI Specialist</h3>
+            <div class="product-price">$799</div>
+            <div class="product-description">
+              Elite AI specialist for high-stakes presentations and strategic planning. 
+              Advanced computational capabilities with premium voice synthesis.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('victory36', 799)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card featured">
+            <div class="product-badge">NEW</div>
+            <div class="product-image">🎤</div>
+            <h3 class="product-title">Dr. Claude Voice Package</h3>
+            <div class="product-price">$299</div>
+            <div class="product-description">
+              Professional computational voice for strategic discussions and complex problem solving. 
+              Includes custom voice training and 100 hours of premium processing.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('dr-claude-voice', 299)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card featured">
+            <div class="product-badge">POPULAR</div>
+            <div class="product-image">🌟</div>
+            <h3 class="product-title">Everything Bundle</h3>
+            <div class="product-price original-price">$2,899</div>
+            <div class="product-price">$1,999</div>
+            <div class="product-description">
+              Complete VisionSpace experience with all voice packages, environments, branding tools, 
+              and premium features. Best value for visionary leaders.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('everything-bundle', 1999)">
+              Add to Cart - Save $900
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Voices Section -->
+      <div id="shop-voices" class="shop-section">
+        <h2 class="section-title">🎤 AI Voice Packages</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">🧠</div>
+            <h3 class="product-title">Dr. Lucy sRIX Package</h3>
+            <div class="product-price">$399</div>
+            <div class="product-description">
+              Advanced strategic reasoning intelligence with quantum computational voice synthesis.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('dr-lucy-srix', 399)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">⚡</div>
+            <h3 class="product-title">Elite11 Voice Collection</h3>
+            <div class="product-price">$199</div>
+            <div class="product-description">
+              Premium voice collection for professional presentations and client interactions.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('elite11-voices', 199)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">🏆</div>
+            <h3 class="product-title">Mastery33 Executive Suite</h3>
+            <div class="product-price">$599</div>
+            <div class="product-description">
+              Executive-level voice synthesis for C-suite communications and board presentations.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('mastery33-exec', 599)">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Environments Section -->
+      <div id="shop-environments" class="shop-section">
+        <h2 class="section-title">🌍 Immersive Environments</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">🌊</div>
+            <h3 class="product-title">Waterfall Environment Pack</h3>
+            <div class="product-price">$199</div>
+            <div class="product-description">
+              Immersive nature environments with 4K backgrounds, ambient sounds, and dynamic lighting.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('waterfall-env', 199)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">🏙️</div>
+            <h3 class="product-title">NYC Executive Suite</h3>
+            <div class="product-price">$299</div>
+            <div class="product-description">
+              Premium Manhattan office environments with city views and professional ambiance.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('nyc-exec', 299)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">🏢</div>
+            <h3 class="product-title">Corporate Branding Suite</h3>
+            <div class="product-price">$599</div>
+            <div class="product-description">
+              Custom branded environments with your company logo, colors, and themes.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('corporate-branding', 599)">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tools Section -->
+      <div id="shop-tools" class="shop-section">
+        <h2 class="section-title">🛠️ Premium Tools</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">📊</div>
+            <h3 class="product-title">Analytics Dashboard Pro</h3>
+            <div class="product-price">$399</div>
+            <div class="product-description">
+              Advanced meeting analytics with AI insights, productivity metrics, and ROI tracking.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('analytics-pro', 399)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">📝</div>
+            <h3 class="product-title">AI Note-Taking System</h3>
+            <div class="product-price">$199</div>
+            <div class="product-description">
+              Intelligent note-taking with real-time transcription and AI-powered summaries.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('ai-notes', 199)">
+              Add to Cart
+            </button>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">🔄</div>
+            <h3 class="product-title">Workflow Automation Suite</h3>
+            <div class="product-price">$799</div>
+            <div class="product-description">
+              Automate your business processes with AI-driven workflow management.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('workflow-automation', 799)">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Enterprise Section -->
+      <div id="shop-enterprise" class="shop-section">
+        <h2 class="section-title">🏢 Enterprise Solutions</h2>
+        <div class="products-grid">
+          <div class="product-card enterprise">
+            <div class="product-image">💼</div>
+            <h3 class="product-title">Enterprise MCP Server</h3>
+            <div class="product-price">$2,999</div>
+            <div class="product-description">
+              Dedicated MCP server for your organization with unlimited users and custom integrations.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('enterprise-mcp', 2999)">
+              Contact Sales
+            </button>
+          </div>
+          
+          <div class="product-card enterprise">
+            <div class="product-image">🛡️</div>
+            <h3 class="product-title">SallyPort Enterprise Security</h3>
+            <div class="product-price">$1,499</div>
+            <div class="product-description">
+              Advanced security suite with multi-factor authentication and compliance tools.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('sallyport-enterprise', 1499)">
+              Contact Sales
+            </button>
+          </div>
+          
+          <div class="product-card enterprise">
+            <div class="product-image">⚡</div>
+            <h3 class="product-title">Diamond SAO Management</h3>
+            <div class="product-price">$4,999</div>
+            <div class="product-description">
+              Complete Diamond SAO command center with unlimited super admin capabilities.
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart('diamond-sao', 4999)">
+              Contact Sales
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Shopping Cart Modal -->
+  <div class="cart-modal" id="cartModal" style="display: none;">
+    <div class="cart-content">
+      <div class="cart-header">
+        <h2>🛒 Shopping Cart</h2>
+        <button class="close-cart-btn" onclick="closeCart()">✕</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <div class="empty-cart">
+          <p>Your cart is empty</p>
+          <p>Add some premium features to get started!</p>
+        </div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <strong>Total: $<span id="cartTotal">0</span></strong>
+        </div>
+        <button class="checkout-btn" onclick="proceedToCheckout()">
+          🔒 Secure Checkout
+        </button>
+      </div>
     </div>
   </div>
 

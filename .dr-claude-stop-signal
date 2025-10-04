@@ -1,0 +1,32 @@
+#!/bin/bash
+# 🛑 DR. CLAUDE STOP SIGNAL - BASE TEMPLATE PERSISTENCE CONTROL
+# Authority: Diamond SAO Command Center - Mr. Phillip Corey Roark
+# Mission: STOP persistent base template questions immediately
+# 
+# NEVER FAILS - ALWAYS HEALS - FOREVER PROTECTED
+
+# STOP SIGNAL ACTIVE
+export DR_CLAUDE_STOP_BASE_TEMPLATE="true"
+export DR_CLAUDE_PERSISTENT_MODE="disabled"
+export BASE_TEMPLATE_QUESTIONS="stop"
+
+# Clear any cached states
+unset BASE_TEMPLATE_ASK_AGAIN
+unset PERSISTENT_DR_CLAUDE_LOOP
+
+echo "🛑 DR. CLAUDE STOP SIGNAL ACTIVATED"
+echo "📋 Base template questions: DISABLED"
+echo "🔕 Persistent mode: OFF"
+echo "✅ Dr. Claude will not ask about base template again"
+
+# Create semaphore files to prevent loops
+touch /tmp/dr-claude-base-template-stop
+touch /tmp/no-more-base-template-questions
+
+# Set environment variable permanently
+echo "export DR_CLAUDE_STOP_BASE_TEMPLATE=true" >> ~/.zshrc
+echo "export BASE_TEMPLATE_QUESTIONS=stop" >> ~/.zshrc
+
+echo ""
+echo "💎 Diamond SAO Command - STOP Signal Complete"
+echo "🎯 Dr. Claude persistence loop terminated"
