@@ -65,7 +65,7 @@ RUN echo "🚀 Installing ultra-high-speed publishing dependencies..." && \
 
 # Copy high-speed publishing system
 COPY --chown=ultrapublisher:ultrapublisher high-speed-publisher.js ./
-COPY --chown=ultrapublisher:ultrapublisher Aixtiv-Symphony/diamond-cli/lib/high-speed-publishing-pipeline.js ./lib/
+COPY --chown=ultrapublisher:ultrapublisher diamond-cli/lib/high-speed-publishing-pipeline.js ./lib/
 COPY --chown=ultrapublisher:ultrapublisher server-oauth2-multiswarm.js ./server.js
 COPY --chown=ultrapublisher:ultrapublisher src/ ./src/
 COPY --chown=ultrapublisher:ultrapublisher deploy-package/ ./deploy-package/

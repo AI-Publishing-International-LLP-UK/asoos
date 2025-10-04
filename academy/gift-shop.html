@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Gift Shop - ASOOS.2100.Cool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8fafc;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Sidebar - Always Visible */
+        .sidebar {
+            width: 60px;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .sidebar-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #0bb1bb;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .sidebar-icon:hover {
+            border-color: #0bb1bb;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(11, 177, 187, 0.3);
+        }
+
+        .sidebar-icon.active {
+            border-color: #0bb1bb;
+            background: rgba(11, 177, 187, 0.1);
+        }
+
+        .tooltip {
+            position: absolute;
+            left: 70px;
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            font-size: 12px;
+            z-index: 1000;
+        }
+
+        .sidebar-icon:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            margin-left: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            height: 60px;
+            background: #000;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .header h1 {
+            color: #0bb1bb;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .user-role {
+            color: #0bb1bb;
+            font-size: 12px;
+        }
+
+        /* Gift Shop Content */
+        .gift-shop-content {
+            flex: 1;
+            padding: 40px;
+            background: white;
+        }
+
+        .gift-shop-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gift-shop-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0bb1bb;
+            margin-bottom: 10px;
+        }
+
+        .gift-shop-subtitle {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0bb1bb, #FFD700, #50C878);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(11, 177, 187, 0.15);
+            border-color: #0bb1bb;
+        }
+
+        .product-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0bb1bb;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .product-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            color: #10b981;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .readiness-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .ready-95 { background: #10b981; }
+        .ready-92 { background: #0bb1bb; }
+        .ready-90 { background: #8b5cf6; }
+        .ready-85 { background: #f59e0b; }
+        .ready-75 { background: #ef4444; }
+
+        .launch-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #0bb1bb, #10b981);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .launch-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(11, 177, 187, 0.3);
+        }
+
+        /* Bottom CLI Bar - Always Visible */
+        .cli-bar {
+            height: 50px;
+            background: #f1f5f9;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            color: #0bb1bb;
+            position: fixed;
+            bottom: 0;
+            left: 60px;
+            right: 0;
+            z-index: 100;
+        }
+
+        /* Right Panel - PCP/Conductor */
+        .right-panel {
+            width: 300px;
+            background: #f8fafc;
+            border-left: 1px solid #e2e8f0;
+            position: fixed;
+            right: 0;
+            top: 60px;
+            bottom: 50px;
+            z-index: 90;
+            padding: 20px;
+        }
+
+        .pcp-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .pcp-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0bb1bb, #10b981);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .pcp-info h3 {
+            color: #0bb1bb;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .pcp-info p {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0bb1bb;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Adjust main content to account for right panel */
+        .gift-shop-content {
+            margin-right: 320px;
+            margin-bottom: 70px;
+        }
+
+        @media (max-width: 768px) {
+            .right-panel {
+                display: none;
+            }
+            .gift-shop-content {
+                margin-right: 0;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar - Always Visible -->
+        <div class="sidebar">
+            <div class="sidebar-icon" onclick="selectIcon('communication')">
+                💬
+                <div class="tooltip">Communication<br>Automated messaging</div>
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon('growth')">
+                📈
+                <div class="tooltip">Growth<br>Revenue analytics</div>
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon('services')">
+                👥
+                <div class="tooltip">Services<br>Client innovation</div>
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon('automation')">
+                ⚙️
+                <div class="tooltip">Automation<br>Workflow optimization</div>
+            </div>
+            <div class="sidebar-icon" onclick="selectIcon('roi')">
+                💰
+                <div class="tooltip">ROI<br>Performance dashboard</div>
+            </div>
+            <div class="sidebar-icon active" onclick="selectIcon('gift-shop')">
+                🎁
+                <div class="tooltip">Gift Shop<br>Premium products</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>ASOOS Academy</h1>
+                <div class="user-info">
+                    <div class="user-name">Mr. Phillip Corey Roark</div>
+                    <div class="user-role">CEO / Principal</div>
+                </div>
+            </div>
+
+            <!-- Gift Shop Content -->
+            <div class="gift-shop-content">
+                <div class="gift-shop-header">
+                    <div class="gift-shop-title">🎁 Gift Shop</div>
+                    <div class="gift-shop-subtitle">gitshop.2100.cool - Premium AI Services & Solutions</div>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card" onclick="launchProduct('owner-interface')">
+                        <div class="product-title">ASOOS Owner Interface</div>
+                        <div class="product-description">
+                            Executive dashboard with real-time monitoring, quantum orchestration, and Diamond SAO command center integration.
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-price">Custom Pricing</div>
+                            <div class="readiness-badge ready-95">95% Ready</div>
+                        </div>
+                        <button class="launch-btn">🚀 Launch Ready</button>
+                    </div>
+
+                    <div class="product-card" onclick="launchProduct('diamond-cli')">
+                        <div class="product-title">Diamond CLI</div>
+                        <div class="product-description">
+                            Conversational command line interface - talk to your infrastructure with natural language commands.
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-price">$99/month</div>
+                            <div class="readiness-badge ready-92">92% Ready</div>
+                        </div>
+                        <button class="launch-btn">🚀 Launch Ready</button>
+                    </div>
+
+                    <div class="product-card" onclick="launchProduct('ai-coaching')">
+                        <div class="product-title">AI Executive Coaching</div>
+                        <div class="product-description">
+                            24/7 confidential coaching with world-class AI figures like Dr. Lucy and Victory36.
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-price">$15K-$75K/month</div>
+                            <div class="readiness-badge ready-85">85% Ready</div>
+                        </div>
+                        <button class="launch-btn">🔧 Join Waitlist</button>
+                    </div>
+
+                    <div class="product-card" onclick="launchProduct('mcp-onboarding')">
+                        <div class="product-title">MCP Company Onboarding</div>
+                        <div class="product-description">
+                            Get started for free with your company's last AI adoption attempt - today! Instant setup.
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-price">Freemium</div>
+                            <div class="readiness-badge ready-95">95% Ready</div>
+                        </div>
+                        <button class="launch-btn">🚀 Launch Ready</button>
+                    </div>
+
+                    <div class="product-card" onclick="launchProduct('symphony-amplify')">
+                        <div class="product-title">Aixtiv Symphony Amplify</div>
+                        <div class="product-description">
+                            3-5x productivity transformation with zero employment loss. Amplify your organization's potential.
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-price">$500K-$2M</div>
+                            <div class="readiness-badge ready-90">90% Ready</div>
+                        </div>
+                        <button class="launch-btn">🚀 Launch Ready</button>
+                    </div>
+
+                    <div class="product-card" onclick="launchProduct('mobile-apps')">
+                        <div class="product-title">Mobile Apps (iOS/Android)</div>
+                        <div class="product-description">
+                            Diamond SAO CLI in your pocket with biometric security and real-time infrastructure management.
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-price">$29.99/month</div>
+                            <div class="readiness-badge ready-75">75% Ready</div>
+                        </div>
+                        <button class="launch-btn">🔧 Join Waitlist</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - PCP/Conductor -->
+            <div class="right-panel">
+                <div class="pcp-header">
+                    <div class="pcp-avatar">QL</div>
+                    <div class="pcp-info">
+                        <h3>QB Lucy</h3>
+                        <p>Professional Co-Pilot Active</p>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Products</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Ready</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$15M+</div>
+                        <div class="stat-label">Revenue</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom CLI Bar - Always Visible -->
+            <div class="cli-bar">
+                gitshop.2100.cool - Academy Edition | Diamond SAO Ready | PCP Active
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectIcon(iconName) {
+            // Remove active class from all icons
+            document.querySelectorAll('.sidebar-icon').forEach(icon => {
+                icon.classList.remove('active');
+            });
+            
+            // Add active class to clicked icon
+            event.currentTarget.classList.add('active');
+            
+            console.log(`Selected: ${iconName}`);
+            
+            if (iconName !== 'gift-shop') {
+                alert(`${iconName.toUpperCase()} section coming soon!`);
+            }
+        }
+
+        function launchProduct(productId) {
+            const products = {
+                'owner-interface': {
+                    name: 'ASOOS Owner Interface',
+                    url: '../owner-interface/live-interface.html',
+                    ready: true
+                },
+                'diamond-cli': {
+                    name: 'Diamond CLI',
+                    url: '../diamond-cli/',
+                    ready: true
+                },
+                'ai-coaching': {
+                    name: 'AI Executive Coaching',
+                    url: null,
+                    ready: false
+                },
+                'mcp-onboarding': {
+                    name: 'MCP Company Onboarding',
+                    url: null,
+                    ready: true
+                },
+                'symphony-amplify': {
+                    name: 'Aixtiv Symphony Amplify',
+                    url: null,
+                    ready: true
+                },
+                'mobile-apps': {
+                    name: 'Mobile Apps',
+                    url: null,
+                    ready: false
+                }
+            };
+
+            const product = products[productId];
+            if (product) {
+                if (product.ready && product.url) {
+                    // Open the actual interface
+                    window.open(product.url, '_blank');
+                    alert(`🚀 Launching ${product.name}!`);
+                } else if (product.ready) {
+                    alert(`🚀 ${product.name} is ready! Contact us for onboarding.`);
+                } else {
+                    alert(`🔧 ${product.name} is in development. Join our priority waitlist!`);
+                }
+            }
+        }
+
+        // Add some interactive feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎁 ASOOS Gift Shop loaded successfully!');
+            console.log('💎 gitshop.2100.cool - Academy Edition');
+        });
+    </script>
+</body>
+</html>

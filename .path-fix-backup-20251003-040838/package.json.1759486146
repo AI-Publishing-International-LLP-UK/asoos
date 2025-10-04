@@ -1,0 +1,59 @@
+{
+  "name": "@asoos/einstein-wells",
+  "version": "1.0.0",
+  "description": "Einstein Wells Energy Trading & Crypto Mining Universal Module - ASOOS Capital Raising Division",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon index.js",
+    "test": "jest",
+    "build": "docker build -t gcr.io/api-for-warp-drive/einstein-wells .",
+    "deploy:staging": "gcloud run deploy einstein-wells --image gcr.io/api-for-warp-drive/einstein-wells --region us-west1-b --platform managed",
+    "deploy:production": "gcloud run deploy einstein-wells --image gcr.io/api-for-warp-drive/einstein-wells --region us-west1-a --platform managed",
+    "energy:register": "node scripts/energy-market-registration.js",
+    "mining:setup": "node scripts/crypto-mining-setup.js",
+    "pcp:activate": "node scripts/activate-zena-pcp.js",
+    "blitz": "node high-speed-orchestration.js",
+    "blitz-fast": "node high-speed-orchestration.js",
+    "high-speed-orchestration": "node high-speed-orchestration.js",
+    "protected-session-6h": "node run-6hour-protected-session.js",
+    "cleanup-faults": "./cleanup-translation-faults.sh"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^7.1.0",
+    "@google-cloud/pubsub": "^4.0.7",
+    "@google-cloud/secret-manager": "^5.0.1",
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "stripe": "^14.9.0",
+    "winston": "^3.11.0",
+    "ws": "^8.18.3",
+    "xero-node": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2"
+  },
+  "keywords": [
+    "einstein-wells",
+    "energy-trading",
+    "crypto-mining",
+    "asoos",
+    "capital-raising",
+    "universal-module"
+  ],
+  "author": "AI Publishing International LLP",
+  "license": "PROPRIETARY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AI-Publishing-International-LLP-UK/AIXTIV-SYMPHONY.git"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

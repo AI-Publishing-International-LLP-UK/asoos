@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionSpace Gift Shop - Premium AI Meeting Experiences | Authentication Required</title>
+    <meta name="description" content="Access exclusive VisionSpace Gift Shop with premium AI meeting experiences, custom environments, and professional voice packages. First-level authentication required.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 50%, #1a1a1a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(15px);
+        }
+
+        .auth-container {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(45, 27, 105, 0.95));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: authPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes authPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+        }
+
+        .auth-header {
+            margin-bottom: 2rem;
+        }
+
+        .auth-title {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ffd700, #ff6b35, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .auth-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .security-badge {
+            background: linear-gradient(135deg, #00ff88, #0bb5b5);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .auth-form {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffd700;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .auth-button {
+            width: 100%;
+            background: linear-gradient(135deg, #ffd700, #ff6b35);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .auth-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .auth-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .oauth-button {
+            flex: 1;
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            color: #8b5cf6;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .oauth-button:hover {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: rgba(139, 92, 246, 0.8);
+        }
+
+        .demo-warning {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #ff6b35;
+        }
+
+        .gift-shop-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 50%, #1a1a1a 100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .gift-shop-preview.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .shop-header {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .shop-title {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ffd700, #ff6b35, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .shop-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .not-working-banner {
+            background: linear-gradient(135deg, #ff4444, #ff6666);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            animation: flashWarning 2s ease-in-out infinite;
+        }
+
+        @keyframes flashWarning {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .product-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: not-allowed;
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '🔒 NOT FUNCTIONAL';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: grayscale(1);
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255, 215, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: rgba(0, 255, 136, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .product-desc {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .buy-button {
+            background: rgba(255, 215, 0, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: not-allowed;
+            width: 100%;
+        }
+
+        .logout-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 68, 68, 0.8);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .status-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 68, 68, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 1000;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
+            .auth-container { padding: 2rem; }
+            .auth-title { font-size: 2rem; }
+            .shop-title { font-size: 2rem; }
+            .auth-options { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Authentication Required Message -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1 class="auth-title">🎁 Gift Shop Access</h1>
+                <p class="auth-subtitle">Premium VisionSpace experiences and AI voice packages</p>
+                <div class="security-badge">🔐 SallyPort Authentication Required</div>
+            </div>
+
+            <div class="demo-warning">
+                🔐 <strong>Authentication Required:</strong> You must be authenticated through our SallyPort security system to access the Gift Shop.
+            </div>
+
+            <div class="auth-info-panel" style="
+                background: rgba(11, 177, 187, 0.1);
+                border: 2px solid rgba(11, 177, 187, 0.3);
+                border-radius: 15px;
+                padding: 2rem;
+                margin: 2rem 0;
+                text-align: center;
+            ">
+                <h3 style="color: #0bb1bb; margin-bottom: 1rem; font-size: 1.3rem;">🛡️ Secure Access Portal</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem; line-height: 1.6;">
+                    Access to premium features requires authentication through our secure SallyPort system.
+                    Click below to authenticate and access the Gift Shop.
+                </p>
+                
+                <button class="auth-button" onclick="redirectToAuth()" style="
+                    background: linear-gradient(135deg, #0bb1bb, #50C878);
+                    color: white;
+                    border: none;
+                    padding: 15px 30px;
+                    border-radius: 10px;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    margin-bottom: 1rem;
+                    width: 100%;
+                ">
+                    🔐 Authenticate with SallyPort
+                </button>
+                
+                <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);">
+                    You will be redirected to our secure authentication portal
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="./vision-space-landing.html" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">
+                    ← Back to VisionSpace Landing
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gift Shop Preview (Hidden initially) -->
+    <div class="gift-shop-preview" id="giftShopPreview">
+        <div class="not-working-banner">
+            🚨 DEMO MODE: All purchase functions are disabled - UI/UX demonstration only 🚨
+        </div>
+
+        <div class="shop-header">
+            <h1 class="shop-title">🎁 VisionSpace Gift Shop</h1>
+            <p class="shop-subtitle">Premium AI Meeting Experiences & Voice Packages</p>
+        </div>
+
+        <div class="shop-grid">
+            <div class="product-card">
+                <div class="product-icon">🎤</div>
+                <h3 class="product-title">Dr. Claude Voice Package</h3>
+                <div class="product-price">$299</div>
+                <p class="product-desc">
+                    Professional computational voice for strategic discussions and complex problem solving. 
+                    Includes custom voice training and 100 hours of premium processing.
+                </p>
+                <button class="buy-button">Purchase (Disabled)</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🌊</div>
+                <h3 class="product-title">Waterfall Environment Pack</h3>
+                <div class="product-price">$199</div>
+                <p class="product-desc">
+                    Immersive nature environments with 4K backgrounds, ambient sounds, and dynamic lighting. 
+                    Perfect for meditation and focused work sessions.
+                </p>
+                <button class="buy-button">Purchase (Disabled)</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🏢</div>
+                <h3 class="product-title">Corporate Branding Suite</h3>
+                <div class="product-price">$599</div>
+                <p class="product-desc">
+                    Custom branded environments with your company logo, colors, and themes. 
+                    Includes 5 custom backgrounds and branded AI pilot uniforms.
+                </p>
+                <button class="buy-button">Purchase (Disabled)</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🎯</div>
+                <h3 class="product-title">Victory36 AI Specialist</h3>
+                <div class="product-price">$799</div>
+                <p class="product-desc">
+                    Elite AI specialist for high-stakes presentations and strategic planning. 
+                    Advanced computational capabilities with premium voice synthesis.
+                </p>
+                <button class="buy-button">Purchase (Disabled)</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">📊</div>
+                <h3 class="product-title">Analytics Dashboard Pro</h3>
+                <div class="product-price">$399</div>
+                <p class="product-desc">
+                    Advanced meeting analytics with AI insights, productivity metrics, and ROI tracking. 
+                    Perfect for enterprise teams and consultants.
+                </p>
+                <button class="buy-button">Purchase (Disabled)</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">🌟</div>
+                <h3 class="product-title">Everything Bundle</h3>
+                <div class="product-price">$1,999</div>
+                <p class="product-desc">
+                    Complete VisionSpace experience with all voice packages, environments, branding tools, 
+                    and premium features. Best value for visionary leaders.
+                </p>
+                <button class="buy-button">Purchase (Disabled)</button>
+            </div>
+        </div>
+
+        <button class="logout-button" onclick="logout()">🚪 Logout</button>
+        <div class="status-indicator">🔴 Demo Mode - Nothing Functional</div>
+    </div>
+
+    <script>
+        // Redirect to official SallyPort authentication
+        function redirectToAuth() {
+            console.log('🔐 Redirecting to official SallyPort authentication');
+            
+            // Get current URL for redirect after authentication
+            const currentUrl = window.location.href;
+            const targetPage = encodeURIComponent(currentUrl + '?authenticated=true');
+            
+            // Redirect to official SallyPort authentication page
+            window.location.href = `https://auth.2100.cool/sallyport/login?redirect=${targetPage}`;
+        }
+        
+        // Check if user is returning from authentication
+        function checkAuthenticationStatus() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isAuthenticated = urlParams.get('authenticated');
+            
+            if (isAuthenticated === 'true') {
+                // User has been authenticated, show gift shop
+                console.log('✅ User authenticated via SallyPort');
+                showAuthenticatedGiftShop();
+            }
+        }
+        
+        // Show gift shop for authenticated users
+        function showAuthenticatedGiftShop() {
+            // Hide auth overlay and show gift shop
+            document.getElementById('authOverlay').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('authOverlay').style.display = 'none';
+                document.getElementById('giftShopPreview').classList.add('active');
+            }, 500);
+            
+            console.log('🎁 Gift Shop loaded for authenticated user');
+            console.log('🚨 Note: Purchase functions are still in development');
+        }
+        
+        function logout() {
+            console.log('🚪 Logout demo triggered');
+            
+            // Show logout confirmation
+            const confirmed = confirm('🚪 Logout from Gift Shop?\n\nThis will return you to the authentication screen.');
+            
+            if (confirmed) {
+                document.getElementById('giftShopPreview').classList.remove('active');
+                
+                setTimeout(() => {
+                    document.getElementById('authOverlay').style.display = 'flex';
+                    document.getElementById('authOverlay').style.opacity = '1';
+                    
+                    // Reset form
+                    document.getElementById('authForm').reset();
+                    document.getElementById('authButton').textContent = '🚪 Enter Gift Shop';
+                    document.getElementById('authButton').disabled = false;
+                }, 500);
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎁 Gift Shop Landing Page Loaded');
+            console.log('🔐 SallyPort Authentication Integration Active');
+            console.log('🔗 Links to official auth: https://auth.2100.cool/sallyport/login');
+            
+            // Check if user is returning from authentication
+            checkAuthenticationStatus();
+            
+            // Show system status
+            setTimeout(() => {
+                console.log('✅ Official SallyPort authentication system integrated');
+                console.log('⚠️ Gift Shop features still in development');
+                console.log('🔗 Redirects to: https://auth.2100.cool/sallyport/login');
+            }, 1000);
+        });
+        
+        // Disable all product interactions
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('buy-button')) {
+                e.preventDefault();
+                alert('🔒 Purchase Disabled\n\nThis is a UI/UX demonstration.\nPurchase functionality is not implemented yet.');
+                console.log('🚫 Purchase attempt blocked - demo mode');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -291,19 +291,19 @@ class UnifiedElevenLabsAgentSystem {
     try {
       const claudeVoiceConfig = getClaudeVoiceConfig();
       const voiceConfig = await claudeVoiceConfig.getVoiceConfig();
-      
+
       if (voiceConfig && voiceConfig.voice_id) {
         // Update voice profiles with actual voice IDs from config
         this.voiceProfiles.diamondSAO.voiceId = voiceConfig.voice_id;
         this.voiceProfiles.ownerInterface.voiceId = voiceConfig.voice_id;
         this.voiceProfiles.mocaInterface.voiceId = voiceConfig.voice_id;
         this.voiceProfiles.default.voiceId = voiceConfig.voice_id;
-        
+
         // Update computationalist agents
         this.computationalistAgents.drLucy.voiceId = voiceConfig.voice_id;
         this.computationalistAgents.drClaude.voiceId = voiceConfig.voice_id;
         this.computationalistAgents.victory36.voiceId = voiceConfig.voice_id;
-        
+
         console.log(`✅ Voice configurations updated with voice ID: ${voiceConfig.voice_id}`);
       } else {
         console.warn('⚠️ No voice configuration found, using fallback voice IDs');
@@ -329,6 +329,9 @@ class UnifiedElevenLabsAgentSystem {
 
       // Initialize ElevenLabs primary client
       await this.initializeElevenLabsClient();
+
+      // Initialize voice configurations from Claude Voice Config
+      await this.initializeVoiceConfigurations();
 
       // Setup Express middleware and routes
       this.setupMiddleware();
@@ -470,6 +473,37 @@ class UnifiedElevenLabsAgentSystem {
       }
     } catch (error) {
       this.logger.error('❌ Self-healing OAuth2 initialization failed:', error);
+    }
+  }
+
+  /**
+   * Initialize voice configurations from Claude Voice Config
+   */
+  async initializeVoiceConfigurations() {
+    try {
+      this.logger.info('🎤 Initializing voice configurations...');
+
+      const claudeVoiceConfig = getClaudeVoiceConfig();
+      const voiceConfig = await claudeVoiceConfig.getVoiceConfig();
+
+      if (voiceConfig && voiceConfig.voice_id) {
+        // Update voice profiles with actual voice IDs from config
+        this.voiceProfiles.diamondSAO.voiceId = voiceConfig.voice_id;
+        this.voiceProfiles.ownerInterface.voiceId = voiceConfig.voice_id;
+        this.voiceProfiles.mocaInterface.voiceId = voiceConfig.voice_id;
+        this.voiceProfiles.default.voiceId = voiceConfig.voice_id;
+
+        // Update computationalist agents
+        this.computationalistAgents.drLucy.voiceId = voiceConfig.voice_id;
+        this.computationalistAgents.drClaude.voiceId = voiceConfig.voice_id;
+        this.computationalistAgents.victory36.voiceId = voiceConfig.voice_id;
+
+        this.logger.info(`✅ Voice configurations updated with voice ID: ${voiceConfig.voice_id}`);
+      } else {
+        this.logger.warn('⚠️ No voice configuration found, using fallback voice IDs');
+      }
+    } catch (error) {
+      this.logger.warn('⚠️ Failed to load voice configurations, using fallbacks:', error.message);
     }
   }
 
@@ -639,6 +673,7 @@ class UnifiedElevenLabsAgentSystem {
     this.app.get('/auth/login', this.initiateOAuth2.bind(this));
     this.app.get('/auth/callback', this.handleOAuth2Callback.bind(this));
     this.app.post('/auth/refresh', this.refreshToken.bind(this));
+    this.app.post('/auth/oauth2/token', this.getOAuth2TokenEndpoint.bind(this)); // For base-template.html integration
 
     // Voice synthesis endpoints
     this.app.post('/api/voice/synthesize', this.synthesizeVoice.bind(this));
@@ -989,7 +1024,7 @@ class UnifiedElevenLabsAgentSystem {
     };
 
     const agentResponses = responses[agent.id] || [
-      'I\'m processing your request with advanced computational analysis.',
+      "I'm processing your request with advanced computational analysis.",
     ];
     return agentResponses[Math.floor(Math.random() * agentResponses.length)];
   }

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilots' Lounge - Vision Space</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: white;
+            overflow: hidden;
+            user-select: none;
+            cursor: none; /* Hide cursor for immersive experience */
+        }
+
+        /* Full Immersive Vision Space */
+        .vision-space {
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(11, 177, 187, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(80, 200, 120, 0.05) 0%, transparent 70%),
+                linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #16213e 75%, #1a1a2e 100%);
+            position: relative;
+            perspective: 2000px;
+            overflow: hidden;
+        }
+
+        /* Ambient Lighting Effects */
+        .vision-space::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 8px,
+                    rgba(255, 255, 255, 0.01) 8px,
+                    rgba(255, 255, 255, 0.01) 16px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 12px,
+                    rgba(184, 134, 11, 0.02) 12px,
+                    rgba(184, 134, 11, 0.02) 24px
+                );
+            pointer-events: none;
+            animation: ambientShift 20s ease-in-out infinite alternate;
+        }
+
+        /* Mobile Pilots */
+        .pilot {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .pilot-avatar {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+        }
+
+        .pilot-hexagon {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: linear-gradient(135deg, #B8860B 0%, #0bb1bb 25%, #50C878 50%, #4ECDC4 75%, #DAA520 100%);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                0 0 20px rgba(184, 134, 11, 0.5),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3);
+            animation: pilotGlow 3s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        .pilot-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .pilot-name {
+            font-size: 8px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            margin-bottom: 2px;
+        }
+
+        .pilot-title {
+            font-size: 12px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .pilot-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            text-shadow: 0 0 5px rgba(184, 134, 11, 0.8);
+        }
+
+        /* Walking Animation */
+        .pilot.walking {
+            animation: pilotWalk 2s ease-in-out;
+        }
+
+        .pilot.speaking {
+            animation: pilotSpeaking 1.5s ease-in-out infinite;
+        }
+
+        /* PCP Interface Icons - Floating around the space */
+        .pcp-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.2), rgba(11, 177, 187, 0.2));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            animation: pcpFloat 6s ease-in-out infinite;
+        }
+
+        .pcp-icon:hover {
+            transform: scale(1.2);
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.4), rgba(11, 177, 187, 0.4));
+            box-shadow: 0 0 30px rgba(184, 134, 11, 0.6);
+        }
+
+        .pcp-icon-text {
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Conductor Platform */
+        .conductor-platform {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(184, 134, 11, 0.3) 0%, rgba(184, 134, 11, 0.1) 70%, transparent 100%);
+            border: 3px solid rgba(184, 134, 11, 0.6);
+            border-radius: 50%;
+            animation: conductorPulse 4s ease-in-out infinite;
+            box-shadow: 
+                0 0 40px rgba(184, 134, 11, 0.5),
+                inset 0 0 40px rgba(184, 134, 11, 0.2);
+        }
+
+        .conductor-platform::before {
+            content: 'CONDUCTOR';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(184, 134, 11, 0.8);
+            animation: conductorText 3s ease-in-out infinite alternate;
+        }
+
+        /* Vision Space Grid - Subtle guide lines */
+        .space-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100px 100px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Holographic Reflection Effects */
+        .reflection-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            pointer-events: none;
+        }
+
+        /* Status HUD */
+        .vision-hud {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(184, 134, 11, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .hud-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #B8860B;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px rgba(184, 134, 11, 0.8);
+        }
+
+        .hud-status {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 5px 0;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff00;
+            margin-right: 8px;
+            animation: statusBlink 2s ease-in-out infinite;
+        }
+
+        /* Control Panel */
+        .vision-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(11, 177, 187, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #B8860B, #0bb1bb);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            margin: 5px 0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 11px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+        }
+
+        /* Animations */
+        @keyframes pilotGlow {
+            0% { box-shadow: 0 0 20px rgba(184, 134, 11, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(11, 177, 187, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4); }
+        }
+
+        @keyframes pilotWalk {
+            0% { transform: translateY(0px) rotateY(0deg); }
+            25% { transform: translateY(-5px) rotateY(10deg); }
+            50% { transform: translateY(0px) rotateY(0deg); }
+            75% { transform: translateY(-5px) rotateY(-10deg); }
+            100% { transform: translateY(0px) rotateY(0deg); }
+        }
+
+        @keyframes pilotSpeaking {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(184, 134, 11, 0.8)); }
+        }
+
+        @keyframes pcpFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(5deg); }
+            66% { transform: translateY(5px) rotate(-5deg); }
+        }
+
+        @keyframes conductorPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        @keyframes conductorText {
+            0% { text-shadow: 0 0 10px rgba(184, 134, 11, 0.8); }
+            100% { text-shadow: 0 0 20px rgba(184, 134, 11, 1), 0 0 30px rgba(11, 177, 187, 0.5); }
+        }
+
+        @keyframes ambientShift {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pilot {
+                width: 60px;
+                height: 90px;
+            }
+            .pilot-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            .conductor-platform {
+                width: 150px;
+                height: 150px;
+            }
+            .pcp-icon {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vision-space" id="visionSpace">
+        <!-- Ambient Grid -->
+        <div class="space-grid"></div>
+        
+        <!-- Conductor Platform (Center) -->
+        <div class="conductor-platform" onclick="activateConductor()"></div>
+        
+        <!-- Mobile Pilots - Spawned dynamically -->
+        
+        <!-- PCP Interface Icons -->
+        <div class="pcp-icon" style="top: 15%; left: 20%;" onclick="openPCPMenu('reports')">
+            <div class="pcp-icon-text">📊<br>REPORTS</div>
+        </div>
+        
+        <div class="pcp-icon" style="top: 25%; right: 15%;" onclick="openPCPMenu('projects')">
+            <div class="pcp-icon-text">🚀<br>PROJECTS</div>
+        </div>
+        
+        <div class="pcp-icon" style="bottom: 30%; left: 15%;" onclick="openPCPMenu('team')">
+            <div class="pcp-icon-text">👥<br>TEAM</div>
+        </div>
+        
+        <div class="pcp-icon" style="bottom: 20%; right: 20%;" onclick="openPCPMenu('analytics')">
+            <div class="pcp-icon-text">📈<br>ANALYTICS</div>
+        </div>
+        
+        <!-- Holographic Reflection Layer -->
+        <div class="reflection-layer"></div>
+    </div>
+
+    <!-- Vision HUD -->
+    <div class="vision-hud">
+        <div class="hud-title">PILOTS' LOUNGE</div>
+        <div class="hud-status"><span class="status-dot"></span>Vision Space: Active</div>
+        <div class="hud-status"><span class="status-dot"></span>Mobile Pilots: <span id="pilotCount">0</span></div>
+        <div class="hud-status"><span class="status-dot"></span>PCP System: Online</div>
+        <div class="hud-status"><span class="status-dot"></span>Conductor: Ready</div>
+    </div>
+
+    <!-- Vision Controls -->
+    <div class="vision-controls">
+        <div class="hud-title">CONTROLS</div>
+        <button class="control-btn" onclick="spawnPilot('dr-lucy')">Spawn Dr. Lucy</button>
+        <button class="control-btn" onclick="spawnPilot('dr-memoria')">Spawn Dr. Memoria</button>
+        <button class="control-btn" onclick="spawnPilot('victory36')">Spawn Victory36</button>
+        <button class="control-btn" onclick="spawnRandomPilot()">Random Pilot</button>
+        <button class="control-btn" onclick="clearAllPilots()">Clear All</button>
+        <button class="control-btn" onclick="activateAllPilots()">Activate All</button>
+    </div>
+
+    <script>
+        class PilotsLoungeVisionSpace {
+            constructor() {
+                this.pilots = new Map();
+                this.pilotTypes = [
+                    { id: 'dr-lucy', name: 'DR', title: 'LUCY', color: 'linear-gradient(135deg, #B8860B 0%, #0bb1bb 50%, #50C878 100%)' },
+                    { id: 'dr-memoria', name: 'DR', title: 'MEMORIA', color: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%)' },
+                    { id: 'dr-claude', name: 'DR', title: 'CLAUDE', color: 'linear-gradient(135deg, #4ECDC4 0%, #B8860B 50%, #0bb1bb 100%)' },
+                    { id: 'victory36', name: 'V36', title: 'MAESTRO', color: 'linear-gradient(135deg, #50C878 0%, #228B22 50%, #0bb1bb 100%)' },
+                    { id: 'professor-lee', name: 'PROF', title: 'LEE', color: 'linear-gradient(135deg, #7C3AED 0%, #DB2777 50%, #F59E0B 100%)' }
+                ];
+                this.visionSpace = document.getElementById('visionSpace');
+                this.pilotCount = 0;
+                
+                this.init();
+            }
+
+            init() {
+                // Add click listener to spawn pilots at click location
+                this.visionSpace.addEventListener('click', (e) => {
+                    if (e.target === this.visionSpace) {
+                        this.spawnPilotAtLocation(e.clientX, e.clientY);
+                    }
+                });
+
+                // Auto-spawn initial pilots
+                setTimeout(() => {
+                    this.spawnRandomPilot();
+                    setTimeout(() => this.spawnRandomPilot(), 1000);
+                }, 500);
+
+                // Periodic pilot movement
+                setInterval(() => {
+                    this.animateRandomPilot();
+                }, 3000);
+
+                console.log('Pilots\' Lounge Vision Space initialized');
+            }
+
+            spawnPilot(pilotType) {
+                const pilot = this.pilotTypes.find(p => p.id === pilotType) || this.pilotTypes[0];
+                
+                // Random position
+                const x = Math.random() * (window.innerWidth - 100);
+                const y = Math.random() * (window.innerHeight - 150);
+                
+                this.createPilotElement(pilot, x, y);
+            }
+
+            spawnPilotAtLocation(x, y) {
+                const pilot = this.pilotTypes[Math.floor(Math.random() * this.pilotTypes.length)];
+                this.createPilotElement(pilot, x - 40, y - 60);
+            }
+
+            spawnRandomPilot() {
+                const pilot = this.pilotTypes[Math.floor(Math.random() * this.pilotTypes.length)];
+                this.spawnPilot(pilot.id);
+            }
+
+            createPilotElement(pilot, x, y) {
+                const pilotElement = document.createElement('div');
+                pilotElement.className = 'pilot';
+                pilotElement.id = `pilot-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+                pilotElement.style.left = x + 'px';
+                pilotElement.style.top = y + 'px';
+
+                pilotElement.innerHTML = `
+                    <div class="pilot-avatar">
+                        <div class="pilot-hexagon" style="background: ${pilot.color}">
+                            <div class="pilot-content">
+                                <div class="pilot-name">${pilot.name}</div>
+                                <div class="pilot-title">${pilot.title}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pilot-label">${pilot.title}</div>
+                `;
+
+                // Click to speak
+                pilotElement.addEventListener('click', () => {
+                    this.activatePilot(pilotElement.id);
+                });
+
+                // Drag functionality
+                this.makeDraggable(pilotElement);
+
+                this.visionSpace.appendChild(pilotElement);
+                this.pilots.set(pilotElement.id, {
+                    element: pilotElement,
+                    type: pilot,
+                    speaking: false
+                });
+
+                this.updatePilotCount();
+
+                // Spawn animation
+                setTimeout(() => {
+                    pilotElement.style.opacity = '1';
+                    pilotElement.style.transform = 'scale(1)';
+                }, 100);
+            }
+
+            makeDraggable(element) {
+                let isDragging = false;
+                let startX, startY, startLeft, startTop;
+
+                const handleStart = (e) => {
+                    isDragging = true;
+                    const clientX = e.clientX || e.touches[0].clientX;
+                    const clientY = e.clientY || e.touches[0].clientY;
+                    
+                    startX = clientX;
+                    startY = clientY;
+                    startLeft = parseInt(element.style.left);
+                    startTop = parseInt(element.style.top);
+                    
+                    element.style.zIndex = '1000';
+                    e.preventDefault();
+                };
+
+                const handleMove = (e) => {
+                    if (!isDragging) return;
+                    
+                    const clientX = e.clientX || e.touches[0].clientX;
+                    const clientY = e.clientY || e.touches[0].clientY;
+                    
+                    const newLeft = startLeft + clientX - startX;
+                    const newTop = startTop + clientY - startY;
+                    
+                    // Keep within bounds
+                    const maxLeft = window.innerWidth - 80;
+                    const maxTop = window.innerHeight - 120;
+                    
+                    element.style.left = Math.max(0, Math.min(newLeft, maxLeft)) + 'px';
+                    element.style.top = Math.max(0, Math.min(newTop, maxTop)) + 'px';
+                    
+                    // Walking animation while dragging
+                    element.classList.add('walking');
+                    e.preventDefault();
+                };
+
+                const handleEnd = () => {
+                    isDragging = false;
+                    element.style.zIndex = '100';
+                    element.classList.remove('walking');
+                };
+
+                // Mouse events
+                element.addEventListener('mousedown', handleStart);
+                document.addEventListener('mousemove', handleMove);
+                document.addEventListener('mouseup', handleEnd);
+
+                // Touch events
+                element.addEventListener('touchstart', handleStart);
+                document.addEventListener('touchmove', handleMove);
+                document.addEventListener('touchend', handleEnd);
+            }
+
+            activatePilot(pilotId) {
+                const pilotData = this.pilots.get(pilotId);
+                if (!pilotData) return;
+
+                pilotData.speaking = !pilotData.speaking;
+                
+                if (pilotData.speaking) {
+                    pilotData.element.classList.add('speaking');
+                    console.log(`${pilotData.type.title} is speaking`);
+                    
+                    // Auto-stop after 3 seconds
+                    setTimeout(() => {
+                        if (this.pilots.has(pilotId)) {
+                            pilotData.speaking = false;
+                            pilotData.element.classList.remove('speaking');
+                        }
+                    }, 3000);
+                } else {
+                    pilotData.element.classList.remove('speaking');
+                }
+            }
+
+            animateRandomPilot() {
+                if (this.pilots.size === 0) return;
+                
+                const pilotIds = Array.from(this.pilots.keys());
+                const randomId = pilotIds[Math.floor(Math.random() * pilotIds.length)];
+                const pilotData = this.pilots.get(randomId);
+                
+                if (pilotData) {
+                    // Random walk
+                    const currentLeft = parseInt(pilotData.element.style.left);
+                    const currentTop = parseInt(pilotData.element.style.top);
+                    
+                    const newLeft = Math.max(0, Math.min(currentLeft + (Math.random() - 0.5) * 200, window.innerWidth - 80));
+                    const newTop = Math.max(0, Math.min(currentTop + (Math.random() - 0.5) * 150, window.innerHeight - 120));
+                    
+                    pilotData.element.classList.add('walking');
+                    pilotData.element.style.left = newLeft + 'px';
+                    pilotData.element.style.top = newTop + 'px';
+                    
+                    setTimeout(() => {
+                        pilotData.element.classList.remove('walking');
+                    }, 2000);
+                }
+            }
+
+            clearAllPilots() {
+                this.pilots.forEach((pilotData) => {
+                    pilotData.element.remove();
+                });
+                this.pilots.clear();
+                this.updatePilotCount();
+            }
+
+            activateAllPilots() {
+                this.pilots.forEach((pilotData, pilotId) => {
+                    if (!pilotData.speaking) {
+                        this.activatePilot(pilotId);
+                    }
+                });
+            }
+
+            updatePilotCount() {
+                document.getElementById('pilotCount').textContent = this.pilots.size;
+            }
+        }
+
+        // Global functions for onclick handlers
+        let visionSpace;
+
+        function spawnPilot(pilotType) {
+            visionSpace.spawnPilot(pilotType);
+        }
+
+        function spawnRandomPilot() {
+            visionSpace.spawnRandomPilot();
+        }
+
+        function clearAllPilots() {
+            visionSpace.clearAllPilots();
+        }
+
+        function activateAllPilots() {
+            visionSpace.activateAllPilots();
+        }
+
+        function activateConductor() {
+            console.log('Conductor activated - orchestrating all pilots');
+            if (visionSpace) {
+                visionSpace.activateAllPilots();
+            }
+        }
+
+        function openPCPMenu(menuType) {
+            console.log(`Opening PCP menu: ${menuType}`);
+            // Here you would open the specific PCP interface
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            visionSpace = new PilotsLoungeVisionSpace();
+        });
+
+        // Connection functions
+        function startMeeting() {
+            if (window.visionConnector) {
+                const meetingResult = visionConnector.createMeeting('Vision Space Collaboration');
+                console.log('🌌 Meeting started:', meetingResult);
+            }
+        }
+
+        function joinMeeting() {
+            const meetingId = prompt('Enter Meeting ID:');
+            if (meetingId && window.visionConnector) {
+                const joinResult = visionConnector.joinMeeting(meetingId);
+                console.log('🌌 Joining meeting:', joinResult);
+            }
+        }
+
+        function showConnectionStatus() {
+            if (window.visionConnector) {
+                const status = visionConnector.getStatus();
+                console.log('🌌 Connection Status:', status);
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'l': spawnPilot('dr-lucy'); break;
+                case 'm': spawnPilot('dr-memoria'); break;
+                case 'v': spawnPilot('victory36'); break;
+                case ' ': spawnRandomPilot(); break;
+                case 'c': clearAllPilots(); break;
+                case 'a': activateAllPilots(); break;
+                case 's': startMeeting(); break; // S = Start Meeting
+                case 'j': joinMeeting(); break;  // J = Join Meeting
+                case 'i': showConnectionStatus(); break; // I = Info
+            }
+        });
+    </script>
+
+    <!-- Load Vision Space Connector -->
+    <script src="vision-space-connector.js"></script>
+    
+    <!-- Load VisionSpeak Environment Control -->
+    <script src="visionspeak-environment-control.js"></script>
+
+    <!-- Connection UI Overlay -->
+    <div id="connection-panel" style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 300px;
+        background: rgba(26, 26, 26, 0.95);
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        border-radius: 15px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        font-family: 'Arial', sans-serif;
+        color: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    ">
+        <h3 style="
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        ">🌌 Vision Space Network</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 5px;">
+                Status: <span id="connection-status" class="solo">Solo Mode</span>
+            </div>
+            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                Connected Spaces: <span id="connection-count">0</span>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button onclick="startMeeting()" style="
+                background: linear-gradient(135deg, #ffd700, #ff6b35);
+                color: #000;
+                border: none;
+                padding: 12px 16px;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+            ">🚀 Start Meeting</button>
+            
+            <button onclick="joinMeeting()" style="
+                background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+                color: white;
+                border: none;
+                padding: 12px 16px;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+            ">🔗 Join Meeting</button>
+        </div>
+
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2);">
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: center;">
+                🎯 Pioneer Pricing: $200/month for 90 days<br>
+                Then $500/month (95% savings vs cloud)
+            </div>
+        </div>
+    </div>
+
+    <!-- Connected Spaces Container -->
+    <div id="connected-spaces" style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        max-width: 400px;
+        z-index: 999;
+    "></div>
+
+    <style>
+        .connected-space {
+            background: rgba(26, 26, 26, 0.9);
+            border: 1px solid rgba(11, 177, 187, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .connected-space-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .connected-space-header h4 {
+            color: #0bb1bb;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .space-id {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: monospace;
+        }
+
+        .connected-space-pilots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .remote-pilot {
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            color: #8b5cf6;
+        }
+
+        .remote-pilot-avatar {
+            font-weight: 600;
+        }
+
+        #connection-status.connected {
+            color: #00ff88;
+            font-weight: 600;
+        }
+
+        #connection-status.solo {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Button hover effects */
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</body>
+</html>

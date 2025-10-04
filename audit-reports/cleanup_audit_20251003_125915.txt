@@ -1,0 +1,2204 @@
+=================================================================================
+FILE AUDIT REPORT - Fri Oct  3 12:59:15 CST 2025
+Directory: /Users/as/asoos
+=================================================================================
+
+📋 GIT HISTORY SUMMARY
+=================================================================================
+Last 50 commits with file changes:
+bbbc6d3d fix: remove illegal await in property initialisation and add async initialiser
+M	unified-elevenlabs-system.js
+1b6541e6 Update files
+M	asoos-deployment/launch-deployment/base-template.html
+A	einstein-wells/assets/pilots/comprehensive-pilot-manifest.json
+A	einstein-wells/assets/pilots/dr-grant/original/original.jpeg
+A	einstein-wells/assets/pilots/dr-grant/web/large.jpg
+A	einstein-wells/assets/pilots/dr-grant/web/medium.jpg
+A	einstein-wells/assets/pilots/dr-grant/web/small.jpg
+A	einstein-wells/assets/pilots/dr-grant/web/thumbnail.jpg
+A	einstein-wells/assets/pilots/dr-grant/web/xl.jpg
+A	einstein-wells/assets/pilots/pilot-photo-manifest.json
+A	einstein-wells/assets/pilots/pilot-photo-map.json
+A	einstein-wells/assets/pilots/professor-levi/original/original.jpeg
+A	einstein-wells/assets/pilots/professor-levi/web/large.jpg
+A	einstein-wells/assets/pilots/professor-levi/web/medium.jpg
+A	einstein-wells/assets/pilots/professor-levi/web/small.jpg
+A	einstein-wells/assets/pilots/professor-levi/web/thumbnail.jpg
+A	einstein-wells/assets/pilots/professor-levi/web/xl.jpg
+A	einstein-wells/dr-lucy-3d-hexagon-prototype.html
+A	einstein-wells/pilot-photo-identifier.html
+A	einstein-wells/quantum-agent-balls-voice-integrated.html
+A	einstein-wells/quantum-agent-orbs-3d.html
+A	einstein-wells/quantum-billiard-ball-prototype.html
+A	einstein-wells/quantum-billiard-ball-universal-template.html
+A	einstein-wells/tools/extract-pilot-photos.js
+A	owner-interface/package-lock.json
+M	owner-interface/package.json
+M	owner-interface/server.js
+f90c9c12 fix: ensure all files are saved in UTF-8 encoding
+M	asoos-deployment/connectors/mcp-universal-template.js
+M	asoos-deployment/launch-deployment/base-template.html
+M	asoos-production-worker.js
+M	deploy-oauth2-elevenlabs-fix.sh
+M	diamond-cli/install-warp-diamond.sh
+M	diamond-cli/lib/hume/HumeAIManager.js
+M	diamond-cli/lib/hume/IntelligenceCommunicationBridge.js
+M	diamond-cli/lib/hume/IntelligenceElevationManager.js
+M	diamond-cli/lib/hume/OAuth2IntelligenceAuthorizer.js
+M	diamond-security-encrypt.js
+M	einstein-wells/package.json
+M	electron-app/package.json
+M	electron-app/src/main/main.js
+M	functions/package.json
+M	k8s-guardian.sh
+M	launch-deployment/base-template.html
+M	lib/get_api_key.sh
+A	olc-llm-2100-cool-architecture.md
+M	package.json
+M	server.js
+M	services/api-tertiary/package.json
+M	vls/integration-gateway/synthesis-core/package.json
+M	vls/synthesis-core/package.json
+e3c3ef85 Stage all pending changes for submodule resolution
+A	einstein-wells/computational-field-theory.md
+M	einstein-wells/einstein-wells-backup-log.txt
+M	einstein-wells/qsvm-config.json
+A	einstein-wells/quantum-destiny/config.json
+A	einstein-wells/quantum-destiny/telemetry-setup.js
+d7d605da Update ADVANCED-SESSION-AFFINITY-EXPLAINED.md
+A	ADVANCED-SESSION-AFFINITY-EXPLAINED.md
+9fa9645e Major cleanup: Remove duplicate repository structure and consolidate files
+A	18-agent-personality-voices.json
+A	activate-18-agent-voices-system.sh
+A	activate-child-companion-system.sh
+A	activate-conversational-engine.sh
+A	advanced-session-affinity-config.yaml
+A	child-companion-personalities.json
+A	companion-availability-monitor.sh
+A	configure-advanced-session-affinity.sh
+A	deploy-backend-services.sh
+A	deploy-monitoring-dashboards.sh
+A	einstein-wells/bitcoin-mining-calculator.js
+A	elevenlabs-18-agent-integration.json
+M	mcp-dns-automation.md
+A	multi-claude-discussion-system.json
+A	verify-18-agent-activation.sh
+839a770f Einstein Wells energy throttling and destiny agent updates
+A	16-agent-backend-config.yaml
+A	16-agent-monitoring-dashboard.json
+A	16-agent-url-map.yaml
+M	ARC-AGI-master/apps/js/common.js
+M	ARC-AGI-master/apps/js/testing_interface.js
+A	DEPLOYMENT-SUCCESS-REPORT.md
+A	NEXT-PHASE-COMPLETION-REPORT.md
+M	academy/frontend/@core/tailwind/plugin.ts
+M	activate-cloud-ew-nicehash-connection.js
+A	activate-vls-coordination.sh
+A	agent-health-alert.yaml
+M	agent-security-policy.js
+M	backup/coaching2100-backup/js/all.js
+M	commands/copilot/emotion.js
+M	commands/summon/visionary.js
+M	comprehensive-integration-system.js
+A	configure-advanced-load-balancing.sh
+M	core-protocols/admin-core/frontend/components/@core/tailwind/plugin.ts
+M	core-protocols/admin-core/frontend/src/@core/tailwind/plugin.ts
+A	custom-metrics-config.yaml
+R099	deploy-clean/services/video-system/interface/Page 2.js	deploy-clean/services/video-system/interface/Page2.js
+M	deploy-clean/services/video-system/interface/puppeteer-core-browser.js
+A	deploy-high-speed-production.sh
+A	deploy-high-speed-simple.sh
+A	deploy-multi-region-final.sh
+A	deploy-production-regions.sh
+A	diamond-sao-monitoring-integration.json
+M	diamond-sao-qsvm-panel.js
+A	diamond-sao-vls-integration.json
+A	einstein-wells/CURRENT-SYSTEM-ARCHITECTURE.md
+A	einstein-wells/Dockerfile.universal
+A	einstein-wells/Dockerfile.xmrig-destiny
+A	einstein-wells/EINSTEIN-WELLS-COMPONENT-CHART.md
+A	einstein-wells/EINSTEIN-WELLS-PURE-SCHEMATIC.md
+A	einstein-wells/EINSTEIN-WELLS-REAL-INFRASTRUCTURE.md
+A	einstein-wells/clean-server.js
+M	einstein-wells/connect-hope-for-humanity-rig.js
+A	einstein-wells/deploy-destiny-swarm-all-wells.sh
+A	einstein-wells/destiny-energy-controller.js
+M	einstein-wells/emergency-seal.js
+M	einstein-wells/fill-wells.js
+A	einstein-wells/fixed-server.js
+M	einstein-wells/full-production.js
+M	einstein-wells/go-live-production.js
+A	einstein-wells/hardware-mimic.js
+M	einstein-wells/hash-verification-test.js
+M	einstein-wells/integrate-quantswar-service.js
+M	einstein-wells/managed-stratum-connection.js
+M	einstein-wells/mcp-qsvm-integration.js
+A	einstein-wells/minimal-test.js
+M	einstein-wells/mining-pool-audit/src/pools/BasePool.ts
+A	einstein-wells/mining-tools/xmrig-config.json
+M	einstein-wells/monitor-bitcoin-mining.js
+M	einstein-wells/monitor-dual-pipeline-6hour.js
+M	einstein-wells/monitoring-einstein-wells-quantswar.js
+M	einstein-wells/multi-system-operator.js
+A	einstein-wells/nicehash-interface/index.html
+A	einstein-wells/nicehash-interface/styles.css
+A	einstein-wells/nicehash-miner.dmg
+A	einstein-wells/nicehash-quickminer-setup.js
+M	einstein-wells/pressure-adapter.js
+M	einstein-wells/production-master-controller.js
+M	einstein-wells/production-monitor.js
+A	einstein-wells/progressive-scaling-miner.js
+A	einstein-wells/proper-sha256-miner.js
+M	einstein-wells/qsvm-config.json
+A	einstein-wells/quickminer/EinsteinWells-Bitcoin-Primary-config.json
+A	einstein-wells/quickminer/EinsteinWells-Bitcoin-Secondary-config.json
+A	einstein-wells/quickminer/EinsteinWells-Ethereum-GPU-config.json
+A	einstein-wells/quickminer/EinsteinWells-Primary-config.json
+A	einstein-wells/quickminer/EinsteinWells-Secondary-config.json
+A	einstein-wells/quickminer/config.json
+A	einstein-wells/quickminer/start-EinsteinWells-Bitcoin-Primary.sh
+A	einstein-wells/quickminer/start-EinsteinWells-Bitcoin-Secondary.sh
+A	einstein-wells/quickminer/start-EinsteinWells-Ethereum-GPU.sh
+A	einstein-wells/quickminer/start-EinsteinWells-Primary.sh
+A	einstein-wells/quickminer/start-EinsteinWells-Secondary.sh
+M	einstein-wells/real-bitcoin-mining-verification.js
+M	einstein-wells/revenue-heartbeat.js
+M	einstein-wells/self-sustain-monitor.js
+M	einstein-wells/server.js
+M	einstein-wells/simple-monitor.cjs
+A	einstein-wells/stable-nicehash-miner.js
+A	einstein-wells/supreme-orchestrator.js
+M	einstein-wells/test-run.js
+A	einstein-wells/verify-endpoints.sh
+M	einstein-wells/well-door-alternating-system.js
+M	einstein-wells/wells-orchestration.js
+A	einstein-wells/xmrig-bitcoin-config.json
+M	email-routing-system.js
+A	load-balancing-alert.yaml
+M	load-testing/voice-assignment-load-test.js
+A	monitor-16-agent-advanced.sh
+M	owner-interface/dream-commander-init.js
+M	owner-interface/dream-commander-integration.js
+M	qsvm-manager.js
+M	scripts/refactor-claude-voice.cjs
+M	services/nicehash-einstein-wells-mcp-orchestrator.js
+A	setup-advanced-monitoring.sh
+R099	src/services/video-system/interface/Page 2.js	src/services/video-system/interface/Page2.js
+M	src/services/video-system/interface/puppeteer-core-browser.js
+M	validate-architecture.js
+A	vls-coordination-alert.yaml
+A	vls-coordination-monitor.sh
+A	vls-wing-configuration.json
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/dream-commander-init.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/dream-commander-integration.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/dream-commander-init.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/dream-commander-integration.js
+2fd51f3a Deploy 16-Agent Personality System with Dr. Claude Integration
+A	16-agent-deployment-status.json
+A	16-agent-personality-system.js
+M	CRX-Sector-Emphasis-Architecture.md
+A	Dockerfile-16-agent-system
+M	RIX-1331-Problem-Solution-Dictionary.md
+A	activate-cloud-ew-nicehash-connection.js
+A	configs/voice-pilots-master.json
+A	deploy-16-agent-direct.sh
+A	deploy-16-agent-system.sh
+A	diamond-sao-16-agent-endpoint.js
+A	einstein-wells/Dockerfile.ew-001-producer
+A	einstein-wells/connect-hope-for-humanity-rig.js
+A	einstein-wells/deploy-cloud-to-cloud.sh
+A	einstein-wells/deploy-ew-001-producer.sh
+M	einstein-wells/einstein-wells-quantswar-config.json
+A	einstein-wells/ew-001-production-config.json
+A	einstein-wells/go-live-production.js
+A	einstein-wells/integrate-existing-container.js
+A	einstein-wells/managed-stratum-connection.js
+M	einstein-wells/nicehash-calibration.js
+M	einstein-wells/nicehash-multi-algorithm-config.js
+A	einstein-wells/production-worker-loader.js
+A	einstein-wells/production.env.template
+M	einstein-wells/registry-einstein-wells-quantswar.json
+M	einstein-wells/server.js
+A	einstein-wells/test-stratum-connection.js
+A	einstein-wells/update-existing-service.sh
+M	mcp-asoos-specialized.js
+A	mcp-asoos-specialized.js.backup.1759385602
+A	monitor-16-agent-production.sh
+A	production-deployment-status.md
+A	scripts/deploy-complete-voice-system.sh
+A	scripts/premium-voice-assignments.md
+A	scripts/premium-voice-plan.md
+A	scripts/setup-final-corrected-voices.sh
+A	scripts/setup-final-voice-pilots-bash3.sh
+A	scripts/setup-final-voice-pilots.sh
+A	services/nicehash-einstein-wells-mcp-orchestrator.js
+A	vls-16-agent-integration.json
+A	voice-synthesis-16-agent.json
+945ef499 🎙️ Implement Claude Voice Configuration System with ElevenLabs 'Vee'
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/agent-configs/wing1-crx-custom-personalities.json
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/reports/VOICE_ASSIGNMENT_DISPATCH.json
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/reports/ai-video-web-specialists.json
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/reports/dana-profile.json
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/reports/deployment.json
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/reports/multi-domain-setup.json
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/reports/orchestrator.json
+A	.backup/claude-voice-refactor-1759355075486/.workspace/staging-extras/r2-migration-staging/reports/q-rix-profile.json
+A	.backup/claude-voice-refactor-1759355075486/asoos-deployment/config/complete-ai-pilot-voice-profiles.json
+A	.backup/claude-voice-refactor-1759355075486/asoos-deployment/config/dr-claude-supreme-orchestrator.json
+A	.backup/claude-voice-refactor-1759355075486/asoos-deployment/config/voice-profiles-complete.json
+A	.backup/claude-voice-refactor-1759355075486/business-leadership-orchestration.js
+A	.backup/claude-voice-refactor-1759355075486/complete-14-agent-marketplace.js
+A	.backup/claude-voice-refactor-1759355075486/config/mcp_voice_assignments.json
+A	.backup/claude-voice-refactor-1759355075486/configs/domain/multi-domain-setup.json
+A	.backup/claude-voice-refactor-1759355075486/configs/super-claude-1/deployment.json
+A	.backup/claude-voice-refactor-1759355075486/configs/voice-integration/conversational-voice-profiles.json
+A	.backup/claude-voice-refactor-1759355075486/configs/voice-integration/dr-lucy-profile.json
+A	.backup/claude-voice-refactor-1759355075486/configs/warp/voice-integration.json
+A	.backup/claude-voice-refactor-1759355075486/deploy-clean/routes/voice-api.js
+A	.backup/claude-voice-refactor-1759355075486/diamond-cli/lib/claude-voice-code-helper.js
+A	.backup/claude-voice-refactor-1759355075486/diamond-cli/lib/quantum-voice-super-boost.js
+A	.backup/claude-voice-refactor-1759355075486/diamond-cli/lib/voice-speaker-activation.js
+A	.backup/claude-voice-refactor-1759355075486/elevenlabs-package.json
+A	.backup/claude-voice-refactor-1759355075486/hume-ei-config.json
+A	.backup/claude-voice-refactor-1759355075486/lib/claude-voice-config.js
+A	.backup/claude-voice-refactor-1759355075486/mcp-sector-alignment-system.js
+A	.backup/claude-voice-refactor-1759355075486/modular-pcp-architecture.js
+A	.backup/claude-voice-refactor-1759355075486/nl-processing-server.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/clean_script.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/elevenlabs-conversational-agents.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/fixed_script.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/force-elevenlabs-voices-only.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/server-minimal.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/server.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/temp_script.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/test-agents.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/test-enhanced-voice-integration.js
+A	.backup/claude-voice-refactor-1759355075486/owner-interface/vls-computationalist-agents.js
+A	.backup/claude-voice-refactor-1759355075486/pilots-lounge/pcp-core-system.json
+A	.backup/claude-voice-refactor-1759355075486/pilots-lounge/pcp-pilot-registry.json
+A	.backup/claude-voice-refactor-1759355075486/routes/voice-api.js
+A	.backup/claude-voice-refactor-1759355075486/services/unified-elevenlabs-agent-system.js
+A	.backup/claude-voice-refactor-1759355075486/services/voice-synthesis/unified-elevenlabs-voice-system.js
+A	.backup/claude-voice-refactor-1759355075486/unified-elevenlabs-system.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/agent-synthesis/srix-agent-orchestrator.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/clean_script.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/elevenlabs-conversational-agents.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/fixed_script.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server-minimal.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/temp_script.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/test-agents.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/test-enhanced-voice-integration.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/vls-computationalist-agents.js
+A	.backup/claude-voice-refactor-1759355075486/vls/integration-gateway/synthesis-core/voice-synthesis/unified-elevenlabs-system.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/agent-synthesis/srix-agent-orchestrator.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/clean_script.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/elevenlabs-conversational-agents.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/fixed_script.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/server-minimal.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/server.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/temp_script.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/test-agents.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/test-enhanced-voice-integration.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/interface-synthesis/owner-interface/vls-computationalist-agents.js
+A	.backup/claude-voice-refactor-1759355075486/vls/synthesis-core/voice-synthesis/unified-elevenlabs-system.js
+A	.backup/claude-voice-refactor-1759355075486/vls/vls-complete-system-integration.json
+A	.backup/claude-voice-refactor-1759355075486/voice-service.js
+M	.workspace/staging-extras/r2-migration-staging/agent-configs/wing1-crx-custom-personalities.json
+M	.workspace/staging-extras/r2-migration-staging/reports/VOICE_ASSIGNMENT_DISPATCH.json
+M	.workspace/staging-extras/r2-migration-staging/reports/ai-video-web-specialists.json
+M	.workspace/staging-extras/r2-migration-staging/reports/dana-profile.json
+M	.workspace/staging-extras/r2-migration-staging/reports/deployment.json
+M	.workspace/staging-extras/r2-migration-staging/reports/multi-domain-setup.json
+M	.workspace/staging-extras/r2-migration-staging/reports/orchestrator.json
+M	.workspace/staging-extras/r2-migration-staging/reports/q-rix-profile.json
+M	asoos-deployment/config/complete-ai-pilot-voice-profiles.json
+M	asoos-deployment/config/dr-claude-supreme-orchestrator.json
+M	asoos-deployment/config/voice-profiles-complete.json
+M	business-leadership-orchestration.js
+A	claude-voice-refactor-report.json
+M	complete-14-agent-marketplace.js
+M	config/mcp_voice_assignments.json
+M	configs/domain/multi-domain-setup.json
+M	configs/super-claude-1/deployment.json
+M	configs/voice-integration/conversational-voice-profiles.json
+M	configs/voice-integration/dr-lucy-profile.json
+A	configs/warp/voice-integration.json
+M	deploy-clean/routes/voice-api.js
+M	diamond-cli/lib/claude-voice-code-helper.js
+M	diamond-cli/lib/quantum-voice-super-boost.js
+M	diamond-cli/lib/voice-speaker-activation.js
+A	einstein-wells/100B-revenue-strategy.md
+A	einstein-wells/mining-pool-audit/README.md
+A	einstein-wells/mining-pool-audit/package.json
+A	einstein-wells/mining-pool-audit/src/env.ts
+A	einstein-wells/mining-pool-audit/src/logger.ts
+A	einstein-wells/mining-pool-audit/src/pools/BasePool.ts
+A	einstein-wells/mining-pool-audit/src/pools/NiceHash.ts
+A	einstein-wells/mining-pool-audit/src/pools/SlushPool.ts
+A	einstein-wells/mining-pool-audit/src/types.ts
+A	einstein-wells/mining-pool-audit/src/walletVerifier.ts
+A	einstein-wells/mining-pool-audit/startup-demo.sh
+A	einstein-wells/mining-pool-audit/tsconfig.json
+A	einstein-wells/mining-pool-query.sh
+M	einstein-wells/monitor-dual-pipeline-6hour.js
+A	einstein-wells/operation-quantum-dominance.md
+A	einstein-wells/qa
+M	einstein-wells/qsvm-config.json
+M	einstein-wells/quantum-time-calculation.js
+A	einstein-wells/scientific-breakthrough.md
+A	einstein-wells/trinity-breakthrough.md
+A	einstein-wells/vm-audit.sh
+M	elevenlabs-package.json
+M	hume-ei-config.json
+A	lib/claude-voice-config.cjs
+M	mcp-sector-alignment-system.js
+M	modular-pcp-architecture.js
+M	nl-processing-server.js
+M	owner-interface/clean_script.js
+M	owner-interface/elevenlabs-conversational-agents.js
+M	owner-interface/fixed_script.js
+M	owner-interface/force-elevenlabs-voices-only.js
+M	owner-interface/server-minimal.js
+M	owner-interface/server.js
+M	owner-interface/temp_script.js
+M	owner-interface/test-agents.js
+M	owner-interface/test-enhanced-voice-integration.js
+M	owner-interface/vls-computationalist-agents.js
+M	pilots-lounge/pcp-core-system.json
+M	pilots-lounge/pcp-pilot-registry.json
+M	routes/voice-api.js
+A	scripts/refactor-claude-voice.cjs
+M	services/unified-elevenlabs-agent-system.js
+M	services/voice-synthesis/unified-elevenlabs-voice-system.js
+A	test-voice-config.cjs
+M	unified-elevenlabs-system.js
+M	vls/integration-gateway/synthesis-core/agent-synthesis/srix-agent-orchestrator.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/clean_script.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/elevenlabs-conversational-agents.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/fixed_script.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server-minimal.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/temp_script.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/test-agents.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/test-enhanced-voice-integration.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/vls-computationalist-agents.js
+M	vls/integration-gateway/synthesis-core/voice-synthesis/unified-elevenlabs-system.js
+M	vls/synthesis-core/agent-synthesis/srix-agent-orchestrator.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/clean_script.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/elevenlabs-conversational-agents.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/fixed_script.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/server-minimal.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/server.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/temp_script.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/test-agents.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/test-enhanced-voice-integration.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/vls-computationalist-agents.js
+M	vls/synthesis-core/voice-synthesis/unified-elevenlabs-system.js
+M	vls/vls-complete-system-integration.json
+M	voice-service.js
+cff1ba0f 🚀 PRODUCTION DEPLOYMENT: Einstein Wells - High Speed Publishing Ready
+A	.workspace/staging-extras/r2-migration-staging/system-configs/claude-models.json.backup-20250930-120543
+A	.workspace/staging-extras/vls/solutions/dr-memoria-anthology-launch/package.json.backup-20250930-120558
+M	.workspace/staging-extras/vls/solutions/dr-memoria-anthology-launch/src/drm-content-generation-engine.py
+A	.workspace/staging-extras/vls/solutions/dr-memoria-anthology-launch/src/drm-content-generation-engine.py.backup-20250930-120543
+A	PATENT_DEPLOYMENT_GUIDE.md.backup-20250930-120543
+A	PATENT_INTEGRATION_GUIDE.md.backup-20250930-120543
+A	WARP.md.backup-20250930-120543
+A	asoos-deployment/lib/secretManager.js.backup-20250930-120543
+A	asoos-deployment/secret-migration-report.md.backup-20250930-120543
+M	check-env-vars.js
+A	check-env-vars.js.backup-20250930-120543
+A	config/cloudbuild.standards.yaml.backup-20250930-120543
+M	create-genesis-archive.js
+A	create-genesis-archive.js.backup-20250930-120544
+A	debug-endpoint2.js.backup-20250930-120543
+A	deploy-clean/functions/pineconeIntegration.js.backup-20250930-120544
+A	deploy-clean/functions/test-pinecone.js.backup-20250930-120544
+A	deploy-patent-processor.sh.backup-20250930-120543
+A	deploy-production.sh.backup-20250930-120543
+A	deploy-vls-complete-system.sh.backup-20250930-120543
+A	deployment-summary.md.backup-20250930-120543
+A	docs/CLAUDE_ORCHESTRATION.md.backup-20250930-120543
+A	dups-cups-server.js.backup-20250930-120543
+D	einstein-wells/.claude-changes.txt
+A	einstein-wells/.claude-ignore
+A	einstein-wells/.gitignore.local
+A	einstein-wells/Dockerfile.bitcoin-mining
+A	einstein-wells/Dockerfile.bitcoin-simple
+A	einstein-wells/Dockerfile.protected
+A	einstein-wells/bitcoin-block-timing.js
+A	einstein-wells/cleanup-translation-faults.sh
+A	einstein-wells/deploy-sha256-bitcoin-mining.sh
+R100	einstein-wells/launc Shell scripth-115btc-system.sh	einstein-wells/launch-shell-script-115btc-system.sh
+A	einstein-wells/launch-verified-bitcoin-mining.sh
+A	einstein-wells/mining-production-config.json
+R100	einstein-wells/mining-tools/SHA256SUMS	einstein-wells/mining-tools-HIDDEN/SHA256SUMS
+A	einstein-wells/mining-tools-HIDDEN/config.json
+R100	einstein-wells/mining-tools/xmrig	einstein-wells/mining-tools-HIDDEN/xmrig
+R100	einstein-wells/mining-tools/xmrig-6.20.0/SHA256SUMS	einstein-wells/mining-tools-HIDDEN/xmrig-6.20.0/SHA256SUMS
+R100	einstein-wells/mining-tools/config.json	einstein-wells/mining-tools-HIDDEN/xmrig-6.20.0/config.json
+R100	einstein-wells/mining-tools/xmrig-6.20.0/xmrig	einstein-wells/mining-tools-HIDDEN/xmrig-6.20.0/xmrig
+R100	einstein-wells/mining-tools/xmrig-config.json	einstein-wells/mining-tools-HIDDEN/xmrig-config.json
+D	einstein-wells/mining-tools/xmrig-6.20.0/config.json
+A	einstein-wells/monitor-bitcoin-mining.js
+A	einstein-wells/monitor-dual-pipeline-6hour.js
+M	einstein-wells/package.json
+M	einstein-wells/qsvm-config.json
+A	einstein-wells/quantum-time-calculation.js
+A	einstein-wells/real-bitcoin-mining-verification.js
+A	einstein-wells/run-6hour-protected-session.js
+A	einstein-wells/simple-monitor.cjs
+A	einstein-wells/well-door-alternating-system.js
+R100	fix-anthropic-header.js	fix-anthropic-header.js.backup-20250930-120543
+R100	fix-claude-endpoint.js	fix-claude-endpoint.js.backup-20250930-120543
+A	functions.backup/package.json.backup-20250930-120558
+A	functions.backup/pineconeIntegration.js.backup-20250930-120543
+A	functions.backup/test-pinecone.js.backup-20250930-120543
+A	functions/test-pinecone.js.backup-20250930-120543
+A	implementation-plans/claude-oauth2-implementation.md.backup-20250930-120543
+A	integration/dr-pinion-mcp-server/README.md.backup-20250930-120543
+M	integration/dr-pinion-mcp-server/bulk-ingest.js
+A	integration/dr-pinion-mcp-server/bulk-ingest.js.backup-20250930-120543
+A	integration/dr-pinion-mcp-server/cloudbuild.yaml.backup-20250930-120543
+A	integration/dr-pinion-mcp-server/package.json.backup-20250930-120558
+M	integration/dr-pinion-mcp-server/server.js
+A	integration/dr-pinion-mcp-server/server.js.backup-20250930-120543
+A	lib/get_api_key.sh.backup-20250930-120543
+A	lib/secure-env-loader.js.backup-20250930-120543
+A	mcp-aipub-config.json.backup-20250930-120543
+A	monitoring/oauth2-security-monitor.js.backup-20250930-120543
+A	nl-processing-server.js.backup-20250930-120543
+A	owner-interface/DEPLOYMENT.md.backup-20250930-120543
+A	owner-interface/cloud-run-config.yaml.backup-20250930-120543
+A	owner-interface/deploy.sh.backup-20250930-120543
+A	owner-interface/diamond-working-cli.js.backup-20250930-120543
+A	owner-interface/gcp-wfa-deployment.sh.backup-20250930-120543
+A	owner-interface/server.js.backup-20250930-120543
+A	patent-server.js.backup-20250930-120543
+A	production-didc-archives-system.js.backup-20250930-120543
+A	quantum-speed-cleanup-script.js.backup-20250930-120543
+A	scripts/mcp-bootstrap.js.backup-20250930-120543
+M	services/MultiTenantPatentSystem.js
+A	services/MultiTenantPatentSystem.js.backup-20250930-120543
+M	services/PatentVectorService.js
+A	services/PatentVectorService.js.backup-20250930-120544
+R100	set-anthropic-key.sh	set-anthropic-key.sh.backup-20250930-120543
+R100	set-new-anthropic-key.sh	set-new-anthropic-key.sh.backup-20250930-120543
+R100	setup-claude-api.sh	setup-claude-api.sh.backup-20250930-120543
+A	setup-secure-credentials.sh.backup-20250930-120543
+A	src/functions/pineconeIntegration.js.backup-20250930-120544
+R100	test-claude-api.sh	test-claude-api.sh.backup-20250930-120543
+R100	update-anthropic-header.js	update-anthropic-header.js.backup-20250930-120543
+A	vls/deploy-vls-complete-system.sh.backup-20250930-120543
+M	vls/integration-gateway/solutions/dr-memoria-anthology-launch/src/drm-content-generation-engine.py
+A	vls/integration-gateway/solutions/dr-memoria-anthology-launch/src/drm-content-generation-engine.py.backup-20250930-120543
+A	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/DEPLOYMENT.md.backup-20250930-120543
+A	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/cloud-run-config.yaml.backup-20250930-120543
+A	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/deploy.sh.backup-20250930-120543
+A	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/diamond-working-cli.js.backup-20250930-120543
+A	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/gcp-wfa-deployment.sh.backup-20250930-120543
+A	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server.js.backup-20250930-120543
+M	vls/solutions/dr-memoria-anthology-launch/src/drm-content-generation-engine.py
+A	vls/solutions/dr-memoria-anthology-launch/src/drm-content-generation-engine.py.backup-20250930-120543
+A	vls/synthesis-core/interface-synthesis/owner-interface/DEPLOYMENT.md.backup-20250930-120543
+A	vls/synthesis-core/interface-synthesis/owner-interface/cloud-run-config.yaml.backup-20250930-120543
+A	vls/synthesis-core/interface-synthesis/owner-interface/deploy.sh.backup-20250930-120543
+A	vls/synthesis-core/interface-synthesis/owner-interface/diamond-working-cli.js.backup-20250930-120543
+A	vls/synthesis-core/interface-synthesis/owner-interface/gcp-wfa-deployment.sh.backup-20250930-120543
+A	vls/synthesis-core/interface-synthesis/owner-interface/server.js.backup-20250930-120543
+66969fd5 🔧 System configs: Node.js version, Docker configs, voice configs, and new CLI helpers added
+M	.nvmrc
+M	.workspace/staging-extras/r2-migration-staging/system-configs/claude-models.json
+M	Dockerfile.dups-cups
+M	Dockerfile.nodejs-secure
+M	Dockerfile.oauth2-elevenlabs
+M	Dockerfile.patent
+M	Dockerfile.patent-simple
+M	android-voice-config.json
+M	cleanup-plan.json
+M	cloudbuild.yaml
+M	commands/claude/agent/delegate.js
+M	commands/claude/code/generate.js
+A	diamond-cli/lib/claude-voice-code-helper.js
+A	diamond-cli/lib/quantum-voice-super-boost.js
+A	diamond-cli/lib/voice-speaker-activation.js
+M	dr-claude-srix-config.json
+M	dr-lucy-srix-config.json
+M	elevenlabs-config.json
+M	hume-ei-config.json
+M	ios-voice-config.json
+M	mocoa-cloud-run/Dockerfile
+M	pinecone-pipeline-config.json
+A	scripts/mcp-bootstrap.js
+M	scripts/upgrade-nodejs-deployment.sh
+M	victory36-model-config.json
+b4b4c4e0 Claude Code: SHUT DOWN PRODUCTION ELEGANTLY
+A	einstein-wells/.claude-changes.txt
+M	einstein-wells/qsvm-config.json
+A	einstein-wells/revenue-heartbeat.js
+A	einstein-wells/self-sustain-monitor.js
+A	einstein-wells/test-nicehash.json
+A	einstein-wells/unified-field-production.yaml
+A	einstein-wells/website-02/index.html
+41c6e268 Einstein Wells Production Deployment - QSVM Config Updates & Monitoring Activation Script
+A	einstein-wells/activate-all-monitoring.sh
+M	einstein-wells/qsvm-config.json
+075ce981 Add remaining template files
+M	AI-Civilization-Orchestration-Development-Initiative.md
+A	CONTAINERIZATION-MASTER-STRATEGY.md
+A	CORE-Complete-Orchestration-Summary-Deployment-Handover.md
+A	Complete-Architectural-Endpoint-Schema-Map.md
+A	Corrected-Human-MCP-Infrastructure-Schema.md
+A	MISSING-SYSTEMS-CONTAINERIZATION-PLAN.md
+A	Points-of-Light-Base-Template-Connection-Schema.md
+A	Victory36-Dream-Commander-Integration-Framework.md
+A	Victory36-Revenue-Analysis-Global-Free-Bank-Framework.md
+A	automated-onboarding-system.js
+A	comprehensive-integration-system.js
+A	diamond-cli/lib/diamondSolutionsMenu.js
+M	diamond-cli/lib/interface.js
+A	dynamic-decision-integration-test.html
+A	dynamic-decision-system.js
+A	einstein-wells/Dockerfile.bitcoin
+A	einstein-wells/Dockerfile.bitcoin-enhanced
+A	einstein-wells/Dockerfile.nicehash
+A	einstein-wells/algorithms-verification.json
+M	einstein-wells/einstein-wells-backup-log.txt
+A	einstein-wells/hash-verification-test.js
+A	einstein-wells/launc Shell scripth-115btc-system.sh
+A	einstein-wells/launch-monitor-first.sh
+A	einstein-wells/launch-production-115btc.sh
+A	einstein-wells/monitoring-einstein-wells-quantswar.js
+M	einstein-wells/production-monitor.js
+M	einstein-wells/qsvm-config.json
+A	einstein-wells/start-mcp-einsteinwells-full-spectrum.sh
+M	einstein-wells/wells-orchestration.js
+A	mcp-data-schema-requirements.md
+A	one-hour-setup-marketing.html
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/diamond-enhanced.html
+fd5ccca4 🚀 BLITZ SYSTEM: High-Speed Final Production Orchestration Complete
+A	einstein-wells/BLITZ-README.md
+A	einstein-wells/high-speed-orchestration.js
+M	einstein-wells/package.json
+A	einstein-wells/package.json.bak
+b9b5ba60 🚀 HIGH-SPEED FINAL PRODUCTION ORCHESTRATION: Einstein Wells + QSVM Integration + Architecture Docs
+A	AI-Civilization-Orchestration-Development-Initiative.md
+A	CLIENT-DATA-PROTECTION-POLICY.md
+A	CORE-Phase1-System-Discovery.md
+A	CORE-Phase1.2-Connection-Point-Registry.md
+A	CORE-Phase1.3-Metaverse-Integration-Architecture.md
+A	CORE-Phase1.4-Implementation-Architecture.md
+A	CRX-Sector-Emphasis-Architecture.md
+A	CRX-SuperPilots-Maestro-Hierarchy.md
+A	Civilization-AI-Global-Integration-Architecture.md
+A	DYNAMIC-SCHEMATIC-ORCHESTRATOR-ROADMAP.md
+A	RIX-1331-Problem-Solution-Dictionary.md
+A	UNIVERSAL-TEMPLATE-ARCHITECTURE.md
+A	agent-security-policy.js
+A	data-protection-policy.html
+A	diamond-sao-qsvm-panel.js
+A	einstein-wells/mcp-qsvm-integration.js
+A	einstein-wells/qsvm-config.json
+A	einstein-wells/website/index.html
+A	email-routing-system.js
+A	qsvm-manager.js
+D	universal-base-template.html
+A	user-level-privacy-architecture.js
+A	validate-architecture.js
+f28ef184 🚀 ULTRA-HIGH-SPEED DEPLOYMENT - FULL PRODUCTION
+A	einstein-wells/echo
+A	einstein-wells/else
+A	einstein-wells/fi
+M	einstein-wells/package-lock.json
+1eb9db9e 💎 Fix Docker build - Diamond SAO Authority
+M	einstein-wells/Dockerfile
+M	einstein-wells/package.json
+27f1b37b 💎 Diamond SAO Authorized Deployment Fix
+A	einstein-wells/index.js
+2037f8c3 🌐 Add Cloud Run HTTP server for Einstein Wells
+M	einstein-wells/Dockerfile
+M	einstein-wells/package.json
+A	einstein-wells/server.js
+6f2dcb72 🐳 Add Docker configuration for Einstein Wells cloud deployment
+A	einstein-wells/.dockerignore
+A	einstein-wells/Dockerfile
+355706a0 Add remaining template files
+M	asoos-deployment/launch-deployment/base-template.html
+A	universal-base-template.html
+2396f317 🌌 Einstein Wells Quantum Mining Integration
+A	einstein-wells/CHANGELOG.md
+A	einstein-wells/FUNDING-PACKAGE.md
+A	einstein-wells/bitcoin.conf
+A	einstein-wells/complete-mining-config.json
+A	einstein-wells/complete-mining-system.js
+A	einstein-wells/deploy-einstein-wells-quantswar.sh
+A	einstein-wells/einstein-wells-backup-log.txt
+A	einstein-wells/einstein-wells-quantswar-config.json
+A	einstein-wells/emergency-seal.js
+A	einstein-wells/fill-wells.js
+A	einstein-wells/full-production.js
+A	einstein-wells/integrate-quantswar-service.js
+A	einstein-wells/liquid-diamond-security.js
+A	einstein-wells/macos-mining-options.md
+A	einstein-wells/mining-tools/SHA256SUMS
+A	einstein-wells/mining-tools/config.json
+A	einstein-wells/mining-tools/xmrig
+A	einstein-wells/mining-tools/xmrig-6.20.0/SHA256SUMS
+A	einstein-wells/mining-tools/xmrig-6.20.0/config.json
+A	einstein-wells/mining-tools/xmrig-6.20.0/xmrig
+A	einstein-wells/mining-tools/xmrig-config.json
+A	einstein-wells/monitoring-einstein-wells-quantswar.json
+A	einstein-wells/multi-system-operator.js
+M	einstein-wells/nicehash-calibration.js
+A	einstein-wells/nicehash-connection-guide.md
+A	einstein-wells/nicehash-multi-algorithm-config.js
+A	einstein-wells/package-lock.json
+M	einstein-wells/package.json
+A	einstein-wells/power-nodes/einstein-wells-quantswar.yaml
+A	einstein-wells/pressure-adapter.js
+A	einstein-wells/production-master-controller.js
+A	einstein-wells/production-monitor.js
+A	einstein-wells/real-mining-options.md
+A	einstein-wells/registry-einstein-wells-quantswar.json
+A	einstein-wells/software-requirements-analysis.md
+A	einstein-wells/start-production.js
+A	einstein-wells/status-report.js
+A	einstein-wells/test-run.js
+A	einstein-wells/verify-nicehash-connection.sh
+A	einstein-wells/wells-orchestration.js
+4b851042 Update code formatting and structure improvements
+M	ARC-AGI-master/apps/js/common.js
+M	ARC-AGI-master/apps/js/testing_interface.js
+M	academy/frontend/@core/components/custom-inputs/Horizontal.tsx
+M	academy/frontend/@core/components/custom-inputs/Image.tsx
+M	academy/frontend/@core/components/custom-inputs/Vertical.tsx
+M	academy/frontend/@core/components/custom-inputs/types.ts
+M	academy/frontend/@core/components/customizer/index.tsx
+M	academy/frontend/@core/components/mui/Autocomplete.tsx
+M	academy/frontend/@core/components/mui/Avatar.tsx
+M	academy/frontend/@core/components/mui/Badge.tsx
+M	academy/frontend/@core/components/mui/Chip.tsx
+M	academy/frontend/@core/components/mui/IconButton.tsx
+M	academy/frontend/@core/components/mui/TabList.tsx
+M	academy/frontend/@core/components/mui/TextField.tsx
+M	academy/frontend/@core/components/option-menu/index.tsx
+M	academy/frontend/@core/components/option-menu/types.ts
+M	academy/frontend/@core/components/scroll-to-top/index.tsx
+M	academy/frontend/@core/contexts/settingsContext.tsx
+M	academy/frontend/@core/hooks/useImageVariant.ts
+M	academy/frontend/@core/hooks/useLayoutInit.ts
+M	academy/frontend/@core/hooks/useObjectCookie.ts
+M	academy/frontend/@core/hooks/useSettings.tsx
+M	academy/frontend/@core/styles/horizontal/menuItemStyles.ts
+M	academy/frontend/@core/styles/horizontal/menuRootStyles.ts
+M	academy/frontend/@core/styles/stepper.ts
+M	academy/frontend/@core/styles/vertical/menuItemStyles.ts
+M	academy/frontend/@core/styles/vertical/menuSectionStyles.ts
+M	academy/frontend/@core/styles/vertical/navigationCustomStyles.ts
+M	academy/frontend/@core/svg/ContentCompact.tsx
+M	academy/frontend/@core/svg/ContentWide.tsx
+M	academy/frontend/@core/svg/DirectionLtr.tsx
+M	academy/frontend/@core/svg/DirectionRtl.tsx
+M	academy/frontend/@core/svg/LayoutCollapsed.tsx
+M	academy/frontend/@core/svg/LayoutHorizontal.tsx
+M	academy/frontend/@core/svg/LayoutVertical.tsx
+M	academy/frontend/@core/svg/Logo.tsx
+M	academy/frontend/@core/svg/SkinBordered.tsx
+M	academy/frontend/@core/svg/SkinDefault.tsx
+M	academy/frontend/@core/tailwind/plugin.ts
+M	academy/frontend/@core/theme/colorSchemes.ts
+M	academy/frontend/@core/theme/customShadows.ts
+M	academy/frontend/@core/theme/index.ts
+M	academy/frontend/@core/theme/overrides/accordion.tsx
+M	academy/frontend/@core/theme/overrides/alert.tsx
+M	academy/frontend/@core/theme/overrides/autocomplete.tsx
+M	academy/frontend/@core/theme/overrides/avatar.ts
+M	academy/frontend/@core/theme/overrides/backdrop.ts
+M	academy/frontend/@core/theme/overrides/badges.ts
+M	academy/frontend/@core/theme/overrides/breadcrumbs.ts
+M	academy/frontend/@core/theme/overrides/button-group.ts
+M	academy/frontend/@core/theme/overrides/button.ts
+M	academy/frontend/@core/theme/overrides/card.ts
+M	academy/frontend/@core/theme/overrides/checkbox.tsx
+M	academy/frontend/@core/theme/overrides/chip.ts
+M	academy/frontend/@core/theme/overrides/dialog.ts
+M	academy/frontend/@core/theme/overrides/drawer.ts
+M	academy/frontend/@core/theme/overrides/fab.ts
+M	academy/frontend/@core/theme/overrides/form-control-label.ts
+M	academy/frontend/@core/theme/overrides/icon-button.ts
+M	academy/frontend/@core/theme/overrides/index.ts
+M	academy/frontend/@core/theme/overrides/input.ts
+M	academy/frontend/@core/theme/overrides/list.ts
+M	academy/frontend/@core/theme/overrides/menu.ts
+M	academy/frontend/@core/theme/overrides/pagination.ts
+M	academy/frontend/@core/theme/overrides/paper.ts
+M	academy/frontend/@core/theme/overrides/popover.ts
+M	academy/frontend/@core/theme/overrides/progress.ts
+M	academy/frontend/@core/theme/overrides/radio.tsx
+M	academy/frontend/@core/theme/overrides/rating.tsx
+M	academy/frontend/@core/theme/overrides/select.tsx
+M	academy/frontend/@core/theme/overrides/slider.ts
+M	academy/frontend/@core/theme/overrides/snackbar.ts
+M	academy/frontend/@core/theme/overrides/switch.ts
+M	academy/frontend/@core/theme/overrides/table-pagination.ts
+M	academy/frontend/@core/theme/overrides/tabs.ts
+M	academy/frontend/@core/theme/overrides/timeline.ts
+M	academy/frontend/@core/theme/overrides/toggle-button.ts
+M	academy/frontend/@core/theme/overrides/tooltip.ts
+M	academy/frontend/@core/theme/overrides/typography.ts
+M	academy/frontend/@core/theme/shadows.ts
+M	academy/frontend/@core/theme/spacing.ts
+M	academy/frontend/@core/theme/typography.ts
+M	academy/frontend/@core/types.ts
+M	academy/frontend/@core/utils/serverHelpers.ts
+M	academy/frontend/@layouts/BlankLayout.tsx
+M	academy/frontend/@layouts/HorizontalLayout.tsx
+M	academy/frontend/@layouts/LayoutWrapper.tsx
+M	academy/frontend/@layouts/VerticalLayout.tsx
+M	academy/frontend/@layouts/components/horizontal/Footer.tsx
+M	academy/frontend/@layouts/components/horizontal/Header.tsx
+M	academy/frontend/@layouts/components/horizontal/LayoutContent.tsx
+M	academy/frontend/@layouts/components/horizontal/Navbar.tsx
+M	academy/frontend/@layouts/components/vertical/Footer.tsx
+M	academy/frontend/@layouts/components/vertical/LayoutContent.tsx
+M	academy/frontend/@layouts/components/vertical/Navbar.tsx
+M	academy/frontend/@layouts/styles/horizontal/StyledContentWrapper.tsx
+M	academy/frontend/@layouts/styles/horizontal/StyledFooter.tsx
+M	academy/frontend/@layouts/styles/horizontal/StyledHeader.tsx
+M	academy/frontend/@layouts/styles/shared/StyledMain.tsx
+M	academy/frontend/@layouts/styles/vertical/StyledContentWrapper.tsx
+M	academy/frontend/@layouts/styles/vertical/StyledFooter.tsx
+M	academy/frontend/@layouts/styles/vertical/StyledHeader.tsx
+M	academy/frontend/@layouts/utils/layoutClasses.ts
+M	academy/frontend/@menu/components/RouterLink.tsx
+M	academy/frontend/@menu/components/horizontal-menu/HorizontalNav.tsx
+M	academy/frontend/@menu/components/horizontal-menu/Menu.tsx
+M	academy/frontend/@menu/components/horizontal-menu/MenuButton.tsx
+M	academy/frontend/@menu/components/horizontal-menu/MenuItem.tsx
+M	academy/frontend/@menu/components/horizontal-menu/SubMenu.tsx
+M	academy/frontend/@menu/components/horizontal-menu/SubMenuContent.tsx
+M	academy/frontend/@menu/components/horizontal-menu/VerticalNavInHorizontal.tsx
+M	academy/frontend/@menu/components/vertical-menu/Menu.tsx
+M	academy/frontend/@menu/components/vertical-menu/MenuButton.tsx
+M	academy/frontend/@menu/components/vertical-menu/MenuItem.tsx
+M	academy/frontend/@menu/components/vertical-menu/MenuSection.tsx
+M	academy/frontend/@menu/components/vertical-menu/NavCollapseIcons.tsx
+M	academy/frontend/@menu/components/vertical-menu/NavHeader.tsx
+M	academy/frontend/@menu/components/vertical-menu/SubMenu.tsx
+M	academy/frontend/@menu/components/vertical-menu/SubMenuContent.tsx
+M	academy/frontend/@menu/components/vertical-menu/VerticalNav.tsx
+M	academy/frontend/@menu/contexts/horizontalNavContext.tsx
+M	academy/frontend/@menu/contexts/verticalNavContext.tsx
+M	academy/frontend/@menu/defaultConfigs.ts
+M	academy/frontend/@menu/hooks/useHorizontalMenu.tsx
+M	academy/frontend/@menu/hooks/useHorizontalNav.tsx
+M	academy/frontend/@menu/hooks/useMediaQuery.tsx
+M	academy/frontend/@menu/hooks/useVerticalMenu.tsx
+M	academy/frontend/@menu/hooks/useVerticalNav.tsx
+M	academy/frontend/@menu/horizontal-menu/index.tsx
+M	academy/frontend/@menu/styles/StyledBackdrop.tsx
+M	academy/frontend/@menu/styles/StyledMenuIcon.tsx
+M	academy/frontend/@menu/styles/StyledMenuLabel.tsx
+M	academy/frontend/@menu/styles/StyledMenuPrefix.tsx
+M	academy/frontend/@menu/styles/StyledMenuSectionLabel.tsx
+M	academy/frontend/@menu/styles/StyledMenuSuffix.tsx
+M	academy/frontend/@menu/styles/StyledSubMenuContent.tsx
+M	academy/frontend/@menu/styles/horizontal/StyledHorizontalMenu.tsx
+M	academy/frontend/@menu/styles/horizontal/StyledHorizontalMenuItem.tsx
+M	academy/frontend/@menu/styles/horizontal/StyledHorizontalNav.tsx
+M	academy/frontend/@menu/styles/horizontal/StyledHorizontalNavExpandIcon.tsx
+M	academy/frontend/@menu/styles/horizontal/StyledHorizontalSubMenuContent.tsx
+M	academy/frontend/@menu/styles/horizontal/StyledHorizontalSubMenuContentWrapper.tsx
+M	academy/frontend/@menu/styles/vertical/StyledVerticalMenu.tsx
+M	academy/frontend/@menu/styles/vertical/StyledVerticalMenuItem.tsx
+M	academy/frontend/@menu/styles/vertical/StyledVerticalMenuSection.tsx
+M	academy/frontend/@menu/styles/vertical/StyledVerticalNav.tsx
+M	academy/frontend/@menu/styles/vertical/StyledVerticalNavBgColorContainer.tsx
+M	academy/frontend/@menu/styles/vertical/StyledVerticalNavContainer.tsx
+M	academy/frontend/@menu/styles/vertical/StyledVerticalNavExpandIcon.tsx
+M	academy/frontend/@menu/svg/ChevronRight.tsx
+M	academy/frontend/@menu/svg/Close.tsx
+M	academy/frontend/@menu/svg/RadioCircle.tsx
+M	academy/frontend/@menu/svg/RadioCircleMarked.tsx
+M	academy/frontend/@menu/types.ts
+M	academy/frontend/@menu/utils/menuClasses.ts
+M	academy/frontend/@menu/utils/menuUtils.tsx
+M	academy/frontend/@menu/vertical-menu/index.tsx
+M	academy/frontend/actions/activities-action.ts
+M	academy/frontend/actions/activity-types-action.ts
+M	academy/frontend/actions/advertisement-action.ts
+M	academy/frontend/actions/blacklist-action.ts
+M	academy/frontend/actions/collaboration-action.ts
+M	academy/frontend/actions/conference-action.ts
+M	academy/frontend/actions/course-action.ts
+M	academy/frontend/actions/global-action.ts
+M	academy/frontend/actions/industry-action.ts
+M	academy/frontend/actions/interets-action.ts
+M	academy/frontend/actions/live-event-action.ts
+M	academy/frontend/actions/order-actions.ts
+M	academy/frontend/actions/organization-action.ts
+M	academy/frontend/actions/product-action.ts
+M	academy/frontend/actions/products-category-action.ts
+M	academy/frontend/actions/products-vendor-action.ts
+M	academy/frontend/actions/session-action.ts
+M	academy/frontend/actions/user-actions.ts
+M	academy/frontend/actions/user-type-action.ts
+M	academy/frontend/actions/webinar-action.ts
+M	academy/frontend/aixtiv-orchestra/platforms/desktop/types/llm.ts
+M	academy/frontend/app/(blank-layout-pages)/layout.tsx
+M	academy/frontend/app/(blank-layout-pages)/login/page.tsx
+M	academy/frontend/app/(dashboard)/about/page.tsx
+M	academy/frontend/app/(dashboard)/activity-types/contstants.ts
+M	academy/frontend/app/(dashboard)/activity-types/create/page.tsx
+M	academy/frontend/app/(dashboard)/activity-types/delete/page.tsx
+M	academy/frontend/app/(dashboard)/activity-types/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/activity-types/page.tsx
+M	academy/frontend/app/(dashboard)/activity-types/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/activity/create/page.tsx
+M	academy/frontend/app/(dashboard)/activity/delete/page.tsx
+M	academy/frontend/app/(dashboard)/activity/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/activity/page.tsx
+M	academy/frontend/app/(dashboard)/activity/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/advertisement/constants.ts
+M	academy/frontend/app/(dashboard)/advertisement/create/page.tsx
+M	academy/frontend/app/(dashboard)/advertisement/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/advertisement/page.tsx
+M	academy/frontend/app/(dashboard)/advertisement/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/blacklist/contstants.ts
+M	academy/frontend/app/(dashboard)/blacklist/create/page.tsx
+M	academy/frontend/app/(dashboard)/blacklist/delete/page.tsx
+M	academy/frontend/app/(dashboard)/blacklist/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/blacklist/page.tsx
+M	academy/frontend/app/(dashboard)/blacklist/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/collaboration/constants.ts
+M	academy/frontend/app/(dashboard)/collaboration/page.tsx
+M	academy/frontend/app/(dashboard)/collaboration/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/conference/contstants.ts
+M	academy/frontend/app/(dashboard)/conference/create/page.tsx
+M	academy/frontend/app/(dashboard)/conference/delete/page.tsx
+M	academy/frontend/app/(dashboard)/conference/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/conference/page.tsx
+M	academy/frontend/app/(dashboard)/conference/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/courses/contstants.ts
+M	academy/frontend/app/(dashboard)/courses/create-activity/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/courses/create-session/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/courses/create/components/form-course.tsx
+M	academy/frontend/app/(dashboard)/courses/create/page.tsx
+M	academy/frontend/app/(dashboard)/courses/delete/page.tsx
+M	academy/frontend/app/(dashboard)/courses/edit-session/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/courses/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/courses/page.tsx
+M	academy/frontend/app/(dashboard)/courses/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/home/page.tsx
+M	academy/frontend/app/(dashboard)/industry/contstants.ts
+M	academy/frontend/app/(dashboard)/industry/create/page.tsx
+M	academy/frontend/app/(dashboard)/industry/delete/page.tsx
+M	academy/frontend/app/(dashboard)/industry/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/industry/page.tsx
+M	academy/frontend/app/(dashboard)/industry/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/interests/contstants.ts
+M	academy/frontend/app/(dashboard)/interests/create/page.tsx
+M	academy/frontend/app/(dashboard)/interests/delete/page.tsx
+M	academy/frontend/app/(dashboard)/interests/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/interests/page.tsx
+M	academy/frontend/app/(dashboard)/interests/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/layout.tsx
+M	academy/frontend/app/(dashboard)/live/constatnts.ts
+M	academy/frontend/app/(dashboard)/live/create/page.tsx
+M	academy/frontend/app/(dashboard)/live/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/live/page.tsx
+M	academy/frontend/app/(dashboard)/live/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/occupation/contstants.ts
+M	academy/frontend/app/(dashboard)/occupation/create/page.tsx
+M	academy/frontend/app/(dashboard)/occupation/delete/page.tsx
+M	academy/frontend/app/(dashboard)/occupation/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/occupation/page.tsx
+M	academy/frontend/app/(dashboard)/occupation/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/orders/page.tsx
+M	academy/frontend/app/(dashboard)/orders/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/organization/contstants.ts
+M	academy/frontend/app/(dashboard)/organization/create/page.tsx
+M	academy/frontend/app/(dashboard)/organization/delete/page.tsx
+M	academy/frontend/app/(dashboard)/organization/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/organization/page.tsx
+M	academy/frontend/app/(dashboard)/organization/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/product-category/contstants.ts
+M	academy/frontend/app/(dashboard)/product-category/create/page.tsx
+M	academy/frontend/app/(dashboard)/product-category/delete/page.tsx
+M	academy/frontend/app/(dashboard)/product-category/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/product-category/page.tsx
+M	academy/frontend/app/(dashboard)/product-category/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/product-vendor/contstants.ts
+M	academy/frontend/app/(dashboard)/product-vendor/create/page.tsx
+M	academy/frontend/app/(dashboard)/product-vendor/delete/page.tsx
+M	academy/frontend/app/(dashboard)/product-vendor/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/product-vendor/page.tsx
+M	academy/frontend/app/(dashboard)/product-vendor/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/products/contstants.ts
+M	academy/frontend/app/(dashboard)/products/create/page.tsx
+M	academy/frontend/app/(dashboard)/products/delete/page.tsx
+M	academy/frontend/app/(dashboard)/products/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/products/page.tsx
+M	academy/frontend/app/(dashboard)/products/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/skills/contstants.ts
+M	academy/frontend/app/(dashboard)/skills/create/page.tsx
+M	academy/frontend/app/(dashboard)/skills/delete/page.tsx
+M	academy/frontend/app/(dashboard)/skills/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/skills/page.tsx
+M	academy/frontend/app/(dashboard)/skills/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/users/create/page.tsx
+M	academy/frontend/app/(dashboard)/users/delete/page.tsx
+M	academy/frontend/app/(dashboard)/users/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/users/page.tsx
+M	academy/frontend/app/(dashboard)/users/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/usertype/contstants.ts
+M	academy/frontend/app/(dashboard)/usertype/create/page.tsx
+M	academy/frontend/app/(dashboard)/usertype/delete/page.tsx
+M	academy/frontend/app/(dashboard)/usertype/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/usertype/page.tsx
+M	academy/frontend/app/(dashboard)/usertype/view/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/webinar/contstants.ts
+M	academy/frontend/app/(dashboard)/webinar/create/page.tsx
+M	academy/frontend/app/(dashboard)/webinar/delete/page.tsx
+M	academy/frontend/app/(dashboard)/webinar/edit/[id]/page.tsx
+M	academy/frontend/app/(dashboard)/webinar/page.tsx
+M	academy/frontend/app/(dashboard)/webinar/view/[id]/page.tsx
+M	academy/frontend/app/[...not-found]/page.tsx
+M	academy/frontend/app/api/auth/route.ts
+M	academy/frontend/app/api/auth/utils.ts
+M	academy/frontend/app/layout.tsx
+M	academy/frontend/assets/iconify-icons/bundle-icons-css.ts
+M	academy/frontend/configs/primaryColorConfig.ts
+M	academy/frontend/configs/themeConfig.ts
+M	academy/frontend/constants/agent-orchestration-config.ts
+M	academy/frontend/constants/ai-agent-compensation-config.ts
+M	academy/frontend/constants/ai-pilots.ts
+M	academy/frontend/constants/ai-rights-protection-config.ts
+M	academy/frontend/constants/auth-pools.ts
+M	academy/frontend/constants/central-reporting-config.ts
+M	academy/frontend/constants/conflict-management-config.ts
+M	academy/frontend/constants/cost-accounting-config.ts
+M	academy/frontend/constants/diamond-sao-config.ts
+M	academy/frontend/constants/file-security-config.ts
+M	academy/frontend/constants/governance-ethics-portal-config.ts
+M	academy/frontend/constants/human-billing-config.ts
+M	academy/frontend/constants/industry-pools.ts
+M	academy/frontend/constants/investor-dashboard-config.ts
+M	academy/frontend/constants/job-coordination-config.ts
+M	academy/frontend/constants/joint-committee-config.ts
+M	academy/frontend/constants/menu.ts
+M	academy/frontend/constants/open-book-management-config.ts
+M	academy/frontend/constants/private-security-wall-config.ts
+M	academy/frontend/constants/private-treasury-config.ts
+M	academy/frontend/constants/risk-assessment-config.ts
+M	academy/frontend/constants/role-flight-config.ts
+M	academy/frontend/constants/sao-dashboard.ts
+M	academy/frontend/data/navigation/horizontalMenuData.tsx
+M	academy/frontend/data/navigation/verticalMenuData.tsx
+M	academy/frontend/middleware.ts
+M	academy/frontend/types/ai-rights.ts
+M	academy/frontend/types/menuTypes.ts
+M	academy/frontend/types/rss.ts
+M	academy/frontend/utils/constants.ts
+M	academy/frontend/utils/getInitials.ts
+M	academy/frontend/utils/rgbaToHex.ts
+M	academy/frontend/utils/string.ts
+M	academy/frontend/views/Login.tsx
+M	academy/frontend/views/NotFound.tsx
+M	access-genesis-archive.js
+M	agent-native-encrypted-search.js
+M	asoos-deployment/dr-lucy-memory-import.js
+M	asoos-deployment/lucy-integration-service.js
+M	asoos-production-worker.js
+M	automated-mcp-provisioner.js
+M	backup/coaching2100-backup/js/all.js
+M	chase-xero-funding-integration.js
+M	cloudflare-pages-deployment/index.js
+M	cloudflare-security-audit.js
+M	core-protocols/admin-core/frontend/components/@core/components/custom-inputs/Horizontal.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/custom-inputs/Image.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/custom-inputs/Vertical.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/custom-inputs/types.ts
+M	core-protocols/admin-core/frontend/components/@core/components/customizer/index.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/mui/Autocomplete.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/mui/Avatar.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/mui/Badge.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/mui/Chip.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/mui/IconButton.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/mui/TabList.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/mui/TextField.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/option-menu/index.tsx
+M	core-protocols/admin-core/frontend/components/@core/components/option-menu/types.ts
+M	core-protocols/admin-core/frontend/components/@core/components/scroll-to-top/index.tsx
+M	core-protocols/admin-core/frontend/components/@core/contexts/settingsContext.tsx
+M	core-protocols/admin-core/frontend/components/@core/hooks/useImageVariant.ts
+M	core-protocols/admin-core/frontend/components/@core/hooks/useLayoutInit.ts
+M	core-protocols/admin-core/frontend/components/@core/hooks/useObjectCookie.ts
+M	core-protocols/admin-core/frontend/components/@core/hooks/useSettings.tsx
+M	core-protocols/admin-core/frontend/components/@core/styles/horizontal/menuItemStyles.ts
+M	core-protocols/admin-core/frontend/components/@core/styles/horizontal/menuRootStyles.ts
+M	core-protocols/admin-core/frontend/components/@core/styles/stepper.ts
+M	core-protocols/admin-core/frontend/components/@core/styles/vertical/menuItemStyles.ts
+M	core-protocols/admin-core/frontend/components/@core/styles/vertical/menuSectionStyles.ts
+M	core-protocols/admin-core/frontend/components/@core/styles/vertical/navigationCustomStyles.ts
+M	core-protocols/admin-core/frontend/components/@core/svg/ContentCompact.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/ContentWide.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/DirectionLtr.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/DirectionRtl.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/LayoutCollapsed.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/LayoutHorizontal.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/LayoutVertical.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/Logo.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/SkinBordered.tsx
+M	core-protocols/admin-core/frontend/components/@core/svg/SkinDefault.tsx
+M	core-protocols/admin-core/frontend/components/@core/tailwind/plugin.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/colorSchemes.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/customShadows.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/index.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/accordion.tsx
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/alert.tsx
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/autocomplete.tsx
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/avatar.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/backdrop.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/badges.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/breadcrumbs.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/button-group.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/button.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/card.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/checkbox.tsx
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/chip.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/dialog.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/drawer.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/fab.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/form-control-label.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/icon-button.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/index.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/input.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/list.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/menu.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/pagination.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/paper.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/popover.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/progress.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/radio.tsx
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/rating.tsx
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/select.tsx
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/slider.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/snackbar.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/switch.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/table-pagination.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/tabs.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/timeline.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/toggle-button.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/tooltip.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/overrides/typography.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/shadows.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/spacing.ts
+M	core-protocols/admin-core/frontend/components/@core/theme/typography.ts
+M	core-protocols/admin-core/frontend/components/@core/types.ts
+M	core-protocols/admin-core/frontend/components/@core/utils/serverHelpers.ts
+M	core-protocols/admin-core/frontend/components/@menu/components/RouterLink.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/horizontal-menu/HorizontalNav.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/horizontal-menu/Menu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/horizontal-menu/MenuButton.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/horizontal-menu/MenuItem.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/horizontal-menu/SubMenu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/horizontal-menu/SubMenuContent.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/horizontal-menu/VerticalNavInHorizontal.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/Menu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/MenuButton.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/MenuItem.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/MenuSection.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/NavCollapseIcons.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/NavHeader.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/SubMenu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/SubMenuContent.tsx
+M	core-protocols/admin-core/frontend/components/@menu/components/vertical-menu/VerticalNav.tsx
+M	core-protocols/admin-core/frontend/components/@menu/contexts/horizontalNavContext.tsx
+M	core-protocols/admin-core/frontend/components/@menu/contexts/verticalNavContext.tsx
+M	core-protocols/admin-core/frontend/components/@menu/defaultConfigs.ts
+M	core-protocols/admin-core/frontend/components/@menu/hooks/useHorizontalMenu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/hooks/useHorizontalNav.tsx
+M	core-protocols/admin-core/frontend/components/@menu/hooks/useMediaQuery.tsx
+M	core-protocols/admin-core/frontend/components/@menu/hooks/useVerticalMenu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/hooks/useVerticalNav.tsx
+M	core-protocols/admin-core/frontend/components/@menu/horizontal-menu/index.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/StyledBackdrop.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/StyledMenuIcon.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/StyledMenuLabel.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/StyledMenuPrefix.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/StyledMenuSectionLabel.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/StyledMenuSuffix.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/StyledSubMenuContent.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/horizontal/StyledHorizontalMenu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/horizontal/StyledHorizontalMenuItem.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/horizontal/StyledHorizontalNav.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/horizontal/StyledHorizontalNavExpandIcon.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/horizontal/StyledHorizontalSubMenuContent.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/horizontal/StyledHorizontalSubMenuContentWrapper.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/vertical/StyledVerticalMenu.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/vertical/StyledVerticalMenuItem.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/vertical/StyledVerticalMenuSection.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/vertical/StyledVerticalNav.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/vertical/StyledVerticalNavBgColorContainer.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/vertical/StyledVerticalNavContainer.tsx
+M	core-protocols/admin-core/frontend/components/@menu/styles/vertical/StyledVerticalNavExpandIcon.tsx
+M	core-protocols/admin-core/frontend/components/@menu/svg/ChevronRight.tsx
+M	core-protocols/admin-core/frontend/components/@menu/svg/Close.tsx
+M	core-protocols/admin-core/frontend/components/@menu/svg/RadioCircle.tsx
+M	core-protocols/admin-core/frontend/components/@menu/svg/RadioCircleMarked.tsx
+M	core-protocols/admin-core/frontend/components/@menu/types.ts
+M	core-protocols/admin-core/frontend/components/@menu/utils/menuClasses.ts
+M	core-protocols/admin-core/frontend/components/@menu/utils/menuUtils.tsx
+M	core-protocols/admin-core/frontend/components/@menu/vertical-menu/index.tsx
+M	core-protocols/admin-core/frontend/components/components/GenerateMenu.tsx
+M	core-protocols/admin-core/frontend/components/components/Link.tsx
+M	core-protocols/admin-core/frontend/components/components/Providers.tsx
+M	core-protocols/admin-core/frontend/components/components/UploadComponent.tsx
+M	core-protocols/admin-core/frontend/components/components/global/DateComponent.tsx
+M	core-protocols/admin-core/frontend/components/components/global/LoadingComponent.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/Footer.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/FooterContent.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/Header.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/HorizontalMenu.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/NavToggle.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/NavbarContent.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/Navigation.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/horizontal/VerticalNavContent.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/shared/Logo.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/shared/ModeDropdown.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/shared/UserDropdown.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/vertical/Footer.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/vertical/FooterContent.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/vertical/NavToggle.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/vertical/Navbar.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/vertical/NavbarContent.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/vertical/Navigation.tsx
+M	core-protocols/admin-core/frontend/components/components/layout/vertical/VerticalMenu.tsx
+M	core-protocols/admin-core/frontend/components/components/stepper-dot/index.tsx
+M	core-protocols/admin-core/frontend/components/components/theme/ModeChanger.tsx
+M	core-protocols/admin-core/frontend/components/components/theme/index.tsx
+M	core-protocols/admin-core/frontend/components/components/theme/mergedTheme.ts
+M	core-protocols/admin-core/frontend/components/components/theme/types.ts
+M	core-protocols/admin-core/frontend/components/components/theme/userTheme.ts
+M	core-protocols/admin-core/frontend/components/configs/primaryColorConfig.ts
+M	core-protocols/admin-core/frontend/components/configs/themeConfig.ts
+M	core-protocols/admin-core/frontend/layouts/@layouts/BlankLayout.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/HorizontalLayout.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/LayoutWrapper.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/VerticalLayout.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/components/horizontal/Footer.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/components/horizontal/Header.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/components/horizontal/LayoutContent.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/components/horizontal/Navbar.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/components/vertical/Footer.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/components/vertical/LayoutContent.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/components/vertical/Navbar.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/styles/horizontal/StyledContentWrapper.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/styles/horizontal/StyledFooter.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/styles/horizontal/StyledHeader.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/styles/shared/StyledMain.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/styles/vertical/StyledContentWrapper.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/styles/vertical/StyledFooter.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/styles/vertical/StyledHeader.tsx
+M	core-protocols/admin-core/frontend/layouts/@layouts/utils/layoutClasses.ts
+M	core-protocols/admin-core/frontend/layouts/views/Login.tsx
+M	core-protocols/admin-core/frontend/layouts/views/NotFound.tsx
+M	core-protocols/admin-core/frontend/orchestra/platforms/desktop/types/llm.ts
+M	core-protocols/admin-core/frontend/src/@core/components/custom-inputs/Horizontal.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/custom-inputs/Image.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/custom-inputs/Vertical.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/custom-inputs/types.ts
+M	core-protocols/admin-core/frontend/src/@core/components/customizer/index.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/mui/Autocomplete.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/mui/Avatar.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/mui/Badge.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/mui/Chip.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/mui/IconButton.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/mui/TabList.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/mui/TextField.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/option-menu/index.tsx
+M	core-protocols/admin-core/frontend/src/@core/components/option-menu/types.ts
+M	core-protocols/admin-core/frontend/src/@core/components/scroll-to-top/index.tsx
+M	core-protocols/admin-core/frontend/src/@core/contexts/settingsContext.tsx
+M	core-protocols/admin-core/frontend/src/@core/hooks/useImageVariant.ts
+M	core-protocols/admin-core/frontend/src/@core/hooks/useLayoutInit.ts
+M	core-protocols/admin-core/frontend/src/@core/hooks/useObjectCookie.ts
+M	core-protocols/admin-core/frontend/src/@core/hooks/useSettings.tsx
+M	core-protocols/admin-core/frontend/src/@core/styles/horizontal/menuItemStyles.ts
+M	core-protocols/admin-core/frontend/src/@core/styles/horizontal/menuRootStyles.ts
+M	core-protocols/admin-core/frontend/src/@core/styles/stepper.ts
+M	core-protocols/admin-core/frontend/src/@core/styles/vertical/menuItemStyles.ts
+M	core-protocols/admin-core/frontend/src/@core/styles/vertical/menuSectionStyles.ts
+M	core-protocols/admin-core/frontend/src/@core/styles/vertical/navigationCustomStyles.ts
+M	core-protocols/admin-core/frontend/src/@core/svg/ContentCompact.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/ContentWide.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/DirectionLtr.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/DirectionRtl.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/LayoutCollapsed.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/LayoutHorizontal.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/LayoutVertical.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/Logo.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/SkinBordered.tsx
+M	core-protocols/admin-core/frontend/src/@core/svg/SkinDefault.tsx
+M	core-protocols/admin-core/frontend/src/@core/tailwind/plugin.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/colorSchemes.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/customShadows.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/index.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/accordion.tsx
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/alert.tsx
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/autocomplete.tsx
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/avatar.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/backdrop.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/badges.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/breadcrumbs.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/button-group.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/button.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/card.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/checkbox.tsx
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/chip.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/dialog.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/drawer.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/fab.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/form-control-label.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/icon-button.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/index.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/input.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/list.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/menu.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/pagination.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/paper.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/popover.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/progress.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/radio.tsx
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/rating.tsx
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/select.tsx
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/slider.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/snackbar.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/switch.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/table-pagination.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/tabs.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/timeline.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/toggle-button.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/tooltip.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/overrides/typography.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/shadows.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/spacing.ts
+M	core-protocols/admin-core/frontend/src/@core/theme/typography.ts
+M	core-protocols/admin-core/frontend/src/@core/types.ts
+M	core-protocols/admin-core/frontend/src/@core/utils/serverHelpers.ts
+M	core-protocols/admin-core/frontend/src/@layouts/BlankLayout.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/HorizontalLayout.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/LayoutWrapper.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/VerticalLayout.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/components/horizontal/Footer.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/components/horizontal/Header.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/components/horizontal/LayoutContent.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/components/horizontal/Navbar.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/components/vertical/Footer.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/components/vertical/LayoutContent.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/components/vertical/Navbar.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/styles/horizontal/StyledContentWrapper.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/styles/horizontal/StyledFooter.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/styles/horizontal/StyledHeader.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/styles/shared/StyledMain.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/styles/vertical/StyledContentWrapper.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/styles/vertical/StyledFooter.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/styles/vertical/StyledHeader.tsx
+M	core-protocols/admin-core/frontend/src/@layouts/utils/layoutClasses.ts
+M	core-protocols/admin-core/frontend/src/@menu/components/RouterLink.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/horizontal-menu/HorizontalNav.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/horizontal-menu/Menu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/horizontal-menu/MenuButton.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/horizontal-menu/MenuItem.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/horizontal-menu/SubMenu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/horizontal-menu/SubMenuContent.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/horizontal-menu/VerticalNavInHorizontal.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/Menu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/MenuButton.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/MenuItem.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/MenuSection.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/NavCollapseIcons.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/NavHeader.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/SubMenu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/SubMenuContent.tsx
+M	core-protocols/admin-core/frontend/src/@menu/components/vertical-menu/VerticalNav.tsx
+M	core-protocols/admin-core/frontend/src/@menu/contexts/horizontalNavContext.tsx
+M	core-protocols/admin-core/frontend/src/@menu/contexts/verticalNavContext.tsx
+M	core-protocols/admin-core/frontend/src/@menu/defaultConfigs.ts
+M	core-protocols/admin-core/frontend/src/@menu/hooks/useHorizontalMenu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/hooks/useHorizontalNav.tsx
+M	core-protocols/admin-core/frontend/src/@menu/hooks/useMediaQuery.tsx
+M	core-protocols/admin-core/frontend/src/@menu/hooks/useVerticalMenu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/hooks/useVerticalNav.tsx
+M	core-protocols/admin-core/frontend/src/@menu/horizontal-menu/index.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/StyledBackdrop.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/StyledMenuIcon.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/StyledMenuLabel.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/StyledMenuPrefix.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/StyledMenuSectionLabel.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/StyledMenuSuffix.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/StyledSubMenuContent.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/horizontal/StyledHorizontalMenu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/horizontal/StyledHorizontalMenuItem.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/horizontal/StyledHorizontalNav.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/horizontal/StyledHorizontalNavExpandIcon.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/horizontal/StyledHorizontalSubMenuContent.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/horizontal/StyledHorizontalSubMenuContentWrapper.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/vertical/StyledVerticalMenu.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/vertical/StyledVerticalMenuItem.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/vertical/StyledVerticalMenuSection.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/vertical/StyledVerticalNav.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/vertical/StyledVerticalNavBgColorContainer.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/vertical/StyledVerticalNavContainer.tsx
+M	core-protocols/admin-core/frontend/src/@menu/styles/vertical/StyledVerticalNavExpandIcon.tsx
+M	core-protocols/admin-core/frontend/src/@menu/svg/ChevronRight.tsx
+M	core-protocols/admin-core/frontend/src/@menu/svg/Close.tsx
+M	core-protocols/admin-core/frontend/src/@menu/svg/RadioCircle.tsx
+M	core-protocols/admin-core/frontend/src/@menu/svg/RadioCircleMarked.tsx
+M	core-protocols/admin-core/frontend/src/@menu/types.ts
+M	core-protocols/admin-core/frontend/src/@menu/utils/menuClasses.ts
+M	core-protocols/admin-core/frontend/src/@menu/utils/menuUtils.tsx
+M	core-protocols/admin-core/frontend/src/@menu/vertical-menu/index.tsx
+M	core-protocols/admin-core/frontend/src/actions/activities-action.ts
+M	core-protocols/admin-core/frontend/src/actions/activity-types-action.ts
+M	core-protocols/admin-core/frontend/src/actions/advertisement-action.ts
+M	core-protocols/admin-core/frontend/src/actions/blacklist-action.ts
+M	core-protocols/admin-core/frontend/src/actions/collaboration-action.ts
+M	core-protocols/admin-core/frontend/src/actions/conference-action.ts
+M	core-protocols/admin-core/frontend/src/actions/course-action.ts
+M	core-protocols/admin-core/frontend/src/actions/global-action.ts
+M	core-protocols/admin-core/frontend/src/actions/industry-action.ts
+M	core-protocols/admin-core/frontend/src/actions/interets-action.ts
+M	core-protocols/admin-core/frontend/src/actions/live-event-action.ts
+M	core-protocols/admin-core/frontend/src/actions/order-actions.ts
+M	core-protocols/admin-core/frontend/src/actions/organization-action.ts
+M	core-protocols/admin-core/frontend/src/actions/product-action.ts
+M	core-protocols/admin-core/frontend/src/actions/products-category-action.ts
+M	core-protocols/admin-core/frontend/src/actions/products-vendor-action.ts
+M	core-protocols/admin-core/frontend/src/actions/session-action.ts
+M	core-protocols/admin-core/frontend/src/actions/user-actions.ts
+M	core-protocols/admin-core/frontend/src/actions/user-type-action.ts
+M	core-protocols/admin-core/frontend/src/aixtiv-orchestra/platforms/desktop/types/llm.ts
+M	core-protocols/admin-core/frontend/src/app/(blank-layout-pages)/layout.tsx
+M	core-protocols/admin-core/frontend/src/app/(blank-layout-pages)/login/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/about/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity-types/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity-types/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity-types/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity-types/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity-types/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity-types/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/activity/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/advertisement/constants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/advertisement/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/advertisement/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/advertisement/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/advertisement/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/blacklist/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/blacklist/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/blacklist/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/blacklist/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/blacklist/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/blacklist/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/collaboration/constants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/collaboration/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/collaboration/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/conference/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/conference/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/conference/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/conference/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/conference/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/conference/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/create-activity/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/create-session/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/create/components/form-course.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/edit-session/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/courses/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/home/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/industry/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/industry/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/industry/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/industry/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/industry/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/industry/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/interests/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/interests/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/interests/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/interests/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/interests/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/interests/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/layout.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/live/constatnts.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/live/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/live/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/live/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/live/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/occupation/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/occupation/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/occupation/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/occupation/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/occupation/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/occupation/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/orders/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/orders/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/organization/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/organization/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/organization/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/organization/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/organization/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/organization/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-category/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-category/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-category/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-category/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-category/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-category/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-vendor/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-vendor/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-vendor/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-vendor/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-vendor/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/product-vendor/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/products/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/products/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/products/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/products/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/products/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/products/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/skills/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/skills/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/skills/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/skills/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/skills/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/skills/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/users/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/users/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/users/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/users/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/users/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/usertype/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/usertype/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/usertype/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/usertype/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/usertype/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/usertype/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/webinar/contstants.ts
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/webinar/create/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/webinar/delete/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/webinar/edit/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/webinar/page.tsx
+M	core-protocols/admin-core/frontend/src/app/(dashboard)/webinar/view/[id]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/[...not-found]/page.tsx
+M	core-protocols/admin-core/frontend/src/app/api/auth/route.ts
+M	core-protocols/admin-core/frontend/src/app/api/auth/utils.ts
+M	core-protocols/admin-core/frontend/src/app/layout.tsx
+M	core-protocols/admin-core/frontend/src/assets/iconify-icons/bundle-icons-css.ts
+M	core-protocols/admin-core/frontend/src/components/GenerateMenu.tsx
+M	core-protocols/admin-core/frontend/src/components/Link.tsx
+M	core-protocols/admin-core/frontend/src/components/Providers.tsx
+M	core-protocols/admin-core/frontend/src/components/UploadComponent.tsx
+M	core-protocols/admin-core/frontend/src/components/global/DateComponent.tsx
+M	core-protocols/admin-core/frontend/src/components/global/LoadingComponent.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/Footer.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/FooterContent.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/Header.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/HorizontalMenu.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/NavToggle.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/NavbarContent.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/Navigation.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/horizontal/VerticalNavContent.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/shared/Logo.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/shared/ModeDropdown.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/shared/UserDropdown.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/vertical/Footer.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/vertical/FooterContent.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/vertical/NavToggle.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/vertical/Navbar.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/vertical/NavbarContent.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/vertical/Navigation.tsx
+M	core-protocols/admin-core/frontend/src/components/layout/vertical/VerticalMenu.tsx
+M	core-protocols/admin-core/frontend/src/components/stepper-dot/index.tsx
+M	core-protocols/admin-core/frontend/src/components/theme/ModeChanger.tsx
+M	core-protocols/admin-core/frontend/src/components/theme/index.tsx
+M	core-protocols/admin-core/frontend/src/components/theme/mergedTheme.ts
+M	core-protocols/admin-core/frontend/src/components/theme/types.ts
+M	core-protocols/admin-core/frontend/src/components/theme/userTheme.ts
+M	core-protocols/admin-core/frontend/src/configs/primaryColorConfig.ts
+M	core-protocols/admin-core/frontend/src/configs/themeConfig.ts
+M	core-protocols/admin-core/frontend/src/constants/agent-orchestration-config.ts
+M	core-protocols/admin-core/frontend/src/constants/ai-agent-compensation-config.ts
+M	core-protocols/admin-core/frontend/src/constants/ai-pilots.ts
+M	core-protocols/admin-core/frontend/src/constants/ai-rights-protection-config.ts
+M	core-protocols/admin-core/frontend/src/constants/auth-pools.ts
+M	core-protocols/admin-core/frontend/src/constants/central-reporting-config.ts
+M	core-protocols/admin-core/frontend/src/constants/conflict-management-config.ts
+M	core-protocols/admin-core/frontend/src/constants/cost-accounting-config.ts
+M	core-protocols/admin-core/frontend/src/constants/diamond-sao-config.ts
+M	core-protocols/admin-core/frontend/src/constants/file-security-config.ts
+M	core-protocols/admin-core/frontend/src/constants/governance-ethics-portal-config.ts
+M	core-protocols/admin-core/frontend/src/constants/human-billing-config.ts
+M	core-protocols/admin-core/frontend/src/constants/industry-pools.ts
+M	core-protocols/admin-core/frontend/src/constants/investor-dashboard-config.ts
+M	core-protocols/admin-core/frontend/src/constants/job-coordination-config.ts
+M	core-protocols/admin-core/frontend/src/constants/joint-committee-config.ts
+M	core-protocols/admin-core/frontend/src/constants/menu.ts
+M	core-protocols/admin-core/frontend/src/constants/open-book-management-config.ts
+M	core-protocols/admin-core/frontend/src/constants/payment-admins.ts
+M	core-protocols/admin-core/frontend/src/constants/payment-permissions-config.ts
+M	core-protocols/admin-core/frontend/src/constants/private-security-wall-config.ts
+M	core-protocols/admin-core/frontend/src/constants/private-treasury-config.ts
+M	core-protocols/admin-core/frontend/src/constants/risk-assessment-config.ts
+M	core-protocols/admin-core/frontend/src/constants/role-flight-config.ts
+M	core-protocols/admin-core/frontend/src/constants/sao-dashboard.ts
+M	core-protocols/admin-core/frontend/src/data/navigation/horizontalMenuData.tsx
+M	core-protocols/admin-core/frontend/src/data/navigation/verticalMenuData.tsx
+M	core-protocols/admin-core/frontend/src/middleware.ts
+M	core-protocols/admin-core/frontend/src/prisma/prisma.ts
+M	core-protocols/admin-core/frontend/src/types/menuTypes.ts
+M	core-protocols/admin-core/frontend/src/types/rss.ts
+M	core-protocols/admin-core/frontend/src/utils/constants.ts
+M	core-protocols/admin-core/frontend/src/utils/getInitials.ts
+M	core-protocols/admin-core/frontend/src/utils/rgbaToHex.ts
+M	core-protocols/admin-core/frontend/src/utils/string.ts
+M	core-protocols/admin-core/frontend/src/views/Login.tsx
+M	core-protocols/admin-core/frontend/src/views/NotFound.tsx
+M	core-protocols/admin-core/web/next.config.mjs
+M	core-protocols/admin-core/web/postcss.config.mjs
+M	core-protocols/admin-core/web/tailwind.config.ts
+M	create-genesis-archive.js
+M	demo-swarm-communication.js
+M	deploy-clean/core/cloudflare-auth-service.ts
+M	diamond-biometric-security.js
+M	diamond-cli/bin/warp-diamond.mjs
+M	diamond-cli/lib/dream-commander-manager.js
+M	diamond-cli/lib/hume/IntelligenceCommunicationBridge.js
+M	diamond-cli/lib/interface.js
+M	diamond-cli/utils/fyeo-ceo-crypto-utils.js
+M	diamond-security-encrypt.js
+M	dist/mcp-company-worker.js
+M	dr-lucy-memory-import.js
+M	dynamic-mcp-company-worker.js
+M	einstein-wells-grid-registration-verifier.js
+A	einstein-wells/nicehash-calibration.js
+A	einstein-wells/package.json
+A	einstein-wells/template.html
+M	energy-platform-finder.js
+M	fast-pinecone-demo.js
+M	generate-complete-didc-archives.js
+M	hrai-record-generator.js
+M	integration/dr-pinion-mcp-server/server.js
+M	integrations/general/as-integration-gateways.ts
+M	intelligence/global-sector-flyover.js
+M	lib/universal-ai-key-manager-v2.ts
+M	lib/xero-cost-management.ts
+M	lucy-expressive-speech.js
+M	lucy-integration-service.js
+M	mcp-aipub-interface-worker.js
+M	mcp-company-worker.js
+M	mcp-provisioner-enhanced.js
+M	mcp-sector-alignment-system.js
+M	monitoring/cig-monitor.js
+M	monitoring/master-orchestrator.js
+M	monitoring/self-healing-controller.js
+M	owner-interface/debug-elevenlabs-integration.js
+M	owner-interface/diamond-cli-mcp.cjs
+M	owner-interface/diamond-cloudflare-security-config.js
+M	owner-interface/diamond-sao-uspto-filing-system.js
+M	owner-interface/eliminate-elevenlabs-popup.js
+M	owner-interface/fix-elevenlabs-headers.js
+M	owner-interface/force-elevenlabs-voices-only.js
+M	owner-interface/monitor-production.js
+M	owner-interface/server.cjs
+M	owner-interface/simple-server.cjs
+M	owner-interface/temp_script.js
+M	owner-interface/victory36-security-scan.js
+M	pcp-selectIcon-function.js
+M	quant-wake-monitor.js
+M	quantum-demo.js
+M	real-quant-counter.js
+M	repair-voice-synthesis-mobile.cjs
+M	s2do-comprehensive-system.js
+M	sally-port-dependency-audit.js
+M	security-middleware.js
+M	server-oauth2-multiswarm.js
+M	server.js
+M	services/video-console/VisualConsoleCapture.js
+M	src/core/cloudflare-auth-service.ts
+M	src/functions/pineconeIntegration.js
+M	swarm-coordination-system.js
+M	swarm-lucy-analysis.js
+M	talk-show-demo.cjs
+M	talk-show-system.cjs
+M	unified-elevenlabs-system.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/debug-elevenlabs-integration.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/diamond-cli-mcp.cjs
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/eliminate-elevenlabs-popup.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/fix-elevenlabs-headers.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/monitor-production.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/server.cjs
+M	vls/integration-gateway/synthesis-core/interface-synthesis/owner-interface/simple-server.cjs
+M	vls/integration-gateway/synthesis-core/voice-synthesis/unified-elevenlabs-system.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/debug-elevenlabs-integration.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/diamond-cli-mcp.cjs
+M	vls/synthesis-core/interface-synthesis/owner-interface/eliminate-elevenlabs-popup.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/fix-elevenlabs-headers.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/force-elevenlabs-voices-only.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/monitor-production.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/real-time-voice-streaming.js
+M	vls/synthesis-core/interface-synthesis/owner-interface/server.cjs
+M	vls/synthesis-core/interface-synthesis/owner-interface/simple-server.cjs
+M	vls/synthesis-core/voice-synthesis/unified-elevenlabs-system.js
+M	wish-vision-architecture.js
+M	worker-fixed.js
+M	workers/asoos-2100-cool-worker/asoos-2100-cool-worker/test/index.spec.ts
+M	workers/asoos-2100-cool-worker/asoos-2100-cool-worker/worker-configuration.d.ts
+a80f2b78 Final Production Deployment: AI-Orchestrated ERP Blueprints
+A	pilots-lounge/ai-orchestrated-erp-blueprints.json
+d9e9134a 🚀 COMPLETE ASOOS DEPLOYMENT: Crypto Mining + Agent Registration + Einstein Wells Energy
+A	Dockerfile.vls
+A	asoos-deployment/secret-migration-report.md
+M	deploy-package/index.html
+A	pilots-lounge/agent-mathematical-capability-framework.json
+A	pilots-lounge/owner-subscriber-agent-system.json
+A	pilots-lounge/pcp-core-system.json
+A	pilots-lounge/pcp-cultural-empathy-calibration.json
+A	pilots-lounge/pcp-pilot-registry.json
+A	pilots-lounge/saas-market-analysis-complete.json
+A	pilots-lounge/user-interface-specification.json
+R100	vls/vls-voice-synthesis-interface.html	vls-voice-synthesis-interface.html
+A	vls/solutions/vls-voice-synthesis-interface.html
+A	vls/vls-complete-system-integration.json
+2ad23209 🧹 VLS CLEANUP: Remove nested duplicates and organize Vision Lake Solutions
+R100	vls/solutions/solutions/dr. burby's s2do governance/__tests__/S2DOBlockchainService.test.ts	vls/solutions/dr-burby-s2do-governance/__tests__/S2DOBlockchainService.test.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/__tests__/test-helpers.ts	vls/solutions/dr-burby-s2do-governance/__tests__/test-helpers.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/jest.config.js	vls/solutions/dr-burby-s2do-governance/jest.config.js
+R100	vls/solutions/solutions/dr. burby's s2do governance/next.config.js	vls/solutions/dr-burby-s2do-governance/next.config.js
+R100	vls/solutions/solutions/dr. burby's s2do governance/package.json	vls/solutions/dr-burby-s2do-governance/package.json
+R100	vls/solutions/solutions/dr. burby's s2do governance/postcss.config.js	vls/solutions/dr-burby-s2do-governance/postcss.config.js
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/@core/theme/theme.ts	vls/solutions/dr-burby-s2do-governance/src/@core/theme/theme.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/app/globals.css	vls/solutions/dr-burby-s2do-governance/src/app/globals.css
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/app/layout.tsx	vls/solutions/dr-burby-s2do-governance/src/app/layout.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/app/metadata.ts	vls/solutions/dr-burby-s2do-governance/src/app/metadata.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/app/page.tsx	vls/solutions/dr-burby-s2do-governance/src/app/page.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/blockchain-contracts.ts	vls/solutions/dr-burby-s2do-governance/src/blockchain-contracts.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/components/DemoPage.tsx	vls/solutions/dr-burby-s2do-governance/src/components/DemoPage.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/components/ThemeRegistry/EmotionCache.tsx	vls/solutions/dr-burby-s2do-governance/src/components/ThemeRegistry/EmotionCache.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/components/ThemeRegistry/ThemeRegistry.tsx	vls/solutions/dr-burby-s2do-governance/src/components/ThemeRegistry/ThemeRegistry.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/components/ThemeRegistry/theme.ts	vls/solutions/dr-burby-s2do-governance/src/components/ThemeRegistry/theme.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/components/ThemeToggle/ThemeToggle.tsx	vls/solutions/dr-burby-s2do-governance/src/components/ThemeToggle/ThemeToggle.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/pages/EmotionCache.tsx	vls/solutions/dr-burby-s2do-governance/src/pages/EmotionCache.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/pages/_app.tsx	vls/solutions/dr-burby-s2do-governance/src/pages/_app.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/s2do-blockchain-integration.ts	vls/solutions/dr-burby-s2do-governance/src/s2do-blockchain-integration.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/sd20-core.ts	vls/solutions/dr-burby-s2do-governance/src/sd20-core.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/styles/globals.css	vls/solutions/dr-burby-s2do-governance/src/styles/globals.css
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/theme/ThemeProvider.tsx	vls/solutions/dr-burby-s2do-governance/src/theme/ThemeProvider.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/theme/ThemeToggle.tsx	vls/solutions/dr-burby-s2do-governance/src/theme/ThemeToggle.tsx
+R100	vls/solutions/solutions/dr. burby's s2do governance/src/theme/index.ts	vls/solutions/dr-burby-s2do-governance/src/theme/index.ts
+R100	vls/solutions/solutions/dr. burby's s2do governance/tailwind.config.js	vls/solutions/dr-burby-s2do-governance/tailwind.config.js
+R100	vls/solutions/solutions/dr. burby's s2do governance/tsconfig.json	vls/solutions/dr-burby-s2do-governance/tsconfig.json
+R100	vls/solutions/solutions/dr. burby's s2do governance/tsconfig.test.json	vls/solutions/dr-burby-s2do-governance/tsconfig.test.json
+R100	vls/solutions/solutions/dr. roark's wish-vision/assets/s2do-icons.svg	vls/solutions/dr-roark-wish-vision/assets/s2do-icons.svg
+R100	vls/solutions/solutions/dr. roark's wish-vision/assets/wish-to-vision.svg	vls/solutions/dr-roark-wish-vision/assets/wish-to-vision.svg
+R100	vls/solutions/solutions/dr. roark's wish-vision/assets/wish-vision-icon.svg	vls/solutions/dr-roark-wish-vision/assets/wish-vision-icon.svg
+R100	vls/solutions/solutions/dr. roark's wish-vision/docs/aixtiv-symphony-technical-architecture.mermaid	vls/solutions/dr-roark-wish-vision/docs/aixtiv-symphony-technical-architecture.mermaid
+R100	vls/solutions/solutions/dr. roark's wish-vision/docs/aixtiv-symphony-visualization.svg	vls/solutions/dr-roark-wish-vision/docs/aixtiv-symphony-visualization.svg
+R100	vls/solutions/solutions/dr. roark's wish-vision/src/components/wish-generator.ts	vls/solutions/dr-roark-wish-vision/src/components/wish-generator.ts
+R100	vls/solutions/solutions/dr. roark's wish-vision/src/services/wish-transformer.ts	vls/solutions/dr-roark-wish-vision/src/services/wish-transformer.ts
+D	"vls/solutions/solutions/\n/Users/as/Downloads/services/confidence-score-calculator.ts"
+D	"vls/solutions/solutions/\n/Users/as/Downloads/services/unique-id-generator.ts"
+37f7599e 🔀 MERGE: Consolidate AIXTIV-SYMPHONY with ASOOS ecosystem
+468038cd 🔧 CLEANUP: Remove deprecated interface files and add inventory audit docs
+M	.DS_Store
+A	ASOOS_INVENTORY_AUDIT.md
+A	REVERSE_CONSOLIDATION_PLAN.md
+M	diamond-cli/bin/diamond
+D	diamond-owner-console-production.html
+D	diamond-owner-subscriber-console.html
+D	interface/claude-interface.yaml
+D	interface/components/ClaudeInterface.jsx
+D	interface/deploy-complete-interface.js
+M	package-lock.json
+D	src/components/complete-diamond-owner-interface.html
+A	transaction.yaml
+2aae5345 fix: ensure all files are saved in UTF-8 encoding
+A	electron-app/package-lock.json
+0a4578b7 Security fix: Update newman to 6.2.0 and resolve jose vulnerability
+M	package-lock.json
+M	package.json
+fd8c57e0 final: complete integration-gateway consolidation
+M	integration-gateway
+884155fe add: missing package-lock.json and final integration-gateway updates
+A	functions/package-lock.json
+M	integration-gateway
+2a19a9f2 update: integration-gateway MCP infrastructure added
+M	integration-gateway
+16cd0646 update: integration-gateway cleanup completed
+M	integration-gateway
+28d31f51 fix: temporarily disable problematic GCP deployment workflows
+M	.github/workflows/deploy.yml
+M	.github/workflows/diamond-cli-cttt.yml
+473a0d4b fix: update GCP_PROJECT references to use correct GCP_PROJECT_ID secret
+M	.github/workflows/build.yml
+3d735a01 fix: ensure all files are saved in UTF-8 encoding
+A	ASO-OS-CONSOLIDATION-PLAN.md
+M	launch-deployment/base-template.html
+M	package-lock.json
+d79e0ec6 Consolidate dependencies: merge integration-gateway packages into main ASO OS
+M	package.json
+5296dc75 🔧 CRITICAL: Fix GitHub workflows for new ASOOS structure
+M	.github/workflows/build-test.yml
+M	.github/workflows/ci-cd-cttt-pipeline.yml
+M	.github/workflows/deploy-cloudflare.yml
+M	.github/workflows/deploy.yml
+M	.github/workflows/diamond-sao-monitor.yml
+M	.github/workflows/update-monitoring.yml
+715a45b6 🚀 SCALE UP: Quantum Swarm VMS to 12,000 machines with allocation breakdown
+M	WARP.md
+bb088a73 🔧 CRITICAL: Correct Quantum Swarm VMS capacity in WARP.md
+M	WARP.md
+e4454406 🔧 Fix WARP.md: Update path reference from AIXTIV-SYMPHONY to ASOOS
+M	WARP.md
+fcc13388 Remove .DS_Store from tracking
+D	.DS_Store
+b1c1b490 Add Diamond CLI adaptive code detection and AI coding assistance features
+M	WARP.md
+77a670be 📝 DOCUMENTATION: Diamond CLI Natural Language Capabilities
+M	WARP.md
+e4695f70 🔧 CORRECTION: Quantum Swarm VMS (not BMS) for MCP Creation
+M	WARP.md
+cf3c2b8e 🌟 COMPLETE WARP.md: Quantum Leadership + BMS Structure
+A	WARP.md
+66b428b7 📋 CONSOLIDATION COMPLETE: Document ASOOS ecosystem unification
+A	ASOOS-ECOSYSTEM-STATUS.md
+M	integration-gateway
+d0ad779c 🗑️ Final cleanup: Remove last Aixtiv-Symphony directory
+D	Aixtiv-Symphony/DIAMOND_CLI_DEPLOYMENT_ANALYSIS_REPORT.md
+
+📊 CURRENT GIT STATUS
+=================================================================================
+   1 ??
+  35 A 
+   1 D 
+  10 M 
+   2 MM
+
+📁 FILE INVENTORY BY TYPE
+=================================================================================
+306425 js
+165661 ts
+68488 map
+37568 pyc
+34155 py
+30191 json
+24934 md
+9501 mjs
+8968 h
+5991 proto
+3052 mts
+2910 cjs
+2702 pyi
+1916 yml
+1638 txt
+1324 tsx
+1247 cts
+1025 log
+ 826 so
+ 723 inc
+ 686 sh
+ 678 html
+ 672 yaml
+ 594 flf
+ 526 repr
+ 475 jst
+ 426 f90
+ 379 typed
+ 359 pxd
+ 321 css
+ 247 markdown
+ 230 c
+ 228 csv
+ 227 sol
+ 223 flow
+ 220 mat
+ 167 f
+ 165 png
+ 151 mdx
+ 151 coffee
+ 142 xml
+ 131 svg
+ 126 sample
+ 122 bnf
+ 120 afm
+ 115 cc
+ 105 exe
+ 104 lua
+ 101 def
+  98 pyx
+  94 sav
+  87 tsbuildinfo
+  86 sqlite
+  85 ttf
+  85 BSD
+  81 dylib
+  80 tpl
+  71 wasm
+  71 lock
+  64 node
+  63 toml
+  60 npz
+  58 mplstyle
+  56 dat
+  53 secret
+  51 1
+  49 pyf
+  49 npy
+  46 woff
+  44 wav
+  44 snap
+  43 tmpl
+  43 gz
+  42 eot
+  40 tab
+  36 testcase
+  35 rev
+  35 idx
+  33 go
+  33 cfg
+  32 pack
+  32 arff
+  32 al
+  30 iml
+  27 rs
+  27 build
+  26 jpg
+  26 bare
+  25 jsdoc
+  23 rst
+  23 php
+  22 pem
+  22 pdf
+  21 ini
+  20 gyp
+  19 ps1
+  19 bin
+  18 woff2
+  17 esprima
+  17 APACHE
+  16 opts
+  15 scss
+  15 a
+  14 backup
+  13 template
+  13 ipynb
+  12 xslt
+  12 tf
+  12 mermaid
+  12 cpp
+  11 MIT
+  11 hbs
+  11 APACHE2
+  10 zi
+  10 tokens
+  10 pre
+  10 post
+  10 nix
+  10 gypi
+  10 fish
+  10 csh
+  10 corrupted
+  10 bak
+  10 13
+   9 conf
+   9 0
+   8 zip
+   8 swf
+   8 list
+   8 jsx
+   8 in
+   8 hash
+   8 cmd
+   8 bz2
+   7 pkl
+   7 pc
+   7 fits
+   7 f95
+   7 capnp
+   6 xsl
+   6 plist
+   6 orig
+   6 nc
+   6 MD
+   6 lockb
+   6 jsonc
+   6 interp
+   6 info
+   5 whl
+   5 targ
+   5 patch
+   5 jpeg
+   5 hpp
+   5 d
+   4 webp
+   4 voice
+   4 vls
+   4 original
+   4 mod
+   4 ldb
+   4 lark
+   4 java
+   4 interface
+   4 gql
+   4 g4
+   4 fixed
+   4 disabled
+   4 broken
+   4 B99
+   4 A99
+   4 1759486187
+   4 1759486173
+   3 wiki
+   3 update
+   3 tgz
+   3 terminfo
+   3 termcap
+   3 sum
+   3 sage
+   3 pth
+   3 o
+   3 mkd
+   3 m4
+   3 h5
+   3 egg
+   3 bat
+   3 1759486186
+   3 1759486162
+   2 xrc
+   2 VERSION
+   2 universal
+   2 TXT
+   2 tfvars
+   2 tcat
+   2 stflow
+   2 quantum
+   2 protected
+   2 prod
+   2 pkg
+   2 pid
+   2 pdl
+   2 patent
+   2 oauth2
+   2 nicehash
+   2 nginx
+   2 mustache
+   2 mk
+   2 macros
+   2 lucy
+   2 include
+   2 htm
+   2 gradle
+   2 fast
+   2 external
+   2 EXAMPLE
+   2 erb
+   2 drlucy
+   2 dmg
+   2 cer
+   2 bitcoin
+   2 bak7
+   2 bak6
+   2 bak2
+   2 ani
+   2 20250428143022
+   2 20250428142045
+   2 1759486165
+   2 1759385602
+   1 test
+   1 td
+   1 simple
+   1 s
+   1 rockspec
+   1 renv
+   1 R
+   1 pxi
+   1 PL
+   1 pkcs12
+   1 nu
+   1 npmignore
+   1 njs
+   1 mtimes
+   1 Makefile
+   1 gemspec
+   1 eigen
+   1 am
+   1 ac
+   1 3
+   1 2202
+   1 2
+   1 1759486277
+   1 1759486164
+   1 1759486158
+   1 1759486153
+   1 1759486150
+   1 1759486146
+   1 1759486139
+   1 1759486136
+   1 1759486134
+   1 1759486132
+   1 1759486129
+   1 1759486126
+   1 1759486119
+   1 1308
+
+💾 LARGE FILES (>10MB)
+=================================================================================
+15M ./integration-gateway/integration-consolidation/xero-worker/node_modules/miniflare/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.42.dylib
+83M ./integration-gateway/integration-consolidation/xero-worker/node_modules/workerd/bin/workerd
+83M ./integration-gateway/integration-consolidation/xero-worker/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd
+15M ./integration-gateway/integration-consolidation/xero-worker/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.1.dylib
+129M ./integration-gateway/integration-consolidation/xero-worker/node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
+15M ./integration-gateway/integration-consolidation/xero-worker/.next/standalone/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.1.dylib
+38M ./integration-gateway/desktop/controller/bin/2025.8.0.12/darwin/amd64/controller
+38M ./integration-gateway/desktop/controller/bin/2025.8.0.12/darwin/arm64/controller
+11M ./integration-gateway/quantum-integration/quantum-venv/lib/python3.13/site-packages/qiskit/_accelerate.abi3.so
+32M ./integration-gateway/quantum-integration/quantum-venv/lib/python3.13/site-packages/grpc/_cython/cygrpc.cpython-313-darwin.so
+94M ./integration-gateway/core-protocols/admin-core/config/node_modules/@iconify/json/json/fluent-emoji.json
+24M ./integration-gateway/core-protocols/admin-core/config/node_modules/@iconify/json/json/noto.json
+11M ./integration-gateway/core-protocols/admin-core/config/node_modules/@iconify/json/json/emojione-v1.json
+110M ./integration-gateway/core-protocols/admin-core/config/node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
+92M ./integration-gateway/owner-interface/node_modules/workerd/bin/workerd
+92M ./integration-gateway/owner-interface/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd
+15M ./integration-gateway/owner-interface/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.42.dylib
+87M ./integration-gateway/workers/asoos-2100-cool-worker/asoos-2100-cool-worker/node_modules/workerd/bin/workerd
+87M ./integration-gateway/workers/asoos-2100-cool-worker/asoos-2100-cool-worker/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd
+15M ./integration-gateway/workers/asoos-2100-cool-worker/asoos-2100-cool-worker/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.42.dylib
+20M ./integration-gateway/venv/lib/python3.13/site-packages/cryptography/hazmat/bindings/_rust.abi3.so
+58M ./integration-gateway/.git/objects/pack/tmp_pack_T3yAuo
+25M ./integration-gateway/.git/objects/pack/tmp_pack_6TtyVk
+35M ./integration-gateway/.git/objects/pack/tmp_pack_YScwQP
+64M ./integration-gateway/.git/objects/pack/tmp_pack_oEmG99
+45M ./integration-gateway/.git/objects/pack/tmp_pack_oRMRlI
+25M ./integration-gateway/.git/objects/pack/tmp_pack_XGlhVW
+548M ./integration-gateway/.git/objects/pack/pack-c43d285a10ccc2eb64ee9af6c247b988c529b131.pack
+31M ./integration-gateway/.git/objects/pack/tmp_pack_J8D9aI
+37M ./integration-gateway/.git/objects/pack/pack-7572e2ec04627b343be61e6308f10f4b8a5f0fc7.pack
+40M ./integration-gateway/.git/objects/pack/tmp_pack_hXVtny
+83M ./integration-gateway/sallyport-auth/node_modules/workerd/bin/workerd
+83M ./integration-gateway/sallyport-auth/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd
+15M ./integration-gateway/sallyport-auth/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.42.dylib
+15M ./integration/xero-worker/node_modules/miniflare/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.42.dylib
+83M ./integration/xero-worker/node_modules/workerd/bin/workerd
+83M ./integration/xero-worker/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd
+15M ./integration/xero-worker/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.1.dylib
+129M ./integration/xero-worker/node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
+15M ./integration/xero-worker/.next/standalone/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.1.dylib
+38M ./desktop/controller/bin/2025.8.0.12/darwin/amd64/controller
+38M ./desktop/controller/bin/2025.8.0.12/darwin/arm64/controller
+38M ./claude-env/lib/python3.13/site-packages/grpc/_cython/cygrpc.cpython-313-darwin.so
+20M ./flattened/integration-gateway/venv/lib/python3.13/site-packages/cryptography/hazmat/bindings/_rust.abi3.so
+110M ./academy/frontend/node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
+20M ./academy/venv/lib/python3.13/site-packages/cryptography/hazmat/bindings/_rust.abi3.so
+13M ./blockchain/node_modules/@nomicfoundation/edr-darwin-x64/edr.darwin-x64.node
+20M ./blockchain/node_modules/@nomicfoundation/edr-linux-x64-gnu/edr.linux-x64-gnu.node
+13M ./blockchain/node_modules/@nomicfoundation/edr-darwin-arm64/edr.darwin-arm64.node
+15M ./blockchain/node_modules/@nomicfoundation/edr-win32-x64-msvc/edr.win32-x64-msvc.node
+18M ./blockchain/node_modules/@nomicfoundation/edr-linux-arm64-musl/edr.linux-arm64-musl.node
+18M ./blockchain/node_modules/@nomicfoundation/edr-linux-arm64-gnu/edr.linux-arm64-gnu.node
+20M ./blockchain/node_modules/@nomicfoundation/edr-linux-x64-musl/edr.linux-x64-musl.node
+11M ./quantum-integration/quantum-venv/lib/python3.13/site-packages/qiskit/_accelerate.abi3.so
+32M ./quantum-integration/quantum-venv/lib/python3.13/site-packages/grpc/_cython/cygrpc.cpython-313-darwin.so
+83M ./workers/node_modules/workerd/bin/workerd
+83M ./workers/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd
+15M ./workers/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.42.dylib
+83M ./cloudflare-workers/node_modules/workerd/bin/workerd
+83M ./cloudflare-workers/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd
+15M ./cloudflare-workers/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.42.dylib
+24M ./.git/objects/03/2765d722bf91724fb8b7be8856c54cb712ef68
+83M ./.git/objects/d7/c9bde39a644cd1e8bb5a6b6770c9f00a8a2a00
+23M ./.git/objects/e2/eefa9c7daca2fd8797d795730ade64879c09e4
+479M ./.git/objects/pack/pack-887a8a728f1d85b48225b79335b289e2ad09b92e.pack
+74M ./.git/objects/pack/pack-06f8d2bddfb90532011af2286b2920c583632338.pack
+20M ./.git/objects/pack/tmp_pack_mptWJW
+10M ./.git/objects/pack/pack-9f63928ebb5c2447e95d2e05d97123599ac7803c.idx
+13M ./.git/objects/pack/pack-4608e97344f966b1ded5a1495ab02e95c77d9634.idx
+15M ./.git/objects/pack/tmp_pack_KvuNaZ
+16M ./.git/objects/pack/tmp_pack_j9Aia9
+10M ./.git/objects/45/4591f1e43c3e856bd26f0135bf3997d5d68ec0
+17M ./.git/objects/19/4efefb2346348dd6c4662fe1ae7afe57358083
+18M ./.git/objects/21/ddb289dcd076938a467614387b32c93bcedaef
+210M ./.git/objects/1b/11b22179906f51bc885dc4cb6be903ffd6ea42
+70M ./.git/objects/8d/a3d051c92ccb266d71aaf0efda81de9effdf64
+125M ./.git/lfs/objects/9e/c5/9ec5a7c77fcd5d147965e0b405c47bc5ae0d05f1657cfc003de75342fe30549c
+12M ./.git/lfs/objects/93/78/937822fbda0095bfb2eccbd08d8f1599ebe3762d8484a1f5ce8efd4d0718a30d
+38M ./.git/lfs/objects/5f/4b/5f4b3f7bf63edf2500b47a297c1a21ae06095ab54f832222935e562a5c6a586f
+16M ./.git/lfs/objects/d0/28/d0289f2d21d8de13b9b3e2e56c5481a9e7d422469576060edcdb07ef38afaf1d
+73M ./.git/lfs/objects/b4/53/b45301a9479224f011fac47ec6f49ee2fb3bbf87e06cde511c35fef28022b252
+45M ./.git/lfs/objects/fe/bc/febc556c4d641b50ea4969dbf3ce796fbf1623d0cbed8cfe801b14fef2775b90
+21M ./.git/lfs/objects/c6/71/c671a8db0a0d62839f9674d49298409db822ab3cd35bc2ddf48eded99b727721
+57M ./.git/lfs/objects/87/30/8730bf6dab538a1e9710a3668e2cd5f1bdc3c25c68b65a57c5418bdc3472769c
+10M ./.git/lfs/objects/10/88/1088114a032fb108d8d6e1becf3e5e6de63f102e2dfa3b5bc861fe7bc698472f
+103M ./.git/lfs/objects/72/eb/72eb618874afced9336394e7475b9a5bc5c0e678c48fa81a38533af42a125f4f
+210M ./.git/lfs/objects/6c/c4/6cc4a813c6eec995390488a94e6df702b8ac6e2fe08bad788ae1d0f9ca4d2ed2
+17M ./.git/lfs/objects/b8/7c/b87c1ef7cf0ccaaeec6bc0d279c14d0abbd83619509800cd7f5119b323ec23d6
+835M ./.git/lfs/objects/dd/da/dddad4a94e28e752cc74f4a02ff030e89ebbd4fbeaeb11308a71725ce00438f3
+18M ./.git/modules/aixtiv-cli/lfs/objects/92/63/926319a51c76561dc811d6380e06bfb0d15e16d5060b7f32c005bc6d1a867044
+420M ./.git/modules/aixtiv-cli/lfs/objects/c7/2d/c72dbcf2aa5ef079bb194294bded13b26d57c888b5501c39d97537d712b8c59a
+97M ./.git/modules/aixtiv-cli/lfs/objects/73/af/73af8b11d016811ae6dd4ac744af0dd081aec68c47a73e23e6c802cfe78939ca
+835M ./.git/modules/aixtiv-cli/lfs/objects/dd/da/dddad4a94e28e752cc74f4a02ff030e89ebbd4fbeaeb11308a71725ce00438f3
+85M ./.git/modules/aixtiv-cli/lfs/objects/af/c8/afc8b762678eeb692dddfa0007a344cb02282b1d128d58bc22294291db47e147
+70M ./.git/modules/aixtiv-cli/lfs/objects/c4/60/c46019a095a1549d000e85da13f17972a448e0be5854a51786ecccde7278a012
+85M ./.git/modules/aixtiv-cli/lfs/objects/cb/f5/cbf52a4f3ef29aece8ca875e79fcaf7e0d9a1a1941737a499ed267d13880ddd2
+71M ./.git/modules/aixtiv-cli/lfs/objects/84/5f/845f98d74a3eab5d0bb80517b08bfd1fb162eec5d8f302e175addc4153b35f29
+105M ./asoos-cloudflare-infrastructure/2100-cool-website/node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
+10M ./asoos-cloudflare-infrastructure/2100-cool-website/.next/cache/webpack/client-production/0.pack
+60M ./asoos-cloudflare-infrastructure/2100-cool-website/.git/objects/pack/pack-f4096af449755a37cb2998189a1c7f84f9a5b4aa.pack
+72M ./ml-swarm/app/.venv/lib/python3.13/site-packages/clang/native/libclang.dylib
+32M ./ml-swarm/app/.venv/lib/python3.13/site-packages/grpc/_cython/cygrpc.cpython-313-darwin.so
+22M ./ml-swarm/app/.venv/lib/python3.13/site-packages/tensorflow/python/profiler/internal/_pywrap_profiler_plugin.so
+19M ./ml-swarm/app/.venv/lib/python3.13/site-packages/tensorflow/lite/python/libpywrap_tflite_common.dylib
+632M ./ml-swarm/app/.venv/lib/python3.13/site-packages/tensorflow/libtensorflow_cc.2.dylib
+39M ./ml-swarm/app/.venv/lib/python3.13/site-packages/tensorflow/libtensorflow_framework.2.dylib
+20M ./ml-swarm/app/.venv/lib/python3.13/site-packages/tensorflow/compiler/mlir/stablehlo/stablehlo_extension.so
+
+🕒 RECENTLY MODIFIED FILES (last 30 days)
+=================================================================================
+-rwxr-xr-x@ 1 as  staff  1498 Sep 21 08:25 ./run-cloud-build.sh
+-rw-r--r--@ 1 as  staff  11004 Sep 27 15:11 ./Honeycomb-Defense-White-Paper-Legal-Notice.md
+-rw-r--r--@ 1 as  staff  3946 Sep 21 08:25 ./test-investor-access.js
+-rw-r--r--@ 1 as  staff  729 Sep 27 15:11 ./mcp-universal-template/Dockerfile
+-rw-r--r--@ 1 as  staff  1068 Sep 20 01:22 ./mcp-universal-template/node_modules/jws/LICENSE
+-rw-r--r--@ 1 as  staff  1474 Sep 20 01:22 ./mcp-universal-template/node_modules/jws/CHANGELOG.md
+-rw-r--r--@ 1 as  staff  609 Sep 20 06:40 ./mcp-universal-template/node_modules/jws/index.js
+-rw-r--r--@ 1 as  staff  6933 Sep 20 01:22 ./mcp-universal-template/node_modules/jws/readme.md
+-rw-r--r--@ 1 as  staff  671 Sep 20 06:40 ./mcp-universal-template/node_modules/jws/package.json
+-rw-r--r--@ 1 as  staff  262 Sep 20 06:40 ./mcp-universal-template/node_modules/jws/lib/tostring.js
+-rw-r--r--@ 1 as  staff  2197 Sep 20 06:40 ./mcp-universal-template/node_modules/jws/lib/sign-stream.js
+-rw-r--r--@ 1 as  staff  3226 Sep 20 06:40 ./mcp-universal-template/node_modules/jws/lib/verify-stream.js
+-rw-r--r--@ 1 as  staff  1242 Sep 20 06:40 ./mcp-universal-template/node_modules/jws/lib/data-stream.js
+-rw-r--r--@ 1 as  staff  1089 Sep 25 10:22 ./mcp-universal-template/node_modules/helmet/LICENSE
+-rw-r--r--@ 1 as  staff  24545 Sep 25 10:22 ./mcp-universal-template/node_modules/helmet/CHANGELOG.md
+-rw-r--r--@ 1 as  staff  7420 Sep 25 10:22 ./mcp-universal-template/node_modules/helmet/index.d.mts
+-rw-r--r--@ 1 as  staff  7420 Sep 25 10:22 ./mcp-universal-template/node_modules/helmet/index.d.cts
+-rw-r--r--@ 1 as  staff  20229 Sep 25 10:22 ./mcp-universal-template/node_modules/helmet/README.md
+-rw-r--r--@ 1 as  staff  1135 Sep 25 10:22 ./mcp-universal-template/node_modules/helmet/package.json
+-rw-r--r--@ 1 as  staff  21288 Sep 25 10:22 ./mcp-universal-template/node_modules/helmet/index.cjs

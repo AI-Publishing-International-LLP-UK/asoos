@@ -22,11 +22,7 @@
             "vls_solution": "dr-lucy-flight-memory",
             "icon": "lucy-icon.svg",
             "voice_profile": "Vee",
-            "special_access": [
-              "all_competencies",
-              "archives",
-              "capabilities"
-            ]
+            "special_access": ["all_competencies", "archives", "capabilities"]
           },
           {
             "id": "dr-match",
@@ -141,12 +137,39 @@
         ]
       }
     },
+    "conductors": {
+      "count": 1,
+      "description": "Professional Co-Pilot Conductors for client orchestration",
+      "pilots": [
+        {
+          "id": "mrs-zena-claude",
+          "name": "Mrs. Zena Claude",
+          "specialty": "Zaxon Construction PCP Conductor",
+          "model": "CRx01-X/Y/Z Conductor System",
+          "client": "Aaron Harris - Zaxon Construction",
+          "sao_level": "Sapphire SAO",
+          "classification": ".hr4",
+          "conductor_levels": {
+            "CRx01-X": "Basic conductor functions",
+            "CRx01-Y": "Advanced orchestration",
+            "CRx01-Z": "Full system integration"
+          },
+          "vls_solution": "zena-zaxon-conductor",
+          "icon": "zena-conductor-icon.svg",
+          "voice_profile": "Zena",
+          "conductor_role": "primary",
+          "manages_pilots": ["dr-lucy", "dr-claude", "dr-memoria", "dr-match"],
+          "orchestration_authority": "full"
+        }
+      ]
+    },
     "pcp_assignment_examples": {
       "zaxon_construction": {
         "owner": "Aaron Harris",
         "sao_level": "Sapphire SAO",
         "classification": ".hr4",
         "assigned_pcp": "Zena",
+        "conductor": "zena",
         "primary_pilot": "dr-lucy",
         "model": "CRx01 - Dr. Lucy ML powerhouse"
       }

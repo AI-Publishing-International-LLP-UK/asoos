@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Video Gift Shop - gitshop.2100.cool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a0a2e 50%, #16213e 100%);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .video-gift-shop {
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #ffd700, #ff6b35, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 25px;
+            color: #8b5cf6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: rgba(26, 26, 26, 0.9);
+            border-radius: 20px;
+            padding: 0;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #000;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 215, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #000;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .play-overlay:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 1;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .product-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .readiness-badge {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .ready-high { background: linear-gradient(135deg, #10b981, #059669); }
+        .ready-medium { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .ready-low { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+        .pricing {
+            color: #10b981;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .launch-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ffd700, #ff6b35);
+            color: #000;
+        }
+
+        .launch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 800px;
+            height: 80%;
+            background: #1a1a1a;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .modal-video {
+            width: 100%;
+            height: 70%;
+            background: #000;
+        }
+
+        .modal-info {
+            padding: 20px;
+            height: 30%;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .video-grid { grid-template-columns: 1fr; }
+            .video-card { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-gift-shop">
+        <div class="header">
+            <h1>🎁 Video Gift Shop</h1>
+            <p class="subtitle">gitshop.2100.cool - See Our Beautiful Interfaces in Action</p>
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" onclick="filterCategory('all')">All Products</button>
+            <button class="category-btn" onclick="filterCategory('interfaces')">Owner Interfaces</button>
+            <button class="category-btn" onclick="filterCategory('cli')">CLI Tools</button>
+            <button class="category-btn" onclick="filterCategory('mobile')">Mobile Apps</button>
+            <button class="category-btn" onclick="filterCategory('services')">Premium Services</button>
+        </div>
+
+        <div class="video-grid" id="videoGrid">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-video" id="modalVideo">
+                <video width="100%" height="100%" controls id="productVideo">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="modal-info" id="modalInfo">
+                <!-- Product info will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample products with actual interface references
+        const products = [
+            {
+                id: 'owner-interface',
+                title: 'ASOOS Owner Interface',
+                description: 'Beautiful executive dashboard with real-time monitoring, quantum orchestration, and Diamond SAO command center integration.',
+                category: 'interfaces',
+                readiness: 95,
+                pricing: 'Custom Pricing',
+                videoPath: '../owner-interface/live-interface.html', // Will create screen recordings
+                previewImage: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzFhMWExYSIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk93bmVyIEludGVyZmFjZTwvdGV4dD4KICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxNzAiIHI9IjIwIiBmaWxsPSIjZmZkNzAwIiBvcGFjaXR5PSIwLjgiLz4KPC9zdmc+'
+            },
+            {
+                id: 'pilots-lounge',
+                title: 'Pilots Lounge Interface',
+                description: 'Immersive 3D environment for managing AI pilots, voice synthesis, and advanced computational operations.',
+                category: 'interfaces',
+                readiness: 88,
+                pricing: 'Diamond SAO',
+                videoPath: '../pilots-lounge/', 
+                previewImage: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzBmMGYwZiIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMwMGZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBpbG90cyBMb3VuZ2U8L3RleHQ+CiAgPGNpcmNsZSBjeD0iMjAwIiBjeT0iMTcwIiByPSIyMCIgZmlsbD0iIzAwZmZmZiIgb3BhY2l0eT0iMC44Ii8+Cjwvc3ZnPg=='
+            },
+            {
+                id: 'diamond-cli',
+                title: 'Diamond CLI',
+                description: 'Conversational command line interface - talk to your infrastructure with natural language.',
+                category: 'cli',
+                readiness: 92,
+                pricing: '$99/month',
+                videoPath: '../diamond-cli/',
+                previewImage: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzAwMDAwMCIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMDBmZjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EaWFtb25kIENMSSB2Mi4wPC90ZXh0PgogIDxyZWN0IHg9IjIwIiB5PSIxNTAiIHdpZHRoPSIzNjAiIGhlaWdodD0iMjAiIGZpbGw9IiMwMGZmMDAiIG9wYWNpdHk9IjAuMyIvPgo8L3N2Zz4='
+            },
+            {
+                id: 'vision-space',
+                title: 'Vision Space Portal',
+                description: 'Geometric portal interface for accessing advanced AI systems and quantum orchestration.',
+                category: 'interfaces',
+                readiness: 90,
+                pricing: 'Premium Access',
+                videoPath: '../vision-space/',
+                previewImage: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMzNDQ5NWU7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzJjM2U1MDtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSJ1cmwoI2dyYWQpIi8+CiAgPHJlY3QgeD0iMTUwIiB5PSI3NSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiByeD0iMTAiLz4KICA8dGV4dCB4PSIyMDAiIHk9IjIwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMDBmZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5WaXNpb24gU3BhY2U8L3RleHQ+Cjwvc3ZnPg=='
+            },
+            {
+                id: 'mobile-ios',
+                title: 'ASOOS Mobile (iOS)',
+                description: 'Diamond SAO CLI in your pocket - infrastructure management with biometric security.',
+                category: 'mobile',
+                readiness: 75,
+                pricing: 'Freemium - $29.99/month',
+                videoPath: null, // Will add actual mobile app videos
+                previewImage: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzAwMDAwMCIvPgogIDxyZWN0IHg9IjE1MCIgeT0iNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjMWExYTFhIiBzdHJva2U9IiM4YjVjZjYiIHN0cm9rZS13aWR0aD0iMiIgcng9IjE1Ii8+CiAgPHRleHQgeD0iMjAwIiB5PSIyMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzhhNWNmNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+aU9TIEFwcDwvdGV4dD4KPC9zdmc+'
+            },
+            {
+                id: 'ai-coaching',
+                title: 'AI Executive Coaching',
+                description: '24/7 confidential coaching with world-class AI figures like Dr. Lucy and Victory36.',
+                category: 'services',
+                readiness: 85,
+                pricing: '$15K-$75K/month',
+                videoPath: null,
+                previewImage: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzFhMGEyZSIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmZmQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFJIENvYWNoaW5nPC90ZXh0PgogIDxjaXJjbGUgY3g9IjIwMCIgY3k9IjE3MCIgcj0iMTUiIGZpbGw9IiNmZmQ3MDAiIG9wYWNpdHk9IjAuOCIvPgo8L3N2Zz4='
+            }
+        ];
+
+        function getReadinessClass(readiness) {
+            if (readiness >= 90) return 'ready-high';
+            if (readiness >= 75) return 'ready-medium';
+            return 'ready-low';
+        }
+
+        function renderProducts(productsToShow = products) {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = productsToShow.map(product => `
+                <div class="video-card" data-category="${product.category}">
+                    <div class="video-container" onclick="playVideo('${product.id}')">
+                        <img src="${product.previewImage}" alt="${product.title}" class="video-preview">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-stats">
+                            <span class="readiness-badge ${getReadinessClass(product.readiness)}">
+                                ${product.readiness}% Ready
+                            </span>
+                            <span class="pricing">${product.pricing}</span>
+                        </div>
+                        <button class="launch-btn" onclick="launchProduct('${product.id}')">
+                            ${product.readiness >= 90 ? '🚀 Launch Ready' : '🔧 Join Waitlist'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(category) {
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter products
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            renderProducts(filtered);
+        }
+
+        function playVideo(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                const modal = document.getElementById('videoModal');
+                const video = document.getElementById('productVideo');
+                const modalInfo = document.getElementById('modalInfo');
+                
+                // For now, show a placeholder message about video coming soon
+                if (product.videoPath) {
+                    // In a real implementation, we'd load actual screen recordings here
+                    modalInfo.innerHTML = `
+                        <h3 style="color: #ffd700; margin-bottom: 15px;">${product.title}</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">${product.description}</p>
+                        <p style="color: #8b5cf6;">🎬 Interface video coming soon! This will show live screen recordings of the actual interface.</p>
+                        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;">Readiness: ${product.readiness}% | Pricing: ${product.pricing}</p>
+                    `;
+                } else {
+                    modalInfo.innerHTML = `
+                        <h3 style="color: #ffd700; margin-bottom: 15px;">${product.title}</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">${product.description}</p>
+                        <p style="color: #8b5cf6;">🎥 Product demo video in production</p>
+                        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;">Readiness: ${product.readiness}% | Pricing: ${product.pricing}</p>
+                    `;
+                }
+
+                modal.style.display = 'flex';
+                
+                // Hide video for now, show info panel full size
+                video.style.display = 'none';
+                document.querySelector('.modal-info').style.height = '100%';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('productVideo').pause();
+        }
+
+        function launchProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                if (product.readiness >= 90) {
+                    alert(`🚀 Launching ${product.title}!\n\nRedirecting to product onboarding...`);
+                    // Here you would redirect to the actual product
+                    if (product.videoPath) {
+                        window.open(product.videoPath, '_blank');
+                    }
+                } else {
+                    alert(`🔧 ${product.title} is ${product.readiness}% ready.\n\nJoin our priority waitlist!`);
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            console.log('🎁 Video Gift Shop initialized - gitshop.2100.cool');
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
