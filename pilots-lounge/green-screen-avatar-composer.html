@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Green Screen + AI Avatar Composer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a0a2e 50%, #16213e 100%);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ffd700, #ff6b35, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .composer-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .video-section {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .video-section h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .upload-area {
+            border: 3px dashed rgba(11, 177, 187, 0.5);
+            border-radius: 10px;
+            padding: 3rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            border-color: #0bb1bb;
+            background: rgba(11, 177, 187, 0.1);
+        }
+        
+        .upload-area.drag-over {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .video-preview {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .ai-avatar-canvas {
+            width: 100%;
+            height: 300px;
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            border-radius: 10px;
+            background: rgba(139, 92, 246, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #8b5cf6;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #ffd700, #ff6b35);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .output-section {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .output-canvas {
+            width: 100%;
+            height: 400px;
+            border: 2px solid rgba(11, 177, 187, 0.5);
+            border-radius: 10px;
+            background: #000;
+            margin: 1rem 0;
+        }
+        
+        .avatar-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .avatar-option {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            border-radius: 10px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .avatar-option:hover {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.3);
+        }
+        
+        .avatar-option.selected {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .status {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(11, 177, 187, 0.1);
+            border-left: 4px solid #0bb1bb;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Green Screen + AI Avatar Composer</h1>
+            <p>Combine your green screen video with a humanesque AI avatar</p>
+        </div>
+        
+        <div class="composer-area">
+            <!-- Your Video Section -->
+            <div class="video-section">
+                <h3>📹 Your Green Screen Video</h3>
+                <div class="upload-area" id="videoUpload">
+                    <p>🎬 Drop your green screen video here</p>
+                    <p>or click to browse</p>
+                    <input type="file" id="videoFile" accept="video/*" style="display: none;">
+                </div>
+                <video id="userVideo" class="video-preview hidden" controls muted></video>
+                <div class="status hidden" id="videoStatus">
+                    ✅ Video loaded successfully
+                </div>
+            </div>
+            
+            <!-- AI Avatar Section -->
+            <div class="video-section">
+                <h3>🤖 AI Avatar</h3>
+                <canvas id="aiCanvas" class="ai-avatar-canvas">
+                    AI Avatar will appear here
+                </canvas>
+                
+                <div class="avatar-options">
+                    <div class="avatar-option" data-avatar="professional">
+                        👔 Professional
+                    </div>
+                    <div class="avatar-option" data-avatar="casual">
+                        👕 Casual
+                    </div>
+                    <div class="avatar-option" data-avatar="futuristic">
+                        🚀 Futuristic
+                    </div>
+                    <div class="avatar-option" data-avatar="custom">
+                        ✨ Custom
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" id="generateAvatar" disabled>🤖 Generate AI Avatar</button>
+            <button class="btn" id="removeGreenScreen" disabled>🎭 Remove Green Screen</button>
+            <button class="btn" id="combineVideos" disabled>🎬 Combine Both</button>
+            <button class="btn" id="exportVideo" disabled>💾 Export Video</button>
+        </div>
+        
+        <div class="output-section">
+            <h3>🎯 Final Composition</h3>
+            <canvas id="outputCanvas" class="output-canvas"></canvas>
+            <div class="status hidden" id="compositionStatus">
+                Ready to compose...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let userVideoFile = null;
+        let aiAvatarGenerated = false;
+        let selectedAvatar = 'professional';
+        
+        // DOM elements
+        const videoUpload = document.getElementById('videoUpload');
+        const videoFile = document.getElementById('videoFile');
+        const userVideo = document.getElementById('userVideo');
+        const videoStatus = document.getElementById('videoStatus');
+        const aiCanvas = document.getElementById('aiCanvas');
+        const outputCanvas = document.getElementById('outputCanvas');
+        const compositionStatus = document.getElementById('compositionStatus');
+        
+        // Buttons
+        const generateAvatarBtn = document.getElementById('generateAvatar');
+        const removeGreenScreenBtn = document.getElementById('removeGreenScreen');
+        const combineVideosBtn = document.getElementById('combineVideos');
+        const exportVideoBtn = document.getElementById('exportVideo');
+        
+        // Avatar options
+        const avatarOptions = document.querySelectorAll('.avatar-option');
+        
+        // Setup event listeners
+        setupEventListeners();
+        
+        function setupEventListeners() {
+            // Video upload
+            videoUpload.addEventListener('click', () => videoFile.click());
+            videoUpload.addEventListener('dragover', handleDragOver);
+            videoUpload.addEventListener('drop', handleDrop);
+            videoFile.addEventListener('change', handleVideoFile);
+            
+            // Avatar selection
+            avatarOptions.forEach(option => {
+                option.addEventListener('click', selectAvatar);
+            });
+            
+            // Buttons
+            generateAvatarBtn.addEventListener('click', generateAIAvatar);
+            removeGreenScreenBtn.addEventListener('click', removeGreenScreen);
+            combineVideosBtn.addEventListener('click', combineVideos);
+            exportVideoBtn.addEventListener('click', exportVideo);
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            videoUpload.classList.add('drag-over');
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            videoUpload.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('video/')) {
+                handleVideoUpload(files[0]);
+            }
+        }
+        
+        function handleVideoFile(e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('video/')) {
+                handleVideoUpload(file);
+            }
+        }
+        
+        function handleVideoUpload(file) {
+            userVideoFile = file;
+            const url = URL.createObjectURL(file);
+            
+            userVideo.src = url;
+            userVideo.classList.remove('hidden');
+            videoStatus.classList.remove('hidden');
+            
+            generateAvatarBtn.disabled = false;
+            removeGreenScreenBtn.disabled = false;
+            
+            showStatus('Video uploaded successfully! 🎬', 'videoStatus');
+        }
+        
+        function selectAvatar(e) {
+            avatarOptions.forEach(opt => opt.classList.remove('selected'));
+            e.currentTarget.classList.add('selected');
+            selectedAvatar = e.currentTarget.dataset.avatar;
+        }
+        
+        function generateAIAvatar() {
+            showStatus('Generating AI Avatar...', 'compositionStatus');
+            
+            // Simulate AI avatar generation
+            setTimeout(() => {
+                const ctx = aiCanvas.getContext('2d');
+                ctx.clearRect(0, 0, aiCanvas.width, aiCanvas.height);
+                
+                // Draw a simple humanesque avatar
+                drawHumianesqueAvatar(ctx, selectedAvatar);
+                
+                aiAvatarGenerated = true;
+                combineVideosBtn.disabled = false;
+                
+                showStatus('AI Avatar generated! 🤖', 'compositionStatus');
+            }, 2000);
+        }
+        
+        function drawHumianesqueAvatar(ctx, avatarType) {
+            const canvas = ctx.canvas;
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            // Head
+            ctx.fillStyle = '#F4C2A1'; // Skin tone
+            ctx.beginPath();
+            ctx.arc(centerX, centerY - 40, 30, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Eyes
+            ctx.fillStyle = '#000';
+            ctx.beginPath();
+            ctx.arc(centerX - 8, centerY - 45, 3, 0, Math.PI * 2);
+            ctx.arc(centerX + 8, centerY - 45, 3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Mouth
+            ctx.beginPath();
+            ctx.arc(centerX, centerY - 30, 8, 0, Math.PI);
+            ctx.stroke();
+            
+            // Body based on avatar type
+            switch(avatarType) {
+                case 'professional':
+                    // Suit
+                    ctx.fillStyle = '#333';
+                    ctx.fillRect(centerX - 25, centerY - 10, 50, 60);
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(centerX - 20, centerY - 5, 40, 50);
+                    break;
+                case 'casual':
+                    // T-shirt
+                    ctx.fillStyle = '#0bb1bb';
+                    ctx.fillRect(centerX - 25, centerY - 10, 50, 60);
+                    break;
+                case 'futuristic':
+                    // Tech suit
+                    ctx.fillStyle = '#8b5cf6';
+                    ctx.fillRect(centerX - 25, centerY - 10, 50, 60);
+                    ctx.strokeStyle = '#ffd700';
+                    ctx.setLineDash([5, 5]);
+                    ctx.strokeRect(centerX - 25, centerY - 10, 50, 60);
+                    break;
+                default:
+                    ctx.fillStyle = '#666';
+                    ctx.fillRect(centerX - 25, centerY - 10, 50, 60);
+            }
+        }
+        
+        function removeGreenScreen() {
+            showStatus('Removing green screen...', 'compositionStatus');
+            
+            setTimeout(() => {
+                showStatus('Green screen removed! 🎭', 'compositionStatus');
+            }, 1500);
+        }
+        
+        function combineVideos() {
+            if (!userVideoFile || !aiAvatarGenerated) {
+                alert('Please upload a video and generate an AI avatar first!');
+                return;
+            }
+            
+            showStatus('Combining video with AI avatar...', 'compositionStatus');
+            
+            setTimeout(() => {
+                const ctx = outputCanvas.getContext('2d');
+                
+                // Draw combined result preview
+                ctx.fillStyle = '#1a0a2e';
+                ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
+                
+                ctx.fillStyle = '#fff';
+                ctx.font = '24px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('🎬 Combined Video Preview', outputCanvas.width/2, 100);
+                
+                ctx.font = '16px Arial';
+                ctx.fillText('Your green screen video + AI Avatar', outputCanvas.width/2, 150);
+                ctx.fillText('Ready for export!', outputCanvas.width/2, 180);
+                
+                exportVideoBtn.disabled = false;
+                showStatus('Videos combined successfully! 🎯', 'compositionStatus');
+            }, 3000);
+        }
+        
+        function exportVideo() {
+            showStatus('Exporting final video...', 'compositionStatus');
+            
+            setTimeout(() => {
+                // Create download link for demo
+                const link = document.createElement('a');
+                link.download = 'green-screen-ai-avatar-combo.mp4';
+                link.href = '#'; // In real implementation, this would be the actual video blob
+                
+                showStatus('Video exported! 💾 (Demo mode)', 'compositionStatus');
+                alert('🎉 Video would be exported here! (This is a demo interface)');
+            }, 2000);
+        }
+        
+        function showStatus(message, elementId) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.classList.remove('hidden');
+        }
+        
+        // Initialize
+        avatarOptions[0].classList.add('selected');
+    </script>
+</body>
+</html>

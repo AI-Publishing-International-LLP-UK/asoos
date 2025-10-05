@@ -1,0 +1,290 @@
+# 🛡️ ASOOS OAuth2/OIDC Baseline Policy
+# Version: 1.0.0
+# Last Updated: 2025-10-05T03:58:54Z
+# Classification: Diamond SAO Security Policy
+
+metadata:
+  organization: "AI Publishing International LLP"
+  project: "API-For-Warp-Drive"
+  classification: "DIAMOND_SAO_SECURITY"
+  enforcement_level: "MANDATORY"
+  compliance_framework: "ENTERPRISE_OAUTH2_OIDC"
+
+# Core Authentication Requirements
+authentication:
+  mandatory_gateway: "SallyPort"
+  bypass_conditions:
+    - tier: "DIAMOND_SAO"
+      reason: "Emergency access only"
+      approval_required: true
+      audit_log: true
+  
+  allowed_providers:
+    - name: "Google"
+      client_id_secret: "GOOGLE_OAUTH_CLIENT_ID"
+      client_secret: "GOOGLE_OAUTH_CLIENT_SECRET"
+      scopes: ["openid", "profile", "email"]
+    - name: "Microsoft" 
+      client_id_secret: "MICROSOFT_OAUTH_CLIENT_ID"
+      client_secret: "MICROSOFT_OAUTH_CLIENT_SECRET"
+      scopes: ["openid", "profile", "email"]
+    - name: "GitHub"
+      client_id_secret: "GITHUB_OAUTH_CLIENT_ID"
+      client_secret: "GITHUB_OAUTH_CLIENT_SECRET"
+      scopes: ["read:user", "user:email"]
+
+# Access Control Tiers
+access_tiers:
+  DIAMOND_SAO:
+    description: "Unlimited super admin access"
+    permissions: ["*"]
+    token_lifetime: "24h"
+    refresh_allowed: true
+    emergency_bypass: true
+    quantum_swarm_access: true
+    
+  EMERALD_SAO:
+    description: "Nearly unlimited super admin (-01)"
+    permissions: ["admin:*", "user:*", "system:read"]
+    token_lifetime: "12h"
+    refresh_allowed: true
+    emergency_bypass: false
+    quantum_swarm_access: true
+    
+  SAPPHIRE_SAO:
+    description: "Unlimited super admin for their instance"
+    permissions: ["instance:*", "user:manage", "system:read"]
+    token_lifetime: "8h"
+    refresh_allowed: true
+    emergency_bypass: false
+    instance_scoped: true
+    
+  OPAL_SAO:
+    description: "Limited ability per Sapphire SAO"
+    permissions: ["user:read", "user:update", "data:read"]
+    token_lifetime: "4h"
+    refresh_allowed: true
+    requires_sapphire_approval: true
+    
+  ONYX_SAO:
+    description: "Very limited abilities enabled by Sapphire SAO"
+    permissions: ["data:read", "profile:read"]
+    token_lifetime: "2h"
+    refresh_allowed: false
+    requires_sapphire_approval: true
+
+# Secret Management Requirements
+secrets:
+  provider: "Google Cloud Secret Manager"
+  project: "api-for-warp-drive"
+  region: "us-west1"
+  
+  mandatory_secrets:
+    - name: "GOOGLE_OAUTH_CLIENT_ID"
+      description: "Google OAuth2 client identifier"
+    - name: "GOOGLE_OAUTH_CLIENT_SECRET" 
+      description: "Google OAuth2 client secret"
+    - name: "MICROSOFT_OAUTH_CLIENT_ID"
+      description: "Microsoft OAuth2 client identifier"
+    - name: "MICROSOFT_OAUTH_CLIENT_SECRET"
+      description: "Microsoft OAuth2 client secret"
+    - name: "GITHUB_OAUTH_CLIENT_ID"
+      description: "GitHub OAuth2 client identifier"
+    - name: "GITHUB_OAUTH_CLIENT_SECRET"
+      description: "GitHub OAuth2 client secret"
+    - name: "SALLYPORT_SIGNING_KEY"
+      description: "SallyPort JWT signing key"
+    - name: "ELEVENLABS_API_KEY"
+      description: "ElevenLabs API key for voice synthesis"
+    - name: "OPENAI_API_KEY"
+      description: "OpenAI API key for AI services"
+      
+  rotation_policy:
+    frequency: "90d"
+    automated: true
+    notification_channels: ["diamond-sao@2100.cool", "emerald-sao@2100.cool"]
+    self_healing: true
+
+# Token Standards
+tokens:
+  format: "JWT"
+  algorithm: "RS256"
+  
+  required_claims:
+    - "iss" # Issuer (sallyport.2100.cool)
+    - "sub" # Subject (user ID)
+    - "aud" # Audience (service name)
+    - "exp" # Expiration
+    - "iat" # Issued at
+    - "jti" # JWT ID
+    - "tier" # Access tier (DIAMOND_SAO, etc.)
+    - "permissions" # Allowed actions array
+    - "instance_id" # For scoped tiers
+    
+  custom_claims:
+    "sallyport_verified": boolean
+    "quantum_entangled": boolean
+    "voice_enabled": boolean
+    "mcp_company_id": string # For MCP system integration
+
+# Compliance Rules
+compliance:
+  code_rules:
+    - name: "no_hardcoded_secrets"
+      description: "No secrets in source code"
+      enforcement: "BLOCK_COMMIT"
+      
+    - name: "sallyport_gateway_mandatory" 
+      description: "All auth must use SallyPort gateway"
+      enforcement: "BLOCK_PR"
+      
+    - name: "gcp_secret_manager_only"
+      description: "Secrets only from Google Cloud Secret Manager"
+      enforcement: "BLOCK_BUILD"
+      
+    - name: "auth_decorators_required"
+      description: "Express routes must have @auth/* decorators"
+      enforcement: "WARN_PR"
+      
+    - name: "tier_based_access_control"
+      description: "Access control based on tier system"
+      enforcement: "BLOCK_DEPLOY"
+
+  ci_cd_requirements:
+    - name: "auth_compliance_job"
+      description: "Dedicated auth compliance check in CI"
+      required: true
+      
+    - name: "oauth2_integration_tests"
+      description: "OAuth2 flow tests in staging"
+      required: true
+      environments: ["mocoa-us-west1-b", "mocoa-us-west1-a"]
+      
+    - name: "secret_scanning"
+      description: "Automated secret detection"
+      required: true
+      
+    - name: "dependency_security_audit"
+      description: "OAuth2 dependency vulnerability check"
+      required: true
+
+# Monitoring & Observability
+monitoring:
+  required_metrics:
+    - name: "auth_success_rate"
+      description: "Percentage of successful authentications"
+      threshold: ">= 99.5%"
+      
+    - name: "sallyport_response_time"
+      description: "SallyPort gateway response time"
+      threshold: "<= 500ms"
+      
+    - name: "token_expiry_rate"
+      description: "Rate of token expirations"
+      threshold: "<= 5% per hour"
+      
+    - name: "secret_rotation_health"
+      description: "Secret rotation success rate" 
+      threshold: ">= 99.9%"
+      
+  alerting:
+    channels: ["#diamond-sao-alerts", "#security-incidents"]
+    paging: ["diamond-sao-oncall", "emerald-sao-oncall"]
+    
+  dashboard:
+    location: "Diamond SAO Command Center v34"
+    panel: "OAuth2 Health & Compliance"
+    real_time: true
+
+# Integration Requirements
+integrations:
+  voice_synthesis:
+    provider: "ElevenLabs"
+    auth_method: "oauth2_bearer"
+    secret_name: "ELEVENLABS_API_KEY"
+    voices: ["smooth"] # Per user preference
+    
+  ai_services:
+    provider: "Claude (Anthropic)"
+    auth_method: "oauth2_bearer" 
+    secret_name: "ANTHROPIC_API_KEY"
+    fallback_disabled: true # Per user rules
+    
+  mcp_protocol:
+    companies: 10000
+    agents: 20000000
+    template: "mcp.asoos.2100.cool"
+    auth_tier_based: true
+    
+  baca_coin_trading:
+    currency: "BACA Coin Meta"
+    symbol: "BACA"
+    usd_pegged: true
+    exchange_rate: 1.00 # 1 BACA = 1 USD
+    external_transfers: false # BLOCKED
+    closed_loop_economy: true
+    auth_requirements:
+      - "oauth2_token_valid"
+      - "sallyport_verified"
+      - "wallet_exists"
+      - "tier_permissions_checked"
+    agent_nft_trading:
+      individual_agents: true
+      agent_swarms: true
+      agent_groups: true
+      minimum_value: 250 # $250 USD
+      maximum_value: 10000000 # $10M USD
+
+# Deployment Environments
+environments:
+  staging:
+    name: "mocoa-us-west1-b"
+    sallyport_endpoint: "https://staging-sallyport.2100.cool"
+    secret_manager_project: "api-for-warp-drive"
+    
+  production:
+    name: "mocoa-us-west1-a"
+    sallyport_endpoint: "https://sallyport.2100.cool"
+    secret_manager_project: "api-for-warp-drive"
+
+# Emergency Procedures
+emergency:
+  bypass_codes:
+    diamond_sao: "DIAMOND_EMERGENCY_BYPASS_2025"
+    duration: "4h"
+    approval_required: false
+    automatic_audit: true
+    
+  incident_response:
+    severity_1: "OAuth2 system down"
+    severity_2: "SallyPort gateway degraded"
+    severity_3: "Token validation failing"
+    escalation: ["diamond-sao@2100.cool", "security-team@2100.cool"]
+
+# Enforcement
+enforcement:
+  automated_tools:
+    - "ESLint OAuth2 plugin"
+    - "OPA (Open Policy Agent)"
+    - "GitHub Actions auth-compliance job"
+    - "Husky pre-commit hooks"
+    
+  manual_reviews:
+    required_for:
+      - "New OAuth2 provider integration"
+      - "Tier permission changes" 
+      - "Emergency bypass implementations"
+      - "Secret rotation configuration changes"
+      
+  violations:
+    tracking: "GitHub Issues with 'oauth2-violation' label"
+    remediation_sla: "24h for critical, 72h for non-critical"
+    repeat_violations: "Escalate to Diamond SAO review"
+
+# Version History
+version_history:
+  - version: "1.0.0"
+    date: "2025-10-05T03:58:54Z"
+    author: "Diamond SAO"
+    changes: ["Initial baseline policy creation"]
+    approved_by: ["Phillip Corey Roark", "Morgan O'Brien"]
