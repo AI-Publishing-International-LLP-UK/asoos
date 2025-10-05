@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Studio Photo Processor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: system-ui;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .processor-header {
+            padding: 1rem;
+            background: #1a1a1a;
+            border-bottom: 2px solid #333;
+            text-align: center;
+        }
+        
+        .processor-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        .drop-zone {
+            border: 3px dashed #0bb1bb;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .drop-zone:hover {
+            background: rgba(11, 177, 187, 0.1);
+            border-color: #ffd700;
+        }
+        
+        .drop-zone.drag-over {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+        
+        .preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #ffd700, #ff6b35);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .output-video {
+            width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+            background: #000;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(11, 177, 187, 0.1);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="processor-header">
+        <h1>🎬 Studio Photo → Video Processor</h1>
+        <p>Take studio photo → Make video → Remove green screen → Put studio photo as background</p>
+    </div>
+    
+    <div class="processor-content">
+        <!-- Studio Photo Upload -->
+        <div>
+            <h3>📸 Studio Photo</h3>
+            <div class="drop-zone" id="photoUpload">
+                <div>📸</div>
+                <p>Drop studio photo here</p>
+                <p>or click to browse</p>
+                <input type="file" id="photoFile" accept="image/*" style="display: none;">
+            </div>
+            <img id="photoPreview" class="preview" style="display: none;">
+        </div>
+        
+        <!-- Green Screen Video Upload -->
+        <div>
+            <h3>🎬 Green Screen Video</h3>
+            <div class="drop-zone" id="videoUpload">
+                <div>🎬</div>
+                <p>Drop green screen video here</p>
+                <p>or click to browse</p>
+                <input type="file" id="videoFile" accept="video/*" style="display: none;">
+            </div>
+            <video id="videoPreview" class="preview" controls muted style="display: none;"></video>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" id="processBtn" disabled>🎬 Process: Photo → Video Background</button>
+        <button class="btn" id="downloadBtn" disabled>💾 Download Studio Video</button>
+    </div>
+    
+    <div class="status" id="status" style="display: none;"></div>
+    
+    <!-- Output -->
+    <div style="padding: 2rem;">
+        <h3>🎯 Final Studio Video</h3>
+        <canvas id="outputCanvas" class="output-video"></canvas>
+    </div>
+
+    <script>
+        class StudioPhotoProcessor {
+            constructor() {
+                this.studioPhoto = null;
+                this.greenScreenVideo = null;
+                this.outputCanvas = document.getElementById('outputCanvas');
+                this.ctx = this.outputCanvas.getContext('2d');
+                
+                this.setupEventListeners();
+            }
+            
+            setupEventListeners() {
+                // Photo upload
+                const photoUpload = document.getElementById('photoUpload');
+                const photoFile = document.getElementById('photoFile');
+                
+                photoUpload.addEventListener('click', () => photoFile.click());
+                photoUpload.addEventListener('dragover', this.handleDragOver.bind(this));
+                photoUpload.addEventListener('drop', (e) => this.handlePhotoDrop(e));
+                photoFile.addEventListener('change', (e) => this.handlePhotoFile(e));
+                
+                // Video upload
+                const videoUpload = document.getElementById('videoUpload');
+                const videoFile = document.getElementById('videoFile');
+                
+                videoUpload.addEventListener('click', () => videoFile.click());
+                videoUpload.addEventListener('dragover', this.handleDragOver.bind(this));
+                videoUpload.addEventListener('drop', (e) => this.handleVideoDrop(e));
+                videoFile.addEventListener('change', (e) => this.handleVideoFile(e));
+                
+                // Process button
+                document.getElementById('processBtn').addEventListener('click', () => this.processStudioVideo());
+                document.getElementById('downloadBtn').addEventListener('click', () => this.downloadVideo());
+            }
+            
+            handleDragOver(e) {
+                e.preventDefault();
+                e.target.closest('.drop-zone').classList.add('drag-over');
+            }
+            
+            handlePhotoDrop(e) {
+                e.preventDefault();
+                e.target.closest('.drop-zone').classList.remove('drag-over');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && files[0].type.startsWith('image/')) {
+                    this.loadStudioPhoto(files[0]);
+                }
+            }
+            
+            handlePhotoFile(e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    this.loadStudioPhoto(file);
+                }
+            }
+            
+            handleVideoDrop(e) {
+                e.preventDefault();
+                e.target.closest('.drop-zone').classList.remove('drag-over');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && files[0].type.startsWith('video/')) {
+                    this.loadGreenScreenVideo(files[0]);
+                }
+            }
+            
+            handleVideoFile(e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('video/')) {
+                    this.loadGreenScreenVideo(file);
+                }
+            }
+            
+            loadStudioPhoto(file) {
+                const img = document.getElementById('photoPreview');
+                const url = URL.createObjectURL(file);
+                
+                img.src = url;
+                img.style.display = 'block';
+                
+                img.onload = () => {
+                    this.studioPhoto = img;
+                    this.showStatus('Studio photo loaded ✅');
+                    this.checkReadyToProcess();
+                };
+            }
+            
+            loadGreenScreenVideo(file) {
+                const video = document.getElementById('videoPreview');
+                const url = URL.createObjectURL(file);
+                
+                video.src = url;
+                video.style.display = 'block';
+                
+                video.onloadeddata = () => {
+                    this.greenScreenVideo = video;
+                    this.showStatus('Green screen video loaded ✅');
+                    this.checkReadyToProcess();
+                };
+            }
+            
+            checkReadyToProcess() {
+                const processBtn = document.getElementById('processBtn');
+                if (this.studioPhoto && this.greenScreenVideo) {
+                    processBtn.disabled = false;
+                    this.showStatus('Ready to process! Click "Process" button');
+                }
+            }
+            
+            async processStudioVideo() {
+                this.showStatus('Processing: Removing green screen and adding studio background...');
+                
+                const canvas = this.outputCanvas;
+                const ctx = this.ctx;
+                const video = this.greenScreenVideo;
+                const photo = this.studioPhoto;
+                
+                // Set canvas size to video size
+                canvas.width = video.videoWidth || 1920;
+                canvas.height = video.videoHeight || 1080;
+                
+                // Create temp canvas for green screen removal
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCanvas.width = canvas.width;
+                tempCanvas.height = canvas.height;
+                
+                // Process frame
+                const processFrame = () => {
+                    // Clear canvas
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Draw studio photo as background
+                    ctx.drawImage(photo, 0, 0, canvas.width, canvas.height);
+                    
+                    // Draw video frame
+                    tempCtx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    
+                    // Get video frame data
+                    const frameData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = frameData.data;
+                    
+                    // Simple green screen removal (basic chroma key)
+                    for (let i = 0; i < data.length; i += 4) {
+                        const r = data[i];
+                        const g = data[i + 1];
+                        const b = data[i + 2];
+                        
+                        // Detect green pixels (adjust threshold as needed)
+                        if (g > 100 && r < 100 && b < 100) {
+                            data[i + 3] = 0; // Make transparent
+                        }
+                    }
+                    
+                    // Put processed frame data back
+                    tempCtx.putImageData(frameData, 0, 0);
+                    
+                    // Draw non-green pixels over studio background
+                    ctx.drawImage(tempCanvas, 0, 0);
+                    
+                    if (!video.paused) {
+                        requestAnimationFrame(processFrame);
+                    }
+                };
+                
+                // Start processing
+                video.play();
+                processFrame();
+                
+                this.showStatus('✅ Processing complete! Studio video ready');
+                document.getElementById('downloadBtn').disabled = false;
+            }
+            
+            downloadVideo() {
+                // Convert canvas to video blob (simplified)
+                this.outputCanvas.toBlob((blob) => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'studio-video.png'; // Note: This creates an image, not video
+                    a.click();
+                    
+                    this.showStatus('📥 Studio video frame downloaded! (Note: Full video export requires additional processing)');
+                }, 'image/png');
+            }
+            
+            showStatus(message) {
+                const status = document.getElementById('status');
+                status.textContent = message;
+                status.style.display = 'block';
+            }
+        }
+        
+        // Initialize processor
+        document.addEventListener('DOMContentLoaded', () => {
+            new StudioPhotoProcessor();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Vision Space Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0a0a;
+            font-family: 'SF Pro Display', -apple-system, sans-serif;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .vision-space-interface {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            grid-template-rows: 1fr 100px;
+            height: 100vh;
+        }
+        
+        /* Left Control Panel */
+        .control-panel {
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #333;
+            padding: 1rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            grid-row: 1 / -1;
+        }
+        
+        .control-icon {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+        
+        .control-icon:hover {
+            border-color: #0bb1bb;
+            background: rgba(11, 177, 187, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .control-icon.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        /* Main Studio Display */
+        .studio-display {
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .studio-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar-overlay {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .avatar-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .ai-conductor {
+            width: 200px;
+            height: 280px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #0bb1bb 100%);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conductor-face {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f4c2a1;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .conductor-eyes {
+            position: absolute;
+            top: 25px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .eye {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #000;
+            animation: blink 3s infinite;
+        }
+        
+        .conductor-mouth {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 10px;
+            border: 2px solid #000;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            animation: speak 2s infinite;
+        }
+        
+        .conductor-label {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        /* Command Input Area */
+        .command-zone {
+            background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-top: 2px solid #333;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .command-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .command-input:focus {
+            border-color: #0bb1bb;
+        }
+        
+        .command-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .voice-control {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b35, #ffd700);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .voice-control:hover {
+            transform: scale(1.1);
+        }
+        
+        .voice-control.active {
+            animation: pulse 1s infinite;
+        }
+        
+        /* Environment Overlays */
+        .environment-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .environment-overlay.active {
+            opacity: 0.3;
+        }
+        
+        .boardroom {
+            background: linear-gradient(45deg, #2a2a2a, #4a4a4a);
+        }
+        
+        .cosmic {
+            background: radial-gradient(circle, #0a0a2e, #16213e);
+        }
+        
+        .waterfall {
+            background: linear-gradient(180deg, #1e3c72, #2a5298);
+        }
+        
+        .podcast {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        /* Status Indicators */
+        .status-bar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .status-indicator {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-live {
+            background: #ff4757;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .status-ready {
+            background: #2ed573;
+            color: white;
+        }
+        
+        .status-participants {
+            background: rgba(0, 0, 0, 0.7);
+            color: #0bb1bb;
+        }
+        
+        /* Animations */
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+        
+        @keyframes speak {
+            0%, 100% { transform: translateX(-50%) scaleY(1); }
+            50% { transform: translateX(-50%) scaleY(0.7); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .avatar-overlay {
+                width: 250px;
+                height: 320px;
+            }
+            
+            .ai-conductor {
+                width: 160px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vision-space-interface">
+        <!-- Left Control Panel -->
+        <div class="control-panel">
+            <div class="control-icon active" data-env="studio" title="Studio">
+                🎬
+            </div>
+            <div class="control-icon" data-env="boardroom" title="Boardroom">
+                🏛️
+            </div>
+            <div class="control-icon" data-env="cosmic" title="Cosmic">
+                🌌
+            </div>
+            <div class="control-icon" data-env="waterfall" title="Waterfall">
+                💧
+            </div>
+            <div class="control-icon" data-env="podcast" title="Podcast">
+                🎙️
+            </div>
+            <div style="margin-top: auto;">
+                <div class="control-icon" data-action="settings" title="Settings">
+                    ⚙️
+                </div>
+                <div class="control-icon" data-action="record" title="Record">
+                    ⏺️
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Studio Display -->
+        <div class="studio-display">
+            <!-- Studio Video Background -->
+            <video class="studio-video" autoplay muted loop>
+                <source src="studio-background.mp4" type="video/mp4">
+                <!-- Fallback background -->
+            </video>
+            
+            <!-- Environment Overlays -->
+            <div class="environment-overlay boardroom" id="boardroom-overlay"></div>
+            <div class="environment-overlay cosmic" id="cosmic-overlay"></div>
+            <div class="environment-overlay waterfall" id="waterfall-overlay"></div>
+            <div class="environment-overlay podcast" id="podcast-overlay"></div>
+            
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-indicator status-live">🔴 LIVE</div>
+                <div class="status-indicator status-participants">👥 3 participants</div>
+                <div class="status-indicator status-ready">AI Conductor Ready</div>
+            </div>
+            
+            <!-- AI Conductor Avatar -->
+            <div class="avatar-overlay">
+                <div class="avatar-container">
+                    <div class="ai-conductor">
+                        <div class="conductor-face">
+                            <div class="conductor-eyes">
+                                <div class="eye"></div>
+                                <div class="eye"></div>
+                            </div>
+                            <div class="conductor-mouth"></div>
+                        </div>
+                        <div class="conductor-label">AI Conductor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Command Zone -->
+        <div class="command-zone">
+            <input 
+                type="text" 
+                class="command-input" 
+                placeholder="Type commands or directions for the AI Conductor..."
+            >
+            <button class="voice-control" title="Voice Command">
+                🎤
+            </button>
+        </div>
+    </div>
+
+    <script>
+        class VisionSpaceStudio {
+            constructor() {
+                this.currentEnvironment = 'studio';
+                this.isRecording = false;
+                this.isVoiceActive = false;
+                
+                this.setupControls();
+                this.setupVoiceControl();
+                this.setupCommandInput();
+                this.initializeConductor();
+            }
+            
+            setupControls() {
+                document.querySelectorAll('.control-icon[data-env]').forEach(icon => {
+                    icon.addEventListener('click', (e) => {
+                        const env = e.target.dataset.env;
+                        this.switchEnvironment(env);
+                    });
+                });
+                
+                document.querySelectorAll('.control-icon[data-action]').forEach(icon => {
+                    icon.addEventListener('click', (e) => {
+                        const action = e.target.dataset.action;
+                        this.handleAction(action);
+                    });
+                });
+            }
+            
+            switchEnvironment(environment) {
+                // Update active control
+                document.querySelectorAll('.control-icon[data-env]').forEach(icon => {
+                    icon.classList.remove('active');
+                });
+                document.querySelector(`[data-env="${environment}"]`).classList.add('active');
+                
+                // Switch environment overlay
+                document.querySelectorAll('.environment-overlay').forEach(overlay => {
+                    overlay.classList.remove('active');
+                });
+                
+                if (environment !== 'studio') {
+                    const overlay = document.getElementById(`${environment}-overlay`);
+                    if (overlay) {
+                        overlay.classList.add('active');
+                    }
+                }
+                
+                this.currentEnvironment = environment;
+                this.notifyConductor(`Switching to ${environment} environment`);
+            }
+            
+            handleAction(action) {
+                switch(action) {
+                    case 'record':
+                        this.toggleRecording();
+                        break;
+                    case 'settings':
+                        this.openSettings();
+                        break;
+                }
+            }
+            
+            toggleRecording() {
+                this.isRecording = !this.isRecording;
+                const recordIcon = document.querySelector('[data-action="record"]');
+                
+                if (this.isRecording) {
+                    recordIcon.style.background = '#ff4757';
+                    recordIcon.style.animation = 'pulse 1s infinite';
+                    this.notifyConductor('Recording started');
+                } else {
+                    recordIcon.style.background = '';
+                    recordIcon.style.animation = '';
+                    this.notifyConductor('Recording stopped');
+                }
+            }
+            
+            setupVoiceControl() {
+                const voiceBtn = document.querySelector('.voice-control');
+                
+                voiceBtn.addEventListener('click', () => {
+                    if (!this.isVoiceActive) {
+                        this.startVoiceRecognition();
+                    } else {
+                        this.stopVoiceRecognition();
+                    }
+                });
+            }
+            
+            startVoiceRecognition() {
+                this.isVoiceActive = true;
+                const voiceBtn = document.querySelector('.voice-control');
+                voiceBtn.classList.add('active');
+                voiceBtn.textContent = '🎙️';
+                
+                // Simulate voice recognition
+                setTimeout(() => {
+                    this.processVoiceCommand("Switch to cosmic environment");
+                    this.stopVoiceRecognition();
+                }, 3000);
+            }
+            
+            stopVoiceRecognition() {
+                this.isVoiceActive = false;
+                const voiceBtn = document.querySelector('.voice-control');
+                voiceBtn.classList.remove('active');
+                voiceBtn.textContent = '🎤';
+            }
+            
+            processVoiceCommand(command) {
+                console.log('Voice command:', command);
+                this.notifyConductor(`Processing: ${command}`);
+                
+                // Simple command processing
+                if (command.toLowerCase().includes('cosmic')) {
+                    this.switchEnvironment('cosmic');
+                } else if (command.toLowerCase().includes('boardroom')) {
+                    this.switchEnvironment('boardroom');
+                } else if (command.toLowerCase().includes('studio')) {
+                    this.switchEnvironment('studio');
+                }
+            }
+            
+            setupCommandInput() {
+                const input = document.querySelector('.command-input');
+                
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const command = input.value;
+                        this.processCommand(command);
+                        input.value = '';
+                    }
+                });
+            }
+            
+            processCommand(command) {
+                console.log('Text command:', command);
+                this.notifyConductor(`Executing: ${command}`);
+                
+                // Process commands
+                if (command.toLowerCase().includes('switch to')) {
+                    const env = this.extractEnvironment(command);
+                    if (env) {
+                        this.switchEnvironment(env);
+                    }
+                }
+            }
+            
+            extractEnvironment(command) {
+                const environments = ['studio', 'boardroom', 'cosmic', 'waterfall', 'podcast'];
+                return environments.find(env => command.toLowerCase().includes(env));
+            }
+            
+            initializeConductor() {
+                // Animate conductor on startup
+                setTimeout(() => {
+                    this.notifyConductor('AI Conductor initialized. Ready for Vision Space collaboration.');
+                }, 1000);
+            }
+            
+            notifyConductor(message) {
+                console.log('Conductor:', message);
+                
+                // Visual feedback
+                const conductor = document.querySelector('.ai-conductor');
+                conductor.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    conductor.style.transform = 'scale(1)';
+                }, 200);
+            }
+            
+            openSettings() {
+                // Settings modal would open here
+                this.notifyConductor('Settings panel opened');
+            }
+        }
+        
+        // Initialize Vision Space Studio
+        document.addEventListener('DOMContentLoaded', () => {
+            window.visionSpace = new VisionSpaceStudio();
+        });
+        
+        // Handle file drop for studio video
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const files = e.dataTransfer.files;
+            
+            if (files.length > 0 && files[0].type.startsWith('video/')) {
+                const video = document.querySelector('.studio-video');
+                const url = URL.createObjectURL(files[0]);
+                video.src = url;
+                console.log('Studio video updated');
+            }
+        });
+    </script>
+</body>
+</html>
