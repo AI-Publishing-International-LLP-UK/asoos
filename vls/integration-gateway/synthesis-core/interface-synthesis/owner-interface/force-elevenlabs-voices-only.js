@@ -31,32 +31,32 @@ const SELECTED_ELEVENLABS_VOICES = {
 
 // Block all browser voice synthesis
 Object.defineProperty(window, 'speechSynthesis', {
-    get: function() {
+    get: function () {
         console.log('🚫 Browser speech synthesis blocked - using ElevenLabs OAuth2 only');
         return {
-            speak: function(utterance) {
+            speak: function (utterance) {
                 console.log('🔄 Redirecting browser TTS to ElevenLabs:', utterance.text);
                 // Redirect to your OAuth2 ElevenLabs system
                 if (window.enhancedOAuth2TTS) {
                     window.enhancedOAuth2TTS(utterance.text);
                 }
             },
-            getVoices: function() {
+            getVoices: function () {
                 console.log('🚫 Browser voice enumeration blocked');
                 return [];
             },
-            cancel: function() {},
-            pause: function() {},
-            resume: function() {}
+            cancel: function () {},
+            pause: function () {},
+            resume: function () {}
         };
     },
-    set: function() {
+    set: function () {
         console.log('🚫 speechSynthesis modification blocked');
     }
 });
 
 // Block SpeechSynthesisUtterance to prevent browser TTS
-window.SpeechSynthesisUtterance = function(text) {
+window.SpeechSynthesisUtterance = function (text) {
     console.log('🚫 Browser SpeechSynthesisUtterance blocked for:', text);
     console.log('🔄 Using ElevenLabs OAuth2 instead');
     
@@ -78,7 +78,7 @@ window.SpeechSynthesisUtterance = function(text) {
 };
 
 // Enhanced OAuth2 TTS that uses your selected voices
-window.enhancedAgentTTS = async function(text, agentName = 'drLucy') {
+window.enhancedAgentTTS = async function (text, agentName = 'drLucy') {
     console.log(`🤖 Agent TTS: ${agentName} speaking: "${text}"`);
     
     const voice = SELECTED_ELEVENLABS_VOICES[agentName] || SELECTED_ELEVENLABS_VOICES.drLucy;
@@ -143,7 +143,7 @@ ttsOverrides.forEach(funcName => {
 });
 
 // Test function
-window.testAgentVoices = async function() {
+window.testAgentVoices = async function () {
     console.log('🧪 Testing agent voices (ElevenLabs only)...');
     
     await window.enhancedAgentTTS('Dr. Lucy here - Quantum Business Computationalist ready for analysis', 'drLucy');

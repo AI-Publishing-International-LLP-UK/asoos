@@ -24,11 +24,11 @@ class WalletShowcaseIntegration {
 
     this.acesWall = {
       topPilots: [],
-      addPilot: function(pilot) {
+      addPilot: function (pilot) {
         if (pilot.rank <= 10) this.topPilots.push(pilot);
       },
       jrAces: [],
-      addJrPilot: function(pilot) {
+      addJrPilot: function (pilot) {
         if (pilot.experienceYears < 5 && pilot.rank <= 30) this.jrAces.push(pilot);
       }
     };

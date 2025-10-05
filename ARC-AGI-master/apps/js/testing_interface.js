@@ -154,7 +154,7 @@ function loadTaskFromFile(e) {
         return;
     }
     var reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         var contents = e.target.result;
 
         try {
@@ -260,7 +260,7 @@ function initializeSelectable() {
             {
                 autoRefresh: false,
                 filter: '> .row > .cell',
-                start: function(event, ui) {
+                start: function (event, ui) {
                     $('.ui-selected').each((i, e) => {
                         $(e).removeClass('ui-selected');
                     });

@@ -309,7 +309,7 @@ PatentSchema.index({
 });
 
 // Pre-save middleware to create searchText field
-PatentSchema.pre('save', function(next) {
+PatentSchema.pre('save', function (next) {
   const searchFields = [
     this.applicationMetaData?.inventionTitle,
     this.applicationMetaData?.firstApplicantName,
@@ -323,26 +323,26 @@ PatentSchema.pre('save', function(next) {
 });
 
 // Static methods for common queries
-PatentSchema.statics.findByPatentNumber = function(patentNumber) {
+PatentSchema.statics.findByPatentNumber = function (patentNumber) {
   return this.findOne({ 'applicationMetaData.patentNumber': patentNumber });
 };
 
-PatentSchema.statics.findByApplicationNumber = function(applicationNumber) {
+PatentSchema.statics.findByApplicationNumber = function (applicationNumber) {
   return this.findOne({ applicationNumberText: applicationNumber });
 };
 
-PatentSchema.statics.searchByTitle = function(titleQuery, options = {}) {
+PatentSchema.statics.searchByTitle = function (titleQuery, options = {}) {
   return this.find(
     { $text: { $search: titleQuery } },
     { score: { $meta: 'textScore' } }
   ).sort({ score: { $meta: 'textScore' } }).limit(options.limit || 100);
 };
 
-PatentSchema.statics.findByClassification = function(cpcClass) {
+PatentSchema.statics.findByClassification = function (cpcClass) {
   return this.find({ 'applicationMetaData.cpcClassificationBag': cpcClass });
 };
 
-PatentSchema.statics.findByDateRange = function(startDate, endDate, dateField = 'filingDate') {
+PatentSchema.statics.findByDateRange = function (startDate, endDate, dateField = 'filingDate') {
   const query = {};
   query[`applicationMetaData.${dateField}`] = {
     $gte: startDate,

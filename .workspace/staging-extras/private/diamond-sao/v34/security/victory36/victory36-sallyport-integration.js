@@ -377,7 +377,7 @@ class Victory36SallyPortIntegration extends EventEmitter {
     };
 
     // Setup event handlers for integrated monitoring
-    this.victory36.on = this.victory36.on || function() {};
+    this.victory36.on = this.victory36.on || function () {};
     this.victory36.on('threatNeutralized', (data) => {
       this.handleThreatEvent(data);
     });

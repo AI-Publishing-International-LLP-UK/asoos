@@ -1301,7 +1301,7 @@ const DiamondSolutionsMenu = {
   ],
 
   // Voice command processing and menu integration
-  processVoiceCommand: async function(voiceInput) {
+  processVoiceCommand: async function (voiceInput) {
     const normalizedInput = voiceInput.toLowerCase();
     const foundSolutions = [];
 
@@ -1344,13 +1344,13 @@ const DiamondSolutionsMenu = {
   },
 
   // Get all solutions for a category
-  getCategorySolutions: function(categoryId) {
+  getCategorySolutions: function (categoryId) {
     const category = this.categories.find(cat => cat.id === categoryId);
     return category ? category.solutions : [];
   },
 
   // Get solution by ID
-  getSolutionById: function(solutionId) {
+  getSolutionById: function (solutionId) {
     for (const category of this.categories) {
       const solution = category.solutions.find(sol => sol.id === solutionId);
       if (solution) {
@@ -1366,7 +1366,7 @@ const DiamondSolutionsMenu = {
   },
 
   // Execute a Diamond solution
-  executeSolution: async function(solutionId, options = {}) {
+  executeSolution: async function (solutionId, options = {}) {
     const solution = this.getSolutionById(solutionId);
     if (!solution) {
       throw new Error(`Solution ${solutionId} not found`);
@@ -1389,7 +1389,7 @@ const DiamondSolutionsMenu = {
   },
 
   // Get menu statistics
-  getStatistics: function() {
+  getStatistics: function () {
     return {
       totalCategories: this.categories.length,
       totalSolutions: this.totalSolutions,

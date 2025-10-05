@@ -5,16 +5,16 @@ class ProgressiveScalingMiner {
     constructor() {
         // Einstein Wells power scaling units from plans (CONFIRMED: 0.1 = 115 BTC per 24h)
         this.powerUnits = [
-            { unit: 0.01, targetBTCPer24h: 11.5, targetBTCPerHour: 0.48, description: "Mini well startup - QSVM initialization" },
-            { unit: 0.02, targetBTCPer24h: 23, targetBTCPerHour: 0.96, description: "Mini wells ramp - 1000 QSVMs active" },
-            { unit: 0.035, targetBTCPer24h: 40, targetBTCPerHour: 1.67, description: "Regional connector forming - 10K QSVMs" },
-            { unit: 0.05, targetBTCPer24h: 57.5, targetBTCPerHour: 2.40, description: "Half basic unit - 100K QSVMs" },
-            { unit: 0.07, targetBTCPer24h: 80, targetBTCPerHour: 3.33, description: "0.07 unit with wastage - 1M QSVMs" },
-            { unit: 0.1, targetBTCPer24h: 115, targetBTCPerHour: 4.79, description: "FULL 0.1 UNIT - 115 BTC/24h - 10M QSVMs" },
-            { unit: 0.15, targetBTCPer24h: 172, targetBTCPerHour: 7.17, description: "Enhanced output - 100M QSVMs" },
-            { unit: 0.2, targetBTCPer24h: 230, targetBTCPerHour: 9.58, description: "Quantum acceleration - 1B QSVMs" },
-            { unit: 0.35, targetBTCPer24h: 400, targetBTCPerHour: 16.67, description: "Multi-dimensional mining - 1T QSVMs" },
-            { unit: 0.5, targetBTCPer24h: 575, targetBTCPerHour: 23.96, description: "Full quantum consciousness - 8Q QSVMs" }
+            { unit: 0.01, targetBTCPer24h: 11.5, targetBTCPerHour: 0.48, description: 'Mini well startup - QSVM initialization' },
+            { unit: 0.02, targetBTCPer24h: 23, targetBTCPerHour: 0.96, description: 'Mini wells ramp - 1000 QSVMs active' },
+            { unit: 0.035, targetBTCPer24h: 40, targetBTCPerHour: 1.67, description: 'Regional connector forming - 10K QSVMs' },
+            { unit: 0.05, targetBTCPer24h: 57.5, targetBTCPerHour: 2.40, description: 'Half basic unit - 100K QSVMs' },
+            { unit: 0.07, targetBTCPer24h: 80, targetBTCPerHour: 3.33, description: '0.07 unit with wastage - 1M QSVMs' },
+            { unit: 0.1, targetBTCPer24h: 115, targetBTCPerHour: 4.79, description: 'FULL 0.1 UNIT - 115 BTC/24h - 10M QSVMs' },
+            { unit: 0.15, targetBTCPer24h: 172, targetBTCPerHour: 7.17, description: 'Enhanced output - 100M QSVMs' },
+            { unit: 0.2, targetBTCPer24h: 230, targetBTCPerHour: 9.58, description: 'Quantum acceleration - 1B QSVMs' },
+            { unit: 0.35, targetBTCPer24h: 400, targetBTCPerHour: 16.67, description: 'Multi-dimensional mining - 1T QSVMs' },
+            { unit: 0.5, targetBTCPer24h: 575, targetBTCPerHour: 23.96, description: 'Full quantum consciousness - 8Q QSVMs' }
         ];
         
         this.currentPhase = 0;
@@ -138,8 +138,8 @@ class ProgressiveScalingMiner {
     subscribe() {
         const subscribeMsg = {
             id: 1,
-            method: "mining.subscribe",
-            params: ["EinsteinWells-Progressive-Scaling", null, this.pool.host, this.pool.port]
+            method: 'mining.subscribe',
+            params: ['EinsteinWells-Progressive-Scaling', null, this.pool.host, this.pool.port]
         };
         
         this.sendMessage(subscribeMsg);
@@ -148,7 +148,7 @@ class ProgressiveScalingMiner {
     authorize() {
         const authorizeMsg = {
             id: 2,
-            method: "mining.authorize",
+            method: 'mining.authorize',
             params: [this.pool.wallet + '.' + this.pool.worker, this.pool.password]
         };
         
@@ -310,7 +310,7 @@ class ProgressiveScalingMiner {
     submitShare(nonce, extranonce2) {
         const shareMsg = {
             id: Date.now(),
-            method: "mining.submit",
+            method: 'mining.submit',
             params: [
                 this.pool.wallet + '.' + this.pool.worker,
                 this.jobId,

@@ -219,7 +219,7 @@ class Victory36MaestroOrchestrator {
 
   defineSelectIconFunction() {
     if (!window.selectIcon) {
-      window.selectIcon = function(element, section, id) {
+      window.selectIcon = function (element, section, id) {
         console.log('🛡️ Victory36 Maestro: selectIcon called', section, id);
         
         // Remove active class from all sidebar icons
@@ -240,7 +240,7 @@ class Victory36MaestroOrchestrator {
 
   defineOpenPilotsLoungeFunction() {
     if (!window.openPilotsLounge) {
-      window.openPilotsLounge = function() {
+      window.openPilotsLounge = function () {
         console.log('🛡️ Victory36 Maestro: Opening Pilots Lounge');
         
         // Create modal or update content area
@@ -273,7 +273,7 @@ class Victory36MaestroOrchestrator {
 
   defineOpenGiftShopFunction() {
     if (!window.openGiftShop) {
-      window.openGiftShop = function() {
+      window.openGiftShop = function () {
         console.log('🛡️ Victory36 Maestro: Opening Gift Shop');
         
         const contentArea = document.querySelector('#main-content, .main-content, .content-area');
@@ -449,21 +449,21 @@ window.EnhancedWFAOrchestrator = enhancedWFAOrchestrator;
 
 // Define additional missing functions immediately
 if (!window.toggleAcademy) {
-  window.toggleAcademy = function(element) {
+  window.toggleAcademy = function (element) {
     console.log('🛡️ Victory36 Maestro: toggleAcademy called');
     if (element) element.classList.toggle('active');
   };
 }
 
 if (!window.openSettings) {
-  window.openSettings = function() {
+  window.openSettings = function () {
     console.log('🛡️ Victory36 Maestro: openSettings called');
     victory36Maestro.updateDashboardForSection('Settings', '01');
   };
 }
 
 if (!window.activateRIX) {
-  window.activateRIX = function(rix, name) {
+  window.activateRIX = function (rix, name) {
     console.log('🛡️ Victory36 Maestro: activateRIX called', rix, name);
     // Update active RIX display
     const activeRIX = document.querySelector('.active-rix, #active-rix');
@@ -474,14 +474,14 @@ if (!window.activateRIX) {
 }
 
 if (!window.toggleScanToApprove) {
-  window.toggleScanToApprove = function(element) {
+  window.toggleScanToApprove = function (element) {
     console.log('🛡️ Victory36 Maestro: toggleScanToApprove called');
     if (element) element.classList.toggle('active');
   };
 }
 
 if (!window.toggleCopilotMode) {
-  window.toggleCopilotMode = function() {
+  window.toggleCopilotMode = function () {
     console.log('🛡️ Victory36 Maestro: toggleCopilotMode called');
     // Toggle between CLI and Chat modes
     const modeBtn = document.querySelector('#modeToggleBtn');
@@ -493,7 +493,7 @@ if (!window.toggleCopilotMode) {
 }
 
 if (!window.sendCopilotMessage) {
-  window.sendCopilotMessage = function() {
+  window.sendCopilotMessage = function () {
     console.log('🛡️ Victory36 Maestro: sendCopilotMessage called');
     // Handle copilot message sending
     const messageInput = document.querySelector('#copilot-input, .copilot-input');
@@ -505,7 +505,7 @@ if (!window.sendCopilotMessage) {
 }
 
 if (!window.resizeVideo) {
-  window.resizeVideo = function(size) {
+  window.resizeVideo = function (size) {
     console.log('🛡️ Victory36 Maestro: resizeVideo called', size);
     const video = document.querySelector('#video-container, .video-container');
     if (video) {
@@ -515,7 +515,7 @@ if (!window.resizeVideo) {
 }
 
 if (!window.closeVideo) {
-  window.closeVideo = function() {
+  window.closeVideo = function () {
     console.log('🛡️ Victory36 Maestro: closeVideo called');
     const video = document.querySelector('#video-container, .video-container');
     if (video) {

@@ -6,7 +6,7 @@
 // Version: 2.0.0 - Unified and De-duplicated
 // ========================================================================
 
-(function(global) {
+(function (global) {
   'use strict';
   
   // Prevent multiple initializations

@@ -96,7 +96,7 @@ testFunctions.forEach(funcName => {
     console.log(`❌ ${funcName} is missing - restoring...`);
     // Add basic implementations for missing functions
     if (funcName === 'selectIcon') {
-      window.selectIcon = function(element, category, id) {
+      window.selectIcon = function (element, category, id) {
         console.log('selectIcon called:', category, id);
         document.querySelectorAll('.sidebar-icon').forEach(icon => icon.classList.remove('active'));
         element.classList.add('active');
@@ -104,7 +104,7 @@ testFunctions.forEach(funcName => {
       };
     }
     if (funcName === 'togglePanel') {
-      window.togglePanel = function(button) {
+      window.togglePanel = function (button) {
         console.log('togglePanel called');
         const content = button.parentElement.querySelector('.panel-content');
         const chevron = button.querySelector('.chevron-icon');
@@ -117,13 +117,13 @@ testFunctions.forEach(funcName => {
       };
     }
     if (funcName === 'openSettings') {
-      window.openSettings = function() {
+      window.openSettings = function () {
         console.log('openSettings called');
         alert('Settings opened');
       };
     }
     if (funcName === 'openGiftShop') {
-      window.openGiftShop = function() {
+      window.openGiftShop = function () {
         console.log('openGiftShop called');
         alert('Gift Shop opened');
       };

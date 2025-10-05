@@ -54,7 +54,7 @@ app.use(helmet({
 
 // CORS configuration for OAuth2 and voice APIs
 app.use(cors({
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     // Allow requests with no origin (mobile apps, etc.)
     if (!origin) {return callback(null, true);}
     

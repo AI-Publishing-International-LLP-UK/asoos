@@ -5,7 +5,7 @@
 // any page that loads, providing permanent protection
 // ========================================================================
 
-(function() {
+(function () {
   'use strict';
   
   console.log('🛡️ Auto-injecting ElevenLabs popup elimination system...');

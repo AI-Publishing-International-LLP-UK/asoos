@@ -117,19 +117,19 @@ class NiceHashQuickMinerSetup {
             
             // For macOS, we'll create a configuration that works with existing mining software
             const quickMinerConfig = {
-                version: "1.5.5.0",
+                version: '1.5.5.0',
                 wallet: this.config.wallet,
-                worker: "EinsteinWells-QuickMiner",
-                region: "USA",
+                worker: 'EinsteinWells-QuickMiner',
+                region: 'USA',
                 devices: await this.detectDevices(),
                 algorithms: {
-                    primary: "daggerhashimoto",
-                    secondary: "kawpow",
-                    backup: "octopus"
+                    primary: 'daggerhashimoto',
+                    secondary: 'kawpow',
+                    backup: 'octopus'
                 },
                 optimization: {
                     autoTune: true,
-                    efficiency: "maximum",
+                    efficiency: 'maximum',
                     temperature: 75
                 }
             };

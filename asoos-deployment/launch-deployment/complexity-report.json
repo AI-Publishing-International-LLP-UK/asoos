@@ -1,0 +1,59 @@
+{
+  "timestamp": "2025-10-04T07:56:17.391Z",
+  "codebasePath": "/Users/as/asoos/integration-gateway",
+  "summary": {
+    "averageComplexity": 0,
+    "readabilityScore": "unknown",
+    "maintainabilityGrade": "F",
+    "technicalDebtGrade": "A",
+    "overallHealth": "Fair"
+  },
+  "details": {
+    "cyclomaticComplexity": {
+      "totalComplexity": 0,
+      "averageComplexity": 0,
+      "fileCount": 149,
+      "highComplexityFiles": [],
+      "distribution": {
+        "low": 0,
+        "medium": 0,
+        "high": 0,
+        "very-high": 0
+      },
+      "details": []
+    },
+    "cognitiveComplexity": {
+      "totalCognitive": 0,
+      "averageCognitive": 0,
+      "fileCount": 149,
+      "difficultFiles": [],
+      "readabilityScore": "unknown",
+      "details": []
+    },
+    "maintainabilityIndex": {
+      "averageMaintainability": 0,
+      "overallGrade": "F",
+      "fileCount": 149,
+      "lowMaintainabilityFiles": [],
+      "distribution": {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "details": []
+    },
+    "technicalDebtRatio": {
+      "technicalDebtRatio": 0,
+      "totalDebtMinutes": 0,
+      "totalDevelopmentMinutes": 0,
+      "debtGrade": "A",
+      "fileCount": 149,
+      "filesWithDebt": 0,
+      "priorityItems": [],
+      "debtByCategory": {},
+      "details": []
+    }
+  }
+}

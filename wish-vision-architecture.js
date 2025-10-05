@@ -420,7 +420,7 @@ class WishVisionExperience {
 }
 
 // Usage: Initialize when Wish Vision icon is clicked
-window.initializeWishVision = async function() {
+window.initializeWishVision = async function () {
   const wishVision = new WishVisionExperience();
   await wishVision.initializeWishVision();
 };

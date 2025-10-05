@@ -17,7 +17,7 @@ console.log('🔐 Mode: OAuth2 Enterprise + Self-Healing');
 
 // Override the global ElevenLabs constructor to prevent API key usage
 if (typeof window.ElevenLabsClient !== 'undefined') {
-  window.ElevenLabsClient = function() {
+  window.ElevenLabsClient = function () {
     console.log('🚫 ElevenLabsClient constructor blocked - redirecting to OAuth2');
     return {
       textToSpeech: () => Promise.resolve({ audio: new ArrayBuffer(0) }),
@@ -29,11 +29,11 @@ if (typeof window.ElevenLabsClient !== 'undefined') {
 
 // Block any attempts to access API keys
 Object.defineProperty(window, 'ELEVENLABS_API_KEY', {
-  get: function() {
+  get: function () {
     console.log('🚫 ELEVENLABS_API_KEY access blocked');
     return null;
   },
-  set: function() {
+  set: function () {
     console.log('🚫 ELEVENLABS_API_KEY setting blocked');
   }
 });
@@ -43,7 +43,7 @@ Object.defineProperty(window, 'ELEVENLABS_API_KEY', {
 // ========================================================================
 
 const originalPrompt = window.prompt;
-window.prompt = function(message, defaultValue) {
+window.prompt = function (message, defaultValue) {
   if (message && (
     message.toLowerCase().includes('api key') ||
     message.toLowerCase().includes('elevenlabs') ||
@@ -184,7 +184,7 @@ functionsToReplace.forEach(funcName => {
 // ========================================================================
 
 const originalFetch = window.fetch;
-window.fetch = function(url, options) {
+window.fetch = function (url, options) {
   if (typeof url === 'string' && url.includes('api.elevenlabs.io')) {
     console.log('🚫 Direct ElevenLabs API call blocked:', url);
     console.log('🔄 Redirecting to OAuth2 endpoint...');
@@ -221,7 +221,7 @@ window.fetch = function(url, options) {
 // Override ElevenLabs SDK if it gets loaded
 if (typeof window.ElevenLabs !== 'undefined') {
   window.ElevenLabs = {
-    TTS: function() {
+    TTS: function () {
       return {
         generate: enhancedOAuth2TTS,
         stream: enhancedOAuth2TTS
@@ -304,7 +304,7 @@ async function testEliminatedTTS() {
 // Monitor for any attempts to show prompts
 let promptAttempts = 0;
 const originalAlert = window.alert;
-window.alert = function(message) {
+window.alert = function (message) {
   if (message && message.toLowerCase().includes('api')) {
     console.log('🚫 API-related alert blocked:', message);
     return;
