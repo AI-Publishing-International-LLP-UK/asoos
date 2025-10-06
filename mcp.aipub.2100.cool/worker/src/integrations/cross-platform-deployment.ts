@@ -4,7 +4,7 @@
  * Targets: sallyport.2100.cool, coaching.2100.cool, coach.2100.cool, einsteinwells.2100.cool
  */
 
-import { Hono } from 'hono'
+import { Hono } from 'hono';
 
 interface CrossPlatformEnv {
   DEPLOYMENT_API_KEY: string;
@@ -13,7 +13,7 @@ interface CrossPlatformEnv {
   CUSTOMER_DB: D1Database;
 }
 
-const crossPlatformDeployment = new Hono<{ Bindings: CrossPlatformEnv }>()
+const crossPlatformDeployment = new Hono<{ Bindings: CrossPlatformEnv }>();
 
 // Platform Configuration Registry
 const PLATFORM_CONFIGS = {
@@ -77,13 +77,13 @@ const PLATFORM_CONFIGS = {
       access_control: 'Accredited investors'
     }
   }
-}
+};
 
 // Auto-Implementation Orchestrator
 crossPlatformDeployment.post('/deploy-upgrades', async (c) => {
-  const deploymentConfig = await c.req.json()
+  const deploymentConfig = await c.req.json();
   
-  const deploymentResults = []
+  const deploymentResults = [];
   
   // Deploy to each platform automatically
   for (const [domain, config] of Object.entries(PLATFORM_CONFIGS)) {
@@ -108,13 +108,13 @@ crossPlatformDeployment.post('/deploy-upgrades', async (c) => {
         },
         ui_integration: config.user_interface,
         deployment_timestamp: new Date().toISOString()
-      }
+      };
       
       // Store platform configuration
       await c.env.PLATFORM_REGISTRY.put(
         `platform:${domain}`, 
         JSON.stringify(platformUpgrades)
-      )
+      );
       
       // Queue platform-specific deployment
       await c.env.SYNC_QUEUE.send({
@@ -122,22 +122,22 @@ crossPlatformDeployment.post('/deploy-upgrades', async (c) => {
         platform: domain,
         config: platformUpgrades,
         priority: 'high'
-      })
+      });
       
       deploymentResults.push({
         platform: domain,
         status: 'queued',
         features: Object.keys(platformUpgrades.upgradePackages),
         estimatedDeployment: '15-30 minutes'
-      })
+      });
       
     } catch (error) {
-      console.error(`Deployment failed for ${domain}:`, error)
+      console.error(`Deployment failed for ${domain}:`, error);
       deploymentResults.push({
         platform: domain,
         status: 'failed',
         error: error.message
-      })
+      });
     }
   }
   
@@ -147,8 +147,8 @@ crossPlatformDeployment.post('/deploy-upgrades', async (c) => {
     platforms: deploymentResults,
     totalPlatforms: Object.keys(PLATFORM_CONFIGS).length,
     estimatedCompletion: '30-45 minutes'
-  })
-})
+  });
+});
 
 // Platform-Specific Feature Adaptation
 function adaptFeaturesForPlatform(platformType: string, packageType: string) {
@@ -209,9 +209,9 @@ function adaptFeaturesForPlatform(platformType: string, packageType: string) {
         'Strategic Partnership Orchestration'
       ]
     }
-  }
+  };
   
-  return adaptations[platformType]?.[packageType] || []
+  return adaptations[platformType]?.[packageType] || [];
 }
 
 // Platform-Specific Pricing
@@ -219,32 +219,32 @@ function calculatePlatformPricing(platformType: string, packageType: string) {
   const basePricing = {
     'dynamic-enhancement': { monthly: 497, annually: 4970 },
     'advanced-operations': { monthly: 997, annually: 9970 }
-  }
+  };
   
   const platformMultipliers = {
     'security_gateway': 1.2, // Premium for security
     'coaching_services': 1.0, // Standard pricing
     'executive_coaching': 1.5, // Premium for executive services
     'energy_investment': 1.3  // Premium for investment services
-  }
+  };
   
-  const base = basePricing[packageType]
-  const multiplier = platformMultipliers[platformType] || 1.0
+  const base = basePricing[packageType];
+  const multiplier = platformMultipliers[platformType] || 1.0;
   
   return {
     monthly: Math.round(base.monthly * multiplier),
     annually: Math.round(base.annually * multiplier),
     currency: 'USD'
-  }
+  };
 }
 
 // Real-time Deployment Status
 crossPlatformDeployment.get('/deployment-status', async (c) => {
-  const platformStatuses = []
+  const platformStatuses = [];
   
   for (const domain of Object.keys(PLATFORM_CONFIGS)) {
-    const configData = await c.env.PLATFORM_REGISTRY.get(`platform:${domain}`)
-    const config = JSON.parse(configData || '{}')
+    const configData = await c.env.PLATFORM_REGISTRY.get(`platform:${domain}`);
+    const config = JSON.parse(configData || '{}');
     
     platformStatuses.push({
       platform: domain,
@@ -252,7 +252,7 @@ crossPlatformDeployment.get('/deployment-status', async (c) => {
       features: config.upgradePackages ? Object.keys(config.upgradePackages) : [],
       lastUpdated: config.deployment_timestamp || null,
       healthCheck: await checkPlatformHealth(domain)
-    })
+    });
   }
   
   return c.json({
@@ -260,8 +260,8 @@ crossPlatformDeployment.get('/deployment-status', async (c) => {
     platforms: platformStatuses,
     overallStatus: platformStatuses.every(p => p.deploymentStatus === 'deployed') ? 'complete' : 'in_progress',
     activeUpgrades: platformStatuses.reduce((total, p) => total + p.features.length, 0)
-  })
-})
+  });
+});
 
 // Platform Health Check
 async function checkPlatformHealth(domain: string): Promise<string> {
@@ -269,27 +269,27 @@ async function checkPlatformHealth(domain: string): Promise<string> {
     const response = await fetch(`https://${domain}/health`, {
       method: 'GET',
       timeout: 5000
-    })
-    return response.ok ? 'healthy' : 'degraded'
+    });
+    return response.ok ? 'healthy' : 'degraded';
   } catch {
-    return 'offline'
+    return 'offline';
   }
 }
 
 // Customer Access Synchronization
 crossPlatformDeployment.post('/sync-customer-access/:customerId', async (c) => {
-  const customerId = c.req.param('customerId')
+  const customerId = c.req.param('customerId');
   
   // Get customer's upgrade packages
   const customerUpgrades = await c.env.CUSTOMER_DB.prepare(
     'SELECT package_id, status, platform_access FROM purchases WHERE customer_id = ? AND status = "completed"'
-  ).bind(customerId).all()
+  ).bind(customerId).all();
   
   // Sync access across all platforms
-  const syncResults = []
+  const syncResults = [];
   
   for (const domain of Object.keys(PLATFORM_CONFIGS)) {
-    const platformConfig = await c.env.PLATFORM_REGISTRY.get(`platform:${domain}`)
+    const platformConfig = await c.env.PLATFORM_REGISTRY.get(`platform:${domain}`);
     if (platformConfig) {
       // Enable customer access to purchased upgrades on this platform
       await c.env.SYNC_QUEUE.send({
@@ -298,13 +298,13 @@ crossPlatformDeployment.post('/sync-customer-access/:customerId', async (c) => {
         platform: domain,
         upgrades: customerUpgrades.results,
         timestamp: new Date().toISOString()
-      })
+      });
       
       syncResults.push({
         platform: domain,
         syncStatus: 'queued',
         upgradesEnabled: customerUpgrades.results?.length || 0
-      })
+      });
     }
   }
   
@@ -313,7 +313,7 @@ crossPlatformDeployment.post('/sync-customer-access/:customerId', async (c) => {
     customerId,
     platformsSynced: syncResults.length,
     results: syncResults
-  })
-})
+  });
+});
 
-export { crossPlatformDeployment }
+export { crossPlatformDeployment };

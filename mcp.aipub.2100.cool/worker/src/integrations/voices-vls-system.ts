@@ -234,7 +234,7 @@ export class VoiceLeadershipSystems {
       const audio = await this.elevenLabs.generate({
         voice: pilot.voiceId,
         text: text,
-        model_id: "eleven_turbo_v2_5", // Latest model
+        model_id: 'eleven_turbo_v2_5', // Latest model
         voice_settings: {
           stability: options.stability || 0.75,
           similarity_boost: options.similarityBoost || 0.8,

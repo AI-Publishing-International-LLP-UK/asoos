@@ -1,10 +1,10 @@
-import { Hono } from 'hono'
-import { cors } from 'hono/cors'
-import { logger } from 'hono/logger'
-import { dynamicEnhancement } from './upgrades/package1-dynamic-enhancement'
-import { advancedOperations } from './upgrades/package2-advanced-operations'
-import { giftShopOffers } from './integrations/giftshop-offers'
-import { crossPlatformDeployment } from './integrations/cross-platform-deployment'
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
+import { dynamicEnhancement } from './upgrades/package1-dynamic-enhancement';
+import { advancedOperations } from './upgrades/package2-advanced-operations';
+import { giftShopOffers } from './integrations/giftshop-offers';
+import { crossPlatformDeployment } from './integrations/cross-platform-deployment';
 
 interface Env {
   // Authentication
@@ -37,10 +37,10 @@ interface Env {
   DEPLOYMENT_API_KEY: string;
 }
 
-const app = new Hono<{ Bindings: Env }>()
+const app = new Hono<{ Bindings: Env }>();
 
 // Global middleware
-app.use('*', logger())
+app.use('*', logger());
 app.use('*', cors({
   origin: [
     'https://sallyport.2100.cool',
@@ -52,7 +52,7 @@ app.use('*', cors({
   ],
   allowHeaders: ['Content-Type', 'Authorization', 'X-SAO-Token', 'X-SallyPort-Token'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-}))
+}));
 
 // Health check
 app.get('/health', (c) => {
@@ -62,8 +62,8 @@ app.get('/health', (c) => {
     environment: c.env.ENVIRONMENT,
     platforms: ['sallyport', 'coaching', 'coach', 'einsteinwells'],
     timestamp: new Date().toISOString()
-  })
-})
+  });
+});
 
 // Root endpoint - Upgrade System Portal
 app.get('/', (c) => {
@@ -83,37 +83,37 @@ app.get('/', (c) => {
     },
     access: 'Sapphire+ SAO customers only',
     integration: 'Automatic deployment across all platforms'
-  })
-})
+  });
+});
 
 // Upgrade Package Routes
-app.route('/upgrades/dynamic-enhancement', dynamicEnhancement)
-app.route('/upgrades/advanced-operations', advancedOperations)
+app.route('/upgrades/dynamic-enhancement', dynamicEnhancement);
+app.route('/upgrades/advanced-operations', advancedOperations);
 
 // Gift Shop Integration (Special Offers)
-app.route('/giftshop', giftShopOffers)
+app.route('/giftshop', giftShopOffers);
 
 // Cross-Platform Deployment
-app.route('/platform', crossPlatformDeployment)
+app.route('/platform', crossPlatformDeployment);
 
 // Platform-Specific Endpoints for Integration
 
 // SallyPort Security Center Integration
 app.get('/sallyport/upgrades', async (c) => {
-  const customerId = c.req.query('customer_id')
+  const customerId = c.req.query('customer_id');
   if (!customerId) {
-    return c.json({ error: 'Customer ID required' }, 400)
+    return c.json({ error: 'Customer ID required' }, 400);
   }
   
   // Get customer's SAO level and available upgrades
   const customer = await c.env.CUSTOMER_DB.prepare(
     'SELECT sao_level, active_upgrades FROM customers WHERE customer_id = ?'
-  ).bind(customerId).first()
+  ).bind(customerId).first();
   
   if (!customer || !['Diamond', 'Emerald'].includes(customer.sao_level)) {
     return c.json({
       error: 'Access restricted to Diamond/Emerald SAO levels'
-    }, 403)
+    }, 403);
   }
   
   return c.json({
@@ -134,14 +134,14 @@ app.get('/sallyport/upgrades', async (c) => {
       location: 'Diamond SAO Dashboard',
       displayMode: 'integrated_tiles'
     }
-  })
-})
+  });
+});
 
 // Coaching Platform Integration
 app.get('/coaching/upgrades', async (c) => {
-  const customerId = c.req.query('customer_id')
+  const customerId = c.req.query('customer_id');
   if (!customerId) {
-    return c.json({ error: 'Customer ID required' }, 400)
+    return c.json({ error: 'Customer ID required' }, 400);
   }
   
   return c.json({
@@ -162,14 +162,14 @@ app.get('/coaching/upgrades', async (c) => {
       location: 'Coach Dashboard > Premium Features',
       displayMode: 'service_upgrades'
     }
-  })
-})
+  });
+});
 
 // Executive Coaching Integration  
 app.get('/coach/upgrades', async (c) => {
-  const customerId = c.req.query('customer_id')
+  const customerId = c.req.query('customer_id');
   if (!customerId) {
-    return c.json({ error: 'Customer ID required' }, 400)
+    return c.json({ error: 'Customer ID required' }, 400);
   }
   
   return c.json({
@@ -190,14 +190,14 @@ app.get('/coach/upgrades', async (c) => {
       location: 'Executive Suite > Advanced Tools',
       displayMode: 'premium_suite'
     }
-  })
-})
+  });
+});
 
 // Einstein Wells Energy & Investment Integration
 app.get('/einsteinwells/upgrades', async (c) => {
-  const customerId = c.req.query('customer_id')
+  const customerId = c.req.query('customer_id');
   if (!customerId) {
-    return c.json({ error: 'Customer ID required' }, 400)
+    return c.json({ error: 'Customer ID required' }, 400);
   }
   
   return c.json({
@@ -218,18 +218,18 @@ app.get('/einsteinwells/upgrades', async (c) => {
       location: 'Investment Dashboard > Advanced Analytics',
       displayMode: 'analytical_tools'
     }
-  })
-})
+  });
+});
 
 // Global deployment trigger (Diamond SAO only)
 app.post('/deploy-all-platforms', async (c) => {
-  const authHeader = c.req.header('Authorization')
-  const saoLevel = c.req.header('X-SAO-Level')
+  const authHeader = c.req.header('Authorization');
+  const saoLevel = c.req.header('X-SAO-Level');
   
   if (!authHeader || !['Diamond', 'Emerald'].includes(saoLevel)) {
     return c.json({
       error: 'Deployment restricted to Diamond/Emerald SAO levels'
-    }, 403)
+    }, 403);
   }
   
   // Trigger cross-platform deployment
@@ -244,9 +244,9 @@ app.post('/deploy-all-platforms', async (c) => {
       timestamp: new Date().toISOString(),
       deploymentType: 'full_ecosystem'
     })
-  })
+  });
   
-  const result = await deploymentResponse.json()
+  const result = await deploymentResponse.json();
   
   return c.json({
     success: true,
@@ -254,7 +254,7 @@ app.post('/deploy-all-platforms', async (c) => {
     deployment: result,
     estimatedCompletion: '30-45 minutes',
     affectedPlatforms: 4
-  })
-})
+  });
+});
 
-export default app
+export default app;

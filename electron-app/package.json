@@ -12,7 +12,8 @@
     "build:linux": "electron-builder --linux",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "lint-arch": "find . -type f ( -name \"*darwin*\" -o -name \"*arm64*\" -o -name \"*.dylib\" ) ! -path \"./git/*\" ! -path \"./node_modules/.cache/*\" | head -10 && echo \"Architecture lint complete. If files are found above, they may cause Cloud Run issues.\""
   },
   "keywords": [
     "aixtiv",
@@ -98,5 +99,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/AI-Publishing-International-LLP-UK/asoos.git"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }

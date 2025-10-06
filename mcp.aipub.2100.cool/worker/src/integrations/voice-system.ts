@@ -4,7 +4,7 @@
  * Supports all 14 Pilots + Elite11, Mastery33, Victory36
  */
 
-import { Hono } from 'hono'
+import { Hono } from 'hono';
 
 interface VoiceSystemEnv {
   ELEVENLABS_API_KEY: string;
@@ -14,7 +14,7 @@ interface VoiceSystemEnv {
   VOICE_QUEUE: Queue;
 }
 
-const voiceSystem = new Hono<{ Bindings: VoiceSystemEnv }>()
+const voiceSystem = new Hono<{ Bindings: VoiceSystemEnv }>();
 
 // Complete Voice Configuration List (18 Voices Total)
 const VOICE_CONFIGURATIONS = {
@@ -168,19 +168,19 @@ const VOICE_CONFIGURATIONS = {
       capabilities: ['victory_achievement', 'success_optimization', 'results_delivery']
     }
   }
-}
+};
 
 // Voice Selection and Configuration
 voiceSystem.get('/voices/available/:customerId', async (c) => {
-  const customerId = c.req.param('customerId')
+  const customerId = c.req.param('customerId');
   
   // Get customer's upgrade level to determine voice access
   const customer = await c.env.CUSTOMER_DB.prepare(
     'SELECT sao_level, active_upgrades, voice_preferences FROM customers WHERE customer_id = ?'
-  ).bind(customerId).first()
+  ).bind(customerId).first();
   
   if (!customer) {
-    return c.json({ error: 'Customer not found' }, 404)
+    return c.json({ error: 'Customer not found' }, 404);
   }
   
   // Determine available voices based on upgrade level
@@ -194,28 +194,28 @@ voiceSystem.get('/voices/available/:customerId', async (c) => {
                   (customer.sao_level === 'Diamond' || customer.sao_level === 'Emerald' 
                     ? Object.keys(VOICE_CONFIGURATIONS.leadership).length 
                     : 0)
-  }
+  };
   
   return c.json({
     success: true,
     customer_id: customerId,
     available_voices: availableVoices,
     current_preferences: customer.voice_preferences ? JSON.parse(customer.voice_preferences) : null
-  })
-})
+  });
+});
 
 // Voice Synthesis with ElevenLabs Integration
 voiceSystem.post('/voices/synthesize/:voiceId', async (c) => {
-  const voiceId = c.req.param('voiceId')
-  const { text, settings } = await c.req.json()
+  const voiceId = c.req.param('voiceId');
+  const { text, settings } = await c.req.json();
   
   // Find voice configuration
   const voiceConfig = Object.values(VOICE_CONFIGURATIONS.pilots)
     .concat(Object.values(VOICE_CONFIGURATIONS.leadership))
-    .find(voice => voice.id === voiceId)
+    .find(voice => voice.id === voiceId);
   
   if (!voiceConfig) {
-    return c.json({ error: 'Voice not found' }, 404)
+    return c.json({ error: 'Voice not found' }, 404);
   }
   
   try {
@@ -237,40 +237,40 @@ voiceSystem.post('/voices/synthesize/:voiceId', async (c) => {
           use_speaker_boost: settings?.use_speaker_boost || true
         }
       })
-    })
+    });
     
     if (!response.ok) {
-      throw new Error(`ElevenLabs API error: ${response.status}`)
+      throw new Error(`ElevenLabs API error: ${response.status}`);
     }
     
-    const audioBuffer = await response.arrayBuffer()
+    const audioBuffer = await response.arrayBuffer();
     
     // Cache the generated audio
     await c.env.VOICE_CACHE.put(
       `audio:${voiceId}:${Buffer.from(text).toString('base64')}`, 
       audioBuffer,
       { expirationTtl: 3600 } // 1 hour cache
-    )
+    );
     
     return new Response(audioBuffer, {
       headers: {
         'Content-Type': 'audio/mpeg',
         'Content-Length': audioBuffer.byteLength.toString()
       }
-    })
+    });
     
   } catch (error) {
-    console.error('Voice synthesis error:', error)
+    console.error('Voice synthesis error:', error);
     return c.json({
       error: 'Voice synthesis failed',
       message: error.message
-    }, 500)
+    }, 500);
   }
-})
+});
 
 // Hume Integration for Emotional Analysis
 voiceSystem.post('/voices/emotional-analysis', async (c) => {
-  const { audio_data, voice_id } = await c.req.json()
+  const { audio_data, voice_id } = await c.req.json();
   
   try {
     const response = await fetch('https://api.hume.ai/v0/batch/jobs', {
@@ -290,30 +290,30 @@ voiceSystem.post('/voices/emotional-analysis', async (c) => {
           }
         ]
       })
-    })
+    });
     
-    const analysisResult = await response.json()
+    const analysisResult = await response.json();
     
     return c.json({
       success: true,
       analysis: analysisResult,
       voice_id: voice_id,
       timestamp: new Date().toISOString()
-    })
+    });
     
   } catch (error) {
-    console.error('Hume analysis error:', error)
+    console.error('Hume analysis error:', error);
     return c.json({
       error: 'Emotional analysis failed',
       message: error.message  
-    }, 500)
+    }, 500);
   }
-})
+});
 
 // Voice Preference Management
 voiceSystem.put('/voices/preferences/:customerId', async (c) => {
-  const customerId = c.req.param('customerId')
-  const preferences = await c.req.json()
+  const customerId = c.req.param('customerId');
+  const preferences = await c.req.json();
   
   try {
     // Update customer voice preferences
@@ -323,7 +323,7 @@ voiceSystem.put('/voices/preferences/:customerId', async (c) => {
       JSON.stringify(preferences),
       new Date().toISOString(),
       customerId
-    ).run()
+    ).run();
     
     // Queue voice system updates
     await c.env.VOICE_QUEUE.send({
@@ -331,26 +331,26 @@ voiceSystem.put('/voices/preferences/:customerId', async (c) => {
       customer_id: customerId,
       preferences: preferences,
       timestamp: new Date().toISOString()
-    })
+    });
     
     return c.json({
       success: true,
       message: 'Voice preferences updated',
       preferences: preferences
-    })
+    });
     
   } catch (error) {
-    console.error('Preference update error:', error)
+    console.error('Preference update error:', error);
     return c.json({
       error: 'Failed to update preferences',
       message: error.message
-    }, 500)
+    }, 500);
   }
-})
+});
 
 // Voice Performance Analytics
 voiceSystem.get('/voices/analytics/:customerId', async (c) => {
-  const customerId = c.req.param('customerId')
+  const customerId = c.req.param('customerId');
   
   // Get voice usage analytics
   const analytics = {
@@ -375,14 +375,14 @@ voiceSystem.get('/voices/analytics/:customerId', async (c) => {
       preferred_interactions: 'Strategic planning, Problem solving, Team coordination',
       emotional_states: 'Focused (45%), Collaborative (32%), Analytical (23%)'
     }
-  }
+  };
   
   return c.json({
     success: true,
     customer_id: customerId,
     analytics: analytics,
     generated_at: new Date().toISOString()
-  })
-})
+  });
+});
 
-export { voiceSystem, VOICE_CONFIGURATIONS }
+export { voiceSystem, VOICE_CONFIGURATIONS };

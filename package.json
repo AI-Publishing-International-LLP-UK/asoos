@@ -17,7 +17,8 @@
     "mcp": "node index.js",
     "repair": "node diamond-cli/bin/diamond repair",
     "heal": "node diamond-cli/bin/diamond heal",
-    "deploy": "node diamond-cli/bin/diamond deploy wfa swarm"
+    "deploy": "node diamond-cli/bin/diamond deploy wfa swarm",
+    "lint-arch": "find . -type f \\\\( -name \"*darwin*\" -o -name \"*arm64*\" -o -name \"*.dylib\" \\\\) ! -path \"./git/*\" ! -path \"./node_modules/.cache/*\" | head -10 && echo \"Architecture lint complete. If files are found above, they may cause Cloud Run issues.\""
   },
   "keywords": [
     "mcp",

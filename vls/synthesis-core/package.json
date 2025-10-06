@@ -14,7 +14,8 @@
     "synthesis-integration": "node integration-synthesis/gateway-hub.js",
     "synthesis-promise": "curl -s https://mocoa-us-west1-b-yutylytffa-uw.a.run.app/health | jq",
     "deploy-synthesis": "./scripts/deploy-vls-synthesis.sh",
-    "test-synthesis": "./scripts/test-vls-integration.sh"
+    "test-synthesis": "./scripts/test-vls-integration.sh",
+    "lint-arch": "find . -type f ( -name \"*darwin*\" -o -name \"*arm64*\" -o -name \"*.dylib\" ) ! -path \"./git/*\" ! -path \"./node_modules/.cache/*\" | head -10 && echo \"Architecture lint complete. If files are found above, they may cause Cloud Run issues.\""
   },
   "keywords": [
     "vls",

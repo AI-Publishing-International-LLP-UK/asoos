@@ -7,7 +7,8 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "victory36-scan": "node victory36-security-scan.js",
-    "quantum-health": "curl -f http://localhost:8080/api/dr-claude/health"
+    "quantum-health": "curl -f http://localhost:8080/api/dr-claude/health",
+    "lint-arch": "find . -type f ( -name \"*darwin*\" -o -name \"*arm64*\" -o -name \"*.dylib\" ) ! -path \"./git/*\" ! -path \"./node_modules/.cache/*\" | head -10 && echo \"Architecture lint complete. If files are found above, they may cause Cloud Run issues.\""
   },
   "keywords": [
     "asoos",
@@ -40,7 +41,7 @@
     "nodemon": "^3.0.1"
   },
   "engines": {
-    "node": ">=24.5.0"
+    "node": ">=22.0.0"
   },
   "repository": {
     "type": "git",

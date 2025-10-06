@@ -1,36 +1,59 @@
-FROM node:24-alpine
+# syntax=docker/dockerfile:1.4
+# Multi-stage Dockerfile for Cloud Run AMD64 compatibility
 
-# Set working directory
-WORKDIR /app
+# Build stage
+FROM --platform=linux/amd64 node:24-slim AS base
 
 # Install system dependencies
-RUN apk update && apk add --no-cache curl bash
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm ci --only=production --no-audit --no-fund
+# Set working directory
+WORKDIR /usr/src/app
 
-# Copy source code
-COPY server.js ./
-COPY ecosystem-healer.js ./
+# Copy package files for dependency installation
+COPY package*.json .npmrc ./
 
-# Create non-root user
-RUN addgroup -g 1001 -S aixtiv && adduser -S aixtiv -u 1001
-RUN chown -R aixtiv:aixtiv /app
+# Install Node.js dependencies with explicit platform targeting
+RUN npm ci --omit=dev --arch=x64 --platform=linux && npm cache clean --force
 
-# Set environment
-ENV NODE_ENV=production
-ENV PORT=8080
+# Production stage
+FROM --platform=linux/amd64 node:24-slim AS production
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
-    CMD curl -f http://localhost:8080/health || exit 1
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user early
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy dependencies from build stage
+COPY --from=base --chown=appuser:appuser /usr/src/app/node_modules ./node_modules
+
+# Copy application files
+COPY --chown=appuser:appuser . .
 
 # Switch to non-root user
-USER aixtiv
+USER appuser
 
-# Expose port
+# Expose port (Cloud Run will set PORT env var)
 EXPOSE 8080
 
-# Start the application
+# Environment variables
+ENV NODE_ENV=production
+ENV PLATFORM=linux
+ENV ARCH=x64
+
+# Health check (use PORT env var set by Cloud Run)
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:${PORT:-8080}/health || exit 1
+
+# Start the application (adjust as needed)
 CMD ["node", "server.js"]

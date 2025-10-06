@@ -3,5 +3,11 @@
     "inquirer": "^12.9.6",
     "lru-cache": "^11.2.1",
     "node-cron": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "lint-arch": "find . -type f ( -name \"*darwin*\" -o -name \"*arm64*\" -o -name \"*.dylib\" ) ! -path \"./git/*\" ! -path \"./node_modules/.cache/*\" | head -10 && echo \"Architecture lint complete. If files are found above, they may cause Cloud Run issues.\""
   }
 }

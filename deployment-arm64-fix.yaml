@@ -1,0 +1,144 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anthology-content-generator
+  namespace: aixtiv-mocoa
+  labels:
+    app: anthology-content-engine
+    version: arm64-fix
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: anthology-content-engine
+  template:
+    metadata:
+      labels:
+        app: anthology-content-engine
+        version: arm64-fix
+      annotations:
+        # Force ARM64 scheduling
+        kubernetes.io/arch: arm64
+    spec:
+      # Node selector for ARM64 nodes
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
+      containers:
+      - name: anthology-content-engine
+        # Use ARM64-compatible base image
+        image: gcr.io/api-for-warp-drive/anthology-content-engine:arm64-latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 8081
+          name: health
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "8080"
+        - name: HEALTH_PORT
+          value: "8081"
+        - name: PLATFORM
+          value: "linux/arm64"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        # Fixed health checks with correct ports
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8081
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 2
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: tmp-volume
+          mountPath: /tmp
+        - name: app-logs
+          mountPath: /app/logs
+      volumes:
+      - name: tmp-volume
+        emptyDir:
+          sizeLimit: 100Mi
+      - name: app-logs
+        emptyDir:
+          sizeLimit: 500Mi
+      # Ensure pods are scheduled on different nodes for HA
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - anthology-content-engine
+              topologyKey: kubernetes.io/hostname
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: anthology-content-service
+  namespace: aixtiv-mocoa
+  labels:
+    app: anthology-content-engine
+spec:
+  selector:
+    app: anthology-content-engine
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  - name: health
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aixtiv-mocoa
+  labels:
+    name: aixtiv-mocoa

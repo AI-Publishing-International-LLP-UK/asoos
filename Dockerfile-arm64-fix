@@ -1,0 +1,45 @@
+# ARM64-Compatible Dockerfile for anthology-content-engine
+# Addresses ImagePullBackOff errors on Apple Silicon/ARM64 systems
+
+FROM --platform=linux/arm64 node:18-alpine
+
+# Install required system dependencies for ARM64
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    curl \
+    git \
+    && rm -rf /var/cache/apk/*
+
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY package*.json ./
+
+# Install Node.js dependencies with ARM64 compatibility
+RUN npm ci --only=production --platform=linux/arm64 || npm install --only=production
+
+# Copy application code
+COPY . .
+
+# Create non-root user (use existing node user if available)
+RUN if ! id node >/dev/null 2>&1; then \
+        addgroup -g 1000 appuser && \
+        adduser -D -u 1000 -G appuser appuser; \
+    else \
+        ln -sf node appuser; \
+    fi && \
+    chown -R 1000:1000 /app
+
+USER 1000
+
+# Expose port
+EXPOSE 8080 8081
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8081/ready || exit 1
+
+# Start command
+CMD ["node", "server.js"]

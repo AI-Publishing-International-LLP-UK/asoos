@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Ticker - CENTER ALL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: #1a1a1a;
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Smart Ticker at bottom */
+        .smart-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            border-top: 2px solid #333;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .smart-ticker:hover {
+            height: 50px;
+            background: linear-gradient(135deg, #3d3d3d, #2a2a2a);
+        }
+
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            animation: scroll-text 30s linear infinite;
+        }
+
+        .ticker-message {
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .conductor-scale {
+            margin-left: auto;
+            font-size: 11px;
+            opacity: 0.7;
+            padding: 4px 8px;
+            background: rgba(157, 78, 221, 0.2);
+            border-radius: 12px;
+        }
+
+        .voice-indicator {
+            margin-left: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FFD700;
+            animation: pulse 2s infinite;
+        }
+
+        .interactive-indicator {
+            margin-left: 10px;
+            font-size: 12px;
+            animation: blink 1.5s infinite;
+        }
+
+        /* Color coding */
+        .critical { color: #FF4444; }
+        .warning { color: #FFA500; }
+        .info { color: #4A9EFF; }
+        .success { color: #00CC66; }
+        .conductor { color: #9D4EDD; }
+        .voice { color: #FFD700; }
+        .memory { color: #00CCCC; }
+
+        /* Voice interaction modal */
+        .voice-modal {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            width: 400px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 2px solid #9D4EDD;
+            border-radius: 15px;
+            padding: 20px;
+            display: none;
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+        }
+
+        .voice-modal.active {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        .voice-input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 10px;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .conductor-response {
+            background: rgba(157, 78, 221, 0.1);
+            border-left: 3px solid #9D4EDD;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .quick-action {
+            background: rgba(157, 78, 221, 0.2);
+            border: 1px solid #9D4EDD;
+            color: #9D4EDD;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-action:hover {
+            background: rgba(157, 78, 221, 0.3);
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes scroll-text {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(20px); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+
+        /* Demo content area */
+        .demo-content {
+            padding: 20px;
+            height: calc(100vh - 45px);
+            overflow-y: auto;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Content -->
+    <div class="demo-content">
+        <div class="demo-header">
+            <h1>🎯 CENTER ALL System</h1>
+            <p>Smart Ticker Conductor with Voice Interaction</p>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🎵 Conductor Scaling</h3>
+                <p>AI scales from 1x to 5000x based on complexity. Handles projects autonomously while you work elsewhere.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎙️ Voice Interaction</h3>
+                <p>Tap ticker to speak. Say "take over", "status", "how long" - Conductor responds intelligently.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🧠 Memory Management</h3>
+                <p>Cross-project memory keeps contexts straight. Switch projects freely - Conductor tracks everything.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎨 Color-Coded Alerts</h3>
+                <p>Critical (Red), Warning (Orange), Info (Blue), Success (Green), Conductor (Purple), Voice (Gold)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Smart Ticker -->
+    <div class="smart-ticker" onclick="toggleVoiceModal()">
+        <div class="ticker-content">
+            <div class="ticker-message" id="tickerMessage">
+                🎵 Conductor ready • All systems optimal • Tap to interact
+            </div>
+            <div class="voice-indicator" id="voiceIndicator" style="display: none;"></div>
+            <div class="interactive-indicator" id="interactiveIndicator">💬</div>
+        </div>
+        <div class="conductor-scale" id="conductorScale">1x Scale</div>
+    </div>
+
+    <!-- Voice Interaction Modal -->
+    <div class="voice-modal" id="voiceModal">
+        <h4 style="color: #9D4EDD; margin-bottom: 15px;">🎵 Conductor Interaction</h4>
+        
+        <input type="text" 
+               class="voice-input" 
+               id="voiceInput"
+               placeholder="Speak or type: 'take over', 'status', 'how long'..."
+               onkeypress="handleVoiceInput(event)">
+        
+        <div class="conductor-response" id="conductorResponse" style="display: none;">
+            Response will appear here...
+        </div>
+        
+        <div class="quick-actions">
+            <button class="quick-action" onclick="sendQuickAction('take over')">Take Over</button>
+            <button class="quick-action" onclick="sendQuickAction('status')">Status</button>
+            <button class="quick-action" onclick="sendQuickAction('how long')">How Long?</button>
+            <button class="quick-action" onclick="sendQuickAction('switch project')">Switch Project</button>
+            <button class="quick-action" onclick="sendQuickAction('help')">Help</button>
+        </div>
+    </div>
+
+    <script>
+        let wsConnection = null;
+        let currentNotifications = [];
+        let conductorData = {};
+
+        // WebSocket connection for real-time updates
+        function connectWebSocket() {
+            wsConnection = new WebSocket(`ws://${window.location.host}`);
+            
+            wsConnection.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.type === 'ticker') {
+                    updateTicker(data.data);
+                }
+            };
+            
+            wsConnection.onclose = () => {
+                setTimeout(connectWebSocket, 3000); // Reconnect
+            };
+        }
+
+        // Update ticker display
+        function updateTicker(tickerData) {
+            const messageEl = document.getElementById('tickerMessage');
+            const scaleEl = document.getElementById('conductorScale');
+            const voiceIndicator = document.getElementById('voiceIndicator');
+            
+            messageEl.textContent = tickerData.message;
+            messageEl.className = `ticker-message ${getColorClass(tickerData.color)}`;
+            
+            if (tickerData.interactive) {
+                voiceIndicator.style.display = 'block';
+            } else {
+                voiceIndicator.style.display = 'none';
+            }
+        }
+
+        // Get CSS class for color coding
+        function getColorClass(color) {
+            const colorMap = {
+                '#FF4444': 'critical',
+                '#FFA500': 'warning', 
+                '#4A9EFF': 'info',
+                '#00CC66': 'success',
+                '#9D4EDD': 'conductor',
+                '#FFD700': 'voice',
+                '#00CCCC': 'memory'
+            };
+            return colorMap[color] || 'info';
+        }
+
+        // Toggle voice interaction modal
+        function toggleVoiceModal() {
+            const modal = document.getElementById('voiceModal');
+            const input = document.getElementById('voiceInput');
+            
+            if (modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            } else {
+                modal.classList.add('active');
+                setTimeout(() => input.focus(), 100);
+            }
+        }
+
+        // Handle voice input
+        function handleVoiceInput(event) {
+            if (event.key === 'Enter') {
+                const input = event.target.value.trim();
+                if (input) {
+                    sendVoiceInteraction(input);
+                    event.target.value = '';
+                }
+            }
+        }
+
+        // Send voice interaction to conductor
+        async function sendVoiceInteraction(input) {
+            try {
+                const response = await fetch('/api/voice-interaction', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        input,
+                        projectContext: 'integration-gateway CENTER ALL'
+                    })
+                });
+                
+                const data = await response.json();
+                showConductorResponse(data.response);
+                
+                // Update conductor scale if changed
+                if (data.conductorScale) {
+                    document.getElementById('conductorScale').textContent = `${data.conductorScale}x Scale`;
+                }
+                
+            } catch (error) {
+                showConductorResponse('🎵 Connection issue - trying to reconnect...');
+            }
+        }
+
+        // Quick action buttons
+        function sendQuickAction(action) {
+            sendVoiceInteraction(action);
+        }
+
+        // Show conductor response
+        function showConductorResponse(message) {
+            const responseEl = document.getElementById('conductorResponse');
+            responseEl.textContent = message;
+            responseEl.style.display = 'block';
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                responseEl.style.display = 'none';
+            }, 10000);
+        }
+
+        // Simulate periodic notifications
+        function simulateNotifications() {
+            const notifications = [
+                { type: 'INFO', message: '🏗️ Building CENTER ALL deployment...' },
+                { type: 'SUCCESS', message: '✅ Cloud Run service healthy' },
+                { type: 'CONDUCTOR', message: '🎵 Complex integration detected. Let me scale to 500x for 30 minutes.' },
+                { type: 'MEMORY', message: '🧠 Project contexts saved across 3 active projects' },
+                { type: 'VOICE', message: '🎙️ Voice interaction ready - tap to respond' }
+            ];
+            
+            let index = 0;
+            setInterval(() => {
+                const notification = notifications[index];
+                updateTicker({
+                    message: notification.message,
+                    color: getColorForType(notification.type),
+                    interactive: notification.type === 'CONDUCTOR' || notification.type === 'VOICE'
+                });
+                index = (index + 1) % notifications.length;
+            }, 15000);
+        }
+
+        function getColorForType(type) {
+            const colors = {
+                'CRITICAL': '#FF4444',
+                'WARNING': '#FFA500',
+                'INFO': '#4A9EFF', 
+                'SUCCESS': '#00CC66',
+                'CONDUCTOR': '#9D4EDD',
+                'VOICE': '#FFD700',
+                'MEMORY': '#00CCCC'
+            };
+            return colors[type] || '#4A9EFF';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            connectWebSocket();
+            simulateNotifications();
+            
+            // Close modal when clicking outside
+            document.addEventListener('click', (e) => {
+                const modal = document.getElementById('voiceModal');
+                const ticker = document.querySelector('.smart-ticker');
+                
+                if (!modal.contains(e.target) && !ticker.contains(e.target)) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

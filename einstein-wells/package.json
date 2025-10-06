@@ -18,7 +18,8 @@
     "blitz-fast": "node high-speed-orchestration.js",
     "high-speed-orchestration": "node high-speed-orchestration.js",
     "protected-session-6h": "node run-6hour-protected-session.js",
-    "cleanup-faults": "./cleanup-translation-faults.sh"
+    "cleanup-faults": "./cleanup-translation-faults.sh",
+    "lint-arch": "find . -type f ( -name \"*darwin*\" -o -name \"*arm64*\" -o -name \"*.dylib\" ) ! -path \"./git/*\" ! -path \"./node_modules/.cache/*\" | head -10 && echo \"Architecture lint complete. If files are found above, they may cause Cloud Run issues.\""
   },
   "dependencies": {
     "@google-cloud/firestore": "^7.1.0",
@@ -54,6 +55,6 @@
     "url": "https://github.com/AI-Publishing-International-LLP-UK/asoos.git"
   },
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=22.0.0"
   }
 }
